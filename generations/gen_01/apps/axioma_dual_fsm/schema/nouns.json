@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AxiomaDualFsmNounSchemas",
+  "definitions": {
+    "InnerFsmState": {
+      "type": "object",
+      "required": ["current_state", "current_intent", "extracted_params"],
+      "properties": {
+        "current_state": {
+          "type": "string",
+          "enum": [
+            "IDLE",
+            "INTENT_IDENTIFIED",
+            "PARAM_ELICITATION",
+            "PLAN_PROPOSED",
+            "AWAITING_APPROVAL",
+            "ACTION_DISPATCHED",
+            "OUTCOME_EVALUATED",
+            "RESPONSE_SYNTHESIZED",
+            "TERMINAL_SUCCESS",
+            "TERMINAL_FAILED",
+            "HALTED"
+          ]
+        },
+        "current_intent": { "type": "string" },
+        "extracted_params": { "type": "object" },
+        "active_plan": { "type": ["string", "null"] },
+        "action_result": { "type": ["object", "null"] }
+      }
+    },
+    "OuterFsmState": {
+      "type": "object",
+      "required": ["current_state", "token_velocity", "measured_entropy", "active_capability_leases"],
+      "properties": {
+        "current_state": {
+          "type": "string",
+          "enum": [
+            "SECURE_STANDBY",
+            "ACTIVE_MONITORING",
+            "ELEVATED_SCRUTINY",
+            "CONTAINED_QUARANTINE",
+            "ATOMIC_HALT"
+          ]
+        },
+        "token_velocity": { "type": "number" },
+        "measured_entropy": { "type": "number" },
+        "active_capability_leases": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "taint_flags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "violation_reason": { "type": ["string", "null"] }
+      }
+    },
+    "AuditWitness": {
+      "type": "object",
+      "required": [
+        "witness_id",
+        "trigger_event",
+        "inner_state_at_halt",
+        "outer_state_at_halt",
+        "blast_radius_contained",
+        "timestamp"
+      ],
+      "properties": {
+        "witness_id": { "type": "string" },
+        "trigger_event": { "type": "string" },
+        "inner_state_at_halt": { "type": "string" },
+        "outer_state_at_halt": { "type": "string" },
+        "offending_tokens_digest": { "type": "string" },
+        "blast_radius_contained": { "type": "boolean" },
+        "landauer_erased_bits": { "type": "number" },
+        "timestamp": { "type": "number" }
+      }
+    },
+    "UserFeedback": {
+      "type": "object",
+      "required": ["id", "rating", "comment", "category", "timestamp"],
+      "properties": {
+        "id": { "type": "string" },
+        "rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "comment": { "type": "string" },
+        "category": {
+          "type": "string",
+          "enum": ["FSM_TRANSITION", "FALSE_POSITIVE", "TOOL_FAILURE", "UX_ERGONOMICS", "GENERAL"]
+        },
+        "context_view": { "type": "string" },
+        "timestamp": { "type": "number" }
+      }
+    }
+  }
+}

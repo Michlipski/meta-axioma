@@ -1,0 +1,63 @@
+{
+  "initial_states": {
+    "solver": "ACTIVE_SOLVING",
+    "constructor": "IDLE_STANDBY"
+  },
+  "actions": [
+    {
+      "action_name": "SET_CELL_LETTER",
+      "scope": "SOLVER_ENGINE",
+      "description": "Enters a letter into cell (r, c) optimistically, recording forward morphism in undo stack."
+    },
+    {
+      "action_name": "CLEAR_CELL_LETTER",
+      "scope": "SOLVER_ENGINE",
+      "description": "Clears a cell character, recording forward morphism in undo stack."
+    },
+    {
+      "action_name": "DISSECT_CRYPTIC_CLUE",
+      "scope": "CLUE_ENGINE",
+      "description": "Projects clue into Universal Grammar AST: isolates [FODDER], [INDICATOR], and [DEFINITION]."
+    },
+    {
+      "action_name": "CHECK_WORD_SOLUTION",
+      "scope": "SOLVER_ENGINE",
+      "description": "Validates entered characters in active slot against ground-truth answer without revealing solution."
+    },
+    {
+      "action_name": "REVEAL_HINT",
+      "scope": "SOLVER_ENGINE",
+      "description": "Provides progressive hint: letter reveal, indicator hint, or wordplay explanation."
+    },
+    {
+      "action_name": "DISPATCH_SYNTHESIS_JOB",
+      "scope": "CONSTRUCTOR_WORKER",
+      "description": "Offloads CPU-bound AC-3 CSP grid generation to decoupled background worker pool."
+    },
+    {
+      "action_name": "AUDIT_LANDAUER_SEARCH",
+      "scope": "LANDAUER_AUDITOR",
+      "description": "Calculates information erasure (k_B ln |D_i|) and dissipated thermal energy across backtracked branches."
+    },
+    {
+      "action_name": "SYNC_SESSION_DELTA",
+      "scope": "SESSION_STORE",
+      "description": "Applies idempotent delta vector with ETag / version optimistic concurrency control."
+    },
+    {
+      "action_name": "UNDO_REVERSIBLE_STEP",
+      "scope": "SOLVER_ENGINE",
+      "description": "Executes inverse morphism M^-1 restoring previous cell state."
+    },
+    {
+      "action_name": "REDO_REVERSIBLE_STEP",
+      "scope": "SOLVER_ENGINE",
+      "description": "Re-applies forward morphism M restoring undone cell state."
+    },
+    {
+      "action_name": "SUBMIT_USER_FEEDBACK",
+      "scope": "FEEDBACK_GATEWAY",
+      "description": "Captures user observations or solver friction directly into the G1/G2 learning stream."
+    }
+  ]
+}

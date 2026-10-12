@@ -1,0 +1,51 @@
+{
+  "tasks": [
+    {
+      "id": "task_101",
+      "title": "Implement Landauer Dissipation Accounting",
+      "description": "Formally account for erased computational bits against kB T ln 2.",
+      "status": "done",
+      "priority": "critical",
+      "created_at": 1776000000.0
+    },
+    {
+      "id": "task_102",
+      "title": "Integrate Zero-Trust MCP Dual-Boundary Gateway",
+      "description": "Validate Noun schemas and Verb FSM state automata transitions.",
+      "status": "done",
+      "priority": "high",
+      "created_at": 1776001000.0
+    },
+    {
+      "id": "task_103",
+      "title": "Functorial Time-Travel (Undo/Redo)",
+      "description": "Ensure category-theoretic morphism reversibility across all state transitions.",
+      "status": "in_progress",
+      "priority": "high",
+      "created_at": 1776002000.0,
+      "updated_at": 1791832354.452246
+    },
+    {
+      "id": "task_104",
+      "title": "Demarcate Exception Enclaves for Edge Cases",
+      "description": "Isolate failure blast radiuses and provide humane, actionable error recovery.",
+      "status": "review",
+      "priority": "medium",
+      "created_at": 1776003000.0
+    },
+    {
+      "id": "task_105",
+      "title": "Prepare Generation 2 Successor Handover",
+      "description": "Endogenously formulate evaluation targets and foundational basis for G2.",
+      "status": "backlog",
+      "priority": "medium",
+      "created_at": 1776004000.0
+    },
+    {
+      "id": "task_custom_1",
+      "title": "Test Custom Invariant",
+      "status": "in_progress",
+      "priority": "high"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AxiomaSwarmVerbs",
+  "description": "Deterministic finite state transitions for edge model lifecycle and task routing (L1-015, L1-004)",
+  "transitions": [
+    {
+      "verb": "LOAD_MODEL",
+      "entity": "ModelDescriptor",
+      "from_state": "UNLOADED",
+      "to_state": "RESIDENT",
+      "preconditions": [
+        "VramPool.available_vram_mb >= ModelDescriptor.vram_weights_mb + ModelDescriptor.vram_kv_mb"
+      ]
+    },
+    {
+      "verb": "EVICT_MODEL",
+      "entity": "ModelDescriptor",
+      "from_state": "RESIDENT",
+      "to_state": "UNLOADED",
+      "effects": [
+        "VramPool.allocated_vram_mb -= ModelDescriptor.vram_weights_mb + ModelDescriptor.vram_kv_mb"
+      ]
+    },
+    {
+      "verb": "ACQUIRE_INFERENCE",
+      "entity": "ModelDescriptor",
+      "from_state": "RESIDENT",
+      "to_state": "BUSY"
+    },
+    {
+      "verb": "RELEASE_INFERENCE",
+      "entity": "ModelDescriptor",
+      "from_state": "BUSY",
+      "to_state": "RESIDENT"
+    },
+    {
+      "verb": "QUEUE_TASK",
+      "entity": "SwarmTask",
+      "from_state": "INITIAL",
+      "to_state": "QUEUED"
+    },
+    {
+      "verb": "DISPATCH_TASK",
+      "entity": "SwarmTask",
+      "from_state": "QUEUED",
+      "to_state": "PROCESSING",
+      "preconditions": [
+        "TargetModel.status == RESIDENT || TargetModel.can_load == true"
+      ]
+    },
+    {
+      "verb": "COMPLETE_TASK",
+      "entity": "SwarmTask",
+      "from_state": "PROCESSING",
+      "to_state": "COMPLETED"
+    },
+    {
+      "verb": "FAIL_TASK",
+      "entity": "SwarmTask",
+      "from_state": "PROCESSING",
+      "to_state": "FAILED",
+      "enclave_isolated": true
+    },
+    {
+      "verb": "CANCEL_TASK",
+      "entity": "SwarmTask",
+      "from_state": "QUEUED",
+      "to_state": "CANCELLED"
+    }
+  ]
+}

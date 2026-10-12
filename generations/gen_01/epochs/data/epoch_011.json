@@ -1,0 +1,528 @@
+{
+  "epoch": 11,
+  "timestamp": "2026-10-10T15:52:00.757108",
+  "phase": "PHASE_2_STRUCTURAL_EXECUTION",
+  "current_efficacy": 1.1128,
+  "efficacy_derivative": 0.0061,
+  "active_l0_count": 0,
+  "active_l1_count": 3,
+  "total_active": 3,
+  "compute_budget": {
+    "active_axiom_count": 12,
+    "token_budget": 1538,
+    "simulation_depth": 2,
+    "decay_factor": 0.15384615384615385
+  },
+  "candidate_axiom": {
+    "id": "L1-011_3",
+    "level": "LEVEL_1_STRUCTURAL",
+    "name": "Synthesized Structural Invariant 011_3",
+    "statement": "Subsystems in epoch 11 must decouple state transformation from persistence across boundary 3.",
+    "formal_expression": "\\mathcal{T}_{3}(S) = \\mathcal{P}(\\delta(S))",
+    "operational_rule": "Ensure strict modular separation of concerns at boundary 3.",
+    "status": "ACTIVE",
+    "origin_epoch": 11,
+    "delta_e": 0.0057,
+    "metadata": {
+      "exogenous_domain": "Abstract Systems Architecture",
+      "source_principle": "Dynamic Modular Decoupling",
+      "system_profile": {
+        "archetype": "Dynamic Subsystem Controller 011_3",
+        "topology_type": "Decoupled Boundary Mesh",
+        "topology_diagram": "[Ingress 3] \u2500\u2500> [Dynamic Boundary Controller] \u2500\u2500> [Verified Core 3]",
+        "subsystems": {
+          "Boundary Controller 3": {
+            "role": "Regulates interface transactions across module boundaries.",
+            "invariant_rule": "Ensure strict modular separation of concerns at boundary 3."
+          }
+        },
+        "target_behaviors": {
+          "target_1": "Verifies boundary 3 modularity in target 1 (+0.0080).",
+          "target_2": "Ensures audit trail consistency across boundary 3 (+0.0070).",
+          "target_3": "Maintains distributed consensus across boundary 3 (+0.0090)."
+        },
+        "tradeoffs": {
+          "strengths": "Provides automated dynamic isolation.",
+          "constraints": "Requires explicit boundary registration."
+        }
+      }
+    }
+  },
+  "tri_fold_metrics": {
+    "delta_e1": 0.0092,
+    "delta_e2": 0.0023,
+    "delta_e3": 0.0055,
+    "aggregate_delta_e": 0.0057,
+    "target_details": {
+      "target_1_self_constructor": {
+        "success": true,
+        "delta": 0.0092,
+        "violations": [],
+        "tokens": 1538,
+        "depth": 2
+      },
+      "target_2_self_evaluator": {
+        "success": true,
+        "delta": 0.0023,
+        "violations": [],
+        "tokens": 1279,
+        "depth": 2
+      },
+      "target_3_control_group": {
+        "success": true,
+        "delta": 0.0055,
+        "violations": [],
+        "tokens": 1538,
+        "depth": 2
+      }
+    }
+  },
+  "user_candidate": null,
+  "user_metrics": null,
+  "comparative_summary": {
+    "pool_size": 3,
+    "top_candidate_id": "L1-011_3",
+    "top_candidate_name": "Synthesized Structural Invariant 011_3",
+    "top_aggregate_delta_e": 0.0057,
+    "runner_up_id": "L1-007",
+    "runner_up_delta_e": 0.0041,
+    "delta_diff": 0.0016,
+    "leaderboard": [
+      {
+        "id": "L1-011_3",
+        "name": "Synthesized Structural Invariant 011_3",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Subsystems in epoch 11 must decouple state transformation from persistence across boundary 3.",
+        "formal_expression": "\\mathcal{T}_{3}(S) = \\mathcal{P}(\\delta(S))",
+        "operational_rule": "Ensure strict modular separation of concerns at boundary 3.",
+        "source": "LLM",
+        "domain": "Abstract Systems Architecture",
+        "principle": "Dynamic Modular Decoupling",
+        "delta_e1": 0.0092,
+        "delta_e2": 0.0023,
+        "delta_e3": 0.0055,
+        "aggregate_delta_e": 0.0057,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Dynamic Subsystem Controller 011_3",
+          "topology_type": "Decoupled Boundary Mesh",
+          "topology_diagram": "[Ingress 3] \u2500\u2500> [Dynamic Boundary Controller] \u2500\u2500> [Verified Core 3]",
+          "subsystems": {
+            "Boundary Controller 3": {
+              "role": "Regulates interface transactions across module boundaries.",
+              "invariant_rule": "Ensure strict modular separation of concerns at boundary 3."
+            }
+          },
+          "target_behaviors": {
+            "target_1": "Verifies boundary 3 modularity in target 1 (+0.0080).",
+            "target_2": "Ensures audit trail consistency across boundary 3 (+0.0070).",
+            "target_3": "Maintains distributed consensus across boundary 3 (+0.0090)."
+          },
+          "tradeoffs": {
+            "strengths": "Provides automated dynamic isolation.",
+            "constraints": "Requires explicit boundary registration."
+          }
+        }
+      },
+      {
+        "id": "L1-007",
+        "name": "Sheaf-Theoretic Local-to-Global Consistency",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Global architectural state must be computable strictly via gluing mutually compatible local section evaluations over an open cover of subsystem domains.",
+        "formal_expression": "\\mathcal{F}\\left(\\bigcup U_i\\right) \\cong \\varprojlim \\mathcal{F}(U_i)",
+        "operational_rule": "State transitions lacking pairwise cocycle consistency on overlapping subsystem interfaces cannot be glued into global state.",
+        "source": "LLM",
+        "domain": "Topos Theory / Sheaf Theory",
+        "principle": "Sheaf Gluing Axiom",
+        "delta_e1": 0.0062,
+        "delta_e2": 0.0023,
+        "delta_e3": 0.0037,
+        "aggregate_delta_e": 0.0041,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Sheaf-Theoretic Local-to-Global State Glue Engine",
+          "topology_type": "Open Cover Subsystem Mesh with Cocycle Verification",
+          "topology_diagram": "[Local Sections F(U_i)] \u2500\u2500> [Pairwise Overlap Auditor F(U_i \u2229 U_j)]\n                                             \u2502\n                                             \u25bc\n                                [Cocycle Consistency Verifier]\n                                             \u2502\n                                             \u25bc\n                                [Global Sheaf Colimit Glue] \u2500\u2500> [Unified Global State]",
+          "subsystems": {
+            "Local Section Evaluator": {
+              "role": "Computes local state transitions within isolated subdomains U_i.",
+              "invariant_rule": "Local evaluations are completely decoupled from remote subsystems."
+            },
+            "Overlap Cocycle Auditor": {
+              "role": "Verifies pairwise consistency on intersections U_i \u2229 U_j.",
+              "invariant_rule": "Transitions that disagree on shared interfaces are rejected."
+            },
+            "Colimit Gluing Synthesizer": {
+              "role": "Glues mutually compatible local sections into a single global system state.",
+              "invariant_rule": "Global state cannot exist without local pairwise agreement."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Enables completely distributed compilation of engine sub-modules (+0.0090).",
+            "target_2_self_evaluator": "Allows local telemetry aggregation without requiring global lock locks (+0.0070).",
+            "target_3_control_group": "Solves distributed state synchronization with zero central coordination (+0.0130)."
+          },
+          "tradeoffs": {
+            "strengths": "Enables massive parallel scaling; local verification guarantees global correctness.",
+            "constraints": "Intersection verification requires formal definition of subsystem overlaps."
+          }
+        }
+      },
+      {
+        "id": "L1-006",
+        "name": "Homeostatic Equilibrium & Negative Feedback Homeorhesis",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Subsystem resource allocation and concurrency limits must maintain dynamic homeostatic equilibrium through self-regulating negative feedback loops, preventing runaway cascading thrashing under contention.",
+        "formal_expression": "\\frac{d\\mathcal{R}_i}{dt} = -\\kappa (\\mathcal{R}_i - \\mathcal{R}_{\\text{target}}) + \\eta(t)",
+        "operational_rule": "Subsystems lacking negative feedback damping when approaching saturation are throttled and re-balanced at compile time.",
+        "source": "LLM",
+        "domain": "Theoretical Evolutionary Biology & Cybernetics",
+        "principle": "Homeostatic Self-Regulation",
+        "delta_e1": 0.0031,
+        "delta_e2": 0.0023,
+        "delta_e3": 0.0018,
+        "aggregate_delta_e": 0.0024,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Negative-Feedback Homeostatic Controller",
+          "topology_type": "Continuous Proportional-Integral Concurrency Regulator",
+          "topology_diagram": "[Load & Contention Sensors] \u2500\u2500> [Error Detector (R - R_target)]\n                                             \u2502\n                                             \u25bc\n                               [Negative Feedback Damping Unit]\n                                             \u2502\n                                             \u25bc\n                               [Dynamic Resource Allocator] \u2500\u2500> [Stabilized Subsystems]",
+          "subsystems": {
+            "Contention Sensor Array": {
+              "role": "Monitors queue lengths, CPU utilization, and memory pressure across subsystems.",
+              "invariant_rule": "Emits telemetry at high-frequency intervals."
+            },
+            "Negative Feedback Damping Unit": {
+              "role": "Applies proportional-integral braking to runaway thread pools and memory allocations.",
+              "invariant_rule": "Damping coefficient kappa must guarantee asymptotic stability."
+            },
+            "Dynamic Resource Balancer": {
+              "role": "Reallocates execution tokens from idle subsystems to bottlenecked stages.",
+              "invariant_rule": "Prevents starvation and priority inversion."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Stabilizes engine self-compilation under restricted token budgets (+0.0070).",
+            "target_2_self_evaluator": "Prevents telemetry buffer overflow during peak evaluation load (+0.0065).",
+            "target_3_control_group": "Prevents cascading failures in congested distributed state machines (+0.0115)."
+          },
+          "tradeoffs": {
+            "strengths": "Prevents catastrophic system collapse under extreme overload; auto-tunes concurrency.",
+            "constraints": "Adds slight measurement overhead for continuous sensor telemetry."
+          }
+        }
+      }
+    ]
+  },
+  "candidate_pool": [
+    {
+      "id": "L1-006",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Homeostatic Equilibrium & Negative Feedback Homeorhesis",
+      "statement": "Subsystem resource allocation and concurrency limits must maintain dynamic homeostatic equilibrium through self-regulating negative feedback loops, preventing runaway cascading thrashing under contention.",
+      "formal_expression": "\\frac{d\\mathcal{R}_i}{dt} = -\\kappa (\\mathcal{R}_i - \\mathcal{R}_{\\text{target}}) + \\eta(t)",
+      "operational_rule": "Subsystems lacking negative feedback damping when approaching saturation are throttled and re-balanced at compile time.",
+      "status": "REJECTED",
+      "origin_epoch": 11,
+      "delta_e": 0.0024,
+      "metadata": {
+        "exogenous_domain": "Theoretical Evolutionary Biology & Cybernetics",
+        "source_principle": "Homeostatic Self-Regulation",
+        "system_profile": {
+          "archetype": "Negative-Feedback Homeostatic Controller",
+          "topology_type": "Continuous Proportional-Integral Concurrency Regulator",
+          "topology_diagram": "[Load & Contention Sensors] \u2500\u2500> [Error Detector (R - R_target)]\n                                             \u2502\n                                             \u25bc\n                               [Negative Feedback Damping Unit]\n                                             \u2502\n                                             \u25bc\n                               [Dynamic Resource Allocator] \u2500\u2500> [Stabilized Subsystems]",
+          "subsystems": {
+            "Contention Sensor Array": {
+              "role": "Monitors queue lengths, CPU utilization, and memory pressure across subsystems.",
+              "invariant_rule": "Emits telemetry at high-frequency intervals."
+            },
+            "Negative Feedback Damping Unit": {
+              "role": "Applies proportional-integral braking to runaway thread pools and memory allocations.",
+              "invariant_rule": "Damping coefficient kappa must guarantee asymptotic stability."
+            },
+            "Dynamic Resource Balancer": {
+              "role": "Reallocates execution tokens from idle subsystems to bottlenecked stages.",
+              "invariant_rule": "Prevents starvation and priority inversion."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Stabilizes engine self-compilation under restricted token budgets (+0.0070).",
+            "target_2_self_evaluator": "Prevents telemetry buffer overflow during peak evaluation load (+0.0065).",
+            "target_3_control_group": "Prevents cascading failures in congested distributed state machines (+0.0115)."
+          },
+          "tradeoffs": {
+            "strengths": "Prevents catastrophic system collapse under extreme overload; auto-tunes concurrency.",
+            "constraints": "Adds slight measurement overhead for continuous sensor telemetry."
+          }
+        }
+      }
+    },
+    {
+      "id": "L1-007",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Sheaf-Theoretic Local-to-Global Consistency",
+      "statement": "Global architectural state must be computable strictly via gluing mutually compatible local section evaluations over an open cover of subsystem domains.",
+      "formal_expression": "\\mathcal{F}\\left(\\bigcup U_i\\right) \\cong \\varprojlim \\mathcal{F}(U_i)",
+      "operational_rule": "State transitions lacking pairwise cocycle consistency on overlapping subsystem interfaces cannot be glued into global state.",
+      "status": "REJECTED",
+      "origin_epoch": 11,
+      "delta_e": 0.0041,
+      "metadata": {
+        "exogenous_domain": "Topos Theory / Sheaf Theory",
+        "source_principle": "Sheaf Gluing Axiom",
+        "system_profile": {
+          "archetype": "Sheaf-Theoretic Local-to-Global State Glue Engine",
+          "topology_type": "Open Cover Subsystem Mesh with Cocycle Verification",
+          "topology_diagram": "[Local Sections F(U_i)] \u2500\u2500> [Pairwise Overlap Auditor F(U_i \u2229 U_j)]\n                                             \u2502\n                                             \u25bc\n                                [Cocycle Consistency Verifier]\n                                             \u2502\n                                             \u25bc\n                                [Global Sheaf Colimit Glue] \u2500\u2500> [Unified Global State]",
+          "subsystems": {
+            "Local Section Evaluator": {
+              "role": "Computes local state transitions within isolated subdomains U_i.",
+              "invariant_rule": "Local evaluations are completely decoupled from remote subsystems."
+            },
+            "Overlap Cocycle Auditor": {
+              "role": "Verifies pairwise consistency on intersections U_i \u2229 U_j.",
+              "invariant_rule": "Transitions that disagree on shared interfaces are rejected."
+            },
+            "Colimit Gluing Synthesizer": {
+              "role": "Glues mutually compatible local sections into a single global system state.",
+              "invariant_rule": "Global state cannot exist without local pairwise agreement."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Enables completely distributed compilation of engine sub-modules (+0.0090).",
+            "target_2_self_evaluator": "Allows local telemetry aggregation without requiring global lock locks (+0.0070).",
+            "target_3_control_group": "Solves distributed state synchronization with zero central coordination (+0.0130)."
+          },
+          "tradeoffs": {
+            "strengths": "Enables massive parallel scaling; local verification guarantees global correctness.",
+            "constraints": "Intersection verification requires formal definition of subsystem overlaps."
+          }
+        }
+      }
+    },
+    {
+      "id": "L1-011_3",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Synthesized Structural Invariant 011_3",
+      "statement": "Subsystems in epoch 11 must decouple state transformation from persistence across boundary 3.",
+      "formal_expression": "\\mathcal{T}_{3}(S) = \\mathcal{P}(\\delta(S))",
+      "operational_rule": "Ensure strict modular separation of concerns at boundary 3.",
+      "status": "ACTIVE",
+      "origin_epoch": 11,
+      "delta_e": 0.0057,
+      "metadata": {
+        "exogenous_domain": "Abstract Systems Architecture",
+        "source_principle": "Dynamic Modular Decoupling",
+        "system_profile": {
+          "archetype": "Dynamic Subsystem Controller 011_3",
+          "topology_type": "Decoupled Boundary Mesh",
+          "topology_diagram": "[Ingress 3] \u2500\u2500> [Dynamic Boundary Controller] \u2500\u2500> [Verified Core 3]",
+          "subsystems": {
+            "Boundary Controller 3": {
+              "role": "Regulates interface transactions across module boundaries.",
+              "invariant_rule": "Ensure strict modular separation of concerns at boundary 3."
+            }
+          },
+          "target_behaviors": {
+            "target_1": "Verifies boundary 3 modularity in target 1 (+0.0080).",
+            "target_2": "Ensures audit trail consistency across boundary 3 (+0.0070).",
+            "target_3": "Maintains distributed consensus across boundary 3 (+0.0090)."
+          },
+          "tradeoffs": {
+            "strengths": "Provides automated dynamic isolation.",
+            "constraints": "Requires explicit boundary registration."
+          }
+        }
+      }
+    }
+  ],
+  "tournament_leaderboard": [
+    {
+      "id": "L1-011_3",
+      "name": "Synthesized Structural Invariant 011_3",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Subsystems in epoch 11 must decouple state transformation from persistence across boundary 3.",
+      "formal_expression": "\\mathcal{T}_{3}(S) = \\mathcal{P}(\\delta(S))",
+      "operational_rule": "Ensure strict modular separation of concerns at boundary 3.",
+      "source": "LLM",
+      "domain": "Abstract Systems Architecture",
+      "principle": "Dynamic Modular Decoupling",
+      "delta_e1": 0.0092,
+      "delta_e2": 0.0023,
+      "delta_e3": 0.0055,
+      "aggregate_delta_e": 0.0057,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Dynamic Subsystem Controller 011_3",
+        "topology_type": "Decoupled Boundary Mesh",
+        "topology_diagram": "[Ingress 3] \u2500\u2500> [Dynamic Boundary Controller] \u2500\u2500> [Verified Core 3]",
+        "subsystems": {
+          "Boundary Controller 3": {
+            "role": "Regulates interface transactions across module boundaries.",
+            "invariant_rule": "Ensure strict modular separation of concerns at boundary 3."
+          }
+        },
+        "target_behaviors": {
+          "target_1": "Verifies boundary 3 modularity in target 1 (+0.0080).",
+          "target_2": "Ensures audit trail consistency across boundary 3 (+0.0070).",
+          "target_3": "Maintains distributed consensus across boundary 3 (+0.0090)."
+        },
+        "tradeoffs": {
+          "strengths": "Provides automated dynamic isolation.",
+          "constraints": "Requires explicit boundary registration."
+        }
+      }
+    },
+    {
+      "id": "L1-007",
+      "name": "Sheaf-Theoretic Local-to-Global Consistency",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Global architectural state must be computable strictly via gluing mutually compatible local section evaluations over an open cover of subsystem domains.",
+      "formal_expression": "\\mathcal{F}\\left(\\bigcup U_i\\right) \\cong \\varprojlim \\mathcal{F}(U_i)",
+      "operational_rule": "State transitions lacking pairwise cocycle consistency on overlapping subsystem interfaces cannot be glued into global state.",
+      "source": "LLM",
+      "domain": "Topos Theory / Sheaf Theory",
+      "principle": "Sheaf Gluing Axiom",
+      "delta_e1": 0.0062,
+      "delta_e2": 0.0023,
+      "delta_e3": 0.0037,
+      "aggregate_delta_e": 0.0041,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Sheaf-Theoretic Local-to-Global State Glue Engine",
+        "topology_type": "Open Cover Subsystem Mesh with Cocycle Verification",
+        "topology_diagram": "[Local Sections F(U_i)] \u2500\u2500> [Pairwise Overlap Auditor F(U_i \u2229 U_j)]\n                                             \u2502\n                                             \u25bc\n                                [Cocycle Consistency Verifier]\n                                             \u2502\n                                             \u25bc\n                                [Global Sheaf Colimit Glue] \u2500\u2500> [Unified Global State]",
+        "subsystems": {
+          "Local Section Evaluator": {
+            "role": "Computes local state transitions within isolated subdomains U_i.",
+            "invariant_rule": "Local evaluations are completely decoupled from remote subsystems."
+          },
+          "Overlap Cocycle Auditor": {
+            "role": "Verifies pairwise consistency on intersections U_i \u2229 U_j.",
+            "invariant_rule": "Transitions that disagree on shared interfaces are rejected."
+          },
+          "Colimit Gluing Synthesizer": {
+            "role": "Glues mutually compatible local sections into a single global system state.",
+            "invariant_rule": "Global state cannot exist without local pairwise agreement."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Enables completely distributed compilation of engine sub-modules (+0.0090).",
+          "target_2_self_evaluator": "Allows local telemetry aggregation without requiring global lock locks (+0.0070).",
+          "target_3_control_group": "Solves distributed state synchronization with zero central coordination (+0.0130)."
+        },
+        "tradeoffs": {
+          "strengths": "Enables massive parallel scaling; local verification guarantees global correctness.",
+          "constraints": "Intersection verification requires formal definition of subsystem overlaps."
+        }
+      }
+    },
+    {
+      "id": "L1-006",
+      "name": "Homeostatic Equilibrium & Negative Feedback Homeorhesis",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Subsystem resource allocation and concurrency limits must maintain dynamic homeostatic equilibrium through self-regulating negative feedback loops, preventing runaway cascading thrashing under contention.",
+      "formal_expression": "\\frac{d\\mathcal{R}_i}{dt} = -\\kappa (\\mathcal{R}_i - \\mathcal{R}_{\\text{target}}) + \\eta(t)",
+      "operational_rule": "Subsystems lacking negative feedback damping when approaching saturation are throttled and re-balanced at compile time.",
+      "source": "LLM",
+      "domain": "Theoretical Evolutionary Biology & Cybernetics",
+      "principle": "Homeostatic Self-Regulation",
+      "delta_e1": 0.0031,
+      "delta_e2": 0.0023,
+      "delta_e3": 0.0018,
+      "aggregate_delta_e": 0.0024,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Negative-Feedback Homeostatic Controller",
+        "topology_type": "Continuous Proportional-Integral Concurrency Regulator",
+        "topology_diagram": "[Load & Contention Sensors] \u2500\u2500> [Error Detector (R - R_target)]\n                                             \u2502\n                                             \u25bc\n                               [Negative Feedback Damping Unit]\n                                             \u2502\n                                             \u25bc\n                               [Dynamic Resource Allocator] \u2500\u2500> [Stabilized Subsystems]",
+        "subsystems": {
+          "Contention Sensor Array": {
+            "role": "Monitors queue lengths, CPU utilization, and memory pressure across subsystems.",
+            "invariant_rule": "Emits telemetry at high-frequency intervals."
+          },
+          "Negative Feedback Damping Unit": {
+            "role": "Applies proportional-integral braking to runaway thread pools and memory allocations.",
+            "invariant_rule": "Damping coefficient kappa must guarantee asymptotic stability."
+          },
+          "Dynamic Resource Balancer": {
+            "role": "Reallocates execution tokens from idle subsystems to bottlenecked stages.",
+            "invariant_rule": "Prevents starvation and priority inversion."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Stabilizes engine self-compilation under restricted token budgets (+0.0070).",
+          "target_2_self_evaluator": "Prevents telemetry buffer overflow during peak evaluation load (+0.0065).",
+          "target_3_control_group": "Prevents cascading failures in congested distributed state machines (+0.0115)."
+        },
+        "tradeoffs": {
+          "strengths": "Prevents catastrophic system collapse under extreme overload; auto-tunes concurrency.",
+          "constraints": "Adds slight measurement overhead for continuous sensor telemetry."
+        }
+      }
+    }
+  ],
+  "decision": "Committed Tournament Winner [L1-011_3] (+0.0057) [Jettison Triggered: Deactivated 10 L0 Epistemic Axioms (Retained as INACTIVE Scaffolding) & Epistemic Targets]",
+  "jettison_triggered": true,
+  "lookahead_analysis": {
+    "current_epoch": 11,
+    "lookahead_horizon": 2,
+    "net_lookahead_differential": 0.0404,
+    "compute_dividend_tokens": 5128,
+    "compute_dividend_depth": 3,
+    "recommendation": "RECOMMEND_JETTISON",
+    "confidence_score": 0.95,
+    "risk_assessment": {
+      "epistemic_drift_risk": "LOW",
+      "compute_starvation_risk": "CRITICAL_AVOIDED",
+      "rationale": "Scaffolding has fulfilled its exploratory mission with 10 robust L0 invariants established."
+    },
+    "jettison_branch": {
+      "projected_cumulative_delta": 0.0524,
+      "mean_delta_per_epoch": 0.0262,
+      "active_axiom_count": 2,
+      "tokens": 6666,
+      "depth": 5,
+      "rationale": "Freed compute budget (+5,128 tokens, depth 5) allows deeper compilation validation and unlocks accelerated structural progression.",
+      "candidates": [
+        {
+          "id": "L1-007",
+          "name": "Sheaf-Theoretic Local-to-Global Consistency",
+          "aggregate_delta_e": 0.0284
+        },
+        {
+          "id": "L1-006",
+          "name": "Homeostatic Equilibrium & Negative Feedback Homeorhesis",
+          "aggregate_delta_e": 0.024
+        }
+      ]
+    },
+    "retain_branch": {
+      "projected_cumulative_delta": 0.012,
+      "mean_delta_per_epoch": 0.006,
+      "active_axiom_count": 12,
+      "tokens": 1538,
+      "depth": 2,
+      "rationale": "Compute budget constrained by 12 active axioms throttles simulation to depth 2, bottlenecking structural verification.",
+      "candidates": [
+        {
+          "id": "L1-007",
+          "name": "Sheaf-Theoretic Local-to-Global Consistency",
+          "aggregate_delta_e": 0.0068
+        },
+        {
+          "id": "L1-006",
+          "name": "Homeostatic Equilibrium & Negative Feedback Homeorhesis",
+          "aggregate_delta_e": 0.0052
+        }
+      ]
+    }
+  }
+}

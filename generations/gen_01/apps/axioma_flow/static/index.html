@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axioma Flow — Axioma Production App</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Top Navigation Header -->
+    <header class="top-nav">
+      <div class="brand">
+        <div class="brand-badge">G1</div>
+        <div>
+          <h1>Axioma Flow</h1>
+          <p class="tagline">The Invariant-Bounded, Landauer-Audited Workspace</p>
+        </div>
+      </div>
+
+      <!-- Controls & History Toolbar ([L1-002]) -->
+      <div class="history-controls">
+        <button id="btn-undo" class="btn btn-secondary" title="Functorial Undo (L1-002)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+          Undo <span id="undo-count" class="badge">0</span>
+        </button>
+        <button id="btn-redo" class="btn btn-secondary" title="Functorial Redo (L1-002)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"/></svg>
+          Redo <span id="redo-count" class="badge">0</span>
+        </button>
+        <button id="btn-new-task" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          New Task
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+      <!-- Thermodynamic & Invariant Live Ribbon ([L1-008, L1-015]) -->
+      <section class="telemetry-ribbon">
+        <div class="telemetry-pill">
+          <span class="label">Landauer Bit Erasure:</span>
+          <span id="stat-erased-bits" class="value">0 bits</span>
+        </div>
+        <div class="telemetry-pill">
+          <span class="label">Thermodynamic Dissipation:</span>
+          <span id="stat-joules" class="value">0.00e-21 J</span>
+        </div>
+        <div class="telemetry-pill">
+          <span class="label">Zero-Trust Gateway:</span>
+          <span class="value green">● ACTIVE</span>
+        </div>
+        <div class="telemetry-pill">
+          <span class="label">Exception Enclaves:</span>
+          <span class="value cyan">● ISOLATED</span>
+        </div>
+        <div class="telemetry-pill">
+          <span class="label">Product Ergonomics:</span>
+          <span class="value purple">Target P1 Compliant</span>
+        </div>
+      </section>
+
+      <!-- Kanban Columns -->
+      <section class="board-grid">
+        <div class="kanban-column" data-status="backlog">
+          <div class="column-header">
+            <div class="title-wrap">
+              <span class="status-indicator gray"></span>
+              <h3>Backlog</h3>
+            </div>
+            <span class="col-count" id="count-backlog">0</span>
+          </div>
+          <div class="card-list" id="col-backlog" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'backlog')"></div>
+        </div>
+
+        <div class="kanban-column" data-status="in_progress">
+          <div class="column-header">
+            <div class="title-wrap">
+              <span class="status-indicator blue"></span>
+              <h3>In Progress</h3>
+            </div>
+            <span class="col-count" id="count-in_progress">0</span>
+          </div>
+          <div class="card-list" id="col-in_progress" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'in_progress')"></div>
+        </div>
+
+        <div class="kanban-column" data-status="review">
+          <div class="column-header">
+            <div class="title-wrap">
+              <span class="status-indicator amber"></span>
+              <h3>Review / Verifying</h3>
+            </div>
+            <span class="col-count" id="count-review">0</span>
+          </div>
+          <div class="card-list" id="col-review" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'review')"></div>
+        </div>
+
+        <div class="kanban-column" data-status="done">
+          <div class="column-header">
+            <div class="title-wrap">
+              <span class="status-indicator green"></span>
+              <h3>Completed</h3>
+            </div>
+            <span class="col-count" id="count-done">0</span>
+          </div>
+          <div class="card-list" id="col-done" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'done')"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Create Task Modal -->
+    <div id="modal-new-task" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Create New Task</h3>
+          <button class="btn-close" onclick="closeModal()">×</button>
+        </div>
+        <form id="form-new-task" onsubmit="handleCreateTask(event)">
+          <div class="form-group">
+            <label for="task-title">Title</label>
+            <input type="text" id="task-title" required placeholder="e.g. Implement GraphQL schema boundaries">
+          </div>
+          <div class="form-group">
+            <label for="task-desc">Description</label>
+            <textarea id="task-desc" rows="3" placeholder="Context, acceptance criteria, or invariant bounds..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="task-status">Initial Column</label>
+              <select id="task-status">
+                <option value="backlog">Backlog</option>
+                <option value="in_progress">In Progress</option>
+                <option value="review">Review</option>
+                <option value="done">Completed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="task-priority">Priority</label>
+              <select id="task-priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+                <option value="critical">Critical</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Create Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Notification Toast (Enclave & Feedback) -->
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

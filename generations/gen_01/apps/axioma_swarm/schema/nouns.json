@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AxiomaSwarmNouns",
+  "description": "Typed data schemas for local model weights, VRAM allocations, and task queues (L1-015, L1-004)",
+  "definitions": {
+    "ModelDescriptor": {
+      "type": "object",
+      "required": ["model_id", "name", "quantization", "param_billions", "vram_weights_mb", "status", "specialty"],
+      "properties": {
+        "model_id": { "type": "string" },
+        "name": { "type": "string" },
+        "quantization": { "type": "string" },
+        "param_billions": { "type": "number" },
+        "context_length": { "type": "integer" },
+        "vram_weights_mb": { "type": "integer" },
+        "vram_kv_mb": { "type": "integer" },
+        "status": {
+          "type": "string",
+          "enum": ["UNLOADED", "RESIDENT", "BUSY", "EVICTED"]
+        },
+        "specialty": {
+          "type": "string",
+          "enum": ["REASONING", "CODING", "FAST_SUMMARY", "VISION_EMBEDDING"]
+        },
+        "last_active_timestamp": { "type": "number" }
+      }
+    },
+    "VramPool": {
+      "type": "object",
+      "required": ["total_vram_mb", "allocated_vram_mb", "reserved_buffer_mb", "available_vram_mb", "device_name"],
+      "properties": {
+        "total_vram_mb": { "type": "integer" },
+        "allocated_vram_mb": { "type": "integer" },
+        "reserved_buffer_mb": { "type": "integer" },
+        "available_vram_mb": { "type": "integer" },
+        "device_name": { "type": "string" }
+      }
+    },
+    "SwarmTask": {
+      "type": "object",
+      "required": ["task_id", "prompt", "priority", "status"],
+      "properties": {
+        "task_id": { "type": "string" },
+        "prompt": { "type": "string" },
+        "specialty_required": { "type": "string" },
+        "target_model_id": { "type": "string" },
+        "priority": {
+          "type": "string",
+          "enum": ["HIGH", "NORMAL", "BATCH"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["QUEUED", "PROCESSING", "COMPLETED", "FAILED", "CANCELLED"]
+        },
+        "tokens_processed": { "type": "integer" },
+        "vram_lease_mb": { "type": "integer" },
+        "latency_ms": { "type": "number" },
+        "result_output": { "type": "string" },
+        "error_witness": { "type": "object" }
+      }
+    }
+  }
+}

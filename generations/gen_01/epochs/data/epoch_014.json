@@ -1,0 +1,524 @@
+{
+  "epoch": 14,
+  "timestamp": "2026-10-12T11:07:08.387459",
+  "phase": "PHASE_2_STRUCTURAL_EXECUTION",
+  "current_efficacy": 1.1496000000000002,
+  "efficacy_derivative": 0.0108,
+  "active_l0_count": 0,
+  "active_l1_count": 6,
+  "total_active": 6,
+  "compute_budget": {
+    "active_axiom_count": 5,
+    "token_budget": 3333,
+    "simulation_depth": 2,
+    "decay_factor": 0.3333333333333333
+  },
+  "candidate_axiom": {
+    "id": "L1-016",
+    "level": "LEVEL_1_STRUCTURAL",
+    "name": "Demarcated Exception Enclaves & Bounded Invariant Suspension",
+    "statement": "Any necessary violation or edge-case bypass of an active architectural invariant must be confined within an explicitly demarcated Exception Enclave; enclaves must isolate the failure blast radius, emit machine-readable dissipation audit witnesses, and prohibit unverified state leakage to outer composable scopes.",
+    "formal_expression": "\\forall m \\notin \\mathcal{I}, \\quad \\text{Enclave}(m) \\implies \\partial \\text{Scope}(m) \\cap \\mathcal{S}_{\\text{outer}} = \\emptyset \\quad \\land \\quad \\text{AuditWitness}(m) \\neq \\bot",
+    "operational_rule": "Undemarcated or unisolated invariant breaches trigger immediate compile-time failure. Invariant suspensions are permitted only inside declared enclave wrappers with cryptographic dissipation logs and localized error boundaries.",
+    "status": "ACTIVE",
+    "origin_epoch": 14,
+    "delta_e": 0.0112,
+    "metadata": {
+      "exogenous_domain": "Theoretical Computer Science & Monadic Enclave Theory (The `unsafe` Principle)",
+      "source_principle": "Bounded Invariant Suspension & Isolated Blast Radius Containment",
+      "system_profile": {
+        "archetype": "Demarcated Exception Enclave & Audit Boundary Gateway",
+        "topology_type": "Isolated Enclave Boundary with Cryptographic Audit Conduit",
+        "topology_diagram": "[Edge-Case Mutation Intent] \u2500\u2500> [Enclave Entry Barrier]\n                                              \u2502\n                                              \u25bc\n                             [Bounded Invariant Suspension Scope]\n                                              \u2502\n                               \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                               \u25bc                             \u25bc\n                 [Cryptographic Audit Log]      [Humane Error Recovery Adapter]\n                               \u2502                             \u2502\n                               \u25bc                             \u25bc\n                 [Audit Dissipation Witness]    [Graceful Persona Fallback]",
+        "subsystems": {
+          "Enclave Isolation Membrane": {
+            "role": "Confines unverified edge-case operations within an impermeable scope boundary; catches unhandled exceptions and prevents outer state corruption.",
+            "invariant_rule": "Scope boundary must catch all faults; zero unhandled error leakage permitted."
+          },
+          "Invariant Suspension Auditor": {
+            "role": "Emits cryptographic dissipation audit witnesses detailing why and where the invariant was suspended.",
+            "invariant_rule": "Enclave execution without machine-readable justification is rejected."
+          },
+          "Humane Error Recovery Adapter": {
+            "role": "Translates low-level enclave faults into graceful, actionable persona-oriented remediation paths instead of crashing the product.",
+            "invariant_rule": "Raw compiler or database dumps are intercepted and transformed into user-friendly guidance."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Permits necessary low-level runtime escapes (FFI, memory flush, raw socket I/O) without invalidating global compiler proofs (+0.0150).",
+          "target_2_self_evaluator": "Captures structured dissipation logs for all edge cases (+0.0135).",
+          "target_3_control_group": "Enables emergency split-brain recovery and partition fencing in distributed consensus (+0.0140).",
+          "target_4_product_usability": "Prevents catastrophic crashes, providing graceful fallback and gentle user recovery (+0.0165)."
+        },
+        "tradeoffs": {
+          "strengths": "Eliminates mathematical fragility; allows real-world edge-case handling without sacrificing zero-trust guarantees.",
+          "constraints": "Enclave usage must be audited and minimized to prevent abuse as an architectural shortcut."
+        }
+      }
+    }
+  },
+  "tri_fold_metrics": {
+    "delta_e1": 0.0133,
+    "delta_e2": 0.01,
+    "delta_e3": 0.012,
+    "aggregate_delta_e": 0.0112,
+    "delta_e4": 0.0093,
+    "target_details": {
+      "target_1_self_constructor": {
+        "success": true,
+        "delta": 0.0133,
+        "violations": [],
+        "tokens": 2452,
+        "depth": 2
+      },
+      "target_2_self_evaluator": {
+        "success": true,
+        "delta": 0.01,
+        "violations": [],
+        "tokens": 1939,
+        "depth": 2
+      },
+      "target_3_control_group": {
+        "success": true,
+        "delta": 0.012,
+        "violations": [],
+        "tokens": 2752,
+        "depth": 2
+      },
+      "target_4_product_usability": {
+        "success": true,
+        "delta": 0.0093,
+        "violations": [],
+        "tokens": 2039,
+        "depth": 2
+      }
+    }
+  },
+  "user_candidate": null,
+  "user_metrics": null,
+  "comparative_summary": {
+    "pool_size": 3,
+    "top_candidate_id": "L1-016",
+    "top_candidate_name": "Demarcated Exception Enclaves & Bounded Invariant Suspension",
+    "top_aggregate_delta_e": 0.0112,
+    "runner_up_id": "L1-014",
+    "runner_up_delta_e": 0.0073,
+    "delta_diff": 0.0039,
+    "leaderboard": [
+      {
+        "id": "L1-016",
+        "name": "Demarcated Exception Enclaves & Bounded Invariant Suspension",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Any necessary violation or edge-case bypass of an active architectural invariant must be confined within an explicitly demarcated Exception Enclave; enclaves must isolate the failure blast radius, emit machine-readable dissipation audit witnesses, and prohibit unverified state leakage to outer composable scopes.",
+        "formal_expression": "\\forall m \\notin \\mathcal{I}, \\quad \\text{Enclave}(m) \\implies \\partial \\text{Scope}(m) \\cap \\mathcal{S}_{\\text{outer}} = \\emptyset \\quad \\land \\quad \\text{AuditWitness}(m) \\neq \\bot",
+        "operational_rule": "Undemarcated or unisolated invariant breaches trigger immediate compile-time failure. Invariant suspensions are permitted only inside declared enclave wrappers with cryptographic dissipation logs and localized error boundaries.",
+        "source": "LLM",
+        "domain": "Theoretical Computer Science & Monadic Enclave Theory (The `unsafe` Principle)",
+        "principle": "Bounded Invariant Suspension & Isolated Blast Radius Containment",
+        "delta_e1": 0.0133,
+        "delta_e2": 0.01,
+        "delta_e3": 0.012,
+        "delta_e4": 0.0093,
+        "aggregate_delta_e": 0.0112,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Demarcated Exception Enclave & Audit Boundary Gateway",
+          "topology_type": "Isolated Enclave Boundary with Cryptographic Audit Conduit",
+          "topology_diagram": "[Edge-Case Mutation Intent] \u2500\u2500> [Enclave Entry Barrier]\n                                              \u2502\n                                              \u25bc\n                             [Bounded Invariant Suspension Scope]\n                                              \u2502\n                               \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                               \u25bc                             \u25bc\n                 [Cryptographic Audit Log]      [Humane Error Recovery Adapter]\n                               \u2502                             \u2502\n                               \u25bc                             \u25bc\n                 [Audit Dissipation Witness]    [Graceful Persona Fallback]",
+          "subsystems": {
+            "Enclave Isolation Membrane": {
+              "role": "Confines unverified edge-case operations within an impermeable scope boundary; catches unhandled exceptions and prevents outer state corruption.",
+              "invariant_rule": "Scope boundary must catch all faults; zero unhandled error leakage permitted."
+            },
+            "Invariant Suspension Auditor": {
+              "role": "Emits cryptographic dissipation audit witnesses detailing why and where the invariant was suspended.",
+              "invariant_rule": "Enclave execution without machine-readable justification is rejected."
+            },
+            "Humane Error Recovery Adapter": {
+              "role": "Translates low-level enclave faults into graceful, actionable persona-oriented remediation paths instead of crashing the product.",
+              "invariant_rule": "Raw compiler or database dumps are intercepted and transformed into user-friendly guidance."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Permits necessary low-level runtime escapes (FFI, memory flush, raw socket I/O) without invalidating global compiler proofs (+0.0150).",
+            "target_2_self_evaluator": "Captures structured dissipation logs for all edge cases (+0.0135).",
+            "target_3_control_group": "Enables emergency split-brain recovery and partition fencing in distributed consensus (+0.0140).",
+            "target_4_product_usability": "Prevents catastrophic crashes, providing graceful fallback and gentle user recovery (+0.0165)."
+          },
+          "tradeoffs": {
+            "strengths": "Eliminates mathematical fragility; allows real-world edge-case handling without sacrificing zero-trust guarantees.",
+            "constraints": "Enclave usage must be audited and minimized to prevent abuse as an architectural shortcut."
+          }
+        }
+      },
+      {
+        "id": "L1-014",
+        "name": "Spinozian Substance Monism & Modal Dual-Aspect Synchronization",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Execution logic and observability telemetry must operate as parallel modal attributes of an identical underlying state substrate, guaranteeing that telemetry observation never introduces observer bias or drift.",
+        "formal_expression": "\\mathcal{A}_{\\text{exec}}(\\mathcal{S}) \\parallel \\mathcal{A}_{\\text{telemetry}}(\\mathcal{S}) \\quad \\text{where} \\quad \\mathcal{S} \\in \\text{Substance}",
+        "operational_rule": "Independent logging or monitoring subsystems operating on detached mutable state clones rather than primary state projections are prohibited.",
+        "source": "LLM",
+        "domain": "Rationalist Metaphysics (Baruch Spinoza)",
+        "principle": "Substance Monism and Dual-Aspect Parallelism (Derived from L0-018)",
+        "delta_e1": 0.0067,
+        "delta_e2": 0.01,
+        "delta_e3": 0.008,
+        "delta_e4": 0.0047,
+        "aggregate_delta_e": 0.0073,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Dual-Aspect Monistic Substrate",
+          "topology_type": "Unified State Substrate with Dual Modal Projections",
+          "topology_diagram": "                 [Unified State Substrate S]\n                             \u2502\n              \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n              \u25bc                             \u25bc\n  [Execution Attribute A_1]     [Telemetry Attribute A_2]\n              \u2502                             \u2502\n              \u25bc                             \u25bc\n    [Runtime State Delta]        [Zero-Cost Telemetry Stream]",
+          "subsystems": {
+            "Monistic Substrate Storage": {
+              "role": "Maintains the singular ground-truth memory representation for each subsystem.",
+              "invariant_rule": "Prohibits independent secondary data stores for audit tracking."
+            },
+            "Execution Attribute Dispatcher": {
+              "role": "Projects state transitions along the functional computational dimension.",
+              "invariant_rule": "Executes domain business logic without telemetry side-effects."
+            },
+            "Modal Telemetry Projector": {
+              "role": "Extracts real-time observability metrics as an intrinsic modal attribute of the same substrate.",
+              "invariant_rule": "Telemetry emission incurs zero state mutation and zero observer bias."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Ensures compiler diagnostics are direct projections of AST mutations (+0.0110).",
+            "target_2_self_evaluator": "Eliminates Heisenberg observer effects where monitoring alters system behavior (+0.0145).",
+            "target_3_control_group": "Guarantees consensus audit logs are bit-identical to committed state blocks (+0.0130)."
+          },
+          "tradeoffs": {
+            "strengths": "Zero-overhead observability; guarantees telemetry can never fall out of sync with state.",
+            "constraints": "Substrate must be designed from the start to support dual modal projection."
+          }
+        }
+      },
+      {
+        "id": "L1-013",
+        "name": "Category-Theoretic Adjoint Galois Connection & Universal Factorization",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Declarative specification syntax and compiled runtime semantics must form an adjoint functor pair F -| G, ensuring universal factorization and round-trip Galois closure without semantic distortion.",
+        "formal_expression": "\\text{Hom}_{\\mathcal{C}}(F(A), B) \\cong \\text{Hom}_{\\mathcal{D}}(A, G(B)) \\quad (\\text{Unit-Counit Adjunction})",
+        "operational_rule": "Transformations between specifications and binaries lacking adjoint right-inverses or failing Galois round-trip closure trigger compiler rejection.",
+        "source": "LLM",
+        "domain": "Category Theory & Abstract Algebra (Mac Lane & Kan)",
+        "principle": "Adjoint Functor Duality (Derived from L0-015)",
+        "delta_e1": 0.0067,
+        "delta_e2": 0.005,
+        "delta_e3": 0.004,
+        "delta_e4": 0.0047,
+        "aggregate_delta_e": 0.0051,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Free-Forgetful Adjunction Transcompiler",
+          "topology_type": "Bidirectional Natural Isomorphism Pipeline",
+          "topology_diagram": "[Specification Category C] \u2500\u2500(Left Adjoint F)\u2500\u2500> [Runtime Category D]\n                \u2502                                         \u2502\n                \u25b2                                         \u25bc\n         [Unit eta] <\u2500\u2500\u2500(Right Adjoint G)\u2500\u2500\u2500 [Counit epsilon]",
+          "subsystems": {
+            "Left Adjoint Synthesizer (F)": {
+              "role": "Constructs the free structural implementation from declarative specification models.",
+              "invariant_rule": "Preserves all coproducts, colimits, and modular pushouts from category C."
+            },
+            "Right Adjoint Auditor (G)": {
+              "role": "Extracts forgetful behavioral observations from executing binaries back to specs.",
+              "invariant_rule": "Preserves all Cartesian products, limits, and pullbacks into category D."
+            },
+            "Adjunction Unit Arbiter": {
+              "role": "Verifies that round-trip composition eta o epsilon satisfies Kan triangular identities.",
+              "invariant_rule": "Rejects transformations where round-trip evaluation deviates from identity."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Guarantees compiled engine binaries precisely reflect architectural specifications (+0.0135).",
+            "target_2_self_evaluator": "Enables algebraic verification of system invariants without black-box testing (+0.0110).",
+            "target_3_control_group": "Provides mathematical proofs of consensus protocol state preservation (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Provable bidirectional correctness; specifications and runtimes are mathematically synchronized.",
+            "constraints": "Formalizing interfaces as strict adjoint functors requires rigorous mathematical schemas."
+          }
+        }
+      }
+    ]
+  },
+  "candidate_pool": [
+    {
+      "id": "L1-016",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Demarcated Exception Enclaves & Bounded Invariant Suspension",
+      "statement": "Any necessary violation or edge-case bypass of an active architectural invariant must be confined within an explicitly demarcated Exception Enclave; enclaves must isolate the failure blast radius, emit machine-readable dissipation audit witnesses, and prohibit unverified state leakage to outer composable scopes.",
+      "formal_expression": "\\forall m \\notin \\mathcal{I}, \\quad \\text{Enclave}(m) \\implies \\partial \\text{Scope}(m) \\cap \\mathcal{S}_{\\text{outer}} = \\emptyset \\quad \\land \\quad \\text{AuditWitness}(m) \\neq \\bot",
+      "operational_rule": "Undemarcated or unisolated invariant breaches trigger immediate compile-time failure. Invariant suspensions are permitted only inside declared enclave wrappers with cryptographic dissipation logs and localized error boundaries.",
+      "status": "ACTIVE",
+      "origin_epoch": 14,
+      "delta_e": 0.0112,
+      "metadata": {
+        "exogenous_domain": "Theoretical Computer Science & Monadic Enclave Theory (The `unsafe` Principle)",
+        "source_principle": "Bounded Invariant Suspension & Isolated Blast Radius Containment",
+        "system_profile": {
+          "archetype": "Demarcated Exception Enclave & Audit Boundary Gateway",
+          "topology_type": "Isolated Enclave Boundary with Cryptographic Audit Conduit",
+          "topology_diagram": "[Edge-Case Mutation Intent] \u2500\u2500> [Enclave Entry Barrier]\n                                              \u2502\n                                              \u25bc\n                             [Bounded Invariant Suspension Scope]\n                                              \u2502\n                               \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                               \u25bc                             \u25bc\n                 [Cryptographic Audit Log]      [Humane Error Recovery Adapter]\n                               \u2502                             \u2502\n                               \u25bc                             \u25bc\n                 [Audit Dissipation Witness]    [Graceful Persona Fallback]",
+          "subsystems": {
+            "Enclave Isolation Membrane": {
+              "role": "Confines unverified edge-case operations within an impermeable scope boundary; catches unhandled exceptions and prevents outer state corruption.",
+              "invariant_rule": "Scope boundary must catch all faults; zero unhandled error leakage permitted."
+            },
+            "Invariant Suspension Auditor": {
+              "role": "Emits cryptographic dissipation audit witnesses detailing why and where the invariant was suspended.",
+              "invariant_rule": "Enclave execution without machine-readable justification is rejected."
+            },
+            "Humane Error Recovery Adapter": {
+              "role": "Translates low-level enclave faults into graceful, actionable persona-oriented remediation paths instead of crashing the product.",
+              "invariant_rule": "Raw compiler or database dumps are intercepted and transformed into user-friendly guidance."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Permits necessary low-level runtime escapes (FFI, memory flush, raw socket I/O) without invalidating global compiler proofs (+0.0150).",
+            "target_2_self_evaluator": "Captures structured dissipation logs for all edge cases (+0.0135).",
+            "target_3_control_group": "Enables emergency split-brain recovery and partition fencing in distributed consensus (+0.0140).",
+            "target_4_product_usability": "Prevents catastrophic crashes, providing graceful fallback and gentle user recovery (+0.0165)."
+          },
+          "tradeoffs": {
+            "strengths": "Eliminates mathematical fragility; allows real-world edge-case handling without sacrificing zero-trust guarantees.",
+            "constraints": "Enclave usage must be audited and minimized to prevent abuse as an architectural shortcut."
+          }
+        }
+      }
+    },
+    {
+      "id": "L1-013",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Category-Theoretic Adjoint Galois Connection & Universal Factorization",
+      "statement": "Declarative specification syntax and compiled runtime semantics must form an adjoint functor pair F -| G, ensuring universal factorization and round-trip Galois closure without semantic distortion.",
+      "formal_expression": "\\text{Hom}_{\\mathcal{C}}(F(A), B) \\cong \\text{Hom}_{\\mathcal{D}}(A, G(B)) \\quad (\\text{Unit-Counit Adjunction})",
+      "operational_rule": "Transformations between specifications and binaries lacking adjoint right-inverses or failing Galois round-trip closure trigger compiler rejection.",
+      "status": "REJECTED",
+      "origin_epoch": 14,
+      "delta_e": 0.0051,
+      "metadata": {
+        "exogenous_domain": "Category Theory & Abstract Algebra (Mac Lane & Kan)",
+        "source_principle": "Adjoint Functor Duality (Derived from L0-015)",
+        "system_profile": {
+          "archetype": "Free-Forgetful Adjunction Transcompiler",
+          "topology_type": "Bidirectional Natural Isomorphism Pipeline",
+          "topology_diagram": "[Specification Category C] \u2500\u2500(Left Adjoint F)\u2500\u2500> [Runtime Category D]\n                \u2502                                         \u2502\n                \u25b2                                         \u25bc\n         [Unit eta] <\u2500\u2500\u2500(Right Adjoint G)\u2500\u2500\u2500 [Counit epsilon]",
+          "subsystems": {
+            "Left Adjoint Synthesizer (F)": {
+              "role": "Constructs the free structural implementation from declarative specification models.",
+              "invariant_rule": "Preserves all coproducts, colimits, and modular pushouts from category C."
+            },
+            "Right Adjoint Auditor (G)": {
+              "role": "Extracts forgetful behavioral observations from executing binaries back to specs.",
+              "invariant_rule": "Preserves all Cartesian products, limits, and pullbacks into category D."
+            },
+            "Adjunction Unit Arbiter": {
+              "role": "Verifies that round-trip composition eta o epsilon satisfies Kan triangular identities.",
+              "invariant_rule": "Rejects transformations where round-trip evaluation deviates from identity."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Guarantees compiled engine binaries precisely reflect architectural specifications (+0.0135).",
+            "target_2_self_evaluator": "Enables algebraic verification of system invariants without black-box testing (+0.0110).",
+            "target_3_control_group": "Provides mathematical proofs of consensus protocol state preservation (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Provable bidirectional correctness; specifications and runtimes are mathematically synchronized.",
+            "constraints": "Formalizing interfaces as strict adjoint functors requires rigorous mathematical schemas."
+          }
+        }
+      }
+    },
+    {
+      "id": "L1-014",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Spinozian Substance Monism & Modal Dual-Aspect Synchronization",
+      "statement": "Execution logic and observability telemetry must operate as parallel modal attributes of an identical underlying state substrate, guaranteeing that telemetry observation never introduces observer bias or drift.",
+      "formal_expression": "\\mathcal{A}_{\\text{exec}}(\\mathcal{S}) \\parallel \\mathcal{A}_{\\text{telemetry}}(\\mathcal{S}) \\quad \\text{where} \\quad \\mathcal{S} \\in \\text{Substance}",
+      "operational_rule": "Independent logging or monitoring subsystems operating on detached mutable state clones rather than primary state projections are prohibited.",
+      "status": "REJECTED",
+      "origin_epoch": 14,
+      "delta_e": 0.0073,
+      "metadata": {
+        "exogenous_domain": "Rationalist Metaphysics (Baruch Spinoza)",
+        "source_principle": "Substance Monism and Dual-Aspect Parallelism (Derived from L0-018)",
+        "system_profile": {
+          "archetype": "Dual-Aspect Monistic Substrate",
+          "topology_type": "Unified State Substrate with Dual Modal Projections",
+          "topology_diagram": "                 [Unified State Substrate S]\n                             \u2502\n              \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n              \u25bc                             \u25bc\n  [Execution Attribute A_1]     [Telemetry Attribute A_2]\n              \u2502                             \u2502\n              \u25bc                             \u25bc\n    [Runtime State Delta]        [Zero-Cost Telemetry Stream]",
+          "subsystems": {
+            "Monistic Substrate Storage": {
+              "role": "Maintains the singular ground-truth memory representation for each subsystem.",
+              "invariant_rule": "Prohibits independent secondary data stores for audit tracking."
+            },
+            "Execution Attribute Dispatcher": {
+              "role": "Projects state transitions along the functional computational dimension.",
+              "invariant_rule": "Executes domain business logic without telemetry side-effects."
+            },
+            "Modal Telemetry Projector": {
+              "role": "Extracts real-time observability metrics as an intrinsic modal attribute of the same substrate.",
+              "invariant_rule": "Telemetry emission incurs zero state mutation and zero observer bias."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Ensures compiler diagnostics are direct projections of AST mutations (+0.0110).",
+            "target_2_self_evaluator": "Eliminates Heisenberg observer effects where monitoring alters system behavior (+0.0145).",
+            "target_3_control_group": "Guarantees consensus audit logs are bit-identical to committed state blocks (+0.0130)."
+          },
+          "tradeoffs": {
+            "strengths": "Zero-overhead observability; guarantees telemetry can never fall out of sync with state.",
+            "constraints": "Substrate must be designed from the start to support dual modal projection."
+          }
+        }
+      }
+    }
+  ],
+  "tournament_leaderboard": [
+    {
+      "id": "L1-016",
+      "name": "Demarcated Exception Enclaves & Bounded Invariant Suspension",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Any necessary violation or edge-case bypass of an active architectural invariant must be confined within an explicitly demarcated Exception Enclave; enclaves must isolate the failure blast radius, emit machine-readable dissipation audit witnesses, and prohibit unverified state leakage to outer composable scopes.",
+      "formal_expression": "\\forall m \\notin \\mathcal{I}, \\quad \\text{Enclave}(m) \\implies \\partial \\text{Scope}(m) \\cap \\mathcal{S}_{\\text{outer}} = \\emptyset \\quad \\land \\quad \\text{AuditWitness}(m) \\neq \\bot",
+      "operational_rule": "Undemarcated or unisolated invariant breaches trigger immediate compile-time failure. Invariant suspensions are permitted only inside declared enclave wrappers with cryptographic dissipation logs and localized error boundaries.",
+      "source": "LLM",
+      "domain": "Theoretical Computer Science & Monadic Enclave Theory (The `unsafe` Principle)",
+      "principle": "Bounded Invariant Suspension & Isolated Blast Radius Containment",
+      "delta_e1": 0.0133,
+      "delta_e2": 0.01,
+      "delta_e3": 0.012,
+      "delta_e4": 0.0093,
+      "aggregate_delta_e": 0.0112,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Demarcated Exception Enclave & Audit Boundary Gateway",
+        "topology_type": "Isolated Enclave Boundary with Cryptographic Audit Conduit",
+        "topology_diagram": "[Edge-Case Mutation Intent] \u2500\u2500> [Enclave Entry Barrier]\n                                              \u2502\n                                              \u25bc\n                             [Bounded Invariant Suspension Scope]\n                                              \u2502\n                               \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                               \u25bc                             \u25bc\n                 [Cryptographic Audit Log]      [Humane Error Recovery Adapter]\n                               \u2502                             \u2502\n                               \u25bc                             \u25bc\n                 [Audit Dissipation Witness]    [Graceful Persona Fallback]",
+        "subsystems": {
+          "Enclave Isolation Membrane": {
+            "role": "Confines unverified edge-case operations within an impermeable scope boundary; catches unhandled exceptions and prevents outer state corruption.",
+            "invariant_rule": "Scope boundary must catch all faults; zero unhandled error leakage permitted."
+          },
+          "Invariant Suspension Auditor": {
+            "role": "Emits cryptographic dissipation audit witnesses detailing why and where the invariant was suspended.",
+            "invariant_rule": "Enclave execution without machine-readable justification is rejected."
+          },
+          "Humane Error Recovery Adapter": {
+            "role": "Translates low-level enclave faults into graceful, actionable persona-oriented remediation paths instead of crashing the product.",
+            "invariant_rule": "Raw compiler or database dumps are intercepted and transformed into user-friendly guidance."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Permits necessary low-level runtime escapes (FFI, memory flush, raw socket I/O) without invalidating global compiler proofs (+0.0150).",
+          "target_2_self_evaluator": "Captures structured dissipation logs for all edge cases (+0.0135).",
+          "target_3_control_group": "Enables emergency split-brain recovery and partition fencing in distributed consensus (+0.0140).",
+          "target_4_product_usability": "Prevents catastrophic crashes, providing graceful fallback and gentle user recovery (+0.0165)."
+        },
+        "tradeoffs": {
+          "strengths": "Eliminates mathematical fragility; allows real-world edge-case handling without sacrificing zero-trust guarantees.",
+          "constraints": "Enclave usage must be audited and minimized to prevent abuse as an architectural shortcut."
+        }
+      }
+    },
+    {
+      "id": "L1-014",
+      "name": "Spinozian Substance Monism & Modal Dual-Aspect Synchronization",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Execution logic and observability telemetry must operate as parallel modal attributes of an identical underlying state substrate, guaranteeing that telemetry observation never introduces observer bias or drift.",
+      "formal_expression": "\\mathcal{A}_{\\text{exec}}(\\mathcal{S}) \\parallel \\mathcal{A}_{\\text{telemetry}}(\\mathcal{S}) \\quad \\text{where} \\quad \\mathcal{S} \\in \\text{Substance}",
+      "operational_rule": "Independent logging or monitoring subsystems operating on detached mutable state clones rather than primary state projections are prohibited.",
+      "source": "LLM",
+      "domain": "Rationalist Metaphysics (Baruch Spinoza)",
+      "principle": "Substance Monism and Dual-Aspect Parallelism (Derived from L0-018)",
+      "delta_e1": 0.0067,
+      "delta_e2": 0.01,
+      "delta_e3": 0.008,
+      "delta_e4": 0.0047,
+      "aggregate_delta_e": 0.0073,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Dual-Aspect Monistic Substrate",
+        "topology_type": "Unified State Substrate with Dual Modal Projections",
+        "topology_diagram": "                 [Unified State Substrate S]\n                             \u2502\n              \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n              \u25bc                             \u25bc\n  [Execution Attribute A_1]     [Telemetry Attribute A_2]\n              \u2502                             \u2502\n              \u25bc                             \u25bc\n    [Runtime State Delta]        [Zero-Cost Telemetry Stream]",
+        "subsystems": {
+          "Monistic Substrate Storage": {
+            "role": "Maintains the singular ground-truth memory representation for each subsystem.",
+            "invariant_rule": "Prohibits independent secondary data stores for audit tracking."
+          },
+          "Execution Attribute Dispatcher": {
+            "role": "Projects state transitions along the functional computational dimension.",
+            "invariant_rule": "Executes domain business logic without telemetry side-effects."
+          },
+          "Modal Telemetry Projector": {
+            "role": "Extracts real-time observability metrics as an intrinsic modal attribute of the same substrate.",
+            "invariant_rule": "Telemetry emission incurs zero state mutation and zero observer bias."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Ensures compiler diagnostics are direct projections of AST mutations (+0.0110).",
+          "target_2_self_evaluator": "Eliminates Heisenberg observer effects where monitoring alters system behavior (+0.0145).",
+          "target_3_control_group": "Guarantees consensus audit logs are bit-identical to committed state blocks (+0.0130)."
+        },
+        "tradeoffs": {
+          "strengths": "Zero-overhead observability; guarantees telemetry can never fall out of sync with state.",
+          "constraints": "Substrate must be designed from the start to support dual modal projection."
+        }
+      }
+    },
+    {
+      "id": "L1-013",
+      "name": "Category-Theoretic Adjoint Galois Connection & Universal Factorization",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Declarative specification syntax and compiled runtime semantics must form an adjoint functor pair F -| G, ensuring universal factorization and round-trip Galois closure without semantic distortion.",
+      "formal_expression": "\\text{Hom}_{\\mathcal{C}}(F(A), B) \\cong \\text{Hom}_{\\mathcal{D}}(A, G(B)) \\quad (\\text{Unit-Counit Adjunction})",
+      "operational_rule": "Transformations between specifications and binaries lacking adjoint right-inverses or failing Galois round-trip closure trigger compiler rejection.",
+      "source": "LLM",
+      "domain": "Category Theory & Abstract Algebra (Mac Lane & Kan)",
+      "principle": "Adjoint Functor Duality (Derived from L0-015)",
+      "delta_e1": 0.0067,
+      "delta_e2": 0.005,
+      "delta_e3": 0.004,
+      "delta_e4": 0.0047,
+      "aggregate_delta_e": 0.0051,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Free-Forgetful Adjunction Transcompiler",
+        "topology_type": "Bidirectional Natural Isomorphism Pipeline",
+        "topology_diagram": "[Specification Category C] \u2500\u2500(Left Adjoint F)\u2500\u2500> [Runtime Category D]\n                \u2502                                         \u2502\n                \u25b2                                         \u25bc\n         [Unit eta] <\u2500\u2500\u2500(Right Adjoint G)\u2500\u2500\u2500 [Counit epsilon]",
+        "subsystems": {
+          "Left Adjoint Synthesizer (F)": {
+            "role": "Constructs the free structural implementation from declarative specification models.",
+            "invariant_rule": "Preserves all coproducts, colimits, and modular pushouts from category C."
+          },
+          "Right Adjoint Auditor (G)": {
+            "role": "Extracts forgetful behavioral observations from executing binaries back to specs.",
+            "invariant_rule": "Preserves all Cartesian products, limits, and pullbacks into category D."
+          },
+          "Adjunction Unit Arbiter": {
+            "role": "Verifies that round-trip composition eta o epsilon satisfies Kan triangular identities.",
+            "invariant_rule": "Rejects transformations where round-trip evaluation deviates from identity."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Guarantees compiled engine binaries precisely reflect architectural specifications (+0.0135).",
+          "target_2_self_evaluator": "Enables algebraic verification of system invariants without black-box testing (+0.0110).",
+          "target_3_control_group": "Provides mathematical proofs of consensus protocol state preservation (+0.0150)."
+        },
+        "tradeoffs": {
+          "strengths": "Provable bidirectional correctness; specifications and runtimes are mathematically synchronized.",
+          "constraints": "Formalizing interfaces as strict adjoint functors requires rigorous mathematical schemas."
+        }
+      }
+    }
+  ],
+  "decision": "Committed Tournament Winner [L1-016] (+0.0112)",
+  "jettison_triggered": false
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "task_id": "task_6545b24c",
+    "prompt": "Test dispatch API prompt",
+    "specialty_required": "FAST_SUMMARY",
+    "target_model_id": "phi-3.5-mini",
+    "priority": "HIGH",
+    "status": "COMPLETED",
+    "tokens_processed": 78,
+    "vram_lease_mb": 2912,
+    "latency_ms": 17.97,
+    "created_at": 1791841996.888651,
+    "completed_at": 1791841996.907192,
+    "result_output": "[Phi 3.5 Mini Instruct (Q4_K_S)] Executive Summary:\n1. Unified memory allocation stabilized under 2912MB.\n2. Physical Landauer dissipation bounds enforced with zero allocator faults.\n3. Demarcated enclaves contained 100% of transient runtime perturbations.",
+    "error_witness": null
+  }
+]

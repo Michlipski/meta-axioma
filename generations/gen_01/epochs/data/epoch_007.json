@@ -1,0 +1,506 @@
+{
+  "epoch": 7,
+  "timestamp": "2026-10-10T15:34:34.898615",
+  "phase": "PHASE_1_META_EXPLORATION",
+  "current_efficacy": 1.0866,
+  "efficacy_derivative": 0.0094,
+  "active_l0_count": 8,
+  "active_l1_count": 1,
+  "total_active": 9,
+  "compute_budget": {
+    "active_axiom_count": 8,
+    "token_budget": 2222,
+    "simulation_depth": 2,
+    "decay_factor": 0.2222222222222222
+  },
+  "candidate_axiom": {
+    "id": "L0-018",
+    "level": "LEVEL_0_EPISTEMIC",
+    "name": "Spinozan Substance Monism & Attribute Parallelism",
+    "statement": "System state is fundamentally unified under one immutable substrate; operational views (control flow, data flow, telemetry) are pure orthogonal attribute projections over that single substance.",
+    "formal_expression": "\\mathcal{S} = \\text{Substance} \\quad \\land \\quad \\text{View}_k = \\pi_k(\\mathcal{S}) \\quad \\text{where} \\quad \\pi_i \\perp \\pi_j",
+    "operational_rule": "Independent disparate state storage systems that lack canonical single-source synchronization are rejected.",
+    "status": "ACTIVE",
+    "origin_epoch": 7,
+    "delta_e": 0.0086,
+    "metadata": {
+      "exogenous_domain": "Rationalist Metaphysics (Baruch Spinoza)",
+      "source_principle": "Substance Monism and Dual-Aspect Parallelism",
+      "system_profile": {
+        "archetype": "Unified Substance Monad with Orthogonal Projections",
+        "topology_type": "Monistic Central Kernel with Stratified Attribute Projections",
+        "topology_diagram": "              \u250c\u2500\u2500> [Projection 1: Execution Flow]\n              \u2502\n[Single Substance Monad] \u2500\u2500\u253c\u2500\u2500> [Projection 2: Memory Graph]\n              \u2502\n              \u2514\u2500\u2500> [Projection 3: Telemetry Stream]",
+        "subsystems": {
+          "Substance Monad Kernel": {
+            "role": "Maintains the singular, authoritative ontological state of the architecture.",
+            "invariant_rule": "All mutations must resolve within the primary monad."
+          },
+          "Attribute Projection Fabric": {
+            "role": "Computes pure functional views for execution, debugging, and persistence.",
+            "invariant_rule": "Projections are read-only and cannot mutate underlying substance."
+          },
+          "Parallelism Synchronizer": {
+            "role": "Guarantees instantaneous consistency across all operational attribute views.",
+            "invariant_rule": "State skew between projections is strictly forbidden."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Promotes monistic, single-source-of-truth architectures (+0.0120).",
+          "target_e2_velocity": "Eliminates cache coherence bugs and split-brain states (+0.0160).",
+          "target_e3_yield": "Produces clean, highly unified system architectures (+0.0150)."
+        },
+        "tradeoffs": {
+          "strengths": "Completely eliminates synchronization discrepancies and split-brain scenarios.",
+          "constraints": "High performance requirements on the central substance monad."
+        }
+      }
+    }
+  },
+  "tri_fold_metrics": {
+    "delta_e1": 0.008,
+    "delta_e2": 0.0107,
+    "delta_e3": 0.0067,
+    "aggregate_delta_e": 0.0086,
+    "target_details": {
+      "target_e1_diversity": {
+        "success": true,
+        "delta": 0.008,
+        "violations": [],
+        "tokens": 1186,
+        "depth": 2
+      },
+      "target_e2_velocity": {
+        "success": true,
+        "delta": 0.0107,
+        "violations": [],
+        "tokens": 1479,
+        "depth": 2
+      },
+      "target_e3_yield": {
+        "success": true,
+        "delta": 0.0067,
+        "violations": [],
+        "tokens": 1679,
+        "depth": 2
+      }
+    }
+  },
+  "user_candidate": null,
+  "user_metrics": null,
+  "comparative_summary": {
+    "pool_size": 3,
+    "top_candidate_id": "L0-018",
+    "top_candidate_name": "Spinozan Substance Monism & Attribute Parallelism",
+    "top_aggregate_delta_e": 0.0086,
+    "runner_up_id": "L0-016",
+    "runner_up_delta_e": 0.0071,
+    "delta_diff": 0.0015,
+    "leaderboard": [
+      {
+        "id": "L0-018",
+        "name": "Spinozan Substance Monism & Attribute Parallelism",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "System state is fundamentally unified under one immutable substrate; operational views (control flow, data flow, telemetry) are pure orthogonal attribute projections over that single substance.",
+        "formal_expression": "\\mathcal{S} = \\text{Substance} \\quad \\land \\quad \\text{View}_k = \\pi_k(\\mathcal{S}) \\quad \\text{where} \\quad \\pi_i \\perp \\pi_j",
+        "operational_rule": "Independent disparate state storage systems that lack canonical single-source synchronization are rejected.",
+        "source": "LLM",
+        "domain": "Rationalist Metaphysics (Baruch Spinoza)",
+        "principle": "Substance Monism and Dual-Aspect Parallelism",
+        "delta_e1": 0.008,
+        "delta_e2": 0.0107,
+        "delta_e3": 0.0067,
+        "aggregate_delta_e": 0.0086,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Unified Substance Monad with Orthogonal Projections",
+          "topology_type": "Monistic Central Kernel with Stratified Attribute Projections",
+          "topology_diagram": "              \u250c\u2500\u2500> [Projection 1: Execution Flow]\n              \u2502\n[Single Substance Monad] \u2500\u2500\u253c\u2500\u2500> [Projection 2: Memory Graph]\n              \u2502\n              \u2514\u2500\u2500> [Projection 3: Telemetry Stream]",
+          "subsystems": {
+            "Substance Monad Kernel": {
+              "role": "Maintains the singular, authoritative ontological state of the architecture.",
+              "invariant_rule": "All mutations must resolve within the primary monad."
+            },
+            "Attribute Projection Fabric": {
+              "role": "Computes pure functional views for execution, debugging, and persistence.",
+              "invariant_rule": "Projections are read-only and cannot mutate underlying substance."
+            },
+            "Parallelism Synchronizer": {
+              "role": "Guarantees instantaneous consistency across all operational attribute views.",
+              "invariant_rule": "State skew between projections is strictly forbidden."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Promotes monistic, single-source-of-truth architectures (+0.0120).",
+            "target_e2_velocity": "Eliminates cache coherence bugs and split-brain states (+0.0160).",
+            "target_e3_yield": "Produces clean, highly unified system architectures (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Completely eliminates synchronization discrepancies and split-brain scenarios.",
+            "constraints": "High performance requirements on the central substance monad."
+          }
+        }
+      },
+      {
+        "id": "L0-016",
+        "name": "Landauer's Thermodynamic Principle of Reversible Computation",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "Architectural transformations that discard intermediate computational states must formally account for entropy dissipation, favoring logically reversible morphisms that preserve state reconstructibility.",
+        "formal_expression": "\\Delta Q \\ge k_B T \\ln 2 \\cdot \\Delta H_{\\text{erasure}} \\implies \\text{Prefer}(\\text{Isomorphism})",
+        "operational_rule": "Irreversible lossy projections without explicit audit trails or invertibility witnesses are penalized.",
+        "source": "LLM",
+        "domain": "Physical Information Theory (Rolf Landauer & Charles Bennett)",
+        "principle": "Information Erasure Dissipation and Reversible Computing",
+        "delta_e1": 0.008,
+        "delta_e2": 0.0036,
+        "delta_e3": 0.01,
+        "aggregate_delta_e": 0.0071,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Microstate Conservation & Entropy Dissipation Auditor",
+          "topology_type": "Reversible Morphism Pipeline with Conservation Rails",
+          "topology_diagram": "[Ingress State S] \u2500\u2500> [Reversible Transformation] \u2500\u2500> [Egress State S']\n                                  \u2502                               \u2502\n                                  \u2514\u2500\u2500\u2500> [Information Conservation] \u25c4\u2500\u2500\u2518\n                                                \u2502\n                                                \u25bc\n                                    [Audit Lineage Ledger]",
+          "subsystems": {
+            "Reversible Morphism Engine": {
+              "role": "Executes state transformations using bijective mappings.",
+              "invariant_rule": "Every forward step must have a computable backward inverse."
+            },
+            "Information Conservation Auditor": {
+              "role": "Tracks bit-erasure entropy across pipeline stages.",
+              "invariant_rule": "Penalizes destructive state mutations that destroy history."
+            },
+            "Audit Lineage Ledger": {
+              "role": "Maintains lightweight reconstructibility markers for state rollbacks.",
+              "invariant_rule": "Guarantees exact past state reconstructibility without full dumps."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Brings thermodynamic physics into software architecture (+0.0130).",
+            "target_e2_velocity": "Enables instant time-travel debugging and zero-cost rollbacks (+0.0150).",
+            "target_e3_yield": "Produces resilient, self-auditing distributed systems (+0.0140)."
+          },
+          "tradeoffs": {
+            "strengths": "Complete lineage traceability; enables deterministic rollback and replay.",
+            "constraints": "Requires tracking inverse operations or maintaining reversible logs."
+          }
+        }
+      },
+      {
+        "id": "L0-017",
+        "name": "Peircean Semiotic Triad & Pragmatic Maxim",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "Module interfaces must decouple representational tokens from physical execution objects through an explicit mediation interpretant, preventing direct token-state semantic coupling.",
+        "formal_expression": "\\text{Sign}(R, O, I): \\; R \\xrightarrow{I} O \\quad \\text{where} \\quad R \\cap O = \\emptyset",
+        "operational_rule": "Direct coupling of internal memory structures to wire formats without an explicit interpretive schema is rejected.",
+        "source": "LLM",
+        "domain": "Semiotics & Pragmatism (Charles Sanders Peirce)",
+        "principle": "Triadic Sign Relation (Representamen-Object-Interpretant)",
+        "delta_e1": 0.004,
+        "delta_e2": 0.0071,
+        "delta_e3": 0.0033,
+        "aggregate_delta_e": 0.0049,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Triadic Semantic Grounding Fabric",
+          "topology_type": "Triadic Mediated Interface Bus",
+          "topology_diagram": "[Representamen (Token)] \u2500\u2500\u2510\n                              \u251c\u2500\u2500> [Interpretant (Schema / Context)] \u2500\u2500> [Object (Physical State)]\n[Environmental Pragmatics] \u2500\u2500\u2500\u2518",
+          "subsystems": {
+            "Representamen Encoder": {
+              "role": "Serializes module intent into syntactic representational tokens.",
+              "invariant_rule": "Tokens must be purely symbolic and free of runtime pointers."
+            },
+            "Contextual Interpretant": {
+              "role": "Interprets tokens within dynamic context to determine pragmatic meaning.",
+              "invariant_rule": "Mediates all interactions between symbols and memory states."
+            },
+            "Object State Grounder": {
+              "role": "Applies interpreted actions to underlying physical system state.",
+              "invariant_rule": "Rejects malformed interpretations before state mutation."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Encourages schema-driven, loosely coupled protocols (+0.0130).",
+            "target_e2_velocity": "Quickly detects protocol drift and semantic mismatches (+0.0140).",
+            "target_e3_yield": "Produces evolvable, backward-compatible API architectures (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Total decoupling of serialization format from internal data structures.",
+            "constraints": "Adds interpretant mediation step to inter-module communications."
+          }
+        }
+      }
+    ]
+  },
+  "candidate_pool": [
+    {
+      "id": "L0-016",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Landauer's Thermodynamic Principle of Reversible Computation",
+      "statement": "Architectural transformations that discard intermediate computational states must formally account for entropy dissipation, favoring logically reversible morphisms that preserve state reconstructibility.",
+      "formal_expression": "\\Delta Q \\ge k_B T \\ln 2 \\cdot \\Delta H_{\\text{erasure}} \\implies \\text{Prefer}(\\text{Isomorphism})",
+      "operational_rule": "Irreversible lossy projections without explicit audit trails or invertibility witnesses are penalized.",
+      "status": "REJECTED",
+      "origin_epoch": 7,
+      "delta_e": 0.0071,
+      "metadata": {
+        "exogenous_domain": "Physical Information Theory (Rolf Landauer & Charles Bennett)",
+        "source_principle": "Information Erasure Dissipation and Reversible Computing",
+        "system_profile": {
+          "archetype": "Microstate Conservation & Entropy Dissipation Auditor",
+          "topology_type": "Reversible Morphism Pipeline with Conservation Rails",
+          "topology_diagram": "[Ingress State S] \u2500\u2500> [Reversible Transformation] \u2500\u2500> [Egress State S']\n                                  \u2502                               \u2502\n                                  \u2514\u2500\u2500\u2500> [Information Conservation] \u25c4\u2500\u2500\u2518\n                                                \u2502\n                                                \u25bc\n                                    [Audit Lineage Ledger]",
+          "subsystems": {
+            "Reversible Morphism Engine": {
+              "role": "Executes state transformations using bijective mappings.",
+              "invariant_rule": "Every forward step must have a computable backward inverse."
+            },
+            "Information Conservation Auditor": {
+              "role": "Tracks bit-erasure entropy across pipeline stages.",
+              "invariant_rule": "Penalizes destructive state mutations that destroy history."
+            },
+            "Audit Lineage Ledger": {
+              "role": "Maintains lightweight reconstructibility markers for state rollbacks.",
+              "invariant_rule": "Guarantees exact past state reconstructibility without full dumps."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Brings thermodynamic physics into software architecture (+0.0130).",
+            "target_e2_velocity": "Enables instant time-travel debugging and zero-cost rollbacks (+0.0150).",
+            "target_e3_yield": "Produces resilient, self-auditing distributed systems (+0.0140)."
+          },
+          "tradeoffs": {
+            "strengths": "Complete lineage traceability; enables deterministic rollback and replay.",
+            "constraints": "Requires tracking inverse operations or maintaining reversible logs."
+          }
+        }
+      }
+    },
+    {
+      "id": "L0-017",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Peircean Semiotic Triad & Pragmatic Maxim",
+      "statement": "Module interfaces must decouple representational tokens from physical execution objects through an explicit mediation interpretant, preventing direct token-state semantic coupling.",
+      "formal_expression": "\\text{Sign}(R, O, I): \\; R \\xrightarrow{I} O \\quad \\text{where} \\quad R \\cap O = \\emptyset",
+      "operational_rule": "Direct coupling of internal memory structures to wire formats without an explicit interpretive schema is rejected.",
+      "status": "REJECTED",
+      "origin_epoch": 7,
+      "delta_e": 0.0049,
+      "metadata": {
+        "exogenous_domain": "Semiotics & Pragmatism (Charles Sanders Peirce)",
+        "source_principle": "Triadic Sign Relation (Representamen-Object-Interpretant)",
+        "system_profile": {
+          "archetype": "Triadic Semantic Grounding Fabric",
+          "topology_type": "Triadic Mediated Interface Bus",
+          "topology_diagram": "[Representamen (Token)] \u2500\u2500\u2510\n                              \u251c\u2500\u2500> [Interpretant (Schema / Context)] \u2500\u2500> [Object (Physical State)]\n[Environmental Pragmatics] \u2500\u2500\u2500\u2518",
+          "subsystems": {
+            "Representamen Encoder": {
+              "role": "Serializes module intent into syntactic representational tokens.",
+              "invariant_rule": "Tokens must be purely symbolic and free of runtime pointers."
+            },
+            "Contextual Interpretant": {
+              "role": "Interprets tokens within dynamic context to determine pragmatic meaning.",
+              "invariant_rule": "Mediates all interactions between symbols and memory states."
+            },
+            "Object State Grounder": {
+              "role": "Applies interpreted actions to underlying physical system state.",
+              "invariant_rule": "Rejects malformed interpretations before state mutation."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Encourages schema-driven, loosely coupled protocols (+0.0130).",
+            "target_e2_velocity": "Quickly detects protocol drift and semantic mismatches (+0.0140).",
+            "target_e3_yield": "Produces evolvable, backward-compatible API architectures (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Total decoupling of serialization format from internal data structures.",
+            "constraints": "Adds interpretant mediation step to inter-module communications."
+          }
+        }
+      }
+    },
+    {
+      "id": "L0-018",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Spinozan Substance Monism & Attribute Parallelism",
+      "statement": "System state is fundamentally unified under one immutable substrate; operational views (control flow, data flow, telemetry) are pure orthogonal attribute projections over that single substance.",
+      "formal_expression": "\\mathcal{S} = \\text{Substance} \\quad \\land \\quad \\text{View}_k = \\pi_k(\\mathcal{S}) \\quad \\text{where} \\quad \\pi_i \\perp \\pi_j",
+      "operational_rule": "Independent disparate state storage systems that lack canonical single-source synchronization are rejected.",
+      "status": "ACTIVE",
+      "origin_epoch": 7,
+      "delta_e": 0.0086,
+      "metadata": {
+        "exogenous_domain": "Rationalist Metaphysics (Baruch Spinoza)",
+        "source_principle": "Substance Monism and Dual-Aspect Parallelism",
+        "system_profile": {
+          "archetype": "Unified Substance Monad with Orthogonal Projections",
+          "topology_type": "Monistic Central Kernel with Stratified Attribute Projections",
+          "topology_diagram": "              \u250c\u2500\u2500> [Projection 1: Execution Flow]\n              \u2502\n[Single Substance Monad] \u2500\u2500\u253c\u2500\u2500> [Projection 2: Memory Graph]\n              \u2502\n              \u2514\u2500\u2500> [Projection 3: Telemetry Stream]",
+          "subsystems": {
+            "Substance Monad Kernel": {
+              "role": "Maintains the singular, authoritative ontological state of the architecture.",
+              "invariant_rule": "All mutations must resolve within the primary monad."
+            },
+            "Attribute Projection Fabric": {
+              "role": "Computes pure functional views for execution, debugging, and persistence.",
+              "invariant_rule": "Projections are read-only and cannot mutate underlying substance."
+            },
+            "Parallelism Synchronizer": {
+              "role": "Guarantees instantaneous consistency across all operational attribute views.",
+              "invariant_rule": "State skew between projections is strictly forbidden."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Promotes monistic, single-source-of-truth architectures (+0.0120).",
+            "target_e2_velocity": "Eliminates cache coherence bugs and split-brain states (+0.0160).",
+            "target_e3_yield": "Produces clean, highly unified system architectures (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Completely eliminates synchronization discrepancies and split-brain scenarios.",
+            "constraints": "High performance requirements on the central substance monad."
+          }
+        }
+      }
+    }
+  ],
+  "tournament_leaderboard": [
+    {
+      "id": "L0-018",
+      "name": "Spinozan Substance Monism & Attribute Parallelism",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "System state is fundamentally unified under one immutable substrate; operational views (control flow, data flow, telemetry) are pure orthogonal attribute projections over that single substance.",
+      "formal_expression": "\\mathcal{S} = \\text{Substance} \\quad \\land \\quad \\text{View}_k = \\pi_k(\\mathcal{S}) \\quad \\text{where} \\quad \\pi_i \\perp \\pi_j",
+      "operational_rule": "Independent disparate state storage systems that lack canonical single-source synchronization are rejected.",
+      "source": "LLM",
+      "domain": "Rationalist Metaphysics (Baruch Spinoza)",
+      "principle": "Substance Monism and Dual-Aspect Parallelism",
+      "delta_e1": 0.008,
+      "delta_e2": 0.0107,
+      "delta_e3": 0.0067,
+      "aggregate_delta_e": 0.0086,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Unified Substance Monad with Orthogonal Projections",
+        "topology_type": "Monistic Central Kernel with Stratified Attribute Projections",
+        "topology_diagram": "              \u250c\u2500\u2500> [Projection 1: Execution Flow]\n              \u2502\n[Single Substance Monad] \u2500\u2500\u253c\u2500\u2500> [Projection 2: Memory Graph]\n              \u2502\n              \u2514\u2500\u2500> [Projection 3: Telemetry Stream]",
+        "subsystems": {
+          "Substance Monad Kernel": {
+            "role": "Maintains the singular, authoritative ontological state of the architecture.",
+            "invariant_rule": "All mutations must resolve within the primary monad."
+          },
+          "Attribute Projection Fabric": {
+            "role": "Computes pure functional views for execution, debugging, and persistence.",
+            "invariant_rule": "Projections are read-only and cannot mutate underlying substance."
+          },
+          "Parallelism Synchronizer": {
+            "role": "Guarantees instantaneous consistency across all operational attribute views.",
+            "invariant_rule": "State skew between projections is strictly forbidden."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Promotes monistic, single-source-of-truth architectures (+0.0120).",
+          "target_e2_velocity": "Eliminates cache coherence bugs and split-brain states (+0.0160).",
+          "target_e3_yield": "Produces clean, highly unified system architectures (+0.0150)."
+        },
+        "tradeoffs": {
+          "strengths": "Completely eliminates synchronization discrepancies and split-brain scenarios.",
+          "constraints": "High performance requirements on the central substance monad."
+        }
+      }
+    },
+    {
+      "id": "L0-016",
+      "name": "Landauer's Thermodynamic Principle of Reversible Computation",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "Architectural transformations that discard intermediate computational states must formally account for entropy dissipation, favoring logically reversible morphisms that preserve state reconstructibility.",
+      "formal_expression": "\\Delta Q \\ge k_B T \\ln 2 \\cdot \\Delta H_{\\text{erasure}} \\implies \\text{Prefer}(\\text{Isomorphism})",
+      "operational_rule": "Irreversible lossy projections without explicit audit trails or invertibility witnesses are penalized.",
+      "source": "LLM",
+      "domain": "Physical Information Theory (Rolf Landauer & Charles Bennett)",
+      "principle": "Information Erasure Dissipation and Reversible Computing",
+      "delta_e1": 0.008,
+      "delta_e2": 0.0036,
+      "delta_e3": 0.01,
+      "aggregate_delta_e": 0.0071,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Microstate Conservation & Entropy Dissipation Auditor",
+        "topology_type": "Reversible Morphism Pipeline with Conservation Rails",
+        "topology_diagram": "[Ingress State S] \u2500\u2500> [Reversible Transformation] \u2500\u2500> [Egress State S']\n                                  \u2502                               \u2502\n                                  \u2514\u2500\u2500\u2500> [Information Conservation] \u25c4\u2500\u2500\u2518\n                                                \u2502\n                                                \u25bc\n                                    [Audit Lineage Ledger]",
+        "subsystems": {
+          "Reversible Morphism Engine": {
+            "role": "Executes state transformations using bijective mappings.",
+            "invariant_rule": "Every forward step must have a computable backward inverse."
+          },
+          "Information Conservation Auditor": {
+            "role": "Tracks bit-erasure entropy across pipeline stages.",
+            "invariant_rule": "Penalizes destructive state mutations that destroy history."
+          },
+          "Audit Lineage Ledger": {
+            "role": "Maintains lightweight reconstructibility markers for state rollbacks.",
+            "invariant_rule": "Guarantees exact past state reconstructibility without full dumps."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Brings thermodynamic physics into software architecture (+0.0130).",
+          "target_e2_velocity": "Enables instant time-travel debugging and zero-cost rollbacks (+0.0150).",
+          "target_e3_yield": "Produces resilient, self-auditing distributed systems (+0.0140)."
+        },
+        "tradeoffs": {
+          "strengths": "Complete lineage traceability; enables deterministic rollback and replay.",
+          "constraints": "Requires tracking inverse operations or maintaining reversible logs."
+        }
+      }
+    },
+    {
+      "id": "L0-017",
+      "name": "Peircean Semiotic Triad & Pragmatic Maxim",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "Module interfaces must decouple representational tokens from physical execution objects through an explicit mediation interpretant, preventing direct token-state semantic coupling.",
+      "formal_expression": "\\text{Sign}(R, O, I): \\; R \\xrightarrow{I} O \\quad \\text{where} \\quad R \\cap O = \\emptyset",
+      "operational_rule": "Direct coupling of internal memory structures to wire formats without an explicit interpretive schema is rejected.",
+      "source": "LLM",
+      "domain": "Semiotics & Pragmatism (Charles Sanders Peirce)",
+      "principle": "Triadic Sign Relation (Representamen-Object-Interpretant)",
+      "delta_e1": 0.004,
+      "delta_e2": 0.0071,
+      "delta_e3": 0.0033,
+      "aggregate_delta_e": 0.0049,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Triadic Semantic Grounding Fabric",
+        "topology_type": "Triadic Mediated Interface Bus",
+        "topology_diagram": "[Representamen (Token)] \u2500\u2500\u2510\n                              \u251c\u2500\u2500> [Interpretant (Schema / Context)] \u2500\u2500> [Object (Physical State)]\n[Environmental Pragmatics] \u2500\u2500\u2500\u2518",
+        "subsystems": {
+          "Representamen Encoder": {
+            "role": "Serializes module intent into syntactic representational tokens.",
+            "invariant_rule": "Tokens must be purely symbolic and free of runtime pointers."
+          },
+          "Contextual Interpretant": {
+            "role": "Interprets tokens within dynamic context to determine pragmatic meaning.",
+            "invariant_rule": "Mediates all interactions between symbols and memory states."
+          },
+          "Object State Grounder": {
+            "role": "Applies interpreted actions to underlying physical system state.",
+            "invariant_rule": "Rejects malformed interpretations before state mutation."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Encourages schema-driven, loosely coupled protocols (+0.0130).",
+          "target_e2_velocity": "Quickly detects protocol drift and semantic mismatches (+0.0140).",
+          "target_e3_yield": "Produces evolvable, backward-compatible API architectures (+0.0150)."
+        },
+        "tradeoffs": {
+          "strengths": "Total decoupling of serialization format from internal data structures.",
+          "constraints": "Adds interpretant mediation step to inter-module communications."
+        }
+      }
+    }
+  ],
+  "decision": "Committed Tournament Winner [L0-018] (+0.0086)",
+  "jettison_triggered": false
+}

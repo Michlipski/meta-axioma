@@ -1,0 +1,506 @@
+{
+  "epoch": 5,
+  "timestamp": "2026-10-10T15:32:52.162849",
+  "phase": "PHASE_1_META_EXPLORATION",
+  "current_efficacy": 1.0686,
+  "efficacy_derivative": 0.0149,
+  "active_l0_count": 6,
+  "active_l1_count": 1,
+  "total_active": 7,
+  "compute_budget": {
+    "active_axiom_count": 6,
+    "token_budget": 2857,
+    "simulation_depth": 2,
+    "decay_factor": 0.2857142857142857
+  },
+  "candidate_axiom": {
+    "id": "L0-012",
+    "level": "LEVEL_0_EPISTEMIC",
+    "name": "Topological Homology Invariance & Betti Number Preservation",
+    "statement": "System dependency and communication graphs must preserve invariant Betti numbers under architectural transformations, ensuring that component decomposition neither introduces circular deadlock 1-cycles nor disconnects 0-simplex components.",
+    "formal_expression": "\\beta_k(\\mathcal{K}_{\\text{compiled}}) = \\beta_k(\\mathcal{K}_{\\text{spec}}) \\quad \\forall k \\ge 0",
+    "operational_rule": "Structural transformations that alter simplicial homology groups or create unchecked 1-cycles are rejected.",
+    "status": "ACTIVE",
+    "origin_epoch": 5,
+    "delta_e": 0.0101,
+    "metadata": {
+      "exogenous_domain": "Algebraic Topology (Henri Poincar\u00e9 & Emmy Noether)",
+      "source_principle": "Simplicial Homology Invariance",
+      "system_profile": {
+        "archetype": "Simplicial Complex Auditor & Betti Invariant Guard",
+        "topology_type": "Simplicial Triangulation & Homology Analyzer",
+        "topology_diagram": "[Component Dependency Graph] \u2500\u2500> [Simplicial Complex Mapper]\n                                              \u2502\n                                              \u25bc\n                                 [Homology Group Calculator]\n                                              \u2502\n                                              \u25bc\n                                 [Betti Number Invariant Guard]",
+        "subsystems": {
+          "Simplicial Complex Mapper": {
+            "role": "Converts module dependency networks into geometric simplicial complexes.",
+            "invariant_rule": "N-ary interactions are mapped to (N-1)-simplex faces."
+          },
+          "Homology Group Calculator": {
+            "role": "Computes Betti numbers: beta_0 (connectivity) and beta_1 (1-cycles / deadlocks).",
+            "invariant_rule": "Detects circular dependency traps via non-zero 1-cycle boundaries."
+          },
+          "Betti Invariant Guard": {
+            "role": "Ensures topological homology is preserved across compilation transformations.",
+            "invariant_rule": "Rejects any candidate that introduces un-bracketed 1-cycles."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Brings topological data analysis into systems architecture (+0.0140).",
+          "target_e2_velocity": "Mathematically proves absence of circular deadlocks without combinatorial search (+0.0160).",
+          "target_e3_yield": "Guarantees topological stability of generated system modules (+0.0130)."
+        },
+        "tradeoffs": {
+          "strengths": "Provably prevents circular deadlocks and orphaned subsystems.",
+          "constraints": "Requires graph triangulation compute step during AST verification."
+        }
+      }
+    }
+  },
+  "tri_fold_metrics": {
+    "delta_e1": 0.0051,
+    "delta_e2": 0.0091,
+    "delta_e3": 0.0171,
+    "aggregate_delta_e": 0.0101,
+    "target_details": {
+      "target_e1_diversity": {
+        "success": true,
+        "delta": 0.0051,
+        "violations": [],
+        "tokens": 1278,
+        "depth": 2
+      },
+      "target_e2_velocity": {
+        "success": true,
+        "delta": 0.0091,
+        "violations": [],
+        "tokens": 1617,
+        "depth": 2
+      },
+      "target_e3_yield": {
+        "success": true,
+        "delta": 0.0171,
+        "violations": [],
+        "tokens": 1817,
+        "depth": 2
+      }
+    }
+  },
+  "user_candidate": null,
+  "user_metrics": null,
+  "comparative_summary": {
+    "pool_size": 3,
+    "top_candidate_id": "L0-012",
+    "top_candidate_name": "Topological Homology Invariance & Betti Number Preservation",
+    "top_aggregate_delta_e": 0.0101,
+    "runner_up_id": "L0-011",
+    "runner_up_delta_e": 0.0099,
+    "delta_diff": 0.0002,
+    "leaderboard": [
+      {
+        "id": "L0-012",
+        "name": "Topological Homology Invariance & Betti Number Preservation",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "System dependency and communication graphs must preserve invariant Betti numbers under architectural transformations, ensuring that component decomposition neither introduces circular deadlock 1-cycles nor disconnects 0-simplex components.",
+        "formal_expression": "\\beta_k(\\mathcal{K}_{\\text{compiled}}) = \\beta_k(\\mathcal{K}_{\\text{spec}}) \\quad \\forall k \\ge 0",
+        "operational_rule": "Structural transformations that alter simplicial homology groups or create unchecked 1-cycles are rejected.",
+        "source": "LLM",
+        "domain": "Algebraic Topology (Henri Poincar\u00e9 & Emmy Noether)",
+        "principle": "Simplicial Homology Invariance",
+        "delta_e1": 0.0051,
+        "delta_e2": 0.0091,
+        "delta_e3": 0.0171,
+        "aggregate_delta_e": 0.0101,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Simplicial Complex Auditor & Betti Invariant Guard",
+          "topology_type": "Simplicial Triangulation & Homology Analyzer",
+          "topology_diagram": "[Component Dependency Graph] \u2500\u2500> [Simplicial Complex Mapper]\n                                              \u2502\n                                              \u25bc\n                                 [Homology Group Calculator]\n                                              \u2502\n                                              \u25bc\n                                 [Betti Number Invariant Guard]",
+          "subsystems": {
+            "Simplicial Complex Mapper": {
+              "role": "Converts module dependency networks into geometric simplicial complexes.",
+              "invariant_rule": "N-ary interactions are mapped to (N-1)-simplex faces."
+            },
+            "Homology Group Calculator": {
+              "role": "Computes Betti numbers: beta_0 (connectivity) and beta_1 (1-cycles / deadlocks).",
+              "invariant_rule": "Detects circular dependency traps via non-zero 1-cycle boundaries."
+            },
+            "Betti Invariant Guard": {
+              "role": "Ensures topological homology is preserved across compilation transformations.",
+              "invariant_rule": "Rejects any candidate that introduces un-bracketed 1-cycles."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Brings topological data analysis into systems architecture (+0.0140).",
+            "target_e2_velocity": "Mathematically proves absence of circular deadlocks without combinatorial search (+0.0160).",
+            "target_e3_yield": "Guarantees topological stability of generated system modules (+0.0130)."
+          },
+          "tradeoffs": {
+            "strengths": "Provably prevents circular deadlocks and orphaned subsystems.",
+            "constraints": "Requires graph triangulation compute step during AST verification."
+          }
+        }
+      },
+      {
+        "id": "L0-011",
+        "name": "Shannon Information Gain & Surprisal Gradient Maximization",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "Exploratory search steps must maximize expected Kullback-Leibler divergence from the prior architectural belief state, prioritizing hypotheses that maximize reduction in epistemic entropy over those with high confirmatory probability.",
+        "formal_expression": "\\Delta I(A; \\mathcal{T}) = D_{\\text{KL}}(P(S \\mid A) \\parallel P(S)) > \\gamma",
+        "operational_rule": "Candidates that merely confirm existing system behaviors without shifting posterior belief distributions are discarded.",
+        "source": "LLM",
+        "domain": "Information Theory (Claude Shannon & Solomon Kullback)",
+        "principle": "Surprisal Gradient Optimization",
+        "delta_e1": 0.0154,
+        "delta_e2": 0.0091,
+        "delta_e3": 0.0043,
+        "aggregate_delta_e": 0.0099,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Surprisal Gradient Maximizer & Information Filter",
+          "topology_type": "Bayesian Information Gain Dispatch Loop",
+          "topology_diagram": "[Prior Belief Distribution] \u2500\u2500\u2510\n                              \u251c\u2500\u2500> [Mutual Information Gauge] \u2500\u2500> [Gradient Stepper]\n[Observed Metric Feedback]  \u2500\u2500\u2518                                          \u2502\n                                                                         \u25bc\n                                                            [High-Surprisal Target Focus]",
+          "subsystems": {
+            "Belief Distribution Tracker": {
+              "role": "Maintains Bayesian priors over candidate efficacy across target domains.",
+              "invariant_rule": "Updates posterior distributions following each simulation run."
+            },
+            "Mutual Information Gauge": {
+              "role": "Calculates expected information gain I(H; T) for proposed hypotheses.",
+              "invariant_rule": "Penalizes proposals that yield zero variance reduction."
+            },
+            "Surprisal Gradient Stepper": {
+              "role": "Directs generator prompts toward areas of highest epistemic uncertainty.",
+              "invariant_rule": "Guides exploration along the steepest information gradient."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Biases exploration toward high-entropy, low-probability domains (+0.0180).",
+            "target_e2_velocity": "Rapidly narrows down uncertainty bounds in simulation models (+0.0140).",
+            "target_e3_yield": "Produces high-impact, non-obvious structural breakthroughs (+0.0120)."
+          },
+          "tradeoffs": {
+            "strengths": "Maximizes learning rate per simulation token spent.",
+            "constraints": "May temporarily accept high-variance hypotheses with higher risk of rejection."
+          }
+        }
+      },
+      {
+        "id": "L0-010",
+        "name": "Constructive Proof Demarcation & Intuitionistic Type Witnessing",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "An architectural invariant cannot be established by mere non-constructive contradiction; every accepted axiom must construct a computable computational witness that realizes the claimed invariant across every admissible system state.",
+        "formal_expression": "\\vdash A \\iff \\exists t \\; (t : A) \\quad \\text{where} \\quad \\neg\\neg A \\not\\implies A",
+        "operational_rule": "Proofs of invariant preservation via law of excluded middle without an explicit executable witness term are rejected.",
+        "source": "LLM",
+        "domain": "Constructive Mathematics (L.E.J. Brouwer & Per Martin-L\u00f6f)",
+        "principle": "Curry-Howard Isomorphism & Witness Computability",
+        "delta_e1": 0.0051,
+        "delta_e2": 0.0091,
+        "delta_e3": 0.0129,
+        "aggregate_delta_e": 0.0088,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Curry-Howard Realizer & Intuitionistic Witness Compiler",
+          "topology_type": "Dependent Type Checking & Term Extraction Pipeline",
+          "topology_diagram": "[Invariant Specification] \u2500\u2500> [Intuitionistic Type Checker]\n                                           \u2502\n                                           \u25bc\n                               [Witness Term Extractor]\n                                           \u2502\n                                           \u25bc\n                               [Executable Realizer Unit]",
+          "subsystems": {
+            "Intuitionistic Type Checker": {
+              "role": "Treats invariant statements as dependent type propositions in Martin-L\u00f6f type theory.",
+              "invariant_rule": "Rejects non-constructive proofs relying on double-negation elimination."
+            },
+            "Witness Term Extractor": {
+              "role": "Synthesizes an executable lambda-calculus term realizing the type proposition.",
+              "invariant_rule": "Extracted terms must be total and terminate within bounded steps."
+            },
+            "Executable Realizer Unit": {
+              "role": "Executes witness programs against simulation states to guarantee operational validity.",
+              "invariant_rule": "Type preservation (subject reduction) must hold across state mutations."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Forces candidates into rigorous typed formalisms (+0.0090).",
+            "target_e2_velocity": "Immediately discards non-constructive assertions without simulation (+0.0160).",
+            "target_e3_yield": "Produces structural axioms that are directly compilable with zero ambiguity (+0.0180)."
+          },
+          "tradeoffs": {
+            "strengths": "Guarantees that every committed axiom has a concrete, executable verification program.",
+            "constraints": "Strict formulation requirement that rejects valid heuristics lacking immediate constructive witnesses."
+          }
+        }
+      }
+    ]
+  },
+  "candidate_pool": [
+    {
+      "id": "L0-010",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Constructive Proof Demarcation & Intuitionistic Type Witnessing",
+      "statement": "An architectural invariant cannot be established by mere non-constructive contradiction; every accepted axiom must construct a computable computational witness that realizes the claimed invariant across every admissible system state.",
+      "formal_expression": "\\vdash A \\iff \\exists t \\; (t : A) \\quad \\text{where} \\quad \\neg\\neg A \\not\\implies A",
+      "operational_rule": "Proofs of invariant preservation via law of excluded middle without an explicit executable witness term are rejected.",
+      "status": "REJECTED",
+      "origin_epoch": 5,
+      "delta_e": 0.0088,
+      "metadata": {
+        "exogenous_domain": "Constructive Mathematics (L.E.J. Brouwer & Per Martin-L\u00f6f)",
+        "source_principle": "Curry-Howard Isomorphism & Witness Computability",
+        "system_profile": {
+          "archetype": "Curry-Howard Realizer & Intuitionistic Witness Compiler",
+          "topology_type": "Dependent Type Checking & Term Extraction Pipeline",
+          "topology_diagram": "[Invariant Specification] \u2500\u2500> [Intuitionistic Type Checker]\n                                           \u2502\n                                           \u25bc\n                               [Witness Term Extractor]\n                                           \u2502\n                                           \u25bc\n                               [Executable Realizer Unit]",
+          "subsystems": {
+            "Intuitionistic Type Checker": {
+              "role": "Treats invariant statements as dependent type propositions in Martin-L\u00f6f type theory.",
+              "invariant_rule": "Rejects non-constructive proofs relying on double-negation elimination."
+            },
+            "Witness Term Extractor": {
+              "role": "Synthesizes an executable lambda-calculus term realizing the type proposition.",
+              "invariant_rule": "Extracted terms must be total and terminate within bounded steps."
+            },
+            "Executable Realizer Unit": {
+              "role": "Executes witness programs against simulation states to guarantee operational validity.",
+              "invariant_rule": "Type preservation (subject reduction) must hold across state mutations."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Forces candidates into rigorous typed formalisms (+0.0090).",
+            "target_e2_velocity": "Immediately discards non-constructive assertions without simulation (+0.0160).",
+            "target_e3_yield": "Produces structural axioms that are directly compilable with zero ambiguity (+0.0180)."
+          },
+          "tradeoffs": {
+            "strengths": "Guarantees that every committed axiom has a concrete, executable verification program.",
+            "constraints": "Strict formulation requirement that rejects valid heuristics lacking immediate constructive witnesses."
+          }
+        }
+      }
+    },
+    {
+      "id": "L0-011",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Shannon Information Gain & Surprisal Gradient Maximization",
+      "statement": "Exploratory search steps must maximize expected Kullback-Leibler divergence from the prior architectural belief state, prioritizing hypotheses that maximize reduction in epistemic entropy over those with high confirmatory probability.",
+      "formal_expression": "\\Delta I(A; \\mathcal{T}) = D_{\\text{KL}}(P(S \\mid A) \\parallel P(S)) > \\gamma",
+      "operational_rule": "Candidates that merely confirm existing system behaviors without shifting posterior belief distributions are discarded.",
+      "status": "REJECTED",
+      "origin_epoch": 5,
+      "delta_e": 0.0099,
+      "metadata": {
+        "exogenous_domain": "Information Theory (Claude Shannon & Solomon Kullback)",
+        "source_principle": "Surprisal Gradient Optimization",
+        "system_profile": {
+          "archetype": "Surprisal Gradient Maximizer & Information Filter",
+          "topology_type": "Bayesian Information Gain Dispatch Loop",
+          "topology_diagram": "[Prior Belief Distribution] \u2500\u2500\u2510\n                              \u251c\u2500\u2500> [Mutual Information Gauge] \u2500\u2500> [Gradient Stepper]\n[Observed Metric Feedback]  \u2500\u2500\u2518                                          \u2502\n                                                                         \u25bc\n                                                            [High-Surprisal Target Focus]",
+          "subsystems": {
+            "Belief Distribution Tracker": {
+              "role": "Maintains Bayesian priors over candidate efficacy across target domains.",
+              "invariant_rule": "Updates posterior distributions following each simulation run."
+            },
+            "Mutual Information Gauge": {
+              "role": "Calculates expected information gain I(H; T) for proposed hypotheses.",
+              "invariant_rule": "Penalizes proposals that yield zero variance reduction."
+            },
+            "Surprisal Gradient Stepper": {
+              "role": "Directs generator prompts toward areas of highest epistemic uncertainty.",
+              "invariant_rule": "Guides exploration along the steepest information gradient."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Biases exploration toward high-entropy, low-probability domains (+0.0180).",
+            "target_e2_velocity": "Rapidly narrows down uncertainty bounds in simulation models (+0.0140).",
+            "target_e3_yield": "Produces high-impact, non-obvious structural breakthroughs (+0.0120)."
+          },
+          "tradeoffs": {
+            "strengths": "Maximizes learning rate per simulation token spent.",
+            "constraints": "May temporarily accept high-variance hypotheses with higher risk of rejection."
+          }
+        }
+      }
+    },
+    {
+      "id": "L0-012",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Topological Homology Invariance & Betti Number Preservation",
+      "statement": "System dependency and communication graphs must preserve invariant Betti numbers under architectural transformations, ensuring that component decomposition neither introduces circular deadlock 1-cycles nor disconnects 0-simplex components.",
+      "formal_expression": "\\beta_k(\\mathcal{K}_{\\text{compiled}}) = \\beta_k(\\mathcal{K}_{\\text{spec}}) \\quad \\forall k \\ge 0",
+      "operational_rule": "Structural transformations that alter simplicial homology groups or create unchecked 1-cycles are rejected.",
+      "status": "ACTIVE",
+      "origin_epoch": 5,
+      "delta_e": 0.0101,
+      "metadata": {
+        "exogenous_domain": "Algebraic Topology (Henri Poincar\u00e9 & Emmy Noether)",
+        "source_principle": "Simplicial Homology Invariance",
+        "system_profile": {
+          "archetype": "Simplicial Complex Auditor & Betti Invariant Guard",
+          "topology_type": "Simplicial Triangulation & Homology Analyzer",
+          "topology_diagram": "[Component Dependency Graph] \u2500\u2500> [Simplicial Complex Mapper]\n                                              \u2502\n                                              \u25bc\n                                 [Homology Group Calculator]\n                                              \u2502\n                                              \u25bc\n                                 [Betti Number Invariant Guard]",
+          "subsystems": {
+            "Simplicial Complex Mapper": {
+              "role": "Converts module dependency networks into geometric simplicial complexes.",
+              "invariant_rule": "N-ary interactions are mapped to (N-1)-simplex faces."
+            },
+            "Homology Group Calculator": {
+              "role": "Computes Betti numbers: beta_0 (connectivity) and beta_1 (1-cycles / deadlocks).",
+              "invariant_rule": "Detects circular dependency traps via non-zero 1-cycle boundaries."
+            },
+            "Betti Invariant Guard": {
+              "role": "Ensures topological homology is preserved across compilation transformations.",
+              "invariant_rule": "Rejects any candidate that introduces un-bracketed 1-cycles."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Brings topological data analysis into systems architecture (+0.0140).",
+            "target_e2_velocity": "Mathematically proves absence of circular deadlocks without combinatorial search (+0.0160).",
+            "target_e3_yield": "Guarantees topological stability of generated system modules (+0.0130)."
+          },
+          "tradeoffs": {
+            "strengths": "Provably prevents circular deadlocks and orphaned subsystems.",
+            "constraints": "Requires graph triangulation compute step during AST verification."
+          }
+        }
+      }
+    }
+  ],
+  "tournament_leaderboard": [
+    {
+      "id": "L0-012",
+      "name": "Topological Homology Invariance & Betti Number Preservation",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "System dependency and communication graphs must preserve invariant Betti numbers under architectural transformations, ensuring that component decomposition neither introduces circular deadlock 1-cycles nor disconnects 0-simplex components.",
+      "formal_expression": "\\beta_k(\\mathcal{K}_{\\text{compiled}}) = \\beta_k(\\mathcal{K}_{\\text{spec}}) \\quad \\forall k \\ge 0",
+      "operational_rule": "Structural transformations that alter simplicial homology groups or create unchecked 1-cycles are rejected.",
+      "source": "LLM",
+      "domain": "Algebraic Topology (Henri Poincar\u00e9 & Emmy Noether)",
+      "principle": "Simplicial Homology Invariance",
+      "delta_e1": 0.0051,
+      "delta_e2": 0.0091,
+      "delta_e3": 0.0171,
+      "aggregate_delta_e": 0.0101,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Simplicial Complex Auditor & Betti Invariant Guard",
+        "topology_type": "Simplicial Triangulation & Homology Analyzer",
+        "topology_diagram": "[Component Dependency Graph] \u2500\u2500> [Simplicial Complex Mapper]\n                                              \u2502\n                                              \u25bc\n                                 [Homology Group Calculator]\n                                              \u2502\n                                              \u25bc\n                                 [Betti Number Invariant Guard]",
+        "subsystems": {
+          "Simplicial Complex Mapper": {
+            "role": "Converts module dependency networks into geometric simplicial complexes.",
+            "invariant_rule": "N-ary interactions are mapped to (N-1)-simplex faces."
+          },
+          "Homology Group Calculator": {
+            "role": "Computes Betti numbers: beta_0 (connectivity) and beta_1 (1-cycles / deadlocks).",
+            "invariant_rule": "Detects circular dependency traps via non-zero 1-cycle boundaries."
+          },
+          "Betti Invariant Guard": {
+            "role": "Ensures topological homology is preserved across compilation transformations.",
+            "invariant_rule": "Rejects any candidate that introduces un-bracketed 1-cycles."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Brings topological data analysis into systems architecture (+0.0140).",
+          "target_e2_velocity": "Mathematically proves absence of circular deadlocks without combinatorial search (+0.0160).",
+          "target_e3_yield": "Guarantees topological stability of generated system modules (+0.0130)."
+        },
+        "tradeoffs": {
+          "strengths": "Provably prevents circular deadlocks and orphaned subsystems.",
+          "constraints": "Requires graph triangulation compute step during AST verification."
+        }
+      }
+    },
+    {
+      "id": "L0-011",
+      "name": "Shannon Information Gain & Surprisal Gradient Maximization",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "Exploratory search steps must maximize expected Kullback-Leibler divergence from the prior architectural belief state, prioritizing hypotheses that maximize reduction in epistemic entropy over those with high confirmatory probability.",
+      "formal_expression": "\\Delta I(A; \\mathcal{T}) = D_{\\text{KL}}(P(S \\mid A) \\parallel P(S)) > \\gamma",
+      "operational_rule": "Candidates that merely confirm existing system behaviors without shifting posterior belief distributions are discarded.",
+      "source": "LLM",
+      "domain": "Information Theory (Claude Shannon & Solomon Kullback)",
+      "principle": "Surprisal Gradient Optimization",
+      "delta_e1": 0.0154,
+      "delta_e2": 0.0091,
+      "delta_e3": 0.0043,
+      "aggregate_delta_e": 0.0099,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Surprisal Gradient Maximizer & Information Filter",
+        "topology_type": "Bayesian Information Gain Dispatch Loop",
+        "topology_diagram": "[Prior Belief Distribution] \u2500\u2500\u2510\n                              \u251c\u2500\u2500> [Mutual Information Gauge] \u2500\u2500> [Gradient Stepper]\n[Observed Metric Feedback]  \u2500\u2500\u2518                                          \u2502\n                                                                         \u25bc\n                                                            [High-Surprisal Target Focus]",
+        "subsystems": {
+          "Belief Distribution Tracker": {
+            "role": "Maintains Bayesian priors over candidate efficacy across target domains.",
+            "invariant_rule": "Updates posterior distributions following each simulation run."
+          },
+          "Mutual Information Gauge": {
+            "role": "Calculates expected information gain I(H; T) for proposed hypotheses.",
+            "invariant_rule": "Penalizes proposals that yield zero variance reduction."
+          },
+          "Surprisal Gradient Stepper": {
+            "role": "Directs generator prompts toward areas of highest epistemic uncertainty.",
+            "invariant_rule": "Guides exploration along the steepest information gradient."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Biases exploration toward high-entropy, low-probability domains (+0.0180).",
+          "target_e2_velocity": "Rapidly narrows down uncertainty bounds in simulation models (+0.0140).",
+          "target_e3_yield": "Produces high-impact, non-obvious structural breakthroughs (+0.0120)."
+        },
+        "tradeoffs": {
+          "strengths": "Maximizes learning rate per simulation token spent.",
+          "constraints": "May temporarily accept high-variance hypotheses with higher risk of rejection."
+        }
+      }
+    },
+    {
+      "id": "L0-010",
+      "name": "Constructive Proof Demarcation & Intuitionistic Type Witnessing",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "An architectural invariant cannot be established by mere non-constructive contradiction; every accepted axiom must construct a computable computational witness that realizes the claimed invariant across every admissible system state.",
+      "formal_expression": "\\vdash A \\iff \\exists t \\; (t : A) \\quad \\text{where} \\quad \\neg\\neg A \\not\\implies A",
+      "operational_rule": "Proofs of invariant preservation via law of excluded middle without an explicit executable witness term are rejected.",
+      "source": "LLM",
+      "domain": "Constructive Mathematics (L.E.J. Brouwer & Per Martin-L\u00f6f)",
+      "principle": "Curry-Howard Isomorphism & Witness Computability",
+      "delta_e1": 0.0051,
+      "delta_e2": 0.0091,
+      "delta_e3": 0.0129,
+      "aggregate_delta_e": 0.0088,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Curry-Howard Realizer & Intuitionistic Witness Compiler",
+        "topology_type": "Dependent Type Checking & Term Extraction Pipeline",
+        "topology_diagram": "[Invariant Specification] \u2500\u2500> [Intuitionistic Type Checker]\n                                           \u2502\n                                           \u25bc\n                               [Witness Term Extractor]\n                                           \u2502\n                                           \u25bc\n                               [Executable Realizer Unit]",
+        "subsystems": {
+          "Intuitionistic Type Checker": {
+            "role": "Treats invariant statements as dependent type propositions in Martin-L\u00f6f type theory.",
+            "invariant_rule": "Rejects non-constructive proofs relying on double-negation elimination."
+          },
+          "Witness Term Extractor": {
+            "role": "Synthesizes an executable lambda-calculus term realizing the type proposition.",
+            "invariant_rule": "Extracted terms must be total and terminate within bounded steps."
+          },
+          "Executable Realizer Unit": {
+            "role": "Executes witness programs against simulation states to guarantee operational validity.",
+            "invariant_rule": "Type preservation (subject reduction) must hold across state mutations."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Forces candidates into rigorous typed formalisms (+0.0090).",
+          "target_e2_velocity": "Immediately discards non-constructive assertions without simulation (+0.0160).",
+          "target_e3_yield": "Produces structural axioms that are directly compilable with zero ambiguity (+0.0180)."
+        },
+        "tradeoffs": {
+          "strengths": "Guarantees that every committed axiom has a concrete, executable verification program.",
+          "constraints": "Strict formulation requirement that rejects valid heuristics lacking immediate constructive witnesses."
+        }
+      }
+    }
+  ],
+  "decision": "Committed Tournament Winner [L0-012] (+0.0101)",
+  "jettison_triggered": false
+}

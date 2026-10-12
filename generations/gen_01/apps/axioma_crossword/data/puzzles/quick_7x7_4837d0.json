@@ -1,0 +1,352 @@
+{
+  "grid_id": "quick_7x7_4837d0",
+  "title": "Axioma Quick 7x7 Cryptic",
+  "size_rows": 7,
+  "size_cols": 7,
+  "cells": [
+    [
+      "C",
+      "A",
+      "T",
+      "#",
+      "T",
+      "E",
+      "A"
+    ],
+    [
+      "A",
+      "#",
+      "O",
+      "#",
+      "H",
+      "#",
+      "L"
+    ],
+    [
+      "N",
+      "A",
+      "T",
+      "U",
+      "R",
+      "A",
+      "L"
+    ],
+    [
+      "#",
+      "#",
+      "A",
+      "#",
+      "O",
+      "#",
+      "#"
+    ],
+    [
+      "C",
+      "U",
+      "L",
+      "T",
+      "U",
+      "R",
+      "E"
+    ],
+    [
+      "A",
+      "#",
+      "L",
+      "#",
+      "G",
+      "#",
+      "A"
+    ],
+    [
+      "P",
+      "A",
+      "Y",
+      "#",
+      "H",
+      "E",
+      "R"
+    ]
+  ],
+  "slots": [
+    {
+      "slot_id": "A_0_0",
+      "direction": "ACROSS",
+      "row": 0,
+      "col": 0,
+      "length": 3,
+      "number": 1,
+      "answer": "CAT"
+    },
+    {
+      "slot_id": "D_0_0",
+      "direction": "DOWN",
+      "row": 0,
+      "col": 0,
+      "length": 3,
+      "number": 1,
+      "answer": "CAN"
+    },
+    {
+      "slot_id": "D_0_2",
+      "direction": "DOWN",
+      "row": 0,
+      "col": 2,
+      "length": 7,
+      "number": 2,
+      "answer": "TOTALLY"
+    },
+    {
+      "slot_id": "A_0_4",
+      "direction": "ACROSS",
+      "row": 0,
+      "col": 4,
+      "length": 3,
+      "number": 3,
+      "answer": "TEA"
+    },
+    {
+      "slot_id": "D_0_4",
+      "direction": "DOWN",
+      "row": 0,
+      "col": 4,
+      "length": 7,
+      "number": 3,
+      "answer": "THROUGH"
+    },
+    {
+      "slot_id": "D_0_6",
+      "direction": "DOWN",
+      "row": 0,
+      "col": 6,
+      "length": 3,
+      "number": 4,
+      "answer": "ALL"
+    },
+    {
+      "slot_id": "A_2_0",
+      "direction": "ACROSS",
+      "row": 2,
+      "col": 0,
+      "length": 7,
+      "number": 5,
+      "answer": "NATURAL"
+    },
+    {
+      "slot_id": "A_4_0",
+      "direction": "ACROSS",
+      "row": 4,
+      "col": 0,
+      "length": 7,
+      "number": 6,
+      "answer": "CULTURE"
+    },
+    {
+      "slot_id": "D_4_0",
+      "direction": "DOWN",
+      "row": 4,
+      "col": 0,
+      "length": 3,
+      "number": 6,
+      "answer": "CAP"
+    },
+    {
+      "slot_id": "D_4_6",
+      "direction": "DOWN",
+      "row": 4,
+      "col": 6,
+      "length": 3,
+      "number": 7,
+      "answer": "EAR"
+    },
+    {
+      "slot_id": "A_6_0",
+      "direction": "ACROSS",
+      "row": 6,
+      "col": 0,
+      "length": 3,
+      "number": 8,
+      "answer": "PAY"
+    },
+    {
+      "slot_id": "A_6_4",
+      "direction": "ACROSS",
+      "row": 6,
+      "col": 4,
+      "length": 3,
+      "number": 9,
+      "answer": "HER"
+    }
+  ],
+  "clues": [
+    {
+      "clue_id": "clue_A_0_0",
+      "slot_id": "A_0_0",
+      "number": 1,
+      "direction": "ACROSS",
+      "surface_text": "Act dancing with feline (3)",
+      "length": 3,
+      "answer": "CAT",
+      "definition": "feline",
+      "clue_type": "ANAGRAM",
+      "indicator": "dancing",
+      "fodder": "Act",
+      "explanation": "Anagram of ACT = CAT (definition: feline)."
+    },
+    {
+      "clue_id": "clue_D_0_0",
+      "slot_id": "D_0_0",
+      "number": 1,
+      "direction": "DOWN",
+      "surface_text": "Common term for can (3)",
+      "length": 3,
+      "answer": "CAN",
+      "definition": "meaning of can",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Standard definition of CAN."
+    },
+    {
+      "clue_id": "clue_D_0_2",
+      "slot_id": "D_0_2",
+      "number": 2,
+      "direction": "DOWN",
+      "surface_text": "Reorganized totally produces totally (7)",
+      "length": 7,
+      "answer": "TOTALLY",
+      "definition": "totally essence",
+      "clue_type": "ANAGRAM",
+      "indicator": "reorganized",
+      "fodder": "allotty",
+      "explanation": "Anagram of fodder yields TOTALLY."
+    },
+    {
+      "clue_id": "clue_A_0_4",
+      "slot_id": "A_0_4",
+      "number": 3,
+      "direction": "ACROSS",
+      "surface_text": "Eat brewed for hot drink (3)",
+      "length": 3,
+      "answer": "TEA",
+      "definition": "hot drink",
+      "clue_type": "ANAGRAM",
+      "indicator": "brewed",
+      "fodder": "eat",
+      "explanation": "Anagram of EAT = TEA (definition: hot drink)."
+    },
+    {
+      "clue_id": "clue_D_0_4",
+      "slot_id": "D_0_4",
+      "number": 3,
+      "direction": "DOWN",
+      "surface_text": "Reorganized through produces through (7)",
+      "length": 7,
+      "answer": "THROUGH",
+      "definition": "through essence",
+      "clue_type": "ANAGRAM",
+      "indicator": "reorganized",
+      "fodder": "ghhortu",
+      "explanation": "Anagram of fodder yields THROUGH."
+    },
+    {
+      "clue_id": "clue_D_0_6",
+      "slot_id": "D_0_6",
+      "number": 4,
+      "direction": "DOWN",
+      "surface_text": "Common term for all (3)",
+      "length": 3,
+      "answer": "ALL",
+      "definition": "meaning of all",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Standard definition of ALL."
+    },
+    {
+      "clue_id": "clue_A_2_0",
+      "slot_id": "A_2_0",
+      "number": 5,
+      "direction": "ACROSS",
+      "surface_text": "Reorganized natural produces natural (7)",
+      "length": 7,
+      "answer": "NATURAL",
+      "definition": "natural essence",
+      "clue_type": "ANAGRAM",
+      "indicator": "reorganized",
+      "fodder": "aalnrtu",
+      "explanation": "Anagram of fodder yields NATURAL."
+    },
+    {
+      "clue_id": "clue_A_4_0",
+      "slot_id": "A_4_0",
+      "number": 6,
+      "direction": "ACROSS",
+      "surface_text": "Reorganized culture produces culture (7)",
+      "length": 7,
+      "answer": "CULTURE",
+      "definition": "culture essence",
+      "clue_type": "ANAGRAM",
+      "indicator": "reorganized",
+      "fodder": "celrtuu",
+      "explanation": "Anagram of fodder yields CULTURE."
+    },
+    {
+      "clue_id": "clue_D_4_0",
+      "slot_id": "D_4_0",
+      "number": 6,
+      "direction": "DOWN",
+      "surface_text": "Common term for cap (3)",
+      "length": 3,
+      "answer": "CAP",
+      "definition": "meaning of cap",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Standard definition of CAP."
+    },
+    {
+      "clue_id": "clue_D_4_6",
+      "slot_id": "D_4_6",
+      "number": 7,
+      "direction": "DOWN",
+      "surface_text": "Common term for ear (3)",
+      "length": 3,
+      "answer": "EAR",
+      "definition": "meaning of ear",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Standard definition of EAR."
+    },
+    {
+      "clue_id": "clue_A_6_0",
+      "slot_id": "A_6_0",
+      "number": 8,
+      "direction": "ACROSS",
+      "surface_text": "Common term for pay (3)",
+      "length": 3,
+      "answer": "PAY",
+      "definition": "meaning of pay",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Standard definition of PAY."
+    },
+    {
+      "clue_id": "clue_A_6_4",
+      "slot_id": "A_6_4",
+      "number": 9,
+      "direction": "ACROSS",
+      "surface_text": "Common term for her (3)",
+      "length": 3,
+      "answer": "HER",
+      "definition": "meaning of her",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Standard definition of HER."
+    }
+  ],
+  "symmetry": "ROTATIONAL_180"
+}

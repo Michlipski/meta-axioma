@@ -1,0 +1,41 @@
+{
+  "initial_state": "IDLE",
+  "actions": [
+    {
+      "action_name": "LOOKUP_WORD",
+      "from_state": "IDLE",
+      "to_state": "WORD_RESOLVED",
+      "description": "Searches dictionary for word definitions and phonetics."
+    },
+    {
+      "action_name": "ADD_TO_DECK",
+      "from_state": "WORD_RESOLVED",
+      "to_state": "DECK_UPDATED",
+      "description": "Adds a word to personal vocabulary deck for spaced repetition."
+    },
+    {
+      "action_name": "REVIEW_RATING",
+      "from_state": "DECK_UPDATED",
+      "to_state": "DECK_UPDATED",
+      "description": "Applies SM-2 adaptive review rating (Forgot, Hard, Good, Easy)."
+    },
+    {
+      "action_name": "DELETE_WORD",
+      "from_state": "DECK_UPDATED",
+      "to_state": "DECK_UPDATED",
+      "description": "Removes a word from the deck and records Landauer bit erasure."
+    },
+    {
+      "action_name": "FUNCTORIAL_UNDO",
+      "from_state": "DECK_UPDATED",
+      "to_state": "DECK_UPDATED",
+      "description": "Reversibly restores previous flashcard review rating or deck mutation."
+    },
+    {
+      "action_name": "SUBMIT_FEEDBACK",
+      "from_state": "*",
+      "to_state": "*",
+      "description": "Submits user friction, critique, or ergonomic feedback directly into the generational learning stream."
+    }
+  ]
+}

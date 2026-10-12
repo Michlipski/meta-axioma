@@ -1,0 +1,69 @@
+{
+  "initial_states": {
+    "inner": "IDLE",
+    "outer": "SECURE_STANDBY"
+  },
+  "actions": [
+    {
+      "action_name": "STEP_INNER_DIALOGUE",
+      "scope": "INNER_FSM",
+      "description": "Steps conversational progression from IDLE to INTENT to PLAN to APPROVAL."
+    },
+    {
+      "action_name": "DISPATCH_TOOL_ACTION",
+      "scope": "INNER_FSM",
+      "from_state": "AWAITING_APPROVAL",
+      "to_state": "ACTION_DISPATCHED",
+      "description": "Dispatches approved external tool execution."
+    },
+    {
+      "action_name": "EVALUATE_TOOL_OUTCOME",
+      "scope": "INNER_FSM",
+      "from_state": "ACTION_DISPATCHED",
+      "to_state": "OUTCOME_EVALUATED",
+      "description": "Assesses tool response: routes to RESPONSE_SYNTHESIZED on success, or loops back to PLAN_PROPOSED / PARAM_ELICITATION on runtime failure."
+    },
+    {
+      "action_name": "RECOVER_TOOL_FAILURE",
+      "scope": "INNER_FSM",
+      "from_state": "OUTCOME_EVALUATED",
+      "to_state": "PLAN_PROPOSED",
+      "description": "Loops back to proposal to select fallback tool after transient execution failure."
+    },
+    {
+      "action_name": "ESCALATE_OUTER_SCRUTINY",
+      "scope": "OUTER_FSM",
+      "from_state": "ACTIVE_MONITORING",
+      "to_state": "ELEVATED_SCRUTINY",
+      "description": "Increases scrutiny upon detecting anomalous token entropy or rate acceleration."
+    },
+    {
+      "action_name": "DEESCALATE_OUTER_SCRUTINY",
+      "scope": "OUTER_FSM",
+      "from_state": "ELEVATED_SCRUTINY",
+      "to_state": "ACTIVE_MONITORING",
+      "description": "Safely steps down scrutiny upon benign token clearance."
+    },
+    {
+      "action_name": "TRIGGER_COUPLED_HALT",
+      "scope": "COUPLED_KERNEL",
+      "from_state": "ANY",
+      "to_state": "ATOMIC_HALT",
+      "description": "Coupled Halting Morphism: Outer violation atomically halts Inner FSM and bounds session in enclave."
+    },
+    {
+      "action_name": "REVERT_STATE",
+      "scope": "COUPLED_KERNEL",
+      "from_state": "ATOMIC_HALT",
+      "to_state": "SECURE_STANDBY",
+      "description": "Functorial inverse morphism restoring previous safe checkpoint with signed audit witness."
+    },
+    {
+      "action_name": "SUBMIT_FEEDBACK",
+      "scope": "APPLICATION",
+      "from_state": "*",
+      "to_state": "*",
+      "description": "Submits false-positive or ergonomic observations into generational feedback stream."
+    }
+  ]
+}

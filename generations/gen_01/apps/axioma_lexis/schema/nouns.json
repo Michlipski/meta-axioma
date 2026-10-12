@@ -1,0 +1,23 @@
+{
+  "Word": {
+    "plural": "words",
+    "description": "Vocabulary term tracked in the spaced repetition flashcard deck.",
+    "fields": {
+      "id": { "type": "str", "required": true, "description": "Unique identifier" },
+      "word": { "type": "str", "required": true, "description": "Vocabulary headword" },
+      "definition": { "type": "str", "required": true, "description": "Primary meaning" },
+      "part_of_speech": { "type": "str", "required": true, "description": "Grammatical category" },
+      "phonetic_us": { "type": "str", "required": false, "description": "American IPA transcription" },
+      "phonetic_uk": { "type": "str", "required": false, "description": "British IPA transcription" },
+      "example": { "type": "str", "required": false, "description": "Real-world sentence example" },
+      "synonyms": { "type": "list[str]", "required": false, "description": "Related synonyms" },
+      "antonyms": { "type": "list[str]", "required": false, "description": "Related opposites" },
+      "translation_es": { "type": "str", "required": false, "description": "Spanish translation" },
+      "repetition_level": { "type": "int", "required": true, "description": "Consecutive review count" },
+      "interval_days": { "type": "float", "required": true, "description": "Days until next review" },
+      "ease_factor": { "type": "float", "required": true, "description": "SM-2 difficulty multiplier" },
+      "next_review": { "type": "float", "required": true, "description": "Due timestamp" },
+      "status": { "type": "str", "required": true, "description": "learning | review | mastered" }
+    }
+  }
+}

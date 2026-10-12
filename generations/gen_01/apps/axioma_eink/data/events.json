@@ -1,0 +1,144 @@
+[
+  {
+    "event_id": "evt_8c557b47",
+    "event_type": "TASK_CREATED",
+    "payload": {
+      "task": {
+        "task_id": "task_1f7718ac",
+        "title": "Review Generation 1 Structural Invariants & Portfolio Health",
+        "status": "DONE",
+        "priority": 1,
+        "tag": "@axioma",
+        "is_focus": true,
+        "created_at": 1791841079.2533581,
+        "completed_at": 1791841079.2533581
+      }
+    },
+    "timestamp": 1791841079.253372
+  },
+  {
+    "event_id": "evt_47f14fb9",
+    "event_type": "TASK_CREATED",
+    "payload": {
+      "task": {
+        "task_id": "task_1793b396",
+        "title": "Verify zero-JS Electrophoretic Display rendering on Kindle Paperwhite",
+        "status": "TODO",
+        "priority": 2,
+        "tag": "@hardware",
+        "is_focus": true,
+        "created_at": 1791841079.253385,
+        "completed_at": null
+      }
+    },
+    "timestamp": 1791841079.25339
+  },
+  {
+    "event_id": "evt_6f7a3135",
+    "event_type": "TASK_CREATED",
+    "payload": {
+      "task": {
+        "task_id": "task_b994d9a4",
+        "title": "Synthesize System 06 Swarm Consensus Engine architecture",
+        "status": "TODO",
+        "priority": 3,
+        "tag": "@architecture",
+        "is_focus": true,
+        "created_at": 1791841079.253398,
+        "completed_at": null
+      }
+    },
+    "timestamp": 1791841079.253401
+  },
+  {
+    "event_id": "evt_46cd7b53",
+    "event_type": "TASK_CREATED",
+    "payload": {
+      "task": {
+        "task_id": "task_c95fec5a",
+        "title": "Deep dive into thermodynamic decay bounds for Generation 2 compilers",
+        "status": "TODO",
+        "priority": 4,
+        "tag": "@theory",
+        "is_focus": true,
+        "created_at": 1791841079.253406,
+        "completed_at": null
+      }
+    },
+    "timestamp": 1791841079.253409
+  },
+  {
+    "event_id": "evt_30ecf89a",
+    "event_type": "TASK_CREATED",
+    "payload": {
+      "task": {
+        "task_id": "task_36eba35e",
+        "title": "Organize transgenerational feedback ledger for NEG-G2 invariants",
+        "status": "TODO",
+        "priority": 5,
+        "tag": "@governance",
+        "is_focus": false,
+        "created_at": 1791841079.2534132,
+        "completed_at": null
+      }
+    },
+    "timestamp": 1791841079.2534158
+  },
+  {
+    "event_id": "evt_016e61bf",
+    "event_type": "TASK_CREATED",
+    "payload": {
+      "task": {
+        "task_id": "task_9f71b52b",
+        "title": "Test Task 8c4315",
+        "status": "TODO",
+        "priority": 99,
+        "tag": "@test",
+        "is_focus": false,
+        "created_at": 1791841241.672352,
+        "completed_at": null
+      }
+    },
+    "timestamp": 1791841241.6723561
+  },
+  {
+    "event_id": "evt_f62d7d37",
+    "event_type": "TASK_TOGGLED",
+    "payload": {
+      "task_id": "task_9f71b52b",
+      "previous_status": "TODO",
+      "new_status": "DONE",
+      "completed_at": 1791841241.67287
+    },
+    "timestamp": 1791841241.6728792
+  },
+  {
+    "event_id": "evt_undo_a798e04e",
+    "event_type": "TASK_TOGGLED",
+    "payload": {
+      "task_id": "task_9f71b52b",
+      "previous_status": "DONE",
+      "new_status": "TODO",
+      "completed_at": null
+    },
+    "timestamp": 1791841241.6732428
+  },
+  {
+    "event_id": "evt_5b795106",
+    "event_type": "TASK_DELETED",
+    "payload": {
+      "task_id": "task_9f71b52b",
+      "task": {
+        "task_id": "task_9f71b52b",
+        "title": "Test Task 8c4315",
+        "status": "TODO",
+        "priority": 99,
+        "tag": "@test",
+        "is_focus": false,
+        "created_at": 1791841241.672352,
+        "completed_at": null
+      }
+    },
+    "timestamp": 1791841241.673537
+  }
+]

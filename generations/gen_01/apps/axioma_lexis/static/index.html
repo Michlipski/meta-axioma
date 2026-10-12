@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Axioma Lexis — Vocabulary & Spaced Repetition</title>
+  <meta name="theme-color" content="#121622">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="mobile-container">
+    <!-- Top App Bar -->
+    <header class="app-bar">
+      <div class="brand">
+        <div class="brand-icon">L</div>
+        <div>
+          <h1 class="brand-title">Axioma Lexis</h1>
+          <span class="brand-sub">System G1 • Spaced Repetition</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- PWA Install Prompt Button -->
+        <button id="btn-install" class="btn-icon install-btn hidden" title="Install to Android Home Screen">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        </button>
+
+        <!-- Functorial Undo / Redo ([L1-002]) -->
+        <button id="btn-undo" class="btn-icon" title="Functorial Undo Rating (L1-002)" onclick="triggerUndo()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+          <span id="badge-undo" class="pill-badge">0</span>
+        </button>
+
+        <button id="btn-redo" class="btn-icon" title="Functorial Redo (L1-002)" onclick="triggerRedo()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Views Container -->
+    <main class="content-scroll">
+      <!-- VIEW 1: FLASHCARDS (Adaptive Spaced Repetition) -->
+      <section id="view-review" class="view active">
+        <!-- Session Progress Banner -->
+        <div class="session-header">
+          <div class="due-badge-wrap">
+            <span class="dot-indicator green"></span>
+            <span id="session-due-text">0 words due for review</span>
+          </div>
+          <button id="btn-on-demand" class="btn-text" onclick="startOnDemandReview()">Practice All</button>
+        </div>
+
+        <!-- Flashcard Flip Container -->
+        <div id="flashcard-container" class="flashcard-wrapper">
+          <div id="flashcard" class="flashcard" onclick="flipCard()">
+            <!-- Card Front -->
+            <div class="card-face card-front">
+              <div class="card-top">
+                <span id="card-pos" class="pos-badge">adjective</span>
+                <span id="card-due-indicator" class="due-tag">DUE</span>
+              </div>
+
+              <div class="card-center">
+                <h2 id="card-word" class="word-head">ubiquitous</h2>
+                <div class="pronounce-row">
+                  <span id="card-phonetic" class="phonetic-text">/juːˈbɪk.wə.t̬əs/</span>
+                  <button class="audio-btn" onclick="event.stopPropagation(); speakWord('us')">
+                    🇺🇸 Audio
+                  </button>
+                  <button class="audio-btn" onclick="event.stopPropagation(); speakWord('uk')">
+                    🇬🇧 Audio
+                  </button>
+                </div>
+              </div>
+
+              <div class="card-bottom">
+                <span class="tap-hint">Tap card to reveal definition & examples</span>
+              </div>
+            </div>
+
+            <!-- Card Back -->
+            <div class="card-face card-back">
+              <div class="card-top">
+                <span id="card-back-pos" class="pos-badge">adjective</span>
+                <span id="card-back-level" class="status-badge">Level 1</span>
+              </div>
+
+              <div class="card-body-scroll">
+                <h3 id="card-back-word" class="word-head-small">ubiquitous</h3>
+                <p id="card-definition" class="definition-text">Present, appearing, or found everywhere.</p>
+
+                <div class="example-box">
+                  <span class="example-label">Real-World Context:</span>
+                  <p id="card-example" class="example-text">"Smartphones have become ubiquitous in modern life."</p>
+                </div>
+
+                <div id="card-translation-box" class="translation-box">
+                  <span class="trans-label">Spanish:</span>
+                  <span id="card-translation" class="trans-text">ubicuo / omnipresente</span>
+                </div>
+
+                <div id="card-synonyms-wrap" class="chips-wrap">
+                  <span class="chips-label">Synonyms:</span>
+                  <div id="card-synonyms" class="chips-list"></div>
+                </div>
+              </div>
+
+              <div class="card-bottom">
+                <span class="tap-hint">Select your memory retention rating below:</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SRS Rating Controls (Forgot, Hard, Good, Easy) -->
+        <div id="srs-controls" class="srs-actions hidden">
+          <button class="srs-btn btn-forgot" onclick="submitRating('FORGOT')">
+            <span class="srs-title">Forgot</span>
+            <span class="srs-interval">10m</span>
+          </button>
+          <button class="srs-btn btn-hard" onclick="submitRating('HARD')">
+            <span class="srs-title">Hard</span>
+            <span class="srs-interval">1d</span>
+          </button>
+          <button class="srs-btn btn-good" onclick="submitRating('GOOD')">
+            <span class="srs-title">Good</span>
+            <span class="srs-interval">3d</span>
+          </button>
+          <button class="srs-btn btn-easy" onclick="submitRating('EASY')">
+            <span class="srs-title">Easy</span>
+            <span class="srs-interval">7d</span>
+          </button>
+        </div>
+
+        <!-- Empty State (When all due cards are reviewed) -->
+        <div id="review-empty-state" class="empty-state hidden">
+          <div class="celebration-icon">🎉</div>
+          <h3>All Caught Up!</h3>
+          <p>You have reviewed all due vocabulary for now.</p>
+          <div class="empty-actions">
+            <button class="btn btn-primary" onclick="startOnDemandReview()">Review All on Demand</button>
+            <button class="btn btn-secondary" onclick="switchTab('dictionary')">Search New Words</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: DICTIONARY (Instant Lookup & 1-Tap Add) -->
+      <section id="view-dictionary" class="view">
+        <div class="search-box">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="dict-search-input" placeholder="Look up any word..." autocomplete="off" autocapitalize="none" oninput="handleDictSearchInput(event)">
+          <button id="btn-clear-search" class="clear-icon hidden" onclick="clearSearch()">×</button>
+        </div>
+
+        <!-- Search Result Card -->
+        <div id="dict-result-wrap" class="dict-result-card hidden">
+          <div class="dict-header">
+            <div>
+              <h2 id="dict-headword" class="dict-word">ephemeral</h2>
+              <div class="pronounce-row">
+                <span id="dict-phonetic-us" class="phonetic-text">/əˈfem.ər.əl/</span>
+                <button class="audio-btn" onclick="speakLookupWord('us')">🇺🇸 US</button>
+                <button class="audio-btn" onclick="speakLookupWord('uk')">🇬🇧 UK</button>
+              </div>
+            </div>
+            <button id="btn-add-deck" class="btn-add" onclick="addCurrentLookupToDeck()">
+              + Add to Deck
+            </button>
+          </div>
+
+          <div class="dict-body">
+            <div class="pos-wrap">
+              <span id="dict-pos" class="pos-badge">adjective</span>
+            </div>
+            <p id="dict-definition" class="dict-def-text">Lasting for a very short time; transitory.</p>
+
+            <div class="example-box">
+              <span class="example-label">Usage Example:</span>
+              <p id="dict-example" class="example-text">"Internet fame can be remarkably ephemeral."</p>
+            </div>
+
+            <div id="dict-trans-wrap" class="translation-box">
+              <span class="trans-label">Spanish Translation:</span>
+              <span id="dict-translation" class="trans-text">efímero</span>
+            </div>
+
+            <div class="chips-wrap">
+              <span class="chips-label">Synonyms:</span>
+              <div id="dict-synonyms" class="chips-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Words Suggestions -->
+        <div id="dict-suggestions" class="suggestions-box">
+          <span class="sugg-title">Common Words to Explore:</span>
+          <div class="sugg-chips">
+            <button class="sugg-chip" onclick="quickLookup('ubiquitous')">ubiquitous</button>
+            <button class="sugg-chip" onclick="quickLookup('serendipity')">serendipity</button>
+            <button class="sugg-chip" onclick="quickLookup('meticulous')">meticulous</button>
+            <button class="sugg-chip" onclick="quickLookup('resilient')">resilient</button>
+            <button class="sugg-chip" onclick="quickLookup('pragmatic')">pragmatic</button>
+            <button class="sugg-chip" onclick="quickLookup('expedite')">expedite</button>
+            <button class="sugg-chip" onclick="quickLookup('eloquent')">eloquent</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: MY DECK (Vocabulary List & Filters) -->
+      <section id="view-deck" class="view">
+        <div class="deck-filters">
+          <button class="filter-chip active" onclick="setDeckFilter('all', this)">All (<span id="count-all">0</span>)</button>
+          <button class="filter-chip" onclick="setDeckFilter('due', this)">Due (<span id="count-due">0</span>)</button>
+          <button class="filter-chip" onclick="setDeckFilter('learning', this)">Learning (<span id="count-learning">0</span>)</button>
+          <button class="filter-chip" onclick="setDeckFilter('mastered', this)">Mastered (<span id="count-mastered">0</span>)</button>
+        </div>
+
+        <div id="deck-list" class="deck-cards-list"></div>
+      </section>
+
+      <!-- VIEW 4: STATS & THERMODYNAMICS -->
+      <section id="view-stats" class="view">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-num" id="stat-total-words">0</span>
+            <span class="stat-label">Total Vocabulary</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num text-green" id="stat-mastered-words">0</span>
+            <span class="stat-label">Mastered</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num text-blue" id="stat-learning-words">0</span>
+            <span class="stat-label">In Learning</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num text-amber" id="stat-due-words">0</span>
+            <span class="stat-label">Due Today</span>
+          </div>
+        </div>
+
+        <!-- Invariant Telemetry Box -->
+        <div class="telemetry-box">
+          <h3 class="box-title">Landauer Thermodynamic Dissipation [L1-008]</h3>
+          <div class="telemetry-row">
+            <span>Cognitive Bit Erasure:</span>
+            <span class="font-mono" id="stat-erased-bits">0 bits</span>
+          </div>
+          <div class="telemetry-row">
+            <span>Dissipated Heat Energy:</span>
+            <span class="font-mono text-purple" id="stat-joules">0.00e-21 J</span>
+          </div>
+          <div class="telemetry-row">
+            <span>Landauer Physical Limit:</span>
+            <span class="font-mono text-muted">kB T ln 2 (≈ 2.87e-21 J/bit)</span>
+          </div>
+        </div>
+
+        <div class="telemetry-box">
+          <h3 class="box-title">System Invariant Status</h3>
+          <div class="telemetry-row">
+            <span>[L1-002] Functorial Reversibility:</span>
+            <span class="status-indicator-text green">● Active (Undo/Redo Ready)</span>
+          </div>
+          <div class="telemetry-row">
+            <span>[L1-011_3] Boundary 3 Storage:</span>
+            <span class="status-indicator-text green">● Decoupled Local JSON</span>
+          </div>
+          <div class="telemetry-row">
+            <span>[L1-016] Exception Enclaves:</span>
+            <span class="status-indicator-text cyan">● Isolated Blast Radius</span>
+          </div>
+          <div class="telemetry-row">
+            <span>Platform Target:</span>
+            <span class="status-indicator-text purple">Android Mobile (PWA Standalone)</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Navigation Bar (Thumb Ergonomic for Android) -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" onclick="switchTab('review')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+        <span>Review</span>
+        <span id="nav-due-badge" class="nav-badge hidden">0</span>
+      </button>
+
+      <button class="nav-item" onclick="switchTab('dictionary')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span>Dictionary</span>
+      </button>
+
+      <button class="nav-item" onclick="switchTab('deck')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+        <span>My Deck</span>
+      </button>
+
+      <button class="nav-item" onclick="switchTab('stats')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+        <span>Stats</span>
+      </button>
+    </nav>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

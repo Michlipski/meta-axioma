@@ -1,0 +1,29 @@
+{
+  "initial_state": "IDLE",
+  "actions": [
+    {
+      "action_name": "CREATE_ITEM",
+      "from_state": "IDLE",
+      "to_state": "STATE_UPDATED",
+      "description": "Creates a new task payload"
+    },
+    {
+      "action_name": "UPDATE_ITEM",
+      "from_state": "IDLE",
+      "to_state": "STATE_UPDATED",
+      "description": "Updates task fields"
+    },
+    {
+      "action_name": "DELETE_ITEM",
+      "from_state": "IDLE",
+      "to_state": "STATE_UPDATED",
+      "description": "Deletes task and audits bit erasure"
+    },
+    {
+      "action_name": "MOVE_ITEM",
+      "from_state": "IDLE",
+      "to_state": "STATE_UPDATED",
+      "description": "Transitions task between Kanban columns"
+    }
+  ]
+}

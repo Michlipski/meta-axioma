@@ -1,0 +1,32 @@
+{
+  "app_id": "axioma_crossword",
+  "name": "Axioma Crossword",
+  "version": "1.0.0",
+  "tagline": "Distributed Multi-Device Cryptic Crossword Engine & Asynchronous Constraint Studio",
+  "description": "A globally scalable, multi-device cryptic crossword synthesis and solving studio. Features client-side optimistic execution, AC-3 constraint satisfaction with Landauer search dissipation tracking, an interactive Cryptic Anatomy Dissector, and decoupled asynchronous synthesis worker pools.",
+  "generation_origin": "gen_01",
+  "target_persona": "Cruciverbalist Solver & Puzzle Architect",
+  "ergonomic_goals": [
+    "Multi-device responsiveness: 2-column desktop cruciverbalist workbench, tablet split-view, and mobile touch interface with custom 26-letter soft keypad.",
+    "Zero-latency optimistic local execution: instant client-side keystroke validation with asynchronous delta session synchronization.",
+    "Cryptic Anatomy Dissector (L1-004): interactive color-coded parse tree revealing anagrams, containers, charades, and indicators.",
+    "Decoupled Asynchronous CSP Synthesis (L1-015_1): CPU-bound backtracking offloaded to isolated background worker queues without blocking web traffic.",
+    "Landauer Search Dissipation Ledger (L1-008): real-time bit-erasure calculation comparing AC-3 pruned search entropy vs brute force.",
+    "Functorial Reversible History (L1-002): instant Cmd+Z undo/redo and multi-device state reconciliation.",
+    "Embedded Generational Feedback: in-app feedback modal funneling solver friction into the G2 learning stream."
+  ],
+  "port": 8094,
+  "deep_ast_digest": "e4f889d102b4a1c5391e92d83f120194bc0281938d9f10928a381023910fbc81",
+  "invariants_embodied": [
+    "L1-002",
+    "L1-004",
+    "L1-011_3",
+    "L1-008",
+    "L1-015",
+    "L1-016",
+    "L1-015_1"
+  ],
+  "entrypoint": "run.py",
+  "compiled_at": 1776008000.0,
+  "compiled_by": "System G_1 Compiler Engine"
+}

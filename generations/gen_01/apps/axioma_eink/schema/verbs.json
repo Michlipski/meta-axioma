@@ -1,0 +1,43 @@
+{
+  "initial_states": {
+    "router": "ACTIVE_SYNC",
+    "display": "QUIESCENT_BUFFER"
+  },
+  "actions": [
+    {
+      "action_name": "CREATE_TASK",
+      "scope": "EVENT_ENGINE",
+      "description": "Appends TASK_CREATED event into immutable event stream and updates state snapshot."
+    },
+    {
+      "action_name": "TOGGLE_TASK",
+      "scope": "EVENT_ENGINE",
+      "description": "Appends TASK_TOGGLED event flipping status between TODO and DONE."
+    },
+    {
+      "action_name": "REORDER_FOCUS",
+      "scope": "EVENT_ENGINE",
+      "description": "Reorders task priority rank within the Daily Big 3-5 focus envelope."
+    },
+    {
+      "action_name": "DELETE_TASK",
+      "scope": "EVENT_ENGINE",
+      "description": "Appends TASK_DELETED event removing task from active boards."
+    },
+    {
+      "action_name": "RENDER_EINK_VIEW",
+      "scope": "DISPLAY_RENDERER",
+      "description": "Synthesizes zero-JS, high-contrast, electrophoretic-safe HTML with 15-minute meta-refresh."
+    },
+    {
+      "action_name": "UNDO_ACTION",
+      "scope": "EVENT_ENGINE",
+      "description": "Reverses latest event mutation via functorial inverse morphism M^-1."
+    },
+    {
+      "action_name": "SUBMIT_USER_FEEDBACK",
+      "scope": "FEEDBACK_GATEWAY",
+      "description": "Submits human observations or hardware quirks to the Generation G1/G2 learning stream."
+    }
+  ]
+}

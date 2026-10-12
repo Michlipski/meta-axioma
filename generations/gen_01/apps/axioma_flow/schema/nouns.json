@@ -1,0 +1,37 @@
+{
+  "Task": {
+    "plural": "tasks",
+    "fields": {
+      "id": {
+        "type": "str",
+        "required": true,
+        "description": ""
+      },
+      "title": {
+        "type": "str",
+        "required": true,
+        "description": ""
+      },
+      "description": {
+        "type": "str",
+        "required": false,
+        "description": ""
+      },
+      "status": {
+        "type": "str",
+        "required": true,
+        "description": ""
+      },
+      "priority": {
+        "type": "str",
+        "required": true,
+        "description": ""
+      },
+      "created_at": {
+        "type": "float",
+        "required": true,
+        "description": ""
+      }
+    }
+  }
+}

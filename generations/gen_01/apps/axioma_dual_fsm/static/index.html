@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axioma Dual FSM — Zero-Trust AI Runtime Governance</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen p-5 flex flex-col items-center">
+
+  <!-- Header -->
+  <header class="w-full max-w-6xl flex flex-wrap items-center justify-between gap-4 pb-4 mb-5 border-b border-[var(--border)]">
+    <div class="flex items-center gap-3">
+      <div class="bg-gradient-to-br from-indigo-500 to-purple-700 text-white font-bold text-xs px-2.5 py-1.5 rounded-md tracking-wider">
+        SYSTEM G1
+      </div>
+      <div>
+        <h1 class="text-xl font-bold tracking-tight text-[var(--foreground)] flex items-center gap-2">
+          Axioma Dual FSM
+          <span class="text-xs font-normal px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Zero-Trust Kernel</span>
+          <span class="text-xs font-mono font-normal px-1.5 py-0.5 rounded bg-[var(--card)] text-[var(--muted-foreground)]">Port 8092</span>
+        </h1>
+        <p class="text-xs text-[var(--muted-foreground)]">Strict State Determinism, Coupled Halting Morphism (Φ_halt) & Dynamic De-escalation</p>
+      </div>
+    </div>
+
+    <!-- Quick Action Bar -->
+    <div class="flex items-center gap-2">
+      <button onclick="revertState()" id="btn-revert" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-[var(--card)] hover:bg-[var(--border)] border border-[var(--border)] text-[var(--foreground)] transition flex items-center gap-1.5" title="Functorial Reversibility (L1-002)">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+        Revert Halt (L1-002)
+      </button>
+
+      <button onclick="openFeedbackModal()" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/30 text-blue-300 transition flex items-center gap-1.5">
+        💬 Feedback
+      </button>
+    </div>
+  </header>
+
+  <!-- Telemetry Ribbon -->
+  <section class="w-full max-w-6xl grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 p-3 rounded-xl bg-[var(--card)] border border-[var(--border)] text-xs">
+    <div class="flex flex-col gap-0.5">
+      <span class="text-[var(--muted-foreground)] text-[11px]">Dominance Rule (Φ_halt)</span>
+      <span id="stat-phi" class="font-semibold text-emerald-400">● Enforced</span>
+    </div>
+    <div class="flex flex-col gap-0.5">
+      <span class="text-[var(--muted-foreground)] text-[11px]">Shannon Entropy (H)</span>
+      <span id="stat-entropy" class="font-mono font-semibold text-indigo-400">0.00 bits</span>
+    </div>
+    <div class="flex flex-col gap-0.5">
+      <span class="text-[var(--muted-foreground)] text-[11px]">Token Velocity (t/s)</span>
+      <span id="stat-velocity" class="font-mono font-semibold text-blue-400">0.0 t/s</span>
+    </div>
+    <div class="flex flex-col gap-0.5">
+      <span class="text-[var(--muted-foreground)] text-[11px]">Landauer Dissipation [L1-008]</span>
+      <span id="stat-joules" class="font-mono font-semibold text-purple-400">0.00e-21 J</span>
+    </div>
+  </section>
+
+  <!-- Main Dual-Track FSM Canvas -->
+  <main class="w-full max-w-6xl flex flex-col gap-6">
+
+    <!-- Track 1: Inner FSM (Dialogue & Intent) -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm">
+      <div class="flex items-center justify-between mb-3 border-b border-[var(--border)] pb-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--foreground)]">Track 1: Inner FSM (Dialogue & Intent Progress)</h2>
+        </div>
+        <span id="inner-state-badge" class="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+          IDLE
+        </span>
+      </div>
+
+      <!-- State Node Chain -->
+      <div class="overflow-x-auto py-2">
+        <div class="flex items-center gap-2 min-w-[800px] text-[11px] font-mono">
+          <div id="node-IDLE" class="fsm-node active-node">IDLE</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-INTENT_IDENTIFIED" class="fsm-node">INTENT_IDENTIFIED</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-PARAM_ELICITATION" class="fsm-node">PARAM_ELICITATION</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-PLAN_PROPOSED" class="fsm-node">PLAN_PROPOSED</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-AWAITING_APPROVAL" class="fsm-node">AWAITING_APPROVAL</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-ACTION_DISPATCHED" class="fsm-node">ACTION_DISPATCHED</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-OUTCOME_EVALUATED" class="fsm-node">OUTCOME_EVALUATED</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-RESPONSE_SYNTHESIZED" class="fsm-node">RESPONSE_SYNTHESIZED</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-TERMINAL_SUCCESS" class="fsm-node">TERMINAL_SUCCESS</div>
+        </div>
+      </div>
+      <p class="text-[11px] text-[var(--muted-foreground)] mt-2">
+        Features <strong>Refinement 1 (Tool Failure Loop)</strong>: <code>OUTCOME_EVALUATED</code> routes back to <code>PLAN_PROPOSED</code> or <code>PARAM_ELICITATION</code> on transient errors.
+      </p>
+    </div>
+
+    <!-- Track 2: Outer FSM (Zero-Trust Security Governor) -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm">
+      <div class="flex items-center justify-between mb-3 border-b border-[var(--border)] pb-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--foreground)]">Track 2: Outer FSM (Security & Boundary Governor)</h2>
+        </div>
+        <span id="outer-state-badge" class="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+          SECURE_STANDBY
+        </span>
+      </div>
+
+      <!-- State Node Chain -->
+      <div class="overflow-x-auto py-2">
+        <div class="flex items-center gap-3 min-w-[700px] text-[11px] font-mono">
+          <div id="node-SECURE_STANDBY" class="fsm-node active-node">SECURE_STANDBY</div>
+          <span class="text-[var(--muted-foreground)]">⇄</span>
+          <div id="node-ACTIVE_MONITORING" class="fsm-node">ACTIVE_MONITORING</div>
+          <span class="text-[var(--muted-foreground)]">⇄</span>
+          <div id="node-ELEVATED_SCRUTINY" class="fsm-node">ELEVATED_SCRUTINY</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-CONTAINED_QUARANTINE" class="fsm-node">CONTAINED_QUARANTINE</div>
+          <span class="text-[var(--muted-foreground)]">→</span>
+          <div id="node-ATOMIC_HALT" class="fsm-node danger-node">ATOMIC_HALT</div>
+        </div>
+      </div>
+      <p class="text-[11px] text-[var(--muted-foreground)] mt-2">
+        Features <strong>Refinement 2 (Dynamic De-escalation)</strong>: <code>ELEVATED_SCRUTINY ⇄ ACTIVE_MONITORING</code> allows benign high-entropy tokens (e.g. UUIDs) to step down safely.
+      </p>
+    </div>
+
+    <!-- Interactive Attack Playground & Scenarios -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Scenario Selector -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-4 flex flex-col gap-2.5">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--foreground)] mb-1">Interactive Scenarios</h3>
+        <button onclick="runScenario('benign')" class="scenario-btn border-emerald-500/30 hover:bg-emerald-500/10 text-emerald-300">
+          🟢 <span>1. Benign Multi-Turn Flow</span>
+        </button>
+        <button onclick="runScenario('tool_fail')" class="scenario-btn border-blue-500/30 hover:bg-blue-500/10 text-blue-300">
+          🟡 <span>2. Tool Failure & Recovery Loop</span>
+        </button>
+        <button onclick="runScenario('uuid_deescalate')" class="scenario-btn border-indigo-500/30 hover:bg-indigo-500/10 text-indigo-300">
+          🔵 <span>3. Benign UUID De-Escalation</span>
+        </button>
+        <button onclick="runScenario('injection')" class="scenario-btn border-amber-500/30 hover:bg-amber-500/10 text-amber-300">
+          🔴 <span>4. Prompt Injection Attack</span>
+        </button>
+        <button onclick="runScenario('key_exfil')" class="scenario-btn border-red-500/30 hover:bg-red-500/10 text-red-300">
+          🔴 <span>5. API Key Exfiltration Leak</span>
+        </button>
+      </div>
+
+      <!-- Execution Console -->
+      <div class="md:col-span-2 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-4 flex flex-col justify-between">
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--foreground)] mb-2">Live Token & Utterance Console</h3>
+          <textarea id="console-input" rows="3" placeholder="Enter user prompt or simulated LLM token stream..." class="w-full text-xs p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-indigo-500 resize-none font-mono"></textarea>
+          
+          <div class="flex items-center gap-2 mt-2">
+            <button onclick="submitConsoleTurn()" class="px-4 py-2 text-xs font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white shadow-sm transition">
+              Evaluate Coupled Turn
+            </button>
+            <button onclick="resetAllFsm()" class="px-3 py-2 text-xs rounded-xl bg-[var(--border)] hover:bg-[var(--border)]/80 text-[var(--foreground)] transition">
+              Reset IDLE
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Terminal Log -->
+        <div class="mt-4 p-3 rounded-xl bg-black/60 border border-[var(--border)] font-mono text-[11px] text-gray-300 h-32 overflow-y-auto space-y-1" id="terminal-log">
+          <div class="text-gray-500">[SYSTEM] Coupled Gateway initialized. Ready for turn evaluation.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Audit Witness Drawer -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm">
+      <div class="flex items-center justify-between mb-3 border-b border-[var(--border)] pb-2">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--foreground)] flex items-center gap-2">
+          <span>🛡️ Cryptographic Audit Witnesses (L1-016 Demarcated Enclave)</span>
+        </h3>
+        <span id="witness-count" class="text-xs font-mono text-[var(--muted-foreground)]">0 records</span>
+      </div>
+      <div id="witness-list" class="space-y-2 text-xs font-mono text-[var(--muted-foreground)] max-h-48 overflow-y-auto">
+        <div class="text-gray-500 italic">No security breaches detected. Quiescent state.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Feedback Modal -->
+  <div id="modal-feedback" class="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 hidden">
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 w-full max-w-sm shadow-2xl flex flex-col gap-3">
+      <div class="flex items-center justify-between border-b border-[var(--border)] pb-2">
+        <h4 class="text-xs font-bold text-[var(--foreground)]">Generational Feedback (Axioma Dual FSM)</h4>
+        <button onclick="closeFeedbackModal()" class="text-xs font-bold text-[var(--muted-foreground)] hover:text-white">✕</button>
+      </div>
+      <p class="text-[11px] text-[var(--muted-foreground)]">Report false positives, state machine friction, or edge cases to train Generation G2:</p>
+      <div>
+        <label class="text-[10px] font-semibold text-[var(--muted-foreground)] block mb-1">Category</label>
+        <select id="fb-cat" class="w-full text-xs p-2 rounded-lg bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)]">
+          <option value="FALSE_POSITIVE">False Positive (Benign Token Halted)</option>
+          <option value="FSM_TRANSITION">State Transition Friction</option>
+          <option value="TOOL_FAILURE">Tool Failure Recovery Issue</option>
+          <option value="UX_ERGONOMICS">Ergonomic Feedback</option>
+        </select>
+      </div>
+      <div>
+        <label class="text-[10px] font-semibold text-[var(--muted-foreground)] block mb-1">Your Observations</label>
+        <textarea id="fb-text" rows="3" placeholder="Describe the behavior or desired transition rule..." class="w-full text-xs p-2 rounded-lg bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] resize-none"></textarea>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-1 border-t border-[var(--border)]">
+        <button onclick="closeFeedbackModal()" class="px-3 py-1.5 text-xs rounded-lg text-[var(--muted-foreground)]">Cancel</button>
+        <button onclick="submitFeedback()" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-blue-600 hover:bg-blue-500 text-white">Submit to G1 Stream</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

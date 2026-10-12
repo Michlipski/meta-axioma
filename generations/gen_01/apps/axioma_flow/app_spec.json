@@ -1,0 +1,30 @@
+{
+  "app_id": "axioma_flow",
+  "name": "Axioma Flow",
+  "version": "1.0.0",
+  "tagline": "The Invariant-Bounded, Landauer-Audited Workspace",
+  "description": "A local-first, distraction-free Kanban & Task Orchestrator compiled autonomously by System G_1 to realize the High-Level Jettison. Built for engineers and systems thinkers who demand provable state safety, reversible history (time-travel undo/redo), zero external dependencies, and real-time thermodynamic efficiency.",
+  "generation_origin": "gen_01",
+  "target_persona": "Autonomous AI System Architect & Software Engineer",
+  "ergonomic_goals": [
+    "Zero cognitive friction with instant drag-and-drop state transitions.",
+    "Keyboard-first workflow with native Cmd+Z / Cmd+Shift+Z functorial time travel.",
+    "Live Landauer bit-erasure and Joule tracking on every state mutation.",
+    "Humane, non-destructive error handling via Demarcated Exception Enclaves.",
+    "Completely self-contained with zero paid or external dependencies."
+  ],
+  "port": 8088,
+  "deep_ast_digest": "deeabcd7cfc3053779f5a085f5d951b69fbacf74debb2b9abf3ea2322d565d80",
+  "invariants_embodied": [
+    "L1-002",
+    "L1-004",
+    "L1-011_3",
+    "L1-008",
+    "L1-015",
+    "L1-016",
+    "L1-015_1"
+  ],
+  "entrypoint": "run.py",
+  "compiled_at": 1791832606.103435,
+  "compiled_by": "System G_1 Compiler Engine"
+}

@@ -1,0 +1,506 @@
+{
+  "epoch": 10,
+  "timestamp": "2026-10-10T15:35:56.184815",
+  "phase": "PHASE_1_META_EXPLORATION",
+  "current_efficacy": 1.1071,
+  "efficacy_derivative": 0.0068,
+  "active_l0_count": 10,
+  "active_l1_count": 2,
+  "total_active": 12,
+  "compute_budget": {
+    "active_axiom_count": 11,
+    "token_budget": 1666,
+    "simulation_depth": 2,
+    "decay_factor": 0.16666666666666666
+  },
+  "candidate_axiom": {
+    "id": "L1-004",
+    "level": "LEVEL_1_STRUCTURAL",
+    "name": "Universal Grammar & Compositional Projection Constraints",
+    "statement": "Every inter-module communication payload must conform to an invariant deep syntactic structure whose transformational projections into target representations preserve semantic well-formedness.",
+    "formal_expression": "\\mathcal{P}_{\\text{surface}}(\\mathcal{D}_{\\text{deep}}) \\equiv \\mathcal{D}_{\\text{deep}} \\pmod{\\text{Transform}}",
+    "operational_rule": "Data mutations or messages that cannot be projected from an unambiguous deep grammar AST are rejected by target compilers.",
+    "status": "ACTIVE",
+    "origin_epoch": 10,
+    "delta_e": 0.0038,
+    "metadata": {
+      "exogenous_domain": "Theoretical Linguistics / Generative Syntax",
+      "source_principle": "Transformational Generative Grammar",
+      "system_profile": {
+        "archetype": "Universal Grammar AST Deep Projection Compiler",
+        "topology_type": "Deep Syntax AST with Invariant Surface Projections",
+        "topology_diagram": "[Module Communication] \u2500\u2500> [Deep Grammar AST Parser]\n                                       \u2502\n                        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                        \u25bc                             \u25bc\n           [Projection Engine (Protobuf)]    [Projection Engine (JSON/REST)]\n                        \u2502                             \u2502\n                        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                       \u25bc\n                       [Semantic Well-Formedness Guard]",
+        "subsystems": {
+          "Deep Syntax Validator": {
+            "role": "Parses all inter-module RPC payloads into a canonical deep-structure abstract syntax tree.",
+            "invariant_rule": "Rejects malformed messages prior to dispatch."
+          },
+          "Transformational Projection Engine": {
+            "role": "Projects deep syntax ASTs into surface-level serialization formats without semantic loss.",
+            "invariant_rule": "Bidirectional round-trip isomorphism must hold."
+          },
+          "Well-Formedness Guard": {
+            "role": "Verifies that received payloads comply with cross-module grammar agreements.",
+            "invariant_rule": "Payloads failing grammatical projection trigger compile-time rejection."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Ensures internal compiler ASTs maintain semantic consistency (+0.0080).",
+          "target_2_self_evaluator": "Standardizes telemetry stream formatting across heterogeneous observers (+0.0060).",
+          "target_3_control_group": "Prevents malformed Byzantine message attacks via strict grammar verification (+0.0144)."
+        },
+        "tradeoffs": {
+          "strengths": "Eliminates serialization bugs and interface mismatch; provides universal schema validation.",
+          "constraints": "Adds parsing and schema validation step to payload ingest pipeline."
+        }
+      }
+    }
+  },
+  "tri_fold_metrics": {
+    "delta_e1": 0.0033,
+    "delta_e2": 0.0025,
+    "delta_e3": 0.006,
+    "aggregate_delta_e": 0.0038,
+    "target_details": {
+      "target_1_self_constructor": {
+        "success": true,
+        "delta": 0.0033,
+        "violations": [],
+        "tokens": 1666,
+        "depth": 2
+      },
+      "target_2_self_evaluator": {
+        "success": true,
+        "delta": 0.0025,
+        "violations": [],
+        "tokens": 1576,
+        "depth": 2
+      },
+      "target_3_control_group": {
+        "success": true,
+        "delta": 0.006,
+        "violations": [],
+        "tokens": 1666,
+        "depth": 2
+      }
+    }
+  },
+  "user_candidate": null,
+  "user_metrics": null,
+  "comparative_summary": {
+    "pool_size": 3,
+    "top_candidate_id": "L1-004",
+    "top_candidate_name": "Universal Grammar & Compositional Projection Constraints",
+    "top_aggregate_delta_e": 0.0038,
+    "runner_up_id": "L1-003",
+    "runner_up_delta_e": 0.0032,
+    "delta_diff": 0.0006,
+    "leaderboard": [
+      {
+        "id": "L1-004",
+        "name": "Universal Grammar & Compositional Projection Constraints",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Every inter-module communication payload must conform to an invariant deep syntactic structure whose transformational projections into target representations preserve semantic well-formedness.",
+        "formal_expression": "\\mathcal{P}_{\\text{surface}}(\\mathcal{D}_{\\text{deep}}) \\equiv \\mathcal{D}_{\\text{deep}} \\pmod{\\text{Transform}}",
+        "operational_rule": "Data mutations or messages that cannot be projected from an unambiguous deep grammar AST are rejected by target compilers.",
+        "source": "LLM",
+        "domain": "Theoretical Linguistics / Generative Syntax",
+        "principle": "Transformational Generative Grammar",
+        "delta_e1": 0.0033,
+        "delta_e2": 0.0025,
+        "delta_e3": 0.006,
+        "aggregate_delta_e": 0.0038,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Universal Grammar AST Deep Projection Compiler",
+          "topology_type": "Deep Syntax AST with Invariant Surface Projections",
+          "topology_diagram": "[Module Communication] \u2500\u2500> [Deep Grammar AST Parser]\n                                       \u2502\n                        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                        \u25bc                             \u25bc\n           [Projection Engine (Protobuf)]    [Projection Engine (JSON/REST)]\n                        \u2502                             \u2502\n                        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                       \u25bc\n                       [Semantic Well-Formedness Guard]",
+          "subsystems": {
+            "Deep Syntax Validator": {
+              "role": "Parses all inter-module RPC payloads into a canonical deep-structure abstract syntax tree.",
+              "invariant_rule": "Rejects malformed messages prior to dispatch."
+            },
+            "Transformational Projection Engine": {
+              "role": "Projects deep syntax ASTs into surface-level serialization formats without semantic loss.",
+              "invariant_rule": "Bidirectional round-trip isomorphism must hold."
+            },
+            "Well-Formedness Guard": {
+              "role": "Verifies that received payloads comply with cross-module grammar agreements.",
+              "invariant_rule": "Payloads failing grammatical projection trigger compile-time rejection."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Ensures internal compiler ASTs maintain semantic consistency (+0.0080).",
+            "target_2_self_evaluator": "Standardizes telemetry stream formatting across heterogeneous observers (+0.0060).",
+            "target_3_control_group": "Prevents malformed Byzantine message attacks via strict grammar verification (+0.0144)."
+          },
+          "tradeoffs": {
+            "strengths": "Eliminates serialization bugs and interface mismatch; provides universal schema validation.",
+            "constraints": "Adds parsing and schema validation step to payload ingest pipeline."
+          }
+        }
+      },
+      {
+        "id": "L1-003",
+        "name": "Linear Resource Ownership and The No-Cloning Invariant",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Every discrete capability, mutable memory buffer, or execution token must obey affine/linear type invariants; resources cannot be implicitly cloned or duplicated across concurrent processes, only transferred or consumed.",
+        "formal_expression": "\\mathcal{U}(\\rho \\otimes \\sigma) \\neq \\rho \\otimes \\rho \\quad \\forall \\rho \\quad (\\text{No-Cloning Invariant})",
+        "operational_rule": "Subsystems attempting implicit cloning or aliasing of uncommitted resource tokens without explicit affine handoff trigger immediate compilation failure.",
+        "source": "LLM",
+        "domain": "Quantum Information Theory",
+        "principle": "Wootters-Zurek No-Cloning Theorem",
+        "delta_e1": 0.0033,
+        "delta_e2": 0.0025,
+        "delta_e3": 0.004,
+        "aggregate_delta_e": 0.0032,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Affine Linear Resource Ownership System",
+          "topology_type": "Directed Transfer Token Pipeline",
+          "topology_diagram": "[Resource Producer] \u2500\u2500> [Linear Capability Token]\n                                     \u2502\n                     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                     \u25bc                               \u25bc\n       [Exclusive Move / Handoff]        [Explicit Consume / Drop]\n                     \u2502                               \u2502\n                     \u25bc                               \u25bc\n            [Destination Worker]             [Reclaimed Heap Buffer]",
+          "subsystems": {
+            "Affine Ownership Checker": {
+              "role": "Static compiler pass tracking capability token provenance and ownership lifetimes.",
+              "invariant_rule": "Prohibits shared mutable references; only single owners permitted."
+            },
+            "Move Semantics Hand-off Bus": {
+              "role": "Facilitates zero-copy transfer of execution tokens across concurrent processes.",
+              "invariant_rule": "Transferring a token invalidates the sender's access capability."
+            },
+            "Deterministic Drop Destructor": {
+              "role": "Automatically cleans up unconsumed resources at scope exit without garbage collection.",
+              "invariant_rule": "Every allocated token must be moved or dropped exactly once."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Prevents memory leaks and duplicate execution in self-compilation (+0.0080).",
+            "target_2_self_evaluator": "Guarantees telemetry packets are processed exactly once (+0.0060).",
+            "target_3_control_group": "Eliminates double-spend and duplicate message attacks in consensus (+0.0096)."
+          },
+          "tradeoffs": {
+            "strengths": "Zero-cost memory safety without GC pauses; prevents data races by construction.",
+            "constraints": "Strict ownership hierarchy requires deliberate explicit borrowing design."
+          }
+        }
+      },
+      {
+        "id": "L1-005",
+        "name": "Phenomenological Horizon & Intentional Bracketing (Epoch\u00e9)",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Speculative execution modules must establish explicit intentional horizons, bracketing internal transient states until external observation boundaries are reached, preventing premature commitment of speculative paths.",
+        "formal_expression": "\\mathcal{H}(S_t) = \\text{Bracket}(\\mathcal{I}_{\\text{speculative}}) \\implies \\partial S_t \\cap \\mathcal{E}_{\\text{ext}} = \\emptyset",
+        "operational_rule": "Speculative internal mutations must remain bracketed within intentional horizons and are prohibited from escaping to global observation streams before epoch reconciliation.",
+        "source": "LLM",
+        "domain": "Phenomenological Philosophy",
+        "principle": "Husserlian Epoch\u00e9 & Intentionality",
+        "delta_e1": 0.0033,
+        "delta_e2": 0.0025,
+        "delta_e3": 0.004,
+        "aggregate_delta_e": 0.0032,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Intentional Horizon Speculative Isolation Sandbox",
+          "topology_type": "Bracketed Epoche Sandbox with Observation Barrier",
+          "topology_diagram": "[Speculative Task] \u2500\u2500> [Bracketed Execution Horizon]\n                                    \u2502\n                    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                    \u25bc                               \u25bc\n       [Transient State Sandbox]         [Epoch Reconciliation Barrier]\n                    \u2502                               \u2502\n                    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                    \u25bc\n                     [Global Observable State Stream]",
+          "subsystems": {
+            "Intentional Bracketing Chamber": {
+              "role": "Isolates speculative state mutations within an unobserved execution horizon.",
+              "invariant_rule": "Prohibits leakage of speculative mutations to external processes."
+            },
+            "Epoch Reconciliation Barrier": {
+              "role": "Synchronizes and commits speculative states only upon verification completion.",
+              "invariant_rule": "Failed speculative branches are discarded with zero trace."
+            },
+            "Observation Horizon Firewall": {
+              "role": "Prevents external observers from viewing intermediate uncommitted states.",
+              "invariant_rule": "Guarantees atomic visibility of speculative batches."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Enables safe speculative compilation paths without contaminating master state (+0.0060).",
+            "target_2_self_evaluator": "Prevents premature telemetry emissions from uncommitted branches (+0.0060).",
+            "target_3_control_group": "Provides clean speculative execution in Byzantine state machine replication (+0.0096)."
+          },
+          "tradeoffs": {
+            "strengths": "Allows highly aggressive speculative execution without roll-back side effects.",
+            "constraints": "Requires temporary memory buffering for bracketed state branches."
+          }
+        }
+      }
+    ]
+  },
+  "candidate_pool": [
+    {
+      "id": "L1-003",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Linear Resource Ownership and The No-Cloning Invariant",
+      "statement": "Every discrete capability, mutable memory buffer, or execution token must obey affine/linear type invariants; resources cannot be implicitly cloned or duplicated across concurrent processes, only transferred or consumed.",
+      "formal_expression": "\\mathcal{U}(\\rho \\otimes \\sigma) \\neq \\rho \\otimes \\rho \\quad \\forall \\rho \\quad (\\text{No-Cloning Invariant})",
+      "operational_rule": "Subsystems attempting implicit cloning or aliasing of uncommitted resource tokens without explicit affine handoff trigger immediate compilation failure.",
+      "status": "REJECTED",
+      "origin_epoch": 10,
+      "delta_e": 0.0032,
+      "metadata": {
+        "exogenous_domain": "Quantum Information Theory",
+        "source_principle": "Wootters-Zurek No-Cloning Theorem",
+        "system_profile": {
+          "archetype": "Affine Linear Resource Ownership System",
+          "topology_type": "Directed Transfer Token Pipeline",
+          "topology_diagram": "[Resource Producer] \u2500\u2500> [Linear Capability Token]\n                                     \u2502\n                     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                     \u25bc                               \u25bc\n       [Exclusive Move / Handoff]        [Explicit Consume / Drop]\n                     \u2502                               \u2502\n                     \u25bc                               \u25bc\n            [Destination Worker]             [Reclaimed Heap Buffer]",
+          "subsystems": {
+            "Affine Ownership Checker": {
+              "role": "Static compiler pass tracking capability token provenance and ownership lifetimes.",
+              "invariant_rule": "Prohibits shared mutable references; only single owners permitted."
+            },
+            "Move Semantics Hand-off Bus": {
+              "role": "Facilitates zero-copy transfer of execution tokens across concurrent processes.",
+              "invariant_rule": "Transferring a token invalidates the sender's access capability."
+            },
+            "Deterministic Drop Destructor": {
+              "role": "Automatically cleans up unconsumed resources at scope exit without garbage collection.",
+              "invariant_rule": "Every allocated token must be moved or dropped exactly once."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Prevents memory leaks and duplicate execution in self-compilation (+0.0080).",
+            "target_2_self_evaluator": "Guarantees telemetry packets are processed exactly once (+0.0060).",
+            "target_3_control_group": "Eliminates double-spend and duplicate message attacks in consensus (+0.0096)."
+          },
+          "tradeoffs": {
+            "strengths": "Zero-cost memory safety without GC pauses; prevents data races by construction.",
+            "constraints": "Strict ownership hierarchy requires deliberate explicit borrowing design."
+          }
+        }
+      }
+    },
+    {
+      "id": "L1-004",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Universal Grammar & Compositional Projection Constraints",
+      "statement": "Every inter-module communication payload must conform to an invariant deep syntactic structure whose transformational projections into target representations preserve semantic well-formedness.",
+      "formal_expression": "\\mathcal{P}_{\\text{surface}}(\\mathcal{D}_{\\text{deep}}) \\equiv \\mathcal{D}_{\\text{deep}} \\pmod{\\text{Transform}}",
+      "operational_rule": "Data mutations or messages that cannot be projected from an unambiguous deep grammar AST are rejected by target compilers.",
+      "status": "ACTIVE",
+      "origin_epoch": 10,
+      "delta_e": 0.0038,
+      "metadata": {
+        "exogenous_domain": "Theoretical Linguistics / Generative Syntax",
+        "source_principle": "Transformational Generative Grammar",
+        "system_profile": {
+          "archetype": "Universal Grammar AST Deep Projection Compiler",
+          "topology_type": "Deep Syntax AST with Invariant Surface Projections",
+          "topology_diagram": "[Module Communication] \u2500\u2500> [Deep Grammar AST Parser]\n                                       \u2502\n                        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                        \u25bc                             \u25bc\n           [Projection Engine (Protobuf)]    [Projection Engine (JSON/REST)]\n                        \u2502                             \u2502\n                        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                       \u25bc\n                       [Semantic Well-Formedness Guard]",
+          "subsystems": {
+            "Deep Syntax Validator": {
+              "role": "Parses all inter-module RPC payloads into a canonical deep-structure abstract syntax tree.",
+              "invariant_rule": "Rejects malformed messages prior to dispatch."
+            },
+            "Transformational Projection Engine": {
+              "role": "Projects deep syntax ASTs into surface-level serialization formats without semantic loss.",
+              "invariant_rule": "Bidirectional round-trip isomorphism must hold."
+            },
+            "Well-Formedness Guard": {
+              "role": "Verifies that received payloads comply with cross-module grammar agreements.",
+              "invariant_rule": "Payloads failing grammatical projection trigger compile-time rejection."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Ensures internal compiler ASTs maintain semantic consistency (+0.0080).",
+            "target_2_self_evaluator": "Standardizes telemetry stream formatting across heterogeneous observers (+0.0060).",
+            "target_3_control_group": "Prevents malformed Byzantine message attacks via strict grammar verification (+0.0144)."
+          },
+          "tradeoffs": {
+            "strengths": "Eliminates serialization bugs and interface mismatch; provides universal schema validation.",
+            "constraints": "Adds parsing and schema validation step to payload ingest pipeline."
+          }
+        }
+      }
+    },
+    {
+      "id": "L1-005",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Phenomenological Horizon & Intentional Bracketing (Epoch\u00e9)",
+      "statement": "Speculative execution modules must establish explicit intentional horizons, bracketing internal transient states until external observation boundaries are reached, preventing premature commitment of speculative paths.",
+      "formal_expression": "\\mathcal{H}(S_t) = \\text{Bracket}(\\mathcal{I}_{\\text{speculative}}) \\implies \\partial S_t \\cap \\mathcal{E}_{\\text{ext}} = \\emptyset",
+      "operational_rule": "Speculative internal mutations must remain bracketed within intentional horizons and are prohibited from escaping to global observation streams before epoch reconciliation.",
+      "status": "REJECTED",
+      "origin_epoch": 10,
+      "delta_e": 0.0032,
+      "metadata": {
+        "exogenous_domain": "Phenomenological Philosophy",
+        "source_principle": "Husserlian Epoch\u00e9 & Intentionality",
+        "system_profile": {
+          "archetype": "Intentional Horizon Speculative Isolation Sandbox",
+          "topology_type": "Bracketed Epoche Sandbox with Observation Barrier",
+          "topology_diagram": "[Speculative Task] \u2500\u2500> [Bracketed Execution Horizon]\n                                    \u2502\n                    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                    \u25bc                               \u25bc\n       [Transient State Sandbox]         [Epoch Reconciliation Barrier]\n                    \u2502                               \u2502\n                    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                    \u25bc\n                     [Global Observable State Stream]",
+          "subsystems": {
+            "Intentional Bracketing Chamber": {
+              "role": "Isolates speculative state mutations within an unobserved execution horizon.",
+              "invariant_rule": "Prohibits leakage of speculative mutations to external processes."
+            },
+            "Epoch Reconciliation Barrier": {
+              "role": "Synchronizes and commits speculative states only upon verification completion.",
+              "invariant_rule": "Failed speculative branches are discarded with zero trace."
+            },
+            "Observation Horizon Firewall": {
+              "role": "Prevents external observers from viewing intermediate uncommitted states.",
+              "invariant_rule": "Guarantees atomic visibility of speculative batches."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Enables safe speculative compilation paths without contaminating master state (+0.0060).",
+            "target_2_self_evaluator": "Prevents premature telemetry emissions from uncommitted branches (+0.0060).",
+            "target_3_control_group": "Provides clean speculative execution in Byzantine state machine replication (+0.0096)."
+          },
+          "tradeoffs": {
+            "strengths": "Allows highly aggressive speculative execution without roll-back side effects.",
+            "constraints": "Requires temporary memory buffering for bracketed state branches."
+          }
+        }
+      }
+    }
+  ],
+  "tournament_leaderboard": [
+    {
+      "id": "L1-004",
+      "name": "Universal Grammar & Compositional Projection Constraints",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Every inter-module communication payload must conform to an invariant deep syntactic structure whose transformational projections into target representations preserve semantic well-formedness.",
+      "formal_expression": "\\mathcal{P}_{\\text{surface}}(\\mathcal{D}_{\\text{deep}}) \\equiv \\mathcal{D}_{\\text{deep}} \\pmod{\\text{Transform}}",
+      "operational_rule": "Data mutations or messages that cannot be projected from an unambiguous deep grammar AST are rejected by target compilers.",
+      "source": "LLM",
+      "domain": "Theoretical Linguistics / Generative Syntax",
+      "principle": "Transformational Generative Grammar",
+      "delta_e1": 0.0033,
+      "delta_e2": 0.0025,
+      "delta_e3": 0.006,
+      "aggregate_delta_e": 0.0038,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Universal Grammar AST Deep Projection Compiler",
+        "topology_type": "Deep Syntax AST with Invariant Surface Projections",
+        "topology_diagram": "[Module Communication] \u2500\u2500> [Deep Grammar AST Parser]\n                                       \u2502\n                        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                        \u25bc                             \u25bc\n           [Projection Engine (Protobuf)]    [Projection Engine (JSON/REST)]\n                        \u2502                             \u2502\n                        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                       \u25bc\n                       [Semantic Well-Formedness Guard]",
+        "subsystems": {
+          "Deep Syntax Validator": {
+            "role": "Parses all inter-module RPC payloads into a canonical deep-structure abstract syntax tree.",
+            "invariant_rule": "Rejects malformed messages prior to dispatch."
+          },
+          "Transformational Projection Engine": {
+            "role": "Projects deep syntax ASTs into surface-level serialization formats without semantic loss.",
+            "invariant_rule": "Bidirectional round-trip isomorphism must hold."
+          },
+          "Well-Formedness Guard": {
+            "role": "Verifies that received payloads comply with cross-module grammar agreements.",
+            "invariant_rule": "Payloads failing grammatical projection trigger compile-time rejection."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Ensures internal compiler ASTs maintain semantic consistency (+0.0080).",
+          "target_2_self_evaluator": "Standardizes telemetry stream formatting across heterogeneous observers (+0.0060).",
+          "target_3_control_group": "Prevents malformed Byzantine message attacks via strict grammar verification (+0.0144)."
+        },
+        "tradeoffs": {
+          "strengths": "Eliminates serialization bugs and interface mismatch; provides universal schema validation.",
+          "constraints": "Adds parsing and schema validation step to payload ingest pipeline."
+        }
+      }
+    },
+    {
+      "id": "L1-003",
+      "name": "Linear Resource Ownership and The No-Cloning Invariant",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Every discrete capability, mutable memory buffer, or execution token must obey affine/linear type invariants; resources cannot be implicitly cloned or duplicated across concurrent processes, only transferred or consumed.",
+      "formal_expression": "\\mathcal{U}(\\rho \\otimes \\sigma) \\neq \\rho \\otimes \\rho \\quad \\forall \\rho \\quad (\\text{No-Cloning Invariant})",
+      "operational_rule": "Subsystems attempting implicit cloning or aliasing of uncommitted resource tokens without explicit affine handoff trigger immediate compilation failure.",
+      "source": "LLM",
+      "domain": "Quantum Information Theory",
+      "principle": "Wootters-Zurek No-Cloning Theorem",
+      "delta_e1": 0.0033,
+      "delta_e2": 0.0025,
+      "delta_e3": 0.004,
+      "aggregate_delta_e": 0.0032,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Affine Linear Resource Ownership System",
+        "topology_type": "Directed Transfer Token Pipeline",
+        "topology_diagram": "[Resource Producer] \u2500\u2500> [Linear Capability Token]\n                                     \u2502\n                     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                     \u25bc                               \u25bc\n       [Exclusive Move / Handoff]        [Explicit Consume / Drop]\n                     \u2502                               \u2502\n                     \u25bc                               \u25bc\n            [Destination Worker]             [Reclaimed Heap Buffer]",
+        "subsystems": {
+          "Affine Ownership Checker": {
+            "role": "Static compiler pass tracking capability token provenance and ownership lifetimes.",
+            "invariant_rule": "Prohibits shared mutable references; only single owners permitted."
+          },
+          "Move Semantics Hand-off Bus": {
+            "role": "Facilitates zero-copy transfer of execution tokens across concurrent processes.",
+            "invariant_rule": "Transferring a token invalidates the sender's access capability."
+          },
+          "Deterministic Drop Destructor": {
+            "role": "Automatically cleans up unconsumed resources at scope exit without garbage collection.",
+            "invariant_rule": "Every allocated token must be moved or dropped exactly once."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Prevents memory leaks and duplicate execution in self-compilation (+0.0080).",
+          "target_2_self_evaluator": "Guarantees telemetry packets are processed exactly once (+0.0060).",
+          "target_3_control_group": "Eliminates double-spend and duplicate message attacks in consensus (+0.0096)."
+        },
+        "tradeoffs": {
+          "strengths": "Zero-cost memory safety without GC pauses; prevents data races by construction.",
+          "constraints": "Strict ownership hierarchy requires deliberate explicit borrowing design."
+        }
+      }
+    },
+    {
+      "id": "L1-005",
+      "name": "Phenomenological Horizon & Intentional Bracketing (Epoch\u00e9)",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Speculative execution modules must establish explicit intentional horizons, bracketing internal transient states until external observation boundaries are reached, preventing premature commitment of speculative paths.",
+      "formal_expression": "\\mathcal{H}(S_t) = \\text{Bracket}(\\mathcal{I}_{\\text{speculative}}) \\implies \\partial S_t \\cap \\mathcal{E}_{\\text{ext}} = \\emptyset",
+      "operational_rule": "Speculative internal mutations must remain bracketed within intentional horizons and are prohibited from escaping to global observation streams before epoch reconciliation.",
+      "source": "LLM",
+      "domain": "Phenomenological Philosophy",
+      "principle": "Husserlian Epoch\u00e9 & Intentionality",
+      "delta_e1": 0.0033,
+      "delta_e2": 0.0025,
+      "delta_e3": 0.004,
+      "aggregate_delta_e": 0.0032,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Intentional Horizon Speculative Isolation Sandbox",
+        "topology_type": "Bracketed Epoche Sandbox with Observation Barrier",
+        "topology_diagram": "[Speculative Task] \u2500\u2500> [Bracketed Execution Horizon]\n                                    \u2502\n                    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                    \u25bc                               \u25bc\n       [Transient State Sandbox]         [Epoch Reconciliation Barrier]\n                    \u2502                               \u2502\n                    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                    \u25bc\n                     [Global Observable State Stream]",
+        "subsystems": {
+          "Intentional Bracketing Chamber": {
+            "role": "Isolates speculative state mutations within an unobserved execution horizon.",
+            "invariant_rule": "Prohibits leakage of speculative mutations to external processes."
+          },
+          "Epoch Reconciliation Barrier": {
+            "role": "Synchronizes and commits speculative states only upon verification completion.",
+            "invariant_rule": "Failed speculative branches are discarded with zero trace."
+          },
+          "Observation Horizon Firewall": {
+            "role": "Prevents external observers from viewing intermediate uncommitted states.",
+            "invariant_rule": "Guarantees atomic visibility of speculative batches."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Enables safe speculative compilation paths without contaminating master state (+0.0060).",
+          "target_2_self_evaluator": "Prevents premature telemetry emissions from uncommitted branches (+0.0060).",
+          "target_3_control_group": "Provides clean speculative execution in Byzantine state machine replication (+0.0096)."
+        },
+        "tradeoffs": {
+          "strengths": "Allows highly aggressive speculative execution without roll-back side effects.",
+          "constraints": "Requires temporary memory buffering for bracketed state branches."
+        }
+      }
+    }
+  ],
+  "decision": "Committed Tournament Winner [L1-004] (+0.0038)",
+  "jettison_triggered": false
+}

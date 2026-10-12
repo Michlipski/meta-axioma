@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AxiomaCrosswordNounSchemas",
+  "definitions": {
+    "WordSlot": {
+      "type": "object",
+      "required": ["slot_id", "direction", "row", "col", "length", "number", "answer"],
+      "properties": {
+        "slot_id": { "type": "string" },
+        "direction": { "type": "string", "enum": ["ACROSS", "DOWN"] },
+        "row": { "type": "integer" },
+        "col": { "type": "integer" },
+        "length": { "type": "integer" },
+        "number": { "type": "integer" },
+        "answer": { "type": "string" }
+      }
+    },
+    "CrypticClue": {
+      "type": "object",
+      "required": ["clue_id", "slot_id", "number", "direction", "surface_text", "length", "answer", "definition", "clue_type", "explanation"],
+      "properties": {
+        "clue_id": { "type": "string" },
+        "slot_id": { "type": "string" },
+        "number": { "type": "integer" },
+        "direction": { "type": "string", "enum": ["ACROSS", "DOWN"] },
+        "surface_text": { "type": "string" },
+        "length": { "type": "integer" },
+        "answer": { "type": "string" },
+        "definition": { "type": "string" },
+        "clue_type": {
+          "type": "string",
+          "enum": ["ANAGRAM", "HIDDEN_WORD", "CONTAINER", "CHARADE", "REVERSAL", "DOUBLE_DEF", "HOMOPHONE"]
+        },
+        "indicator": { "type": "string" },
+        "fodder": { "type": "string" },
+        "explanation": { "type": "string" }
+      }
+    },
+    "CrosswordGrid": {
+      "type": "object",
+      "required": ["grid_id", "title", "size_rows", "size_cols", "cells", "slots", "clues"],
+      "properties": {
+        "grid_id": { "type": "string" },
+        "title": { "type": "string" },
+        "size_rows": { "type": "integer" },
+        "size_cols": { "type": "integer" },
+        "cells": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "slots": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/WordSlot" }
+        },
+        "clues": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/CrypticClue" }
+        },
+        "symmetry": { "type": "string", "enum": ["ROTATIONAL_180", "SYMMETRIC_FREE"] }
+      }
+    },
+    "SolverSession": {
+      "type": "object",
+      "required": ["session_id", "puzzle_id", "user_id", "cells_entered", "version", "updated_at", "is_complete"],
+      "properties": {
+        "session_id": { "type": "string" },
+        "puzzle_id": { "type": "string" },
+        "user_id": { "type": "string" },
+        "cells_entered": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "version": { "type": "integer" },
+        "updated_at": { "type": "number" },
+        "is_complete": { "type": "boolean" }
+      }
+    },
+    "SynthesisJob": {
+      "type": "object",
+      "required": ["job_id", "status", "grid_size", "backtracks_count", "joules_dissipated", "progress_pct"],
+      "properties": {
+        "job_id": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING", "RUNNING", "COMPLETED", "FAILED", "TIMEOUT"] },
+        "grid_size": { "type": "integer" },
+        "backtracks_count": { "type": "integer" },
+        "pruned_candidates_count": { "type": "integer" },
+        "joules_dissipated": { "type": "number" },
+        "progress_pct": { "type": "number" },
+        "result_grid_id": { "type": ["string", "null"] },
+        "error": { "type": ["string", "null"] }
+      }
+    },
+    "LandauerSearchAudit": {
+      "type": "object",
+      "required": ["search_id", "total_backtracks", "candidate_domain_erased_bits", "joules_dissipated", "pruned_branches_ratio"],
+      "properties": {
+        "search_id": { "type": "string" },
+        "total_backtracks": { "type": "integer" },
+        "candidate_domain_erased_bits": { "type": "number" },
+        "joules_dissipated": { "type": "number" },
+        "pruned_branches_ratio": { "type": "number" }
+      }
+    },
+    "FeedbackItem": {
+      "type": "object",
+      "required": ["feedback_id", "category", "comment", "timestamp", "generation"],
+      "properties": {
+        "feedback_id": { "type": "string" },
+        "category": { "type": "string" },
+        "comment": { "type": "string" },
+        "timestamp": { "type": "number" },
+        "generation": { "type": "string" }
+      }
+    }
+  }
+}

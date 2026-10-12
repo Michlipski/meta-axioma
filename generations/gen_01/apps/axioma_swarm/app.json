@@ -1,0 +1,37 @@
+{
+  "app_id": "axioma_swarm",
+  "name": "Axioma Swarm",
+  "version": "1.0.0",
+  "generation_origin": "gen_01",
+  "port": 8098,
+  "entrypoint": "run.py",
+  "tagline": "Local LLM Edge Orchestrator & Micro-Swarm Daemon",
+  "description": "Stateful edge daemon managing local model VRAM lifecycles, tensor allocations, LRU eviction, and OOM-isolated task dispatch on consumer hardware.",
+  "target_persona": "Edge ML Engineer / Local AI Operator",
+  "invariants_embodied": [
+    "L1-008",
+    "L1-016",
+    "L1-015",
+    "L1-002",
+    "L1-011_3",
+    "L1-015_1"
+  ],
+  "ergonomic_goals": [
+    "Eliminate CUDA/MPS Out-Of-Memory allocator panics before task dispatch",
+    "Transparent real-time VRAM memory pressure telemetry and layer distribution",
+    "Zero-friction priority queueing for edge coding, reasoning, and extraction",
+    "1-click model load/unload/eviction and task rollback",
+    "Zero external paid APIs or cloud dependencies"
+  ],
+  "endpoints": {
+    "dashboard": "/",
+    "telemetry": "/api/telemetry",
+    "vram": "/api/vram",
+    "models": "/api/models",
+    "tasks": "/api/tasks",
+    "dispatch": "/api/tasks/dispatch",
+    "evict": "/api/models/{id}/evict",
+    "feedback": "/api/feedback",
+    "health": "/health"
+  }
+}

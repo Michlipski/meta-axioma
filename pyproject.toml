@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meta-axioma"
+version = "0.1.0"
+description = "Axiom Bootstrapper - Self-Constructing Systems Architecture Engine"
+readme = "ARCHITECTURE.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Compiler Agent", email = "compiler@meta-axioma.internal" }
+]
+dependencies = []
+
+[project.scripts]
+meta-axioma = "meta_axioma.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

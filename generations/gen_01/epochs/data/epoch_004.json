@@ -1,0 +1,506 @@
+{
+  "epoch": 4,
+  "timestamp": "2026-10-10T15:25:52.617521",
+  "phase": "PHASE_1_META_EXPLORATION",
+  "current_efficacy": 1.0585,
+  "efficacy_derivative": 0.0148,
+  "active_l0_count": 5,
+  "active_l1_count": 1,
+  "total_active": 6,
+  "compute_budget": {
+    "active_axiom_count": 5,
+    "token_budget": 3333,
+    "simulation_depth": 2,
+    "decay_factor": 0.3333333333333333
+  },
+  "candidate_axiom": {
+    "id": "L0-009",
+    "level": "LEVEL_0_EPISTEMIC",
+    "name": "Recursive Meta-Refutation & Heuristic Half-Life Decay",
+    "statement": "Every active epistemic search heuristic must maintain an empirical half-life based on its marginal contribution to structural candidate discovery; heuristics whose rolling yield falls below replacement entropy are dynamically discounted and subjected to recursive meta-refutation.",
+    "formal_expression": "\\lambda_i(t) = \\lambda_0 \\exp\\left(-\\frac{t - t_{\\text{last\\_yield}}}{\\tau}\\right) \\cdot \\mathbb{I}(\\Delta E_{\\text{marginal}} > 0)",
+    "operational_rule": "Search rules that fail to yield compilable structural axioms within a moving window lose generative priority.",
+    "status": "ACTIVE",
+    "origin_epoch": 4,
+    "delta_e": 0.0128,
+    "metadata": {
+      "exogenous_domain": "Evolutionary Cybernetics & Epistemic Logic",
+      "source_principle": "Dynamic Epistemic Pruning & Meta-Audit",
+      "system_profile": {
+        "archetype": "Self-Pruning Heuristic Lifecycle Comptroller",
+        "topology_type": "Attribution Feedback with Decay Throttles",
+        "topology_diagram": "[Active Heuristic Registry] \u2500\u2500> [Yield Attribution Tracker]\n                                            \u2502\n                                            \u25bc\n                                [Half-Life Decay Engine]\n                                            \u2502\n                                            \u25bc\n                                [Meta-Refutation Deprecator]",
+        "subsystems": {
+          "Yield Attribution Tracker": {
+            "role": "Traces downstream structural successes back to the guiding epistemic heuristics.",
+            "invariant_rule": "Every committed structural delta updates heuristic credit scores."
+          },
+          "Half-Life Decay Engine": {
+            "role": "Applies continuous exponential time-decay to inactive heuristic weights.",
+            "invariant_rule": "Heuristics without recent yield suffer monotonic prompt de-weighting."
+          },
+          "Meta-Refutation Deprecator": {
+            "role": "Permanently prunes stagnant search heuristics from the meta-prompt before Phase 2.",
+            "invariant_rule": "Frees prompt context space for high-performing generators."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Prunes worn-out search directions, keeping prompt context lean and focused (+0.0100).",
+          "target_e2_velocity": "Maintains high refutation throughput by discarding indecisive search rules (+0.0170).",
+          "target_e3_yield": "Maximizes structural yield by allocating compute only to proven generators (+0.0150)."
+        },
+        "tradeoffs": {
+          "strengths": "Prevents prompt context bloat; actively optimizes the meta-compiler's own cognition.",
+          "constraints": "May prematurely discount slow-burn heuristics if decay parameter tau is set too short."
+        }
+      }
+    }
+  },
+  "tri_fold_metrics": {
+    "delta_e1": 0.012,
+    "delta_e2": 0.016,
+    "delta_e3": 0.01,
+    "aggregate_delta_e": 0.0128,
+    "target_details": {
+      "target_e1_diversity": {
+        "success": true,
+        "delta": 0.012,
+        "violations": [],
+        "tokens": 1360,
+        "depth": 2
+      },
+      "target_e2_velocity": {
+        "success": true,
+        "delta": 0.016,
+        "violations": [],
+        "tokens": 1740,
+        "depth": 2
+      },
+      "target_e3_yield": {
+        "success": true,
+        "delta": 0.01,
+        "violations": [],
+        "tokens": 1940,
+        "depth": 2
+      }
+    }
+  },
+  "user_candidate": null,
+  "user_metrics": null,
+  "comparative_summary": {
+    "pool_size": 3,
+    "top_candidate_id": "L0-009",
+    "top_candidate_name": "Recursive Meta-Refutation & Heuristic Half-Life Decay",
+    "top_aggregate_delta_e": 0.0128,
+    "runner_up_id": "L0-007",
+    "runner_up_delta_e": 0.0107,
+    "delta_diff": 0.0021,
+    "leaderboard": [
+      {
+        "id": "L0-009",
+        "name": "Recursive Meta-Refutation & Heuristic Half-Life Decay",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "Every active epistemic search heuristic must maintain an empirical half-life based on its marginal contribution to structural candidate discovery; heuristics whose rolling yield falls below replacement entropy are dynamically discounted and subjected to recursive meta-refutation.",
+        "formal_expression": "\\lambda_i(t) = \\lambda_0 \\exp\\left(-\\frac{t - t_{\\text{last\\_yield}}}{\\tau}\\right) \\cdot \\mathbb{I}(\\Delta E_{\\text{marginal}} > 0)",
+        "operational_rule": "Search rules that fail to yield compilable structural axioms within a moving window lose generative priority.",
+        "source": "LLM",
+        "domain": "Evolutionary Cybernetics & Epistemic Logic",
+        "principle": "Dynamic Epistemic Pruning & Meta-Audit",
+        "delta_e1": 0.012,
+        "delta_e2": 0.016,
+        "delta_e3": 0.01,
+        "aggregate_delta_e": 0.0128,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Self-Pruning Heuristic Lifecycle Comptroller",
+          "topology_type": "Attribution Feedback with Decay Throttles",
+          "topology_diagram": "[Active Heuristic Registry] \u2500\u2500> [Yield Attribution Tracker]\n                                            \u2502\n                                            \u25bc\n                                [Half-Life Decay Engine]\n                                            \u2502\n                                            \u25bc\n                                [Meta-Refutation Deprecator]",
+          "subsystems": {
+            "Yield Attribution Tracker": {
+              "role": "Traces downstream structural successes back to the guiding epistemic heuristics.",
+              "invariant_rule": "Every committed structural delta updates heuristic credit scores."
+            },
+            "Half-Life Decay Engine": {
+              "role": "Applies continuous exponential time-decay to inactive heuristic weights.",
+              "invariant_rule": "Heuristics without recent yield suffer monotonic prompt de-weighting."
+            },
+            "Meta-Refutation Deprecator": {
+              "role": "Permanently prunes stagnant search heuristics from the meta-prompt before Phase 2.",
+              "invariant_rule": "Frees prompt context space for high-performing generators."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Prunes worn-out search directions, keeping prompt context lean and focused (+0.0100).",
+            "target_e2_velocity": "Maintains high refutation throughput by discarding indecisive search rules (+0.0170).",
+            "target_e3_yield": "Maximizes structural yield by allocating compute only to proven generators (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Prevents prompt context bloat; actively optimizes the meta-compiler's own cognition.",
+            "constraints": "May prematurely discount slow-burn heuristics if decay parameter tau is set too short."
+          }
+        }
+      },
+      {
+        "id": "L0-007",
+        "name": "Adversarial Stress Perturbation & Antifragile Invariant Hardening",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "Epistemic assertions must demonstrate non-linear improvement in verification confidence under synthetic chaos injection; an invariant is considered verified only if its explanatory power monotonically increases when subjected to stochastic perturbations of target environmental states.",
+        "formal_expression": "\\frac{\\partial^2 \\mathcal{V}}{\\partial \\sigma^2} > 0 \\quad \\text{where} \\quad \\sigma \\sim \\mathcal{N}(0, \\Sigma_{\\text{chaos}})",
+        "operational_rule": "Axioms whose verification degraded under noise injection are marked fragile and rejected.",
+        "source": "LLM",
+        "domain": "Complex Systems & Control Theory (Nassim Taleb & Norbert Wiener)",
+        "principle": "Dynamic Antifragility under Chaos Perturbation",
+        "delta_e1": 0.006,
+        "delta_e2": 0.016,
+        "delta_e3": 0.01,
+        "aggregate_delta_e": 0.0107,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Chaos-Injected Antifragile Verification Harness",
+          "topology_type": "Continuous Disturbance Feedback Loop",
+          "topology_diagram": "[Candidate Axiom] \u2500\u2500> [Stochastic Chaos Engine]\n                              \u2502\n                              \u25bc\n                 [Perturbed Target Sandbox]\n                              \u2502\n                              \u25bc\n                 [Convexity & Fragility Auditor] \u2500\u2500> [Hardened Invariant]",
+          "subsystems": {
+            "Stochastic Chaos Engine": {
+              "role": "Injects network jitter, corrupted RPC messages, and resource starvation during simulation.",
+              "invariant_rule": "Perturbations must be bounded to preserve simulation decidability."
+            },
+            "Convexity Auditor": {
+              "role": "Measures second derivative of system stability with respect to disturbance magnitude.",
+              "invariant_rule": "Rejects candidates showing brittle, cliff-edge failure modes."
+            },
+            "Self-Healing Reconfigurer": {
+              "role": "Tests candidate architecture's ability to autonomously re-converge after stress.",
+              "invariant_rule": "Recovery to coherent state must occur within finite simulation depth."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Forces exploration towards robust, decentralized consensus invariants (+0.0130).",
+            "target_e2_velocity": "Unmasks brittle and overfitted candidates in a single perturbation pass (+0.0140).",
+            "target_e3_yield": "Produces structural axioms that operate reliably in Byzantine environments (+0.0110)."
+          },
+          "tradeoffs": {
+            "strengths": "Guarantees high real-world robustness; eliminates fragile happy-path architectures.",
+            "constraints": "Consumes higher compute token budget per simulation pass due to Monte Carlo noise injection."
+          }
+        }
+      },
+      {
+        "id": "L0-008",
+        "name": "Ergodic State Exploration & Measure-Preserving Search Dynamics",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "The hypothesis generation mechanism must operate as an ergodic dynamical system over the manifold of architectural topologies, guaranteeing that time averages of candidate trajectories converge to space averages over reachable configuration space, precluding deadlocks and local attractors.",
+        "formal_expression": "\\lim_{T \\to \\infty} \\frac{1}{T} \\int_0^T f(S_t) dt = \\int_{\\mathcal{M}} f(s) d\\mu(s) \\quad \\text{where} \\quad \\mu(\\mathcal{M}) = 1",
+        "operational_rule": "Search generators that fall into repetitive topological attractors are penalized with negative exploratory momentum.",
+        "source": "LLM",
+        "domain": "Statistical Mechanics & Ergodic Theory (Ludwig Boltzmann & George Birkhoff)",
+        "principle": "Ergodic Measure-Preserving Trajectory Dynamics",
+        "delta_e1": 0.006,
+        "delta_e2": 0.0053,
+        "delta_e3": 0.01,
+        "aggregate_delta_e": 0.007,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Phase-Space Ergodic Trajectory Engine",
+          "topology_type": "Manifold Repulsion & State Coverage Dispatcher",
+          "topology_diagram": "[Trajectory History Buffer] \u2500\u2500> [Density Manifold Estimator]\n                                           \u2502\n                                           \u25bc\n                                [Anti-Attractor Repulsor]\n                                           \u2502\n                                           \u25bc\n                                [Ergodic Generator Dispatch]",
+          "subsystems": {
+            "Density Manifold Estimator": {
+              "role": "Maps past candidate axioms to an abstract topological coordinate manifold.",
+              "invariant_rule": "Maintains a spatial probability density of explored conceptual regions."
+            },
+            "Anti-Attractor Repulsor": {
+              "role": "Computes repulsive vector fields around dense clusters to push generators away from local minima.",
+              "invariant_rule": "Forces distance metric d(new, history) > threshold."
+            },
+            "Ergodic Dispatcher": {
+              "role": "Allocates candidate generation quotas across unvisited conceptual quadrants.",
+              "invariant_rule": "Guarantees non-zero sampling probability for all valid mathematical paradigms."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Maximum diversity gain; completely eliminates conceptual clustering and model collapse (+0.0190).",
+            "target_e2_velocity": "Avoids redundant verification of near-identical hypotheses (+0.0080).",
+            "target_e3_yield": "Unearths orthogonal structural paradigms that standard heuristics overlook (+0.0100)."
+          },
+          "tradeoffs": {
+            "strengths": "Total immunity to mode collapse; broad discovery across unconventional disciplines.",
+            "constraints": "Higher initial variance in candidate compilation success due to radical exploration jumps."
+          }
+        }
+      }
+    ]
+  },
+  "candidate_pool": [
+    {
+      "id": "L0-007",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Adversarial Stress Perturbation & Antifragile Invariant Hardening",
+      "statement": "Epistemic assertions must demonstrate non-linear improvement in verification confidence under synthetic chaos injection; an invariant is considered verified only if its explanatory power monotonically increases when subjected to stochastic perturbations of target environmental states.",
+      "formal_expression": "\\frac{\\partial^2 \\mathcal{V}}{\\partial \\sigma^2} > 0 \\quad \\text{where} \\quad \\sigma \\sim \\mathcal{N}(0, \\Sigma_{\\text{chaos}})",
+      "operational_rule": "Axioms whose verification degraded under noise injection are marked fragile and rejected.",
+      "status": "REJECTED",
+      "origin_epoch": 4,
+      "delta_e": 0.0107,
+      "metadata": {
+        "exogenous_domain": "Complex Systems & Control Theory (Nassim Taleb & Norbert Wiener)",
+        "source_principle": "Dynamic Antifragility under Chaos Perturbation",
+        "system_profile": {
+          "archetype": "Chaos-Injected Antifragile Verification Harness",
+          "topology_type": "Continuous Disturbance Feedback Loop",
+          "topology_diagram": "[Candidate Axiom] \u2500\u2500> [Stochastic Chaos Engine]\n                              \u2502\n                              \u25bc\n                 [Perturbed Target Sandbox]\n                              \u2502\n                              \u25bc\n                 [Convexity & Fragility Auditor] \u2500\u2500> [Hardened Invariant]",
+          "subsystems": {
+            "Stochastic Chaos Engine": {
+              "role": "Injects network jitter, corrupted RPC messages, and resource starvation during simulation.",
+              "invariant_rule": "Perturbations must be bounded to preserve simulation decidability."
+            },
+            "Convexity Auditor": {
+              "role": "Measures second derivative of system stability with respect to disturbance magnitude.",
+              "invariant_rule": "Rejects candidates showing brittle, cliff-edge failure modes."
+            },
+            "Self-Healing Reconfigurer": {
+              "role": "Tests candidate architecture's ability to autonomously re-converge after stress.",
+              "invariant_rule": "Recovery to coherent state must occur within finite simulation depth."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Forces exploration towards robust, decentralized consensus invariants (+0.0130).",
+            "target_e2_velocity": "Unmasks brittle and overfitted candidates in a single perturbation pass (+0.0140).",
+            "target_e3_yield": "Produces structural axioms that operate reliably in Byzantine environments (+0.0110)."
+          },
+          "tradeoffs": {
+            "strengths": "Guarantees high real-world robustness; eliminates fragile happy-path architectures.",
+            "constraints": "Consumes higher compute token budget per simulation pass due to Monte Carlo noise injection."
+          }
+        }
+      }
+    },
+    {
+      "id": "L0-008",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Ergodic State Exploration & Measure-Preserving Search Dynamics",
+      "statement": "The hypothesis generation mechanism must operate as an ergodic dynamical system over the manifold of architectural topologies, guaranteeing that time averages of candidate trajectories converge to space averages over reachable configuration space, precluding deadlocks and local attractors.",
+      "formal_expression": "\\lim_{T \\to \\infty} \\frac{1}{T} \\int_0^T f(S_t) dt = \\int_{\\mathcal{M}} f(s) d\\mu(s) \\quad \\text{where} \\quad \\mu(\\mathcal{M}) = 1",
+      "operational_rule": "Search generators that fall into repetitive topological attractors are penalized with negative exploratory momentum.",
+      "status": "REJECTED",
+      "origin_epoch": 4,
+      "delta_e": 0.007,
+      "metadata": {
+        "exogenous_domain": "Statistical Mechanics & Ergodic Theory (Ludwig Boltzmann & George Birkhoff)",
+        "source_principle": "Ergodic Measure-Preserving Trajectory Dynamics",
+        "system_profile": {
+          "archetype": "Phase-Space Ergodic Trajectory Engine",
+          "topology_type": "Manifold Repulsion & State Coverage Dispatcher",
+          "topology_diagram": "[Trajectory History Buffer] \u2500\u2500> [Density Manifold Estimator]\n                                           \u2502\n                                           \u25bc\n                                [Anti-Attractor Repulsor]\n                                           \u2502\n                                           \u25bc\n                                [Ergodic Generator Dispatch]",
+          "subsystems": {
+            "Density Manifold Estimator": {
+              "role": "Maps past candidate axioms to an abstract topological coordinate manifold.",
+              "invariant_rule": "Maintains a spatial probability density of explored conceptual regions."
+            },
+            "Anti-Attractor Repulsor": {
+              "role": "Computes repulsive vector fields around dense clusters to push generators away from local minima.",
+              "invariant_rule": "Forces distance metric d(new, history) > threshold."
+            },
+            "Ergodic Dispatcher": {
+              "role": "Allocates candidate generation quotas across unvisited conceptual quadrants.",
+              "invariant_rule": "Guarantees non-zero sampling probability for all valid mathematical paradigms."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Maximum diversity gain; completely eliminates conceptual clustering and model collapse (+0.0190).",
+            "target_e2_velocity": "Avoids redundant verification of near-identical hypotheses (+0.0080).",
+            "target_e3_yield": "Unearths orthogonal structural paradigms that standard heuristics overlook (+0.0100)."
+          },
+          "tradeoffs": {
+            "strengths": "Total immunity to mode collapse; broad discovery across unconventional disciplines.",
+            "constraints": "Higher initial variance in candidate compilation success due to radical exploration jumps."
+          }
+        }
+      }
+    },
+    {
+      "id": "L0-009",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Recursive Meta-Refutation & Heuristic Half-Life Decay",
+      "statement": "Every active epistemic search heuristic must maintain an empirical half-life based on its marginal contribution to structural candidate discovery; heuristics whose rolling yield falls below replacement entropy are dynamically discounted and subjected to recursive meta-refutation.",
+      "formal_expression": "\\lambda_i(t) = \\lambda_0 \\exp\\left(-\\frac{t - t_{\\text{last\\_yield}}}{\\tau}\\right) \\cdot \\mathbb{I}(\\Delta E_{\\text{marginal}} > 0)",
+      "operational_rule": "Search rules that fail to yield compilable structural axioms within a moving window lose generative priority.",
+      "status": "ACTIVE",
+      "origin_epoch": 4,
+      "delta_e": 0.0128,
+      "metadata": {
+        "exogenous_domain": "Evolutionary Cybernetics & Epistemic Logic",
+        "source_principle": "Dynamic Epistemic Pruning & Meta-Audit",
+        "system_profile": {
+          "archetype": "Self-Pruning Heuristic Lifecycle Comptroller",
+          "topology_type": "Attribution Feedback with Decay Throttles",
+          "topology_diagram": "[Active Heuristic Registry] \u2500\u2500> [Yield Attribution Tracker]\n                                            \u2502\n                                            \u25bc\n                                [Half-Life Decay Engine]\n                                            \u2502\n                                            \u25bc\n                                [Meta-Refutation Deprecator]",
+          "subsystems": {
+            "Yield Attribution Tracker": {
+              "role": "Traces downstream structural successes back to the guiding epistemic heuristics.",
+              "invariant_rule": "Every committed structural delta updates heuristic credit scores."
+            },
+            "Half-Life Decay Engine": {
+              "role": "Applies continuous exponential time-decay to inactive heuristic weights.",
+              "invariant_rule": "Heuristics without recent yield suffer monotonic prompt de-weighting."
+            },
+            "Meta-Refutation Deprecator": {
+              "role": "Permanently prunes stagnant search heuristics from the meta-prompt before Phase 2.",
+              "invariant_rule": "Frees prompt context space for high-performing generators."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Prunes worn-out search directions, keeping prompt context lean and focused (+0.0100).",
+            "target_e2_velocity": "Maintains high refutation throughput by discarding indecisive search rules (+0.0170).",
+            "target_e3_yield": "Maximizes structural yield by allocating compute only to proven generators (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Prevents prompt context bloat; actively optimizes the meta-compiler's own cognition.",
+            "constraints": "May prematurely discount slow-burn heuristics if decay parameter tau is set too short."
+          }
+        }
+      }
+    }
+  ],
+  "tournament_leaderboard": [
+    {
+      "id": "L0-009",
+      "name": "Recursive Meta-Refutation & Heuristic Half-Life Decay",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "Every active epistemic search heuristic must maintain an empirical half-life based on its marginal contribution to structural candidate discovery; heuristics whose rolling yield falls below replacement entropy are dynamically discounted and subjected to recursive meta-refutation.",
+      "formal_expression": "\\lambda_i(t) = \\lambda_0 \\exp\\left(-\\frac{t - t_{\\text{last\\_yield}}}{\\tau}\\right) \\cdot \\mathbb{I}(\\Delta E_{\\text{marginal}} > 0)",
+      "operational_rule": "Search rules that fail to yield compilable structural axioms within a moving window lose generative priority.",
+      "source": "LLM",
+      "domain": "Evolutionary Cybernetics & Epistemic Logic",
+      "principle": "Dynamic Epistemic Pruning & Meta-Audit",
+      "delta_e1": 0.012,
+      "delta_e2": 0.016,
+      "delta_e3": 0.01,
+      "aggregate_delta_e": 0.0128,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Self-Pruning Heuristic Lifecycle Comptroller",
+        "topology_type": "Attribution Feedback with Decay Throttles",
+        "topology_diagram": "[Active Heuristic Registry] \u2500\u2500> [Yield Attribution Tracker]\n                                            \u2502\n                                            \u25bc\n                                [Half-Life Decay Engine]\n                                            \u2502\n                                            \u25bc\n                                [Meta-Refutation Deprecator]",
+        "subsystems": {
+          "Yield Attribution Tracker": {
+            "role": "Traces downstream structural successes back to the guiding epistemic heuristics.",
+            "invariant_rule": "Every committed structural delta updates heuristic credit scores."
+          },
+          "Half-Life Decay Engine": {
+            "role": "Applies continuous exponential time-decay to inactive heuristic weights.",
+            "invariant_rule": "Heuristics without recent yield suffer monotonic prompt de-weighting."
+          },
+          "Meta-Refutation Deprecator": {
+            "role": "Permanently prunes stagnant search heuristics from the meta-prompt before Phase 2.",
+            "invariant_rule": "Frees prompt context space for high-performing generators."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Prunes worn-out search directions, keeping prompt context lean and focused (+0.0100).",
+          "target_e2_velocity": "Maintains high refutation throughput by discarding indecisive search rules (+0.0170).",
+          "target_e3_yield": "Maximizes structural yield by allocating compute only to proven generators (+0.0150)."
+        },
+        "tradeoffs": {
+          "strengths": "Prevents prompt context bloat; actively optimizes the meta-compiler's own cognition.",
+          "constraints": "May prematurely discount slow-burn heuristics if decay parameter tau is set too short."
+        }
+      }
+    },
+    {
+      "id": "L0-007",
+      "name": "Adversarial Stress Perturbation & Antifragile Invariant Hardening",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "Epistemic assertions must demonstrate non-linear improvement in verification confidence under synthetic chaos injection; an invariant is considered verified only if its explanatory power monotonically increases when subjected to stochastic perturbations of target environmental states.",
+      "formal_expression": "\\frac{\\partial^2 \\mathcal{V}}{\\partial \\sigma^2} > 0 \\quad \\text{where} \\quad \\sigma \\sim \\mathcal{N}(0, \\Sigma_{\\text{chaos}})",
+      "operational_rule": "Axioms whose verification degraded under noise injection are marked fragile and rejected.",
+      "source": "LLM",
+      "domain": "Complex Systems & Control Theory (Nassim Taleb & Norbert Wiener)",
+      "principle": "Dynamic Antifragility under Chaos Perturbation",
+      "delta_e1": 0.006,
+      "delta_e2": 0.016,
+      "delta_e3": 0.01,
+      "aggregate_delta_e": 0.0107,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Chaos-Injected Antifragile Verification Harness",
+        "topology_type": "Continuous Disturbance Feedback Loop",
+        "topology_diagram": "[Candidate Axiom] \u2500\u2500> [Stochastic Chaos Engine]\n                              \u2502\n                              \u25bc\n                 [Perturbed Target Sandbox]\n                              \u2502\n                              \u25bc\n                 [Convexity & Fragility Auditor] \u2500\u2500> [Hardened Invariant]",
+        "subsystems": {
+          "Stochastic Chaos Engine": {
+            "role": "Injects network jitter, corrupted RPC messages, and resource starvation during simulation.",
+            "invariant_rule": "Perturbations must be bounded to preserve simulation decidability."
+          },
+          "Convexity Auditor": {
+            "role": "Measures second derivative of system stability with respect to disturbance magnitude.",
+            "invariant_rule": "Rejects candidates showing brittle, cliff-edge failure modes."
+          },
+          "Self-Healing Reconfigurer": {
+            "role": "Tests candidate architecture's ability to autonomously re-converge after stress.",
+            "invariant_rule": "Recovery to coherent state must occur within finite simulation depth."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Forces exploration towards robust, decentralized consensus invariants (+0.0130).",
+          "target_e2_velocity": "Unmasks brittle and overfitted candidates in a single perturbation pass (+0.0140).",
+          "target_e3_yield": "Produces structural axioms that operate reliably in Byzantine environments (+0.0110)."
+        },
+        "tradeoffs": {
+          "strengths": "Guarantees high real-world robustness; eliminates fragile happy-path architectures.",
+          "constraints": "Consumes higher compute token budget per simulation pass due to Monte Carlo noise injection."
+        }
+      }
+    },
+    {
+      "id": "L0-008",
+      "name": "Ergodic State Exploration & Measure-Preserving Search Dynamics",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "The hypothesis generation mechanism must operate as an ergodic dynamical system over the manifold of architectural topologies, guaranteeing that time averages of candidate trajectories converge to space averages over reachable configuration space, precluding deadlocks and local attractors.",
+      "formal_expression": "\\lim_{T \\to \\infty} \\frac{1}{T} \\int_0^T f(S_t) dt = \\int_{\\mathcal{M}} f(s) d\\mu(s) \\quad \\text{where} \\quad \\mu(\\mathcal{M}) = 1",
+      "operational_rule": "Search generators that fall into repetitive topological attractors are penalized with negative exploratory momentum.",
+      "source": "LLM",
+      "domain": "Statistical Mechanics & Ergodic Theory (Ludwig Boltzmann & George Birkhoff)",
+      "principle": "Ergodic Measure-Preserving Trajectory Dynamics",
+      "delta_e1": 0.006,
+      "delta_e2": 0.0053,
+      "delta_e3": 0.01,
+      "aggregate_delta_e": 0.007,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Phase-Space Ergodic Trajectory Engine",
+        "topology_type": "Manifold Repulsion & State Coverage Dispatcher",
+        "topology_diagram": "[Trajectory History Buffer] \u2500\u2500> [Density Manifold Estimator]\n                                           \u2502\n                                           \u25bc\n                                [Anti-Attractor Repulsor]\n                                           \u2502\n                                           \u25bc\n                                [Ergodic Generator Dispatch]",
+        "subsystems": {
+          "Density Manifold Estimator": {
+            "role": "Maps past candidate axioms to an abstract topological coordinate manifold.",
+            "invariant_rule": "Maintains a spatial probability density of explored conceptual regions."
+          },
+          "Anti-Attractor Repulsor": {
+            "role": "Computes repulsive vector fields around dense clusters to push generators away from local minima.",
+            "invariant_rule": "Forces distance metric d(new, history) > threshold."
+          },
+          "Ergodic Dispatcher": {
+            "role": "Allocates candidate generation quotas across unvisited conceptual quadrants.",
+            "invariant_rule": "Guarantees non-zero sampling probability for all valid mathematical paradigms."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Maximum diversity gain; completely eliminates conceptual clustering and model collapse (+0.0190).",
+          "target_e2_velocity": "Avoids redundant verification of near-identical hypotheses (+0.0080).",
+          "target_e3_yield": "Unearths orthogonal structural paradigms that standard heuristics overlook (+0.0100)."
+        },
+        "tradeoffs": {
+          "strengths": "Total immunity to mode collapse; broad discovery across unconventional disciplines.",
+          "constraints": "Higher initial variance in candidate compilation success due to radical exploration jumps."
+        }
+      }
+    }
+  ],
+  "decision": "Committed Tournament Winner [L0-009] (+0.0128)",
+  "jettison_triggered": false
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Review Generation 1 Structural Invariants & Portfolio Health",
+    "priority": 1,
+    "tag": "@axioma",
+    "is_focus": true,
+    "status": "DONE"
+  },
+  {
+    "title": "Verify zero-JS Electrophoretic Display rendering on Kindle Paperwhite",
+    "priority": 2,
+    "tag": "@hardware",
+    "is_focus": true,
+    "status": "TODO"
+  },
+  {
+    "title": "Synthesize System 06 Swarm Consensus Engine architecture",
+    "priority": 3,
+    "tag": "@architecture",
+    "is_focus": true,
+    "status": "TODO"
+  },
+  {
+    "title": "Deep dive into thermodynamic decay bounds for Generation 2 compilers",
+    "priority": 4,
+    "tag": "@theory",
+    "is_focus": true,
+    "status": "TODO"
+  },
+  {
+    "title": "Organize transgenerational feedback ledger for NEG-G2 invariants",
+    "priority": 5,
+    "tag": "@governance",
+    "is_focus": false,
+    "status": "TODO"
+  }
+]

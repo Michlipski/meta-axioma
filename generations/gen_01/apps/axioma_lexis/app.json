@@ -1,0 +1,31 @@
+{
+  "app_id": "axioma_lexis",
+  "name": "Axioma Lexis",
+  "version": "1.0.0",
+  "tagline": "Adaptive Spaced Repetition Vocabulary & Flashcards for Android",
+  "description": "A 100% free, local-first vocabulary memorization workspace mirroring and elevating Mem-App. Features progressive dictionary search, US/UK speech pronunciation, adaptive SM-2 spaced repetition flashcards, and functorial undo/redo.",
+  "generation_origin": "gen_01",
+  "target_persona": "Intermediate+ English Vocabulary Learner (Android Mobile User)",
+  "ergonomic_goals": [
+    "Zero cognitive friction: 1-tap add to deck directly from dictionary search.",
+    "Mobile-first touch ergonomics: thumb-reach bottom nav bar and large touch targets.",
+    "Native speech audio pronunciation in both American (en-US) and British (en-GB) English.",
+    "Lossless Functorial Undo (Cmd+Z or 1-tap Undo) to reverse accidental flashcard ratings without state corruption.",
+    "Installable as native Progressive Web App (PWA) on Android Chrome without Google Play Store locks.",
+    "100% free to use forever with zero paid subscription tiers or API paywalls."
+  ],
+  "port": 8090,
+  "deep_ast_digest": "a918f081ec94bf6e927c32d431d102e3b2b81cb1394101e4039ec91034c56b71",
+  "invariants_embodied": [
+    "L1-002",
+    "L1-004",
+    "L1-011_3",
+    "L1-008",
+    "L1-015",
+    "L1-016",
+    "L1-015_1"
+  ],
+  "entrypoint": "run.py",
+  "compiled_at": 1776005000.0,
+  "compiled_by": "System G_1 Compiler Engine"
+}

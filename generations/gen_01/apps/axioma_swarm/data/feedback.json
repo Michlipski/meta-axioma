@@ -1,0 +1,10 @@
+[
+  {
+    "id": "fb_swarm_1791841996888",
+    "category": "vram_allocation",
+    "comment": "LRU eviction timing is seamless with zero display compositor stutter.",
+    "app": "axioma_swarm",
+    "timestamp": 1791841996.8881438,
+    "generation": "gen_01"
+  }
+]

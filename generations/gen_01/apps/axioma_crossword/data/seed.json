@@ -1,0 +1,28 @@
+{
+  "system_id": "axioma_crossword",
+  "version": "1.0.0",
+  "initial_puzzles": [
+    {
+      "id": "puzzle_quick_01",
+      "title": "Axioma Quick Cryptic #1 (7x7)",
+      "grid_size": "7x7",
+      "slots_count": 12,
+      "symmetry": "ROTATIONAL_180"
+    }
+  ],
+  "scaling_profile": {
+    "supported_clients": ["Desktop", "Tablet", "Mobile PWA"],
+    "concurrency_model": "Multi-Tenant with Partitioned Sessions & Decoupled Synthesis Worker Pool",
+    "edge_optimization": "Client-Side Optimistic Execution with Delta Sync",
+    "landauer_backtrack_lease": 4000
+  },
+  "cryptic_ast_types": [
+    "ANAGRAM",
+    "HIDDEN_WORD",
+    "CONTAINER",
+    "CHARADE",
+    "REVERSAL",
+    "DOUBLE_DEF",
+    "HOMOPHONE"
+  ]
+}

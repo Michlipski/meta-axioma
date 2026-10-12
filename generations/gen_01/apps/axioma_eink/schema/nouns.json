@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AxiomaEinkNounSchemas",
+  "definitions": {
+    "TaskItem": {
+      "type": "object",
+      "required": ["task_id", "title", "status", "priority", "is_focus", "created_at"],
+      "properties": {
+        "task_id": { "type": "string" },
+        "title": { "type": "string" },
+        "status": { "type": "string", "enum": ["TODO", "DONE"] },
+        "priority": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "tag": { "type": "string" },
+        "is_focus": { "type": "boolean" },
+        "created_at": { "type": "number" },
+        "completed_at": { "type": ["number", "null"] }
+      }
+    },
+    "TaskEvent": {
+      "type": "object",
+      "required": ["event_id", "event_type", "payload", "timestamp"],
+      "properties": {
+        "event_id": { "type": "string" },
+        "event_type": {
+          "type": "string",
+          "enum": ["TASK_CREATED", "TASK_TOGGLED", "TASK_REORDERED", "TASK_DELETED", "FOCUS_SET"]
+        },
+        "payload": { "type": "object" },
+        "timestamp": { "type": "number" }
+      }
+    },
+    "EinkDisplayState": {
+      "type": "object",
+      "required": ["board_title", "sync_timestamp", "total_focus_tasks", "completed_count", "tasks"],
+      "properties": {
+        "board_title": { "type": "string" },
+        "sync_timestamp": { "type": "number" },
+        "total_focus_tasks": { "type": "integer" },
+        "completed_count": { "type": "integer" },
+        "tasks": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/TaskItem" }
+        },
+        "quote_of_the_day": { "type": "string" }
+      }
+    },
+    "FeedbackItem": {
+      "type": "object",
+      "required": ["feedback_id", "category", "comment", "timestamp", "generation"],
+      "properties": {
+        "feedback_id": { "type": "string" },
+        "category": { "type": "string" },
+        "comment": { "type": "string" },
+        "timestamp": { "type": "number" },
+        "generation": { "type": "string" }
+      }
+    }
+  }
+}

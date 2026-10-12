@@ -1,0 +1,31 @@
+{
+  "app_id": "axioma_dual_fsm",
+  "name": "Axioma Dual FSM",
+  "version": "1.0.0",
+  "tagline": "Zero-Trust AI Runtime Governance Kernel & Deterministic Gateway",
+  "description": "A zero-trust AI runtime governance gateway gating LLM actions through two concurrent finite state machines (Inner Dialogue FSM and Outer Security FSM). Features coupled halting morphisms, tool failure recovery loops, dynamic de-escalation, and functorial audit rollbacks.",
+  "generation_origin": "gen_01",
+  "target_persona": "AI Systems Architect & Security Engineer",
+  "ergonomic_goals": [
+    "Zero-trust state determinism: mathematically rigid state transitions replacing fuzzy probabilistic guardrails.",
+    "Coupled Halting Morphism (Φ_halt): outer security anomalies instantly halt inner conversational execution in zero clock cycles.",
+    "Non-deterministic Tool Failure Loop: OUTCOME_EVALUATED routing back to PLAN_PROPOSED or PARAM_ELICITATION on runtime tool faults.",
+    "Controlled De-Escalation: ELEVATED_SCRUTINY safely resets to ACTIVE_MONITORING upon benign payload clearance.",
+    "Functorial Reversibility (L1-002): cryptographic rollback morphism restoring safe states with an immutable audit witness.",
+    "Embedded Generational Feedback: 1-tap feedback affordance reporting false positives/negatives into the G2 learning stream."
+  ],
+  "port": 8092,
+  "deep_ast_digest": "c3a8120d8bf7b9a5e1d4b6849f2b87d559e2b10a9c8e14674092b7c615843a91",
+  "invariants_embodied": [
+    "L1-002",
+    "L1-004",
+    "L1-011_3",
+    "L1-008",
+    "L1-015",
+    "L1-016",
+    "L1-015_1"
+  ],
+  "entrypoint": "run.py",
+  "compiled_at": 1776007000.0,
+  "compiled_by": "System G_1 Compiler Engine"
+}

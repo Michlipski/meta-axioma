@@ -1,0 +1,11 @@
+{
+  "session_id": "sess_test_e2b49990",
+  "puzzle_id": "puzzle_quick_01",
+  "user_id": "default_user",
+  "cells_entered": {
+    "0,0": "C"
+  },
+  "version": 2,
+  "updated_at": 1791839499.697561,
+  "is_complete": false
+}

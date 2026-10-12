@@ -1,0 +1,506 @@
+{
+  "epoch": 12,
+  "timestamp": "2026-10-10T16:03:28.751187",
+  "phase": "PHASE_2_STRUCTURAL_EXECUTION",
+  "current_efficacy": 1.1278,
+  "efficacy_derivative": 0.0082,
+  "active_l0_count": 0,
+  "active_l1_count": 4,
+  "total_active": 4,
+  "compute_budget": {
+    "active_axiom_count": 3,
+    "token_budget": 5000,
+    "simulation_depth": 4,
+    "decay_factor": 0.5
+  },
+  "candidate_axiom": {
+    "id": "L1-008",
+    "level": "LEVEL_1_STRUCTURAL",
+    "name": "Landauer Thermodynamic Reversibility & Erasure Dissipation Accounting",
+    "statement": "Every lossy state transformation that discards intermediate execution bits must formally account for entropy dissipation, enforcing logically reversible morphisms for all core state kernels.",
+    "formal_expression": "\\Delta Q \\ge k_B T \\ln 2 \\cdot \\Delta H_{\\text{erasure}} \\implies \\text{Isomorphic}(\\text{Kernel})",
+    "operational_rule": "State mutations discarding intermediate histories without explicit dissipation audit channels or reversible inverse paths trigger compiler failure.",
+    "status": "ACTIVE",
+    "origin_epoch": 12,
+    "delta_e": 0.015,
+    "metadata": {
+      "exogenous_domain": "Physical Information Theory (Rolf Landauer)",
+      "source_principle": "Information Erasure Dissipation & Reversible Computing (Derived from L0-016/L0-022)",
+      "system_profile": {
+        "archetype": "Reversible Morphism Pipeline with Conservation Rails",
+        "topology_type": "Logically Reversible Morphism Mesh with Dissipation Sinks",
+        "topology_diagram": "[Ingress State S] \u2500\u2500> [Reversible Transition delta] \u2500\u2500> [Egress State S']\n                  \u2502                                         \u2502\n                  \u2514\u2500\u2500\u2500> [Conservation Audit Ledger] \u25c4\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                       \u2502\n                                       \u25bc\n                          [Entropy Dissipation Sink]",
+        "subsystems": {
+          "Reversible Morphism Kernel": {
+            "role": "Executes bijective transformations where each forward state transition has a computable backward inverse.",
+            "invariant_rule": "delta^-1(delta(S)) = S must hold without state loss."
+          },
+          "Entropy Dissipation Sink": {
+            "role": "Explicitly buffers and audits all discarded microstate bits at module boundaries.",
+            "invariant_rule": "Bit-erasure events must log minimal thermodynamic accounting traces."
+          },
+          "Microstate Invertibility Verifier": {
+            "role": "Proves that critical transaction histories can be rewound without relying on external snapshots.",
+            "invariant_rule": "Irreversible side-effects inside core reducers are rejected."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Eliminates state destruction during recursive self-compilation (+0.0110).",
+          "target_2_self_evaluator": "Enables bit-exact state rewind and deterministic debugging across epochs (+0.0090).",
+          "target_3_control_group": "Guarantees lossless message deduplication in Byzantine consensus (+0.0135)."
+        },
+        "tradeoffs": {
+          "strengths": "Provable zero data loss; mathematically reversible transactions eliminate rollback complexity.",
+          "constraints": "Reversibility tracking requires dedicated dissipation buffer channels."
+        }
+      }
+    }
+  },
+  "tri_fold_metrics": {
+    "delta_e1": 0.01,
+    "delta_e2": 0.0225,
+    "delta_e3": 0.012,
+    "aggregate_delta_e": 0.015,
+    "target_details": {
+      "target_1_self_constructor": {
+        "success": true,
+        "delta": 0.01,
+        "violations": [],
+        "tokens": 1960,
+        "depth": 4
+      },
+      "target_2_self_evaluator": {
+        "success": true,
+        "delta": 0.0225,
+        "violations": [],
+        "tokens": 1570,
+        "depth": 3
+      },
+      "target_3_control_group": {
+        "success": true,
+        "delta": 0.012,
+        "violations": [],
+        "tokens": 2260,
+        "depth": 4
+      }
+    }
+  },
+  "user_candidate": null,
+  "user_metrics": null,
+  "comparative_summary": {
+    "pool_size": 3,
+    "top_candidate_id": "L1-008",
+    "top_candidate_name": "Landauer Thermodynamic Reversibility & Erasure Dissipation Accounting",
+    "top_aggregate_delta_e": 0.015,
+    "runner_up_id": "L1-009",
+    "runner_up_delta_e": 0.015,
+    "delta_diff": 0.0,
+    "leaderboard": [
+      {
+        "id": "L1-008",
+        "name": "Landauer Thermodynamic Reversibility & Erasure Dissipation Accounting",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Every lossy state transformation that discards intermediate execution bits must formally account for entropy dissipation, enforcing logically reversible morphisms for all core state kernels.",
+        "formal_expression": "\\Delta Q \\ge k_B T \\ln 2 \\cdot \\Delta H_{\\text{erasure}} \\implies \\text{Isomorphic}(\\text{Kernel})",
+        "operational_rule": "State mutations discarding intermediate histories without explicit dissipation audit channels or reversible inverse paths trigger compiler failure.",
+        "source": "LLM",
+        "domain": "Physical Information Theory (Rolf Landauer)",
+        "principle": "Information Erasure Dissipation & Reversible Computing (Derived from L0-016/L0-022)",
+        "delta_e1": 0.01,
+        "delta_e2": 0.0225,
+        "delta_e3": 0.012,
+        "aggregate_delta_e": 0.015,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Reversible Morphism Pipeline with Conservation Rails",
+          "topology_type": "Logically Reversible Morphism Mesh with Dissipation Sinks",
+          "topology_diagram": "[Ingress State S] \u2500\u2500> [Reversible Transition delta] \u2500\u2500> [Egress State S']\n                  \u2502                                         \u2502\n                  \u2514\u2500\u2500\u2500> [Conservation Audit Ledger] \u25c4\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                       \u2502\n                                       \u25bc\n                          [Entropy Dissipation Sink]",
+          "subsystems": {
+            "Reversible Morphism Kernel": {
+              "role": "Executes bijective transformations where each forward state transition has a computable backward inverse.",
+              "invariant_rule": "delta^-1(delta(S)) = S must hold without state loss."
+            },
+            "Entropy Dissipation Sink": {
+              "role": "Explicitly buffers and audits all discarded microstate bits at module boundaries.",
+              "invariant_rule": "Bit-erasure events must log minimal thermodynamic accounting traces."
+            },
+            "Microstate Invertibility Verifier": {
+              "role": "Proves that critical transaction histories can be rewound without relying on external snapshots.",
+              "invariant_rule": "Irreversible side-effects inside core reducers are rejected."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Eliminates state destruction during recursive self-compilation (+0.0110).",
+            "target_2_self_evaluator": "Enables bit-exact state rewind and deterministic debugging across epochs (+0.0090).",
+            "target_3_control_group": "Guarantees lossless message deduplication in Byzantine consensus (+0.0135)."
+          },
+          "tradeoffs": {
+            "strengths": "Provable zero data loss; mathematically reversible transactions eliminate rollback complexity.",
+            "constraints": "Reversibility tracking requires dedicated dissipation buffer channels."
+          }
+        }
+      },
+      {
+        "id": "L1-009",
+        "name": "Active Inference Generative Filter & Markov Blanket Isolation",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Subsystems must maintain internal generative models of their interface environments, executing state transitions that minimize variational free energy across insulating sensory and active Markov blankets.",
+        "formal_expression": "\\mathcal{F}(s, o) = \\mathbb{E}_q[\\ln q(s) - \\ln p(o, s)] \\ge -\\ln p(o) \\implies \\min \\mathcal{F}",
+        "operational_rule": "Subsystems must interact strictly across sensory and active Markov blanket states by minimizing prediction error; uninsulated reactive coupling is prohibited.",
+        "source": "LLM",
+        "domain": "Theoretical Neuroscience & Statistical Cybernetics (Karl Friston)",
+        "principle": "Free Energy Principle & Markov Blankets (Derived from L0-020)",
+        "delta_e1": 0.02,
+        "delta_e2": 0.0075,
+        "delta_e3": 0.018,
+        "aggregate_delta_e": 0.015,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Markov Blanket Predictive Feedback Loop",
+          "topology_type": "Insulated Generative Model with Dual Blanket Boundaries",
+          "topology_diagram": "[Internal Generative State] \u2500\u2500> [Active Blanket (Actions)] \u2500\u2500> [External Domain]\n               \u25b2                                                      \u2502\n               \u2502                                                      \u25bc\n       [Free Energy Minimizer] <\u2500\u2500 [Sensory Blanket (Observations)] <\u2500\u2500\u2518",
+          "subsystems": {
+            "Internal Generative Model": {
+              "role": "Maintains probabilistic priors over anticipated environmental message distributions.",
+              "invariant_rule": "Updates prior weights autonomously via observed prediction errors."
+            },
+            "Sensory-Active Markov Blanket": {
+              "role": "Provides formal statistical insulation shielding internal variables from external noise.",
+              "invariant_rule": "Direct RPC access bypassing blanket boundary triggers compile rejection."
+            },
+            "Variational Free Energy Resolver": {
+              "role": "Adjusts internal state parameters to minimize divergence between predicted and observed payloads.",
+              "invariant_rule": "Prioritizes actions that resolve interface ambiguity."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Anticipates dependency resolution bottlenecks before compilation stalls (+0.0120).",
+            "target_2_self_evaluator": "Filters spurious telemetry noise via predictive suppression (+0.0085).",
+            "target_3_control_group": "Mitigates network jitter and out-of-order packets via generative reconstruction (+0.0140)."
+          },
+          "tradeoffs": {
+            "strengths": "Proactive self-tuning resilience; shields subcomponents from external traffic spikes.",
+            "constraints": "Generative model inference incurs slight computational overhead on ingress."
+          }
+        }
+      },
+      {
+        "id": "L1-010",
+        "name": "Whiteheadian Event Concrescence & Prehension Directed Acyclic Mesh",
+        "level": "LEVEL_1_STRUCTURAL",
+        "statement": "Architectural state must emerge strictly as a partially ordered sequence of immutable event concrescences (actual occasions); static mutable entities are prohibited in favor of explicit prehension causal graphs.",
+        "formal_expression": "\\mathcal{S}(t) = \\bigoplus_{i=1}^k \\text{Concrescence}(e_i) \\quad \\text{where} \\quad e_i \\in \\text{ActualOccasions}",
+        "operational_rule": "Static state objects without discrete event lineage or explicit prehension DAG ordering are rejected by the compiler.",
+        "source": "LLM",
+        "domain": "Process Metaphysics & Causal Graph Theory (Alfred North Whitehead)",
+        "principle": "Concrescence of Actual Entities (Derived from L0-023)",
+        "delta_e1": 0.02,
+        "delta_e2": 0.0075,
+        "delta_e3": 0.012,
+        "aggregate_delta_e": 0.0132,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Epochal Concrescence Engine & Event Process Graph",
+          "topology_type": "Directed Acyclic Prehension Mesh",
+          "topology_diagram": "[Past Actual Occasions] \u2500\u2500(Prehensive Ingest)\u2500\u2500> [Concrescence Integrator]\n                                                            \u2502\n                                                            \u25bc\n                                              [Atomic Occasion Finalizer]\n                                                            \u2502\n                                                            \u25bc\n                                              [Immutable Historical Ledger]",
+          "subsystems": {
+            "Prehension Collector": {
+              "role": "Gathers causal influences from completed historical occasions across the DAG.",
+              "invariant_rule": "Preserves strict causal partial ordering without temporal paradoxes."
+            },
+            "Concrescence Integrator": {
+              "role": "Synthesizes competing inputs into an atomic, indivisible execution event.",
+              "invariant_rule": "Atomic occasions execute with total transactional isolation."
+            },
+            "Historical Horizon Ledger": {
+              "role": "Freezes finalized occasions into immutable anchors for future processes.",
+              "invariant_rule": "Retroactive modification of historical occasions is prohibited."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Eliminates race conditions in concurrent self-synthesis pipelines (+0.0130).",
+            "target_2_self_evaluator": "Provides complete mathematical provenance for every telemetry assertion (+0.0095).",
+            "target_3_control_group": "Guarantees Byzantine-tolerant causal ordering without distributed locks (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Total immunity to state mutations and concurrency deadlocks; perfect auditability.",
+            "constraints": "Requires periodic DAG snapshotting and compaction for memory reclamation."
+          }
+        }
+      }
+    ]
+  },
+  "candidate_pool": [
+    {
+      "id": "L1-008",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Landauer Thermodynamic Reversibility & Erasure Dissipation Accounting",
+      "statement": "Every lossy state transformation that discards intermediate execution bits must formally account for entropy dissipation, enforcing logically reversible morphisms for all core state kernels.",
+      "formal_expression": "\\Delta Q \\ge k_B T \\ln 2 \\cdot \\Delta H_{\\text{erasure}} \\implies \\text{Isomorphic}(\\text{Kernel})",
+      "operational_rule": "State mutations discarding intermediate histories without explicit dissipation audit channels or reversible inverse paths trigger compiler failure.",
+      "status": "ACTIVE",
+      "origin_epoch": 12,
+      "delta_e": 0.015,
+      "metadata": {
+        "exogenous_domain": "Physical Information Theory (Rolf Landauer)",
+        "source_principle": "Information Erasure Dissipation & Reversible Computing (Derived from L0-016/L0-022)",
+        "system_profile": {
+          "archetype": "Reversible Morphism Pipeline with Conservation Rails",
+          "topology_type": "Logically Reversible Morphism Mesh with Dissipation Sinks",
+          "topology_diagram": "[Ingress State S] \u2500\u2500> [Reversible Transition delta] \u2500\u2500> [Egress State S']\n                  \u2502                                         \u2502\n                  \u2514\u2500\u2500\u2500> [Conservation Audit Ledger] \u25c4\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                       \u2502\n                                       \u25bc\n                          [Entropy Dissipation Sink]",
+          "subsystems": {
+            "Reversible Morphism Kernel": {
+              "role": "Executes bijective transformations where each forward state transition has a computable backward inverse.",
+              "invariant_rule": "delta^-1(delta(S)) = S must hold without state loss."
+            },
+            "Entropy Dissipation Sink": {
+              "role": "Explicitly buffers and audits all discarded microstate bits at module boundaries.",
+              "invariant_rule": "Bit-erasure events must log minimal thermodynamic accounting traces."
+            },
+            "Microstate Invertibility Verifier": {
+              "role": "Proves that critical transaction histories can be rewound without relying on external snapshots.",
+              "invariant_rule": "Irreversible side-effects inside core reducers are rejected."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Eliminates state destruction during recursive self-compilation (+0.0110).",
+            "target_2_self_evaluator": "Enables bit-exact state rewind and deterministic debugging across epochs (+0.0090).",
+            "target_3_control_group": "Guarantees lossless message deduplication in Byzantine consensus (+0.0135)."
+          },
+          "tradeoffs": {
+            "strengths": "Provable zero data loss; mathematically reversible transactions eliminate rollback complexity.",
+            "constraints": "Reversibility tracking requires dedicated dissipation buffer channels."
+          }
+        }
+      }
+    },
+    {
+      "id": "L1-009",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Active Inference Generative Filter & Markov Blanket Isolation",
+      "statement": "Subsystems must maintain internal generative models of their interface environments, executing state transitions that minimize variational free energy across insulating sensory and active Markov blankets.",
+      "formal_expression": "\\mathcal{F}(s, o) = \\mathbb{E}_q[\\ln q(s) - \\ln p(o, s)] \\ge -\\ln p(o) \\implies \\min \\mathcal{F}",
+      "operational_rule": "Subsystems must interact strictly across sensory and active Markov blanket states by minimizing prediction error; uninsulated reactive coupling is prohibited.",
+      "status": "REJECTED",
+      "origin_epoch": 12,
+      "delta_e": 0.015,
+      "metadata": {
+        "exogenous_domain": "Theoretical Neuroscience & Statistical Cybernetics (Karl Friston)",
+        "source_principle": "Free Energy Principle & Markov Blankets (Derived from L0-020)",
+        "system_profile": {
+          "archetype": "Markov Blanket Predictive Feedback Loop",
+          "topology_type": "Insulated Generative Model with Dual Blanket Boundaries",
+          "topology_diagram": "[Internal Generative State] \u2500\u2500> [Active Blanket (Actions)] \u2500\u2500> [External Domain]\n               \u25b2                                                      \u2502\n               \u2502                                                      \u25bc\n       [Free Energy Minimizer] <\u2500\u2500 [Sensory Blanket (Observations)] <\u2500\u2500\u2518",
+          "subsystems": {
+            "Internal Generative Model": {
+              "role": "Maintains probabilistic priors over anticipated environmental message distributions.",
+              "invariant_rule": "Updates prior weights autonomously via observed prediction errors."
+            },
+            "Sensory-Active Markov Blanket": {
+              "role": "Provides formal statistical insulation shielding internal variables from external noise.",
+              "invariant_rule": "Direct RPC access bypassing blanket boundary triggers compile rejection."
+            },
+            "Variational Free Energy Resolver": {
+              "role": "Adjusts internal state parameters to minimize divergence between predicted and observed payloads.",
+              "invariant_rule": "Prioritizes actions that resolve interface ambiguity."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Anticipates dependency resolution bottlenecks before compilation stalls (+0.0120).",
+            "target_2_self_evaluator": "Filters spurious telemetry noise via predictive suppression (+0.0085).",
+            "target_3_control_group": "Mitigates network jitter and out-of-order packets via generative reconstruction (+0.0140)."
+          },
+          "tradeoffs": {
+            "strengths": "Proactive self-tuning resilience; shields subcomponents from external traffic spikes.",
+            "constraints": "Generative model inference incurs slight computational overhead on ingress."
+          }
+        }
+      }
+    },
+    {
+      "id": "L1-010",
+      "level": "LEVEL_1_STRUCTURAL",
+      "name": "Whiteheadian Event Concrescence & Prehension Directed Acyclic Mesh",
+      "statement": "Architectural state must emerge strictly as a partially ordered sequence of immutable event concrescences (actual occasions); static mutable entities are prohibited in favor of explicit prehension causal graphs.",
+      "formal_expression": "\\mathcal{S}(t) = \\bigoplus_{i=1}^k \\text{Concrescence}(e_i) \\quad \\text{where} \\quad e_i \\in \\text{ActualOccasions}",
+      "operational_rule": "Static state objects without discrete event lineage or explicit prehension DAG ordering are rejected by the compiler.",
+      "status": "REJECTED",
+      "origin_epoch": 12,
+      "delta_e": 0.0132,
+      "metadata": {
+        "exogenous_domain": "Process Metaphysics & Causal Graph Theory (Alfred North Whitehead)",
+        "source_principle": "Concrescence of Actual Entities (Derived from L0-023)",
+        "system_profile": {
+          "archetype": "Epochal Concrescence Engine & Event Process Graph",
+          "topology_type": "Directed Acyclic Prehension Mesh",
+          "topology_diagram": "[Past Actual Occasions] \u2500\u2500(Prehensive Ingest)\u2500\u2500> [Concrescence Integrator]\n                                                            \u2502\n                                                            \u25bc\n                                              [Atomic Occasion Finalizer]\n                                                            \u2502\n                                                            \u25bc\n                                              [Immutable Historical Ledger]",
+          "subsystems": {
+            "Prehension Collector": {
+              "role": "Gathers causal influences from completed historical occasions across the DAG.",
+              "invariant_rule": "Preserves strict causal partial ordering without temporal paradoxes."
+            },
+            "Concrescence Integrator": {
+              "role": "Synthesizes competing inputs into an atomic, indivisible execution event.",
+              "invariant_rule": "Atomic occasions execute with total transactional isolation."
+            },
+            "Historical Horizon Ledger": {
+              "role": "Freezes finalized occasions into immutable anchors for future processes.",
+              "invariant_rule": "Retroactive modification of historical occasions is prohibited."
+            }
+          },
+          "target_behaviors": {
+            "target_1_self_constructor": "Eliminates race conditions in concurrent self-synthesis pipelines (+0.0130).",
+            "target_2_self_evaluator": "Provides complete mathematical provenance for every telemetry assertion (+0.0095).",
+            "target_3_control_group": "Guarantees Byzantine-tolerant causal ordering without distributed locks (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Total immunity to state mutations and concurrency deadlocks; perfect auditability.",
+            "constraints": "Requires periodic DAG snapshotting and compaction for memory reclamation."
+          }
+        }
+      }
+    }
+  ],
+  "tournament_leaderboard": [
+    {
+      "id": "L1-008",
+      "name": "Landauer Thermodynamic Reversibility & Erasure Dissipation Accounting",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Every lossy state transformation that discards intermediate execution bits must formally account for entropy dissipation, enforcing logically reversible morphisms for all core state kernels.",
+      "formal_expression": "\\Delta Q \\ge k_B T \\ln 2 \\cdot \\Delta H_{\\text{erasure}} \\implies \\text{Isomorphic}(\\text{Kernel})",
+      "operational_rule": "State mutations discarding intermediate histories without explicit dissipation audit channels or reversible inverse paths trigger compiler failure.",
+      "source": "LLM",
+      "domain": "Physical Information Theory (Rolf Landauer)",
+      "principle": "Information Erasure Dissipation & Reversible Computing (Derived from L0-016/L0-022)",
+      "delta_e1": 0.01,
+      "delta_e2": 0.0225,
+      "delta_e3": 0.012,
+      "aggregate_delta_e": 0.015,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Reversible Morphism Pipeline with Conservation Rails",
+        "topology_type": "Logically Reversible Morphism Mesh with Dissipation Sinks",
+        "topology_diagram": "[Ingress State S] \u2500\u2500> [Reversible Transition delta] \u2500\u2500> [Egress State S']\n                  \u2502                                         \u2502\n                  \u2514\u2500\u2500\u2500> [Conservation Audit Ledger] \u25c4\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                                       \u2502\n                                       \u25bc\n                          [Entropy Dissipation Sink]",
+        "subsystems": {
+          "Reversible Morphism Kernel": {
+            "role": "Executes bijective transformations where each forward state transition has a computable backward inverse.",
+            "invariant_rule": "delta^-1(delta(S)) = S must hold without state loss."
+          },
+          "Entropy Dissipation Sink": {
+            "role": "Explicitly buffers and audits all discarded microstate bits at module boundaries.",
+            "invariant_rule": "Bit-erasure events must log minimal thermodynamic accounting traces."
+          },
+          "Microstate Invertibility Verifier": {
+            "role": "Proves that critical transaction histories can be rewound without relying on external snapshots.",
+            "invariant_rule": "Irreversible side-effects inside core reducers are rejected."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Eliminates state destruction during recursive self-compilation (+0.0110).",
+          "target_2_self_evaluator": "Enables bit-exact state rewind and deterministic debugging across epochs (+0.0090).",
+          "target_3_control_group": "Guarantees lossless message deduplication in Byzantine consensus (+0.0135)."
+        },
+        "tradeoffs": {
+          "strengths": "Provable zero data loss; mathematically reversible transactions eliminate rollback complexity.",
+          "constraints": "Reversibility tracking requires dedicated dissipation buffer channels."
+        }
+      }
+    },
+    {
+      "id": "L1-009",
+      "name": "Active Inference Generative Filter & Markov Blanket Isolation",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Subsystems must maintain internal generative models of their interface environments, executing state transitions that minimize variational free energy across insulating sensory and active Markov blankets.",
+      "formal_expression": "\\mathcal{F}(s, o) = \\mathbb{E}_q[\\ln q(s) - \\ln p(o, s)] \\ge -\\ln p(o) \\implies \\min \\mathcal{F}",
+      "operational_rule": "Subsystems must interact strictly across sensory and active Markov blanket states by minimizing prediction error; uninsulated reactive coupling is prohibited.",
+      "source": "LLM",
+      "domain": "Theoretical Neuroscience & Statistical Cybernetics (Karl Friston)",
+      "principle": "Free Energy Principle & Markov Blankets (Derived from L0-020)",
+      "delta_e1": 0.02,
+      "delta_e2": 0.0075,
+      "delta_e3": 0.018,
+      "aggregate_delta_e": 0.015,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Markov Blanket Predictive Feedback Loop",
+        "topology_type": "Insulated Generative Model with Dual Blanket Boundaries",
+        "topology_diagram": "[Internal Generative State] \u2500\u2500> [Active Blanket (Actions)] \u2500\u2500> [External Domain]\n               \u25b2                                                      \u2502\n               \u2502                                                      \u25bc\n       [Free Energy Minimizer] <\u2500\u2500 [Sensory Blanket (Observations)] <\u2500\u2500\u2518",
+        "subsystems": {
+          "Internal Generative Model": {
+            "role": "Maintains probabilistic priors over anticipated environmental message distributions.",
+            "invariant_rule": "Updates prior weights autonomously via observed prediction errors."
+          },
+          "Sensory-Active Markov Blanket": {
+            "role": "Provides formal statistical insulation shielding internal variables from external noise.",
+            "invariant_rule": "Direct RPC access bypassing blanket boundary triggers compile rejection."
+          },
+          "Variational Free Energy Resolver": {
+            "role": "Adjusts internal state parameters to minimize divergence between predicted and observed payloads.",
+            "invariant_rule": "Prioritizes actions that resolve interface ambiguity."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Anticipates dependency resolution bottlenecks before compilation stalls (+0.0120).",
+          "target_2_self_evaluator": "Filters spurious telemetry noise via predictive suppression (+0.0085).",
+          "target_3_control_group": "Mitigates network jitter and out-of-order packets via generative reconstruction (+0.0140)."
+        },
+        "tradeoffs": {
+          "strengths": "Proactive self-tuning resilience; shields subcomponents from external traffic spikes.",
+          "constraints": "Generative model inference incurs slight computational overhead on ingress."
+        }
+      }
+    },
+    {
+      "id": "L1-010",
+      "name": "Whiteheadian Event Concrescence & Prehension Directed Acyclic Mesh",
+      "level": "LEVEL_1_STRUCTURAL",
+      "statement": "Architectural state must emerge strictly as a partially ordered sequence of immutable event concrescences (actual occasions); static mutable entities are prohibited in favor of explicit prehension causal graphs.",
+      "formal_expression": "\\mathcal{S}(t) = \\bigoplus_{i=1}^k \\text{Concrescence}(e_i) \\quad \\text{where} \\quad e_i \\in \\text{ActualOccasions}",
+      "operational_rule": "Static state objects without discrete event lineage or explicit prehension DAG ordering are rejected by the compiler.",
+      "source": "LLM",
+      "domain": "Process Metaphysics & Causal Graph Theory (Alfred North Whitehead)",
+      "principle": "Concrescence of Actual Entities (Derived from L0-023)",
+      "delta_e1": 0.02,
+      "delta_e2": 0.0075,
+      "delta_e3": 0.012,
+      "aggregate_delta_e": 0.0132,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Epochal Concrescence Engine & Event Process Graph",
+        "topology_type": "Directed Acyclic Prehension Mesh",
+        "topology_diagram": "[Past Actual Occasions] \u2500\u2500(Prehensive Ingest)\u2500\u2500> [Concrescence Integrator]\n                                                            \u2502\n                                                            \u25bc\n                                              [Atomic Occasion Finalizer]\n                                                            \u2502\n                                                            \u25bc\n                                              [Immutable Historical Ledger]",
+        "subsystems": {
+          "Prehension Collector": {
+            "role": "Gathers causal influences from completed historical occasions across the DAG.",
+            "invariant_rule": "Preserves strict causal partial ordering without temporal paradoxes."
+          },
+          "Concrescence Integrator": {
+            "role": "Synthesizes competing inputs into an atomic, indivisible execution event.",
+            "invariant_rule": "Atomic occasions execute with total transactional isolation."
+          },
+          "Historical Horizon Ledger": {
+            "role": "Freezes finalized occasions into immutable anchors for future processes.",
+            "invariant_rule": "Retroactive modification of historical occasions is prohibited."
+          }
+        },
+        "target_behaviors": {
+          "target_1_self_constructor": "Eliminates race conditions in concurrent self-synthesis pipelines (+0.0130).",
+          "target_2_self_evaluator": "Provides complete mathematical provenance for every telemetry assertion (+0.0095).",
+          "target_3_control_group": "Guarantees Byzantine-tolerant causal ordering without distributed locks (+0.0150)."
+        },
+        "tradeoffs": {
+          "strengths": "Total immunity to state mutations and concurrency deadlocks; perfect auditability.",
+          "constraints": "Requires periodic DAG snapshotting and compaction for memory reclamation."
+        }
+      }
+    }
+  ],
+  "decision": "Committed Tournament Winner [L1-008] (+0.0150)",
+  "jettison_triggered": false
+}

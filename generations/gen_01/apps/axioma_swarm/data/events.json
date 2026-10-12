@@ -1,0 +1,50 @@
+[
+  {
+    "event_id": "evt_ecbfcbc0",
+    "event_type": "TASK_QUEUED",
+    "payload": {
+      "task": {
+        "task_id": "task_6545b24c",
+        "prompt": "Test dispatch API prompt",
+        "specialty_required": "FAST_SUMMARY",
+        "target_model_id": "phi-3.5-mini",
+        "priority": "HIGH",
+        "status": "QUEUED",
+        "tokens_processed": 0,
+        "vram_lease_mb": 0,
+        "latency_ms": 0.0,
+        "created_at": 1791841996.888651,
+        "completed_at": null,
+        "result_output": null,
+        "error_witness": null
+      }
+    },
+    "timestamp": 1791841996.8886652
+  },
+  {
+    "event_id": "evt_ff9ecc70",
+    "event_type": "MODEL_LOADED",
+    "payload": {
+      "model_id": "phi-3.5-mini"
+    },
+    "timestamp": 1791841996.8890162
+  },
+  {
+    "event_id": "evt_ae473651",
+    "event_type": "TASK_DISPATCHED",
+    "payload": {
+      "task_id": "task_6545b24c",
+      "model_id": "phi-3.5-mini"
+    },
+    "timestamp": 1791841996.889225
+  },
+  {
+    "event_id": "evt_cb312759",
+    "event_type": "TASK_COMPLETED",
+    "payload": {
+      "task_id": "task_6545b24c",
+      "latency_ms": 17.97
+    },
+    "timestamp": 1791841996.907229
+  }
+]

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axioma Swarm • Local LLM Edge Orchestrator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-brand">
+            <span class="brand-icon">⬡</span>
+            <div class="brand-text">
+                <h1>AXIOMA SWARM</h1>
+                <span class="subtitle">System 06 • Edge LLM Micro-Swarm Daemon & VRAM Lifecycle Kernel</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <div class="telemetry-badge" id="badge-enclave">ENCLAVE: ACTIVE [L1-016]</div>
+            <div class="telemetry-badge" id="badge-vram">VRAM: 0MB / 0MB [L1-008]</div>
+            <div class="telemetry-badge" id="badge-events">EVENTS: 0 [L1-002]</div>
+            <button class="btn btn-secondary" onclick="openFeedbackModal()">
+                <span>💬 Feedback</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-layout">
+        <!-- VRAM TOPOLOGY BAR (Full Width Hero) -->
+        <section class="card vram-topology-card">
+            <div class="card-header">
+                <div class="topology-title-block">
+                    <h2>Physical VRAM Allocation Topology</h2>
+                    <span class="card-caption" id="device-name-caption">Device: Detecting Hardware Memory Controller...</span>
+                </div>
+                <div class="vram-stat-chips">
+                    <span class="stat-chip" id="chip-allocated">Allocated: 0 MB</span>
+                    <span class="stat-chip highlight-green" id="chip-available">Available: 0 MB</span>
+                    <span class="stat-chip highlight-amber" id="chip-reserved">OS Reserved: 2048 MB</span>
+                </div>
+            </div>
+
+            <!-- Segmented Progress Bar -->
+            <div class="vram-bar-container">
+                <div class="vram-bar" id="vram-bar-allocated" style="width: 0%;"></div>
+                <div class="vram-bar vram-bar-reserved" style="width: 12.5%;"></div>
+            </div>
+            <div class="vram-bar-labels">
+                <span>0 MB</span>
+                <span id="vram-threshold-label">Usable Ceiling: 14,336 MB</span>
+                <span id="vram-total-label">16,384 MB (Max)</span>
+            </div>
+        </section>
+
+        <!-- SPLIT WORKBENCH -->
+        <div class="workbench-grid">
+            <!-- LEFT: Model Residency Rack -->
+            <section class="card model-rack-card">
+                <div class="card-header">
+                    <div>
+                        <h2>Model Residency Rack</h2>
+                        <span class="card-caption">Quantized local models managed under deterministic LRU eviction.</span>
+                    </div>
+                    <span class="tag-badge" id="resident-count-badge">0 RESIDENT</span>
+                </div>
+                <div id="model-rack-list" class="model-rack-container">
+                    <div class="loading-placeholder">Loading model descriptors...</div>
+                </div>
+            </section>
+
+            <!-- RIGHT: Task Dispatch Console & Live Swarm Log -->
+            <section class="panel-dispatch">
+                <!-- Dispatch Form -->
+                <div class="card dispatch-card">
+                    <div class="card-header">
+                        <h2>Edge Task Dispatch Console</h2>
+                        <span class="tag-badge">Zero-Trust Isolation [L1-015]</span>
+                    </div>
+                    <form id="dispatch-form" onsubmit="handleDispatchTask(event)">
+                        <div class="form-row">
+                            <textarea id="task-prompt" rows="3" placeholder="Enter task prompt (e.g. Synthesize AC-3 constraint solver in Python standard library)..." required autofocus></textarea>
+                        </div>
+                        <div class="form-row-multi">
+                            <div class="form-group">
+                                <label for="task-specialty">Specialty Routing</label>
+                                <select id="task-specialty">
+                                    <option value="CODING">CODING (Qwen 2.5 Coder)</option>
+                                    <option value="REASONING">REASONING (Llama 3.2 / DeepSeek R1)</option>
+                                    <option value="FAST_SUMMARY">FAST_SUMMARY (Phi 3.5 Mini)</option>
+                                    <option value="VISION_EMBEDDING">VISION_EMBEDDING (BGE Large)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="task-priority">Queue Priority</label>
+                                <select id="task-priority">
+                                    <option value="HIGH">HIGH (Preemptive)</option>
+                                    <option value="NORMAL" selected>NORMAL</option>
+                                    <option value="BATCH">BATCH (Background)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="task-target-model">Override Model</label>
+                                <select id="task-target-model">
+                                    <option value="">Auto-Route by Specialty</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="btn-dispatch">
+                                <span>⚡ Dispatch to Swarm</span>
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="dispatchFaultInjectionTest()" title="Trigger simulated memory fault to verify L1-016 Exception Enclave containment">
+                                <span>🛡️ Test Enclave Blast-Radius</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Active & Historical Tasks -->
+                <div class="card task-feed-card">
+                    <div class="card-header">
+                        <div>
+                            <h2>Swarm Execution Stream</h2>
+                            <span class="card-caption">Subprocess enclave execution with latency & token metrics.</span>
+                        </div>
+                        <span class="counter-badge" id="tasks-count-badge">0 tasks</span>
+                    </div>
+                    <div id="tasks-stream-list" class="tasks-stream-container">
+                        <div class="loading-placeholder">No tasks dispatched yet.</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Transgenerational Feedback Modal -->
+    <div class="modal-backdrop" id="feedback-modal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Submit Transgenerational User Feedback</h3>
+                <button class="modal-close" onclick="closeFeedbackModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">
+                    Your observations on local model swapping latency, VRAM allocation stability, or ergonomic friction are recorded directly into the Generation 1 learning dossier.
+                </p>
+                <div class="form-group">
+                    <label for="fb-category">Category</label>
+                    <select id="fb-category">
+                        <option value="vram_allocation">VRAM Allocation & OOM Gates</option>
+                        <option value="swapping_latency">Model Swapping & LRU Eviction</option>
+                        <option value="enclave_containment">Exception Enclave Safety</option>
+                        <option value="workflow_ergonomics">Task Dispatch Ergonomics</option>
+                        <option value="general">General System Architecture</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fb-comment">Observations & Recommendations</label>
+                    <textarea id="fb-comment" rows="4" placeholder="Detail any memory thrashing, unexpected allocator behavior, or latency concerns..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeFeedbackModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitFeedback()">Submit to Ledger</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

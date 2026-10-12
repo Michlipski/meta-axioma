@@ -1,0 +1,506 @@
+{
+  "epoch": 8,
+  "timestamp": "2026-10-10T15:34:44.799582",
+  "phase": "PHASE_1_META_EXPLORATION",
+  "current_efficacy": 1.0946,
+  "efficacy_derivative": 0.0087,
+  "active_l0_count": 9,
+  "active_l1_count": 1,
+  "total_active": 10,
+  "compute_budget": {
+    "active_axiom_count": 9,
+    "token_budget": 2000,
+    "simulation_depth": 2,
+    "decay_factor": 0.2
+  },
+  "candidate_axiom": {
+    "id": "L0-021",
+    "level": "LEVEL_0_EPISTEMIC",
+    "name": "Quantum Superposition Demarcation & Decoherence Measurement",
+    "statement": "Exploratory candidate trajectories may evolve in superposition across multiple parallel topologies until explicit measurement against target invariants collapses the wavefunction into stable pointer states.",
+    "formal_expression": "|\\Psi\\rangle = \\sum_i c_i |S_i\\rangle \\xrightarrow{\\text{Measure}(\\mathcal{T})} |S_{\\text{pointer}}\\rangle",
+    "operational_rule": "Premature pruning of non-orthogonal architectural states before target interaction is prohibited.",
+    "status": "ACTIVE",
+    "origin_epoch": 8,
+    "delta_e": 0.008,
+    "metadata": {
+      "exogenous_domain": "Quantum Foundations (John von Neumann & Wojciech Zurek)",
+      "source_principle": "Environmental Decoherence and Pointer State Selection",
+      "system_profile": {
+        "archetype": "Quantum Branch Evaluator & Decoherence Filter",
+        "topology_type": "Multi-Path Superposition Lattice with Measurement Collapser",
+        "topology_diagram": "[Candidate Inception] \u2500\u2500> [Superposition Branch Forker]\n                                         \u2502\n                                         \u251c\u2500\u2500 Branch A (|S1>)\n                                         \u251c\u2500\u2500 Branch B (|S2>)\n                                         \u2514\u2500\u2500 Branch C (|S3>)\n                                         \u2502\n                                         \u25bc\n                               [Target Invariant Measurement] \u2500\u2500> [Collapsed Pointer State]",
+        "subsystems": {
+          "Superposition Branch Forker": {
+            "role": "Maintains multiple competing architectural configurations concurrently.",
+            "invariant_rule": "Branches remain in parallel exploration without cross-talk."
+          },
+          "Decoherence Target Harness": {
+            "role": "Simulates environmental interaction with validation targets.",
+            "invariant_rule": "Measurement must project states onto orthogonal basis vectors."
+          },
+          "Pointer State Selector": {
+            "role": "Selects the most robust, environmentally stable configuration post-measurement.",
+            "invariant_rule": "Rejects states that exhibit high entanglement-induced fragility."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Maximizes breadth of concurrent exploratory paths (+0.0170).",
+          "target_e2_velocity": "Evaluates multiple topological variants in a single pass (+0.0130).",
+          "target_e3_yield": "Discovers non-intuitive optimal architectures through interference (+0.0140)."
+        },
+        "tradeoffs": {
+          "strengths": "Avoids premature commitment to sub-optimal local designs.",
+          "constraints": "Higher compute footprint to track multiple parallel branches."
+        }
+      }
+    }
+  },
+  "tri_fold_metrics": {
+    "delta_e1": 0.0144,
+    "delta_e2": 0.0032,
+    "delta_e3": 0.006,
+    "aggregate_delta_e": 0.008,
+    "target_details": {
+      "target_e1_diversity": {
+        "success": true,
+        "delta": 0.0144,
+        "violations": [],
+        "tokens": 1212,
+        "depth": 2
+      },
+      "target_e2_velocity": {
+        "success": true,
+        "delta": 0.0032,
+        "violations": [],
+        "tokens": 1518,
+        "depth": 2
+      },
+      "target_e3_yield": {
+        "success": true,
+        "delta": 0.006,
+        "violations": [],
+        "tokens": 1718,
+        "depth": 2
+      }
+    }
+  },
+  "user_candidate": null,
+  "user_metrics": null,
+  "comparative_summary": {
+    "pool_size": 3,
+    "top_candidate_id": "L0-021",
+    "top_candidate_name": "Quantum Superposition Demarcation & Decoherence Measurement",
+    "top_aggregate_delta_e": 0.008,
+    "runner_up_id": "L0-019",
+    "runner_up_delta_e": 0.0066,
+    "delta_diff": 0.0014,
+    "leaderboard": [
+      {
+        "id": "L0-021",
+        "name": "Quantum Superposition Demarcation & Decoherence Measurement",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "Exploratory candidate trajectories may evolve in superposition across multiple parallel topologies until explicit measurement against target invariants collapses the wavefunction into stable pointer states.",
+        "formal_expression": "|\\Psi\\rangle = \\sum_i c_i |S_i\\rangle \\xrightarrow{\\text{Measure}(\\mathcal{T})} |S_{\\text{pointer}}\\rangle",
+        "operational_rule": "Premature pruning of non-orthogonal architectural states before target interaction is prohibited.",
+        "source": "LLM",
+        "domain": "Quantum Foundations (John von Neumann & Wojciech Zurek)",
+        "principle": "Environmental Decoherence and Pointer State Selection",
+        "delta_e1": 0.0144,
+        "delta_e2": 0.0032,
+        "delta_e3": 0.006,
+        "aggregate_delta_e": 0.008,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Quantum Branch Evaluator & Decoherence Filter",
+          "topology_type": "Multi-Path Superposition Lattice with Measurement Collapser",
+          "topology_diagram": "[Candidate Inception] \u2500\u2500> [Superposition Branch Forker]\n                                         \u2502\n                                         \u251c\u2500\u2500 Branch A (|S1>)\n                                         \u251c\u2500\u2500 Branch B (|S2>)\n                                         \u2514\u2500\u2500 Branch C (|S3>)\n                                         \u2502\n                                         \u25bc\n                               [Target Invariant Measurement] \u2500\u2500> [Collapsed Pointer State]",
+          "subsystems": {
+            "Superposition Branch Forker": {
+              "role": "Maintains multiple competing architectural configurations concurrently.",
+              "invariant_rule": "Branches remain in parallel exploration without cross-talk."
+            },
+            "Decoherence Target Harness": {
+              "role": "Simulates environmental interaction with validation targets.",
+              "invariant_rule": "Measurement must project states onto orthogonal basis vectors."
+            },
+            "Pointer State Selector": {
+              "role": "Selects the most robust, environmentally stable configuration post-measurement.",
+              "invariant_rule": "Rejects states that exhibit high entanglement-induced fragility."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Maximizes breadth of concurrent exploratory paths (+0.0170).",
+            "target_e2_velocity": "Evaluates multiple topological variants in a single pass (+0.0130).",
+            "target_e3_yield": "Discovers non-intuitive optimal architectures through interference (+0.0140)."
+          },
+          "tradeoffs": {
+            "strengths": "Avoids premature commitment to sub-optimal local designs.",
+            "constraints": "Higher compute footprint to track multiple parallel branches."
+          }
+        }
+      },
+      {
+        "id": "L0-019",
+        "name": "Leibniz's Identity of Indiscernibles & Bisimulation",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "Subsystems exhibiting identical observational behaviors across all operational contexts must be unified into a single canonical AST representation, eliminating superficial syntactical duplication.",
+        "formal_expression": "\\forall x, y \\; (\\forall P \\; (P(x) \\leftrightarrow P(y)) \\implies x = y)",
+        "operational_rule": "Components that are observationally bisimilar but syntactically separated are collapsed into single canonical primitives.",
+        "source": "LLM",
+        "domain": "Philosophical Logic & Ontology (Gottfried Wilhelm Leibniz)",
+        "principle": "Principium Identitatis Indiscernibilium and Bisimulation",
+        "delta_e1": 0.0072,
+        "delta_e2": 0.0064,
+        "delta_e3": 0.006,
+        "aggregate_delta_e": 0.0066,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Bisimulation Extensionality Canonicalizer",
+          "topology_type": "Observational Equivalence Deduplication Pipeline",
+          "topology_diagram": "[Subsystem A] \u2500\u2500\u2510\n                 \u251c\u2500\u2500> [Bisimulation Game Engine] \u2500\u2500> [Equivalence Quotient]\n[Subsystem B] \u2500\u2500\u2518                                           \u2502\n                                                            \u25bc\n                                                [Canonical Unified Module]",
+          "subsystems": {
+            "Bisimulation Game Engine": {
+              "role": "Tests behavioral equivalence across all admissible input sequences.",
+              "invariant_rule": "Simulates step-by-step state matching between components."
+            },
+            "Equivalence Quotient Collapser": {
+              "role": "Replaces observationally identical modules with a single shared instance.",
+              "invariant_rule": "Guarantees zero divergence in compiled system outputs."
+            },
+            "Indiscernibility Invariant Guard": {
+              "role": "Prevents redundant re-implementation of existing subsystem capabilities.",
+              "invariant_rule": "Rejects proposals that merely re-skin existing functions."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Forces generators to invent genuinely novel behaviors (+0.0140).",
+            "target_e2_velocity": "Quickly identifies duplicate proposals across epochs (+0.0150).",
+            "target_e3_yield": "Yields ultra-compact, canonical system implementations (+0.0160)."
+          },
+          "tradeoffs": {
+            "strengths": "Drastically reduces codebase bloat and maintenance surface.",
+            "constraints": "Bisimulation checking is computationally intensive for complex state machines."
+          }
+        }
+      },
+      {
+        "id": "L0-020",
+        "name": "Active Inference & Variational Free Energy Minimization",
+        "level": "LEVEL_0_EPISTEMIC",
+        "statement": "Subsystems must maintain generative models of their interface environments, executing state transitions that minimize variational free energy (divergence between anticipated and observed messages).",
+        "formal_expression": "\\mathcal{F} = \\mathbb{E}_{q}[\\ln q(s) - \\ln p(o, s)] \\ge -\\ln p(o) \\implies \\min \\mathcal{F}",
+        "operational_rule": "Passive reactive modules lacking internal predictive models are deprecated in favor of active inference agents.",
+        "source": "LLM",
+        "domain": "Theoretical Neuroscience & Statistical Physics (Karl Friston)",
+        "principle": "Free Energy Principle and Markov Blankets",
+        "delta_e1": 0.0072,
+        "delta_e2": 0.0032,
+        "delta_e3": 0.006,
+        "aggregate_delta_e": 0.0054,
+        "is_strictly_improving": true,
+        "is_clean": true,
+        "system_profile": {
+          "archetype": "Generative Predictive State Filter & Active Invariant Regulator",
+          "topology_type": "Markov Blanket Predictive Feedback Loop",
+          "topology_diagram": "[Internal Generative Model] \u2500\u2500> [Top-Down Prediction]\n                                            \u2502\n                                            \u25bc\n[External Ingress Stream]  \u2500\u2500> [Sensory Markov Blanket] \u2500\u2500> [Prediction Error (Free Energy)]\n                                                                    \u2502\n                                                                    \u25bc\n                                                        [Active State Transition]",
+          "subsystems": {
+            "Internal Generative Model": {
+              "role": "Maintains probabilistic expectations of future environmental messages.",
+              "invariant_rule": "Continuously updates prior distributions using sensory feedback."
+            },
+            "Sensory Markov Blanket": {
+              "role": "Isolates internal states from external perturbations via formal boundary.",
+              "invariant_rule": "Information exchange must pass exclusively through blanket states."
+            },
+            "Free Energy Minimizer": {
+              "role": "Executes actions that resolve sensory prediction errors.",
+              "invariant_rule": "Minimizes variational upper bound on surprisal."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Introduces predictive cybernetics to distributed software (+0.0150).",
+            "target_e2_velocity": "Predicts component failures before RPC timeouts occur (+0.0160).",
+            "target_e3_yield": "Produces self-optimizing, adaptive system architectures (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Anticipates traffic spikes and faults proactively rather than reactively.",
+            "constraints": "Requires internal model maintenance and probabilistic inference compute."
+          }
+        }
+      }
+    ]
+  },
+  "candidate_pool": [
+    {
+      "id": "L0-019",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Leibniz's Identity of Indiscernibles & Bisimulation",
+      "statement": "Subsystems exhibiting identical observational behaviors across all operational contexts must be unified into a single canonical AST representation, eliminating superficial syntactical duplication.",
+      "formal_expression": "\\forall x, y \\; (\\forall P \\; (P(x) \\leftrightarrow P(y)) \\implies x = y)",
+      "operational_rule": "Components that are observationally bisimilar but syntactically separated are collapsed into single canonical primitives.",
+      "status": "REJECTED",
+      "origin_epoch": 8,
+      "delta_e": 0.0066,
+      "metadata": {
+        "exogenous_domain": "Philosophical Logic & Ontology (Gottfried Wilhelm Leibniz)",
+        "source_principle": "Principium Identitatis Indiscernibilium and Bisimulation",
+        "system_profile": {
+          "archetype": "Bisimulation Extensionality Canonicalizer",
+          "topology_type": "Observational Equivalence Deduplication Pipeline",
+          "topology_diagram": "[Subsystem A] \u2500\u2500\u2510\n                 \u251c\u2500\u2500> [Bisimulation Game Engine] \u2500\u2500> [Equivalence Quotient]\n[Subsystem B] \u2500\u2500\u2518                                           \u2502\n                                                            \u25bc\n                                                [Canonical Unified Module]",
+          "subsystems": {
+            "Bisimulation Game Engine": {
+              "role": "Tests behavioral equivalence across all admissible input sequences.",
+              "invariant_rule": "Simulates step-by-step state matching between components."
+            },
+            "Equivalence Quotient Collapser": {
+              "role": "Replaces observationally identical modules with a single shared instance.",
+              "invariant_rule": "Guarantees zero divergence in compiled system outputs."
+            },
+            "Indiscernibility Invariant Guard": {
+              "role": "Prevents redundant re-implementation of existing subsystem capabilities.",
+              "invariant_rule": "Rejects proposals that merely re-skin existing functions."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Forces generators to invent genuinely novel behaviors (+0.0140).",
+            "target_e2_velocity": "Quickly identifies duplicate proposals across epochs (+0.0150).",
+            "target_e3_yield": "Yields ultra-compact, canonical system implementations (+0.0160)."
+          },
+          "tradeoffs": {
+            "strengths": "Drastically reduces codebase bloat and maintenance surface.",
+            "constraints": "Bisimulation checking is computationally intensive for complex state machines."
+          }
+        }
+      }
+    },
+    {
+      "id": "L0-020",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Active Inference & Variational Free Energy Minimization",
+      "statement": "Subsystems must maintain generative models of their interface environments, executing state transitions that minimize variational free energy (divergence between anticipated and observed messages).",
+      "formal_expression": "\\mathcal{F} = \\mathbb{E}_{q}[\\ln q(s) - \\ln p(o, s)] \\ge -\\ln p(o) \\implies \\min \\mathcal{F}",
+      "operational_rule": "Passive reactive modules lacking internal predictive models are deprecated in favor of active inference agents.",
+      "status": "REJECTED",
+      "origin_epoch": 8,
+      "delta_e": 0.0054,
+      "metadata": {
+        "exogenous_domain": "Theoretical Neuroscience & Statistical Physics (Karl Friston)",
+        "source_principle": "Free Energy Principle and Markov Blankets",
+        "system_profile": {
+          "archetype": "Generative Predictive State Filter & Active Invariant Regulator",
+          "topology_type": "Markov Blanket Predictive Feedback Loop",
+          "topology_diagram": "[Internal Generative Model] \u2500\u2500> [Top-Down Prediction]\n                                            \u2502\n                                            \u25bc\n[External Ingress Stream]  \u2500\u2500> [Sensory Markov Blanket] \u2500\u2500> [Prediction Error (Free Energy)]\n                                                                    \u2502\n                                                                    \u25bc\n                                                        [Active State Transition]",
+          "subsystems": {
+            "Internal Generative Model": {
+              "role": "Maintains probabilistic expectations of future environmental messages.",
+              "invariant_rule": "Continuously updates prior distributions using sensory feedback."
+            },
+            "Sensory Markov Blanket": {
+              "role": "Isolates internal states from external perturbations via formal boundary.",
+              "invariant_rule": "Information exchange must pass exclusively through blanket states."
+            },
+            "Free Energy Minimizer": {
+              "role": "Executes actions that resolve sensory prediction errors.",
+              "invariant_rule": "Minimizes variational upper bound on surprisal."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Introduces predictive cybernetics to distributed software (+0.0150).",
+            "target_e2_velocity": "Predicts component failures before RPC timeouts occur (+0.0160).",
+            "target_e3_yield": "Produces self-optimizing, adaptive system architectures (+0.0150)."
+          },
+          "tradeoffs": {
+            "strengths": "Anticipates traffic spikes and faults proactively rather than reactively.",
+            "constraints": "Requires internal model maintenance and probabilistic inference compute."
+          }
+        }
+      }
+    },
+    {
+      "id": "L0-021",
+      "level": "LEVEL_0_EPISTEMIC",
+      "name": "Quantum Superposition Demarcation & Decoherence Measurement",
+      "statement": "Exploratory candidate trajectories may evolve in superposition across multiple parallel topologies until explicit measurement against target invariants collapses the wavefunction into stable pointer states.",
+      "formal_expression": "|\\Psi\\rangle = \\sum_i c_i |S_i\\rangle \\xrightarrow{\\text{Measure}(\\mathcal{T})} |S_{\\text{pointer}}\\rangle",
+      "operational_rule": "Premature pruning of non-orthogonal architectural states before target interaction is prohibited.",
+      "status": "ACTIVE",
+      "origin_epoch": 8,
+      "delta_e": 0.008,
+      "metadata": {
+        "exogenous_domain": "Quantum Foundations (John von Neumann & Wojciech Zurek)",
+        "source_principle": "Environmental Decoherence and Pointer State Selection",
+        "system_profile": {
+          "archetype": "Quantum Branch Evaluator & Decoherence Filter",
+          "topology_type": "Multi-Path Superposition Lattice with Measurement Collapser",
+          "topology_diagram": "[Candidate Inception] \u2500\u2500> [Superposition Branch Forker]\n                                         \u2502\n                                         \u251c\u2500\u2500 Branch A (|S1>)\n                                         \u251c\u2500\u2500 Branch B (|S2>)\n                                         \u2514\u2500\u2500 Branch C (|S3>)\n                                         \u2502\n                                         \u25bc\n                               [Target Invariant Measurement] \u2500\u2500> [Collapsed Pointer State]",
+          "subsystems": {
+            "Superposition Branch Forker": {
+              "role": "Maintains multiple competing architectural configurations concurrently.",
+              "invariant_rule": "Branches remain in parallel exploration without cross-talk."
+            },
+            "Decoherence Target Harness": {
+              "role": "Simulates environmental interaction with validation targets.",
+              "invariant_rule": "Measurement must project states onto orthogonal basis vectors."
+            },
+            "Pointer State Selector": {
+              "role": "Selects the most robust, environmentally stable configuration post-measurement.",
+              "invariant_rule": "Rejects states that exhibit high entanglement-induced fragility."
+            }
+          },
+          "target_behaviors": {
+            "target_e1_diversity": "Maximizes breadth of concurrent exploratory paths (+0.0170).",
+            "target_e2_velocity": "Evaluates multiple topological variants in a single pass (+0.0130).",
+            "target_e3_yield": "Discovers non-intuitive optimal architectures through interference (+0.0140)."
+          },
+          "tradeoffs": {
+            "strengths": "Avoids premature commitment to sub-optimal local designs.",
+            "constraints": "Higher compute footprint to track multiple parallel branches."
+          }
+        }
+      }
+    }
+  ],
+  "tournament_leaderboard": [
+    {
+      "id": "L0-021",
+      "name": "Quantum Superposition Demarcation & Decoherence Measurement",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "Exploratory candidate trajectories may evolve in superposition across multiple parallel topologies until explicit measurement against target invariants collapses the wavefunction into stable pointer states.",
+      "formal_expression": "|\\Psi\\rangle = \\sum_i c_i |S_i\\rangle \\xrightarrow{\\text{Measure}(\\mathcal{T})} |S_{\\text{pointer}}\\rangle",
+      "operational_rule": "Premature pruning of non-orthogonal architectural states before target interaction is prohibited.",
+      "source": "LLM",
+      "domain": "Quantum Foundations (John von Neumann & Wojciech Zurek)",
+      "principle": "Environmental Decoherence and Pointer State Selection",
+      "delta_e1": 0.0144,
+      "delta_e2": 0.0032,
+      "delta_e3": 0.006,
+      "aggregate_delta_e": 0.008,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Quantum Branch Evaluator & Decoherence Filter",
+        "topology_type": "Multi-Path Superposition Lattice with Measurement Collapser",
+        "topology_diagram": "[Candidate Inception] \u2500\u2500> [Superposition Branch Forker]\n                                         \u2502\n                                         \u251c\u2500\u2500 Branch A (|S1>)\n                                         \u251c\u2500\u2500 Branch B (|S2>)\n                                         \u2514\u2500\u2500 Branch C (|S3>)\n                                         \u2502\n                                         \u25bc\n                               [Target Invariant Measurement] \u2500\u2500> [Collapsed Pointer State]",
+        "subsystems": {
+          "Superposition Branch Forker": {
+            "role": "Maintains multiple competing architectural configurations concurrently.",
+            "invariant_rule": "Branches remain in parallel exploration without cross-talk."
+          },
+          "Decoherence Target Harness": {
+            "role": "Simulates environmental interaction with validation targets.",
+            "invariant_rule": "Measurement must project states onto orthogonal basis vectors."
+          },
+          "Pointer State Selector": {
+            "role": "Selects the most robust, environmentally stable configuration post-measurement.",
+            "invariant_rule": "Rejects states that exhibit high entanglement-induced fragility."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Maximizes breadth of concurrent exploratory paths (+0.0170).",
+          "target_e2_velocity": "Evaluates multiple topological variants in a single pass (+0.0130).",
+          "target_e3_yield": "Discovers non-intuitive optimal architectures through interference (+0.0140)."
+        },
+        "tradeoffs": {
+          "strengths": "Avoids premature commitment to sub-optimal local designs.",
+          "constraints": "Higher compute footprint to track multiple parallel branches."
+        }
+      }
+    },
+    {
+      "id": "L0-019",
+      "name": "Leibniz's Identity of Indiscernibles & Bisimulation",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "Subsystems exhibiting identical observational behaviors across all operational contexts must be unified into a single canonical AST representation, eliminating superficial syntactical duplication.",
+      "formal_expression": "\\forall x, y \\; (\\forall P \\; (P(x) \\leftrightarrow P(y)) \\implies x = y)",
+      "operational_rule": "Components that are observationally bisimilar but syntactically separated are collapsed into single canonical primitives.",
+      "source": "LLM",
+      "domain": "Philosophical Logic & Ontology (Gottfried Wilhelm Leibniz)",
+      "principle": "Principium Identitatis Indiscernibilium and Bisimulation",
+      "delta_e1": 0.0072,
+      "delta_e2": 0.0064,
+      "delta_e3": 0.006,
+      "aggregate_delta_e": 0.0066,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Bisimulation Extensionality Canonicalizer",
+        "topology_type": "Observational Equivalence Deduplication Pipeline",
+        "topology_diagram": "[Subsystem A] \u2500\u2500\u2510\n                 \u251c\u2500\u2500> [Bisimulation Game Engine] \u2500\u2500> [Equivalence Quotient]\n[Subsystem B] \u2500\u2500\u2518                                           \u2502\n                                                            \u25bc\n                                                [Canonical Unified Module]",
+        "subsystems": {
+          "Bisimulation Game Engine": {
+            "role": "Tests behavioral equivalence across all admissible input sequences.",
+            "invariant_rule": "Simulates step-by-step state matching between components."
+          },
+          "Equivalence Quotient Collapser": {
+            "role": "Replaces observationally identical modules with a single shared instance.",
+            "invariant_rule": "Guarantees zero divergence in compiled system outputs."
+          },
+          "Indiscernibility Invariant Guard": {
+            "role": "Prevents redundant re-implementation of existing subsystem capabilities.",
+            "invariant_rule": "Rejects proposals that merely re-skin existing functions."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Forces generators to invent genuinely novel behaviors (+0.0140).",
+          "target_e2_velocity": "Quickly identifies duplicate proposals across epochs (+0.0150).",
+          "target_e3_yield": "Yields ultra-compact, canonical system implementations (+0.0160)."
+        },
+        "tradeoffs": {
+          "strengths": "Drastically reduces codebase bloat and maintenance surface.",
+          "constraints": "Bisimulation checking is computationally intensive for complex state machines."
+        }
+      }
+    },
+    {
+      "id": "L0-020",
+      "name": "Active Inference & Variational Free Energy Minimization",
+      "level": "LEVEL_0_EPISTEMIC",
+      "statement": "Subsystems must maintain generative models of their interface environments, executing state transitions that minimize variational free energy (divergence between anticipated and observed messages).",
+      "formal_expression": "\\mathcal{F} = \\mathbb{E}_{q}[\\ln q(s) - \\ln p(o, s)] \\ge -\\ln p(o) \\implies \\min \\mathcal{F}",
+      "operational_rule": "Passive reactive modules lacking internal predictive models are deprecated in favor of active inference agents.",
+      "source": "LLM",
+      "domain": "Theoretical Neuroscience & Statistical Physics (Karl Friston)",
+      "principle": "Free Energy Principle and Markov Blankets",
+      "delta_e1": 0.0072,
+      "delta_e2": 0.0032,
+      "delta_e3": 0.006,
+      "aggregate_delta_e": 0.0054,
+      "is_strictly_improving": true,
+      "is_clean": true,
+      "system_profile": {
+        "archetype": "Generative Predictive State Filter & Active Invariant Regulator",
+        "topology_type": "Markov Blanket Predictive Feedback Loop",
+        "topology_diagram": "[Internal Generative Model] \u2500\u2500> [Top-Down Prediction]\n                                            \u2502\n                                            \u25bc\n[External Ingress Stream]  \u2500\u2500> [Sensory Markov Blanket] \u2500\u2500> [Prediction Error (Free Energy)]\n                                                                    \u2502\n                                                                    \u25bc\n                                                        [Active State Transition]",
+        "subsystems": {
+          "Internal Generative Model": {
+            "role": "Maintains probabilistic expectations of future environmental messages.",
+            "invariant_rule": "Continuously updates prior distributions using sensory feedback."
+          },
+          "Sensory Markov Blanket": {
+            "role": "Isolates internal states from external perturbations via formal boundary.",
+            "invariant_rule": "Information exchange must pass exclusively through blanket states."
+          },
+          "Free Energy Minimizer": {
+            "role": "Executes actions that resolve sensory prediction errors.",
+            "invariant_rule": "Minimizes variational upper bound on surprisal."
+          }
+        },
+        "target_behaviors": {
+          "target_e1_diversity": "Introduces predictive cybernetics to distributed software (+0.0150).",
+          "target_e2_velocity": "Predicts component failures before RPC timeouts occur (+0.0160).",
+          "target_e3_yield": "Produces self-optimizing, adaptive system architectures (+0.0150)."
+        },
+        "tradeoffs": {
+          "strengths": "Anticipates traffic spikes and faults proactively rather than reactively.",
+          "constraints": "Requires internal model maintenance and probabilistic inference compute."
+        }
+      }
+    }
+  ],
+  "decision": "Committed Tournament Winner [L0-021] (+0.0080)",
+  "jettison_triggered": false
+}

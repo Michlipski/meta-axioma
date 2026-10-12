@@ -1,0 +1,32 @@
+{
+  "app_id": "axioma_eink",
+  "name": "Axioma E-Ink",
+  "version": "1.0.0",
+  "tagline": "Asynchronous Task Router & Ambient Glanceboard for E-Ink Displays",
+  "description": "A hardware-conscious task routing and ambient glanceboard system designed for electrophoretic (e-ink) displays. Features a zero-JS high-contrast static HTML display view with periodic meta-refresh, a daily Big 3-5 focus task model, append-only event-sourcing for offline reconciliation, and an interactive desktop E-Ink simulator.",
+  "generation_origin": "gen_01",
+  "target_persona": "Ambient Focus Worker & Workspace Architect",
+  "ergonomic_goals": [
+    "Zero-JavaScript E-Ink Display View (GET /display): guaranteed compatibility with Kindle and Kobo basic browsers without battery-draining sockets or script execution.",
+    "Hardware-conscious 1-bit typography: ultra-high-contrast monochrome styling with zero animation to eliminate electrophoretic ghosting and flashing.",
+    "Daily Big 3-5 Focus Architecture: eliminates decision fatigue by strictly bounding the active board to 3 to 5 high-impact tasks.",
+    "Functorial Event Sourcing (L1-002): state is derived from an append-only event stream, enabling clean offline reconciliation when e-ink devices reconnect.",
+    "Decoupled Partitioned Persistence (L1-011_3): independent event log and task snapshots ensuring atomic updates.",
+    "Interactive E-Ink Hardware Simulator: desktop preview showing exactly how the physical e-reader screen renders in real time.",
+    "Embedded Generational Feedback: in-app feedback modal funneling user observations into the G2 learning stream."
+  ],
+  "port": 8096,
+  "deep_ast_digest": "d7a41289cf1e2b489a8e0194bc0281938d9f10928a381023910fbc8148b19102",
+  "invariants_embodied": [
+    "L1-002",
+    "L1-004",
+    "L1-011_3",
+    "L1-008",
+    "L1-015",
+    "L1-016",
+    "L1-015_1"
+  ],
+  "entrypoint": "run.py",
+  "compiled_at": 1776009500.0,
+  "compiled_by": "System G_1 Compiler Engine"
+}

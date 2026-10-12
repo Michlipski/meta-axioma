@@ -1,0 +1,134 @@
+{
+  "ubiquitous": {
+    "word": "ubiquitous",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/juːˈbɪk.wə.t̬əs/",
+    "phonetic_uk": "/juːˈbɪk.wɪ.təs/",
+    "definition": "Present, appearing, or found everywhere at the same time.",
+    "example": "Smartphones have become ubiquitous in modern urban life.",
+    "synonyms": ["omnipresent", "pervasive", "universal"],
+    "antonyms": ["rare", "scarce", "uncommon"],
+    "translation_es": "ubicuo / omnipresente"
+  },
+  "ephemeral": {
+    "word": "ephemeral",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/əˈfem.ər.əl/",
+    "phonetic_uk": "/ɪˈfem.ər.əl/",
+    "definition": "Lasting for a very short time; transitory; fleeting.",
+    "example": "Fame in the internet age can be remarkably ephemeral.",
+    "synonyms": ["fleeting", "transient", "momentary"],
+    "antonyms": ["permanent", "everlasting", "enduring"],
+    "translation_es": "efímero / pasajero"
+  },
+  "serendipity": {
+    "word": "serendipity",
+    "part_of_speech": "noun",
+    "phonetic_us": "/ˌser.ənˈdɪp.ə.t̬i/",
+    "phonetic_uk": "/ˌser.ənˈdɪp.ə.ti/",
+    "definition": "The occurrence and development of events by chance in a happy or beneficial way.",
+    "example": "Discovering penicillin was a triumph of scientific serendipity.",
+    "synonyms": ["fluke", "happy accident", "fortuity"],
+    "antonyms": ["misfortune", "predestination"],
+    "translation_es": "serendipia / casualidad afortunada"
+  },
+  "pragmatic": {
+    "word": "pragmatic",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/præɡˈmæt̬.ɪk/",
+    "phonetic_uk": "/præɡˈmæt.ɪk/",
+    "definition": "Dealing with things sensibly and realistically in a way that is based on practical rather than theoretical considerations.",
+    "example": "She took a pragmatic approach to solving the team's resource constraints.",
+    "synonyms": ["practical", "sensible", "down-to-earth"],
+    "antonyms": ["idealistic", "impractical", "unrealistic"],
+    "translation_es": "pragmático / práctico"
+  },
+  "meticulous": {
+    "word": "meticulous",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/məˈtɪk.jə.ləs/",
+    "phonetic_uk": "/məˈtɪk.jə.ləs/",
+    "definition": "Showing great attention to detail; very careful and precise.",
+    "example": "The software engineer did a meticulous review of the security logs.",
+    "synonyms": ["diligent", "scrupulous", "painstaking"],
+    "antonyms": ["careless", "sloppy", "negligent"],
+    "translation_es": "meticuloso / minucioso"
+  },
+  "expedite": {
+    "word": "expedite",
+    "part_of_speech": "verb",
+    "phonetic_us": "/ˈek.spə.daɪt/",
+    "phonetic_uk": "/ˈek.spə.daɪt/",
+    "definition": "To make an action or process happen sooner or be accomplished more quickly.",
+    "example": "We automated our deployment pipeline to expedite feature delivery.",
+    "synonyms": ["accelerate", "hasten", "speed up"],
+    "antonyms": ["delay", "hinder", "impede"],
+    "translation_es": "agilizar / acelerar / expeditar"
+  },
+  "resilient": {
+    "word": "resilient",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/rɪˈzɪl.jənt/",
+    "phonetic_uk": "/rɪˈzɪl.jənt/",
+    "definition": "Able to withstand or recover quickly from difficult conditions or shocks.",
+    "example": "Distributed state machines are designed to be resilient under node failure.",
+    "synonyms": ["tough", "hardy", "robust"],
+    "antonyms": ["fragile", "vulnerable", "weak"],
+    "translation_es": "resiliente / resistente"
+  },
+  "lucid": {
+    "word": "lucid",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/ˈluː.sɪd/",
+    "phonetic_uk": "/ˈluː.sɪd/",
+    "definition": "Expressed clearly; easy to understand; showing the ability to think clearly.",
+    "example": "His architecture explanation was so lucid that even junior developers grasped it.",
+    "synonyms": ["clear", "coherent", "transparent"],
+    "antonyms": ["confusing", "opaque", "muddled"],
+    "translation_es": "lúcido / claro"
+  },
+  "eloquent": {
+    "word": "eloquent",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/ˈel.ə.kwənt/",
+    "phonetic_uk": "/ˈel.ə.kwənt/",
+    "definition": "Fluent or persuasive in speaking or writing; clearly expressing or indicating something.",
+    "example": "She delivered an eloquent defense of user privacy principles.",
+    "synonyms": ["articulate", "fluent", "expressive"],
+    "antonyms": ["inarticulate", "hesitant"],
+    "translation_es": "elocuente / persuasivo"
+  },
+  "superfluous": {
+    "word": "superfluous",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/sʊˈpɝː.flu.əs/",
+    "phonetic_uk": "/suːˈpɜː.flu.əs/",
+    "definition": "Unnecessary, especially through being more than enough.",
+    "example": "The refactoring eliminated superfluous database queries.",
+    "synonyms": ["redundant", "excessive", "unneeded"],
+    "antonyms": ["essential", "necessary", "vital"],
+    "translation_es": "superfluo / innecesario"
+  },
+  "mercurial": {
+    "word": "mercurial",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/mɝːˈkjʊr.i.əl/",
+    "phonetic_uk": "/mɜːˈkjʊə.ri.əl/",
+    "definition": "Subject to sudden or unpredictable changes of mood or mind.",
+    "example": "Her mercurial temperament made design critiques intensely exciting.",
+    "synonyms": ["volatile", "capricious", "temperamental"],
+    "antonyms": ["stable", "consistent", "steady"],
+    "translation_es": "volátil / impredecible"
+  },
+  "tenacious": {
+    "word": "tenacious",
+    "part_of_speech": "adjective",
+    "phonetic_us": "/təˈneɪ.ʃəs/",
+    "phonetic_uk": "/təˈneɪ.ʃəs/",
+    "definition": "Tending to keep a firm hold of something; clinging or adhering closely; persistent.",
+    "example": "He had a tenacious grip on the technical requirements.",
+    "synonyms": ["persistent", "determined", "stubborn"],
+    "antonyms": ["yielding", "weak", "irresolute"],
+    "translation_es": "tenaz / perseverante"
+  }
+}

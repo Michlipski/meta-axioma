@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axioma E-Ink Task Router • Studio & Simulator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-brand">
+            <span class="brand-icon">▩</span>
+            <div class="brand-text">
+                <h1>AXIOMA E-INK ROUTER</h1>
+                <span class="subtitle">Asynchronous Ambient Task Router & E-Paper Simulator</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <div class="telemetry-badge" id="enclave-badge">ENCLAVE: ACTIVE [L1-016]</div>
+            <div class="telemetry-badge" id="event-count-badge">EVENTS: 0 [L1-002]</div>
+            <a href="/display" target="_blank" class="btn btn-secondary">
+                <span>↗ Open Ambient View</span>
+            </a>
+            <button class="btn btn-secondary" id="btn-feedback" onclick="openFeedbackModal()">
+                <span>💬 Feedback</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-layout">
+        <!-- LEFT COLUMN: Task Formulation & Priority Management -->
+        <section class="panel-management">
+            <!-- Capture Form -->
+            <div class="card capture-card">
+                <div class="card-header">
+                    <h2>Capture Priority Task</h2>
+                    <span class="tag-badge">Daily Big 3–5</span>
+                </div>
+                <form id="task-form" onsubmit="handleCreateTask(event)">
+                    <div class="form-row">
+                        <input type="text" id="task-title" placeholder="What is the critical priority? (e.g. Verify electrophoretic refresh)" required autofocus>
+                    </div>
+                    <div class="form-row-multi">
+                        <div class="form-group">
+                            <label for="task-tag">Context Tag</label>
+                            <select id="task-tag">
+                                <option value="@focus">@focus</option>
+                                <option value="@deepwork">@deepwork</option>
+                                <option value="@hardware">@hardware</option>
+                                <option value="@review">@review</option>
+                                <option value="@call">@call</option>
+                                <option value="@theory">@theory</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-priority">Target Rank</label>
+                            <select id="task-priority">
+                                <option value="1">Rank 1 (Highest)</option>
+                                <option value="2">Rank 2</option>
+                                <option value="3">Rank 3</option>
+                                <option value="4">Rank 4</option>
+                                <option value="5">Rank 5</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-checkbox">
+                            <label>
+                                <input type="checkbox" id="task-is-focus" checked>
+                                <span>Place in Daily Big 3–5</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="btn-submit-task">
+                            <span>+ Commit Task to Event Stream</span>
+                        </button>
+                        <button type="button" class="btn btn-outline" id="btn-undo" onclick="handleUndo()" title="Undo last action (Cmd+Z)">
+                            <span>↺ Undo (Cmd+Z)</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Active Focus List (Daily Big 3-5) -->
+            <div class="card focus-card">
+                <div class="card-header">
+                    <div>
+                        <h2>Daily Big 3–5 Ambient Board</h2>
+                        <span class="card-caption">Bounded to 5 maximum focus items to eliminate cognitive clutter.</span>
+                    </div>
+                    <div class="focus-capacity" id="focus-capacity-meter">
+                        <span id="focus-count-num">0</span> / 5 SLOTS
+                    </div>
+                </div>
+                <div id="focus-task-list" class="task-items-container">
+                    <!-- Populated by JS -->
+                    <div class="loading-placeholder">Loading focus tasks...</div>
+                </div>
+            </div>
+
+            <!-- Backlog / Staging Area -->
+            <div class="card backlog-card">
+                <div class="card-header">
+                    <div>
+                        <h2>Inbox & Backlog</h2>
+                        <span class="card-caption">Queued priorities awaiting promotion into active focus slots.</span>
+                    </div>
+                    <span class="backlog-counter" id="backlog-count-num">0 items</span>
+                </div>
+                <div id="backlog-task-list" class="task-items-container">
+                    <!-- Populated by JS -->
+                    <div class="loading-placeholder">Loading backlog...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT COLUMN: E-Ink Hardware Simulator -->
+        <section class="panel-simulator">
+            <div class="simulator-toolbar">
+                <div class="sim-title">
+                    <span class="eink-indicator">●</span>
+                    <h3>Electrophoretic Hardware Simulator</h3>
+                    <span class="sim-spec">Kindle Paperwhite (1072×1448 • 300 PPI • Zero-JS)</span>
+                </div>
+                <div class="sim-controls">
+                    <button class="btn btn-sm btn-outline" onclick="triggerEinkRefreshFlash()" title="Simulate electrophoretic screen flashing during page redraw">
+                        <span>⚡ Simulate Flash</span>
+                    </button>
+                    <button class="btn btn-sm btn-outline" onclick="reloadSimulatorFrame()">
+                        <span>↻ Reload Frame</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Physical Device Bezel -->
+            <div class="device-bezel" id="device-bezel">
+                <div class="bezel-top-sensor"></div>
+                <div class="eink-screen-wrapper" id="eink-screen-wrapper">
+                    <!-- Clean Iframe loading /display strictly without JS -->
+                    <iframe id="eink-frame" src="/display" title="E-Ink Hardware Preview"></iframe>
+                    <div class="screen-flash-overlay" id="flash-overlay"></div>
+                </div>
+                <div class="bezel-bottom-logo">axioma e-ink</div>
+            </div>
+
+            <div class="simulator-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Protocol:</span>
+                    <span class="meta-val">HTTP/1.1 Meta-Refresh (900s)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Client JS:</span>
+                    <span class="meta-val highlight-green">0 Bytes (Strict Zero-JS)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">CSS Animations:</span>
+                    <span class="meta-val highlight-green">None (Anti-Flicker)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Target Hardware:</span>
+                    <span class="meta-val">Kindle 3/4/Touch/Paperwhite, Kobo, Boox</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Transgenerational Feedback Modal -->
+    <div class="modal-backdrop" id="feedback-modal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Submit Transgenerational User Feedback</h3>
+                <button class="modal-close" onclick="closeFeedbackModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">
+                    Your feedback is appended directly to the Generation 1 learning ledger, enforcing generational succession rules (NEG-G2 / LES-G1).
+                </p>
+                <div class="form-group">
+                    <label for="fb-category">Category</label>
+                    <select id="fb-category">
+                        <option value="hardware_legibility">Hardware Legibility / Contrast</option>
+                        <option value="refresh_timing">Refresh Timing / Battery Drain</option>
+                        <option value="domain_invariants">Daily Big 3–5 Invariant Bound</option>
+                        <option value="workflow_ergonomics">Task Capture Ergonomics</option>
+                        <option value="general">General Architecture</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fb-comment">Observations & Recommendations</label>
+                    <textarea id="fb-comment" rows="4" placeholder="Detail any behavioral friction, display rendering flaws, or invariant failures..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeFeedbackModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitFeedback()">Submit to Ledger</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

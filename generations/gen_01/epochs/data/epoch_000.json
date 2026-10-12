@@ -1,0 +1,28 @@
+{
+  "epoch": 0,
+  "timestamp": "2026-10-10T13:48:00.000000",
+  "phase": "PHASE_1_META_EXPLORATION",
+  "current_efficacy": 1.0,
+  "efficacy_derivative": 0.0,
+  "active_l0_count": 2,
+  "active_l1_count": 0,
+  "total_active": 2,
+  "compute_budget": {
+    "active_axiom_count": 2,
+    "token_budget": 10000,
+    "simulation_depth": 8,
+    "decay_factor": 1.0
+  },
+  "candidate_axiom": null,
+  "tri_fold_metrics": {
+    "delta_e1": 0.0,
+    "delta_e2": 0.0,
+    "delta_e3": 0.0,
+    "aggregate_delta_e": 0.0
+  },
+  "user_candidate": null,
+  "user_metrics": null,
+  "comparative_summary": null,
+  "decision": "Seed Initialization (L0-001, L0-002)",
+  "jettison_triggered": false
+}
