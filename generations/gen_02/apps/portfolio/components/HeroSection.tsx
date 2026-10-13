@@ -34,10 +34,10 @@ export default function HeroSection() {
           </p>
         </div>
 
-        {/* Humanizing Personal Sub-headline */}
-        <div className="max-w-3xl mb-8 p-3.5 rounded bg-zinc-900/60 border border-zinc-800/60 text-zinc-400 text-sm font-sans italic">
-          <p>
-            &ldquo;{HERO_DATA.subHeadline}&rdquo;
+        {/* Personal Sub-headline */}
+        <div className="max-w-3xl mb-8">
+          <p className="text-sm sm:text-base leading-relaxed text-zinc-400 font-sans">
+            {HERO_DATA.subHeadline}
           </p>
         </div>
 

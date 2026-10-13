@@ -68,3 +68,15 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
 }
+
+/* Animated SVG Systems Flow Lines */
+@keyframes flowDash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.active-flow-line {
+  stroke-dasharray: 6 4;
+  animation: flowDash 0.8s linear infinite;
+}

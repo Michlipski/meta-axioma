@@ -31,13 +31,13 @@ export const HERO_DATA = {
   headline:
     "I'm a backend-focused engineer who loves untangling complex distributed systems. I have a proven track record scaling enterprise platforms and a deep curiosity for how we can better architect emerging AI infrastructure.",
   subHeadline:
-    "When I'm not writing Go or TypeScript, I'm usually ice dancing, playing piano, or digging into a good fantasy novel.",
+    "When I'm not explicitly designing systems, I'm usually ice dancing, playing piano, or digging into a good fantasy novel — exploring non-technical systems to draw inspiration from.",
   status: "Available for high-leverage systems & AI engineering",
-  location: "San Francisco Bay Area / Remote",
+  location: "Vancouver, Canada / Remote",
   links: {
-    github: "https://github.com/michaellipski",
-    linkedin: "https://www.linkedin.com/in/michaellipski",
-    email: "mailto:contact@michaellipski.com",
+    github: "https://github.com/michlipski",
+    linkedin: "https://www.linkedin.com/in/michlipski",
+    email: "mailto:michlipski@gmail.com",
     demo: "/axioma",
   },
 };

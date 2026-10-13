@@ -11,7 +11,7 @@ export default function ProjectsSection() {
             02 //
           </span>
           <h2 className="text-xl font-bold tracking-tight text-zinc-100 font-sans">
-            R&D & Systems Architecture
+            R&D & Systems Architecture — Musings Turned Experiments
           </h2>
         </div>
 
