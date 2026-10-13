@@ -12,8 +12,8 @@
 - **Status:** Operational
 - **Epoch:** 2
 - **Phase:** `PHASE_1_DOMAIN_EXECUTION`
-- **Total Active Structural Axioms:** 7
-- **Active Level 1:** 7
+- **Total Active Structural Axioms:** 8
+- **Active Level 1:** 8
 - **Inherited Negative Invariants:** 3
 - **Inherited Scaffolding:** 10 Level 0 Axioms + 7 $G_1$ Structural Axioms (Accessible as generative priors)
 
@@ -109,6 +109,19 @@
   $$\mathbf{p}_{\text{semantic}} = \mathcal{M}_{\text{core}} \cdot \mathbf{v}_{\text{intent}} \quad \text{such that} \quad \oint_{\partial \text{Substrate}} (\mathbf{p}_{\text{semantic}} - \mathbf{J}_{\text{joint}} \cdot \dot{\mathbf{q}}) \, dt = 0 \quad \text{with } \frac{\Delta E_{\text{impedance}}}{\|\mathbf{p}_{\text{semantic}}\|} \le 0.05$$
 - **Operational Rule:** Articulated substrate adapters must achieve $\ge 95\%$ semantic momentum retention and $\le 0.05$ joint impedance loss. Rigid syntactical coupling that leaks momentum across translation boundaries is rejected.
 - **Teleological Purpose:** Enables fluid, organic multi-platform operation: commands and invariants flow smoothly from core AST to terminal, daemon, and browser without friction or translation distortion.
+
+---
+
+### [L1-G2-008] Distributed Evolutionary Island Synthesis & Decoupled Chaos Verification
+- **Level:** Level 1 (Structural)
+- **Status:** **ACTIVE**
+- **Origin Epoch:** Epoch 2 (Inherited from System $G_1$ Tournament & `L1-017` / `L1-018`)
+- **Domain:** Evolutionary Program Synthesis & Distributed Chaos Engineering (Realization of Pareto `CAND_HYBRID_013` Sheaf-CRDT Substrate)
+- **Statement:** System $G_2$ must formulate and evolve subsequent architectures (including System $G_3$ and distributed subsystems) strictly via non-linear multi-island search ($k \ge 3$) and independent decoupled chaos falsification; linear single-shot synthesis is mechanically prohibited.
+- **Formal Expression:**
+  $$\mathcal{T}_{\text{search}}(G_3) \in \mathcal{G}_{\text{tree}} \quad \land \quad |\text{Islands}| \ge 3 \quad \land \quad |\text{DeadEnds}| \ge 1 \quad \land \quad \text{CrucibleVerify} \neq \bot$$
+- **Operational Rule:** Any compiler pipeline in Generation 2 that emits successor basis specifications or distributed application backends without a verified `G3SearchTrace` raises `LinearCompilationViolation`.
+- **Teleological Purpose:** Enforces the non-linear path to successors trans-generationally: provably prevents recursive overfitting, lazy single-shot shortcuts, and untested fragility in Generation 2 and beyond.
 
 ---
 

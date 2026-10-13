@@ -17,6 +17,16 @@ from g2_compiler.engine import SystemG2Compiler
 from g2_compiler.galois_substrate import GaloisSubstrateMapper
 from g2_compiler.intent_grounding import HumanIntentGroundingGate
 from g2_compiler.self_healing import EphemeralSelfHealingEnclave
+from g2_compiler.distributed_sheaf_crdt import (
+    DistributedSheafCrdtEngine,
+    G3EvolutionarySuccessionGate,
+    G3SearchTrace,
+    LinearCompilationViolation,
+    SheafSection,
+    CausalVectorClock,
+    PairwiseCocycleAuditor,
+    K_B_T_LN2,
+)
 from g2_compiler.types import (
     CapabilitySecurityFault,
     GenerationalRegressionFault,
@@ -213,15 +223,77 @@ class TestSystemG2Compiler(unittest.TestCase):
         axiom_ids = [a.id for a in g3_basis.basis_axioms]
         self.assertEqual(axiom_ids, ["L1-G3-001", "L1-G3-002", "L1-G3-003", "L1-G3-004", "L1-G3-005"])
 
+    def test_l1_g2_008_distributed_sheaf_crdt_and_evolutionary_succession_gate(self) -> None:
+        """Verifies L1-G2-008: Distributed Evolutionary Island Synthesis & Decoupled Chaos Verification."""
+        # 1. Negative Test: Linear bypass must be caught
+        with self.assertRaises(LinearCompilationViolation):
+            G3EvolutionarySuccessionGate.verify_succession_trace(None)
+
+        # 2. Negative Test: Insufficient islands (< 3)
+        under_trace = G3SearchTrace(
+            trace_id="UNDER_TRACE",
+            islands_explored=["ISLAND_1", "ISLAND_2"],
+            total_candidates_evaluated=3,
+            dead_end_candidates=[{"id": "DEAD"}],
+            crucible_witnesses=[],
+            selected_winner_id="WINNER",
+        )
+        with self.assertRaises(LinearCompilationViolation):
+            G3EvolutionarySuccessionGate.verify_succession_trace(under_trace)
+
+        # 3. Negative Test: Missing dead ends (< 1)
+        no_dead_trace = G3SearchTrace(
+            trace_id="NO_DEAD_TRACE",
+            islands_explored=["ISLAND_1", "ISLAND_2", "ISLAND_3"],
+            total_candidates_evaluated=3,
+            dead_end_candidates=[],
+            crucible_witnesses=[],
+            selected_winner_id="WINNER",
+        )
+        with self.assertRaises(LinearCompilationViolation):
+            G3EvolutionarySuccessionGate.verify_succession_trace(no_dead_trace)
+
+        # 4. Positive Test: Valid multi-island search trace passes gate
+        valid_trace = G3SearchTrace(
+            trace_id="VALID_TRACE",
+            islands_explored=["ISLAND_SHEAF", "ISLAND_CRDT", "ISLAND_ACTOR"],
+            total_candidates_evaluated=7,
+            dead_end_candidates=[{"id": "DEAD_ACTOR", "reason": "OOM Crash"}],
+            crucible_witnesses=[{"status": "PASS"}],
+            selected_winner_id="WINNER_CAND",
+        )
+        cert = G3EvolutionarySuccessionGate.verify_succession_trace(valid_trace)
+        self.assertTrue(cert.startswith("CERT_G2_"))
+        self.assertTrue(valid_trace.is_verified)
+
+        # 5. Distributed Sheaf-CRDT Engine test
+        engine = DistributedSheafCrdtEngine(node_id="node_test_local")
+        sec_u = engine.register_subdomain(
+            subdomain_id="sub_u",
+            initial_data={"route": "mesh_a", "counter": 10},
+            boundary_keys=["route"],
+        )
+        sec_v = SheafSection(
+            subdomain_id="sub_u",
+            data={"route": "mesh_a", "counter": 20},
+            vector_clock=CausalVectorClock(clock={"node_remote": 2}),
+            observed_boundary_keys={"route"},
+        )
+        merged, audit = engine.merge_remote_section(sec_v)
+        self.assertTrue(audit.is_consistent)
+        self.assertEqual(merged.data["counter"], 20)
+        self.assertGreater(engine.total_erased_bits, 0.0)
+        self.assertGreater(engine.total_dissipated_joules, 0.0)
+
     def test_full_system_g2_compilation_cycle(self) -> None:
         """Verifies complete end-to-end System G_2 compilation pass and decay calculation."""
-        # Check thermodynamic compute budget (Active n=7: 10000 / (1 + 0.5 * 7) = 2222)
+        # Check thermodynamic compute budget (Active n=8: 10000 / (1 + 0.5 * 8) = 2000)
         decay_tokens = self.compiler.compute_decay_capacity()
-        self.assertEqual(decay_tokens, 2222)
+        self.assertEqual(decay_tokens, 2000)
 
-        # Verify all 7 structural basis axioms (L1-G2-001 through L1-G2-007)
+        # Verify all 8 structural basis axioms (L1-G2-001 through L1-G2-008)
         axiom_results = self.compiler.verify_all_structural_basis_axioms()
-        self.assertEqual(len(axiom_results), 7)
+        self.assertEqual(len(axiom_results), 8)
         for axiom_id, ok in axiom_results.items():
             self.assertTrue(ok, f"Axiom {axiom_id} failed verification")
 
@@ -230,10 +302,11 @@ class TestSystemG2Compiler(unittest.TestCase):
         self.assertTrue(compilation.success)
         self.assertEqual(compilation.generation, 2)
         self.assertEqual(compilation.epoch, 2)
-        self.assertEqual(compilation.structural_axioms_verified, 7)
+        self.assertEqual(compilation.structural_axioms_verified, 8)
         self.assertEqual(compilation.inherited_vetoes_enforced, 3)
         self.assertTrue(compilation.g3_successor_basis_synthesized)
         self.assertGreater(compilation.aggregate_delta_e, 0.90)
+
 
 
 if __name__ == "__main__":

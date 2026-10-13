@@ -32,6 +32,18 @@ from g2_compiler.types import (
     SubstrateType,
 )
 
+from g2_compiler.distributed_sheaf_crdt import (
+    DistributedSheafCrdtEngine,
+    PairwiseCocycleAuditor,
+    SheafSection,
+    CausalVectorClock,
+    CocycleAuditWitness,
+    G3EvolutionarySuccessionGate,
+    G3SearchTrace,
+    LinearCompilationViolation,
+    K_B_T_LN2,
+)
+
 __all__ = [
     "SystemG2Compiler",
     "GaloisSubstrateMapper",
@@ -40,6 +52,15 @@ __all__ = [
     "CapabilityTokenManager",
     "HumanIntentGroundingGate",
     "G3BasisSynthesizer",
+    "DistributedSheafCrdtEngine",
+    "PairwiseCocycleAuditor",
+    "SheafSection",
+    "CausalVectorClock",
+    "CocycleAuditWitness",
+    "G3EvolutionarySuccessionGate",
+    "G3SearchTrace",
+    "LinearCompilationViolation",
+    "K_B_T_LN2",
     "SubstrateType",
     "RepairStatus",
     "GenerationalRegressionFault",
