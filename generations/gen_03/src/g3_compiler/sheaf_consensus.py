@@ -171,7 +171,15 @@ class SheafConsensusEngine:
         is_glued = discrepancies == 0
         return is_glued, cohomology_error
 
-    def _propagate_restriction(self, src: str, dst: str, key: str, val: Any, ver: int) -> None:
+    def _propagate_restriction(
+        self,
+        src: str,
+        dst: str,
+        key: str,
+        val: Any,
+        ver: int,
+        visited: Optional[Set[str]] = None,
+    ) -> None:
         target = self.sections.get(dst)
         if target:
             new_data = dict(target.data)
@@ -184,6 +192,14 @@ class SheafConsensusEngine:
                 state_hash=self._compute_hash(new_data),
                 timestamp=time.time(),
             )
+
+            # Evolutionary Transitive Hop: relay to reachable unvisited peers in same open cover
+            visited_set = set(visited or {src, dst})
+            visited_set.add(dst)
+            for neighbor in self.covers.get(target.open_cover_id, set()):
+                if neighbor not in visited_set and not self.is_partitioned(dst, neighbor):
+                    visited_set.add(neighbor)
+                    self._propagate_restriction(dst, neighbor, key, val, ver, visited_set)
 
     def get_section(self, node_id: str) -> Optional[SheafSection]:
         """Returns the local section for a given node if registered."""

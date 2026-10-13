@@ -1,0 +1,187 @@
+{
+  "generation": "gen_03",
+  "epoch": 2,
+  "phase": "PHASE_2_EMPIRICAL_EVOLUTIONARY_TOURNAMENT",
+  "crucible_version": "1.0.0",
+  "candidates_count": 3,
+  "rankings": [
+    {
+      "candidate_name": "Candidate Gamma (Raft Quorum)",
+      "overall_fitness": 0.8138,
+      "consistency_score": 0.754,
+      "partition_resilience": 0.6667,
+      "latency_efficiency": 0.9994,
+      "thermal_compliance": 1.0,
+      "total_erased_bits": 0.0,
+      "total_joules_dissipated": 0.0,
+      "trials": [
+        {
+          "trial_name": "Asymmetric Partition",
+          "passed": true,
+          "consistency_rate": 1.0,
+          "messages_routed": 4,
+          "duration_ms": 0.021,
+          "erased_bits": 0.0,
+          "joules_dissipated": 0.0,
+          "error_details": []
+        },
+        {
+          "trial_name": "Chaotic Flapping & Drops",
+          "passed": false,
+          "consistency_rate": 0.2619,
+          "messages_routed": 55,
+          "duration_ms": 0.072,
+          "erased_bits": 0.0,
+          "joules_dissipated": 0.0,
+          "error_details": [
+            "Flapping edge caused convergence failure. Consistency: 0.26"
+          ]
+        },
+        {
+          "trial_name": "Conflict Storm",
+          "passed": true,
+          "consistency_rate": 1.0,
+          "messages_routed": 140,
+          "duration_ms": 0.095,
+          "erased_bits": 0.0,
+          "joules_dissipated": 0.0,
+          "error_details": []
+        }
+      ]
+    },
+    {
+      "candidate_name": "Candidate Alpha (Cellular Sheaf)",
+      "overall_fitness": 0.8023,
+      "consistency_score": 0.7333,
+      "partition_resilience": 0.6667,
+      "latency_efficiency": 0.9996,
+      "thermal_compliance": 0.9714,
+      "total_erased_bits": 10040.0,
+      "total_joules_dissipated": 2.864687613348555e-17,
+      "trials": [
+        {
+          "trial_name": "Asymmetric Partition",
+          "passed": false,
+          "consistency_rate": 0.3333,
+          "messages_routed": 4,
+          "duration_ms": 0.02,
+          "erased_bits": 120.0,
+          "joules_dissipated": 3.4236e-19,
+          "error_details": [
+            "State divergence under asymmetric split. Consistency: 0.33"
+          ]
+        },
+        {
+          "trial_name": "Chaotic Flapping & Drops",
+          "passed": true,
+          "consistency_rate": 0.8667,
+          "messages_routed": 27,
+          "duration_ms": 0.043,
+          "erased_bits": 0.0,
+          "joules_dissipated": 0.0,
+          "error_details": []
+        },
+        {
+          "trial_name": "Conflict Storm",
+          "passed": true,
+          "consistency_rate": 1.0,
+          "messages_routed": 60,
+          "duration_ms": 0.06,
+          "erased_bits": 9920.0,
+          "joules_dissipated": 2.830176e-17,
+          "error_details": []
+        }
+      ]
+    },
+    {
+      "candidate_name": "Candidate Beta (Delta-CRDT)",
+      "overall_fitness": 0.6951,
+      "consistency_score": 0.7185,
+      "partition_resilience": 0.3333,
+      "latency_efficiency": 0.9992,
+      "thermal_compliance": 0.9586,
+      "total_erased_bits": 14496.0,
+      "total_joules_dissipated": 4.136106737360623e-17,
+      "trials": [
+        {
+          "trial_name": "Asymmetric Partition",
+          "passed": false,
+          "consistency_rate": 0.3333,
+          "messages_routed": 4,
+          "duration_ms": 0.019,
+          "erased_bits": 120.0,
+          "joules_dissipated": 3.4236e-19,
+          "error_details": [
+            "State divergence under asymmetric split. Consistency: 0.33"
+          ]
+        },
+        {
+          "trial_name": "Chaotic Flapping & Drops",
+          "passed": false,
+          "consistency_rate": 0.8222,
+          "messages_routed": 26,
+          "duration_ms": 0.161,
+          "erased_bits": 0.0,
+          "joules_dissipated": 0.0,
+          "error_details": [
+            "Flapping edge caused convergence failure. Consistency: 0.82"
+          ]
+        },
+        {
+          "trial_name": "Conflict Storm",
+          "passed": true,
+          "consistency_rate": 1.0,
+          "messages_routed": 60,
+          "duration_ms": 0.07,
+          "erased_bits": 14376.0,
+          "joules_dissipated": 4.1014728e-17,
+          "error_details": []
+        }
+      ]
+    }
+  ],
+  "winner": {
+    "candidate_name": "Candidate Gamma (Raft Quorum)",
+    "overall_fitness": 0.8138,
+    "consistency_score": 0.754,
+    "partition_resilience": 0.6667,
+    "latency_efficiency": 0.9994,
+    "thermal_compliance": 1.0,
+    "total_erased_bits": 0.0,
+    "total_joules_dissipated": 0.0,
+    "trials": [
+      {
+        "trial_name": "Asymmetric Partition",
+        "passed": true,
+        "consistency_rate": 1.0,
+        "messages_routed": 4,
+        "duration_ms": 0.021,
+        "erased_bits": 0.0,
+        "joules_dissipated": 0.0,
+        "error_details": []
+      },
+      {
+        "trial_name": "Chaotic Flapping & Drops",
+        "passed": false,
+        "consistency_rate": 0.2619,
+        "messages_routed": 55,
+        "duration_ms": 0.072,
+        "erased_bits": 0.0,
+        "joules_dissipated": 0.0,
+        "error_details": [
+          "Flapping edge caused convergence failure. Consistency: 0.26"
+        ]
+      },
+      {
+        "trial_name": "Conflict Storm",
+        "passed": true,
+        "consistency_rate": 1.0,
+        "messages_routed": 140,
+        "duration_ms": 0.095,
+        "erased_bits": 0.0,
+        "joules_dissipated": 0.0,
+        "error_details": []
+      }
+    ]
+  }
+}
