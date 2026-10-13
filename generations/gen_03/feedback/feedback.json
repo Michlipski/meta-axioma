@@ -1,0 +1,30 @@
+{
+  "generation": "gen_03",
+  "predecessor_generation": "gen_02",
+  "compiled_at": 1791850000.0,
+  "signed_off_by": "Human Architect & Meta-Orchestrator",
+  "total_lessons": 3,
+  "lessons": [
+    {
+      "lesson_id": "LES-G1-001",
+      "origin": "gen_01",
+      "severity": "CRITICAL",
+      "title": "The Verification Illusion",
+      "mitigation_invariant": "NEG-G3-001"
+    },
+    {
+      "lesson_id": "LES-G1-002",
+      "origin": "gen_01",
+      "severity": "HIGH",
+      "title": "Lexical Starvation and Clue Leakage",
+      "mitigation_invariant": "NEG-G3-009"
+    },
+    {
+      "lesson_id": "LES-G2-001",
+      "origin": "gen_02",
+      "severity": "CRITICAL",
+      "title": "Client Scope Drift & Complex Backend Neglect",
+      "mitigation_invariant": "NEG-G3-010"
+    }
+  ]
+}

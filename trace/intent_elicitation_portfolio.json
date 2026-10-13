@@ -1,0 +1,11 @@
+{
+  "application_id": "portfolio",
+  "witness_id": "witness_portfolio_1776092000",
+  "persona_name": "Technical Recruiters, Engineering Leaders & Distributed Systems Architects",
+  "jtbd_summary": "High-signal evaluation of Michael Lipski's technical caliber: backend distributed systems, enterprise platform scaling (10M+ records), AI infrastructure R&D, and direct systems ownership at Beehive AI with zero-friction /axioma demo proxying.",
+  "daily_workflow": "Recruiter or engineering director lands on portfolio; quickly scans hero headline and technical competencies; reviews Axioma zero-trust FSM and clicks /axioma demo; examines Beehive AI microservices impact; inspects the systems architecture stack diagram.",
+  "utility_metric_definition": "ScannabilityScore >= 0.95 (comprehension < 30s), ZeroFrictionDemoProxying = 1.0 (/axioma rewrite active), TTFB < 50ms (static export out/).",
+  "signed_off_by_human": false,
+  "signed_at": 1776092000.0,
+  "witness_hash": "pending_human_approval"
+}

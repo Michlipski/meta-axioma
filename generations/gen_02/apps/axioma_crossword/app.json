@@ -1,0 +1,26 @@
+{
+  "app_id": "axioma_crossword",
+  "name": "Axioma Crossword",
+  "version": "1.0.0",
+  "tagline": "The Minimalist Cryptic Crossword Canvas",
+  "description": "A high-ergonomics, distraction-free crossword solver and constructor application compiled autonomously by System G_2.",
+  "generation_origin": "gen_02",
+  "target_persona": "Crossword Enthusiast & Systems Thinker",
+  "ergonomic_goals": [
+    "Ultra-responsive grid input with smooth arrow navigation.",
+    "Dual-FSM bounded puzzle state with undo/redo morphisms.",
+    "Integrated dictionary and clue hints."
+  ],
+  "port": 8094,
+  "deep_ast_digest": "crossword_g2_ast_digest_20261012",
+  "invariants_embodied": [
+    "L1-G2-001",
+    "L1-G2-002",
+    "L1-G2-003",
+    "L1-G2-004",
+    "L1-008"
+  ],
+  "entrypoint": "server.py",
+  "compiled_at": 1791832900.0,
+  "compiled_by": "System G_2 Compiler Engine"
+}

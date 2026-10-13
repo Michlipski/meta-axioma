@@ -1,0 +1,26 @@
+{
+  "app_id": "axioma_sentinel",
+  "name": "Axioma Sentinel",
+  "version": "1.0.0",
+  "tagline": "Autonomous Infrastructure & Daemon Health Sentinel",
+  "description": "A high-performance infrastructure monitor and daemon supervisor compiled autonomously by System G_2 to safeguard multi-process health and Landauer dissipation.",
+  "generation_origin": "gen_02",
+  "target_persona": "Site Reliability Engineer & Autonomous AI Systems Architect",
+  "ergonomic_goals": [
+    "Sub-millisecond status inspection and live health heatmaps.",
+    "Zero ambient capability tokens with cryptographic attenuation.",
+    "Self-healing demarcated exception enclaves."
+  ],
+  "port": 8092,
+  "deep_ast_digest": "sentinel_g2_ast_digest_20261012",
+  "invariants_embodied": [
+    "L1-G2-001",
+    "L1-G2-002",
+    "L1-G2-003",
+    "L1-G2-004",
+    "L1-008"
+  ],
+  "entrypoint": "server.py",
+  "compiled_at": 1791832800.0,
+  "compiled_by": "System G_2 Compiler Engine"
+}

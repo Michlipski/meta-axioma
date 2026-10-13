@@ -54,6 +54,8 @@ apps/<app_id>/
 | [`axioma_crossword`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_crossword/) | **Axioma Crossword** | $G_1$ | `8094` | Distributed multi-device cryptic crossword synthesis and solving studio with AC-3 CSP solver, Clue Dissector, and soft keypad. | `L1-002`, `L1-004`, `L1-011_3`, `L1-008`, `L1-015`, `L1-016`, `L1-015_1` |
 | [`axioma_eink`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_eink/) | **Axioma E-Ink** | $G_1$ | `8096` | Asynchronous Task Router & Ambient Electrophoretic Glanceboard for Kindle/Kobo with strict zero-JS, 15m meta-refresh, and Daily Big 3–5 focus bounding. | `L1-002`, `L1-004`, `L1-011_3`, `L1-008`, `L1-015`, `L1-016`, `L1-015_1` |
 | [`axioma_swarm`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_swarm/) | **Axioma Swarm** | $G_1$ | `8098` | Local LLM Edge Orchestrator & Micro-Swarm Daemon coordinating quantized model VRAM lifecycles, LRU eviction, and OOM-isolated task dispatch. | `L1-008`, `L1-016`, `L1-015`, `L1-002`, `L1-011_3`, `L1-015_1` |
+| [`axioma_sentinel`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_sentinel/) | **Axioma Sentinel** | $G_2$ | `8092` | Autonomous Infrastructure & Daemon Health Sentinel safeguarding multi-process health and Landauer dissipation. | `L1-G2-001`, `L1-G2-002`, `L1-G2-003`, `L1-G2-004`, `L1-008` |
+| [`axioma_mesh`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_mesh/) | **Axioma Mesh** | $G_3$ | `8200` | General Distributed Systems & Complex Backend Orchestrator with sheaf consensus, zero-trust delegation, CQRS rollbacks, and enclave healing. | `L1-G3-001`, `L1-G3-002`, `L1-G3-003`, `L1-G3-004`, `L1-G3-005`, `L1-008` |
 
 ---
 

@@ -1,0 +1,37 @@
+{
+  "app_id": "axioma_mesh",
+  "name": "Axioma Mesh",
+  "version": "1.0.0",
+  "tagline": "General Distributed Systems & Complex Backend Mesh",
+  "description": "A high-resilience, multi-node distributed systems orchestrator compiled autonomously by System G_3 to realize the High-Level Jettison for complex distributed backends. Features topological sheaf consensus, zero-trust capability delegation, CQRS event sourcing with 1-click rollback, exception enclaves, and real-time Landauer cluster thermal auditing.",
+  "generation_origin": "gen_03",
+  "target_persona": "Distributed Systems Engineer & Cloud Infrastructure Architect",
+  "ergonomic_goals": [
+    "Sub-100ms end-to-end client verification and task dispatch.",
+    "Visual topological inspection of open covers and network partitions.",
+    "Zero ambient capability tokens with cryptographic HMAC attenuation.",
+    "Functorial 1-click rollback of distributed cluster checkpoints.",
+    "Real-time thermodynamic Landauer bit-erasure auditing."
+  ],
+  "port": 8200,
+  "cluster_ports": {
+    "gateway": 8200,
+    "consensus_alpha": 8201,
+    "consensus_beta": 8202,
+    "consensus_gamma": 8203,
+    "event_broker": 8204,
+    "worker_pool": 8205
+  },
+  "deep_ast_digest": "mesh_g3_ast_digest_20261013",
+  "invariants_embodied": [
+    "L1-G3-001",
+    "L1-G3-002",
+    "L1-G3-003",
+    "L1-G3-004",
+    "L1-G3-005",
+    "L1-008"
+  ],
+  "entrypoint": "server.py",
+  "compiled_at": 1791833500.0,
+  "compiled_by": "System G_3 Compiler Engine"
+}

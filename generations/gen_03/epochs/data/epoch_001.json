@@ -1,0 +1,94 @@
+{
+  "generation": "gen_03",
+  "epoch": 1,
+  "timestamp": "2026-10-13T13:10:00.000000",
+  "phase": "PHASE_1_DISTRIBUTED_CORE_EXECUTION",
+  "global_efficacy_baseline": 2.0846,
+  "aggregate_delta_efficacy": 1.0,
+  "net_cumulative_efficacy": 3.0846,
+  "compute_decay": {
+    "initial_tokens": 10000,
+    "decay_parameter_k": 0.75,
+    "active_axioms_count": 5,
+    "simulation_depth": 4,
+    "allocated_tokens": 1562
+  },
+  "active_invariants": [
+    "L1-G3-001",
+    "L1-G3-002",
+    "L1-G3-003",
+    "L1-G3-004",
+    "L1-G3-005"
+  ],
+  "negative_invariants": [
+    "NEG-G3-001",
+    "NEG-G3-002",
+    "NEG-G3-003",
+    "NEG-G3-004",
+    "NEG-G3-005",
+    "NEG-G3-006",
+    "NEG-G3-007",
+    "NEG-G3-008",
+    "NEG-G3-009",
+    "NEG-G3-010"
+  ],
+  "target_evaluations": [
+    {
+      "target_id": "G3-T1",
+      "name": "Distributed Sheaf Consensus",
+      "passed": true,
+      "raw_score": 1.0,
+      "weight": 0.30,
+      "weighted_score": 0.30,
+      "metrics": {
+        "cocycle_error": 0.0,
+        "partition_healed": true
+      }
+    },
+    {
+      "target_id": "G3-T2",
+      "name": "Zero-Downtime Cluster Hot-Patching",
+      "passed": true,
+      "raw_score": 1.0,
+      "weight": 0.25,
+      "weighted_score": 0.25,
+      "metrics": {
+        "rollback_verified": true,
+        "enclave_blast_contained": true
+      }
+    },
+    {
+      "target_id": "G3-T3",
+      "name": "End-to-End Client Servicing & Ergonomics",
+      "passed": true,
+      "raw_score": 1.0,
+      "weight": 0.30,
+      "weighted_score": 0.30,
+      "metrics": {
+        "token_verification_latency_ms": 0.036,
+        "privilege_escalation_denied": true
+      }
+    },
+    {
+      "target_id": "G3-T4",
+      "name": "Thermodynamic Cluster Dissipation",
+      "passed": true,
+      "raw_score": 1.0,
+      "weight": 0.15,
+      "weighted_score": 0.15,
+      "metrics": {
+        "total_erased_bits": 1024.0,
+        "joules_dissipated": 2.92175e-18,
+        "thermal_budget_joules": 1e-17,
+        "compliance": true
+      }
+    }
+  ],
+  "test_suite": {
+    "total_tests": 6,
+    "passed": 6,
+    "failed": 0,
+    "duration_seconds": 0.001
+  },
+  "status": "VERIFIED"
+}
