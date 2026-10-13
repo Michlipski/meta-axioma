@@ -307,6 +307,37 @@ class TestSystemG2Compiler(unittest.TestCase):
         self.assertTrue(compilation.g3_successor_basis_synthesized)
         self.assertGreater(compilation.aggregate_delta_e, 0.90)
 
+    def test_g3_evolutionary_tournament_and_succession_gate(self) -> None:
+        """Verifies [L1-G2-008]: multi-island search, dead-end discovery, and certificate generation for G_3."""
+        from g2_compiler.g3_evolution import G3EvolutionarySearchEngine, G3IslandType
+        
+        engine = G3EvolutionarySearchEngine()
+        winner, trace, cert = engine.execute_evolutionary_search()
+
+        # Verify multi-island exploration
+        self.assertGreaterEqual(len(trace.islands_explored), 3)
+        self.assertIn(G3IslandType.ISLAND_P2P_GOSSIP.value, trace.islands_explored)
+        self.assertIn(G3IslandType.ISLAND_CENTRALIZED_RAFT.value, trace.islands_explored)
+        self.assertIn(G3IslandType.ISLAND_SHEAF_SWARM.value, trace.islands_explored)
+
+        # Verify dead ends were discovered
+        self.assertGreaterEqual(len(trace.dead_end_candidates), 2)
+        self.assertTrue(any("P2P" in d["candidate_id"] for d in trace.dead_end_candidates))
+        self.assertTrue(any("RAFT" in d["candidate_id"] for d in trace.dead_end_candidates))
+
+        # Verify winner selection
+        self.assertEqual(winner.candidate_id, "CAND_G3_SHEAF_003")
+        self.assertFalse(winner.is_falsified)
+        self.assertGreater(winner.composite_fitness, 0.90)
+
+        # Verify certificate format
+        self.assertTrue(cert.startswith("CERT_G2_"))
+        self.assertTrue(trace.is_verified)
+        self.assertEqual(trace.verification_token, cert)
+
+        # Verify linear bypass rejection
+        with self.assertRaises(LinearCompilationViolation):
+            G3EvolutionarySuccessionGate.verify_succession_trace(None)
 
 
 if __name__ == "__main__":

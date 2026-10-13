@@ -117,8 +117,26 @@ class G3BasisSynthesizer:
             ),
         ]
 
-    def generate_successor_basis(self, feedback_path: Optional[Path] = None) -> G3SuccessorBasis:
-        """Assembles the complete successor basis package for Generation 3."""
+    def generate_successor_basis(
+        self,
+        feedback_path: Optional[Path] = None,
+        search_trace: Optional[Any] = None,
+        cert_token: Optional[str] = None,
+    ) -> G3SuccessorBasis:
+        """Assembles the complete successor basis package for Generation 3.
+        
+        Enforces [L1-G2-008]: requires non-linear multi-island search trace and
+        cryptographic succession certificate.
+        """
+        from g2_compiler.g3_evolution import G3EvolutionarySearchEngine
+        from g2_compiler.distributed_sheaf_crdt import G3EvolutionarySuccessionGate
+
+        if search_trace is None or cert_token is None:
+            engine = G3EvolutionarySearchEngine()
+            winner, search_trace, cert_token = engine.execute_evolutionary_search()
+        else:
+            cert_token = G3EvolutionarySuccessionGate.verify_succession_trace(search_trace)
+
         targets = self.synthesize_g3_targets()
         basis_axioms = self.synthesize_g3_basis_axioms()
 
@@ -143,6 +161,8 @@ class G3BasisSynthesizer:
 
         charter = (
             "# System G_3 Generational Charter\n\n"
+            f"**Succession Certificate:** `{cert_token}`  \n"
+            f"**Evolutionary Trace:** `{search_trace.trace_id}`  \n\n"
             "## Mandate\n"
             "System G_3 is to be constructed from the ground up using the foundational basis and "
             "evaluation targets formulated by System G_2. Its mission is to deploy distributed "
@@ -161,4 +181,6 @@ class G3BasisSynthesizer:
             inherited_feedback_dossier=dossier_data,
             inherited_negative_constraints=inherited_constraints,
             operational_charter=charter,
+            search_trace=search_trace,
+            succession_certificate=cert_token,
         )

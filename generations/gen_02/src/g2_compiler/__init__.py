@@ -44,6 +44,12 @@ from g2_compiler.distributed_sheaf_crdt import (
     K_B_T_LN2,
 )
 
+from g2_compiler.g3_evolution import (
+    G3EvolutionarySearchEngine,
+    G3IslandType,
+    G3ArchitectureCandidate,
+)
+
 __all__ = [
     "SystemG2Compiler",
     "GaloisSubstrateMapper",
@@ -61,6 +67,9 @@ __all__ = [
     "G3SearchTrace",
     "LinearCompilationViolation",
     "K_B_T_LN2",
+    "G3EvolutionarySearchEngine",
+    "G3IslandType",
+    "G3ArchitectureCandidate",
     "SubstrateType",
     "RepairStatus",
     "GenerationalRegressionFault",

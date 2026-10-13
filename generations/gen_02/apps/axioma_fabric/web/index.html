@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axioma Fabric | Distributed Sheaf-CRDT Operations Dashboard</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --border: #1f2937;
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --accent: #a855f7;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .title-group h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #e2e8f0;
+    }
+
+    canvas {
+      width: 100%;
+      height: 280px;
+      background: #030712;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .control-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: var(--border);
+      color: var(--text);
+      border: 1px solid #374151;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    button:hover { background: #374151; }
+    button.primary { background: var(--primary); color: #0f172a; border-color: var(--primary); font-weight: 600; }
+    button.primary:hover { background: var(--primary-hover); }
+    button.danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); border-color: var(--danger); }
+    button.danger:hover { background: var(--danger); color: white; }
+    button.success { background: rgba(16, 185, 129, 0.2); color: var(--success); border-color: var(--success); }
+    button.success:hover { background: var(--success); color: white; }
+
+    .node-status-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .node-box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 0.85rem;
+    }
+
+    .node-box.healthy { border-left: 4px solid var(--success); }
+    .node-box.partitioned { border-left: 4px solid var(--danger); }
+
+    .node-name { font-weight: 700; margin-bottom: 4px; display: flex; justify-content: space-between; }
+    .vclock { font-family: monospace; color: var(--accent); font-size: 0.8rem; margin-top: 4px; }
+    .thermo-metric { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+    .stream-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+
+    .stream-table th, .stream-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .stream-table th { color: var(--text-muted); font-weight: 500; }
+    .stream-table tr:hover { background: rgba(255, 255, 255, 0.02); }
+
+    .input-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    input, select {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      flex: 1;
+    }
+
+    input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+    .log-container {
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #030712;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="title-group">
+      <h1>Axioma Fabric <span class="badge">Generation 2 • CAND_HYBRID_013</span></h1>
+    </div>
+    <div>
+      <span id="connStatus" class="badge" style="background: rgba(16, 185, 129, 0.15); color: var(--success); border-color: var(--success);">
+        ● Mesh Active
+      </span>
+    </div>
+  </header>
+
+  <div class="grid">
+    <!-- Left Column: Cluster Topology & Chaos Controls -->
+    <div>
+      <div class="card">
+        <h2>
+          <span>Cluster Mesh Topology (Sheaf Cover)</span>
+          <span id="partitionBadge" class="badge">No Netsplits</span>
+        </h2>
+        <canvas id="topoCanvas" width="600" height="280"></canvas>
+        
+        <div class="control-row">
+          <button class="danger" onclick="triggerPartition('node_alpha', 'node_beta')">Sever Link α ↔ β</button>
+          <button class="danger" onclick="triggerIsolate('node_alpha')">Isolate Node α</button>
+          <button class="success" onclick="triggerHeal()">Heal All Partitions</button>
+          <button class="primary" onclick="runCocycleAudit()">Run Cocycle Audit</button>
+        </div>
+
+        <div class="node-status-grid" id="nodeCards">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Thermodynamic Landauer Telemetry -->
+      <div class="card" style="margin-top: 20px;">
+        <h2>Thermodynamic Landauer Dissipation (Q = ΔS · k_B T ln 2)</h2>
+        <div id="thermoDetails" style="font-size: 0.85rem; color: var(--text-muted); display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <div>Cumulative Erasure: <span id="joulesMetric" style="color: var(--warning); font-family: monospace;">0.00 J</span></div>
+          <div>Token Lease Budget: <span id="tokenBudget" style="color: var(--primary); font-family: monospace;">5000 / 5000</span></div>
+          <div>Backpressure State: <span id="bpState" style="color: var(--success);">Nominal</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Ingress Gateway & Event Stream -->
+    <div>
+      <div class="card">
+        <h2>Publish to Fabric (Zero-Ambient Auth)</h2>
+        <div class="input-group">
+          <input type="text" id="topicInput" value="telemetry.sensors" placeholder="Topic">
+          <select id="nodeSelect">
+            <option value="node_alpha">Target Node α</option>
+            <option value="node_beta">Target Node β</option>
+            <option value="node_gamma">Target Node γ</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <input type="text" id="payloadInput" value='{"temp": 24.5, "pressure": 101.3}' placeholder='JSON Payload'>
+          <button class="primary" onclick="publishEvent()">Publish</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <h2>
+          <span>Real-Time Sheaf Stream Tail</span>
+          <button onclick="refreshStream()" style="padding: 4px 10px; font-size: 0.75rem;">Refresh</button>
+        </h2>
+        <div class="log-container">
+          <table class="stream-table">
+            <thead>
+              <tr>
+                <th>Event ID</th>
+                <th>Origin</th>
+                <th>Clock</th>
+                <th>Payload</th>
+              </tr>
+            </thead>
+            <tbody id="streamTbody">
+              <tr><td colspan="4" style="text-align: center; color: var(--text-muted);">No events published yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Formal Cocycle Witnesses Card -->
+      <div class="card" style="margin-top: 20px;">
+        <h2>Pairwise Cocycle Witnesses (Boundary Coherence)</h2>
+        <div id="witnessList" style="font-size: 0.8rem; font-family: monospace; max-height: 140px; overflow-y: auto;">
+          <div style="color: var(--text-muted);">Awaiting next audit cycle...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let activeToken = null;
+    let clusterState = {};
+    const canvas = document.getElementById("topoCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const nodeCoords = {
+      node_alpha: { x: 120, y: 140, label: "Node α (U_α)" },
+      node_beta:  { x: 300, y: 70,  label: "Node β (U_β)" },
+      node_gamma: { x: 480, y: 140, label: "Node γ (U_γ)" }
+    };
+
+    async function initAuth() {
+      try {
+        const res = await fetch("/api/v1/auth/token", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ subject: "dashboard_operator", topics: ["*"], permissions: ["*"] })
+        });
+        activeToken = await res.json();
+      } catch (err) {
+        console.error("Auth init failed:", err);
+      }
+    }
+
+    async function fetchClusterStatus() {
+      try {
+        const res = await fetch("/api/v1/cluster/status");
+        const data = await res.json();
+        clusterState = data.nodes || {};
+        renderTopology();
+        renderNodeCards();
+      } catch (err) {
+        console.error("Fetch status failed:", err);
+      }
+    }
+
+    function renderTopology() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const nodes = Object.keys(nodeCoords);
+
+      // Draw links
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const u = nodes[i];
+          const v = nodes[j];
+          const p1 = nodeCoords[u];
+          const p2 = nodeCoords[v];
+
+          const severed = (clusterState[u]?.severed_links?.includes(v)) || (clusterState[v]?.severed_links?.includes(u));
+
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.lineWidth = severed ? 3 : 2;
+          ctx.strokeStyle = severed ? "#ef4444" : "#10b981";
+          if (severed) ctx.setLineDash([6, 6]);
+          else ctx.setLineDash([]);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+      }
+
+      // Draw nodes
+      for (const [nid, pos] of Object.entries(nodeCoords)) {
+        const node = clusterState[nid];
+        const isPartitioned = node?.partition_state === "partitioned";
+
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 28, 0, Math.PI * 2);
+        ctx.fillStyle = isPartitioned ? "#ef4444" : "#0284c7";
+        ctx.fill();
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = isPartitioned ? "#fca5a5" : "#38bdf8";
+        ctx.stroke();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 12px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(nid.replace("node_", ""), pos.x, pos.y + 4);
+
+        ctx.fillStyle = "#9ca3af";
+        ctx.font = "11px sans-serif";
+        ctx.fillText(pos.label, pos.x, pos.y + 45);
+      }
+    }
+
+    function renderNodeCards() {
+      const container = document.getElementById("nodeCards");
+      container.innerHTML = "";
+      let totalJoules = 0;
+      let minTokens = 5000;
+
+      for (const [nid, node] of Object.entries(clusterState)) {
+        const isPart = node.partition_state === "partitioned";
+        const vclockStr = JSON.stringify(node.vector_clock || {});
+        
+        let nodeBytes = 0;
+        let nodeJoules = 0;
+        let nodeTokens = 5000;
+        for (const t in node.topics || {}) {
+          const thermo = node.topics[t].thermodynamics || {};
+          nodeBytes += thermo.current_bytes || 0;
+          nodeJoules += thermo.cumulative_erasure_joules || 0;
+          nodeTokens = Math.min(nodeTokens, thermo.remaining_token_budget ?? 5000);
+        }
+        totalJoules += nodeJoules;
+        minTokens = Math.min(minTokens, nodeTokens);
+
+        const div = document.createElement("div");
+        div.className = `node-box ${isPart ? "partitioned" : "healthy"}`;
+        div.innerHTML = `
+          <div class="node-name">
+            <span>${nid}</span>
+            <span style="color: ${isPart ? 'var(--danger)' : 'var(--success)'};">${node.partition_state}</span>
+          </div>
+          <div class="vclock">Clock: ${vclockStr}</div>
+          <div class="thermo-metric">Memory: ${(nodeBytes / 1024).toFixed(1)} KB</div>
+        `;
+        container.appendChild(div);
+      }
+
+      document.getElementById("joulesMetric").innerText = totalJoules.toExponential(3) + " J";
+      document.getElementById("tokenBudget").innerText = `${minTokens.toFixed(0)} / 5000`;
+    }
+
+    async function publishEvent() {
+      if (!activeToken) await initAuth();
+      const topic = document.getElementById("topicInput").value.trim();
+      const targetNode = document.getElementById("nodeSelect").value;
+      let payload = {};
+      try {
+        payload = JSON.parse(document.getElementById("payloadInput").value.trim());
+      } catch (e) {
+        alert("Invalid JSON payload");
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/v1/topics/${encodeURIComponent(topic)}/publish?node=${targetNode}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Capability-Token": JSON.stringify(activeToken)
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+          const errData = await res.json();
+          alert("Publish Error: " + errData.error);
+        } else {
+          refreshStream();
+          fetchClusterStatus();
+        }
+      } catch (err) {
+        alert("Publish failed: " + err);
+      }
+    }
+
+    async function refreshStream() {
+      const topic = document.getElementById("topicInput").value.trim();
+      const targetNode = document.getElementById("nodeSelect").value;
+      try {
+        const res = await fetch(`/api/v1/topics/${encodeURIComponent(topic)}/stream?node=${targetNode}`);
+        const data = await res.json();
+        const tbody = document.getElementById("streamTbody");
+        tbody.innerHTML = "";
+        if (!data.events || data.events.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">No events on this topic yet.</td></tr>';
+          return;
+        }
+
+        data.events.forEach(ev => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td style="font-family: monospace; color: var(--primary);">${ev.event_id}</td>
+            <td>${ev.origin_node}</td>
+            <td style="font-family: monospace; color: var(--accent);">${JSON.stringify(ev.vector_clock)}</td>
+            <td><code>${JSON.stringify(ev.payload)}</code></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error("Refresh stream error:", err);
+      }
+    }
+
+    async function triggerPartition(nodeA, nodeB) {
+      await fetch("/api/v1/cluster/chaos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "partition", group_a: [nodeA], group_b: [nodeB] })
+      });
+      fetchClusterStatus();
+    }
+
+    async function triggerIsolate(nodeA) {
+      await fetch("/api/v1/cluster/chaos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "isolate", node_id: nodeA })
+      });
+      fetchClusterStatus();
+    }
+
+    async function triggerHeal() {
+      await fetch("/api/v1/cluster/chaos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "heal" })
+      });
+      fetchClusterStatus();
+    }
+
+    async function runCocycleAudit() {
+      const topic = document.getElementById("topicInput").value.trim();
+      try {
+        const res = await fetch("/api/v1/cluster/audit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ topic: topic, auto_reconcile: true })
+        });
+        const data = await res.json();
+        const list = document.getElementById("witnessList");
+        list.innerHTML = "";
+        data.witnesses.forEach(w => {
+          const item = document.createElement("div");
+          item.style.marginBottom = "6px";
+          item.innerHTML = `
+            <span style="color: ${w.divergence_count === 0 ? 'var(--success)' : 'var(--warning)'};">
+              ● [${w.node_i} ↔ ${w.node_j}]
+            </span>
+            ${w.subdomain_intersection}: agreed=${w.agreed_events_count}, div=${w.divergence_count}, rec=${w.reconciliation_applied}
+          `;
+          list.appendChild(item);
+        });
+        fetchClusterStatus();
+        refreshStream();
+      } catch (err) {
+        console.error("Cocycle audit error:", err);
+      }
+    }
+
+    // Startup
+    initAuth().then(() => {
+      fetchClusterStatus();
+      refreshStream();
+      setInterval(fetchClusterStatus, 2000);
+    });
+  </script>
+</body>
+</html>
