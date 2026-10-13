@@ -1,0 +1,11 @@
+{
+  "application_id": "axioma_lexis_g2",
+  "witness_id": "witness_axioma_lexis_g2_1776016500",
+  "persona_name": "The Mobile Focus Learner & Technical Polymath",
+  "jtbd_summary": "Zero-friction single-word vocabulary capture (type only 1 word -> auto-hydrate IPA, definition, and context sentence; speech synthesis removed as out of scope); solving the activation energy barrier through 3-5 word micro-dosed reviews and curiosity-prompt notifications; humane non-punitive 1-tier step-back Fibonacci spacing; and 10s desirable difficulty dwell window before subtle mnemonic hint.",
+  "daily_workflow": "Encounter unfamiliar words while reading; capture in 1s by typing only the word; review on mobile or terminal in bite-sized slices of 3-5 cards max (takes <45s); direct-to-card launch from curiosity push notifications (max 2/day at 8:30 AM and 7:30 PM); 10s quiet dwell patience window honoring effortful retrieval; swipe left steps back 1 tier rather than punitive reset to day 1.",
+  "utility_metric_definition": "ActivationFrictionRatio <= 0.15 (direct-to-card launch with 0 menus), CaptureSpeedUp >= 30x (1.5s vs 45s manual typing), MicroSessionCompletionRate >= 0.95, ZeroCrashEnclaveGuarantee = 1.00.",
+  "signed_off_by_human": true,
+  "signed_at": 1776016500.0,
+  "witness_hash": "f8a1e209cd4b7123985a9bc031948e778432a1065edb0a3941b9e54a01c4e72d"
+}

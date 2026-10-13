@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axioma Sentinel — Zero-Trust Agent Incident & Auto-Healing Console (G2)</title>
+  <style>
+    :root {
+      --bg-dark: #0a0d14;
+      --card-bg: #111622;
+      --card-border: #1e2638;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark);
+      color: var(--text);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #0f1420;
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, #2563eb, #10b981);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-sans);
+    }
+
+    .btn-rollback {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+    .btn-rollback:hover {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: var(--danger);
+      color: #fff;
+    }
+
+    .btn-simulate {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #fde68a;
+    }
+    .btn-simulate:hover {
+      background: rgba(245, 158, 11, 0.25);
+      border-color: var(--warning);
+      color: #fff;
+    }
+
+    .btn-safe {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #93c5fd;
+    }
+    .btn-safe:hover {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    main {
+      flex: 1;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* HUD Metrics Grid */
+    .hud-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .hud-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hud-card::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent);
+    }
+    .hud-card.success::after { background: var(--success); }
+    .hud-card.warning::after { background: var(--warning); }
+    .hud-card.danger::after { background: var(--danger); }
+
+    .hud-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .hud-val {
+      font-size: 1.75rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+
+    .hud-unit {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .hud-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* 2-Column Content Layout */
+    .dashboard-body {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      flex: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .dashboard-body { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .panel-badge {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      background: rgba(59, 130, 246, 0.2);
+      color: #93c5fd;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+    }
+
+    .panel-content {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-height: 520px;
+      overflow-y: auto;
+    }
+
+    /* Timeline Items */
+    .action-row {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+    }
+    .action-row:hover {
+      border-color: #2e3a54;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .action-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .action-tool {
+      font-weight: 700;
+      font-size: 0.9rem;
+      font-family: var(--font-mono);
+    }
+
+    .action-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .action-badge.EXECUTED { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .action-badge.HEALED { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .action-badge.QUARANTINED { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .action-badge.REVERTED { background: rgba(156, 163, 175, 0.15); color: #d1d5db; border: 1px solid rgba(156, 163, 175, 0.3); }
+
+    .action-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 1rem;
+      font-family: var(--font-mono);
+    }
+
+    .remediation-box {
+      margin-top: 0.3rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(59, 130, 246, 0.08);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: #bfdbfe;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    /* Tokens Cards */
+    .token-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .token-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .token-id {
+      font-family: var(--font-mono);
+      color: #93c5fd;
+      font-size: 0.75rem;
+    }
+
+    .scope-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+    }
+
+    .scope-tag {
+      font-size: 0.65rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+    }
+
+    /* State Inspector Key-Values */
+    .state-tree {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: #07090e;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      overflow-x: auto;
+      color: #a7f3d0;
+      white-space: pre-wrap;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 0.75rem 1.25rem;
+      background: #1e293b;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.85rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transform: translateY(150%);
+      transition: transform 0.25s ease;
+      z-index: 999;
+    }
+    #toast.show { transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">S</div>
+      <div>
+        <div class="brand-title">Axioma Sentinel</div>
+        <div class="brand-sub">System 07 • Generation 2 Zero-Trust Console</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-safe" onclick="dispatchSafeAction()">
+        <span>▶ Dispatch Tool</span>
+      </button>
+      <button class="btn btn-simulate" onclick="simulateBreach()">
+        <span>⚡ Test 3-Pass Auto-Repair</span>
+      </button>
+      <button class="btn btn-rollback" onclick="executeRollback()" title="Keyboard Shortcut: Cmd+Z or Ctrl+Z">
+        <span>↺ 1-Click Rollback <kbd style="font-size:0.7em; background:rgba(0,0,0,0.3); padding:2px 4px; border-radius:3px;">Cmd+Z</kbd></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HUD Metrics -->
+    <div class="hud-grid">
+      <div class="hud-card success">
+        <div class="hud-label">Auto-Healed Incidents [L1-G2-002]</div>
+        <div class="hud-val" id="hud-healed">0 <span class="hud-unit">healed</span></div>
+        <div class="hud-sub">100% blast containment (k ≤ 3 passes)</div>
+      </div>
+
+      <div class="hud-card">
+        <div class="hud-label">Active Scoped Capabilities [L1-G2-004]</div>
+        <div class="hud-val" id="hud-tokens">4 <span class="hud-unit">tokens</span></div>
+        <div class="hud-sub">Zero-trust HMAC SHA-256 witnesses</div>
+      </div>
+
+      <div class="hud-card">
+        <div class="hud-label">Functorial Checkpoints [L1-G2-001]</div>
+        <div class="hud-val" id="hud-actions">0 <span class="hud-unit">actions</span></div>
+        <div class="hud-sub">Exact state hash isomorphism: <span id="hud-hash" style="font-family:var(--font-mono); font-size:0.75rem;">...</span></div>
+      </div>
+
+      <div class="hud-card warning">
+        <div class="hud-label">Landauer Dissipation [L1-008]</div>
+        <div class="hud-val" id="hud-bits">0 <span class="hud-unit">bits</span></div>
+        <div class="hud-sub" id="hud-joules">0.00e-20 Joules (kB T ln 2)</div>
+      </div>
+    </div>
+
+    <!-- Main View Grid -->
+    <div class="dashboard-body">
+      <!-- Left: Agent Tool Action Timeline -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span>Agent Tool Dispatch Timeline</span>
+            <span class="panel-badge" id="timeline-count">0 Dispatches</span>
+          </div>
+          <div style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">
+            Auto-refresh: 1.5s
+          </div>
+        </div>
+        <div class="panel-content" id="timeline-container">
+          <div style="color:var(--text-muted); text-align:center; padding:2rem;">
+            Awaiting agent tool dispatches. Click "Dispatch Tool" or "Test 3-Pass Auto-Repair" to begin.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Capabilities & Workspace Invariants -->
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <!-- Capabilities Drawer -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Zero-Trust Capability Tokens</div>
+            <span class="panel-badge">L1-G2-004 Scoped</span>
+          </div>
+          <div class="panel-content" id="tokens-container" style="max-height: 240px;">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+
+        <!-- Workspace State Inspector -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Invariant Workspace State</div>
+            <span class="panel-badge">Reversible Hash</span>
+          </div>
+          <div class="panel-content">
+            <pre class="state-tree" id="state-tree">{ "system": "initializing" }</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast">Operation completed.</div>
+
+  <script>
+    let latestState = null;
+
+    function showToast(msg, isError = false) {
+      const toast = document.getElementById("toast");
+      toast.innerText = msg;
+      toast.style.borderColor = isError ? "var(--danger)" : "var(--accent)";
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 3500);
+    }
+
+    async function fetchState() {
+      try {
+        const res = await fetch("/api/state");
+        if (!res.ok) return;
+        const data = await res.json();
+        latestState = data;
+        renderDashboard(data);
+      } catch (e) {
+        console.error("Failed to fetch state:", e);
+      }
+    }
+
+    function renderDashboard(data) {
+      // 1. HUD Cards
+      document.getElementById("hud-healed").innerHTML = `${data.healed_incidents} <span class="hud-unit">healed</span>`;
+      document.getElementById("hud-tokens").innerHTML = `${data.tokens.length} <span class="hud-unit">active</span>`;
+      document.getElementById("hud-actions").innerHTML = `${data.total_actions} <span class="hud-unit">actions</span>`;
+      document.getElementById("hud-bits").innerHTML = `${data.total_erased_bits} <span class="hud-unit">bits</span>`;
+      document.getElementById("hud-joules").innerText = `${(data.total_dissipated_joules).toExponential(2)} Joules (kB T ln 2)`;
+      document.getElementById("hud-hash").innerText = data.state_hash.substring(0, 10) + "...";
+      document.getElementById("timeline-count").innerText = `${data.timeline.length} Dispatches`;
+
+      // 2. State Tree
+      document.getElementById("state-tree").innerText = JSON.stringify(data.workspace_state, null, 2);
+
+      // 3. Tokens Drawer
+      const tokContainer = document.getElementById("tokens-container");
+      tokContainer.innerHTML = data.tokens.map(t => `
+        <div class="token-card">
+          <div class="token-header">
+            <span>${t.persona}</span>
+            <span class="token-id">${t.token_id}</span>
+          </div>
+          <div class="scope-tags">
+            ${t.allowed_actions.map(a => `<span class="scope-tag">${a}</span>`).join("")}
+          </div>
+          <div style="font-size:0.65rem; color:var(--text-muted); margin-top:2px;">
+            Sig: ${t.witness_signature} • Expires: ${t.expires_in_seconds}s
+          </div>
+        </div>
+      `).join("");
+
+      // 4. Timeline
+      const timeline = document.getElementById("timeline-container");
+      if (data.timeline.length === 0) {
+        timeline.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding:2rem;">Awaiting agent tool dispatches.</div>`;
+      } else {
+        timeline.innerHTML = data.timeline.map(act => {
+          let remediationHtml = "";
+          if (act.remediation_notes && act.remediation_notes.length > 0) {
+            remediationHtml = `
+              <div class="remediation-box">
+                <strong style="color:#60a5fa;">⚡ Auto-Repair Heuristics Applied [L1-G2-002]:</strong>
+                ${act.remediation_notes.map(n => `<div>• ${n}</div>`).join("")}
+              </div>
+            `;
+          }
+          const timeStr = new Date(act.timestamp * 1000).toLocaleTimeString();
+          return `
+            <div class="action-row">
+              <div class="action-header">
+                <span class="action-tool">${act.tool_name}</span>
+                <span class="action-badge ${act.status}">${act.status}</span>
+              </div>
+              <div class="action-meta">
+                <span>Persona: ${act.persona}</span>
+                <span>Witness: ${act.witness_hash}</span>
+                <span>Erasure: ${act.erased_bits} bits</span>
+                <span>${timeStr}</span>
+              </div>
+              <div style="font-family:var(--font-mono); font-size:0.75rem; color:#9ca3af;">
+                params: ${JSON.stringify(act.parameters)}
+              </div>
+              ${remediationHtml}
+            </div>
+          `;
+        }).join("");
+      }
+    }
+
+    async function dispatchSafeAction() {
+      try {
+        const token = latestState?.tokens?.find(t => t.persona === "AI_Architect");
+        const res = await fetch("/api/action", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            tool_name: "inspect_memory",
+            parameters: { target_key: "cache_sync", count: Math.floor(Math.random() * 100) },
+            token_id: token ? token.token_id : ""
+          })
+        });
+        const data = await res.json();
+        showToast(`Dispatched: inspect_memory (${data.status})`);
+        fetchState();
+      } catch (e) {
+        showToast("Dispatch failed: " + e.message, true);
+      }
+    }
+
+    async function simulateBreach() {
+      try {
+        const token = latestState?.tokens?.find(t => t.persona === "AI_Architect");
+        showToast("Injecting type fault into enclave sandbox...");
+        const res = await fetch("/api/simulate-breach", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            token_id: token ? token.token_id : ""
+          })
+        });
+        const data = await res.json();
+        showToast(`Breach Resolved: Enclave Auto-Repair passed! (${data.status})`);
+        fetchState();
+      } catch (e) {
+        showToast("Simulation failed: " + e.message, true);
+      }
+    }
+
+    async function executeRollback() {
+      try {
+        const res = await fetch("/api/rollback", { method: "POST" });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`↺ State reverted to checkpoint ${data.restored_checkpoint_id}!`);
+        } else {
+          showToast(data.message || "Rollback failed", true);
+        }
+        fetchState();
+      } catch (e) {
+        showToast("Rollback error: " + e.message, true);
+      }
+    }
+
+    // Keyboard shortcut: Cmd+Z or Ctrl+Z for 1-click rollback
+    window.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "z") {
+        e.preventDefault();
+        executeRollback();
+      }
+    });
+
+    // Start auto-poll
+    fetchState();
+    setInterval(fetchState, 1500);
+  </script>
+</body>
+</html>

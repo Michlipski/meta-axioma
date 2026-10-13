@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Axioma Cruciverbalist Studio — Generation 2 (G2)</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="style.css?v=g2.2.0">
+</head>
+<body class="bg-[#090b14] text-[#f8fafc] antialiased min-h-screen p-3 md:p-6 flex flex-col items-center">
+
+  <!-- Desktop Header -->
+  <header class="w-full max-w-6xl flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-[#222942]">
+    <div class="flex items-center gap-3">
+      <div class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-black text-xs px-3 py-1.5 rounded-lg shadow-lg shadow-indigo-500/25 tracking-wider flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        SYSTEM G2
+      </div>
+      <div>
+        <h1 class="text-lg md:text-xl font-bold tracking-tight text-[#f8fafc] flex items-center gap-2">
+          Axioma Cruciverbalist Studio
+          <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">Generation 2 (G2)</span>
+          <span class="text-xs font-mono font-medium px-2 py-0.5 rounded-md bg-[#161b2e] text-indigo-300 border border-indigo-500/30">Port 8094</span>
+        </h1>
+        <p class="text-[11px] md:text-xs text-[#94a3b8]">
+          Multi-Device Optimistic Solving • AC-3 Constraint Synthesis • Zuhandenheit Flow Attuned
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick Action Bar -->
+    <div class="flex items-center gap-2 flex-wrap">
+      <select id="select-puzzle" onchange="changePuzzle(this.value)" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-[#14192b] border border-[#2a3352] text-gray-200 focus:outline-none focus:border-cyan-500 transition">
+        <option value="puzzle_g2_quick_01">Quick Cryptic #1 (7x7) — Gen 2</option>
+        <option value="puzzle_g2_midi_01">Midi Cryptic #1 (9x9) — Gen 2</option>
+      </select>
+
+      <button id="btn-undo" onclick="undoStep()" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-[#14192b] hover:bg-[#1f2642] border border-[#2a3352] text-[#f8fafc] transition flex items-center gap-1.5" title="Functorial Reversibility (L1-002)">
+        <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+        Undo <span id="undo-count" class="text-[10px] px-1.5 py-0.2 rounded-full bg-[#222942] text-[#94a3b8]">0</span>
+      </button>
+
+      <button id="btn-redo" onclick="redoStep()" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-[#14192b] hover:bg-[#1f2642] border border-[#2a3352] text-[#f8fafc] transition flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"/></svg>
+        Redo
+      </button>
+
+      <button onclick="toggleMobileKeypadView()" id="btn-toggle-keypad" class="px-2.5 py-1.5 text-xs font-medium rounded-lg bg-[#14192b] hover:bg-[#1f2642] border border-[#2a3352] text-gray-300 transition flex items-center gap-1.5" title="Toggle Soft Keypad">
+        ⌨️ <span class="hidden sm:inline">Keypad</span>
+      </button>
+
+      <button onclick="switchStudioTab('studio')" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/30 text-indigo-300 transition flex items-center gap-1.5">
+        ⚡ AC-3 Studio
+      </button>
+
+      <button onclick="openFeedbackModal()" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/30 text-blue-300 transition flex items-center gap-1.5">
+        💬 Feedback
+      </button>
+    </div>
+  </header>
+
+  <!-- Telemetry Ribbon -->
+  <section class="w-full max-w-6xl grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 p-3 rounded-xl g2-glass-card text-xs">
+    <div class="flex flex-col gap-0.5">
+      <span class="text-[#94a3b8] text-[11px] font-medium">Solver Progress</span>
+      <span id="stat-progress" class="font-mono font-semibold text-emerald-400">0 / 0 cells (0%)</span>
+    </div>
+    <div class="flex flex-col gap-0.5">
+      <span class="text-[#94a3b8] text-[11px] font-medium">Zuhandenheit Flow (L1-G2-006)</span>
+      <span id="stat-flow" class="font-mono font-semibold text-cyan-400">98.5% Flow (Attuned)</span>
+    </div>
+    <div class="flex flex-col gap-0.5">
+      <span class="text-[#94a3b8] text-[11px] font-medium">Optimistic Version (ETag)</span>
+      <span id="stat-version" class="font-mono font-semibold text-amber-400">v1 (Synced)</span>
+    </div>
+    <div class="flex flex-col gap-0.5">
+      <span class="text-[#94a3b8] text-[11px] font-medium">Landauer Dissipation [L1-008]</span>
+      <span id="stat-joules" class="font-mono font-semibold text-purple-400">0.00e-21 J</span>
+    </div>
+  </section>
+
+  <!-- Sticky Mobile Active Clue Banner -->
+  <div id="sticky-clue-banner" class="w-full max-w-6xl mb-4 p-3.5 rounded-xl bg-gradient-to-r from-cyan-950/40 via-[#121629] to-violet-950/40 border border-cyan-500/30 flex items-center justify-between gap-3 shadow-lg shadow-cyan-950/20">
+    <div class="flex items-center gap-2.5 overflow-hidden">
+      <span id="active-clue-badge" class="px-2.5 py-1 rounded-md text-xs font-bold font-mono bg-cyan-500 text-black shrink-0 shadow-sm">
+        1 ACROSS (3)
+      </span>
+      <span id="active-clue-type-pill" class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shrink-0">
+        DOUBLE_DEF
+      </span>
+      <span id="active-clue-text" class="text-xs md:text-sm font-semibold text-slate-100 truncate">
+        Atmospheric breeze, or broadcast live on radio (3)
+      </span>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <button onclick="switchClueDirection()" class="px-2.5 py-1.5 text-xs rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono flex items-center gap-1 transition">
+        ⇋ Dir
+      </button>
+      <button onclick="showActiveClueDissection()" class="px-2.5 py-1.5 text-xs rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-200 font-semibold flex items-center gap-1 transition">
+        🔍 Dissect
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Grid & Workbench Container -->
+  <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+    <!-- Left Column: Interactive 2D Crossword Grid -->
+    <div class="lg:col-span-7 g2-glass-card rounded-2xl p-4 md:p-6 flex flex-col items-center shadow-xl">
+      <div id="grid-container" class="w-full flex items-center justify-center min-h-[340px] overflow-auto py-2">
+        <!-- Crossword Grid rendered here -->
+      </div>
+
+      <!-- Grid Action Toolbar -->
+      <div class="w-full mt-5 pt-4 border-t border-[#222942] flex flex-wrap items-center justify-center gap-2 text-xs">
+        <button onclick="checkActiveWord()" class="px-3 py-1.5 font-medium rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 transition">
+          ✓ Check Word
+        </button>
+        <button onclick="revealActiveLetter()" class="px-3 py-1.5 font-medium rounded-lg bg-[#181d33] hover:bg-[#232a48] border border-[#2a3352] text-slate-200 transition">
+          💡 Reveal Letter
+        </button>
+        <button onclick="revealActiveWord()" class="px-3 py-1.5 font-medium rounded-lg bg-[#181d33] hover:bg-[#232a48] border border-[#2a3352] text-slate-200 transition">
+          📖 Reveal Word
+        </button>
+        <button onclick="clearCurrentPuzzle()" class="px-3 py-1.5 font-medium rounded-lg bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-red-300 transition">
+          ↺ Clear Grid
+        </button>
+      </div>
+
+      <!-- Mobile Touch Soft Keypad -->
+      <div id="mobile-keypad" class="w-full max-w-md mt-4 pt-4 border-t border-[#222942] flex flex-col gap-1.5">
+        <div class="flex justify-center gap-1">
+          <button class="keypad-key flex-1" onclick="handleSoftKey('Q')">Q</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('W')">W</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('E')">E</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('R')">R</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('T')">T</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('Y')">Y</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('U')">U</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('I')">I</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('O')">O</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('P')">P</button>
+        </div>
+        <div class="flex justify-center gap-1 px-3">
+          <button class="keypad-key flex-1" onclick="handleSoftKey('A')">A</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('S')">S</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('D')">D</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('F')">F</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('G')">G</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('H')">H</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('J')">J</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('K')">K</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('L')">L</button>
+        </div>
+        <div class="flex justify-center gap-1">
+          <button class="keypad-key flex-1 bg-cyan-950/40 text-cyan-300 border-cyan-800/50" onclick="switchClueDirection()" title="Toggle Across / Down">⇋</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('Z')">Z</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('X')">X</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('C')">C</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('V')">V</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('B')">B</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('N')">N</button>
+          <button class="keypad-key flex-1" onclick="handleSoftKey('M')">M</button>
+          <button class="keypad-key flex-1 bg-red-950/40 text-red-300 border-red-800/50" onclick="handleSoftBackspace()" title="Delete">⌫</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Workbench (Clues / Dissector / Studio / Telemetry) -->
+    <div class="lg:col-span-5 g2-glass-card rounded-2xl p-4 md:p-6 shadow-xl flex flex-col gap-4">
+
+      <!-- Workbench Tab Nav -->
+      <div class="flex items-center gap-1 p-1 rounded-xl bg-[#0b0e1b] border border-[#222942]">
+        <button id="tab-btn-clues" onclick="switchStudioTab('clues')" class="tab-btn flex-1 active-tab">
+          📜 Clues
+        </button>
+        <button id="tab-btn-dissector" onclick="switchStudioTab('dissector')" class="tab-btn flex-1">
+          🔍 Dissector
+        </button>
+        <button id="tab-btn-studio" onclick="switchStudioTab('studio')" class="tab-btn flex-1">
+          ⚡ AC-3 Studio
+        </button>
+        <button id="tab-btn-telemetry" onclick="switchStudioTab('telemetry')" class="tab-btn flex-1">
+          📊 Telemetry
+        </button>
+      </div>
+
+      <!-- Tab 1: Clues Directory -->
+      <div id="tab-clues" class="flex flex-col gap-4">
+        <div>
+          <h3 class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>Across Clues</span>
+            <span id="across-count" class="text-[10px] text-[#94a3b8] font-normal">0 clues</span>
+          </h3>
+          <div id="across-clues-list" class="flex flex-col gap-1 max-h-56 overflow-y-auto pr-1">
+            <!-- Across clues injected dynamically -->
+          </div>
+        </div>
+
+        <div class="border-t border-[#222942] pt-3">
+          <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>Down Clues</span>
+            <span id="down-count" class="text-[10px] text-[#94a3b8] font-normal">0 clues</span>
+          </h3>
+          <div id="down-clues-list" class="flex flex-col gap-1 max-h-56 overflow-y-auto pr-1">
+            <!-- Down clues injected dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Cryptic Anatomy Dissector (L1-004) -->
+      <div id="tab-dissector" class="hidden flex flex-col gap-3 text-xs">
+        <div class="flex items-center justify-between pb-2 border-b border-[#222942]">
+          <span id="dissector-clue-label" class="font-mono font-bold text-cyan-400">1 ACROSS</span>
+          <span id="dissector-type-badge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-violet-500/20 text-violet-300 border border-violet-500/30">
+            DOUBLE_DEF
+          </span>
+        </div>
+
+        <div>
+          <span class="text-[11px] text-[#94a3b8] block mb-1">Clue Surface (Deceptive Narrative):</span>
+          <p id="dissector-surface" class="font-serif italic text-slate-200 bg-[#0b0e1b] p-2.5 rounded-lg border border-[#222942]">
+            "Atmospheric breeze, or broadcast live on radio (3)"
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div class="p-2 rounded-lg bg-[#0b0e1b] border border-[#222942]">
+            <span class="text-[10px] text-[#94a3b8] block">Definition Segment:</span>
+            <span id="dissector-def" class="font-medium text-emerald-300 font-mono">atmospheric breeze</span>
+          </div>
+          <div class="p-2 rounded-lg bg-[#0b0e1b] border border-[#222942]">
+            <span class="text-[10px] text-[#94a3b8] block">Indicator Word:</span>
+            <span id="dissector-ind" class="font-medium text-amber-300 font-mono">None (Double Definition)</span>
+          </div>
+        </div>
+
+        <div class="p-2 rounded-lg bg-[#0b0e1b] border border-[#222942]">
+          <span class="text-[10px] text-[#94a3b8] block mb-0.5">Wordplay / Fodder:</span>
+          <span id="dissector-fodder" class="font-mono text-purple-300">AIR</span>
+        </div>
+
+        <div class="p-2.5 rounded-lg bg-[#0b0e1b] border border-[#222942]">
+          <span class="text-[10px] text-[#94a3b8] block mb-1">Universal Grammar AST Explanation [L1-004]:</span>
+          <p id="dissector-explanation" class="text-slate-300 leading-relaxed font-sans text-[11px]">
+            Double definition: AIR (atmosphere) and AIR (broadcast transmission).
+          </p>
+        </div>
+      </div>
+
+      <!-- Tab 3: AC-3 Constraint Synthesis Studio (L1-015_1) -->
+      <div id="tab-studio" class="hidden flex flex-col gap-3 text-xs">
+        <div class="flex items-center justify-between pb-2 border-b border-[#222942]">
+          <span class="font-semibold text-slate-200">AC-3 Constraint CSP Generator</span>
+          <span class="text-[10px] font-mono text-cyan-400 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-800/40">Worker Active</span>
+        </div>
+
+        <p class="text-[11px] text-[#94a3b8]">
+          Synthesize new cryptics on-the-fly using AC-3 Arc Consistency, MRV heuristics, and Landauer bit erasure limits.
+        </p>
+
+        <div class="flex items-center gap-2">
+          <select id="synth-size" class="px-3 py-1.5 rounded-lg bg-[#0b0e1b] border border-[#222942] text-slate-200 text-xs">
+            <option value="7">Quick Cryptic (7x7 Grid)</option>
+            <option value="9">Midi Cryptic (9x9 Grid)</option>
+          </select>
+          <button id="btn-trigger-synth" onclick="triggerSynthesisJob()" class="flex-1 px-3 py-1.5 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold transition flex items-center justify-center gap-1.5 shadow-md shadow-indigo-500/20">
+            ⚡ Synthesize New Grid
+          </button>
+        </div>
+
+        <!-- Synthesis Job Progress & Telemetry Box -->
+        <div id="synth-telemetry-box" class="p-3 rounded-xl bg-[#0b0e1b] border border-[#222942] flex flex-col gap-2">
+          <div class="flex items-center justify-between text-[11px]">
+            <span id="job-status-label" class="font-medium text-slate-300">Ready to synthesize</span>
+            <span id="job-id-label" class="font-mono text-[#94a3b8] text-[10px]">Idle</span>
+          </div>
+
+          <div class="w-full bg-[#181d33] h-1.5 rounded-full overflow-hidden">
+            <div id="job-progress-bar" class="bg-gradient-to-r from-cyan-400 to-indigo-500 h-full w-0 transition-all duration-300"></div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 pt-1 text-[10px] font-mono">
+            <div>
+              <span class="text-[#94a3b8] block">Backtracks:</span>
+              <span id="job-backtracks" class="text-amber-400 font-bold">0</span>
+            </div>
+            <div>
+              <span class="text-[#94a3b8] block">Pruned:</span>
+              <span id="job-pruned" class="text-blue-400 font-bold">0</span>
+            </div>
+            <div>
+              <span class="text-[#94a3b8] block">Joules ($k_B T \ln 2$):</span>
+              <span id="job-joules" class="text-purple-400 font-bold">0.00e-21 J</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="synth-log" class="font-mono text-[10px] text-slate-400 bg-[#070912] p-2.5 rounded-lg border border-[#222942] h-24 overflow-y-auto leading-relaxed">
+          [READY] Generation 2 AC-3 engine initialized. Ready for synthesis request.
+        </div>
+      </div>
+
+      <!-- Tab 4: Telemetry & Invariants (L1-G2-004 & L1-G2-006) -->
+      <div id="tab-telemetry" class="hidden flex flex-col gap-3 text-xs">
+        <div class="flex items-center justify-between pb-2 border-b border-[#222942]">
+          <span class="font-semibold text-slate-200">Architectural Governance</span>
+          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-800/40">Zero-Trust Enforced</span>
+        </div>
+
+        <div class="space-y-2">
+          <div class="p-2.5 rounded-lg bg-[#0b0e1b] border border-[#222942]">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-semibold text-indigo-300">Capability Token [L1-G2-004]</span>
+              <span id="tok-status" class="text-[10px] font-mono text-emerald-400">HMAC-SHA256 Valid</span>
+            </div>
+            <p id="tok-id" class="font-mono text-[10px] text-[#94a3b8] truncate">tok_cw_g2_active</p>
+            <span class="text-[10px] text-slate-400 mt-1 block">Persona: <strong class="text-slate-200">Cruciverbalist_Player</strong> | Scoped Actions: read_puzzle, enter_cell</span>
+          </div>
+
+          <div class="p-2.5 rounded-lg bg-[#0b0e1b] border border-[#222942]">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-semibold text-cyan-300">Self-Healing Enclave [L1-G2-002]</span>
+              <span class="text-[10px] font-mono text-emerald-400">Active</span>
+            </div>
+            <p class="text-[11px] text-[#94a3b8]">3-pass ephemeral repair catches schema anomalies without crashing daemon substrate.</p>
+          </div>
+
+          <div class="p-2.5 rounded-lg bg-[#0b0e1b] border border-[#222942]">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-semibold text-amber-300">Lexical Purity [NEG-G2-009]</span>
+              <span class="text-[10px] font-mono text-emerald-400">100% Authentic English</span>
+            </div>
+            <p class="text-[11px] text-[#94a3b8]">Zero pseudo-words or scrambled anagram fragments permitted in clue surfaces.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- In-App Feedback Modal (LES-G1-002) -->
+  <div id="feedback-modal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="g2-glass-card border border-[#2a3352] rounded-2xl w-full max-w-md p-5 flex flex-col gap-3 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-[#222942]">
+        <h3 class="font-bold text-sm text-slate-100 flex items-center gap-2">
+          <span>💬</span> Crossword Experience Feedback
+        </h3>
+        <button onclick="closeFeedbackModal()" class="text-[#94a3b8] hover:text-white text-lg leading-none">&times;</button>
+      </div>
+
+      <p class="text-xs text-[#94a3b8]">
+        Report clue friction, UI ergonomics issues, or suggest improvements directly into the Generation 2 feedback loop.
+      </p>
+
+      <div class="flex flex-col gap-2 text-xs">
+        <label class="text-[11px] text-[#94a3b8]">Friction Type:</label>
+        <select id="fb-type" class="px-2.5 py-1.5 rounded-lg bg-[#0b0e1b] border border-[#222942] text-slate-200">
+          <option value="CLUE_QUALITY">Clue Quality / Ambiguity</option>
+          <option value="KEYBOARD_INPUT">Keyboard / Input Ergonomics</option>
+          <option value="CSP_SYNTHESIS">CSP Synthesis Generation</option>
+          <option value="GENERAL">General Feedback</option>
+        </select>
+
+        <label class="text-[11px] text-[#94a3b8]">Your Feedback / Observation:</label>
+        <textarea id="fb-comment" rows="3" placeholder="Describe the friction or suggestion..." class="p-2.5 rounded-lg bg-[#0b0e1b] border border-[#222942] text-slate-200 text-xs focus:outline-none focus:border-cyan-500"></textarea>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-[#222942]">
+        <button onclick="closeFeedbackModal()" class="px-3 py-1.5 rounded-lg text-xs bg-[#181d33] hover:bg-[#232a48] text-slate-300">
+          Cancel
+        </button>
+        <button onclick="submitFeedback()" class="px-3 py-1.5 rounded-lg text-xs bg-cyan-600 hover:bg-cyan-500 text-white font-medium shadow-md shadow-cyan-600/30">
+          Submit to G2 Telemetry
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=g2.2.0"></script>
+</body>
+</html>

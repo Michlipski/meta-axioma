@@ -20,7 +20,7 @@ GLOSSARY:
 
 # ENTITY: Axiom
 MUST HAVE:
-- id: String (Pattern: ^(L0|L1)-\d{3}(_\d+)?$)
+- id: String (Pattern: ^(L0|L1)(-[A-Za-z0-9]+)?-\d{3}(_\d+)?$)
 - name: String
 - level: Enum (LEVEL_0_EPISTEMIC, LEVEL_1_STRUCTURAL)
 - statement: String
@@ -37,7 +37,7 @@ RULES:
 
 # ENTITY: NegativeAxiom
 MUST HAVE:
-- id: String (Pattern: ^NEG-\d{3}$)
+- id: String (Pattern: ^NEG(-[A-Za-z0-9]+)?-\d{3}$)
 - forbidden_pattern: String
 - rationale: String
 - injected_epoch: Integer

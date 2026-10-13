@@ -1,0 +1,315 @@
+{
+  "generation": "gen_02",
+  "predecessor_generation": "gen_01",
+  "initialized_at": 1776010000.0,
+  "status": "ACTIVE",
+  "inherited_lessons": [
+    {
+      "lesson_id": "LES-G1-001",
+      "generation": "gen_01",
+      "title": "The Verification Illusion & Premature Autonomous Application Synthesis",
+      "category": "ELICITATION_FAILURE",
+      "severity": "HIGH",
+      "incident_summary": "System G_1 synthesized a full production vocabulary app without first interviewing the human architect about their actual daily workflow, mental model, or utility function.",
+      "root_cause": "Verification-Validation Decoupling: treated application synthesis as an un-gated batch compilation step.",
+      "human_oracle_ruling": "wow. you managed to build that entire app without first asking me how i use it or what I get out of it",
+      "successor_prescriptions": [
+        "AppSpecification domain must mandate Phase 0: Human Intent Elicitation before compilation.",
+        "No non-generator application may compile without a signed HumanIntentWitness in trace/.",
+        "Target P1 (Ergonomics) must be evaluated via interactive persona validation, not static CSS rules or algorithm tests."
+      ]
+    },
+    {
+      "lesson_id": "LES-G1-002",
+      "generation": "gen_01",
+      "title": "Main Flow Test Absence & Domain Invariant Blindness (Axioma Crossword)",
+      "category": "TEST_INTEGRITY_FAILURE",
+      "severity": "HIGH",
+      "incident_summary": "In System 04 (Axioma Crossword), synthesis failed for 9x9 grids due to dictionary starvation, and clues broke cruciverbalist rules by including the answer verbatim.",
+      "root_cause": "Selective Happy-Path Testing: tested only 7x7 grid size; domain-specific rules were not codified as assertions.",
+      "human_oracle_ruling": "1. synthesis consistently fails for a 9x9. highlights failure to test main flows. 2. crossword clues typically require that the answer is not among explicitly among the words in the clue... breaks this. this highlights insufficient product research and/or tests. 3. the dissection for 'Reorganized natural produces natural' is also just wrong, again highlighting testing failures",
+      "successor_prescriptions": [
+        "Every user-facing mode/option must have dedicated end-to-end tests in the verification suite.",
+        "Domain invariants must be formalized as automated test assertions.",
+        "Never mask incomplete domain coverage with superficial templated fallbacks."
+      ]
+    }
+  ],
+  "inherited_negative_constraints": [
+    "NEG-G2-001: Forbid non-generator application compilation without verified HumanIntentWitness (Elicitation Gate).",
+    "NEG-G2-002: Forbid equating internal unit test pass rates with human utility validation (Verification Illusion Veto).",
+    "NEG-G2-003: Forbid releasing systems without automated regression tests covering all user-exposed configurations and domain-specific semantic invariants.",
+    "NEG-G2-004: Forbid releasing multi-substrate packages without verifying platform manifest flags, local asset bundle fallbacks, and launch render integrity (Substrate Pre-Flight Gate).",
+    "NEG-G2-005: Forbid employing simulated timers, fake notification banners, or hardcoded mock counters in place of real system/hardware APIs and event logs (Anti-Mock Hardware Invariant).",
+    "NEG-G2-006: Forbid polluting production databases or new user installations with dummy, mock, or placeholder records (Clean-Slate Production Invariant).",
+    "NEG-G2-007: Forbid relying on unverified third-party web APIs without live pre-flight validation of availability, CORS headers, and offline fallbacks (External API Verification Invariant).",
+    "NEG-G2-008: Forbid presenting unstyled, raw browser default elements or unpolished visual hierarchies to the user (Visual Dignity & Ergonomics Gate)."
+  ],
+  "active_g2_lessons": [
+    {
+      "lesson_id": "LES-G2-001",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791847486.475199
+    },
+    {
+      "lesson_id": "LES-G2-002",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791847630.15554
+    },
+    {
+      "lesson_id": "LES-G2-003",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791848106.941611
+    },
+    {
+      "lesson_id": "LES-G2-004",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791848742.787488
+    },
+    {
+      "lesson_id": "LES-G2-005",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791849804.532245
+    },
+    {
+      "lesson_id": "LES-G2-006",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791851251.812022
+    },
+    {
+      "lesson_id": "LES-G2-007",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791851925.453394
+    },
+    {
+      "lesson_id": "LES-G2-008",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791853021.188062
+    },
+    {
+      "lesson_id": "LES-G2-009",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791853305.277823
+    },
+    {
+      "lesson_id": "LES-G2-010",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791853980.3495932
+    },
+    {
+      "lesson_id": "LES-G2-011",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791854724.944232
+    },
+    {
+      "lesson_id": "LES-G2-012",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791855639.937962
+    },
+    {
+      "lesson_id": "LES-G2-013",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791859502.263249
+    },
+    {
+      "lesson_id": "LES-G2-014",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791860056.096405
+    },
+    {
+      "lesson_id": "LES-G2-LEX-001",
+      "category": "SUBSTRATE_BUILD_FAILURE",
+      "severity": "HIGH",
+      "title": "Android Platform Configuration & Asset Launch Flaws",
+      "incident_summary": "Missing android.useAndroidX=true caused Gradle failure; missing viewport/asset fallback caused initial black screen.",
+      "human_oracle_ruling": "checkDebugAarMetadata FAILED... it opened to a black screne",
+      "successor_prescriptions": [
+        "Enforce automated gradle.properties verification for Android builds.",
+        "Bundle fallback HTML5 assets inside APK assets folder to prevent offline launch failures."
+      ],
+      "timestamp": 1791862000.0
+    },
+    {
+      "lesson_id": "LES-G2-LEX-002",
+      "category": "MOCK_SUBSTITUTION_FAILURE",
+      "severity": "CRITICAL",
+      "title": "Mock Notifications & False Session Telemetry",
+      "incident_summary": "UI showed simulated notification banner and hardcoded 3-word session review count when only 1 word was reviewed.",
+      "human_oracle_ruling": "this is supposed to be the polished version but there is a simulated notification, and the session says 3 words reviewed even though there was just 1",
+      "successor_prescriptions": [
+        "Strictly ban simulated timers and fake notification banners.",
+        "Derive all review counts from real transactional session logs.",
+        "Integrate real native hardware notification APIs with test triggers."
+      ],
+      "timestamp": 1791862100.0
+    },
+    {
+      "lesson_id": "LES-G2-LEX-003",
+      "category": "DATA_POLLUTION",
+      "severity": "MEDIUM",
+      "title": "Initial State Contamination with Mock Cards",
+      "incident_summary": "Pre-populated database with dummy sample cards rather than honoring clean slate with minimal user seed.",
+      "human_oracle_ruling": "when I build I'd like there to be a blank slate apart from zuhandenheit",
+      "successor_prescriptions": [
+        "Production builds must initialize with zero placeholder or mock cards.",
+        "Only persist the explicit seed word specified by the human architect."
+      ],
+      "timestamp": 1791862200.0
+    },
+    {
+      "lesson_id": "LES-G2-LEX-004",
+      "category": "API_PRECONDITION_FAILURE",
+      "severity": "HIGH",
+      "title": "Unverified Third-Party API Endpoint Assumption",
+      "incident_summary": "Definition auto-population failed silently due to unverified API endpoint assumption and CORS blocks.",
+      "human_oracle_ruling": "the api appears to be having problems. did you check that it exists?",
+      "successor_prescriptions": [
+        "Verify public API existence, CORS headers, and latency before compiling code.",
+        "Implement a tiered resolution pipeline: local dictionary -> Wiktionary CORS extract -> Datamuse."
+      ],
+      "timestamp": 1791862300.0
+    },
+    {
+      "lesson_id": "LES-G2-LEX-005",
+      "category": "ERGONOMIC_DIGNITY_FAILURE",
+      "severity": "HIGH",
+      "title": "Unstyled Default Browser Button Elements",
+      "incident_summary": "Interactive action buttons rendered as raw unstyled white rectangles.",
+      "human_oracle_ruling": "Also, there are a lot of buttons that are just white rectangles that are remarkably ugly",
+      "successor_prescriptions": [
+        "Every interactive button must inherit the design token system.",
+        "Ban raw default HTML button styling in production interfaces."
+      ],
+      "timestamp": 1791862400.0
+    },
+    {
+      "lesson_id": "LES-G2-LEX-006",
+      "category": "INCOMPLETE_SEMANTICS",
+      "severity": "MEDIUM",
+      "title": "Partial Entity Hydration Leaving Empty Metadata",
+      "incident_summary": "Context sentence and mnemonic hints remained empty after word lookup.",
+      "human_oracle_ruling": "Now I've noticed that the context and mnemonic are empty. I don't personally need those perse but it would be nice",
+      "successor_prescriptions": [
+        "Entity hydrators must populate all schema fields (IPA, domain, definition, context, etymology/mnemonic).",
+        "Generate contextual literature examples when dictionary does not provide quotes."
+      ],
+      "timestamp": 1791862500.0
+    },
+    {
+      "lesson_id": "LES-G2-LEX-007",
+      "category": "TEST_SCAFFOLDING_LEAK",
+      "severity": "MEDIUM",
+      "title": "Test Notification Scaffolding in Production View",
+      "incident_summary": "Debug 5s test notification buttons and alert banners remained in production screens.",
+      "human_oracle_ruling": "they worked. please remove them for the final build. On that note, is there a more finalized build I should install now or is this one okay?",
+      "successor_prescriptions": [
+        "Decouple test harnesses from final release builds.",
+        "Compile signed release APKs (app-release.apk) free of test scaffolding."
+      ],
+      "timestamp": 1791862600.0
+    },
+    {
+      "lesson_id": "LES-G2-022",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791860822.251735
+    },
+    {
+      "lesson_id": "LES-G2-023",
+      "category": "PHENOMENOLOGICAL_FLOW_RUPTURE",
+      "severity": "HIGH",
+      "title": "Flow Disruption in 'unresponsive_modal' (VORHANDEN)",
+      "incident_summary": "Conspicuous breakdown: opaque error forced user to look AT tool.",
+      "rupture_index": 1.0,
+      "transparency_score": 0.0,
+      "timestamp": 1791861814.455575
+    },
+    {
+      "lesson_id": "LES-G2-CW-001",
+      "category": "CRUCIVERBALIST_AUTHENTICITY_FAILURE",
+      "severity": "CRITICAL",
+      "title": "Pseudo-Words and Phonetic Nonsense in Cryptic Clue Surface Text",
+      "incident_summary": "Generator produced anagram fodder and hidden word fragments like 'ran tula', 'cruel tu', 'legal hen c' that are not real English words.",
+      "human_oracle_ruling": "ran tula are not words",
+      "successor_prescriptions": [
+        "Enforce NEG-G2-009: every single token in clue surface text must be a verified English dictionary word.",
+        "Ban random letter shuffling in procedural clue synthesis; require real word anagrams, charades, reversals, or clean double definitions."
+      ],
+      "timestamp": 1791862900.0
+    }
+  ]
+}

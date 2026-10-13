@@ -7,18 +7,24 @@ related_domains:
 ---
 
 CONSTRAINTS:
-- Candidates are evaluated strictly against the target suite active for the current phase tier:
-  - Phase 1 evaluates against Epistemic Targets (E1 Diversity, E2 Refutation Velocity, E3 Structural Yield).
-  - Phase 2 evaluates against Structural Targets (S1 Self-Constructor, S2 Self-Evaluator, S3 Control Group).
+- Candidates are evaluated strictly against the target suite active for the current generation and phase tier:
+  - Generation 1 Phase 1 evaluates against Epistemic Targets (E1 Diversity, E2 Refutation Velocity, E3 Structural Yield).
+  - Generation 1 Phase 2 evaluates against Structural Targets (S1 Self-Constructor, S2 Self-Evaluator, S3 Control Group, P1 Usability).
+  - Generation 2 evaluates against the 4 Endogenous Successor Targets (G2-T1 Functorial Compilation, G2-T2 Self-Healing Enclaves, G2-T3 Cognitive Ergonomics & Utility, G2-T4 Landauer Concurrency Efficiency).
 - Compilation failures or invariant violations force negative aggregate penalty (-0.05 or lower).
-- In Generation 1, Target S2 is responsible for synthesizing and formalizing the successor targets for Generation 2.
+- In Generation 1, Target S2 was responsible for synthesizing and formalizing the successor targets for Generation 2.
+- In Generation 2, the compiler is responsible for synthesizing and formalizing the successor targets for Generation 3.
 
 GLOSSARY:
 - Target S1 (Self-Constructor): Tests recursive compilation into the bootstrapper's own AST and modular architecture.
 - Target S2 (Self-Evaluator): Tests telemetry stream signal-to-noise ratio, auditability, and successor evaluation synthesis.
 - Target S3 (Control Group): Tests compilation against an orthogonal problem domain (distributed cache coherence / replicated state machines).
 - Target P1 (Product Usability): Tests human-centric utility, persona goal velocity, cognitive friction reduction, and gentle error recovery.
-- Successor Target Synthesis: The process by which Generation 1 formulates the evaluation landscape for Generation 2.
+- Target G2-T1 (Higher-Order Functorial Compilation): Tests Galois adjunctions and multi-substrate preservation.
+- Target G2-T2 (Autonomous Self-Healing & Enclave Verification): Tests bounded multi-pass invariant restoration with zero blast leakage.
+- Target G2-T3 (Teleological Non-Generator Utility & Ergonomics): Tests persona alignment, mental model KL divergence, and ergonomic goal velocity.
+- Target G2-T4 (Landauer Thermodynamic Concurrency Efficiency): Tests dissipated erasure joules across concurrent execution pipelines.
+- Successor Target Synthesis: The process by which Generation N formulates the evaluation landscape for Generation N+1.
 
 # ENTITY: TargetSimulationResult
 MUST HAVE:

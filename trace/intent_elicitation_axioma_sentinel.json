@@ -1,0 +1,11 @@
+{
+  "application_id": "axioma_sentinel",
+  "witness_id": "witness_axioma_sentinel_1776011200",
+  "persona_name": "AI Systems Architect & Agent Operator",
+  "jtbd_summary": "Deep interactive monitoring: real-time visibility into autonomous agent tool actions, instant 1-click sandbox rollbacks, and automated 3-pass exception enclave healing.",
+  "daily_workflow": "The architect launches autonomous coding/orchestrator agent swarms, monitors tool calls in real time, observes automated multi-pass self-healing whenever an invariant is breached, and uses 1-click rollback to revert accidental or misaligned state mutations without losing session context.",
+  "utility_metric_definition": "Utility = (PersonaGoalVelocity / (1 + CognitiveFriction)) >= 0.85, with 100% blast containment and < 100ms rollback latency.",
+  "signed_off_by_human": true,
+  "signed_at": 1776011200.0,
+  "witness_hash": "c8d4f61e7a2b9043e8c1f03a64d89e521074bdf8821950e82c6114f8263a290d"
+}

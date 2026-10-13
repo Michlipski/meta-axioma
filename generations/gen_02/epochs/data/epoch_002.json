@@ -1,0 +1,63 @@
+{
+  "generation": 2,
+  "epoch": 2,
+  "phase": "PHASE_1_DOMAIN_EXECUTION",
+  "timestamp": 1776013600.0,
+  "active_structural_invariants": [
+    "L1-G2-001",
+    "L1-G2-002",
+    "L1-G2-003",
+    "L1-G2-004",
+    "L1-G2-005",
+    "L1-G2-006",
+    "L1-G2-007"
+  ],
+  "exogenous_domains_injected": [
+    "Phenomenological Tool-Being (Heideggerian Ontology)",
+    "Movement Biomechanics & Kinetic Chaining"
+  ],
+  "inherited_negative_constraints": [
+    "NEG-G2-001",
+    "NEG-G2-002",
+    "NEG-G2-003"
+  ],
+  "compute_budget_tokens": 2222,
+  "depth": 2,
+  "target_evaluations": [
+    {
+      "target_id": "G2-T1",
+      "target_name": "Higher-Order Functorial Compilation Target",
+      "raw_score": 1.0,
+      "weighted_score": 0.30,
+      "passed": true
+    },
+    {
+      "target_id": "G2-T2",
+      "target_name": "Autonomous Self-Healing & Enclave Verification Target",
+      "raw_score": 1.0,
+      "weighted_score": 0.25,
+      "passed": true
+    },
+    {
+      "target_id": "G2-T3",
+      "target_name": "Teleological Non-Generator Utility & Cognitive Ergonomics Target",
+      "raw_score": 0.85,
+      "weighted_score": 0.255,
+      "passed": true
+    },
+    {
+      "target_id": "G2-T4",
+      "target_name": "Landauer Thermodynamic Concurrency Efficiency Target",
+      "raw_score": 1.0,
+      "weighted_score": 0.15,
+      "passed": true
+    }
+  ],
+  "aggregate_delta_e": 0.955,
+  "compilation_success": true,
+  "multi_substrate_extremities_compiled": [
+    "Web Reactive HUD (Port 8100)",
+    "Terminal CLI (sentinel-cli)",
+    "Headless Edge Daemon"
+  ]
+}

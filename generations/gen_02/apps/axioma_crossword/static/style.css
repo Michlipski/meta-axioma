@@ -1,0 +1,222 @@
+/* Axioma Cruciverbalist Studio — Generation 2 (G2) Stylesheet */
+:root {
+  --background: #090b14;
+  --card: #121626;
+  --card-elevated: #181d33;
+  --border: #222942;
+  --border-glow: rgba(99, 102, 241, 0.4);
+  --foreground: #f8fafc;
+  --muted-foreground: #94a3b8;
+  --cyan-primary: #06b6d4;
+  --violet-primary: #8b5cf6;
+  --emerald-primary: #10b981;
+  --amber-primary: #f59e0b;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Glassmorphic Cards */
+.g2-glass-card {
+  background: rgba(18, 22, 38, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Crossword Grid Matrix */
+.grid-table {
+  border-collapse: separate;
+  border-spacing: 2px;
+  background-color: #070912;
+  border: 2px solid var(--border);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px -5px rgba(99, 102, 241, 0.15);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.grid-cell {
+  width: 44px;
+  height: 44px;
+  max-width: 44px;
+  max-height: 44px;
+  min-width: 36px;
+  min-height: 36px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #151a2d;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .grid-cell {
+    width: 38px;
+    height: 38px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+}
+
+.grid-cell:hover:not(.black-cell) {
+  background-color: #1c223a;
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.grid-cell.black-cell {
+  background-color: #06070d !important;
+  border: 1px solid rgba(255, 255, 255, 0.02) !important;
+  cursor: default;
+}
+
+.grid-cell.word-highlight {
+  background-color: rgba(6, 182, 212, 0.15) !important;
+  border-color: rgba(6, 182, 212, 0.3) !important;
+}
+
+.grid-cell.active-cell {
+  background-color: rgba(99, 102, 241, 0.25) !important;
+  box-shadow: 0 0 0 2px #06b6d4, inset 0 0 14px rgba(6, 182, 212, 0.35) !important;
+  border-color: #06b6d4 !important;
+  z-index: 5;
+}
+
+.cell-number {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  font-size: 8.5px;
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #64748b;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.grid-cell.active-cell .cell-number,
+.grid-cell.word-highlight .cell-number {
+  color: #94a3b8;
+}
+
+.cell-letter {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #f8fafc;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.cell-error {
+  color: #f87171 !important;
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  animation: shake 0.3s;
+}
+
+.cell-correct {
+  color: #34d399 !important;
+  background-color: rgba(16, 185, 129, 0.15) !important;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* Tabs & UI Buttons */
+.tab-btn {
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  color: var(--muted-foreground);
+  background: transparent;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.tab-btn:hover {
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tab-btn.active-tab {
+  color: #ffffff;
+  background: rgba(99, 102, 241, 0.18);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 2px 10px -2px rgba(99, 102, 241, 0.3);
+}
+
+/* Clue Items */
+.clue-item {
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.clue-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.clue-item.active-clue-item {
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.35);
+  box-shadow: 0 2px 8px -2px rgba(6, 182, 212, 0.25);
+}
+
+.clue-item.completed-clue {
+  opacity: 0.6;
+  text-decoration: line-through;
+  text-decoration-color: rgba(16, 185, 129, 0.5);
+}
+
+/* Soft Keypad */
+.keypad-key {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  background: #181d33;
+  color: #e2e8f0;
+  border: 1px solid #2a3352;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: all 0.1s ease;
+  user-select: none;
+}
+
+.keypad-key:active {
+  transform: translateY(1px);
+  background: #232a48;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #252d47;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374169;
+}

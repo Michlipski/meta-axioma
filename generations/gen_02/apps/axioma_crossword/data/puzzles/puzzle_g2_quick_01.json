@@ -1,0 +1,352 @@
+{
+  "grid_id": "puzzle_g2_quick_01",
+  "title": "Axioma Quick Cryptic #1 (7x7) \u2014 Gen 2",
+  "size_rows": 7,
+  "size_cols": 7,
+  "cells": [
+    [
+      "A",
+      "I",
+      "R",
+      "#",
+      "L",
+      "I",
+      "E"
+    ],
+    [
+      "N",
+      "#",
+      "E",
+      "#",
+      "A",
+      "#",
+      "Y"
+    ],
+    [
+      "D",
+      "E",
+      "F",
+      "E",
+      "N",
+      "S",
+      "E"
+    ],
+    [
+      "#",
+      "#",
+      "L",
+      "#",
+      "D",
+      "#",
+      "#"
+    ],
+    [
+      "P",
+      "R",
+      "E",
+      "C",
+      "I",
+      "S",
+      "E"
+    ],
+    [
+      "A",
+      "#",
+      "C",
+      "#",
+      "N",
+      "#",
+      "A"
+    ],
+    [
+      "N",
+      "E",
+      "T",
+      "#",
+      "G",
+      "E",
+      "T"
+    ]
+  ],
+  "slots": [
+    {
+      "slot_id": "A_0_0",
+      "direction": "ACROSS",
+      "row": 0,
+      "col": 0,
+      "length": 3,
+      "number": 1,
+      "answer": "AIR"
+    },
+    {
+      "slot_id": "D_0_0",
+      "direction": "DOWN",
+      "row": 0,
+      "col": 0,
+      "length": 3,
+      "number": 1,
+      "answer": "AND"
+    },
+    {
+      "slot_id": "D_0_2",
+      "direction": "DOWN",
+      "row": 0,
+      "col": 2,
+      "length": 7,
+      "number": 2,
+      "answer": "REFLECT"
+    },
+    {
+      "slot_id": "A_0_4",
+      "direction": "ACROSS",
+      "row": 0,
+      "col": 4,
+      "length": 3,
+      "number": 3,
+      "answer": "LIE"
+    },
+    {
+      "slot_id": "D_0_4",
+      "direction": "DOWN",
+      "row": 0,
+      "col": 4,
+      "length": 7,
+      "number": 3,
+      "answer": "LANDING"
+    },
+    {
+      "slot_id": "D_0_6",
+      "direction": "DOWN",
+      "row": 0,
+      "col": 6,
+      "length": 3,
+      "number": 4,
+      "answer": "EYE"
+    },
+    {
+      "slot_id": "A_2_0",
+      "direction": "ACROSS",
+      "row": 2,
+      "col": 0,
+      "length": 7,
+      "number": 5,
+      "answer": "DEFENSE"
+    },
+    {
+      "slot_id": "A_4_0",
+      "direction": "ACROSS",
+      "row": 4,
+      "col": 0,
+      "length": 7,
+      "number": 6,
+      "answer": "PRECISE"
+    },
+    {
+      "slot_id": "D_4_0",
+      "direction": "DOWN",
+      "row": 4,
+      "col": 0,
+      "length": 3,
+      "number": 6,
+      "answer": "PAN"
+    },
+    {
+      "slot_id": "D_4_6",
+      "direction": "DOWN",
+      "row": 4,
+      "col": 6,
+      "length": 3,
+      "number": 7,
+      "answer": "EAT"
+    },
+    {
+      "slot_id": "A_6_0",
+      "direction": "ACROSS",
+      "row": 6,
+      "col": 0,
+      "length": 3,
+      "number": 8,
+      "answer": "NET"
+    },
+    {
+      "slot_id": "A_6_4",
+      "direction": "ACROSS",
+      "row": 6,
+      "col": 4,
+      "length": 3,
+      "number": 9,
+      "answer": "GET"
+    }
+  ],
+  "clues": [
+    {
+      "clue_id": "clue_A_0_0",
+      "slot_id": "A_0_0",
+      "number": 1,
+      "direction": "ACROSS",
+      "surface_text": "Atmospheric breeze, or broadcast live on radio (3)",
+      "length": 3,
+      "answer": "AIR",
+      "definition": "atmospheric breeze and broadcast live",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: AIR (atmosphere) and AIR (broadcast transmission)."
+    },
+    {
+      "clue_id": "clue_D_0_0",
+      "slot_id": "D_0_0",
+      "number": 1,
+      "direction": "DOWN",
+      "surface_text": "Logical connective joining an additional clause (3)",
+      "length": 3,
+      "answer": "AND",
+      "definition": "logical connective and additional clause",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: AND (logical connective) and AND (further addition)."
+    },
+    {
+      "clue_id": "clue_D_0_2",
+      "slot_id": "D_0_2",
+      "number": 2,
+      "direction": "DOWN",
+      "surface_text": "Cast back light, or meditate deeply upon thoughts (7)",
+      "length": 7,
+      "answer": "REFLECT",
+      "definition": "cast back light and meditate deeply upon thoughts",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: REFLECT (bounce light) and REFLECT (contemplate)."
+    },
+    {
+      "clue_id": "clue_A_0_4",
+      "slot_id": "A_0_4",
+      "number": 3,
+      "direction": "ACROSS",
+      "surface_text": "Untruthful statement, or rest horizontally on sofa (3)",
+      "length": 3,
+      "answer": "LIE",
+      "definition": "untruthful statement and rest horizontally",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: LIE (falsehood) and LIE (recline)."
+    },
+    {
+      "clue_id": "clue_D_0_4",
+      "slot_id": "D_0_4",
+      "number": 3,
+      "direction": "DOWN",
+      "surface_text": "Aircraft touchdown on tarmac, or staircase platform (7)",
+      "length": 7,
+      "answer": "LANDING",
+      "definition": "aircraft touchdown and staircase platform",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: LANDING (aviation touchdown) and LANDING (stairs floor)."
+    },
+    {
+      "clue_id": "clue_D_0_6",
+      "slot_id": "D_0_6",
+      "number": 4,
+      "direction": "DOWN",
+      "surface_text": "Organ of sight, or tiny hole in sewing needle (3)",
+      "length": 3,
+      "answer": "EYE",
+      "definition": "organ of sight and needle hole",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: EYE (vision organ) and EYE (needle hole)."
+    },
+    {
+      "clue_id": "clue_A_2_0",
+      "slot_id": "A_2_0",
+      "number": 5,
+      "direction": "ACROSS",
+      "surface_text": "Protective shield, or legal counsel for accused (7)",
+      "length": 7,
+      "answer": "DEFENSE",
+      "definition": "protective shield and legal counsel for accused",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: DEFENSE (protection) and DEFENSE (court counsel)."
+    },
+    {
+      "clue_id": "clue_A_4_0",
+      "slot_id": "A_4_0",
+      "number": 6,
+      "direction": "ACROSS",
+      "surface_text": "Meticulously exact, or strictly accurate detail (7)",
+      "length": 7,
+      "answer": "PRECISE",
+      "definition": "meticulously exact and strictly accurate",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: PRECISE (exact) and PRECISE (strictly accurate)."
+    },
+    {
+      "clue_id": "clue_D_4_0",
+      "slot_id": "D_4_0",
+      "number": 6,
+      "direction": "DOWN",
+      "surface_text": "Kitchen cookware, or harshly criticize (3)",
+      "length": 3,
+      "answer": "PAN",
+      "definition": "kitchen cookware and harshly criticize",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: PAN (cookware) and PAN (criticize harshly)."
+    },
+    {
+      "clue_id": "clue_D_4_6",
+      "slot_id": "D_4_6",
+      "number": 7,
+      "direction": "DOWN",
+      "surface_text": "Tea brewed to consume nourishment (3)",
+      "length": 3,
+      "answer": "EAT",
+      "definition": "consume nourishment",
+      "clue_type": "ANAGRAM",
+      "indicator": "brewed",
+      "fodder": "tea",
+      "explanation": "Anagram of TEA = EAT (definition: consume nourishment)."
+    },
+    {
+      "clue_id": "clue_A_6_0",
+      "slot_id": "A_6_0",
+      "number": 8,
+      "direction": "ACROSS",
+      "surface_text": "Fisherman's mesh when ten recalled (3)",
+      "length": 3,
+      "answer": "NET",
+      "definition": "fisherman's mesh",
+      "clue_type": "REVERSAL",
+      "indicator": "recalled",
+      "fodder": "ten",
+      "explanation": "TEN reversed = NET (definition: fisherman's mesh)."
+    },
+    {
+      "clue_id": "clue_A_6_4",
+      "slot_id": "A_6_4",
+      "number": 9,
+      "direction": "ACROSS",
+      "surface_text": "Acquire possession, or comprehend subtle meaning (3)",
+      "length": 3,
+      "answer": "GET",
+      "definition": "acquire possession and comprehend meaning",
+      "clue_type": "DOUBLE_DEF",
+      "indicator": "",
+      "fodder": "",
+      "explanation": "Double definition: GET (obtain) and GET (understand)."
+    }
+  ],
+  "symmetry": "ROTATIONAL_180"
+}

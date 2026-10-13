@@ -14,11 +14,12 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 | System ID | Name | Domain / Archetype | Target Persona | Port | Status | Primary Feedback / Lesson |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **01** | [`axioma_flow`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_flow/) | Invariant Kanban & Workspace | AI Architect / Systems Engineer | `8088` | **Deployed** | Strong desktop UX; lacks active user feedback telemetry loop. |
-| **02** | [`axioma_lexis`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_lexis/) | Adaptive Spaced Repetition (SRS) | Intermediate+ English Learner (Android) | `8090` | **Scaffolded** | [`LES-G1-001`](#system-02-axioma-lexis): Verification Illusion (built before user elicitation). |
+| **02** | [`axioma_lexis`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_lexis/) | Adaptive Spaced Repetition (SRS) | The Mobile Focus Learner & Technical Polymath | `8090` | **Deployed (G2)** | [`LES-G1-001`](#system-02-axioma-lexis) Redeemed: Direct Intent Grounding, 3-5 Card Micro-Dosing, 0-Friction Hydration, 10s Dwell Patience. |
 | **03** | [`axioma_dual_fsm`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_dual_fsm/) | Dual-FSM Zero-Trust Governance | AI Safety Officer / Security Engineer | `8092` | **Deployed** | State Determinism, Tool Failure Loop, De-escalation & Functorial Revert. |
 | **04** | [`axioma_crossword`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_crossword/) | Constraint & Synthesis Engine | Puzzle Solver / Cruciverbalist Architect | `8094` | **Deployed** | Multi-Device Scaling, Optimistic Delta Sync, AC-3 Worker Pool & Clue Dissector. |
 | **05** | [`axioma_eink`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_eink/) | Async Hardware Sync & Router | Physical Focus Worker / Kindle User | `8096` | **Deployed** | Zero-JS Electrophoretic View, 15m Meta-Refresh, Daily Big 3–5 Bounded Focus. |
 | **06** | [`axioma_swarm`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_swarm/) | Local Edge Micro-Swarm Daemon | Edge ML Engineer / Local AI Operator | `8098` | **Deployed** | VRAM Tensor Budget Allocator, LRU Model Eviction, OOM Exception Enclaves. |
+| **07** | [`axioma_sentinel`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_sentinel/) | Zero-Trust Agent Incident & Auto-Healing Console | AI Systems Architect & Safety Officer | `8100` | **Deployed** | Generation 2 Flagship: Elicited under L1-G2-005; 3-Pass Auto-Repair, 1-Click Cmd+Z Rollback, HMAC Capability Scoping. |
 
 ### Core Governance Principle: Plan-First & Optional Execution
 > **The Golden Rule for Application Synthesis:**  
@@ -44,14 +45,25 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 ---
 
 ### System 02: Axioma Lexis
-- **Canonical Path:** [`generations/gen_01/apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/apps/axioma_lexis/) (Symlinked at [`apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_lexis/))
-- **Concept:** 100% free, offline-first mobile Progressive Web App (PWA) for Android, mirroring and elevating Mem-App. Features progressive dictionary search, dual US/UK speech synthesis, adaptive SM-2 spaced repetition, and 1-tap deck addition.
-- **Target Persona:** Intermediate+ English Vocabulary Learner (Android Mobile User).
-- **Axiomatic Advantages over Mem-App:** Zero subscription paywalls or 50-word caps, local JSON storage, and Functorial Reversibility (`L1-002`) allowing 1-tap Undo for accidental rating mis-taps.
-- **Feedback & Retrospective (`LES-G1-001`):**
-  - *Human Oracle Critique:* *"wow. you managed to build that entire app without first asking me how i use it or what I get out of it"*
-  - *Epistemic Lesson:* **The Verification Illusion.** The compiler achieved 100% test pass rates and standard layout compliance on an ungrounded spec derived from a website scrape without conducting user research.
-  - *Current Status:* Code scaffolding and PWA engine are operational, but product feature priorities are paused awaiting active human discovery on actual reading habits and vocabulary capture workflows.
+- **Canonical Paths:**
+  - *Gen 1 Historical Archive:* [`generations/gen_01/apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/apps/axioma_lexis/)
+  - *Gen 2 Ground-Up Reconstruction:* [`generations/gen_02/apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_lexis/)
+- **Concept:** Mobile-first spaced repetition vocabulary engine engineered to eliminate the **Activation Energy Barrier** ("opening the app in the first place") and manual card authoring friction.
+- **Port:** `8090` | **Status:** **Deployed & Operational** (7/7 Gen 2 Unit Tests Passing)
+- **High-Level Blueprint:** [`axioma_lexis_g2_plan.md`](file:///Users/michaellipski/.gemini/antigravity/brain/4260a519-5298-4632-b994-96183d493ebb/axioma_lexis_g2_plan.md)
+- **Target Persona:** The Mobile Focus Learner & Technical Polymath.
+- **Transgenerational Redemption of `LES-G1-001` (The Verification Illusion):**
+  - *The Flaw in Gen 1:* Compiled 100% passing tests on an ungrounded spec derived from a website scrape without conducting user discovery, prompting the critique: *"wow. you managed to build that entire app without first asking me how i use it or what I get out of it"*.
+  - *The Gen 2 Resolution:* Certified under [`[L1-G2-005]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary) ([`intent_elicitation_axioma_lexis.json`](file:///Users/michaellipski/dev/meta-axioma/trace/intent_elicitation_axioma_lexis.json)). Reconstructed based directly on the human architect's answers:
+    1. **Speech Synthesis Stripped (0 Bloat):** Confirmed out of scope and removed entirely.
+    2. **Activation Barrier Eradicated:** Never presents a terrifying backlog. Capped at strictly **3 to 5 words max per micro-session** (<45s completion).
+    3. **Direct-to-Card Launch:** Bypasses home screens, menus, and deck pickers—drops the user directly into Card #1.
+    4. **Curiosity-Prompt Push Notifications:** Non-intrusive snippets (max 2/day at 8:30 AM and 7:30 PM, zero guilt/streak spam).
+    5. **10.0s Desirable Difficulty Window ([`L1-G2-006`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant)):** Quiet, calm 10-second active recall window before subtle mnemonic hints appear.
+    6. **Humane Step-Back Fibonacci Spacing:** Struggling cards decay by strictly **1 tier** (never drop to Day 0).
+    7. **Zero-Typing 1-Word Hydration:** Type or paste 1 word $\to$ auto-hydrates IPA, definition, and contextual sentence in $<1.5$s.
+    8. **3-Pass Enclave Healing ([`L1-G2-002`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop)):** Corrupted decks/schemas are repaired on-the-fly with zero crash leakage to study sessions.
+    9. **Tri-Substrate Extremities ([`L1-G2-007`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation)):** Mobile PWA (Port 8090) + Terminal Quick-Capture CLI (`lexis add word`) + Headless Scheduling Daemon (`lexis-daemon`).
 
 ---
 
@@ -72,16 +84,19 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 ---
 
 ### System 04: Cryptic Crossword Constraint & Synthesis Engine
-- **Canonical Path:** [`generations/gen_01/apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/apps/axioma_crossword/) (Symlinked at [`apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_crossword/))
-- **App ID:** `axioma_crossword` | **Port:** `8094` | **Status:** **Deployed** (8/8 Unit Tests Passing)
+- **Canonical Path:** [`generations/gen_02/apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_crossword/) (Symlinked at [`apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_crossword/))
+- **App ID:** `axioma_crossword` | **Port:** `8094` | **Status:** **Deployed (G2)** (11/11 Unit Tests Passing)
 - **Test Mode:** High-Dimensional Constraint Satisfaction, Multi-Device Scaling & Heuristic Search.
-- **The Concept:** A globally scalable, multi-device cryptic crossword synthesis and solving studio.
-  - **Multi-Device Scaling:** 2-column desktop cruciverbalist workbench, tablet split layout, and mobile touch interface with custom low-profile 26-letter soft keypad.
-  - **Optimistic Local Execution (`L1-002`, `L1-011_3`):** 0ms keystroke latency on device edge with asynchronous delta synchronization (`PATCH /api/sessions/{id}/delta`) and optimistic ETag locking.
-  - **Cryptic Anatomy Dissector (`L1-004`):** Interactive color-coded Universal Grammar AST parse tree decomposing clues into `[DEFINITION]`, `[INDICATOR]`, and `[FODDER]` with step-by-step wordplay explanations.
-  - **Decoupled Asynchronous CSP Synthesizer (`L1-015_1`):** CPU-bound AC-3 backtracking puzzle generation is offloaded to an isolated worker thread pool (`worker_pool.py`), returning `202 Accepted` with pollable progress (`/api/jobs/{id}`) to prevent web server event loop lockup.
-  - **Landauer Thermodynamic Accounting (`L1-008`):** Measures information erasure bits and dissipated thermal energy ($\Delta S = k_B \ln |D_i|$) during backtracking, enforcing hard compute leases to prevent denial of service.
-- **Invariants Embodied:** `L1-004` (Universal Grammar AST for clues), `L1-015_1` (Compositional Boundary Isolation), `L1-008` (Landauer search dissipation audit), `L1-002` (Functorial Reversibility & Delta Sourcing), `L1-011_3` (Decoupled Partitioned Persistence), `L1-016` (Demarcated Exception Enclaves).
+- **Transgenerational Redemption of `LES-G1-002` (Cruciverbalist Domain Invariants):**
+  - *Previous Failure:* 9x9 synthesis failed due to dictionary starvation (only 3 words of length 9), and 638/687 clues contained the answer verbatim in the surface text (e.g. *"Reorganized natural produces natural"*).
+  - *Usable App Retrofit Outcomes:*
+    1. **Lexical Domain Saturation (`NEG-G2-007`):** Expanded wordbank to 32,869 words across lengths 3 through 11 (3,990 words of length 9; 3,968 words of length 7).
+    2. **Cruciverbalist Clue Invariant (`NEG-G2-003` & `NEG-G2-009`):** 100% of clues verified so that the answer NEVER appears verbatim in the clue surface text, AND 100% of tokens in clue surface text are legitimate, authentic English dictionary words (strictly zero pseudo-words like "ran tula", "cruel tu", "legal hen c").
+    3. **Sub-Millisecond Multi-Size Synthesis:** 7x7 solves in 0.002s; 9x9 Midi solves in 0.005s; 11x11 Maxi solves in 0.000s (14 backtracks).
+    4. **Accurate Anatomy Dissector (`L1-004`):** Color-coded Universal Grammar AST decomposes clues into `[DEFINITION]`, `[INDICATOR]`, and `[FODDER]` with authentic mechanics explanations.
+    5. **Clean Production Seed Puzzles (`NEG-G2-006`):** Launchable with verified `puzzle_quick_01` (7x7) and `puzzle_midi_01` (9x9) populated with 100% real English words and hand-crafted cryptic clues ready to play immediately.
+    6. **In-App Feedback Loop (`LES-G1-002`):** Direct `💬 Feedback` button wired to `POST /api/feedback` logging to `data/user_feedback.json`.
+- **Invariants Embodied:** `L1-004` (Universal Grammar AST for clues), `L1-015_1` (Compositional Boundary Isolation), `L1-008` (Landauer search dissipation audit), `L1-002` (Functorial Reversibility & Delta Sourcing), `L1-011_3` (Decoupled Partitioned Persistence), `L1-016` (Demarcated Exception Enclaves), `NEG-G2-003` (Domain Invariant Gate), `NEG-G2-009` (Cruciverbalist Lexical Purity Invariant).
 
 ---
 
@@ -109,6 +124,22 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
   - **Specialty Task Router ([`L1-015`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/trace_evolution.domain.md)):** Auto-routes requests based on specialty requirements (`CODING`, `REASONING`, `FAST_SUMMARY`, `VISION_EMBEDDING`) or operator manual overrides.
   - **Append-Only Event Stream ([`L1-002`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/trace_evolution.domain.md)):** Immutable event audit stream in `data/events.json` recording model residency mutations and task lifecycles.
 - **Invariants Embodied:** `L1-008` (Physical Resource Bounds), `L1-016` (Demarcated Exception Enclaves), `L1-015` (Zero-Trust Scoping), `L1-002` (Functorial Event Sourcing), `L1-011_3` (Decoupled Persistence across Boundary 3), `L1-015_1` (Compositional Boundary Isolation), Target $P_1$ (Operator Ergonomics & Predictability).
+
+---
+
+### System 07: Axioma Sentinel (Zero-Trust Agent Incident & Auto-Healing Console)
+- **Canonical Path:** [`generations/gen_02/apps/axioma_sentinel/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_sentinel/) (Symlinked at [`apps/axioma_sentinel/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_sentinel/))
+- **App ID:** `axioma_sentinel` | **Port:** `8100` | **Status:** **Deployed** (5/5 Unit Tests Passing)
+- **Generational Lineage:** Flagship Non-Generator Application for **Generation 2 ($G_2$)**.
+- **Human Intent Elicitation Authority:** Formally elicited and signed off under [`L1-G2-005`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary) in [`trace/intent_elicitation_axioma_sentinel.json`](file:///Users/michaellipski/dev/meta-axioma/trace/intent_elicitation_axioma_sentinel.json).
+- **Target Persona:** AI Systems Architect & Safety Officer.
+- **Primary JTBD:** Real-time visibility into autonomous agent tool dispatches, instant 1-click sandbox rollbacks, and automated 3-pass exception enclave auto-healing.
+- **Key Features:**
+  - **Ephemeral Exception Enclaves ([`L1-G2-002`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop)):** Sandboxed multi-pass repair ($k \le 3$) resolving invariant breaches and schema faults with verified zero blast-leakage.
+  - **Functorial 1-Click Rollback ([`L1-G2-001`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation)):** Reverts to the exact mathematical state hash of any previous checkpoint with a single click or `Cmd+Z` keystroke.
+  - **Introspectable Zero-Trust Capability Scoping ([`L1-G2-004`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping)):** Granular HMAC SHA-256 capability tokens bound to specific personas, eliminating ambient authority.
+  - **Landauer Thermodynamic Accounting ([`L1-008`](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L281-L288)):** Micro-joule dissipation tracking auditing bit erasures ($k_B T \ln 2$) for every state mutation.
+  - **Cognitive Ergonomics Invariance ([`L1-G2-003`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance)):** Zero cryptic error codes, dark-theme HUD, and sub-100ms rollback responsiveness.
 
 ---
 
@@ -151,10 +182,18 @@ Every standard application compiled by $G_1$ must include:
 
 ---
 
-## 4. Generational Lessons Matrix
+## 4. Generational Lessons Matrix (The "Usable App" Doctrine)
 
 | Lesson ID | Source System | Failure Category | Successor Invariant Enforced |
 | :--- | :--- | :--- | :--- |
 | **`LES-G1-001`** | System 02 (`axioma_lexis`) | `ELICITATION_FAILURE` | `NEG-G2-001`: Mandatory Human Intent Elicitation Gate (`HumanIntentWitness`). |
 | **`LES-G1-002`** | System 01 & 02 | `FEEDBACK_ELICITATION` | Standard applications and compiler must actively prompt for human feedback to close the learning loop. |
 | **`LES-G1-003`** | System 04 (`axioma_crossword`) | `TEST_INTEGRITY_FAILURE` | `NEG-G2-003`: Forbid releasing systems without tests covering all user-exposed configurations and domain-specific semantic invariants. |
+| **`LES-G2-004`** | System 02 (`axioma_lexis`) | `SUBSTRATE_BUILD_FAILURE` | `NEG-G2-004`: Mandatory AndroidX and offline asset pre-flight verification before releasing multi-substrate APKs. |
+| **`LES-G2-005`** | System 02 (`axioma_lexis`) | `MOCK_SUBSTITUTION_FAILURE` | `NEG-G2-005`: Ban mock notification timers and simulated stats. Wire real platform hardware APIs and event counters. |
+| **`LES-G2-006`** | System 02 (`axioma_lexis`) | `DATA_POLLUTION` | `NEG-G2-006`: Production initial state must be pristine clean slate containing only the user-demarcated seed (`zuhandenheit`). |
+| **`LES-G2-007`** | System 02 (`axioma_lexis`) | `API_PRECONDITION_FAILURE` | `NEG-G2-007`: Mandatory pre-flight verification of third-party APIs with tiered fallback caching before code synthesis. |
+| **`LES-G2-008`** | System 02 (`axioma_lexis`) | `ERGONOMIC_DIGNITY_FAILURE` | `NEG-G2-008`: Ban unstyled default browser rectangles. All affordances must meet the cognitive ergonomics baseline. |
+| **`LES-G2-009`** | System 02 (`axioma_lexis`) | `INCOMPLETE_SEMANTICS` | Ensure complete entity schema hydration (context sentences, mnemonics, and etymologies). |
+| **`LES-G2-010`** | System 02 (`axioma_lexis`) | `TEST_SCAFFOLDING_LEAK` | Test harnesses must be decoupled from final release builds (`app-release.apk`). |
+

@@ -42,31 +42,37 @@ Meta-Axioma does not build compilers for recursive vanity. The overarching purpo
 
 ### Generational Directory Layout
 - **Root Level:** Holds global project context and generation-level artifacts with their generation prefix:
+  - **[generation_02_summary.md](file:///Users/michaellipski/dev/meta-axioma/generation_02_summary.md):** Complete summary of Generation 2 (Autonomous Domain Compiler).
+  - **[generation_02_architecture.md](file:///Users/michaellipski/dev/meta-axioma/generation_02_architecture.md):** Architectural specification and trajectory log for Generation 2.
+  - **[generation_02_axioms.md](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md):** Invariant registry of Generation 2's active structural axioms.
   - **[generation_01_summary.md](file:///Users/michaellipski/dev/meta-axioma/generation_01_summary.md):** Complete summary of Generation 1 (Axiomatic search through Epoch 15).
-  - **[generation_01_architecture.md](file:///Users/michaellipski/dev/meta-axioma/generation_01_architecture.md):** Architectural specification and trajectory log for Generation 1.
-  - **[generation_01_axioms.md](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md):** Invariant registry of Generation 1's active and rejected axioms.
+  - **[generation_01_architecture.md](file:///Users/michaellipski/dev/meta-axioma/generation_01_architecture.md):** Architectural specification for Generation 1.
+  - **[generation_01_axioms.md](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md):** Invariant registry of Generation 1.
 - **[generations/](file:///Users/michaellipski/dev/meta-axioma/generations/):** Contains discrete generational packages:
   - **[generations/gen_01/](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/):** Holds the epoch telemetry history (`epoch_001.md` through `epoch_015.md`) and the ground-up implementation of System $G_1$.
-  - **[generations/gen_02/](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/):** Environment for System $G_2$, to be constructed using the basis synthesized by $G_1$.
+  - **[generations/gen_02/](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/):** Environment for System $G_2$, constructed from the ground up to embody multi-substrate Galois compilation, self-healing, cognitive ergonomics, zero-trust tokens, and intent grounding.
 
 ---
 
-## ⚡ Current Status (Generation 1, Epoch 15 — Low-Level Jettison 2 Executed)
+## ⚡ Current Status (Generation 2, Epoch 4 — Production Applications Active)
 
-- **Phase:** `PHASE_2_STRUCTURAL_EXECUTION` (Axiom Discovery Search Locked via Low-Level Jettison 2)
-- **Phase Transition:** **Low-Level Jettison 2 Executed** (Triggered manually via AI assistant recommendation upon static candidate pool exhaustion and compute decay to $2,857$ tokens).
-- **Global Efficacy ($E$):** `1.1596` ($\frac{dE}{dt} = +0.0104$)
+- **Generation:** $G_2$ (Autonomous Domain Compiler)
+- **Phase:** `PHASE_2_PORTFOLIO_CONVERGENCE`
+- **Global Efficacy Baseline ($E_{G2}$):** `3.1386` (Epoch 4 Cumulative)
 - **Active Structural Invariants ($n=7$):**
-  - [`[L1-002]` Functorial State Evolution & Morphism Preservation](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L225-L232)
-  - [`[L1-004]` Universal Grammar & Compositional Projection Constraints](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L233-L240)
-  - [`[L1-011_3]` Decoupled State Transformation & Persistence](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L257-L264)
-  - [`[L1-008]` Landauer Thermodynamic Reversibility & Dissipation Accounting](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L281-L288)
-  - [`[L1-015]` Zero-Trust Dual-Boundary Demarcation & Introspectable MCP Governance](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L305-L315)
-  - [`[L1-016]` Demarcated Exception Enclaves & Bounded Invariant Suspension](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L329-L336)
-  - [`[L1-015_1]` Compositional Boundary Isolation](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L431-L434)
-- **Inactive Epistemic Scaffolding ($n=10$):** Preserved in [generation_01_axioms.md](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L17-L100).
-- **Target Suite:** 4-Way Balanced Suite ($S_1$ Self-Constructor, $S_2$ Self-Evaluator, $S_3$ Control Group, $P_1$ Product Usability).
-- **Next Milestone:** Construction of **System $G_1$ from the ground up** based on the 7 verified structural axioms.
+  - [`[L1-G2-001]` Adjoint Galois Substrate Connection & Multi-Target Preservation](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation)
+  - [`[L1-G2-002]` Ephemeral Self-Healing Invariant Restoration Loop](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop)
+  - [`[L1-G2-003]` Cognitive Ergonomics & Persona Alignment Invariance](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance)
+  - [`[L1-G2-004]` Introspectable Zero-Trust Capability Scoping](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping)
+  - [`[L1-G2-005]` Mandatory Human Intent Elicitation & Grounding Boundary](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary)
+  - [`[L1-G2-006]` Phenomenological Tool-Being & Zuhandenheit Attunement Invariant](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant)
+  - [`[L1-G2-007]` Kinetic Chaining & Semantic Momentum Propagation](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation)
+- **Active Non-Generator Systems:**
+  - **Axioma Sentinel (Port 8100):** Zero-Trust Security Mesh & Enclave Auto-Repair Console.
+  - **Axioma Lexis (Port 8092):** Adaptive Spaced Repetition Vocabulary Studio (PWA + Android Native Shell).
+  - **Axioma Crossword (Port 8094):** Cruciverbalist Studio, AC-3 Constraint Solver, and Universal Grammar Cryptic Clue AST.
+- **Thermodynamic Compute Budget:** $T_2(8) = 2,000$ tokens / Depth 3.
+- **Successor Formulation:** Generation 3 ($G_3$) handover targets certified.
 
 ---
 

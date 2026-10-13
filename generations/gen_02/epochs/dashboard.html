@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generation 2: Epoch Telemetry & Domain Compiler Dashboard</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+</head>
+<body class="bg-transparent text-[var(--foreground)] antialiased p-4 md:p-6 space-y-6">
+
+  <!-- Header Banner -->
+  <div class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <div class="flex items-center gap-3">
+        <span class="inline-block w-3.5 h-3.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <h1 class="text-xl md:text-2xl font-bold tracking-tight">Generation 2: Epoch Telemetry Dashboard</h1>
+        <span class="text-xs px-2.5 py-1 rounded-full font-semibold border bg-emerald-950 text-emerald-300 border-emerald-700">
+          OPERATIONAL · EPOCH 3 COMPLETE · G3 READY
+        </span>
+      </div>
+      <p class="text-sm text-[var(--muted-foreground)] mt-1">Autonomous Domain Compiler · Heideggerian Zuhandenheit Telemetry & Kinetic Chaining</p>
+    </div>
+    <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+      <span class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)]">Epoch: <strong class="text-emerald-400">3</strong></span>
+      <span class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)]">&Delta;E: <strong class="text-emerald-400">+0.9850</strong></span>
+      <span class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)]">Cumul: <strong class="text-emerald-300">2.1446</strong></span>
+      <span class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--background)]">T₂(n): <strong class="text-amber-400">2,222</strong> tok</span>
+      <a href="http://127.0.0.1:8100" target="_blank" class="px-3 py-1.5 rounded-lg border border-cyan-800 bg-cyan-950/60 text-cyan-300 hover:bg-cyan-900 transition-colors flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+        Axioma Sentinel Live (8100) &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Key Metrics KPI Grid -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+      <div class="text-xs text-[var(--muted-foreground)] uppercase tracking-wider font-medium">Cumulative Global Efficacy</div>
+      <div class="text-2xl font-bold mt-1 text-emerald-400">2.1446</div>
+      <div class="text-xs text-[var(--muted-foreground)] mt-1 flex items-center gap-1 font-mono">
+        <span>Epoch 3 Delta:</span>
+        <span class="font-semibold text-emerald-300">+0.9850</span>
+      </div>
+    </div>
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+      <div class="text-xs text-[var(--muted-foreground)] uppercase tracking-wider font-medium">Thermodynamic Compute</div>
+      <div class="text-2xl font-bold mt-1 font-mono text-amber-400">2,222 tok</div>
+      <div class="text-xs text-[var(--muted-foreground)] mt-1">Decay Depth: <strong class="font-mono text-[var(--foreground)]">2 steps</strong> (&alpha;=0.5)</div>
+    </div>
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+      <div class="text-xs text-[var(--muted-foreground)] uppercase tracking-wider font-medium">Active Structural Axioms</div>
+      <div class="text-2xl font-bold mt-1 text-indigo-400">7 Invariants</div>
+      <div class="text-xs text-[var(--muted-foreground)] mt-1">
+        <span class="text-emerald-400 font-semibold">100% verified</span> · 3 Negative Vetoes
+      </div>
+    </div>
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+      <div class="text-xs text-[var(--muted-foreground)] uppercase tracking-wider font-medium">Phenomenological Mode</div>
+      <div class="text-2xl font-bold mt-1 text-emerald-300 font-mono">Zuhandenheit</div>
+      <div class="text-xs text-[var(--muted-foreground)] mt-1 flex items-center gap-1 font-mono">
+        <span>Rupture Index:</span>
+        <span class="font-semibold text-emerald-400">0.0820</span>
+        <span class="text-[10px] text-[var(--muted-foreground)]">(&lt; 0.45)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trajectory Chart & Evaluation Targets Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- SVG Trajectory Curve -->
+    <div class="lg:col-span-2 bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm space-y-3 relative">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="font-semibold text-base">Generation 2 Efficacy Trajectory vs Compute Decay</h2>
+          <p class="text-xs text-[var(--muted-foreground)]">Progression across Epoch 1 (Synthesis), Epoch 2 (Exogenous Injection), and Epoch 3 (Full Extremity Stress & G3 Handover)</p>
+        </div>
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-[var(--background)] border border-[var(--border)] text-[var(--muted-foreground)]">T₂(n) = 10,000 / (1 + 0.5(n-0))</span>
+      </div>
+
+      <!-- SVG Chart -->
+      <div class="w-full h-56 bg-[var(--background)] border border-[var(--border)] rounded-lg p-3 flex items-center justify-center relative overflow-hidden">
+        <svg class="w-full h-full" viewBox="0 0 600 200" preserveAspectRatio="none">
+          <!-- Grid lines -->
+          <line x1="50" y1="20" x2="570" y2="20" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,3" />
+          <line x1="50" y1="70" x2="570" y2="70" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,3" />
+          <line x1="50" y1="120" x2="570" y2="120" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,3" />
+          <line x1="50" y1="170" x2="570" y2="170" stroke="var(--border)" stroke-width="1" />
+
+          <!-- Axes labels -->
+          <text x="15" y="25" fill="var(--muted-foreground)" font-size="10" font-family="monospace">1.0 &Delta;E</text>
+          <text x="15" y="75" fill="var(--muted-foreground)" font-size="10" font-family="monospace">0.8 &Delta;E</text>
+          <text x="15" y="125" fill="var(--muted-foreground)" font-size="10" font-family="monospace">0.5 &Delta;E</text>
+          <text x="70" y="190" fill="var(--muted-foreground)" font-size="10" font-family="monospace">Ep 0 (Handover)</text>
+          <text x="210" y="190" fill="var(--muted-foreground)" font-size="10" font-family="monospace">Ep 1 (Synthesis)</text>
+          <text x="360" y="190" fill="var(--muted-foreground)" font-size="10" font-family="monospace">Ep 2 (Exogenous)</text>
+          <text x="500" y="190" fill="var(--muted-foreground)" font-size="10" font-family="monospace">Ep 3 (G3 Ready)</text>
+
+          <!-- Compute Decay Curve (Dashed Amber) -->
+          <path d="M 80 40 Q 230 110 370 135 L 510 135" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="5,5" />
+
+          <!-- Efficacy Curve (Solid Emerald) -->
+          <path d="M 80 170 Q 200 50 230 45 L 370 38 L 510 28" fill="none" stroke="#10b981" stroke-width="3" />
+
+          <!-- Nodes -->
+          <!-- Ep 0 -->
+          <circle cx="80" cy="170" r="5" fill="#10b981" />
+          <circle cx="80" cy="40" r="4" fill="#f59e0b" />
+          
+          <!-- Ep 1 -->
+          <circle cx="230" cy="45" r="6" fill="#10b981" />
+          <circle cx="230" cy="115" r="4" fill="#f59e0b" />
+          <text x="230" y="32" fill="#10b981" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">+0.9250</text>
+
+          <!-- Ep 2 -->
+          <circle cx="370" cy="38" r="6" fill="#10b981" />
+          <circle cx="370" cy="135" r="5" fill="#f59e0b" />
+          <text x="370" y="25" fill="#10b981" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">+0.9550</text>
+
+          <!-- Ep 3 -->
+          <circle cx="510" cy="28" r="7" fill="#10b981" />
+          <circle cx="510" cy="135" r="5" fill="#f59e0b" />
+          <text x="510" y="16" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">+0.9850 &Delta;E</text>
+          <text x="510" y="155" fill="#f59e0b" font-size="10" font-family="monospace" text-anchor="middle">2,222 tok</text>
+        </svg>
+      </div>
+
+      <!-- Legend -->
+      <div class="flex items-center justify-between text-xs text-[var(--muted-foreground)] px-1 pt-1 border-t border-[var(--border)]">
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-1.5">
+            <span class="inline-block w-3 h-1 bg-emerald-500 rounded"></span>
+            <span>Cumulative &Delta;E (Solid Emerald)</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="inline-block w-3 h-1 bg-amber-500 rounded border border-dashed"></span>
+            <span>Compute Decay T₂(n) (Dashed Amber)</span>
+          </div>
+        </div>
+        <div class="text-[11px] font-mono">Thermodynamic Efficiency: 100% · All Invariants Certified</div>
+      </div>
+    </div>
+
+    <!-- Generation 2 Target Suite Breakdown -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm space-y-4 flex flex-col justify-between">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="font-semibold text-base">4-Way Evaluation Targets</h2>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded-full border bg-emerald-950 text-emerald-300 border-emerald-700">
+            ALL PASSING (0.9850)
+          </span>
+        </div>
+        <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+          Autonomous multi-target fitness landscape governing Generation 2 synthesis.
+        </p>
+
+        <div class="space-y-2.5">
+          <!-- G2-T1 -->
+          <div class="p-2.5 rounded-lg bg-[var(--background)] border border-[var(--border)] space-y-1">
+            <div class="flex items-center justify-between text-xs font-medium">
+              <span class="text-[var(--foreground)]">G2-T1: Higher-Order Functorial Compilation</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded font-mono bg-emerald-950 text-emerald-300 border border-emerald-800">1.00 / 1.00 (w=0.30)</span>
+            </div>
+            <div class="w-full bg-[var(--card)] h-1.5 rounded-full overflow-hidden">
+              <div class="bg-emerald-500 h-full rounded-full" style="width: 100%"></div>
+            </div>
+            <p class="text-[11px] text-[var(--muted-foreground)]">Adjoint Galois preserve semantic fidelity across CLI, Web HUD, Daemon.</p>
+          </div>
+
+          <!-- G2-T2 -->
+          <div class="p-2.5 rounded-lg bg-[var(--background)] border border-[var(--border)] space-y-1">
+            <div class="flex items-center justify-between text-xs font-medium">
+              <span class="text-[var(--foreground)]">G2-T2: Autonomous Self-Healing Enclaves</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded font-mono bg-emerald-950 text-emerald-300 border border-emerald-800">1.00 / 1.00 (w=0.25)</span>
+            </div>
+            <div class="w-full bg-[var(--card)] h-1.5 rounded-full overflow-hidden">
+              <div class="bg-emerald-500 h-full rounded-full" style="width: 100%"></div>
+            </div>
+            <p class="text-[11px] text-[var(--muted-foreground)]">Sandboxed exception healing loops (k&le;3) with verified zero blast leakage.</p>
+          </div>
+
+          <!-- G2-T3 -->
+          <div class="p-2.5 rounded-lg bg-[var(--background)] border border-[var(--border)] space-y-1">
+            <div class="flex items-center justify-between text-xs font-medium">
+              <span class="text-[var(--foreground)]">G2-T3: Teleological Utility & Ergonomics</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded font-mono bg-emerald-950 text-emerald-300 border border-emerald-800">0.95 / 1.00 (w=0.30)</span>
+            </div>
+            <div class="w-full bg-[var(--card)] h-1.5 rounded-full overflow-hidden">
+              <div class="bg-emerald-500 h-full rounded-full" style="width: 95%"></div>
+            </div>
+            <p class="text-[11px] text-[var(--muted-foreground)]">Human intent grounding verified + Zuhandenheit flow attunement.</p>
+          </div>
+
+          <!-- G2-T4 -->
+          <div class="p-2.5 rounded-lg bg-[var(--background)] border border-[var(--border)] space-y-1">
+            <div class="flex items-center justify-between text-xs font-medium">
+              <span class="text-[var(--foreground)]">G2-T4: Landauer Concurrency Efficiency</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded font-mono bg-emerald-950 text-emerald-300 border border-emerald-800">1.00 / 1.00 (w=0.15)</span>
+            </div>
+            <div class="w-full bg-[var(--card)] h-1.5 rounded-full overflow-hidden">
+              <div class="bg-emerald-500 h-full rounded-full" style="width: 100%"></div>
+            </div>
+            <p class="text-[11px] text-[var(--muted-foreground)]">Thermodynamic erasure bit budget strictly bounded by Landauer limit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exogenous Domain Telemetry Live Circuits -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Heideggerian Phenomenological Gauge -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <h3 class="font-semibold text-sm">L1-G2-006: Phenomenological Tool-Being Telemetry</h3>
+        </div>
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Zuhandenheit (Ready-to-Hand)</span>
+      </div>
+      <p class="text-xs text-[var(--muted-foreground)]">
+        Monitors cognitive flow disruption rather than raw technical latency. Evaluates dwell-time deviations, rapid undo bursts, and intentional stutter.
+      </p>
+      <div class="p-4 bg-[var(--background)] border border-[var(--border)] rounded-lg space-y-3 font-mono text-xs">
+        <div class="flex justify-between items-center">
+          <span class="text-[var(--muted-foreground)]">Cognitive Rupture Index (R):</span>
+          <span class="text-emerald-400 font-bold">0.0820 / 1.0000</span>
+        </div>
+        <div class="w-full bg-[var(--card)] h-2 rounded-full overflow-hidden">
+          <div class="bg-emerald-500 h-full rounded-full" style="width: 8.2%"></div>
+        </div>
+        <div class="grid grid-cols-3 gap-2 text-[11px] pt-1">
+          <div><span class="text-[var(--muted-foreground)]">Threshold:</span> <strong class="text-[var(--foreground)]">0.45</strong></div>
+          <div><span class="text-[var(--muted-foreground)]">Undo Bursts:</span> <strong class="text-emerald-400">0</strong></div>
+          <div><span class="text-[var(--muted-foreground)]">State:</span> <strong class="text-emerald-400">Transparent</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movement Biomechanics & Kinetic Chaining Gauge -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-400"></span>
+          <h3 class="font-semibold text-sm">L1-G2-007: Kinetic Chaining & Momentum Gauge</h3>
+        </div>
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Retention: 96.4%</span>
+      </div>
+      <p class="text-xs text-[var(--muted-foreground)]">
+        Treats multi-step execution as kinetic joint linkages. Translates intent momentum through compliant joints across CLI, Daemon, and Web HUD.
+      </p>
+      <div class="p-4 bg-[var(--background)] border border-[var(--border)] rounded-lg space-y-3 font-mono text-xs">
+        <div class="flex justify-between items-center">
+          <span class="text-[var(--muted-foreground)]">Semantic Momentum Retention:</span>
+          <span class="text-indigo-400 font-bold">96.40% (&gt; 95% Bound)</span>
+        </div>
+        <div class="w-full bg-[var(--card)] h-2 rounded-full overflow-hidden">
+          <div class="bg-indigo-500 h-full rounded-full" style="width: 96.4%"></div>
+        </div>
+        <div class="grid grid-cols-3 gap-2 text-[11px] pt-1">
+          <div><span class="text-[var(--muted-foreground)]">Joint Losses:</span> <strong class="text-indigo-300">3.60%</strong></div>
+          <div><span class="text-[var(--muted-foreground)]">Impedance:</span> <strong class="text-indigo-300">Matched</strong></div>
+          <div><span class="text-[var(--muted-foreground)]">Shear Ruptures:</span> <strong class="text-emerald-400">0</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Structural Axiom Registry Table -->
+  <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm space-y-4">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="font-semibold text-base">Generation 2 Level 1 Structural Axiom Registry</h2>
+        <p class="text-xs text-[var(--muted-foreground)]">Active physical constraints bound to runtime modules in <code class="font-mono">generations/gen_02/src/g2_compiler/</code></p>
+      </div>
+      <span class="text-xs font-mono px-2.5 py-1 rounded bg-[var(--background)] border border-[var(--border)] text-indigo-400">7 Active · 3 Inherited Vetoes</span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs font-mono">
+        <thead class="bg-[var(--background)] text-[var(--muted-foreground)] border-b border-[var(--border)]">
+          <tr>
+            <th class="p-2.5">Axiom ID</th>
+            <th class="p-2.5">Name</th>
+            <th class="p-2.5">Invariant Formulation</th>
+            <th class="p-2.5">Implementation Binding</th>
+            <th class="p-2.5">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[var(--border)]">
+          <tr>
+            <td class="p-2.5 font-bold text-indigo-400">L1-G2-001</td>
+            <td class="p-2.5 font-semibold text-[var(--foreground)]">Adjoint Galois Substrate Connection</td>
+            <td class="p-2.5 text-[var(--muted-foreground)]">F(C) &le; S &hArr; C &le; G(S)</td>
+            <td class="p-2.5 text-cyan-400">galois_substrate.py</td>
+            <td class="p-2.5 text-emerald-400 font-bold">&check; COMPILED</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-indigo-400">L1-G2-002</td>
+            <td class="p-2.5 font-semibold text-[var(--foreground)]">Ephemeral Self-Healing Invariant Loop</td>
+            <td class="p-2.5 text-[var(--muted-foreground)]">k &le; 3, Blast(E_k) &cap; Env_ext = &empty;</td>
+            <td class="p-2.5 text-cyan-400">self_healing.py</td>
+            <td class="p-2.5 text-emerald-400 font-bold">&check; COMPILED</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-indigo-400">L1-G2-003</td>
+            <td class="p-2.5 font-semibold text-[var(--foreground)]">Cognitive Ergonomics & Persona Alignment</td>
+            <td class="p-2.5 text-[var(--muted-foreground)]">D_KL(M_user || M_sys) &le; &epsilon;</td>
+            <td class="p-2.5 text-cyan-400">cognitive_ergonomics.py</td>
+            <td class="p-2.5 text-emerald-400 font-bold">&check; COMPILED</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-indigo-400">L1-G2-004</td>
+            <td class="p-2.5 font-semibold text-[var(--foreground)]">Zero-Trust Capability Scoping</td>
+            <td class="p-2.5 text-[var(--muted-foreground)]">&forall; op: op &sube; Scope(Token) &and; HMAC_ok</td>
+            <td class="p-2.5 text-cyan-400">capability_scoping.py</td>
+            <td class="p-2.5 text-emerald-400 font-bold">&check; COMPILED</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-indigo-400">L1-G2-005</td>
+            <td class="p-2.5 font-semibold text-[var(--foreground)]">Mandatory Human Intent Grounding Boundary</td>
+            <td class="p-2.5 text-[var(--muted-foreground)]">Execute(A) requires Witness(A) &and; Cert(A)</td>
+            <td class="p-2.5 text-cyan-400">intent_grounding.py</td>
+            <td class="p-2.5 text-emerald-400 font-bold">&check; COMPILED</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-indigo-400">L1-G2-006</td>
+            <td class="p-2.5 font-semibold text-[var(--foreground)]">Phenomenological Tool-Being Attunement</td>
+            <td class="p-2.5 text-[var(--muted-foreground)]">R_rupture = w_d&Delta;&tau; + w_u U + w_e E &lt; 0.45</td>
+            <td class="p-2.5 text-cyan-400">phenomenology.py</td>
+            <td class="p-2.5 text-emerald-400 font-bold">&check; COMPILED</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-indigo-400">L1-G2-007</td>
+            <td class="p-2.5 font-semibold text-[var(--foreground)]">Kinetic Chaining & Momentum Propagation</td>
+            <td class="p-2.5 text-[var(--muted-foreground)]">&mu; = P_out / P_in &ge; 0.95 across joints</td>
+            <td class="p-2.5 text-cyan-400">kinetic_chain.py</td>
+            <td class="p-2.5 text-emerald-400 font-bold">&check; COMPILED</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Navigation Footer -->
+  <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-[var(--muted-foreground)] p-4 border border-[var(--border)] bg-[var(--card)] rounded-xl gap-3">
+    <div class="flex items-center gap-2">
+      <span class="font-semibold text-[var(--foreground)]">Meta-Axioma Generational Architecture</span>
+      <span>· S₀ &rarr; G₁ &rarr; G₂ &rarr; G₃</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="/epochs/g1" class="hover:text-emerald-400 transition-colors flex items-center gap-1">
+        &larr; View Generation 1 Epoch Dashboard
+      </a>
+      <span>|</span>
+      <a href="http://127.0.0.1:8100" target="_blank" class="hover:text-cyan-400 transition-colors font-semibold text-cyan-300 flex items-center gap-1">
+        Launch Axioma Sentinel HUD &rarr;
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

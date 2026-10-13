@@ -15,12 +15,14 @@ The system serves **AI Systems Architects** directing high-level software world-
 Meta-Axioma constructs self-evolving software architectures by treating architectural design as a formal invariant system rather than unconstrained imperative coding:
 
 1. **Phase 1 (Meta-Exploration):** Evaluates Level 0 Epistemic Axioms ("how to research") against search diversity, refutation velocity, and cross-domain structural translation yield.
-2. **The Jettison (Phase Transition):** Deactivates epistemic axioms once saturated, preserving them as immutable scaffolding while liberating compute tokens for structural synthesis.
-3. **Phase 2 (Structural Execution):** Compiles Level 1 Structural Axioms into concrete physical invariants evaluated across three targets:
-   - **Target $S_1$ (The Self-Constructor):** Meta-architecture and recursive self-assembly.
-   - **Target $S_2$ (The Self-Evaluator):** Telemetry, observability, and successor evaluation synthesis.
-   - **Target $S_3$ (The Control Group):** Replicated state machine / Byzantine-tolerant consensus to guarantee domain generalization.
-4. **Generational Succession:** Once compiled, Generation 1 ($G_1$) autonomously formulates the evaluation landscape for Generation 2 ($G_2$), orchestrating successor evolution through native Google Antigravity (AGY) tools and open-source software while leveraging the human architect as an on-demand cognitive resource.
+2. **Low-Level Jettison 1 (Epistemic Saturation Transition, Epoch 11):** Deactivates epistemic axioms once saturated, preserving them as immutable scaffolding while liberating compute tokens for structural synthesis.
+3. **Phase 2 (Structural Execution):** Compiles Level 1 Structural Axioms into concrete physical invariants evaluated across the 4-way balanced target suite ($S_1$ Self-Constructor, $S_2$ Self-Evaluator, $S_3$ Control Group, $P_1$ Product Usability & Ergonomics).
+4. **Low-Level Jettison 2 (Harness Saturation $\to$ System Construction Transition, Epoch 15):** Triggered manually upon recommendation of the autonomous AI assistant once $S_0$'s static candidate pool reached 100% resolution and thermodynamic compute decayed by >71%. The 7 discovered structural axioms were locked, and execution pivoted to building **System $G_1$ from the ground up**.
+5. **Generational Succession ($S_0 \to G_1 \to G_2 \to G_3$):** A formal recursive compiler lineage:
+   - **$S_0$ (Bootstrapper Harness):** Discovered the foundational 7 structural axioms.
+   - **System $G_1$ (Autonomous Meta-Compiler):** Built from scratch under $G_1$ axioms; synthesized the basis/axioms for $G_2$.
+   - **System $G_2$ (Autonomous Domain Compiler - Active in Epoch 2):** Built from scratch under 7 active structural invariants ([`L1-G2-001`] through [`L1-G2-007`]); compiles production-grade non-generator applications (**Axioma Sentinel**, System 07) and synthesizes the basis for $G_3$.
+6. **The High-Level Jettison (Teleology of Non-Generator Systems):** The recursive chain of generators is explicitly optimized for implementing production software applications that humans love, find useful, and control.
 
 ---
 

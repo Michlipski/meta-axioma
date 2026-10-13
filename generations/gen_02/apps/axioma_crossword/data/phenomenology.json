@@ -1,0 +1,11 @@
+[
+  {
+    "timestamp": 1791865342.638869,
+    "reason": "optimistic_version_conflict",
+    "details": {
+      "expected": 1,
+      "actual": 1
+    },
+    "rupture_id": "rup_cw_1"
+  }
+]

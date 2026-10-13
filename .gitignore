@@ -64,3 +64,4 @@ coverage.xml
 .vscode/
 *.sublime-project
 *.sublime-workspace
+.gradle/

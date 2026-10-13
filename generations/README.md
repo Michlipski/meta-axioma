@@ -30,8 +30,9 @@ generations/
 | Generation | Role / Archetype | Operational Environment | Evaluation Strategy | Status |
 | :--- | :--- | :--- | :--- | :--- |
 | **`G_0` (Seed)** | Bootstrap Seeds | External Human Inception | Hardcoded baseline validation | Concluded |
-| **`G_1` (Current)**| Recursive Meta-Orchestrator | Phase 1 (Epistemic) $\to$ Phase 2 (Structural) | Tri-fold targets ($S_1$ Self-Constructor, $S_2$ Self-Evaluator, $S_3$ Control Group) | **Active (Epoch 12)** |
-| **`G_2` (Successor)**| Autonomous Domain Engine | Antigravity Native / OSS | **Synthesized endogenously by $G_1$** | Scaffolded |
+| **`G_1` (Bootstrapper)**| Recursive Meta-Orchestrator | Phase 1 (Epistemic) $\to$ Phase 2 (Structural) | Tri-fold targets ($S_1, S_2, S_3, P_1$) | **Concluded (Epoch 15)** |
+| **`G_2` (Current)**| Autonomous Domain Compiler | Phase 1 Domain Execution | Endogenous 4-target suite ($G2\text{-}T1$ to $G2\text{-}T4$) | **Active (Epoch 1)** |
+| **`G_3` (Successor)**| Distributed Teleological Network | Antigravity Native / OSS | **Synthesized endogenously by $G_2$** | Planned |
 
 ---
 
