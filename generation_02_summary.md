@@ -24,7 +24,7 @@ Generation 2 marks the elevation of Meta-Axioma from pure foundational bootstrap
 
 - **Current Epoch:** 4 (Complete)
 - **Phase:** `PHASE_2_PORTFOLIO_CONVERGENCE`
-- **Active Structural Invariants ($n=7$):**
+- **Active Structural Invariants ($n=8$):**
   - [`[L1-G2-001]` Adjoint Galois Substrate Connection & Multi-Target Preservation](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation)
   - [`[L1-G2-002]` Ephemeral Self-Healing Invariant Restoration Loop](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop)
   - [`[L1-G2-003]` Cognitive Ergonomics & Persona Alignment Invariance](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance)
@@ -32,8 +32,9 @@ Generation 2 marks the elevation of Meta-Axioma from pure foundational bootstrap
   - [`[L1-G2-005]` Mandatory Human Intent Elicitation & Grounding Boundary](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary)
   - [`[L1-G2-006]` Phenomenological Tool-Being & Zuhandenheit Attunement Invariant](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant)
   - [`[L1-G2-007]` Kinetic Chaining & Semantic Momentum Propagation](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation)
+  - [`[L1-G2-008]` Distributed Evolutionary Island Synthesis & Decoupled Chaos Verification](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-008-distributed-evolutionary-island-synthesis--decoupled-chaos-verification)
 - **Inherited Negative Constraints ($n=9$):** `NEG-G2-001` through `NEG-G2-009` (including `NEG-G2-009` Cruciverbalist Lexical Purity).
-- **Inherited Scaffolding Pool:** 10 Level 0 Meta-Axioms + 7 Level 1 Structural Axioms from $G_1$
+- **Inherited Scaffolding Pool:** 10 Level 0 Meta-Axioms + 9 Level 1 Structural Axioms from $G_1$ (including `L1-017` & `L1-018`)
 - **Thermodynamic Compute Decay Budget:** $T_2(8) = 2,000$ simulation tokens (Depth 3).
 - **Epoch 4 Aggregate Delta E:** $+0.9940$ across the 4-target suite (Cumulative Efficacy: $3.1386$).
 - **Successor Status:** Generation 3 ($G_3$) successor target landscape certified in [`g3_successor_targets.md`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/g3_successor_targets.md).

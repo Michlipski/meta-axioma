@@ -767,7 +767,7 @@ class TestSystemG1Integration(unittest.TestCase):
         from g1_compiler import SystemG1Compiler
         compiler = SystemG1Compiler()
         results = compiler.verify_all_structural_axioms()
-        self.assertEqual(len(results), 7)
+        self.assertEqual(len(results), 9)
         for ax_id, res in results.items():
             self.assertTrue(res.passed, f"G1 Invariant {ax_id} failed: {res.message}")
 
@@ -782,9 +782,12 @@ class TestSystemG1Integration(unittest.TestCase):
         self.assertEqual(g2_basis.generation, 2)
         self.assertGreaterEqual(len(g2_basis.targets), 4)
         self.assertIsNotNone(g2_basis.inherited_feedback_dossier)
+        self.assertIsNotNone(g2_basis.search_trace)
+        self.assertIsNotNone(g2_basis.succession_certificate)
         self.assertTrue(any("NEG-G2-001" in c for c in g2_basis.inherited_negative_constraints))
         self.assertTrue(any("LES-G1-001" in s for s in g2_basis.lessons_learned_summary))
         self.assertTrue(any(ax.id == "L1-G2-005" for ax in g2_basis.basis_axioms))
+        self.assertTrue(any(ax.id == "L1-G2-006" for ax in g2_basis.basis_axioms))
     def test_standardized_apps_registry_and_layout(self):
         import sys
         g1_src = str(Path(__file__).parent.parent / "generations" / "gen_01" / "src")

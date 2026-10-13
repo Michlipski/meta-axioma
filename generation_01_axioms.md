@@ -7,10 +7,10 @@ This document serves as the persistent memory and rule engine registry for the A
 ## Registry Metadata
 - **Status:** Operational
 - **Phase:** PHASE_2_STRUCTURAL_EXECUTION
-- **Total Active Axioms:** 7
+- **Total Active Axioms:** 9
 - **Active Level 0:** 0
 - **Inactive Level 0 (Archived Scaffolding):** 10
-- **Active Level 1:** 7
+- **Active Level 1:** 9
 
 ---
 
@@ -374,6 +374,22 @@ This document serves as the persistent memory and rule engine registry for the A
 - **Formal Expression:** \mathcal{T}_{3}(S) = \mathcal{P}(\delta(S))
 - **Operational Rule:** State transformations violating [L0-003] rule (When synthesizing a new candidate axiom, the LLM must first select a non-computing domain (such as applied category theory, theoretical linguistics, phenomenological philosophy, or quantum mechanics) and extract a core structural principle from that domain. The proposed system axiom must be a direct topological translation of that exogenous principle into systems architecture.) are rejected at compile time.
 
+### [L1-017] Non-Linear Exploratory Trajectory & Tree Search Invariance
+- **Level:** Level 1 (Structural)
+- **Status:** ACTIVE
+- **Origin Epoch:** Epoch 16
+- **Statement:** The synthesis of successor system architectures must follow a non-linear, branching search trajectory over program AST space ($\ge 3$ candidate islands, $\ge 1$ dead-end backtrack path); single-shot linear emissions are structurally invalid and trigger compilation rejection.
+- **Formal Expression:** $$\mathcal{T}_{\text{search}} \subset \mathcal{G}_{\text{tree}} \quad \land \quad |\text{Leaves}(\mathcal{T})| \ge 3 \quad \land \quad |\text{DeadEnds}(\mathcal{T})| \ge 1$$
+- **Operational Rule:** The compiler runtime checks the `NonLinearSearchTrace` proof token. If `num_candidates < 3` or `dead_ends == 0`, `LinearCompilationViolation` is thrown.
+
+### [L1-018] Independent Decoupled Adversarial Falsification
+- **Level:** Level 1 (Structural)
+- **Status:** ACTIVE
+- **Origin Epoch:** Epoch 16
+- **Statement:** Verification of candidate architectures must be performed by an independent, decoupled adversarial crucible possessing asymmetric fault-injection authority (stochastic packet drop, net-splits, race storms, state perturbation); generator-verifier co-authorship is prohibited.
+- **Formal Expression:** $$\mathcal{V}_{\text{adversary}} \perp \mathcal{G}_{\text{generator}} \quad \land \quad \text{Entropy}(\text{FaultInjection}) > 0$$
+- **Operational Rule:** Candidacies verified without decoupled adversarial stress test or exhibiting 0% stress fail rate under chaos injection are rejected as unfalsifiable.
+
 ---
 
 ## Negative Axiom Invariant Registry (Human Vetoes)
@@ -431,3 +447,6 @@ This document serves as the persistent memory and rule engine registry for the A
 | `L1-015_1` | LEVEL_1_STRUCTURAL | Structural Realization of [L0-001] (015_1) | 15 | Committed | +0.0100 | ACTIVE |
 | `L1-015_2` | LEVEL_1_STRUCTURAL | Structural Realization of [L0-002] (015_2) | 15 | Rejected (Outperformed by [L1-015_1] in Epoch 15 tournament) | +0.0082 | REJECTED |
 | `L1-015_3` | LEVEL_1_STRUCTURAL | Structural Realization of [L0-003] (015_3) | 15 | Rejected (Outperformed by [L1-015_1] in Epoch 15 tournament) | +0.0072 | REJECTED |
+| `L1-017` | LEVEL_1_STRUCTURAL | Non-Linear Exploratory Trajectory & Tree Search Invariance | 16 | Committed (Evolutionary Branch) | +0.0185 | ACTIVE |
+| `L1-018` | LEVEL_1_STRUCTURAL | Independent Decoupled Adversarial Falsification | 16 | Committed (Evolutionary Branch) | +0.0175 | ACTIVE |
+

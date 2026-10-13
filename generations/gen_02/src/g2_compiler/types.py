@@ -166,6 +166,9 @@ class G3SuccessorBasis:
     inherited_feedback_dossier: Optional[Dict[str, Any]]
     inherited_negative_constraints: List[str]
     operational_charter: str
+    search_trace: Optional[Any] = None
+    succession_certificate: Optional[str] = None
+
 
 
 @dataclass

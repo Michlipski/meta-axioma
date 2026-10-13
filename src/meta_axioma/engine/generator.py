@@ -1782,6 +1782,110 @@ LEVEL_1_STRUCTURAL_CANDIDATE_POOL: List[Axiom] = [
             },
         },
     ),
+    Axiom(
+        id="L1-017",
+        level=AxiomLevel.LEVEL_1_STRUCTURAL,
+        name="Non-Linear Exploratory Trajectory & Tree Search Invariance",
+        statement="The synthesis of successor system architectures must follow a non-linear, branching search trajectory over program AST space (>= 3 candidate islands, >= 1 dead-end backtrack path); single-shot linear emissions are structurally invalid and trigger compilation rejection.",
+        formal_expression=r"\mathcal{T}_{\text{search}} \subset \mathcal{G}_{\text{tree}} \quad \land \quad |\text{Leaves}(\mathcal{T})| \ge 3 \quad \land \quad |\text{DeadEnds}(\mathcal{T})| \ge 1",
+        operational_rule="The compiler runtime checks the NonLinearSearchTrace proof token. If num_candidates < 3 or dead_ends == 0, LinearCompilationViolation is thrown.",
+        status=AxiomStatus.CANDIDATE,
+        metadata={
+            "exogenous_domain": "Evolutionary Program Synthesis & Quality-Diversity (MAP-Elites / FunSearch)",
+            "source_principle": "Non-Linear Tree Search and Island Model Population Dynamics",
+            "system_profile": {
+                "archetype": "Evolutionary Tree Search & Island Model Engine",
+                "topology_type": "Multi-Island Branching Tree with Backtracking Enclaves",
+                "topology_diagram": """               [Root Spec Node]
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+   [Island α]      [Island β]     [Island γ]
+        │              │              │
+        ▼              ▼ (Dead End)   ▼
+   [Mutation]      [Falsified]    [Crossover]
+        │              │              │
+        └──────────────┬──────────────┘
+                       ▼
+              [Pareto Succession Gate]""",
+                "subsystems": {
+                    "Island Model Generator": {
+                        "role": "Maintains orthogonal topological candidate branches across disjoint search islands.",
+                        "invariant_rule": "Must generate at least 3 distinct candidate branches per compilation epoch.",
+                    },
+                    "Dead-End Backtracking Manager": {
+                        "role": "Identifies, falsifies, and logs failed mutation paths without polluting canonical lineage.",
+                        "invariant_rule": "Every emitted succession trace must document at least one pruned dead end.",
+                    },
+                    "Non-Linear Succession Gate": {
+                        "role": "Mechanically verifies that candidate succession followed non-linear search dynamics.",
+                        "invariant_rule": "Raises LinearCompilationViolation if single-shot shortcut is attempted.",
+                    },
+                },
+                "target_behaviors": {
+                    "target_1_self_constructor": "Prevents compiler from getting trapped in brittle local single-shot solutions (+0.0185).",
+                    "target_2_self_evaluator": "Forces multidimensional evaluation across diverse architectural niches (+0.0160).",
+                    "target_3_control_group": "Guarantees alternative candidates are explored before selecting consensus winner (+0.0140).",
+                },
+                "tradeoffs": {
+                    "strengths": "Provably prevents recursive overfitting and greedy single-shot collapse in compiler self-synthesis.",
+                    "constraints": "Requires compute allocation for multiple parallel island evaluations.",
+                },
+            },
+        },
+    ),
+    Axiom(
+        id="L1-018",
+        level=AxiomLevel.LEVEL_1_STRUCTURAL,
+        name="Independent Decoupled Adversarial Falsification",
+        statement="Verification of candidate architectures must be performed by an independent, decoupled adversarial crucible possessing asymmetric fault-injection authority (stochastic packet drop, net-splits, race storms, state perturbation); generator-verifier co-authorship is prohibited.",
+        formal_expression=r"\mathcal{V}_{\text{adversary}} \perp \mathcal{G}_{\text{generator}} \quad \land \quad \text{Entropy}(\text{FaultInjection}) > 0",
+        operational_rule="Candidacies verified without decoupled adversarial stress test or exhibiting 0% stress fail rate under chaos injection are rejected as unfalsifiable.",
+        status=AxiomStatus.CANDIDATE,
+        metadata={
+            "exogenous_domain": "Popperian Epistemology & Distributed Chaos Engineering (Jepsen / Chaos Monkey)",
+            "source_principle": "Asymmetric Decoupled Adversarial Falsification",
+            "system_profile": {
+                "archetype": "Decoupled Chaos Crucible & Asymmetric Fault Injector",
+                "topology_type": "Adversarial Stress Pipeline with Isolated Fault Boundaries",
+                "topology_diagram": """[Candidate AST] ──> [Decoupled Crucible Ingress]
+                                 │
+                   ┌─────────────┴─────────────┐
+                   ▼                           ▼
+          [Asymmetric Netsplit]       [Flapping Packet Drop]
+                   │                           │
+                   └─────────────┬─────────────┘
+                                 ▼
+                     [Concurrency Race Storm]
+                                 │
+                                 ▼
+                    [Cryptographic Stress Witness]""",
+                "subsystems": {
+                    "Chaos Injection Engine": {
+                        "role": "Injects stochastic network cuts, flapping drops, and race conditions into running candidates.",
+                        "invariant_rule": "Injects non-deterministic perturbation into all verification runs.",
+                    },
+                    "Decoupled Demarcation Monitor": {
+                        "role": "Ensures verification harness shares zero code lineage or mock co-dependencies with candidate.",
+                        "invariant_rule": "Prohibits generator-authored unit tests from masquerading as adversarial proof.",
+                    },
+                    "Landauer Erasure Auditor": {
+                        "role": "Quantifies thermodynamic dissipation incurred during error recovery and state repair.",
+                        "invariant_rule": "Measures Joules dissipated under chaos-induced state reconciliations.",
+                    },
+                },
+                "target_behaviors": {
+                    "target_1_self_constructor": "Eliminates false confidence from self-authored green unit tests (+0.0175).",
+                    "target_2_self_evaluator": "Provides objective, repeatable empirical stress benchmarks across candidates (+0.0190).",
+                    "target_3_control_group": "Subjected to adversarial Byzantine attacks; provably identifies fragile invariants (+0.0155).",
+                },
+                "tradeoffs": {
+                    "strengths": "Exposes fragile architectural assumptions, race conditions, and hidden deadlocks prior to deployment.",
+                    "constraints": "Increases verification runtime to simulate network partitions and race storms.",
+                },
+            },
+        },
+    ),
 ]
 
 

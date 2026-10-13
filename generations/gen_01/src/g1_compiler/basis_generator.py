@@ -115,6 +115,16 @@ class G2BasisSynthesizer:
                 exogenous_domain="User-Centered Design & Empirical Epistemology",
                 teleological_purpose="Directly remedies LES-G1-001: prevents ungrounded generation and verification illusions in System G_2.",
             ),
+            G2CandidateBasisAxiom(
+                id="L1-G2-006",
+                name="Distributed Evolutionary Island Synthesis & Decoupled Chaos Verification",
+                level="LEVEL_1_STRUCTURAL",
+                statement="System G_2 must formulate and evolve subsequent architectures (including System G_3 and distributed subsystems) strictly via non-linear multi-island search (k >= 3) and independent decoupled chaos falsification; linear single-shot synthesis is mechanically prohibited.",
+                formal_expression=r"\mathcal{T}_{\text{search}}(G_3) \in \mathcal{G}_{\text{tree}} \quad \land \quad |\text{Islands}| \ge 3 \quad \land \quad |\text{DeadEnds}| \ge 1 \quad \land \quad \text{CrucibleVerify} \neq \bot",
+                operational_rule="Any compiler pipeline in Generation 2 that emits successor basis specifications or distributed application backends without a verified NonLinearSearchTrace raises LinearCompilationViolation.",
+                exogenous_domain="Evolutionary Program Synthesis & Distributed Chaos Engineering (Derived from L1-017 & L1-018)",
+                teleological_purpose="Enforces the non-linear path to successors trans-generationally: provably prevents recursive overfitting, lazy single-shot shortcuts, and untested fragility in Generation 2 and beyond.",
+            ),
         ]
 
     def generate_successor_basis(self, feedback_path: Optional[Path] = None) -> G2SuccessorBasis:

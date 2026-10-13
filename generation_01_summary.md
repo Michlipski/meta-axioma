@@ -68,21 +68,22 @@ Generation 1 began by establishing the meta-rules of discovery ("how to research
 | **`L1-015`** | Zero-Trust MCP Dual-Boundary | Schemas bound data (Nouns); automata bound state (Verbs); verified in ephemeral self-healing sandboxes. | **ACTIVE** |
 | **`L1-016`** | Demarcated Exception Enclaves | Invariant suspensions isolated in declared enclaves with cryptographic dissipation audits & humane recovery adapters. | **ACTIVE** |
 | **`L1-015_1`**| Compositional Boundary Isolation | Orthogonal decomposition of constituent claims enforced across subsystem boundaries. | **ACTIVE** |
-
+| **`L1-017`**  | Non-Linear Exploratory Tree Search | Successor synthesis must explore $\ge 3$ candidate islands and document $\ge 1$ dead-end backtrack witness; single-shot linear shortcuts trigger `LinearCompilationViolation`. | **ACTIVE** |
+| **`L1-018`**  | Independent Decoupled Adversarial Falsification | Verification requires an independent, decoupled chaos crucible with asymmetric fault-injection authority; generator-verifier co-authorship is prohibited. | **ACTIVE** |
 
 ---
 
 ## 4. Construction of System $G_1$ (Completed from the Ground Up)
 
-With the axiomatic discovery phase in $S_0$ complete (7 structural axioms verified across the 4-target suite) and Low-Level Jettison 2 executed at Epoch 15, Generation 1 has completed the ground-up construction of **System $G_1$** inside [`generations/gen_01/src/g1_compiler/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/).
+With the axiomatic discovery phase in $S_0$ complete and expanded on branch `s0-nonlinear-evolution` with `L1-017` and `L1-018`, Generation 1 has completed the ground-up construction of **System $G_1$** inside [`generations/gen_01/src/g1_compiler/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/).
 
 ### 4.1 Retirement & Freezing of $S_0$ Search Harness
 - **Location:** Frozen snapshot preserved in [`generations/gen_01/harness/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/harness/).
-- **Role:** The historical discovery tool provided by the human architect to discover $G_1$'s 7 structural axioms across 15 epochs.
+- **Role:** The historical discovery tool provided by the human architect to discover $G_1$'s structural axioms across epochs.
 - **Status:** Formally locked and retired under Low-Level Jettison 2.
 
 ### 4.2 System $G_1$ Architecture: Complete Implementation
-System $G_1$ is an entirely new, standalone compiler built from scratch to directly embody the 7 active structural invariants:
+System $G_1$ is an entirely new, standalone compiler built from scratch to directly embody the 9 active structural invariants:
 1. **[`functor.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/functor.py) (`L1-002`):** Category-theoretic `Morphism` composition and `CategoryFunctor` verifying identity and morphism preservation: $\mathcal{F}(f \circ g) = \mathcal{F}(f) \circ \mathcal{F}(g)$ and $\mathcal{F}(\text{id}) = \text{id}$.
 2. **[`grammar.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/grammar.py) (`L1-004`):** `UniversalGrammar` with `DeepSyntaxNode` invariant AST validation and surface projections ($\mathcal{P}_{\text{surface}}(\mathcal{D}_{\text{deep}}) \equiv \mathcal{D}_{\text{deep}}$).
 3. **[`persistence.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/persistence.py) (`L1-011_3`):** Modular separation of state delta from physical storage across Boundary 3 (`Boundary3PersistenceManager` with memory and filesystem adapters).
@@ -90,9 +91,13 @@ System $G_1$ is an entirely new, standalone compiler built from scratch to direc
 5. **[`mcp_gateway.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/mcp_gateway.py) (`L1-015`):** Dual-boundary Model Context Protocol governance: typed schema constraints (Nouns), deterministic finite state automata transitions (Verbs), and ephemeral sandbox verification.
 6. **[`enclaves.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/enclaves.py) (`L1-016`):** `ExceptionEnclave` isolating failure blast radiuses, emitting cryptographic machine-readable audit witnesses, preventing state leakage, and providing humane error recovery guidance.
 7. **[`composition.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/composition.py) (`L1-015_1`):** `CompositionalBoundaryAuditor` verifying that subcomponents compose orthogonally without side effects: $\mathcal{V}(S_1 \oplus S_2) = \mathcal{V}(S_1) \otimes \mathcal{V}(S_2)$.
+8. **[`island_generator.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/island_generator.py) (`L1-017`):** `IslandGenerator` maintaining 4 orthogonal search islands (Sheaf Mesh, CRDT Lattice, Quorum State Machine, Actor Hierarchy) with AST subtree splicing, constraint tightening, and cross-island recombination operators.
+9. **[`adversarial_crucible.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/adversarial_crucible.py) (`L1-018`):** `DecoupledAdversarialCrucible` executing asymmetric chaos injection (asymmetric netsplits, flapping packet drops, concurrency race storms), detecting uninsulated fragile candidates as empirical dead-end witnesses, and auditing Landauer erasure heat.
+10. **[`map_elites.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/map_elites.py):** `MapElitesArchive` preserving multi-dimensional behavioral diversity across Consistency, Partition Survival, and Thermodynamic Heat Dissipation, preventing greedy local convergence.
+11. **[`succession_gate.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/succession_gate.py) (`L1-017` / `L1-018`):** `NonLinearSuccessionGate` serving as the unforgiving mechanical gate: enforces $\ge 3$ islands, $\ge 1$ documented dead-end witness, passing adversarial crucible score, and raises `LinearCompilationViolation` upon single-shot linear bypass attempts.
 
 ### 4.3 Autonomous Generation 2 ($G_2$) Successor Formulation
-Fulfilling its primary operational mandate, System $G_1$ endogenously synthesizes the basis and evaluation targets for Generation 2 via [`basis_generator.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/basis_generator.py):
+Fulfilling its primary operational mandate through authentic evolutionary search, System $G_1$ endogenously synthesizes the basis and evaluation targets for Generation 2 via [`basis_generator.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/basis_generator.py) backed by a cryptographic `NonLinearSearchTrace` and signed succession certificate:
 - **$G_2$ Evaluation Targets ($T_{G2}$):**
   - `G2-T1`: Higher-Order Functorial Compilation Target
   - `G2-T2`: Autonomous Self-Healing & Enclave Verification Target
@@ -112,8 +117,9 @@ Preserves empirical post-mortems and human critiques to structurally bind Genera
 - **Inherited Negative Constraints:** `NEG-G2-001` (Mandatory Elicitation Gate) and `NEG-G2-002` (Verification Illusion Veto).
 
 ### 4.5 Verification & Test Compliance
-- **G1 Unit Suite:** 18/18 tests passing (`PYTHONPATH=generations/gen_01/src python3 -m unittest -v generations/gen_01/tests/test_g1_system.py`).
+- **G1 Unit Suite:** 29/29 tests passing (`PYTHONPATH=generations/gen_01/src python3 -m unittest -v generations/gen_01/tests/test_g1_system.py`).
 - **Unified Root Suite:** 22/22 tests passing (`PYTHONPATH=src python3 -m unittest -v tests/test_all.py`).
-- **All 7 Structural Axioms:** 100% formal compliance verified by `SystemG1Compiler.verify_all_structural_axioms()`.
+- **Repo-wide Suites:** 64/64 tests passing across $S_0$, $G_1$, $G_2$, and $G_3$.
+- **All 9 Structural Axioms:** 100% formal compliance verified by `SystemG1Compiler.verify_all_structural_axioms()`.
 
 
