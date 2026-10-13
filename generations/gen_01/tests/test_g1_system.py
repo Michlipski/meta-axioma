@@ -326,6 +326,8 @@ class TestSystemG1CompilerFullSuite(unittest.TestCase):
         self.assertTrue(any("NEG-G2-001" in c for c in g2_basis.inherited_negative_constraints))
         self.assertTrue(any("LES-G1-001" in s for s in g2_basis.lessons_learned_summary))
         self.assertTrue(any(ax.id == "L1-G2-005" for ax in g2_basis.basis_axioms))
+        self.assertTrue(any(ax.id == "L1-G2-006" for ax in g2_basis.basis_axioms))
+
 
 
 class TestNonLinearSearchInvariance(unittest.TestCase):
