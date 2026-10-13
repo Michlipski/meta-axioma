@@ -20,6 +20,18 @@ from .models import (
 from .sheaf_consensus import SheafConsensusEngine
 from .zero_trust_mesh import DistributedCapabilityAuthority
 
+from .observability import (
+    OTelSpan,
+    ProductionObservabilityExporter,
+    SyntheticSimulationFraudError,
+    UserZeroAuditor,
+)
+from .hlj_gate import (
+    HighLevelJettisonCertificate,
+    HighLevelJettisonGate,
+    JettisonConvergenceError,
+)
+
 __all__ = [
     "ClusterExceptionEnclave",
     "ClusterNodeMetadata",
@@ -35,4 +47,11 @@ __all__ = [
     "NodeRole",
     "SheafConsensusEngine",
     "SheafSection",
+    "OTelSpan",
+    "ProductionObservabilityExporter",
+    "SyntheticSimulationFraudError",
+    "UserZeroAuditor",
+    "HighLevelJettisonCertificate",
+    "HighLevelJettisonGate",
+    "JettisonConvergenceError",
 ]

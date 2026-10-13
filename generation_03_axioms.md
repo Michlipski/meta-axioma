@@ -12,8 +12,8 @@
 - **Status:** Operational
 - **Epoch:** 1
 - **Phase:** `PHASE_1_DISTRIBUTED_FOUNDATION`
-- **Total Active Structural Axioms:** 5
-- **Inherited Negative Invariants:** 10 (`NEG-G3-001` through `NEG-G3-010`)
+- **Total Active Structural Axioms:** 6
+- **Inherited Negative Invariants:** 11 (`NEG-G3-001` through `NEG-G3-011`)
 - **Inherited Scaffolding:** 10 Level 0 Meta-Axioms + 7 $G_1$ Axioms + 7 $G_2$ Axioms
 - **Thermodynamic Compute Decay Budget:**
   $$T_3(1) = \frac{10,000}{1 + 0.6 \times 9} = 1,562 \text{ simulation tokens / Depth 4}$$
@@ -82,6 +82,18 @@
 
 ---
 
+### [L1-G3-006] Non-Linear Tree Succession & High-Level Jettison Gate
+- **Level:** Level 1 (Structural)
+- **Status:** **ACTIVE**
+- **Domain:** Evolutionary Computation & Transgenerational Invariant Enforcement
+- **Statement:** Generation 3 inherits unbroken anti-linearity governance from S0 (`L1-017`, `L1-018`) and G2 (`L1-G2-008`). Any single-shot linear synthesis or bypass of multi-island evolutionary validation throws `LinearCompilationViolation`. Convergence to the High-Level Jettison mechanically requires the signed succession certificate `CERT_HLJ_*`.
+- **Formal Expression:**
+  $$\text{VerifyHLJ}(G_3) \implies \text{SuccessionGate}(\text{CERT\_G2}) \land \text{UserZeroVerified} \land \text{JettisonRatio} \ge 0.85$$
+- **Operational Rule:** Direct code emission without certified multi-island search trace is rejected at compilation gate.
+- **Teleological Purpose:** Prevents compiler backsliding into checklist satisfaction or linear hallucination.
+
+---
+
 ## Inherited Negative Constraints
 
 1. **`NEG-G3-001` (Mandatory Human Intent Elicitation Gate):** No application or backend service may be compiled without an explicit, verifiable `HumanIntentWitness` signed off by the Human Architect.
@@ -94,3 +106,4 @@
 8. **`NEG-G3-008` (SRS Temporal Spacing Invariant):** Cards scheduled for future review cannot be re-reviewed prematurely before their mathematical interval expires.
 9. **`NEG-G3-009` (Cruciverbalist Lexical Purity Invariant):** 100% of clue tokens must be legitimate, authentic English dictionary words; strictly zero pseudo-words or scrambled anagram fragments.
 10. **`NEG-G3-010` (Anti-Local Monolith Invariant):** All Generation 3 production architectures must decompose into a networked backend topology with formal consensus, event-streaming, and fault isolation servicing frontend extremities.
+11. **`NEG-G3-011` (Anti-Synthetic Human Persona Fraud Veto):** Simulating mock human personas to fabricate satisfaction metrics or pass utility gates is strictly forbidden; telemetry must originate from real human operators (User Zero) and standard exportable observability pipelines.

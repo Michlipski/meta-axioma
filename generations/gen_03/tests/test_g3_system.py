@@ -213,6 +213,73 @@ class TestGeneration3Compiler(unittest.TestCase):
         for res in results:
             self.assertTrue(res["passed"], f"Target {res['target_id']} failed")
 
+    def test_production_observability_and_user_zero(self):
+        """Validates L1-G3-003 and NEG-G3-011: Observability export and User Zero anti-fraud."""
+        from g3_compiler.observability import (
+            ProductionObservabilityExporter,
+            SyntheticSimulationFraudError,
+            UserZeroAuditor,
+        )
+
+        obs = ProductionObservabilityExporter(service_name="test-service")
+        obs.record_span("t1", "s1", "span_test", duration_ms=12.5, attributes={"region": "us-east"})
+        obs.set_metric("cluster_qps", 1450.0)
+
+        prom_text = obs.export_prometheus_text()
+        self.assertIn("cluster_qps{service=\"test-service\"} 1450.0", prom_text)
+
+        otlp_json = obs.export_otlp_traces()
+        self.assertIn("span_test", otlp_json)
+        self.assertIn("us-east", otlp_json)
+
+        # User Zero auditor valid action
+        auditor = UserZeroAuditor(human_operator_id="Michael Lipski")
+        auditor.record_operator_action("cli_deploy", duration_ms=45.0, exit_code=0, is_human_direct=True)
+        metrics = auditor.get_user_zero_metrics()
+        self.assertTrue(metrics["passed_grounded_gate"])
+        self.assertEqual(metrics["synthetic_fraud_count"], 0)
+
+        # NEG-G3-011 VETO: attempt synthetic persona fraud
+        with self.assertRaises(SyntheticSimulationFraudError):
+            auditor.record_operator_action(
+                "fabricated_task",
+                duration_ms=10.0,
+                exit_code=0,
+                is_human_direct=False,
+                persona_tag="simulated_user_persona_99",
+            )
+
+    def test_high_level_jettison_gate(self):
+        """Validates L1-G3-005 and L1-G3-006: High-Level Jettison convergence gate."""
+        from g3_compiler.hlj_gate import JettisonConvergenceError
+
+        valid_g2_cert = "CERT_G2_FBFC5AB7BB6129DB"
+        cert = self.engine.evaluate_high_level_jettison(
+            g2_certificate=valid_g2_cert,
+            meta_compiler_tokens=100.0,
+            production_app_tokens=1900.0,
+        )
+        self.assertTrue(cert.certificate_id.startswith("CERT_HLJ_"))
+        self.assertGreaterEqual(cert.jettison_ratio, 0.90)
+        self.assertTrue(cert.user_zero_verified)
+        self.assertTrue(cert.observability_verified)
+
+        # Test rejection on missing/invalid G2 certificate
+        with self.assertRaises(JettisonConvergenceError):
+            self.engine.evaluate_high_level_jettison(
+                g2_certificate="INVALID_FAKE_TOKEN",
+                meta_compiler_tokens=100.0,
+                production_app_tokens=1900.0,
+            )
+
+        # Test rejection on insufficient jettison ratio (too much compute in compiler recursion)
+        with self.assertRaises(JettisonConvergenceError):
+            self.engine.evaluate_high_level_jettison(
+                g2_certificate=valid_g2_cert,
+                meta_compiler_tokens=900.0,
+                production_app_tokens=100.0,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

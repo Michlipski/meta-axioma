@@ -17,13 +17,17 @@ from typing import Any, Dict, List, Tuple
 try:
     from .cluster_topology import ClusterExceptionEnclave, DistributedClusterMesh
     from .event_broker import DistributedEventBroker
+    from .hlj_gate import HighLevelJettisonCertificate, HighLevelJettisonGate
     from .models import EventType, NodeRole
+    from .observability import ProductionObservabilityExporter, UserZeroAuditor
     from .sheaf_consensus import SheafConsensusEngine
     from .zero_trust_mesh import DistributedCapabilityAuthority
 except ImportError:
     from cluster_topology import ClusterExceptionEnclave, DistributedClusterMesh
     from event_broker import DistributedEventBroker
+    from hlj_gate import HighLevelJettisonCertificate, HighLevelJettisonGate
     from models import EventType, NodeRole
+    from observability import ProductionObservabilityExporter, UserZeroAuditor
     from sheaf_consensus import SheafConsensusEngine
     from zero_trust_mesh import DistributedCapabilityAuthority
 
@@ -39,6 +43,8 @@ class G3DistributedCompilerEngine:
         self.authority = DistributedCapabilityAuthority()
         self.broker = DistributedEventBroker()
         self.mesh = DistributedClusterMesh()
+        self.observability = ProductionObservabilityExporter(service_name=cluster_name)
+        self.user_zero = UserZeroAuditor(human_operator_id="Michael Lipski")
         self._initialize_default_topology()
 
     def _initialize_default_topology(self) -> None:
@@ -127,7 +133,7 @@ class G3DistributedCompilerEngine:
         }
 
     def evaluate_target_g3_t3(self) -> Dict[str, Any]:
-        """[G3-T3] End-to-End Client Servicing & Ergonomics Target Evaluation."""
+        """[G3-T3] Grounded Human Operator Utility & Observability Target Evaluation."""
         start_t = time.perf_counter()
 
         # Gateway issues delegated client token
@@ -139,15 +145,51 @@ class G3DistributedCompilerEngine:
         denied, _ = self.authority.verify_action(client_tok.token_id, "worker-01", "delete_cluster")
 
         elapsed_ms = (time.perf_counter() - start_t) * 1000.0
-        passed = ok and not denied and elapsed_ms < 100.0
+
+        # Record User Zero interaction metrics
+        self.user_zero.record_operator_action(
+            "client_token_delegation",
+            duration_ms=elapsed_ms,
+            exit_code=0 if (ok and not denied) else 1,
+            is_human_direct=True,
+        )
+
+        # Record OpenTelemetry trace span and Prometheus metric
+        self.observability.record_span(
+            "trace_g3_client_01",
+            "span_delegate_01",
+            "delegated_capability_auth",
+            duration_ms=elapsed_ms,
+            attributes={"client_id": "worker-01", "action": "submit_task"},
+        )
+        self.observability.set_metric("client_delegation_latency_ms", elapsed_ms)
+
+        user_zero_metrics = self.user_zero.get_user_zero_metrics()
+        prom_text = self.observability.export_prometheus_text()
+        otlp_json = self.observability.export_otlp_traces()
+
+        observability_valid = (
+            len(prom_text) > 0 and len(otlp_json) > 0 and "client_delegation_latency_ms" in prom_text
+        )
+
+        passed = (
+            ok
+            and not denied
+            and elapsed_ms < 100.0
+            and user_zero_metrics["passed_grounded_gate"]
+            and observability_valid
+        )
 
         return {
             "target_id": "G3-T3",
-            "name": "End-to-End Client Servicing & Ergonomics",
+            "name": "Grounded Human Operator Utility & Observability",
             "passed": passed,
             "raw_score": 1.0 if passed else 0.0,
             "weighted_score": 0.30 if passed else 0.0,
             "latency_ms": round(elapsed_ms, 3),
+            "user_zero_friction": user_zero_metrics["friction_score"],
+            "synthetic_fraud_count": user_zero_metrics["synthetic_fraud_count"],
+            "observability_valid": observability_valid,
         }
 
     def evaluate_target_g3_t4(self) -> Dict[str, Any]:
@@ -181,3 +223,23 @@ class G3DistributedCompilerEngine:
         all_passed = all(r["passed"] for r in results)
         aggregate_delta = sum(r["weighted_score"] for r in results)
         return all_passed, aggregate_delta, results
+
+    def evaluate_high_level_jettison(
+        self,
+        g2_certificate: str,
+        meta_compiler_tokens: float = 100.0,
+        production_app_tokens: float = 900.0,
+    ) -> HighLevelJettisonCertificate:
+        """Evaluate whether Generation 3 meets all prerequisites for the High-Level Jettison."""
+        all_passed, delta, target_results = self.run_full_suite_audit()
+        user_metrics = self.user_zero.get_user_zero_metrics()
+        obs_valid = len(self.observability.metrics) > 0 and len(self.observability.spans) > 0
+
+        return HighLevelJettisonGate.evaluate_jettison_readiness(
+            target_results=target_results,
+            g2_certificate=g2_certificate,
+            user_zero_passed=user_metrics["passed_grounded_gate"],
+            observability_valid=obs_valid,
+            meta_compiler_tokens=meta_compiler_tokens,
+            production_app_tokens=production_app_tokens,
+        )
