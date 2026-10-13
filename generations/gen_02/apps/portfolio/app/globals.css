@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --muted: #71717a;
+  --border: #27272a;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #09090b;
+  color: #f4f4f5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #09090b;
+  color: #f4f4f5;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Subtle technical grid background pattern */
+.tech-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(39, 39, 42, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(39, 39, 42, 0.35) 1px, transparent 1px);
+}
+
+/* Academic preprint style borders and containers */
+.paper-card {
+  background-color: rgba(18, 18, 20, 0.7);
+  border: 1px solid rgba(63, 63, 70, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.paper-card:hover {
+  border-color: rgba(82, 82, 91, 0.8);
+}
+
+/* Code & Badge styling */
+.tech-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  background-color: rgba(39, 39, 42, 0.6);
+  border: 1px solid rgba(63, 63, 70, 0.5);
+  color: #d4d4d8;
+  border-radius: 0.25rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}

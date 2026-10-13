@@ -20,6 +20,7 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 | **05** | [`axioma_eink`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_eink/) | Async Hardware Sync & Router | Physical Focus Worker / Kindle User | `8096` | **Deployed** | Zero-JS Electrophoretic View, 15m Meta-Refresh, Daily Big 3–5 Bounded Focus. |
 | **06** | [`axioma_swarm`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_swarm/) | Local Edge Micro-Swarm Daemon | Edge ML Engineer / Local AI Operator | `8098` | **Deployed** | VRAM Tensor Budget Allocator, LRU Model Eviction, OOM Exception Enclaves. |
 | **07** | [`axioma_sentinel`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_sentinel/) | Zero-Trust Agent Incident & Auto-Healing Console | AI Systems Architect & Safety Officer | `8100` | **Deployed** | Generation 2 Flagship: Elicited under L1-G2-005; 3-Pass Auto-Repair, 1-Click Cmd+Z Rollback, HMAC Capability Scoping. |
+| **08** | [`portfolio`](file:///Users/michaellipski/dev/meta-axioma/apps/portfolio/) | Engineering Portfolio & Showcase Gateway | Technical Recruiters & Systems Leaders | `3000` | **Deployed (G2)** | Next.js App Router (Static Export) + Vercel Multi-Zone Rewrites (`/axioma/:path*`), academic typography, Beehive systems slot. |
 
 ### Core Governance Principle: Plan-First & Optional Execution
 > **The Golden Rule for Application Synthesis:**  
@@ -140,6 +141,20 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
   - **Introspectable Zero-Trust Capability Scoping ([`L1-G2-004`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping)):** Granular HMAC SHA-256 capability tokens bound to specific personas, eliminating ambient authority.
   - **Landauer Thermodynamic Accounting ([`L1-008`](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L281-L288)):** Micro-joule dissipation tracking auditing bit erasures ($k_B T \ln 2$) for every state mutation.
   - **Cognitive Ergonomics Invariance ([`L1-G2-003`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance)):** Zero cryptic error codes, dark-theme HUD, and sub-100ms rollback responsiveness.
+
+---
+
+### System 08: Michael Lipski Portfolio & Showcase Gateway
+- **Canonical Path:** [`generations/gen_02/apps/portfolio/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/portfolio/) (Symlinked at [`apps/portfolio/`](file:///Users/michaellipski/dev/meta-axioma/apps/portfolio/))
+- **App ID:** `portfolio` | **Port:** `3000` | **Status:** **Deployed (G2)** (Clean Static Export in `out/`)
+- **Generational Lineage:** Built from ground up under Generation 2 ($G_2$).
+- **Human Intent Elicitation Authority:** Formally verified and signed off under [`L1-G2-005`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary) in [`trace/intent_elicitation_portfolio.json`](file:///Users/michaellipski/dev/meta-axioma/trace/intent_elicitation_portfolio.json).
+- **Target Persona:** Technical Recruiters, VP/Director-level Engineering Leaders & Principal Systems Architects.
+- **Key Features:**
+  - **Static Export Compatible (`L1-G2-001`):** `output: 'export'` in `next.config.mjs` generating sub-50ms TTFB static HTML on global edge CDNs.
+  - **Vercel Multi-Zone Rewrites (`vercel.json`):** Edge-level proxying of `/axioma/:path*` to the external Axioma showcase deployment, preserving a single-domain feel.
+  - **Technical Documentation & Academic Preprint Aesthetic (`L1-G2-003`):** Monochromatic zinc/slate color palette, subtle borders, monospace code badges, zero distracting animations.
+  - **Beehive AI Systems Architecture Slot:** Modular architectural interface outlining the high-throughput Go ingestion pipeline, RabbitMQ stream buffer, and PostgreSQL partition matrix. Prepared for the follow-up interactive Q&A deep dive.
 
 ---
 

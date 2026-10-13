@@ -1,0 +1,21 @@
+{
+  "app_id": "portfolio",
+  "name": "Michael Lipski Engineering Portfolio",
+  "version": "1.0.0",
+  "tagline": "Minimal, highly performant personal portfolio for Full Stack Software Engineer",
+  "description": "Next.js App Router static export portfolio with Vercel multi-zone rewrites for /axioma/:path* and technical documentation aesthetic.",
+  "generation_origin": "gen_02",
+  "target_persona": "Technical Recruiters, Engineering Leaders & Systems Architects",
+  "port": 3000,
+  "deep_ast_digest": "sha256_portfolio_g2_v1",
+  "invariants_embodied": [
+    "L1-G2-001",
+    "L1-G2-003",
+    "L1-G2-005"
+  ],
+  "entrypoint": "npm run dev",
+  "build_command": "npm run build",
+  "output_directory": "out",
+  "compiled_at": 1776092849.0,
+  "compiled_by": "System G_2 Compiler Engine"
+}

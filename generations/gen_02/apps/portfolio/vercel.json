@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/axioma",
+      "destination": "https://axioma-showcase.vercel.app"
+    },
+    {
+      "source": "/axioma/:path*",
+      "destination": "https://axioma-showcase.vercel.app/:path*"
+    }
+  ]
+}
