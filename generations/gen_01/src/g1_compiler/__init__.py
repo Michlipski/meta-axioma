@@ -36,7 +36,22 @@ from g1_compiler.app_compiler import (
 )
 from g1_compiler.persistence import Boundary3StorageAdapter, InMemoryAdapter, FileSystemAdapter, Boundary3PersistenceManager
 from g1_compiler.thermodynamics import LandauerAccountingLedger, ThermodynamicReversibilityAuditor
-from g1_compiler.types import SystemState, CompilerPhase, G2SuccessorBasis
+from g1_compiler.island_generator import IslandGenerator
+from g1_compiler.adversarial_crucible import DecoupledAdversarialCrucible, K_B_T_LN2
+from g1_compiler.map_elites import MapElitesArchive
+from g1_compiler.succession_gate import NonLinearSuccessionGate
+from g1_compiler.types import (
+    SystemState,
+    CompilerPhase,
+    G2SuccessorBasis,
+    LinearCompilationViolation,
+    ChaosFaultType,
+    SearchIsland,
+    CandidateArchitecture,
+    CrucibleReport,
+    BehavioralNiche,
+    NonLinearSearchTrace,
+)
 
 __all__ = [
     "SystemG1Compiler",
@@ -48,6 +63,18 @@ __all__ = [
     "SystemState",
     "CompilerPhase",
     "G2SuccessorBasis",
+    "LinearCompilationViolation",
+    "ChaosFaultType",
+    "SearchIsland",
+    "CandidateArchitecture",
+    "CrucibleReport",
+    "BehavioralNiche",
+    "NonLinearSearchTrace",
+    "IslandGenerator",
+    "DecoupledAdversarialCrucible",
+    "K_B_T_LN2",
+    "MapElitesArchive",
+    "NonLinearSuccessionGate",
     "Morphism",
     "FunctorialPipeline",
     "CategoryFunctor",
@@ -69,3 +96,4 @@ __all__ = [
     "EnclaveAuditWitness",
     "CompositionalBoundaryAuditor",
 ]
+

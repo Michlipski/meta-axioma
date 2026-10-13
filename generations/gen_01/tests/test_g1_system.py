@@ -28,8 +28,18 @@ from g1_compiler import (
     VerbTransition,
     ExceptionEnclave,
     CompositionalBoundaryAuditor,
+    IslandGenerator,
+    DecoupledAdversarialCrucible,
+    K_B_T_LN2,
+    MapElitesArchive,
+    NonLinearSuccessionGate,
+    LinearCompilationViolation,
+    NonLinearSearchTrace,
+    CrucibleReport,
+    BehavioralNiche,
 )
 from g1_compiler.composition import CompositionalUnit
+
 
 
 class TestFunctorMorphismPreservation(unittest.TestCase):
@@ -267,12 +277,15 @@ class TestCompositionalBoundaryIsolation(unittest.TestCase):
 class TestSystemG1CompilerFullSuite(unittest.TestCase):
     """Verifies the complete System G_1 Compiler Engine and G_2 successor formulation."""
 
-    def test_verify_all_seven_structural_axioms(self):
+    def test_verify_all_nine_structural_axioms(self):
         compiler = SystemG1Compiler()
         results = compiler.verify_all_structural_axioms()
 
-        expected_axioms = ["L1-002", "L1-004", "L1-011_3", "L1-008", "L1-015", "L1-016", "L1-015_1"]
-        self.assertEqual(len(results), 7)
+        expected_axioms = [
+            "L1-002", "L1-004", "L1-011_3", "L1-008",
+            "L1-015", "L1-016", "L1-015_1", "L1-017", "L1-018",
+        ]
+        self.assertEqual(len(results), 9)
 
         for ax_id in expected_axioms:
             self.assertIn(ax_id, results)
@@ -287,6 +300,14 @@ class TestSystemG1CompilerFullSuite(unittest.TestCase):
         self.assertGreaterEqual(len(g2_basis.targets), 4)
         self.assertGreaterEqual(len(g2_basis.basis_axioms), 4)
         self.assertIn("non-generator systems", g2_basis.high_level_jettison_awareness)
+
+        # Verify Non-Linear Search Trace & Succession Certificate ([L1-017])
+        self.assertIsNotNone(g2_basis.search_trace)
+        self.assertIsNotNone(g2_basis.succession_certificate)
+        self.assertTrue(g2_basis.succession_certificate.startswith("CERT_G1_"))
+        self.assertGreaterEqual(len(g2_basis.search_trace.islands_explored), 3)
+        self.assertGreaterEqual(len(g2_basis.search_trace.dead_end_candidates), 1)
+        self.assertTrue(g2_basis.search_trace.is_verified)
 
         # Verify G2 targets have non-generator telos alignment
         for target in g2_basis.targets:
@@ -305,6 +326,149 @@ class TestSystemG1CompilerFullSuite(unittest.TestCase):
         self.assertTrue(any("NEG-G2-001" in c for c in g2_basis.inherited_negative_constraints))
         self.assertTrue(any("LES-G1-001" in s for s in g2_basis.lessons_learned_summary))
         self.assertTrue(any(ax.id == "L1-G2-005" for ax in g2_basis.basis_axioms))
+
+
+class TestNonLinearSearchInvariance(unittest.TestCase):
+    """Verifies [L1-017] Non-Linear Exploratory Trajectory & Tree Search Invariance."""
+
+    def test_linear_bypass_rejection(self):
+        # Attempting succession verification without trace raises LinearCompilationViolation
+        with self.assertRaises(LinearCompilationViolation):
+            NonLinearSuccessionGate.verify_trace(None)
+
+    def test_insufficient_islands_rejection(self):
+        # Trace with fewer than 3 islands fails
+        trace = NonLinearSearchTrace(
+            trace_id="TRACE_UNDER_BRANCHED",
+            islands_explored=["ISLAND_A", "ISLAND_B"],
+            total_candidates_evaluated=4,
+            dead_end_candidates=[{"candidate_id": "CAND_X"}],
+            crucible_witnesses=[],
+            selected_winner_id="CAND_Y",
+        )
+        with self.assertRaises(LinearCompilationViolation) as ctx:
+            NonLinearSuccessionGate.verify_trace(trace)
+        self.assertIn("Insufficient island diversity", str(ctx.exception))
+
+    def test_missing_dead_end_witness_rejection(self):
+        # Trace with 0 dead ends fails (violating Popperian falsifiability and authentic exploration)
+        trace = NonLinearSearchTrace(
+            trace_id="TRACE_NO_DEAD_ENDS",
+            islands_explored=["ISLAND_A", "ISLAND_B", "ISLAND_C"],
+            total_candidates_evaluated=3,
+            dead_end_candidates=[],  # 0 dead ends
+            crucible_witnesses=[],
+            selected_winner_id="CAND_WINNER",
+        )
+        with self.assertRaises(LinearCompilationViolation) as ctx:
+            NonLinearSuccessionGate.verify_trace(trace)
+        self.assertIn("Missing dead-end falsification witness", str(ctx.exception))
+
+    def test_multi_island_exploration_and_mutation(self):
+        gen = IslandGenerator()
+        islands = gen.get_islands()
+        self.assertGreaterEqual(len(islands), 3)
+
+        cands = [gen.seed_candidate(i.island_id) for i in islands]
+        self.assertEqual(len(cands), len(islands))
+
+        # Test mutation
+        mut = gen.mutate(cands[0], mutation_type="ConstraintTightening")
+        self.assertEqual(mut.generation_step, 2)
+        self.assertIn("L1-016", mut.specification_ast["invariants_embodied"])
+        self.assertIn(cands[0].candidate_id, mut.lineage)
+
+        # Test recombination
+        recomb = gen.recombine(cands[0], cands[1])
+        self.assertIn("Hybrid", recomb.name)
+        self.assertIn(cands[0].candidate_id, recomb.lineage)
+        self.assertIn(cands[1].candidate_id, recomb.lineage)
+
+
+class TestDecoupledAdversarialCrucible(unittest.TestCase):
+    """Verifies [L1-018] Independent Decoupled Adversarial Falsification."""
+
+    def test_stochastic_chaos_fault_injection(self):
+        crucible = DecoupledAdversarialCrucible(random_seed=123)
+        gen = IslandGenerator()
+        cand = gen.seed_candidate("ISLAND_QUORUM")
+
+        report = crucible.stress_test(cand, chaos_intensity=0.7)
+        self.assertEqual(report.candidate_id, cand.candidate_id)
+        self.assertEqual(len(report.faults_injected), 3)
+        fault_types = {f["type"] for f in report.faults_injected}
+        self.assertIn("ASYMMETRIC_NETSPLIT", fault_types)
+        self.assertIn("FLAPPING_PACKET_DROP", fault_types)
+        self.assertIn("CONCURRENCY_THRASH", fault_types)
+
+        # Verify Landauer dissipation
+        self.assertGreater(report.erased_bits, 0.0)
+        self.assertGreater(report.dissipated_joules, 0.0)
+        self.assertAlmostEqual(
+            report.dissipated_joules,
+            report.erased_bits * K_B_T_LN2,
+            places=30,
+        )
+
+        # Verify SHA-256 witness hash
+        self.assertEqual(len(report.witness_hash), 64)
+
+    def test_uninsulated_baseline_falsification(self):
+        # A fragile candidate (e.g. baseline without enclaves and with high chaos) produces dead-end witness
+        crucible = DecoupledAdversarialCrucible(random_seed=999)
+        gen = IslandGenerator()
+        fragile_cand = gen.seed_candidate("ISLAND_ACTOR")
+
+        # Stress with extreme chaos intensity
+        report = crucible.stress_test(fragile_cand, chaos_intensity=1.0)
+        self.assertTrue(report.is_falsified)
+        self.assertFalse(report.passed)
+        self.assertGreater(len(report.failure_details), 0)
+
+
+class TestMapElitesQualityDiversity(unittest.TestCase):
+    """Verifies Quality-Diversity MAP-Elites behavioral preservation."""
+
+    def test_behavioral_niche_discretization_and_stepping_stone_preservation(self):
+        archive = MapElitesArchive(brackets_per_dim=5)
+        gen = IslandGenerator()
+        c1 = gen.seed_candidate("ISLAND_SHEAF")
+        c2 = gen.seed_candidate("ISLAND_CRDT")
+
+        # Candidate 1: High consistency, high dissipation
+        r1 = CrucibleReport(
+            candidate_id=c1.candidate_id,
+            passed=True,
+            consistency_rate=0.96,
+            partition_survival_rate=0.85,
+            erased_bits=150.0,
+            dissipated_joules=150.0 * K_B_T_LN2,
+            p99_latency_ms=20.0,
+        )
+        # Candidate 2: Moderate consistency, low dissipation (distinct thermal niche)
+        r2 = CrucibleReport(
+            candidate_id=c2.candidate_id,
+            passed=True,
+            consistency_rate=0.87,
+            partition_survival_rate=0.95,
+            erased_bits=30.0,
+            dissipated_joules=30.0 * K_B_T_LN2,
+            p99_latency_ms=40.0,
+        )
+
+        added1 = archive.add_candidate(c1, r1)
+        added2 = archive.add_candidate(c2, r2)
+        self.assertTrue(added1)
+        self.assertTrue(added2)
+
+        # Both preserved despite different scalar trade-offs!
+        elites = archive.get_all_elites()
+        self.assertEqual(len(elites), 2)
+        self.assertGreater(archive.get_coverage(), 0.0)
+
+        winner_c, winner_r = archive.select_pareto_winner()
+        self.assertIn(winner_c.candidate_id, [c1.candidate_id, c2.candidate_id])
+
 
 
 class TestStandardizedAppStructure(unittest.TestCase):
