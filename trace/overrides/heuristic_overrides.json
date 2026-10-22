@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "exemptions": [],
+  "metadata": {
+    "heuristic_debt_ratio": 0.0,
+    "max_allowed_debt_ratio": 0.15,
+    "last_audit_timestamp": null
+  }
+}

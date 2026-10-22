@@ -14,7 +14,7 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 | System ID | Name | Domain / Archetype | Target Persona | Port | Status | Primary Feedback / Lesson |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **01** | [`axioma_flow`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_flow/) | Invariant Kanban & Workspace | AI Architect / Systems Engineer | `8088` | **Deployed** | Strong desktop UX; lacks active user feedback telemetry loop. |
-| **02** | [`axioma_lexis`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_lexis/) | Adaptive Spaced Repetition (SRS) | The Mobile Focus Learner & Technical Polymath | `8090` | **Deployed (G2)** | [`LES-G1-001`](#system-02-axioma-lexis) Redeemed: Direct Intent Grounding, 3-5 Card Micro-Dosing, 0-Friction Hydration, 10s Dwell Patience. |
+| **02** | [`axioma_lexis`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_lexis/) | Adaptive Spaced Repetition (SRS) | The Mobile Focus Learner & Technical Polymath | `8090` | **Deployed (G2b)** | Multi-Tier Usability Matrix Lineage: Rebuilt ground-up under [L1-G2B-001..005], NN 10 heuristics, Fitts >= 44px, 16 states, 53 transitions, 571 negative assertions, [NEG-G1B-001] witness. |
 | **03** | [`axioma_dual_fsm`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_dual_fsm/) | Dual-FSM Zero-Trust Governance | AI Safety Officer / Security Engineer | `8092` | **Deployed** | State Determinism, Tool Failure Loop, De-escalation & Functorial Revert. |
 | **04** | [`axioma_crossword`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_crossword/) | Constraint & Synthesis Engine | Puzzle Solver / Cruciverbalist Architect | `8094` | **Deployed (G1b)** | Model-Based Statechart Lineage: Clue Anatomy Dissector, soft mobile keypad, symmetrical grid solver, [NEG-G1B-001] witness. |
 | **05** | [`axioma_eink`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_eink/) | Async Hardware Sync & Router | Physical Focus Worker / Kindle User | `8096` | **Deployed** | Zero-JS Electrophoretic View, 15m Meta-Refresh, Daily Big 3–5 Bounded Focus. |
@@ -23,6 +23,7 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 | **08** | [`portfolio`](file:///Users/michaellipski/dev/meta-axioma/apps/portfolio/) | Engineering Portfolio & Showcase Gateway | Technical Recruiters & Systems Leaders | `3000` | **Deployed (G2)** | Next.js App Router (Static Export) + Vercel Multi-Zone Rewrites (`/axioma/:path*`), academic typography, Beehive systems slot. |
 | **09** | [`axioma_fabric`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_fabric/) | Distributed Sheaf-CRDT Event Fabric | Distributed Systems & Platform Lead | `8443` | **Deployed (G2)** | Generation 2 Distributed Flagship: Sheaf Covering ($U_i$), Pairwise Cocycle Auditor ($U_i \cap U_j$), Landauer Ring Buffer ($Q = \text{bits} \cdot k_B T \ln 2$), HMAC Tokens, Real-Time PWA Canvas. |
 | **10** | [`axioma_mesh`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_mesh/) | Distributed Consensus & Cluster Orchestrator | Infrastructure Lead & Cluster Operator | `8200` | **Deployed (G3)** | Generation 3 Flagship: Transitive Sheaf-Quorum Hybrid, CQRS log rollback, cross-network blast enclaves, OpenTelemetry & Prometheus exports. |
+| **12** | [`axioma_joy`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_joy/) | Visceral Category Theory & Structural Reasoning | Visceral Structural Thinkers & Art Students | `8120` | **Deployed (G2b)** | Eugenia Cheng SAIC Pedagogy: The Baker's Kitchen, 3D Factorization Cube of 30, The Analogy Bridge, Web Audio harmonic chords on commutativity, dual category C^op, [NEG-G1B-001] witness. |
 
 ### Core Governance Principle: Plan-First & Optional Execution
 > **The Golden Rule for Application Synthesis:**  
@@ -49,24 +50,21 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 
 ### System 02: Axioma Lexis
 - **Canonical Paths:**
+  - *Gen 2b Multi-Tier Recursive Lineage:* [`generations/gen_02b/apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02b/apps/axioma_lexis/) (Active symlink at [`apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_lexis/))
+  - *Gen 1b Model-Based Lineage:* [`generations/gen_01b/apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01b/apps/axioma_lexis/)
+  - *Gen 2 Prior Lineage:* [`generations/gen_02/apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_lexis/)
   - *Gen 1 Historical Archive:* [`generations/gen_01/apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/apps/axioma_lexis/)
-  - *Gen 2 Ground-Up Reconstruction:* [`generations/gen_02/apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_lexis/)
-- **Concept:** Mobile-first spaced repetition vocabulary engine engineered to eliminate the **Activation Energy Barrier** ("opening the app in the first place") and manual card authoring friction.
-- **Port:** `8090` | **Status:** **Deployed & Operational** (7/7 Gen 2 Unit Tests Passing)
-- **High-Level Blueprint:** [`axioma_lexis_g2_plan.md`](file:///Users/michaellipski/.gemini/antigravity/brain/4260a519-5298-4632-b994-96183d493ebb/axioma_lexis_g2_plan.md)
+- **Concept:** Fast, distraction-free, local-first vocabulary and adaptive spaced repetition studio reconstructed 100% from the ground up from the ambitious elevator pitch under Generation 2b ($G_{2b}$).
+- **Port:** `8090` | **Status:** **Deployed & Operational (G2b Certified Ground-Up Reconstruction)** (Witness: `WITNESS_PE_028BC22B43E8AA57`)
+- **Multi-Tier & Recursive Invariants ($G_{2b}$):**
+  - **Multi-Tier Interlocking Gate (`[L1-G2B-001]`):** Conjunction of Tier 1 (Structural $S_0$), Tier 2 (Universal Usability: Nielsen-Norman 10, Fitts `--touch-target: 48px`, Hick, Miller), Tier 3 (Cognitive benchmarks: Due-Queue Gating `AX-MEM-001`, Inbox-Zero Milestone Closure `AX-MEM-002`, Practice Cram Isolation `AX-MEM-008`).
+  - **Stateful Human Overrides (`[L1-G2B-002]`):** Persistent exemption registry in `trace/overrides/heuristic_overrides.json` with Heuristic Debt Index ($\text{HDR} \le 0.15$).
+  - **Dynamic Weighted Recursion (`[L1-G2B-003]`):** Live Mermaid DAG visualization (`recursion_tree.md`), boundary reflection opinions.
+  - **Thermodynamic Capital Partitioning (`[L1-G2B-004]`):** 40% protected capital strictly reserved for verification nodes.
+  - **Formal XState v5 Statechart Metrics:** 16 states, 53 transitions, 24 covering paths traversing 100% of transitions, 571 negative transition assertions, 0 unreachable states, Steps-to-Value = 3 steps (`idle` $\to$ `reviewing` $\to$ `reviewing.prompt` $\to$ `reviewing.revealed`).
+  - **Features Ground-Up Synthesized:** Instant 2-second capture with auto-hydration, native browser Web Speech API audio pronunciation, strict due-queue paced SM-2 flashcard reviews, celebratory inbox-zero milestone closure, un-due practice cram mode, multi-deck tagging & color categorization, visual Ebbinghaus forgetting curve retention analytics SVG, and local-first JSON sync modal with non-intrusive notifications.
+  - **Substrate Verification:** 6/6 passing tests on live substrate (`test_runtime.py`, `test_statechart_execution.py`).
 - **Target Persona:** The Mobile Focus Learner & Technical Polymath.
-- **Transgenerational Redemption of `LES-G1-001` (The Verification Illusion):**
-  - *The Flaw in Gen 1:* Compiled 100% passing tests on an ungrounded spec derived from a website scrape without conducting user discovery, prompting the critique: *"wow. you managed to build that entire app without first asking me how i use it or what I get out of it"*.
-  - *The Gen 2 Resolution:* Certified under [`[L1-G2-005]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary) ([`intent_elicitation_axioma_lexis.json`](file:///Users/michaellipski/dev/meta-axioma/trace/intent_elicitation_axioma_lexis.json)). Reconstructed based directly on the human architect's answers:
-    1. **Speech Synthesis Stripped (0 Bloat):** Confirmed out of scope and removed entirely.
-    2. **Activation Barrier Eradicated:** Never presents a terrifying backlog. Capped at strictly **3 to 5 words max per micro-session** (<45s completion).
-    3. **Direct-to-Card Launch:** Bypasses home screens, menus, and deck pickers—drops the user directly into Card #1.
-    4. **Curiosity-Prompt Push Notifications:** Non-intrusive snippets (max 2/day at 8:30 AM and 7:30 PM, zero guilt/streak spam).
-    5. **10.0s Desirable Difficulty Window ([`L1-G2-006`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant)):** Quiet, calm 10-second active recall window before subtle mnemonic hints appear.
-    6. **Humane Step-Back Fibonacci Spacing:** Struggling cards decay by strictly **1 tier** (never drop to Day 0).
-    7. **Zero-Typing 1-Word Hydration:** Type or paste 1 word $\to$ auto-hydrates IPA, definition, and contextual sentence in $<1.5$s.
-    8. **3-Pass Enclave Healing ([`L1-G2-002`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop)):** Corrupted decks/schemas are repaired on-the-fly with zero crash leakage to study sessions.
-    9. **Tri-Substrate Extremities ([`L1-G2-007`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation)):** Mobile PWA (Port 8090) + Terminal Quick-Capture CLI (`lexis add word`) + Headless Scheduling Daemon (`lexis-daemon`).
 
 ---
 
@@ -160,6 +158,32 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
   - **Vercel Multi-Zone Rewrites (`vercel.json`):** Edge-level proxying of `/axioma/:path*` to the external Axioma showcase deployment, preserving a single-domain feel.
   - **Technical Documentation & Academic Preprint Aesthetic (`L1-G2-003`):** Monochromatic zinc/slate color palette, subtle borders, monospace code badges, zero distracting animations.
   - **Beehive AI Systems Architecture Slot:** Modular architectural interface outlining the high-throughput Go ingestion pipeline, RabbitMQ stream buffer, and PostgreSQL partition matrix. Prepared for the follow-up interactive Q&A deep dive.
+
+---
+
+### System 12: Axioma Joy (Visceral Category Theory & Structural Reasoning Studio)
+- **Canonical Path:** [`generations/gen_02b/apps/axioma_joy/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02b/apps/axioma_joy/) (Symlinked at [`apps/axioma_joy/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_joy/))
+- **App ID:** `axioma_joy` | **Port:** `8120` | **Status:** **Deployed & Operational (G2b Certified)** (Witness: `WITNESS_PE_259E7836272D1489`)
+- **Generational Lineage:** Built ground-up under Generation 2b ($G_{2b}$) using `SystemG2bCompiler` with dynamic project proposals and 40% protected / 60% exploratory capital partition (`[L1-G2B-004]`).
+- **Human Intent Elicitation Authority:** Formally elicited and approved under Directive 3 in [`trace/intent_elicitation_axioma_joy.json`](file:///Users/michaellipski/dev/meta-axioma/trace/intent_elicitation_axioma_joy.json).
+- **Target Persona:** The Visceral Structural Thinker & Creative Visual Learner (Art students, designers, visual thinkers).
+- **Inspiration:** Eugenia Cheng's triumphant pedagogical methodology teaching category theory to arts students (*The Joy of Abstraction*, *How to Bake Pi*, *The Art of Logic*).
+- **Key Features:**
+  - **The 3 Signature Pedagogical Realms:**
+    1. *The Baker's Kitchen:* Sequential baking processes vs. parallel ingredient prep ($A \otimes B$).
+    2. *The 3D Factorization Cube of 30:* Rotatable 3D prime factor lattice of divisors of 30 ($1, 2, 3, 5, 6, 10, 15, 30$) demonstrating commutative faces.
+    3. *The Analogy Bridge (Functor Studio):* Structure-preserving dual-world mapping verifying $F(g \circ f) = F(g) \circ F(f)$.
+  - **Real Web Audio Harmonic Synthesizer:** Real browser Web Audio API oscillator synthesis playing consonant major triads on commuting paths and dissonant tension intervals on non-commuting paths (zero mock audio).
+  - **Interactive Commutative Loop Engine:** Dynamic SVG polygon face highlighting with golden pulse animations.
+  - **Opposite Dual Category Inspector ($\mathcal{C}^{\text{op}}$):** 1-tap arrow reversal demonstrating category duality.
+  - **Functorial Time-Travel Undo (`Cmd+Z` / `L1-002`):** Pure state restoration stack with zero side-effects.
+  - **Demarcated Exception Enclaves (`L1-016`):** Friendly modal explanation when attempting non-composable morphisms ($\text{cod}(f) \ne \text{dom}(g)$).
+  - **Local-First JSON Persistence (`L1-011_3`):** Zero server database requirement, client-side export and import.
+- **Formal Verification Metrics:**
+  - 21 States, 84 Transitions, 38 Covering Paths traversing 100% of transitions.
+  - 1,008 Negative Transition Assertions synthesized.
+  - Steps-to-Value $\le 3$ steps.
+  - Live substrate execution: 6/6 tests passing (Witness: `WITNESS_PE_259E7836272D1489`).
 
 ---
 
