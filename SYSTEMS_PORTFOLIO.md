@@ -16,7 +16,7 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 | **01** | [`axioma_flow`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_flow/) | Invariant Kanban & Workspace | AI Architect / Systems Engineer | `8088` | **Deployed** | Strong desktop UX; lacks active user feedback telemetry loop. |
 | **02** | [`axioma_lexis`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_lexis/) | Adaptive Spaced Repetition (SRS) | The Mobile Focus Learner & Technical Polymath | `8090` | **Deployed (G2)** | [`LES-G1-001`](#system-02-axioma-lexis) Redeemed: Direct Intent Grounding, 3-5 Card Micro-Dosing, 0-Friction Hydration, 10s Dwell Patience. |
 | **03** | [`axioma_dual_fsm`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_dual_fsm/) | Dual-FSM Zero-Trust Governance | AI Safety Officer / Security Engineer | `8092` | **Deployed** | State Determinism, Tool Failure Loop, De-escalation & Functorial Revert. |
-| **04** | [`axioma_crossword`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_crossword/) | Constraint & Synthesis Engine | Puzzle Solver / Cruciverbalist Architect | `8094` | **Deployed** | Multi-Device Scaling, Optimistic Delta Sync, AC-3 Worker Pool & Clue Dissector. |
+| **04** | [`axioma_crossword`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_crossword/) | Constraint & Synthesis Engine | Puzzle Solver / Cruciverbalist Architect | `8094` | **Deployed (G1b)** | Model-Based Statechart Lineage: Clue Anatomy Dissector, soft mobile keypad, symmetrical grid solver, [NEG-G1B-001] witness. |
 | **05** | [`axioma_eink`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_eink/) | Async Hardware Sync & Router | Physical Focus Worker / Kindle User | `8096` | **Deployed** | Zero-JS Electrophoretic View, 15m Meta-Refresh, Daily Big 3–5 Bounded Focus. |
 | **06** | [`axioma_swarm`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_swarm/) | Local Edge Micro-Swarm Daemon | Edge ML Engineer / Local AI Operator | `8098` | **Deployed** | VRAM Tensor Budget Allocator, LRU Model Eviction, OOM Exception Enclaves. |
 | **07** | [`axioma_sentinel`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_sentinel/) | Zero-Trust Agent Incident & Auto-Healing Console | AI Systems Architect & Safety Officer | `8100` | **Deployed** | Generation 2 Flagship: Elicited under L1-G2-005; 3-Pass Auto-Repair, 1-Click Cmd+Z Rollback, HMAC Capability Scoping. |
@@ -87,8 +87,11 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 ---
 
 ### System 04: Cryptic Crossword Constraint & Synthesis Engine
-- **Canonical Path:** [`generations/gen_02/apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_crossword/) (Symlinked at [`apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_crossword/))
-- **App ID:** `axioma_crossword` | **Port:** `8094` | **Status:** **Deployed (G2)** (11/11 Unit Tests Passing)
+- **Canonical Paths:**
+  - *Gen 1b Model-Based Lineage:* [`generations/gen_01b/apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01b/apps/axioma_crossword/) (Active symlink at [`apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_crossword/))
+  - *Gen 2 Prior Lineage:* [`generations/gen_02/apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_crossword/)
+- **App ID:** `axioma_crossword` | **Port:** `8094` | **Status:** **Deployed & Operational (G1b Certified)** (Witness: `WITNESS_PE_3FC8C533158F3BA4`)
+- **Model-Based Invariants ($G_{1b}$):* 100% reachable XState v5 statechart (9 covering paths traversing 100% edges, 105 negative transition assertions, Steps-to-Value = 3 steps, Clue Anatomy Dissector, soft mobile keypad, symmetrical grid solver, `[NEG-G1B-001]` post-emission execution gate passed).
 - **Test Mode:** High-Dimensional Constraint Satisfaction, Multi-Device Scaling & Heuristic Search.
 - **Transgenerational Redemption of `LES-G1-002` (Cruciverbalist Domain Invariants):**
   - *Previous Failure:* 9x9 synthesis failed due to dictionary starvation (only 3 words of length 9), and 638/687 clues contained the answer verbatim in the surface text (e.g. *"Reorganized natural produces natural"*).
