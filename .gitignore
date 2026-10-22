@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# generated apps
+generations/*/apps/**
+interview_sandbox/**
+apps/*
+
 # C extensions
 *.so
 
