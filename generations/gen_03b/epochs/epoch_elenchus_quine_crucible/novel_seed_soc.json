@@ -1,0 +1,985 @@
+{
+  "soc_id": "soc_epistemic_curiosity_engine",
+  "title": "Epistemic Curiosity & Socratic Scaffolding Engine",
+  "narrative": "Current educational and knowledge-retrieval systems enforce linear progression. When a learner hits a cognitive wall\u2014particularly in highly abstract domains like category theory or pure mathematics\u2014standard systems provide definitive answers rather than structural scaffolding. This bypasses the necessary struggle, destroying meta-curiosity and creating fragile, disconnected knowledge graphs.",
+  "altitude": "MACRO",
+  "actors": [
+    {
+      "name": "The Explorer",
+      "role": "Human Learner & Mathematical Navigator",
+      "motivations": [
+        "Navigate abstract knowledge spaces (Category Theory, Pure Mathematics)",
+        "Define and expand current conceptual boundaries through authentic discovery",
+        "Test bold conjectures safely with reversible rollback from dead-ends"
+      ],
+      "frustrations": [
+        "Linear progression walls that ignore non-linear mathematical intuition",
+        "Systems that prematurely dump textbook answers instead of structural scaffolding",
+        "Fragile, disconnected mental models caused by bypassing productive struggle"
+      ]
+    },
+    {
+      "name": "The Socratic Probe",
+      "role": "Dialectical Frontier Agent (Local RTX 4060 Ollama Qwen 2.5)",
+      "motivations": [
+        "Operate strictly on the frontier of the Explorer's verified knowledge boundary",
+        "Generate dialectical friction via structural questions and Lakatosian counter-axioms",
+        "Maintain zero-latency (<25ms) local hardware execution without cloud reliance"
+      ],
+      "frustrations": [
+        "Enterprise cloud latency breaking Socratic flow",
+        "Sycophantic answer-giving that short-circuits epistemic struggle"
+      ]
+    },
+    {
+      "name": "The Epistemic Validator",
+      "role": "Formal Compositional Contract & Statechart Verification Engine",
+      "motivations": [
+        "Formally verify conceptual integration before unlocking higher-order abstractions",
+        "Enforce strict compositional pre-conditions ('Mastery of Morphisms' before 'Exploring Functors')",
+        "Preserve functorial undo history across conceptual dead-end rollbacks"
+      ],
+      "frustrations": [
+        "Unverified self-reported progress allowing premature entry into higher abstractions",
+        "State corruption when learners hit contradictions without deep-history rollback"
+      ]
+    }
+  ],
+  "frictions": [
+    {
+      "description": "Linear progression and premature answer-dumping bypass productive struggle when learners hit cognitive walls in category theory or pure mathematics",
+      "severity": "CRITICAL",
+      "impact": "Destroys meta-curiosity and produces fragile, disconnected knowledge graphs",
+      "trigger_conditions": [
+        "Learner encounters abstract morphism/functor impasse",
+        "System responds with static textbook definition instead of dialectical scaffolding"
+      ]
+    },
+    {
+      "description": "Exploring non-linear mathematical conjectures leads to dead-ends that corrupt linear learning state without deep historical rollback",
+      "severity": "HIGH",
+      "impact": "Penalizes mathematical experimentation and induces fear of failure",
+      "trigger_conditions": [
+        "Explorer tests a false axiom or non-associative composition"
+      ]
+    },
+    {
+      "description": "Premature state transitions into higher-order abstractions ('Exploring Functors') without verified foundational prerequisites ('Mastery of Morphisms')",
+      "severity": "CRITICAL",
+      "impact": "Builds unstable higher-order abstractions on unverified foundations",
+      "trigger_conditions": [
+        "Attempting to enter 'Exploring Functors' while 'Mastery of Morphisms' is False"
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "nature": "TECHNICAL",
+      "description": "Topological Fidelity ([L1-G3B-012]): Local hardware inference routing to Ollama endpoint (192.168.10.40:11434) running qwen2.5 on RTX 4060 (8GB VRAM) with automatic [L1-016] Exception Enclave deterministic fallback",
+      "boundary_limit": "192.168.10.40:11434 (qwen2.5, <=25ms latency budget, 8192MB VRAM, zero loopback)"
+    },
+    {
+      "nature": "ERGONOMIC",
+      "description": "Statechart Complexity ([L1-G3B-011], [L1-002]): Deeply nested, recursive historical states enabling dead-end traversal and seamless Functorial Undo rollback",
+      "boundary_limit": "XState v5 compound + deep history nodes with 1-tap Functorial Undo"
+    },
+    {
+      "nature": "TECHNICAL",
+      "description": "Compositional Contracts ([L1-G3B-011]): Strict epistemic prerequisites blocking 'Exploring Functors' until 'Mastery of Morphisms' pre-conditions evaluate to True",
+      "boundary_limit": "ContractProofWitness certified with 0 unresolved obligations"
+    }
+  ],
+  "unmet_needs": [
+    "Zero-latency local Socratic Probe generating Lakatosian counter-axioms on RTX 4060 (qwen2.5)",
+    "Non-linear hierarchical Statechart IR with deep history states and Functorial Undo from dead-ends",
+    "Compositional Contract IR physically gating 'Exploring Functors' behind verified 'Mastery of Morphisms'"
+  ],
+  "induced_frictions": [],
+  "parent_soc_id": null,
+  "sub_socs": [
+    {
+      "soc_id": "soc_meso_local_inference",
+      "title": "Local Hardware Socratic Inference Boundary (RTX 4060 Ollama Qwen 2.5)",
+      "narrative": "Socratic probing requires sub-25ms local LAN inference on dedicated GPU hardware (192.168.10.40:11434) with an Exception Enclave fallback if the daemon drops offline.",
+      "altitude": "MESO",
+      "actors": [
+        {
+          "name": "The Explorer",
+          "role": "Human Learner & Mathematical Navigator",
+          "motivations": [
+            "Navigate abstract knowledge spaces (Category Theory, Pure Mathematics)",
+            "Define and expand current conceptual boundaries through authentic discovery",
+            "Test bold conjectures safely with reversible rollback from dead-ends"
+          ],
+          "frustrations": [
+            "Linear progression walls that ignore non-linear mathematical intuition",
+            "Systems that prematurely dump textbook answers instead of structural scaffolding",
+            "Fragile, disconnected mental models caused by bypassing productive struggle"
+          ]
+        },
+        {
+          "name": "The Socratic Probe",
+          "role": "Dialectical Frontier Agent (Local RTX 4060 Ollama Qwen 2.5)",
+          "motivations": [
+            "Operate strictly on the frontier of the Explorer's verified knowledge boundary",
+            "Generate dialectical friction via structural questions and Lakatosian counter-axioms",
+            "Maintain zero-latency (<25ms) local hardware execution without cloud reliance"
+          ],
+          "frustrations": [
+            "Enterprise cloud latency breaking Socratic flow",
+            "Sycophantic answer-giving that short-circuits epistemic struggle"
+          ]
+        },
+        {
+          "name": "The Epistemic Validator",
+          "role": "Formal Compositional Contract & Statechart Verification Engine",
+          "motivations": [
+            "Formally verify conceptual integration before unlocking higher-order abstractions",
+            "Enforce strict compositional pre-conditions ('Mastery of Morphisms' before 'Exploring Functors')",
+            "Preserve functorial undo history across conceptual dead-end rollbacks"
+          ],
+          "frustrations": [
+            "Unverified self-reported progress allowing premature entry into higher abstractions",
+            "State corruption when learners hit contradictions without deep-history rollback"
+          ]
+        }
+      ],
+      "frictions": [
+        {
+          "description": "Cloud API latency and loopback illusion in distributed inference routing",
+          "severity": "HIGH",
+          "impact": "Breaks Socratic dialectical cadence",
+          "trigger_conditions": [
+            "Inference routed over WAN or unverified loopback"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "nature": "TECHNICAL",
+          "description": "Topological Fidelity ([L1-G3B-012]): Local hardware inference routing to Ollama endpoint (192.168.10.40:11434) running qwen2.5 on RTX 4060 (8GB VRAM) with automatic [L1-016] Exception Enclave deterministic fallback",
+          "boundary_limit": "192.168.10.40:11434 (qwen2.5, <=25ms latency budget, 8192MB VRAM, zero loopback)"
+        },
+        {
+          "nature": "ERGONOMIC",
+          "description": "Statechart Complexity ([L1-G3B-011], [L1-002]): Deeply nested, recursive historical states enabling dead-end traversal and seamless Functorial Undo rollback",
+          "boundary_limit": "XState v5 compound + deep history nodes with 1-tap Functorial Undo"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Compositional Contracts ([L1-G3B-011]): Strict epistemic prerequisites blocking 'Exploring Functors' until 'Mastery of Morphisms' pre-conditions evaluate to True",
+          "boundary_limit": "ContractProofWitness certified with 0 unresolved obligations"
+        }
+      ],
+      "unmet_needs": [
+        "Explicit LAN TopologyIR node at 192.168.10.40:11434 with enclave fallback"
+      ],
+      "induced_frictions": [],
+      "parent_soc_id": "soc_epistemic_curiosity_engine",
+      "sub_socs": []
+    },
+    {
+      "soc_id": "soc_meso_nonlinear_deadends",
+      "title": "Non-Linear Dead-End Exploration & Deep History Rollback",
+      "narrative": "Learners must be free to follow false conjectures into contradiction traps and functorially roll back to their exact prior foundational state.",
+      "altitude": "MESO",
+      "actors": [
+        {
+          "name": "The Explorer",
+          "role": "Human Learner & Mathematical Navigator",
+          "motivations": [
+            "Navigate abstract knowledge spaces (Category Theory, Pure Mathematics)",
+            "Define and expand current conceptual boundaries through authentic discovery",
+            "Test bold conjectures safely with reversible rollback from dead-ends"
+          ],
+          "frustrations": [
+            "Linear progression walls that ignore non-linear mathematical intuition",
+            "Systems that prematurely dump textbook answers instead of structural scaffolding",
+            "Fragile, disconnected mental models caused by bypassing productive struggle"
+          ]
+        },
+        {
+          "name": "The Socratic Probe",
+          "role": "Dialectical Frontier Agent (Local RTX 4060 Ollama Qwen 2.5)",
+          "motivations": [
+            "Operate strictly on the frontier of the Explorer's verified knowledge boundary",
+            "Generate dialectical friction via structural questions and Lakatosian counter-axioms",
+            "Maintain zero-latency (<25ms) local hardware execution without cloud reliance"
+          ],
+          "frustrations": [
+            "Enterprise cloud latency breaking Socratic flow",
+            "Sycophantic answer-giving that short-circuits epistemic struggle"
+          ]
+        },
+        {
+          "name": "The Epistemic Validator",
+          "role": "Formal Compositional Contract & Statechart Verification Engine",
+          "motivations": [
+            "Formally verify conceptual integration before unlocking higher-order abstractions",
+            "Enforce strict compositional pre-conditions ('Mastery of Morphisms' before 'Exploring Functors')",
+            "Preserve functorial undo history across conceptual dead-end rollbacks"
+          ],
+          "frustrations": [
+            "Unverified self-reported progress allowing premature entry into higher abstractions",
+            "State corruption when learners hit contradictions without deep-history rollback"
+          ]
+        }
+      ],
+      "frictions": [
+        {
+          "description": "Irreversible state mutation during failed mathematical conjectures",
+          "severity": "HIGH",
+          "impact": "Forces manual reset of learning progress",
+          "trigger_conditions": [
+            "Axiom contradiction encountered in dead-end state"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "nature": "TECHNICAL",
+          "description": "Topological Fidelity ([L1-G3B-012]): Local hardware inference routing to Ollama endpoint (192.168.10.40:11434) running qwen2.5 on RTX 4060 (8GB VRAM) with automatic [L1-016] Exception Enclave deterministic fallback",
+          "boundary_limit": "192.168.10.40:11434 (qwen2.5, <=25ms latency budget, 8192MB VRAM, zero loopback)"
+        },
+        {
+          "nature": "ERGONOMIC",
+          "description": "Statechart Complexity ([L1-G3B-011], [L1-002]): Deeply nested, recursive historical states enabling dead-end traversal and seamless Functorial Undo rollback",
+          "boundary_limit": "XState v5 compound + deep history nodes with 1-tap Functorial Undo"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Compositional Contracts ([L1-G3B-011]): Strict epistemic prerequisites blocking 'Exploring Functors' until 'Mastery of Morphisms' pre-conditions evaluate to True",
+          "boundary_limit": "ContractProofWitness certified with 0 unresolved obligations"
+        }
+      ],
+      "unmet_needs": [
+        "Recursive compound states with HistoryType.DEEP restoration"
+      ],
+      "induced_frictions": [],
+      "parent_soc_id": "soc_epistemic_curiosity_engine",
+      "sub_socs": []
+    },
+    {
+      "soc_id": "soc_meso_prerequisite_bypass",
+      "title": "Compositional Prerequisite Gate (Morphisms -> Functors)",
+      "narrative": "Higher-order category theory strata must be guarded by machine-checkable precondition contracts over foundational morphism laws.",
+      "altitude": "MESO",
+      "actors": [
+        {
+          "name": "The Explorer",
+          "role": "Human Learner & Mathematical Navigator",
+          "motivations": [
+            "Navigate abstract knowledge spaces (Category Theory, Pure Mathematics)",
+            "Define and expand current conceptual boundaries through authentic discovery",
+            "Test bold conjectures safely with reversible rollback from dead-ends"
+          ],
+          "frustrations": [
+            "Linear progression walls that ignore non-linear mathematical intuition",
+            "Systems that prematurely dump textbook answers instead of structural scaffolding",
+            "Fragile, disconnected mental models caused by bypassing productive struggle"
+          ]
+        },
+        {
+          "name": "The Socratic Probe",
+          "role": "Dialectical Frontier Agent (Local RTX 4060 Ollama Qwen 2.5)",
+          "motivations": [
+            "Operate strictly on the frontier of the Explorer's verified knowledge boundary",
+            "Generate dialectical friction via structural questions and Lakatosian counter-axioms",
+            "Maintain zero-latency (<25ms) local hardware execution without cloud reliance"
+          ],
+          "frustrations": [
+            "Enterprise cloud latency breaking Socratic flow",
+            "Sycophantic answer-giving that short-circuits epistemic struggle"
+          ]
+        },
+        {
+          "name": "The Epistemic Validator",
+          "role": "Formal Compositional Contract & Statechart Verification Engine",
+          "motivations": [
+            "Formally verify conceptual integration before unlocking higher-order abstractions",
+            "Enforce strict compositional pre-conditions ('Mastery of Morphisms' before 'Exploring Functors')",
+            "Preserve functorial undo history across conceptual dead-end rollbacks"
+          ],
+          "frustrations": [
+            "Unverified self-reported progress allowing premature entry into higher abstractions",
+            "State corruption when learners hit contradictions without deep-history rollback"
+          ]
+        }
+      ],
+      "frictions": [
+        {
+          "description": "Entering 'Exploring Functors' without proving associativity and identity laws",
+          "severity": "CRITICAL",
+          "impact": "Epistemic collapse in higher-order abstractions",
+          "trigger_conditions": [
+            "Unchecked state transition request"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "nature": "TECHNICAL",
+          "description": "Topological Fidelity ([L1-G3B-012]): Local hardware inference routing to Ollama endpoint (192.168.10.40:11434) running qwen2.5 on RTX 4060 (8GB VRAM) with automatic [L1-016] Exception Enclave deterministic fallback",
+          "boundary_limit": "192.168.10.40:11434 (qwen2.5, <=25ms latency budget, 8192MB VRAM, zero loopback)"
+        },
+        {
+          "nature": "ERGONOMIC",
+          "description": "Statechart Complexity ([L1-G3B-011], [L1-002]): Deeply nested, recursive historical states enabling dead-end traversal and seamless Functorial Undo rollback",
+          "boundary_limit": "XState v5 compound + deep history nodes with 1-tap Functorial Undo"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Compositional Contracts ([L1-G3B-011]): Strict epistemic prerequisites blocking 'Exploring Functors' until 'Mastery of Morphisms' pre-conditions evaluate to True",
+          "boundary_limit": "ContractProofWitness certified with 0 unresolved obligations"
+        }
+      ],
+      "unmet_needs": [
+        "Compositional ContractIR gating 'EnterExploringFunctors' on 'mastery_of_morphisms == True'"
+      ],
+      "induced_frictions": [],
+      "parent_soc_id": "soc_epistemic_curiosity_engine",
+      "sub_socs": []
+    }
+  ],
+  "required_invariants": [
+    "mastery_of_morphisms == True",
+    "latency_ms <= 25",
+    "dead_end_rollbacks >= 0",
+    "quorum_valid == True"
+  ],
+  "is_multi_node_cluster": true,
+  "inject_fault_on_first_try": false,
+  "require_live_subagents": false,
+  "domain_spec": {
+    "contract_ir": {
+      "contract_id": "contract_soc_epistemic_curiosity_engine",
+      "title": "Epistemic Curiosity Engine Compositional Prerequisite Contract",
+      "description": "Enforces strict epistemic prerequisites: 'Exploring Functors' physically cannot be entered unless 'Mastery of Morphisms' pre-conditions evaluate to True.",
+      "nouns": {
+        "ExplorerKnowledgeBoundary": {
+          "name": "ExplorerKnowledgeBoundary",
+          "description": "Tracks the Explorer's verified category theory stratum and rollback count.",
+          "fields": [
+            {
+              "name": "explorer_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "active_stratum",
+              "type_name": "str",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "mastery_of_morphisms",
+              "type_name": "bool",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "exploring_functors_entered",
+              "type_name": "bool",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "dead_end_rollbacks",
+              "type_name": "int",
+              "nullable": false,
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "mastery_of_morphisms == True",
+            "dead_end_rollbacks >= 0"
+          ]
+        },
+        "SocraticProbeSession": {
+          "name": "SocraticProbeSession",
+          "description": "Local RTX 4060 Ollama (qwen2.5) dialectical probe session.",
+          "fields": [
+            {
+              "name": "probe_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "ollama_endpoint",
+              "type_name": "str",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "model_tag",
+              "type_name": "str",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "latency_ms",
+              "type_name": "int",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "vram_mb",
+              "type_name": "int",
+              "nullable": false,
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "latency_ms <= 25",
+            "vram_mb >= 8192"
+          ]
+        },
+        "EpistemicValidatorGate": {
+          "name": "EpistemicValidatorGate",
+          "description": "Formal validator certifying concept integration across Sheaf-Quorum nodes.",
+          "fields": [
+            {
+              "name": "gate_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "target_state",
+              "type_name": "str",
+              "nullable": false,
+              "description": ""
+            },
+            {
+              "name": "quorum_valid",
+              "type_name": "bool",
+              "nullable": false,
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "quorum_valid == True"
+          ]
+        }
+      },
+      "verbs": {},
+      "composed_verbs": {
+        "TransitionToExploringFunctors": {
+          "parent_verb": {
+            "name": "TransitionToExploringFunctors",
+            "description": "Compositional transition from foundational morphism inquiry to higher-order 'Exploring Functors' state, strictly gated by Mastery of Morphisms.",
+            "parameters": [],
+            "return_type": "void",
+            "pre_conditions": [
+              "objects_and_arrows_mapped == True",
+              "associativity_axiom_verified == True",
+              "identity_morphism_verified == True",
+              "local_rtx4060_qwen_ready == True"
+            ],
+            "post_conditions": [
+              "mastery_of_morphisms == True",
+              "exploring_functors_entered == True",
+              "workflow_completed == True",
+              "state_persisted == True"
+            ],
+            "modifies_nouns": [
+              "ExplorerKnowledgeBoundary",
+              "SocraticProbeSession",
+              "EpistemicValidatorGate"
+            ]
+          },
+          "child_steps": [
+            {
+              "child_contract_id": "sub_foundation_morphisms",
+              "child_verb_name": "CertifyMasteryOfMorphisms",
+              "argument_bindings": {},
+              "output_binding": null
+            },
+            {
+              "child_contract_id": "sub_socratic_probe",
+              "child_verb_name": "ExecuteDialecticalElenchus",
+              "argument_bindings": {},
+              "output_binding": null
+            },
+            {
+              "child_contract_id": "sub_epistemic_validator",
+              "child_verb_name": "UnlockExploringFunctors",
+              "argument_bindings": {},
+              "output_binding": null
+            }
+          ]
+        }
+      },
+      "parent_contract_id": null,
+      "sub_contracts": {
+        "sub_foundation_morphisms": {
+          "contract_id": "sub_foundation_morphisms",
+          "title": "Foundational Mastery of Morphisms Subcontract",
+          "description": "Verifies object-arrow typing, composition associativity, and identity morphisms.",
+          "nouns": {},
+          "verbs": {
+            "CertifyMasteryOfMorphisms": {
+              "name": "CertifyMasteryOfMorphisms",
+              "description": "Certifies that the Explorer has integrated category objects, composition, and identity laws.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "objects_and_arrows_mapped == True",
+                "associativity_axiom_verified == True",
+                "identity_morphism_verified == True"
+              ],
+              "post_conditions": [
+                "mastery_of_morphisms == True"
+              ],
+              "modifies_nouns": [
+                "ExplorerKnowledgeBoundary"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        },
+        "sub_socratic_probe": {
+          "contract_id": "sub_socratic_probe",
+          "title": "Socratic Probe Dialectical Elenchus Subcontract",
+          "description": "Generates Lakatosian counter-axioms via local RTX 4060 Qwen 2.5 inference.",
+          "nouns": {},
+          "verbs": {
+            "ExecuteDialecticalElenchus": {
+              "name": "ExecuteDialecticalElenchus",
+              "description": "Challenges the Explorer with structural counter-examples at the morphism-functor boundary.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "mastery_of_morphisms == True",
+                "local_rtx4060_qwen_ready == True"
+              ],
+              "post_conditions": [
+                "socratic_contradiction_resolved == True",
+                "functor_laws_scaffolded == True"
+              ],
+              "modifies_nouns": [
+                "SocraticProbeSession"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        },
+        "sub_epistemic_validator": {
+          "contract_id": "sub_epistemic_validator",
+          "title": "Epistemic Validator Higher-Order Abstraction Gate",
+          "description": "Unlocks 'Exploring Functors' only when Mastery of Morphisms and Elenchus evaluate to True.",
+          "nouns": {},
+          "verbs": {
+            "UnlockExploringFunctors": {
+              "name": "UnlockExploringFunctors",
+              "description": "Formally transitions Explorer into 'Exploring Functors' state.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "mastery_of_morphisms == True",
+                "socratic_contradiction_resolved == True",
+                "functor_laws_scaffolded == True"
+              ],
+              "post_conditions": [
+                "exploring_functors_entered == True",
+                "workflow_completed == True",
+                "state_persisted == True"
+              ],
+              "modifies_nouns": [
+                "ExplorerKnowledgeBoundary",
+                "EpistemicValidatorGate"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        }
+      }
+    },
+    "statechart_ir": {
+      "id": "statechart_soc_epistemic_curiosity_engine",
+      "version": "5.0",
+      "root": {
+        "id": "root",
+        "type": "compound",
+        "description": "",
+        "transitions": [],
+        "entry_actions": [],
+        "exit_actions": [],
+        "initial": "foundational_stratum",
+        "states": {
+          "foundational_stratum": {
+            "id": "root.foundational_stratum",
+            "type": "compound",
+            "description": "Foundational Category Theory Stratum (Objects, Morphisms, Associativity).",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "mapping_objects_arrows",
+            "states": {
+              "mapping_objects_arrows": {
+                "id": "foundational_stratum.mapping_objects_arrows",
+                "type": "atomic",
+                "description": "Explorer defines category objects and morphism arrows.",
+                "transitions": [
+                  {
+                    "event": "PROPOSE_COMPOSITION",
+                    "target": "foundational_stratum.probing_morphisms",
+                    "actions": [],
+                    "description": "Submit candidate composition table to Socratic Probe."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "probing_morphisms": {
+                "id": "foundational_stratum.probing_morphisms",
+                "type": "atomic",
+                "description": "Socratic Probe tests associativity and identity axioms.",
+                "transitions": [
+                  {
+                    "event": "AXIOM_CONTRADICTION",
+                    "target": "foundational_stratum.dead_end_associativity",
+                    "actions": [],
+                    "description": "Conjecture violates (h o g) o f = h o (g o f); enters conceptual dead-end."
+                  },
+                  {
+                    "event": "VERIFY_MORPHISM_LAWS",
+                    "target": "foundational_stratum.mastery_of_morphisms",
+                    "actions": [],
+                    "description": "Epistemic Validator certifies foundational morphism mastery.",
+                    "guard": "associativity_and_identity_hold == True"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "dead_end_associativity": {
+                "id": "foundational_stratum.dead_end_associativity",
+                "type": "atomic",
+                "description": "Conceptual dead-end: non-associative arrow composition trap.",
+                "transitions": [
+                  {
+                    "event": "FUNCTORIAL_UNDO_ROLLBACK",
+                    "target": "foundational_stratum.foundational_history",
+                    "actions": [
+                      "record_refutation_lemma",
+                      "restore_foundational_snapshot"
+                    ],
+                    "description": "Functorial Undo rolls back from dead-end via Deep History node."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "foundational_history": {
+                "id": "foundational_stratum.foundational_history",
+                "type": "history",
+                "description": "Deep history restoration node for foundational stratum.",
+                "transitions": [
+                  {
+                    "event": "RESTORE_DEEP_HISTORY",
+                    "target": "foundational_stratum.probing_morphisms",
+                    "actions": [],
+                    "description": "Restores Explorer to stable foundational probing state."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": [],
+                "history": "deep"
+              },
+              "mastery_of_morphisms": {
+                "id": "foundational_stratum.mastery_of_morphisms",
+                "type": "atomic",
+                "description": "Certified foundational state: Mastery of Morphisms achieved.",
+                "transitions": [
+                  {
+                    "event": "REQUEST_HIGHER_ABSTRACTION",
+                    "target": "root.dialectical_gate",
+                    "actions": [],
+                    "description": "Request transition toward Exploring Functors.",
+                    "guard": "mastery_of_morphisms == True"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              }
+            }
+          },
+          "dialectical_gate": {
+            "id": "root.dialectical_gate",
+            "type": "compound",
+            "description": "Socratic Elenchus & Epistemic Validator Gate.",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "evaluating_prerequisites",
+            "states": {
+              "evaluating_prerequisites": {
+                "id": "dialectical_gate.evaluating_prerequisites",
+                "type": "atomic",
+                "description": "Epistemic Validator checks compositional contract pre-conditions.",
+                "transitions": [
+                  {
+                    "event": "PREREQUISITE_REJECTED",
+                    "target": "root.foundational_stratum",
+                    "actions": [],
+                    "description": "Blocks transition if Mastery of Morphisms is incomplete."
+                  },
+                  {
+                    "event": "PREREQUISITE_SATISFIED",
+                    "target": "dialectical_gate.socratic_cross_exam",
+                    "actions": [],
+                    "description": "Advances to Socratic elenchus cross-examination.",
+                    "guard": "mastery_of_morphisms == True"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "socratic_cross_exam": {
+                "id": "dialectical_gate.socratic_cross_exam",
+                "type": "atomic",
+                "description": "Socratic Probe poses Lakatosian counter-axioms on structure preservation.",
+                "transitions": [
+                  {
+                    "event": "CONJECTURE_REFUTED",
+                    "target": "dialectical_gate.conceptual_dead_end",
+                    "actions": [],
+                    "description": "Explorer's naive mapping fails identity/composition preservation."
+                  },
+                  {
+                    "event": "ELENCHUS_PASSED",
+                    "target": "dialectical_gate.gate_certified",
+                    "actions": [],
+                    "description": "Explorer resolves dialectical tension.",
+                    "guard": "socratic_contradiction_resolved == True"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "conceptual_dead_end": {
+                "id": "dialectical_gate.conceptual_dead_end",
+                "type": "atomic",
+                "description": "Conceptual dead-end at the morphism-to-functor boundary.",
+                "transitions": [
+                  {
+                    "event": "FUNCTORIAL_UNDO_TO_FOUNDATION",
+                    "target": "foundational_stratum.foundational_history",
+                    "actions": [
+                      "log_counterexample_witness",
+                      "functorial_rollback"
+                    ],
+                    "description": "Seamless Functorial Undo back to foundational deep history."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "gate_certified": {
+                "id": "dialectical_gate.gate_certified",
+                "type": "atomic",
+                "description": "Epistemic Validator signs proof witness unlocking higher abstraction.",
+                "transitions": [
+                  {
+                    "event": "ENTER_EXPLORING_FUNCTORS",
+                    "target": "root.higher_abstraction_stratum",
+                    "actions": [],
+                    "description": "Enters Exploring Functors stratum.",
+                    "guard": "mastery_of_morphisms == True and socratic_contradiction_resolved == True"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              }
+            }
+          },
+          "higher_abstraction_stratum": {
+            "id": "root.higher_abstraction_stratum",
+            "type": "compound",
+            "description": "Higher-Order Abstraction Stratum (Exploring Functors & Natural Transformations).",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "exploring_functors",
+            "states": {
+              "exploring_functors": {
+                "id": "higher_abstraction_stratum.exploring_functors",
+                "type": "atomic",
+                "description": "High-level state: Exploring Functors F: C -> D preserving identity and composition.",
+                "transitions": [
+                  {
+                    "event": "IDENTITY_PRESERVATION_BROKEN",
+                    "target": "higher_abstraction_stratum.functor_dead_end",
+                    "actions": [],
+                    "description": "Conjecture violates F(id_X) = id_{F(X)}; enters functor dead-end."
+                  },
+                  {
+                    "event": "VERIFY_FUNCTORIALITY",
+                    "target": "higher_abstraction_stratum.natural_transformations",
+                    "actions": [],
+                    "description": "Advances to Natural Transformations.",
+                    "guard": "functor_laws_verified == True"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "functor_dead_end": {
+                "id": "higher_abstraction_stratum.functor_dead_end",
+                "type": "atomic",
+                "description": "Conceptual dead-end: non-functorial graph mapping.",
+                "transitions": [
+                  {
+                    "event": "FUNCTORIAL_UNDO_STEP",
+                    "target": "higher_abstraction_stratum.higher_history",
+                    "actions": [
+                      "restore_functor_snapshot"
+                    ],
+                    "description": "Rolls back functor dead-end via deep history."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "higher_history": {
+                "id": "higher_abstraction_stratum.higher_history",
+                "type": "history",
+                "description": "Deep history node for higher abstraction stratum.",
+                "transitions": [
+                  {
+                    "event": "RESTORE_FUNCTOR_STATE",
+                    "target": "higher_abstraction_stratum.exploring_functors",
+                    "actions": [],
+                    "description": "Restores Explorer to Exploring Functors state."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": [],
+                "history": "deep"
+              },
+              "natural_transformations": {
+                "id": "higher_abstraction_stratum.natural_transformations",
+                "type": "atomic",
+                "description": "Explorer verifies naturality squares between functors F and G.",
+                "transitions": [
+                  {
+                    "event": "CERTIFY_ABSTRACTION",
+                    "target": "higher_abstraction_stratum.epistemic_integration_complete",
+                    "actions": [],
+                    "description": "Completes epistemic integration cycle."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "epistemic_integration_complete": {
+                "id": "higher_abstraction_stratum.epistemic_integration_complete",
+                "type": "final",
+                "description": "Terminal certified state for the Category Theory epistemic cycle.",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": []
+              }
+            }
+          }
+        }
+      },
+      "context_schema": {
+        "active_stratum": "str",
+        "mastery_of_morphisms": "bool",
+        "exploring_functors_entered": "bool",
+        "dead_end_rollbacks": "int",
+        "value_delivered": "bool"
+      },
+      "initial_context": {
+        "active_stratum": "foundational_stratum",
+        "mastery_of_morphisms": false,
+        "exploring_functors_entered": false,
+        "dead_end_rollbacks": 0,
+        "value_delivered": false
+      }
+    },
+    "topology_ir": {
+      "topology_id": "topo_soc_epistemic_curiosity_engine",
+      "nodes": {
+        "node_explorer_workstation": {
+          "node_id": "node_explorer_workstation",
+          "role": "orchestrator",
+          "host_interface": "192.168.10.20",
+          "port": 8097,
+          "capabilities": [
+            "explorer_workbench_ui",
+            "statechart_engine",
+            "functorial_undo"
+          ],
+          "memory_mb_limit": 4096
+        },
+        "node_socratic_rtx4060": {
+          "node_id": "node_socratic_rtx4060",
+          "role": "worker",
+          "host_interface": "192.168.10.40",
+          "port": 11434,
+          "capabilities": [
+            "ollama_local_inference",
+            "model:qwen2.5",
+            "gpu:rtx_4060_8gb_vram",
+            "lakatosian_counter_axiom_generator",
+            "exception_enclave_deterministic_fallback"
+          ],
+          "memory_mb_limit": 8192
+        },
+        "node_epistemic_validator": {
+          "node_id": "node_epistemic_validator",
+          "role": "verifier",
+          "host_interface": "192.168.10.30",
+          "port": 8098,
+          "capabilities": [
+            "compositional_contract_verifier",
+            "sheaf_quorum_witness"
+          ],
+          "memory_mb_limit": 2048
+        }
+      },
+      "channels": [
+        {
+          "channel_id": "ch_socratic_ollama_stream",
+          "source_node_id": "node_explorer_workstation",
+          "target_node_id": "node_socratic_rtx4060",
+          "channel_type": "stream",
+          "port": 11434,
+          "latency_ms_budget": 25,
+          "tls_enforced": false
+        },
+        {
+          "channel_id": "ch_epistemic_contract_rpc",
+          "source_node_id": "node_explorer_workstation",
+          "target_node_id": "node_epistemic_validator",
+          "channel_type": "rpc",
+          "port": 8098,
+          "latency_ms_budget": 15,
+          "tls_enforced": true
+        }
+      ],
+      "consensus": {
+        "protocol": "sheaf_quorum",
+        "quorum_fraction": 0.67,
+        "heartbeat_interval_ms": 500,
+        "partition_strategy": "fail_closed"
+      }
+    },
+    "endpoints": [
+      "http://192.168.10.20:8097",
+      "http://192.168.10.40:11434",
+      "http://192.168.10.30:8098"
+    ]
+  }
+}

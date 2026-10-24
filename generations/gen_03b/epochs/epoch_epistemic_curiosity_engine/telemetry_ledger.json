@@ -1,0 +1,252 @@
+{
+  "app_substrate": {
+    "file_count": 23,
+    "files": {
+      "README.md": 1251,
+      "app.json": 631,
+      "app_spec.json": 401,
+      "dashboard.html": 7943,
+      "data/seed.json": 3909,
+      "data/state.json": 4041,
+      "run.py": 344,
+      "schema/nouns.json": 488,
+      "schema/verbs.json": 587,
+      "server.py": 74,
+      "src/__init__.py": 52,
+      "src/enclaves.py": 4467,
+      "src/engine.py": 5903,
+      "src/persistence.py": 509,
+      "src/server.py": 2684,
+      "static/app.js": 3344,
+      "static/index.html": 3052,
+      "static/style.css": 3595,
+      "telemetry_dashboard.html": 7943,
+      "tests/__init__.py": 19,
+      "tests/test_app.py": 3571,
+      "trace/app.domain.md": 1137,
+      "trace/ux_flow.flow.md": 760
+    },
+    "total_tokens": 56705
+  },
+  "app_test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "TX 4060 (192.168.10.40:11434, model qwen2.5, ... ok\ntest_04_formal_statechart_and_headless_journey_walker_ergonomics (test_app.TestAxiomaElenchusApp.test_04_formal_statechart_and_headless_journey_walker_ergonomics)\n[L1-G3B-011] & [L1-G3B-013]: FormalModelChecker certifies the 18-node deep-history ... ok\ntest_05_live_http_server_endpoints (test_app.TestAxiomaElenchusApp.test_05_live_http_server_endpoints)\n[NEG-G1B-001]: Exercises the HTTP server wire protocol (`AxiomaElenchusRequestHandler`) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.025s\n\nOK",
+    "tests_run": 5
+  },
+  "chain_head_hash": "c603ce3439f386ceb2cd91a6b515a06a6f39dff1ad9e34750bf841804f8308da",
+  "compiler_id": "SystemG3b_Elenchus_Direct",
+  "daughter_witness": null,
+  "disk_substrate": {
+    "file_count": 10,
+    "files": {
+      "contract_service.py": 1801,
+      "domain_models.py": 743,
+      "leaf_code.py": 343,
+      "run.py": 294,
+      "statechart_engine.py": 1084,
+      "telemetry_dashboard.html": 7943,
+      "tests/__init__.py": 15,
+      "tests/test_emitted_system.py": 674,
+      "topology_config.json": 479,
+      "topology_verifier.py": 345
+    },
+    "total_tokens": 13721
+  },
+  "hash_chain_events": [
+    {
+      "event_hash": "bea1a8bf292bb3b1505b4859731e8650e3718f3f6c59c0e4fb6dca89870e36f5",
+      "event_type": "COMPILATION_INITIATED",
+      "index": 0,
+      "payload": {
+        "compiler_id": "SystemG3b_Elenchus_Direct",
+        "is_multi_node_cluster": true,
+        "predicted_total_spend": 26438,
+        "require_live_subagents": false,
+        "soc_id": "soc_epistemic_curiosity_engine",
+        "subagent_witness_count": 0,
+        "total_budget": 48300
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "event_hash": "827830d5a7bb01773f04184d43a27a21350c0d408698a96249876a840f23ce40",
+      "event_type": "CRUCIBLE_SYNTHESIS_CERTIFIED",
+      "index": 1,
+      "payload": {
+        "argon_deliberation_tokens": 14998,
+        "argon_verification_tokens": 8732,
+        "certified_soc_id": "soc_epistemic_curiosity_engine",
+        "flash_emission_tokens": 7046,
+        "remediation_count": 2,
+        "verified_leaves_count": 4
+      },
+      "prev_hash": "bea1a8bf292bb3b1505b4859731e8650e3718f3f6c59c0e4fb6dca89870e36f5"
+    },
+    {
+      "event_hash": "01ec081e757528e77f6db12a5b590d35f7a9018f7f6a32b1ada535ae89532579",
+      "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
+      "index": 2,
+      "payload": {
+        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_elenchus",
+        "app_test_witness": {
+          "exit_code": 0,
+          "stdout_tail": "TX 4060 (192.168.10.40:11434, model qwen2.5, ... ok\ntest_04_formal_statechart_and_headless_journey_walker_ergonomics (test_app.TestAxiomaElenchusApp.test_04_formal_statechart_and_headless_journey_walker_ergonomics)\n[L1-G3B-011] & [L1-G3B-013]: FormalModelChecker certifies the 18-node deep-history ... ok\ntest_05_live_http_server_endpoints (test_app.TestAxiomaElenchusApp.test_05_live_http_server_endpoints)\n[NEG-G1B-001]: Exercises the HTTP server wire protocol (`AxiomaElenchusRequestHandler`) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.025s\n\nOK",
+          "tests_run": 5
+        },
+        "audited_app_tokens": 43500,
+        "audited_files_count": 14
+      },
+      "prev_hash": "827830d5a7bb01773f04184d43a27a21350c0d408698a96249876a840f23ce40"
+    },
+    {
+      "event_hash": "1eb354ce9ca8d815d30abafcb67600244dcd9525371340080ce6275da347bc09",
+      "event_type": "STACK_TRACE_SEALED",
+      "index": 3,
+      "payload": {
+        "live_subagents_spawned_count": 0,
+        "recorded_subagent_witnesses_count": 0,
+        "remediation_count": 2,
+        "total_stack_operations": 16
+      },
+      "prev_hash": "01ec081e757528e77f6db12a5b590d35f7a9018f7f6a32b1ada535ae89532579"
+    },
+    {
+      "event_hash": "fcaf543dcc13c18d6886ee00ecdd1b38b2fbbafe86f5345f179fc3a128b229e1",
+      "event_type": "DISK_SUBSTRATE_MEASURED",
+      "index": 4,
+      "payload": {
+        "app_file_count": 23,
+        "app_physical_tokens": 56705,
+        "emitted_file_count": 10,
+        "emitted_physical_tokens": 13721,
+        "files": {
+          "contract_service.py": 1801,
+          "domain_models.py": 743,
+          "leaf_code.py": 343,
+          "run.py": 294,
+          "statechart_engine.py": 1084,
+          "telemetry_dashboard.html": 7943,
+          "tests/__init__.py": 15,
+          "tests/test_emitted_system.py": 674,
+          "topology_config.json": 479,
+          "topology_verifier.py": 345
+        }
+      },
+      "prev_hash": "1eb354ce9ca8d815d30abafcb67600244dcd9525371340080ce6275da347bc09"
+    },
+    {
+      "event_hash": "7b2434ddd91880c71adae28c797766f7df25587c75a0964872e86cb133e8548f",
+      "event_type": "SUBSTRATE_TEST_WITNESS",
+      "index": 5,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+        "tests_run": 4
+      },
+      "prev_hash": "fcaf543dcc13c18d6886ee00ecdd1b38b2fbbafe86f5345f179fc3a128b229e1"
+    },
+    {
+      "event_hash": "5eb16947e2fe57a52b83aa4806a40cf2d8e79d25698c6819dfee357fd4f32ed1",
+      "event_type": "APP_SUBSTRATE_TEST_WITNESS",
+      "index": 6,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "TX 4060 (192.168.10.40:11434, model qwen2.5, ... ok\ntest_04_formal_statechart_and_headless_journey_walker_ergonomics (test_app.TestAxiomaElenchusApp.test_04_formal_statechart_and_headless_journey_walker_ergonomics)\n[L1-G3B-011] & [L1-G3B-013]: FormalModelChecker certifies the 18-node deep-history ... ok\ntest_05_live_http_server_endpoints (test_app.TestAxiomaElenchusApp.test_05_live_http_server_endpoints)\n[NEG-G1B-001]: Exercises the HTTP server wire protocol (`AxiomaElenchusRequestHandler`) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.025s\n\nOK",
+        "tests_run": 5
+      },
+      "prev_hash": "7b2434ddd91880c71adae28c797766f7df25587c75a0964872e86cb133e8548f"
+    },
+    {
+      "event_hash": "c603ce3439f386ceb2cd91a6b515a06a6f39dff1ad9e34750bf841804f8308da",
+      "event_type": "THERMODYNAMIC_LEDGER_SEALED",
+      "index": 7,
+      "payload": {
+        "app_disk_tokens": 56705,
+        "argon_deliberation_tokens": 14998,
+        "argon_verification_tokens": 8732,
+        "bits_erased": 17416,
+        "dissipated_joules": 5.0000968262531055e-17,
+        "emitted_disk_tokens": 13721,
+        "exploratory_cap": 28980,
+        "exploratory_remaining": 6936,
+        "exploratory_spent": 22044,
+        "exploratory_utilization_pct": 76.07,
+        "flash_emission_tokens": 7046,
+        "live_subagents_spawned_count": 0,
+        "predicted_exploratory_spend": 23164,
+        "predicted_total_spend": 26438,
+        "prediction_accuracy_pct": 95.29,
+        "protected_floor": 19320,
+        "protected_remaining": 16170,
+        "protected_spent": 3150,
+        "total_budget": 48300,
+        "total_combined_disk_tokens": 70426,
+        "total_spent": 25194,
+        "unspent_reserve": 23106,
+        "utilization_pct": 52.16
+      },
+      "prev_hash": "5eb16947e2fe57a52b83aa4806a40cf2d8e79d25698c6819dfee357fd4f32ed1"
+    }
+  ],
+  "live_subagents_spawned_count": 0,
+  "remediation_events": [
+    {
+      "attempt": 1,
+      "backoff_delay_ms": 100,
+      "bits_erased": 14848,
+      "defects": [
+        "[L1-G3B-012 Violation] Distributed endpoint 'http://127.0.0.1:8097' in leaf 'root:soc_epistemic_curiosity_engine.arch_dialectic.leaf_topology' binds to loopback '127.0.0.1'. Boundary realism requires active routable interfaces.",
+        "[L1-G3B-012 Violation] Multi-node topology 'topo_soc_epistemic_curiosity_engine' node 'node_explorer_workstation' binds to loopback host '127.0.0.1'. Boundary realism requires distinct routable or virtual cluster network interfaces."
+      ],
+      "max_retries": 3,
+      "task_id": "root:soc_epistemic_curiosity_engine.arch_dialectic.leaf_topology"
+    },
+    {
+      "attempt": 1,
+      "backoff_delay_ms": 100,
+      "bits_erased": 2568,
+      "defects": [
+        "Security Defect: Unsafe dynamic evaluation or SQL injection vector detected in 'root:soc_epistemic_curiosity_engine.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'mastery_of_morphisms == True' is not enforced in leaf 'root:soc_epistemic_curiosity_engine.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'latency_ms <= 25' is not enforced in leaf 'root:soc_epistemic_curiosity_engine.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'dead_end_rollbacks >= 0' is not enforced in leaf 'root:soc_epistemic_curiosity_engine.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'quorum_valid == True' is not enforced in leaf 'root:soc_epistemic_curiosity_engine.arch_dialectic.leaf_code'."
+      ],
+      "max_retries": 3,
+      "task_id": "root:soc_epistemic_curiosity_engine.arch_dialectic.leaf_code"
+    }
+  ],
+  "soc_id": "soc_epistemic_curiosity_engine",
+  "subagent_witnesses": [],
+  "test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+    "tests_run": 4
+  },
+  "thermodynamics": {
+    "app_disk_tokens": 56705,
+    "argon_deliberation_tokens": 14998,
+    "argon_verification_tokens": 8732,
+    "bits_erased": 17416,
+    "dissipated_joules": 5.0000968262531055e-17,
+    "emitted_disk_tokens": 13721,
+    "exploratory_cap": 28980,
+    "exploratory_remaining": 6936,
+    "exploratory_spent": 22044,
+    "exploratory_utilization_pct": 76.07,
+    "flash_emission_tokens": 7046,
+    "live_subagents_spawned_count": 0,
+    "predicted_exploratory_spend": 23164,
+    "predicted_total_spend": 26438,
+    "prediction_accuracy_pct": 95.29,
+    "protected_floor": 19320,
+    "protected_remaining": 16170,
+    "protected_spent": 3150,
+    "total_budget": 48300,
+    "total_combined_disk_tokens": 70426,
+    "total_spent": 25194,
+    "unspent_reserve": 23106,
+    "utilization_pct": 52.16
+  },
+  "total_chained_events": 8
+}

@@ -1,0 +1,261 @@
+{
+  "app_substrate": {
+    "file_count": 26,
+    "files": {
+      "README.md": 2507,
+      "app.json": 594,
+      "app_spec.json": 804,
+      "data/seed.json": 1168,
+      "data/state.json": 3824,
+      "run.py": 310,
+      "schema/nouns.json": 592,
+      "schema/verbs.json": 690,
+      "server.py": 76,
+      "src/__init__.py": 249,
+      "src/consensus.py": 3019,
+      "src/enclaves.py": 1607,
+      "src/engine.py": 1699,
+      "src/mesh.py": 3125,
+      "src/models.py": 4081,
+      "src/persistence.py": 513,
+      "src/server.py": 4654,
+      "src/statechart.py": 2634,
+      "static/app.js": 10286,
+      "static/index.html": 4905,
+      "static/style.css": 8543,
+      "tests/__init__.py": 21,
+      "tests/test_app.py": 7787,
+      "tests/test_facade_mesh.py": 3426,
+      "trace/app.domain.md": 937,
+      "trace/ux_flow.flow.md": 787
+    },
+    "total_tokens": 68838
+  },
+  "app_test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "sh.test_07_landauer_thermodynamic_accounting)\nVerifies Landauer bit-erasure calculation Q = k_B * T * ln(2) * bits_erased. ... ok\ntest_08_safety_traps_and_enclaves (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_08_safety_traps_and_enclaves)\nVerifies motor jam stall, Sybil divergence, and quorum partition traps. ... ok\ntest_09_functorial_undo_redo (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_09_functorial_undo_redo)\nVerifies 1-tap Functorial Undo / Redo for engineering inspection. ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.028s\n\nOK",
+    "tests_run": 22
+  },
+  "chain_head_hash": "b6aed5cfd3b3e4b221b791e560734b7197a40fb20b3497f39ce247ae2f6e6b18",
+  "compiler_id": "SystemG3b_Daughter_Prime",
+  "daughter_witness": null,
+  "disk_substrate": {
+    "file_count": 9,
+    "files": {
+      "contract_service.py": 1733,
+      "domain_models.py": 1355,
+      "leaf_code.py": 443,
+      "run.py": 265,
+      "statechart_engine.py": 1059,
+      "tests/__init__.py": 15,
+      "tests/test_emitted_system.py": 661,
+      "topology_config.json": 1658,
+      "topology_verifier.py": 345
+    },
+    "total_tokens": 7534
+  },
+  "hash_chain_events": [
+    {
+      "event_hash": "788eab32d3b6d5b5302ae0e4e3d7b9e0ee6cdae2199ce27e005968f673edd1a2",
+      "event_type": "COMPILATION_INITIATED",
+      "index": 0,
+      "payload": {
+        "compiler_id": "SystemG3b_Daughter_Prime",
+        "is_multi_node_cluster": true,
+        "predicted_total_spend": 27288,
+        "require_live_subagents": true,
+        "soc_id": "soc_byzantine_kinetic_facade",
+        "subagent_witness_count": 3,
+        "total_budget": 48900
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "event_hash": "832ee7215fda8de032d5c93d37e064c351be4e10196a6da703fa3b07f33d3d95",
+      "event_type": "CRUCIBLE_SYNTHESIS_CERTIFIED",
+      "index": 1,
+      "payload": {
+        "argon_deliberation_tokens": 14392,
+        "argon_verification_tokens": 9495,
+        "certified_soc_id": "soc_byzantine_kinetic_facade",
+        "flash_emission_tokens": 8514,
+        "remediation_count": 0,
+        "verified_leaves_count": 4
+      },
+      "prev_hash": "788eab32d3b6d5b5302ae0e4e3d7b9e0ee6cdae2199ce27e005968f673edd1a2"
+    },
+    {
+      "event_hash": "7abda7bec10f77e33d89944500487e732d26db58dab42df1e716b2f9f6b56e84",
+      "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
+      "index": 2,
+      "payload": {
+        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_kinetic_facade",
+        "app_test_witness": {
+          "exit_code": 0,
+          "stdout_tail": "sh.test_07_landauer_thermodynamic_accounting)\nVerifies Landauer bit-erasure calculation Q = k_B * T * ln(2) * bits_erased. ... ok\ntest_08_safety_traps_and_enclaves (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_08_safety_traps_and_enclaves)\nVerifies motor jam stall, Sybil divergence, and quorum partition traps. ... ok\ntest_09_functorial_undo_redo (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_09_functorial_undo_redo)\nVerifies 1-tap Functorial Undo / Redo for engineering inspection. ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.028s\n\nOK",
+          "tests_run": 22
+        },
+        "audited_app_tokens": 56935,
+        "audited_files_count": 17
+      },
+      "prev_hash": "832ee7215fda8de032d5c93d37e064c351be4e10196a6da703fa3b07f33d3d95"
+    },
+    {
+      "event_hash": "fb070a0a65a2da99436d07959f25315c2ce8e7ee790d1b4ea2a6f6279ec57bcd",
+      "event_type": "STACK_TRACE_SEALED",
+      "index": 3,
+      "payload": {
+        "live_subagents_spawned_count": 3,
+        "recorded_subagent_witnesses_count": 3,
+        "remediation_count": 0,
+        "total_stack_operations": 12
+      },
+      "prev_hash": "7abda7bec10f77e33d89944500487e732d26db58dab42df1e716b2f9f6b56e84"
+    },
+    {
+      "event_hash": "7462a2ff84eeae2a48eef5bd3ad3469355c17023ca20f827c68014cf8c2f9616",
+      "event_type": "DISK_SUBSTRATE_MEASURED",
+      "index": 4,
+      "payload": {
+        "app_file_count": 26,
+        "app_physical_tokens": 68838,
+        "emitted_file_count": 9,
+        "emitted_physical_tokens": 7534,
+        "files": {
+          "contract_service.py": 1733,
+          "domain_models.py": 1355,
+          "leaf_code.py": 443,
+          "run.py": 265,
+          "statechart_engine.py": 1059,
+          "tests/__init__.py": 15,
+          "tests/test_emitted_system.py": 661,
+          "topology_config.json": 1658,
+          "topology_verifier.py": 345
+        }
+      },
+      "prev_hash": "fb070a0a65a2da99436d07959f25315c2ce8e7ee790d1b4ea2a6f6279ec57bcd"
+    },
+    {
+      "event_hash": "522e794d90fbdccdc1d01ab9d759b6797951d7402a2ad105b8f9e880011d4c83",
+      "event_type": "SUBSTRATE_TEST_WITNESS",
+      "index": 5,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+        "tests_run": 4
+      },
+      "prev_hash": "7462a2ff84eeae2a48eef5bd3ad3469355c17023ca20f827c68014cf8c2f9616"
+    },
+    {
+      "event_hash": "0af0a284c48d16143d9be4d8d6991900a2733ecb7b389fc685e3e52e4a63edf0",
+      "event_type": "APP_SUBSTRATE_TEST_WITNESS",
+      "index": 6,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "sh.test_07_landauer_thermodynamic_accounting)\nVerifies Landauer bit-erasure calculation Q = k_B * T * ln(2) * bits_erased. ... ok\ntest_08_safety_traps_and_enclaves (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_08_safety_traps_and_enclaves)\nVerifies motor jam stall, Sybil divergence, and quorum partition traps. ... ok\ntest_09_functorial_undo_redo (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_09_functorial_undo_redo)\nVerifies 1-tap Functorial Undo / Redo for engineering inspection. ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.028s\n\nOK",
+        "tests_run": 22
+      },
+      "prev_hash": "522e794d90fbdccdc1d01ab9d759b6797951d7402a2ad105b8f9e880011d4c83"
+    },
+    {
+      "event_hash": "b6aed5cfd3b3e4b221b791e560734b7197a40fb20b3497f39ce247ae2f6e6b18",
+      "event_type": "THERMODYNAMIC_LEDGER_SEALED",
+      "index": 7,
+      "payload": {
+        "app_disk_tokens": 68838,
+        "argon_deliberation_tokens": 14392,
+        "argon_verification_tokens": 9495,
+        "bits_erased": 0,
+        "dissipated_joules": 0.0,
+        "emitted_disk_tokens": 7534,
+        "exploratory_cap": 29340,
+        "exploratory_remaining": 6434,
+        "exploratory_spent": 22906,
+        "exploratory_utilization_pct": 78.07,
+        "flash_emission_tokens": 8514,
+        "live_subagents_spawned_count": 3,
+        "predicted_exploratory_spend": 23434,
+        "predicted_total_spend": 27288,
+        "prediction_accuracy_pct": 99.15,
+        "protected_floor": 19560,
+        "protected_remaining": 15411,
+        "protected_spent": 4149,
+        "total_budget": 48900,
+        "total_combined_disk_tokens": 76372,
+        "total_spent": 27055,
+        "unspent_reserve": 21845,
+        "utilization_pct": 55.33
+      },
+      "prev_hash": "0af0a284c48d16143d9be4d8d6991900a2733ecb7b389fc685e3e52e4a63edf0"
+    }
+  ],
+  "live_subagents_spawned_count": 3,
+  "remediation_events": [],
+  "soc_id": "soc_byzantine_kinetic_facade",
+  "subagent_witnesses": [
+    {
+      "assigned_model": "Gemini 4 Argon",
+      "cognitive_role": "dialectical_exploration",
+      "conversation_id": "66538545-8e57-430d-84af-d7a8d49da5b1",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 833,
+      "response_bpe_tokens": 3250,
+      "subagent_role": "G3b Dialectical Architect & SoC Researcher",
+      "task_id": "decompose:root_soc_byzantine_kinetic_facade",
+      "total_bpe_tokens": 4083
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "cognitive_role": "leaf_code_emission",
+      "conversation_id": "25547f4a-536b-47d7-bdb5-f2850cbeb5df",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 607,
+      "response_bpe_tokens": 2850,
+      "subagent_role": "G3b Leaf Synthesizer - Core Mesh Engine",
+      "task_id": "leaf:core_p2p_mesh_engine_and_pbft_consensus",
+      "total_bpe_tokens": 3457
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "cognitive_role": "leaf_code_emission",
+      "conversation_id": "b520625c-5986-4fe8-8c53-618015d6a68e",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 758,
+      "response_bpe_tokens": 3450,
+      "subagent_role": "G3b Leaf Synthesizer - 2D UI & Tests",
+      "task_id": "leaf:2d_diagnostic_ui_and_verification_suite",
+      "total_bpe_tokens": 4208
+    }
+  ],
+  "test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+    "tests_run": 4
+  },
+  "thermodynamics": {
+    "app_disk_tokens": 68838,
+    "argon_deliberation_tokens": 14392,
+    "argon_verification_tokens": 9495,
+    "bits_erased": 0,
+    "dissipated_joules": 0.0,
+    "emitted_disk_tokens": 7534,
+    "exploratory_cap": 29340,
+    "exploratory_remaining": 6434,
+    "exploratory_spent": 22906,
+    "exploratory_utilization_pct": 78.07,
+    "flash_emission_tokens": 8514,
+    "live_subagents_spawned_count": 3,
+    "predicted_exploratory_spend": 23434,
+    "predicted_total_spend": 27288,
+    "prediction_accuracy_pct": 99.15,
+    "protected_floor": 19560,
+    "protected_remaining": 15411,
+    "protected_spent": 4149,
+    "total_budget": 48900,
+    "total_combined_disk_tokens": 76372,
+    "total_spent": 27055,
+    "unspent_reserve": 21845,
+    "utilization_pct": 55.33
+  },
+  "total_chained_events": 8
+}

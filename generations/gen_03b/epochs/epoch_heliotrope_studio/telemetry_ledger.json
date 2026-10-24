@@ -1,0 +1,287 @@
+{
+  "app_substrate": {
+    "file_count": 23,
+    "files": {
+      "README.md": 1295,
+      "app.json": 505,
+      "dashboard.html": 7134,
+      "data/layout_state.json": 4991,
+      "index.html": 10842,
+      "run.py": 342,
+      "server.py": 72,
+      "src/__init__.py": 30,
+      "src/enclaves.py": 2016,
+      "src/engine.py": 8760,
+      "src/persistence.py": 1747,
+      "src/server.py": 6805,
+      "src/solar.py": 2884,
+      "static/app.js": 13540,
+      "static/dashboard.html": 7248,
+      "static/index.html": 10842,
+      "static/style.css": 5600,
+      "static/telemetry_dashboard.html": 7248,
+      "telemetry_dashboard.html": 7134,
+      "tests/__init__.py": 17,
+      "tests/test_app.py": 8501,
+      "tests/test_dashboard_and_static.py": 1386,
+      "tests/test_heliotrope.py": 4305
+    },
+    "total_tokens": 113244
+  },
+  "app_test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "et_placement_heuristics)\nVerifies microclimate placement rules for Raised Bed, Gazebo, and Tanning Spot. ... ok\ntest_06_functorial_undo_redo_history (test_heliotrope.TestAxiomaHeliotrope.test_06_functorial_undo_redo_history)\n[L1-002] Verifies 1-Tap Functorial Undo / Redo state transitions S_{t+1} = f(S_t, E). ... ok\ntest_07_rest_api_wire_dispatch (test_heliotrope.TestAxiomaHeliotrope.test_07_rest_api_wire_dispatch)\nVerifies full HTTP REST API endpoints through HeliotropeHTTPRequestHandler. ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.757s\n\nOK",
+    "tests_run": 19
+  },
+  "chain_head_hash": "1aa9fc9ee4a16eea9d8e575c7d82fa31fd799415de77a27f8e70bd41c5e0d4a3",
+  "compiler_id": "SystemG3b_HeliotropeStudio",
+  "daughter_witness": null,
+  "disk_substrate": {
+    "file_count": 10,
+    "files": {
+      "contract_service.py": 897,
+      "domain_models.py": 614,
+      "leaf_code.py": 443,
+      "run.py": 240,
+      "statechart_engine.py": 693,
+      "telemetry_dashboard.html": 7134,
+      "tests/__init__.py": 15,
+      "tests/test_emitted_system.py": 493,
+      "topology_config.json": 147,
+      "topology_verifier.py": 345
+    },
+    "total_tokens": 11021
+  },
+  "hash_chain_events": [
+    {
+      "event_hash": "108ffe764a8fa3f2bccdc5e1a057f49922cbe7c7cfebf5ceeef24d4a0ebeb838",
+      "event_type": "COMPILATION_INITIATED",
+      "index": 0,
+      "payload": {
+        "compiler_id": "SystemG3b_HeliotropeStudio",
+        "is_multi_node_cluster": false,
+        "predicted_total_spend": 12930,
+        "require_live_subagents": true,
+        "soc_id": "soc_heliotropic_microclimate_studio",
+        "subagent_witness_count": 4,
+        "total_budget": 101600
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "event_hash": "843771922d2d9680fd65a6f47363f2f2eeec893c53b94c1b5335c2cca1ea2860",
+      "event_type": "CRUCIBLE_SYNTHESIS_CERTIFIED",
+      "index": 1,
+      "payload": {
+        "argon_deliberation_tokens": 3216,
+        "argon_verification_tokens": 2802,
+        "certified_soc_id": "soc_heliotropic_microclimate_studio",
+        "flash_emission_tokens": 2501,
+        "remediation_count": 0,
+        "verified_leaves_count": 4
+      },
+      "prev_hash": "108ffe764a8fa3f2bccdc5e1a057f49922cbe7c7cfebf5ceeef24d4a0ebeb838"
+    },
+    {
+      "event_hash": "8e5f6ccc2253da653d303bfdfb5de97fd00b48c8897135de20e085cfae97af48",
+      "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
+      "index": 2,
+      "payload": {
+        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/apps/axioma_heliotrope",
+        "app_test_witness": {
+          "exit_code": 0,
+          "stdout_tail": "et_placement_heuristics)\nVerifies microclimate placement rules for Raised Bed, Gazebo, and Tanning Spot. ... ok\ntest_06_functorial_undo_redo_history (test_heliotrope.TestAxiomaHeliotrope.test_06_functorial_undo_redo_history)\n[L1-002] Verifies 1-Tap Functorial Undo / Redo state transitions S_{t+1} = f(S_t, E). ... ok\ntest_07_rest_api_wire_dispatch (test_heliotrope.TestAxiomaHeliotrope.test_07_rest_api_wire_dispatch)\nVerifies full HTTP REST API endpoints through HeliotropeHTTPRequestHandler. ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.757s\n\nOK",
+          "tests_run": 19
+        },
+        "audited_app_tokens": 106453,
+        "audited_files_count": 20
+      },
+      "prev_hash": "843771922d2d9680fd65a6f47363f2f2eeec893c53b94c1b5335c2cca1ea2860"
+    },
+    {
+      "event_hash": "76fa1277a0db0fec941c0e9a01ff8f6879b47701965fc75d32d2d6d5fd93d7ef",
+      "event_type": "STACK_TRACE_SEALED",
+      "index": 3,
+      "payload": {
+        "live_subagents_spawned_count": 4,
+        "recorded_subagent_witnesses_count": 4,
+        "remediation_count": 0,
+        "total_stack_operations": 12
+      },
+      "prev_hash": "8e5f6ccc2253da653d303bfdfb5de97fd00b48c8897135de20e085cfae97af48"
+    },
+    {
+      "event_hash": "9dcc90d3563a95ae8d5fd5abeb9442e6470e2f82bf8e203b0261ac7b75cc396d",
+      "event_type": "DISK_SUBSTRATE_MEASURED",
+      "index": 4,
+      "payload": {
+        "app_file_count": 23,
+        "app_physical_tokens": 113244,
+        "emitted_file_count": 10,
+        "emitted_physical_tokens": 11021,
+        "files": {
+          "contract_service.py": 897,
+          "domain_models.py": 614,
+          "leaf_code.py": 443,
+          "run.py": 240,
+          "statechart_engine.py": 693,
+          "telemetry_dashboard.html": 7134,
+          "tests/__init__.py": 15,
+          "tests/test_emitted_system.py": 493,
+          "topology_config.json": 147,
+          "topology_verifier.py": 345
+        }
+      },
+      "prev_hash": "76fa1277a0db0fec941c0e9a01ff8f6879b47701965fc75d32d2d6d5fd93d7ef"
+    },
+    {
+      "event_hash": "78d52f98cc089a0d2a08b6e684f76b54db91ae1ee5e1e6862f66518b4b2d72ca",
+      "event_type": "SUBSTRATE_TEST_WITNESS",
+      "index": 5,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+        "tests_run": 4
+      },
+      "prev_hash": "9dcc90d3563a95ae8d5fd5abeb9442e6470e2f82bf8e203b0261ac7b75cc396d"
+    },
+    {
+      "event_hash": "d50ee295b5d116bc3b6532f1b751378c118bb09d9c6348bc926350cbf3fd4d03",
+      "event_type": "APP_SUBSTRATE_TEST_WITNESS",
+      "index": 6,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "et_placement_heuristics)\nVerifies microclimate placement rules for Raised Bed, Gazebo, and Tanning Spot. ... ok\ntest_06_functorial_undo_redo_history (test_heliotrope.TestAxiomaHeliotrope.test_06_functorial_undo_redo_history)\n[L1-002] Verifies 1-Tap Functorial Undo / Redo state transitions S_{t+1} = f(S_t, E). ... ok\ntest_07_rest_api_wire_dispatch (test_heliotrope.TestAxiomaHeliotrope.test_07_rest_api_wire_dispatch)\nVerifies full HTTP REST API endpoints through HeliotropeHTTPRequestHandler. ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.757s\n\nOK",
+        "tests_run": 19
+      },
+      "prev_hash": "78d52f98cc089a0d2a08b6e684f76b54db91ae1ee5e1e6862f66518b4b2d72ca"
+    },
+    {
+      "event_hash": "1aa9fc9ee4a16eea9d8e575c7d82fa31fd799415de77a27f8e70bd41c5e0d4a3",
+      "event_type": "THERMODYNAMIC_LEDGER_SEALED",
+      "index": 7,
+      "payload": {
+        "app_disk_tokens": 113244,
+        "argon_deliberation_tokens": 3216,
+        "argon_verification_tokens": 2802,
+        "bits_erased": 0,
+        "dissipated_joules": 0.0,
+        "emitted_disk_tokens": 11021,
+        "exploratory_cap": 60960,
+        "exploratory_remaining": 55243,
+        "exploratory_spent": 5717,
+        "exploratory_utilization_pct": 9.38,
+        "flash_emission_tokens": 2501,
+        "live_subagents_spawned_count": 4,
+        "predicted_exploratory_spend": 11618,
+        "predicted_total_spend": 12930,
+        "prediction_accuracy_pct": 53.02,
+        "protected_floor": 40640,
+        "protected_remaining": 39502,
+        "protected_spent": 1138,
+        "total_budget": 101600,
+        "total_combined_disk_tokens": 124265,
+        "total_spent": 6855,
+        "unspent_reserve": 94745,
+        "utilization_pct": 6.75
+      },
+      "prev_hash": "d50ee295b5d116bc3b6532f1b751378c118bb09d9c6348bc926350cbf3fd4d03"
+    }
+  ],
+  "live_subagents_spawned_count": 4,
+  "remediation_events": [],
+  "soc_id": "soc_heliotropic_microclimate_studio",
+  "subagent_witnesses": [
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "caller_role": "Meta-Orchestrator (Parent Agent)",
+      "cognitive_role": "human_ergonomics_architect",
+      "conversation_id": "bc3199a1-8d03-4989-988b-1da83fb6b3de",
+      "is_live_agy_subagent": true,
+      "parent_task_id": null,
+      "prompt_bpe_tokens": 900,
+      "response_bpe_tokens": 3500,
+      "subagent_role": "Human Ergonomics & UX Architect",
+      "subagent_type": "self",
+      "task_description": "Deconstructs the Waterloo Tier 1 Situation of Concern ([L1-G3B-000]) for Elena's permaculture microclimate studio, establishing the 30m x 20m residential parcel topography, primary user persona, and minimum-step workflows (<= 3 steps to value). Formalizes the compositional domain nouns (ParcelLayout, PhysicalObstacle, SolarPosition, InsolationGridCell, GardenAssetPlacement) and algebraic invariants governing solar raytracing and microclimates. Designs the 16-state hierarchical XState v5 statechart with compound states and deep-history pseudo-states to guarantee 1-tap Functorial Undo ([L1-002]).",
+      "task_id": "stage1:brain_ergonomics_and_ux",
+      "total_bpe_tokens": 4400
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "caller_role": "Meta-Orchestrator (Parent Agent)",
+      "cognitive_role": "core_engine_synthesizer",
+      "conversation_id": "80299b5a-38ce-4529-9262-411c1500ac95",
+      "is_live_agy_subagent": true,
+      "parent_task_id": null,
+      "prompt_bpe_tokens": 900,
+      "response_bpe_tokens": 3500,
+      "subagent_role": "Core Backend & Functorial Engine Synthesizer",
+      "subagent_type": "self",
+      "task_description": "Synthesizes the core NOAA solar kinematics solver, 3D polygon shadow projection geometry, and 600-cell discrete cumulative insolation integration engine implementing pure functorial state transitions S_{t+1} = f(S_t, E). Constructs deterministic exception enclaves ([L1-016]) to isolate astronomical singularities, out-of-bounds geolocations, and invalid timestamps with deterministic fallback ephemeris. Implements the JSON persistence store and wire-level HTTP REST API endpoints (/api/parcel, /api/calculate_shadows, /api/cumulative_insolation, /api/evaluate_placement, /api/undo) for clean 1-command startup.",
+      "task_id": "stage2:muscle_core_engine",
+      "total_bpe_tokens": 4400
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "caller_role": "Meta-Orchestrator (Parent Agent)",
+      "cognitive_role": "operational_dashboard_synthesizer",
+      "conversation_id": "0db76a85-1b79-4406-bb35-6ea5c785ed59",
+      "is_live_agy_subagent": true,
+      "parent_task_id": null,
+      "prompt_bpe_tokens": 900,
+      "response_bpe_tokens": 3500,
+      "subagent_role": "Operational Dashboard & Telemetry Synthesizer",
+      "subagent_type": "self",
+      "task_description": "Synthesizes the dual HTML5/ES6 frontend deliverables comprising the interactive 2D top-down / isometric permaculture product canvas (index.html, app.js, style.css) and the standalone Development Process Telemetry Dashboard (dashboard.html / telemetry_dashboard.html) ([L1-G3B-018]). Visualizes dynamic real-time shadow projection polygons, toggleable 600-cell cumulative insolation heatmaps, and instant microclimate suitability evaluations without external CDN dependencies. Embeds live gauges for Landauer bit-erasure dissipation (Q = k_B * T * ln 2 * bits), dual-model token attribution, and the client-side SHA-256 cryptographic chain auditor.",
+      "task_id": "stage2:muscle_operational_dashboard",
+      "total_bpe_tokens": 4400
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "caller_role": "Meta-Orchestrator (Parent Agent)",
+      "cognitive_role": "adversarial_qa_engineer",
+      "conversation_id": "d512904b-1679-4a39-8053-157aca467214",
+      "is_live_agy_subagent": true,
+      "parent_task_id": null,
+      "prompt_bpe_tokens": 900,
+      "response_bpe_tokens": 3500,
+      "subagent_role": "Adversarial Test & Byzantine QA Engineer",
+      "subagent_type": "self",
+      "task_description": "Constructs and executes an exhaustive adversarial substrate test suite (test_app.py, test_heliotrope.py, test_dashboard_and_static.py) enforcing the Anti-Phantom Verification Gate ([NEG-G1B-001]). Injects Byzantine chaotic inputs, extreme coordinate overflows, and state mutation corruptions to verify deterministic enclave containment and zero-exception robustness. Asserts 100% test coverage across astronomical solvers, polygon shadow geometric bounds, 600-cell insolation grids, and 1-tap Functorial Undo reversibility with clean exit code 0.",
+      "task_id": "stage2:muscle_adversarial_qa",
+      "total_bpe_tokens": 4400
+    }
+  ],
+  "test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+    "tests_run": 4
+  },
+  "thermodynamics": {
+    "app_disk_tokens": 113244,
+    "argon_deliberation_tokens": 3216,
+    "argon_verification_tokens": 2802,
+    "bits_erased": 0,
+    "dissipated_joules": 0.0,
+    "emitted_disk_tokens": 11021,
+    "exploratory_cap": 60960,
+    "exploratory_remaining": 55243,
+    "exploratory_spent": 5717,
+    "exploratory_utilization_pct": 9.38,
+    "flash_emission_tokens": 2501,
+    "live_subagents_spawned_count": 4,
+    "predicted_exploratory_spend": 11618,
+    "predicted_total_spend": 12930,
+    "prediction_accuracy_pct": 53.02,
+    "protected_floor": 40640,
+    "protected_remaining": 39502,
+    "protected_spent": 1138,
+    "total_budget": 101600,
+    "total_combined_disk_tokens": 124265,
+    "total_spent": 6855,
+    "unspent_reserve": 94745,
+    "utilization_pct": 6.75
+  },
+  "total_chained_events": 8
+}

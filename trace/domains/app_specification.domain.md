@@ -61,6 +61,7 @@ MUST CONTAIN:
 - app.json: Application manifest.
 - README.md: Human-readable documentation, UX ergonomics, and execution commands.
 - run.py: Executable entrypoint launching the application.
+- dashboard.html: Interactive real-time operational and telemetry dashboard (FSM statechart HUD, invariant verification monitor, Landauer dissipation counters, and operator controls) [L1-G3B-018].
 - trace/: Declarative TRACE domain and workflow specifications.
   - app.domain.md: Entity and invariant definitions.
   - ux_flow.flow.md: User interaction state machine and ergonomic flow (Target P1).

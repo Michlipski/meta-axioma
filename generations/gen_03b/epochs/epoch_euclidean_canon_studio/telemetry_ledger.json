@@ -1,0 +1,319 @@
+{
+  "app_substrate": {
+    "file_count": 21,
+    "files": {
+      "README.md": 1225,
+      "app.json": 527,
+      "app_spec.json": 390,
+      "data/seed.json": 560,
+      "data/state.json": 5909,
+      "run.py": 322,
+      "schema/nouns.json": 514,
+      "schema/verbs.json": 563,
+      "server.py": 74,
+      "src/__init__.py": 132,
+      "src/enclaves.py": 2488,
+      "src/engine.py": 12660,
+      "src/persistence.py": 509,
+      "src/server.py": 2345,
+      "static/app.js": 14960,
+      "static/index.html": 8035,
+      "static/style.css": 10633,
+      "tests/__init__.py": 32,
+      "tests/test_app.py": 4757,
+      "trace/app.domain.md": 1171,
+      "trace/ux_flow.flow.md": 826
+    },
+    "total_tokens": 68632
+  },
+  "app_test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "e)\nVerifies [L1-G3B-012] anti-loopback topology verifier and [L1-016] Exception Enclave healing. ... ok\ntest_07_preset_library_loading (test_app.TestAxiomaCancrizansStudio.test_07_preset_library_loading)\nVerifies loading all 4 curated historical and geometric presets. ... ok\ntest_08_live_http_server_end_to_end_integration (test_app.TestAxiomaCancrizansStudio.test_08_live_http_server_end_to_end_integration)\nExercises complete HTTP wire protocol across all API routes and static asset serving. ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.175s\n\nOK",
+    "tests_run": 8
+  },
+  "chain_head_hash": "3ee3e281cbc5f55e3f17867f2427a6675072cceb6a16477694d5a0baf36dec64",
+  "compiler_id": "SystemG3b_Cancrizans_Direct",
+  "daughter_witness": {
+    "daughter_chain_head_hash": "a53c1b5e8b7547756cfc3b47142add4e4daf4c9d28ee01a30951fb88dc3f45f5",
+    "daughter_compiler_id": "SystemG3b_Daughter_Prime",
+    "daughter_exit_code": 0,
+    "daughter_exploratory_spent": 23093,
+    "daughter_exploratory_utilization_pct": 79.69,
+    "daughter_live_subagents_verified": 3,
+    "daughter_predicted_spend": 26438,
+    "daughter_prediction_accuracy_pct": 99.97,
+    "daughter_protected_spent": 3354,
+    "daughter_total_budget": 48300,
+    "downstream_file_count": 9,
+    "downstream_physical_tokens": 6021,
+    "downstream_soc_id": "soc_euclidean_canon_studio",
+    "downstream_tests_passed": 4
+  },
+  "disk_substrate": {
+    "file_count": 9,
+    "files": {
+      "contract_service.py": 1832,
+      "domain_models.py": 965,
+      "leaf_code.py": 343,
+      "run.py": 286,
+      "statechart_engine.py": 1084,
+      "tests/__init__.py": 15,
+      "tests/test_emitted_system.py": 683,
+      "topology_config.json": 468,
+      "topology_verifier.py": 345
+    },
+    "total_tokens": 6021
+  },
+  "hash_chain_events": [
+    {
+      "event_hash": "a582ab0e837f40d48e5303e325180b15a521d68739ecbdb27e04cf87d5a178c6",
+      "event_type": "COMPILATION_INITIATED",
+      "index": 0,
+      "payload": {
+        "compiler_id": "SystemG3b_Cancrizans_Direct",
+        "is_multi_node_cluster": true,
+        "predicted_total_spend": 26438,
+        "require_live_subagents": true,
+        "soc_id": "soc_euclidean_canon_studio",
+        "subagent_witness_count": 3,
+        "total_budget": 48300
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "event_hash": "963a7cdd4bee94e02cdd14a6ab31beccf3dcead14755413c977455eb4b7aaaa0",
+      "event_type": "CRUCIBLE_SYNTHESIS_CERTIFIED",
+      "index": 1,
+      "payload": {
+        "argon_deliberation_tokens": 15661,
+        "argon_verification_tokens": 3354,
+        "certified_soc_id": "soc_euclidean_canon_studio",
+        "flash_emission_tokens": 7432,
+        "remediation_count": 2,
+        "verified_leaves_count": 4
+      },
+      "prev_hash": "a582ab0e837f40d48e5303e325180b15a521d68739ecbdb27e04cf87d5a178c6"
+    },
+    {
+      "event_hash": "d18d0080c4dfbb6a2e3db1d595cfbed4bd8d6e8e4a794a69b5dd845212b6b8d0",
+      "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
+      "index": 2,
+      "payload": {
+        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_cancrizans",
+        "app_test_witness": {
+          "exit_code": 0,
+          "stdout_tail": "e)\nVerifies [L1-G3B-012] anti-loopback topology verifier and [L1-016] Exception Enclave healing. ... ok\ntest_07_preset_library_loading (test_app.TestAxiomaCancrizansStudio.test_07_preset_library_loading)\nVerifies loading all 4 curated historical and geometric presets. ... ok\ntest_08_live_http_server_end_to_end_integration (test_app.TestAxiomaCancrizansStudio.test_08_live_http_server_end_to_end_integration)\nExercises complete HTTP wire protocol across all API routes and static asset serving. ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.175s\n\nOK",
+          "tests_run": 8
+        },
+        "audited_app_tokens": 56947,
+        "audited_files_count": 12
+      },
+      "prev_hash": "963a7cdd4bee94e02cdd14a6ab31beccf3dcead14755413c977455eb4b7aaaa0"
+    },
+    {
+      "event_hash": "58452fed2cb54b53e44c11e3da4d61281cb64ed4eacd319f7298c52687142871",
+      "event_type": "STACK_TRACE_SEALED",
+      "index": 3,
+      "payload": {
+        "live_subagents_spawned_count": 3,
+        "recorded_subagent_witnesses_count": 3,
+        "remediation_count": 2,
+        "total_stack_operations": 16
+      },
+      "prev_hash": "d18d0080c4dfbb6a2e3db1d595cfbed4bd8d6e8e4a794a69b5dd845212b6b8d0"
+    },
+    {
+      "event_hash": "750bacc2ab233c894066aaf0f9e1c83b430838cfad22276a1b7dcf0fe263e263",
+      "event_type": "DISK_SUBSTRATE_MEASURED",
+      "index": 4,
+      "payload": {
+        "app_file_count": 21,
+        "app_physical_tokens": 68632,
+        "emitted_file_count": 9,
+        "emitted_physical_tokens": 6021,
+        "files": {
+          "contract_service.py": 1832,
+          "domain_models.py": 965,
+          "leaf_code.py": 343,
+          "run.py": 286,
+          "statechart_engine.py": 1084,
+          "tests/__init__.py": 15,
+          "tests/test_emitted_system.py": 683,
+          "topology_config.json": 468,
+          "topology_verifier.py": 345
+        }
+      },
+      "prev_hash": "58452fed2cb54b53e44c11e3da4d61281cb64ed4eacd319f7298c52687142871"
+    },
+    {
+      "event_hash": "df923d6edbdc9994d1d6269835c978611cee55758eec18370399d61cf42cc644",
+      "event_type": "SUBSTRATE_TEST_WITNESS",
+      "index": 5,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+        "tests_run": 4
+      },
+      "prev_hash": "750bacc2ab233c894066aaf0f9e1c83b430838cfad22276a1b7dcf0fe263e263"
+    },
+    {
+      "event_hash": "e3792011edbcb5f08b6f2c6122a7a69385b382b528f1c5a12322af606f8e0c74",
+      "event_type": "APP_SUBSTRATE_TEST_WITNESS",
+      "index": 6,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "e)\nVerifies [L1-G3B-012] anti-loopback topology verifier and [L1-016] Exception Enclave healing. ... ok\ntest_07_preset_library_loading (test_app.TestAxiomaCancrizansStudio.test_07_preset_library_loading)\nVerifies loading all 4 curated historical and geometric presets. ... ok\ntest_08_live_http_server_end_to_end_integration (test_app.TestAxiomaCancrizansStudio.test_08_live_http_server_end_to_end_integration)\nExercises complete HTTP wire protocol across all API routes and static asset serving. ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.175s\n\nOK",
+        "tests_run": 8
+      },
+      "prev_hash": "df923d6edbdc9994d1d6269835c978611cee55758eec18370399d61cf42cc644"
+    },
+    {
+      "event_hash": "f0961823145e0a189d9161a024cab61335bf983f1681c7e3d9230323d68c3465",
+      "event_type": "QUINE_DAUGHTER_WITNESS",
+      "index": 7,
+      "payload": {
+        "daughter_chain_head_hash": "a53c1b5e8b7547756cfc3b47142add4e4daf4c9d28ee01a30951fb88dc3f45f5",
+        "daughter_compiler_id": "SystemG3b_Daughter_Prime",
+        "daughter_exit_code": 0,
+        "daughter_exploratory_spent": 23093,
+        "daughter_exploratory_utilization_pct": 79.69,
+        "daughter_live_subagents_verified": 3,
+        "daughter_predicted_spend": 26438,
+        "daughter_prediction_accuracy_pct": 99.97,
+        "daughter_protected_spent": 3354,
+        "daughter_total_budget": 48300,
+        "downstream_file_count": 9,
+        "downstream_physical_tokens": 6021,
+        "downstream_soc_id": "soc_euclidean_canon_studio",
+        "downstream_tests_passed": 4
+      },
+      "prev_hash": "e3792011edbcb5f08b6f2c6122a7a69385b382b528f1c5a12322af606f8e0c74"
+    },
+    {
+      "event_hash": "3ee3e281cbc5f55e3f17867f2427a6675072cceb6a16477694d5a0baf36dec64",
+      "event_type": "THERMODYNAMIC_LEDGER_SEALED",
+      "index": 8,
+      "payload": {
+        "app_disk_tokens": 68632,
+        "argon_deliberation_tokens": 15661,
+        "argon_verification_tokens": 3354,
+        "bits_erased": 17688,
+        "dissipated_joules": 5.078187451927247e-17,
+        "emitted_disk_tokens": 6021,
+        "exploratory_cap": 28980,
+        "exploratory_remaining": 5887,
+        "exploratory_spent": 23093,
+        "exploratory_utilization_pct": 79.69,
+        "flash_emission_tokens": 7432,
+        "live_subagents_spawned_count": 3,
+        "predicted_exploratory_spend": 23164,
+        "predicted_total_spend": 26438,
+        "prediction_accuracy_pct": 99.97,
+        "protected_floor": 19320,
+        "protected_remaining": 15966,
+        "protected_spent": 3354,
+        "total_budget": 48300,
+        "total_combined_disk_tokens": 74653,
+        "total_spent": 26447,
+        "unspent_reserve": 21853,
+        "utilization_pct": 54.76
+      },
+      "prev_hash": "f0961823145e0a189d9161a024cab61335bf983f1681c7e3d9230323d68c3465"
+    }
+  ],
+  "live_subagents_spawned_count": 3,
+  "remediation_events": [
+    {
+      "attempt": 1,
+      "backoff_delay_ms": 100,
+      "bits_erased": 15152,
+      "defects": [
+        "[L1-G3B-012 Violation] Distributed endpoint 'http://127.0.0.1:8099' in leaf 'root:soc_euclidean_canon_studio.arch_dialectic.leaf_topology' binds to loopback '127.0.0.1'. Boundary realism requires active routable interfaces.",
+        "[L1-G3B-012 Violation] Multi-node topology 'topo_soc_euclidean_canon_studio' node 'node_cancrizans_studio_orchestrator' binds to loopback host '127.0.0.1'. Boundary realism requires distinct routable or virtual cluster network interfaces."
+      ],
+      "max_retries": 3,
+      "task_id": "root:soc_euclidean_canon_studio.arch_dialectic.leaf_topology"
+    },
+    {
+      "attempt": 1,
+      "backoff_delay_ms": 100,
+      "bits_erased": 2536,
+      "defects": [
+        "Security Defect: Unsafe dynamic evaluation or SQL injection vector detected in 'root:soc_euclidean_canon_studio.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'bjorklund_evenness_verified == True' is not enforced in leaf 'root:soc_euclidean_canon_studio.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'max_ioi_diff <= 1' is not enforced in leaf 'root:soc_euclidean_canon_studio.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'involution_residual == 0' is not enforced in leaf 'root:soc_euclidean_canon_studio.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'quorum_valid == True' is not enforced in leaf 'root:soc_euclidean_canon_studio.arch_dialectic.leaf_code'."
+      ],
+      "max_retries": 3,
+      "task_id": "root:soc_euclidean_canon_studio.arch_dialectic.leaf_code"
+    }
+  ],
+  "soc_id": "soc_euclidean_canon_studio",
+  "subagent_witnesses": [
+    {
+      "assigned_model": "Gemini 4 Argon",
+      "cognitive_role": "dialectical_exploration",
+      "conversation_id": "cfd04bbe-eb6f-4106-bdcc-e81ae84a3cfc",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 1420,
+      "response_bpe_tokens": 11196,
+      "subagent_role": "G3b Dialectical Architect & SoC Researcher",
+      "task_id": "decompose:root_soc_euclidean_canon_studio",
+      "total_bpe_tokens": 12616
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "cognitive_role": "leaf_code_emission",
+      "conversation_id": "3ae36c80-4210-4f40-9776-5bfedad913a7",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 1580,
+      "response_bpe_tokens": 18134,
+      "subagent_role": "G3b Leaf Synthesizer - Core Euclidean & Topological Canon Engine",
+      "task_id": "leaf:core_euclidean_and_topological_canon_engine",
+      "total_bpe_tokens": 19714
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "cognitive_role": "leaf_code_emission",
+      "conversation_id": "631d5832-292a-4ad2-a423-5954c8250d32",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 1390,
+      "response_bpe_tokens": 38417,
+      "subagent_role": "G3b Leaf Synthesizer - Interactive Studio UI & Verification Suite",
+      "task_id": "leaf:interactive_studio_ui_and_verification_suite",
+      "total_bpe_tokens": 39807
+    }
+  ],
+  "test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+    "tests_run": 4
+  },
+  "thermodynamics": {
+    "app_disk_tokens": 68632,
+    "argon_deliberation_tokens": 15661,
+    "argon_verification_tokens": 3354,
+    "bits_erased": 17688,
+    "dissipated_joules": 5.078187451927247e-17,
+    "emitted_disk_tokens": 6021,
+    "exploratory_cap": 28980,
+    "exploratory_remaining": 5887,
+    "exploratory_spent": 23093,
+    "exploratory_utilization_pct": 79.69,
+    "flash_emission_tokens": 7432,
+    "live_subagents_spawned_count": 3,
+    "predicted_exploratory_spend": 23164,
+    "predicted_total_spend": 26438,
+    "prediction_accuracy_pct": 99.97,
+    "protected_floor": 19320,
+    "protected_remaining": 15966,
+    "protected_spent": 3354,
+    "total_budget": 48300,
+    "total_combined_disk_tokens": 74653,
+    "total_spent": 26447,
+    "unspent_reserve": 21853,
+    "utilization_pct": 54.76
+  },
+  "total_chained_events": 9
+}

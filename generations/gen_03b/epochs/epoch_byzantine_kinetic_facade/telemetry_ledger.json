@@ -1,0 +1,326 @@
+{
+  "app_substrate": {
+    "file_count": 26,
+    "files": {
+      "README.md": 2507,
+      "app.json": 594,
+      "app_spec.json": 804,
+      "data/seed.json": 1168,
+      "data/state.json": 3824,
+      "run.py": 310,
+      "schema/nouns.json": 592,
+      "schema/verbs.json": 690,
+      "server.py": 76,
+      "src/__init__.py": 249,
+      "src/consensus.py": 3019,
+      "src/enclaves.py": 1607,
+      "src/engine.py": 1699,
+      "src/mesh.py": 3125,
+      "src/models.py": 4081,
+      "src/persistence.py": 513,
+      "src/server.py": 4654,
+      "src/statechart.py": 2634,
+      "static/app.js": 10286,
+      "static/index.html": 4905,
+      "static/style.css": 8543,
+      "tests/__init__.py": 21,
+      "tests/test_app.py": 7787,
+      "tests/test_facade_mesh.py": 3426,
+      "trace/app.domain.md": 937,
+      "trace/ux_flow.flow.md": 787
+    },
+    "total_tokens": 68838
+  },
+  "app_test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "sh.test_07_landauer_thermodynamic_accounting)\nVerifies Landauer bit-erasure calculation Q = k_B * T * ln(2) * bits_erased. ... ok\ntest_08_safety_traps_and_enclaves (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_08_safety_traps_and_enclaves)\nVerifies motor jam stall, Sybil divergence, and quorum partition traps. ... ok\ntest_09_functorial_undo_redo (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_09_functorial_undo_redo)\nVerifies 1-tap Functorial Undo / Redo for engineering inspection. ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.028s\n\nOK",
+    "tests_run": 22
+  },
+  "chain_head_hash": "3cc78e97c590e6a8edb00dc39bfc11371a93a9f0af579506b4e761d84350c5f2",
+  "compiler_id": "SystemG3b_Parent",
+  "daughter_witness": {
+    "daughter_chain_head_hash": "b6aed5cfd3b3e4b221b791e560734b7197a40fb20b3497f39ce247ae2f6e6b18",
+    "daughter_compiler_id": "SystemG3b_Daughter_Prime",
+    "daughter_exit_code": 0,
+    "daughter_exploratory_spent": 22906,
+    "daughter_exploratory_utilization_pct": 78.07,
+    "daughter_live_subagents_verified": 3,
+    "daughter_predicted_spend": 27288,
+    "daughter_prediction_accuracy_pct": 99.15,
+    "daughter_protected_spent": 4149,
+    "daughter_total_budget": 48900,
+    "downstream_file_count": 9,
+    "downstream_physical_tokens": 7534,
+    "downstream_soc_id": "soc_byzantine_kinetic_facade",
+    "downstream_tests_passed": 4
+  },
+  "disk_substrate": {
+    "file_count": 9,
+    "files": {
+      "contract_service.py": 1733,
+      "domain_models.py": 1355,
+      "leaf_code.py": 443,
+      "run.py": 265,
+      "statechart_engine.py": 1059,
+      "tests/__init__.py": 15,
+      "tests/test_emitted_system.py": 661,
+      "topology_config.json": 1658,
+      "topology_verifier.py": 345
+    },
+    "total_tokens": 7534
+  },
+  "hash_chain_events": [
+    {
+      "event_hash": "e9bcf5c2266e56f2cd8a9d0a1fea378579a435dfe2280cc80a016f732c87ed61",
+      "event_type": "COMPILATION_INITIATED",
+      "index": 0,
+      "payload": {
+        "compiler_id": "SystemG3b_Parent",
+        "is_multi_node_cluster": true,
+        "predicted_total_spend": 34226,
+        "require_live_subagents": true,
+        "soc_id": "soc_byzantine_kinetic_facade",
+        "subagent_witness_count": 3,
+        "total_budget": 59100
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "event_hash": "e37ead78d1c710d3a3c491918e8a9b7d69928bfc3a497e4e90afb52887f66691",
+      "event_type": "CRUCIBLE_SYNTHESIS_CERTIFIED",
+      "index": 1,
+      "payload": {
+        "argon_deliberation_tokens": 14392,
+        "argon_verification_tokens": 10376,
+        "certified_soc_id": "soc_byzantine_kinetic_facade",
+        "flash_emission_tokens": 10964,
+        "remediation_count": 2,
+        "verified_leaves_count": 4
+      },
+      "prev_hash": "e9bcf5c2266e56f2cd8a9d0a1fea378579a435dfe2280cc80a016f732c87ed61"
+    },
+    {
+      "event_hash": "cc090895083f68540a24de30be0d63f87877c47e714210824d6bf74f80eab674",
+      "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
+      "index": 2,
+      "payload": {
+        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_kinetic_facade",
+        "app_test_witness": {
+          "exit_code": 0,
+          "stdout_tail": "sh.test_07_landauer_thermodynamic_accounting)\nVerifies Landauer bit-erasure calculation Q = k_B * T * ln(2) * bits_erased. ... ok\ntest_08_safety_traps_and_enclaves (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_08_safety_traps_and_enclaves)\nVerifies motor jam stall, Sybil divergence, and quorum partition traps. ... ok\ntest_09_functorial_undo_redo (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_09_functorial_undo_redo)\nVerifies 1-tap Functorial Undo / Redo for engineering inspection. ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.028s\n\nOK",
+          "tests_run": 22
+        },
+        "audited_app_tokens": 56935,
+        "audited_files_count": 17
+      },
+      "prev_hash": "e37ead78d1c710d3a3c491918e8a9b7d69928bfc3a497e4e90afb52887f66691"
+    },
+    {
+      "event_hash": "1400f5d9ca279f16c4403c7a535bad9bb37c6b0ef4e16b4906b05331c1f94010",
+      "event_type": "STACK_TRACE_SEALED",
+      "index": 3,
+      "payload": {
+        "live_subagents_spawned_count": 3,
+        "recorded_subagent_witnesses_count": 3,
+        "remediation_count": 2,
+        "total_stack_operations": 16
+      },
+      "prev_hash": "cc090895083f68540a24de30be0d63f87877c47e714210824d6bf74f80eab674"
+    },
+    {
+      "event_hash": "9aa8e81976a3a2648669b053e96741cd94abbcc51e40a1a97f6cf5a3ad50f6f1",
+      "event_type": "DISK_SUBSTRATE_MEASURED",
+      "index": 4,
+      "payload": {
+        "app_file_count": 26,
+        "app_physical_tokens": 68838,
+        "emitted_file_count": 9,
+        "emitted_physical_tokens": 7534,
+        "files": {
+          "contract_service.py": 1733,
+          "domain_models.py": 1355,
+          "leaf_code.py": 443,
+          "run.py": 265,
+          "statechart_engine.py": 1059,
+          "tests/__init__.py": 15,
+          "tests/test_emitted_system.py": 661,
+          "topology_config.json": 1658,
+          "topology_verifier.py": 345
+        }
+      },
+      "prev_hash": "1400f5d9ca279f16c4403c7a535bad9bb37c6b0ef4e16b4906b05331c1f94010"
+    },
+    {
+      "event_hash": "8115532664e3c0299e374ce47e949eeddca7803293a759e940e58f9c26b5632e",
+      "event_type": "SUBSTRATE_TEST_WITNESS",
+      "index": 5,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+        "tests_run": 4
+      },
+      "prev_hash": "9aa8e81976a3a2648669b053e96741cd94abbcc51e40a1a97f6cf5a3ad50f6f1"
+    },
+    {
+      "event_hash": "43b9915256ff514bc4982989653d8d48a2f6dfaeabc95b2fe72c693828535965",
+      "event_type": "APP_SUBSTRATE_TEST_WITNESS",
+      "index": 6,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "sh.test_07_landauer_thermodynamic_accounting)\nVerifies Landauer bit-erasure calculation Q = k_B * T * ln(2) * bits_erased. ... ok\ntest_08_safety_traps_and_enclaves (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_08_safety_traps_and_enclaves)\nVerifies motor jam stall, Sybil divergence, and quorum partition traps. ... ok\ntest_09_functorial_undo_redo (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_09_functorial_undo_redo)\nVerifies 1-tap Functorial Undo / Redo for engineering inspection. ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.028s\n\nOK",
+        "tests_run": 22
+      },
+      "prev_hash": "8115532664e3c0299e374ce47e949eeddca7803293a759e940e58f9c26b5632e"
+    },
+    {
+      "event_hash": "5cf0d7f632b4397ed76b0070d4447fbe93872b32cafc0fcb59b51dbadd99d2cd",
+      "event_type": "QUINE_DAUGHTER_WITNESS",
+      "index": 7,
+      "payload": {
+        "daughter_chain_head_hash": "b6aed5cfd3b3e4b221b791e560734b7197a40fb20b3497f39ce247ae2f6e6b18",
+        "daughter_compiler_id": "SystemG3b_Daughter_Prime",
+        "daughter_exit_code": 0,
+        "daughter_exploratory_spent": 22906,
+        "daughter_exploratory_utilization_pct": 78.07,
+        "daughter_live_subagents_verified": 3,
+        "daughter_predicted_spend": 27288,
+        "daughter_prediction_accuracy_pct": 99.15,
+        "daughter_protected_spent": 4149,
+        "daughter_total_budget": 48900,
+        "downstream_file_count": 9,
+        "downstream_physical_tokens": 7534,
+        "downstream_soc_id": "soc_byzantine_kinetic_facade",
+        "downstream_tests_passed": 4
+      },
+      "prev_hash": "43b9915256ff514bc4982989653d8d48a2f6dfaeabc95b2fe72c693828535965"
+    },
+    {
+      "event_hash": "3cc78e97c590e6a8edb00dc39bfc11371a93a9f0af579506b4e761d84350c5f2",
+      "event_type": "THERMODYNAMIC_LEDGER_SEALED",
+      "index": 8,
+      "payload": {
+        "app_disk_tokens": 68838,
+        "argon_deliberation_tokens": 14392,
+        "argon_verification_tokens": 10376,
+        "bits_erased": 46896,
+        "dissipated_joules": 1.3463742579465183e-16,
+        "emitted_disk_tokens": 7534,
+        "exploratory_cap": 35460,
+        "exploratory_remaining": 10104,
+        "exploratory_spent": 25356,
+        "exploratory_utilization_pct": 71.51,
+        "flash_emission_tokens": 10964,
+        "live_subagents_spawned_count": 3,
+        "predicted_exploratory_spend": 28356,
+        "predicted_total_spend": 34226,
+        "prediction_accuracy_pct": 88.78,
+        "protected_floor": 23640,
+        "protected_remaining": 18610,
+        "protected_spent": 5030,
+        "total_budget": 59100,
+        "total_combined_disk_tokens": 76372,
+        "total_spent": 30386,
+        "unspent_reserve": 28714,
+        "utilization_pct": 51.41
+      },
+      "prev_hash": "5cf0d7f632b4397ed76b0070d4447fbe93872b32cafc0fcb59b51dbadd99d2cd"
+    }
+  ],
+  "live_subagents_spawned_count": 3,
+  "remediation_events": [
+    {
+      "attempt": 1,
+      "backoff_delay_ms": 100,
+      "bits_erased": 44344,
+      "defects": [
+        "[L1-G3B-012 Violation] Distributed endpoint 'http://127.0.0.1:8101' in leaf 'root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_topology' binds to loopback '127.0.0.1'. Boundary realism requires active routable interfaces.",
+        "[L1-G3B-012 Violation] Multi-node topology 'topology_byzantine_kinetic_facade' node 'node_nw' binds to loopback host '127.0.0.1'. Boundary realism requires distinct routable or virtual cluster network interfaces."
+      ],
+      "max_retries": 3,
+      "task_id": "root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_topology"
+    },
+    {
+      "attempt": 1,
+      "backoff_delay_ms": 100,
+      "bits_erased": 2552,
+      "defects": [
+        "Security Defect: Unsafe dynamic evaluation or SQL injection vector detected in 'root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'blade_angle_deg >= 0.0' is not enforced in leaf 'root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'blade_angle_deg <= 90.0' is not enforced in leaf 'root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'angular_velocity_dps <= 15.0' is not enforced in leaf 'root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'optical_encoder_calibrated == True' is not enforced in leaf 'root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'supermajority_ratio >= 0.6667' is not enforced in leaf 'root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'consecutive_calm_epochs >= 3' is not enforced in leaf 'root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_code'."
+      ],
+      "max_retries": 3,
+      "task_id": "root:soc_byzantine_kinetic_facade.arch_dialectic.leaf_code"
+    }
+  ],
+  "soc_id": "soc_byzantine_kinetic_facade",
+  "subagent_witnesses": [
+    {
+      "assigned_model": "Gemini 4 Argon",
+      "cognitive_role": "dialectical_exploration",
+      "conversation_id": "66538545-8e57-430d-84af-d7a8d49da5b1",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 833,
+      "response_bpe_tokens": 3250,
+      "subagent_role": "G3b Dialectical Architect & SoC Researcher",
+      "task_id": "decompose:root_soc_byzantine_kinetic_facade",
+      "total_bpe_tokens": 4083
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "cognitive_role": "leaf_code_emission",
+      "conversation_id": "25547f4a-536b-47d7-bdb5-f2850cbeb5df",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 607,
+      "response_bpe_tokens": 2850,
+      "subagent_role": "G3b Leaf Synthesizer - Core Mesh Engine",
+      "task_id": "leaf:core_p2p_mesh_engine_and_pbft_consensus",
+      "total_bpe_tokens": 3457
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "cognitive_role": "leaf_code_emission",
+      "conversation_id": "b520625c-5986-4fe8-8c53-618015d6a68e",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 758,
+      "response_bpe_tokens": 3450,
+      "subagent_role": "G3b Leaf Synthesizer - 2D UI & Tests",
+      "task_id": "leaf:2d_diagnostic_ui_and_verification_suite",
+      "total_bpe_tokens": 4208
+    }
+  ],
+  "test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+    "tests_run": 4
+  },
+  "thermodynamics": {
+    "app_disk_tokens": 68838,
+    "argon_deliberation_tokens": 14392,
+    "argon_verification_tokens": 10376,
+    "bits_erased": 46896,
+    "dissipated_joules": 1.3463742579465183e-16,
+    "emitted_disk_tokens": 7534,
+    "exploratory_cap": 35460,
+    "exploratory_remaining": 10104,
+    "exploratory_spent": 25356,
+    "exploratory_utilization_pct": 71.51,
+    "flash_emission_tokens": 10964,
+    "live_subagents_spawned_count": 3,
+    "predicted_exploratory_spend": 28356,
+    "predicted_total_spend": 34226,
+    "prediction_accuracy_pct": 88.78,
+    "protected_floor": 23640,
+    "protected_remaining": 18610,
+    "protected_spent": 5030,
+    "total_budget": 59100,
+    "total_combined_disk_tokens": 76372,
+    "total_spent": 30386,
+    "unspent_reserve": 28714,
+    "utilization_pct": 51.41
+  },
+  "total_chained_events": 9
+}

@@ -1,0 +1,68 @@
+{
+  "channels": [
+    {
+      "channel_id": "ch_socratic_ollama_stream",
+      "channel_type": "stream",
+      "latency_ms_budget": 25,
+      "port": 11434,
+      "source_node_id": "node_explorer_workstation",
+      "target_node_id": "node_socratic_rtx4060",
+      "tls_enforced": false
+    },
+    {
+      "channel_id": "ch_epistemic_contract_rpc",
+      "channel_type": "rpc",
+      "latency_ms_budget": 15,
+      "port": 8098,
+      "source_node_id": "node_explorer_workstation",
+      "target_node_id": "node_epistemic_validator",
+      "tls_enforced": true
+    }
+  ],
+  "consensus": {
+    "heartbeat_interval_ms": 500,
+    "partition_strategy": "fail_closed",
+    "protocol": "sheaf_quorum",
+    "quorum_fraction": 0.67
+  },
+  "nodes": {
+    "node_epistemic_validator": {
+      "capabilities": [
+        "compositional_contract_verifier",
+        "sheaf_quorum_witness"
+      ],
+      "host_interface": "192.168.10.30",
+      "memory_mb_limit": 2048,
+      "node_id": "node_epistemic_validator",
+      "port": 8098,
+      "role": "verifier"
+    },
+    "node_explorer_workstation": {
+      "capabilities": [
+        "explorer_workbench_ui",
+        "statechart_engine",
+        "functorial_undo"
+      ],
+      "host_interface": "192.168.10.20",
+      "memory_mb_limit": 4096,
+      "node_id": "node_explorer_workstation",
+      "port": 8097,
+      "role": "orchestrator"
+    },
+    "node_socratic_rtx4060": {
+      "capabilities": [
+        "ollama_local_inference",
+        "model:qwen2.5",
+        "gpu:rtx_4060_8gb_vram",
+        "lakatosian_counter_axiom_generator",
+        "exception_enclave_deterministic_fallback"
+      ],
+      "host_interface": "192.168.10.40",
+      "memory_mb_limit": 8192,
+      "node_id": "node_socratic_rtx4060",
+      "port": 11434,
+      "role": "worker"
+    }
+  },
+  "topology_id": "topo_soc_epistemic_curiosity_engine"
+}

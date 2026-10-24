@@ -1,0 +1,38 @@
+{
+  "channels": [
+    {
+      "channel_id": "ch_sync",
+      "channel_type": "rpc",
+      "latency_ms_budget": 50,
+      "port": 8081,
+      "source_node_id": "node_primary",
+      "target_node_id": "node_replica",
+      "tls_enforced": true
+    }
+  ],
+  "consensus": {
+    "heartbeat_interval_ms": 1000,
+    "partition_strategy": "fail_closed",
+    "protocol": "sheaf_quorum",
+    "quorum_fraction": 0.67
+  },
+  "nodes": {
+    "node_primary": {
+      "capabilities": [],
+      "host_interface": "192.168.10.11",
+      "memory_mb_limit": 1024,
+      "node_id": "node_primary",
+      "port": 8080,
+      "role": "orchestrator"
+    },
+    "node_replica": {
+      "capabilities": [],
+      "host_interface": "192.168.10.12",
+      "memory_mb_limit": 1024,
+      "node_id": "node_replica",
+      "port": 8081,
+      "role": "storage_leaf"
+    }
+  },
+  "topology_id": "topo_soc_system_g3b_cancrizans_parent"
+}

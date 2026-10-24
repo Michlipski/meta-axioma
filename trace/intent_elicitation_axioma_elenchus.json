@@ -1,0 +1,34 @@
+{
+  "application_id": "axioma_elenchus",
+  "soc_id": "soc_epistemic_curiosity_engine",
+  "generation": "G3b",
+  "witness_id": "witness_axioma_elenchus_g3b_1792641097",
+  "persona_name": "The Explorer (Self-Directed Mathematician & Category Theory Navigator)",
+  "situation_of_concern": "Epistemic Curiosity & Socratic Scaffolding Engine (Overcoming linear progression and premature answer-dumping in Category Theory and Pure Mathematics)",
+  "jtbd_summary": "Navigate non-linear mathematical abstractions through Socratic dialectical friction on local RTX 4060 hardware (192.168.10.40:11434 qwen2.5), formally prove Mastery of Morphisms before unlocking Exploring Functors, and safely traverse conceptual dead-ends with 1-tap Functorial Undo.",
+  "daily_workflow": "1. Launch `python3 apps/axioma_elenchus/run.py` -> 2. Probe the current epistemic boundary via the Socratic Probe (routed to local RTX 4060 Ollama `192.168.10.40:11434` `qwen2.5` or deterministic Lakatosian enclave fallback) -> 3. Test a bold conjecture (and if it hits a conceptual dead-end contradiction, inspect the refutation lemma and press Cmd+Z / Functorial Undo to roll back via Deep History) -> 4. Prove foundational Morphism laws (Objects/Arrows, Associativity, Identity) -> 5. Pass the Socratic Elenchus Gate to unlock 'Exploring Functors' and 'Natural Transformations'.",
+  "utility_metric_definition": "StepsToValue <= 3 (launch -> probe_or_verify_axiom -> observe_scaffolding_delta), LocalInferenceLatencyBudget <= 25ms (192.168.10.40:11434 qwen2.5 on 8GB VRAM RTX 4060), Reversibility = 100% (Deep History Functorial Undo), QuineDaughterChainHead = c727d17740f7f851d70de8fa48e700f45a9e5c82a63d4d0c7ae6165c89d69a37.",
+  "approved_option": "Option C: Axioma Elenchus Studio + Reflexive Quine Daughter Crucible",
+  "thermodynamic_budget": {
+    "calibrated_crucible_bpe_tokens": 44500,
+    "calibrated_exploratory_cap": 26700,
+    "calibrated_protected_floor": 17800,
+    "full_agentic_tokens": 450000,
+    "protected_capital_floor": 180000,
+    "exploratory_capital": 270000,
+    "protected_ratio": 0.40,
+    "exploratory_ratio": 0.60
+  },
+  "local_hardware_boundary": {
+    "ollama_endpoint": "http://192.168.10.40:11434/api/generate",
+    "model_tag": "qwen2.5",
+    "hardware_profile": "NVIDIA RTX 4060 (8GB VRAM)",
+    "latency_ms_budget": 25,
+    "enclave_fallback": "Deterministic Lakatosian Socratic Elenchus Kernel ([L1-016])"
+  },
+  "human_signoff_status": "SIGNED_OFF",
+  "signed_off_by_human": true,
+  "signed_at": 1792641097.0,
+  "witness_signature": "WITNESS_PE_C727D17740F7F851",
+  "witness_hash": "c727d17740f7f851d70de8fa48e700f45a9e5c82a63d4d0c7ae6165c89d69a37"
+}

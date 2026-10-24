@@ -1,0 +1,187 @@
+{
+  "app_substrate": {
+    "file_count": 3,
+    "files": {
+      "dashboard.html": 6236,
+      "server.py": 6,
+      "telemetry_dashboard.html": 6236
+    },
+    "total_tokens": 12478
+  },
+  "app_test_execution_witness": null,
+  "chain_head_hash": "447f4ca02e94450fb314e8bac26824e80ee3b0bab8ebe580af7eb5e008cadb4d",
+  "compiler_id": "SystemG3b_DashboardGate",
+  "daughter_witness": null,
+  "disk_substrate": {
+    "file_count": 10,
+    "files": {
+      "contract_service.py": 897,
+      "domain_models.py": 235,
+      "leaf_code.py": 191,
+      "run.py": 240,
+      "statechart_engine.py": 693,
+      "telemetry_dashboard.html": 6236,
+      "tests/__init__.py": 15,
+      "tests/test_emitted_system.py": 490,
+      "topology_config.json": 285,
+      "topology_verifier.py": 345
+    },
+    "total_tokens": 9627
+  },
+  "hash_chain_events": [
+    {
+      "event_hash": "edc586085f0141fdfa1b0027df3ce6434270ec6941bad5a3c5e273fe331ffbe2",
+      "event_type": "COMPILATION_INITIATED",
+      "index": 0,
+      "payload": {
+        "compiler_id": "SystemG3b_DashboardGate",
+        "is_multi_node_cluster": true,
+        "predicted_total_spend": 4800,
+        "require_live_subagents": false,
+        "soc_id": "soc_test_dashboard_app",
+        "subagent_witness_count": 0,
+        "total_budget": 7800
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "event_hash": "54eac88164061a6d18729b2e092abb8c078c7e5fbc4f79eadd107a6aa283dc9a",
+      "event_type": "CRUCIBLE_SYNTHESIS_CERTIFIED",
+      "index": 1,
+      "payload": {
+        "argon_deliberation_tokens": 1563,
+        "argon_verification_tokens": 2143,
+        "certified_soc_id": "soc_test_dashboard_app",
+        "flash_emission_tokens": 2197,
+        "remediation_count": 0,
+        "verified_leaves_count": 4
+      },
+      "prev_hash": "edc586085f0141fdfa1b0027df3ce6434270ec6941bad5a3c5e273fe331ffbe2"
+    },
+    {
+      "event_hash": "0cd89a46f5277fd791b9a1d036121781f3a6ef6344e2463e7f49c715745852cf",
+      "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
+      "index": 2,
+      "payload": {
+        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/epochs/epoch_test_dashboard_app",
+        "app_test_witness": null,
+        "audited_app_tokens": 12478,
+        "audited_files_count": 3
+      },
+      "prev_hash": "54eac88164061a6d18729b2e092abb8c078c7e5fbc4f79eadd107a6aa283dc9a"
+    },
+    {
+      "event_hash": "f557a0680ce912b7b8a53357483184a72bfe78d9601494a046011a9692b6377b",
+      "event_type": "STACK_TRACE_SEALED",
+      "index": 3,
+      "payload": {
+        "live_subagents_spawned_count": 0,
+        "recorded_subagent_witnesses_count": 0,
+        "remediation_count": 0,
+        "total_stack_operations": 12
+      },
+      "prev_hash": "0cd89a46f5277fd791b9a1d036121781f3a6ef6344e2463e7f49c715745852cf"
+    },
+    {
+      "event_hash": "425bd5ff6eb5c026b61d67014c985e4b9b7b0ff76517adf73e44e90b6aa228b9",
+      "event_type": "DISK_SUBSTRATE_MEASURED",
+      "index": 4,
+      "payload": {
+        "app_file_count": 3,
+        "app_physical_tokens": 12478,
+        "emitted_file_count": 10,
+        "emitted_physical_tokens": 9627,
+        "files": {
+          "contract_service.py": 897,
+          "domain_models.py": 235,
+          "leaf_code.py": 191,
+          "run.py": 240,
+          "statechart_engine.py": 693,
+          "telemetry_dashboard.html": 6236,
+          "tests/__init__.py": 15,
+          "tests/test_emitted_system.py": 490,
+          "topology_config.json": 285,
+          "topology_verifier.py": 345
+        }
+      },
+      "prev_hash": "f557a0680ce912b7b8a53357483184a72bfe78d9601494a046011a9692b6377b"
+    },
+    {
+      "event_hash": "2e1b75f9056595a51629e1c905a68ea77af9c4d2037286886c67a9c2ac854fba",
+      "event_type": "SUBSTRATE_TEST_WITNESS",
+      "index": 5,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+        "tests_run": 4
+      },
+      "prev_hash": "425bd5ff6eb5c026b61d67014c985e4b9b7b0ff76517adf73e44e90b6aa228b9"
+    },
+    {
+      "event_hash": "447f4ca02e94450fb314e8bac26824e80ee3b0bab8ebe580af7eb5e008cadb4d",
+      "event_type": "THERMODYNAMIC_LEDGER_SEALED",
+      "index": 6,
+      "payload": {
+        "app_disk_tokens": 12478,
+        "argon_deliberation_tokens": 1563,
+        "argon_verification_tokens": 2143,
+        "bits_erased": 0,
+        "dissipated_joules": 0.0,
+        "emitted_disk_tokens": 9627,
+        "exploratory_cap": 4680,
+        "exploratory_remaining": 920,
+        "exploratory_spent": 3760,
+        "exploratory_utilization_pct": 80.34,
+        "flash_emission_tokens": 2197,
+        "live_subagents_spawned_count": 0,
+        "predicted_exploratory_spend": 3700,
+        "predicted_total_spend": 4800,
+        "prediction_accuracy_pct": 99.75,
+        "protected_floor": 3120,
+        "protected_remaining": 2068,
+        "protected_spent": 1052,
+        "total_budget": 7800,
+        "total_combined_disk_tokens": 22105,
+        "total_spent": 4812,
+        "unspent_reserve": 2988,
+        "utilization_pct": 61.69
+      },
+      "prev_hash": "2e1b75f9056595a51629e1c905a68ea77af9c4d2037286886c67a9c2ac854fba"
+    }
+  ],
+  "live_subagents_spawned_count": 0,
+  "remediation_events": [],
+  "soc_id": "soc_test_dashboard_app",
+  "subagent_witnesses": [],
+  "test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+    "tests_run": 4
+  },
+  "thermodynamics": {
+    "app_disk_tokens": 12478,
+    "argon_deliberation_tokens": 1563,
+    "argon_verification_tokens": 2143,
+    "bits_erased": 0,
+    "dissipated_joules": 0.0,
+    "emitted_disk_tokens": 9627,
+    "exploratory_cap": 4680,
+    "exploratory_remaining": 920,
+    "exploratory_spent": 3760,
+    "exploratory_utilization_pct": 80.34,
+    "flash_emission_tokens": 2197,
+    "live_subagents_spawned_count": 0,
+    "predicted_exploratory_spend": 3700,
+    "predicted_total_spend": 4800,
+    "prediction_accuracy_pct": 99.75,
+    "protected_floor": 3120,
+    "protected_remaining": 2068,
+    "protected_spent": 1052,
+    "total_budget": 7800,
+    "total_combined_disk_tokens": 22105,
+    "total_spent": 4812,
+    "unspent_reserve": 2988,
+    "utilization_pct": 61.69
+  },
+  "total_chained_events": 7
+}

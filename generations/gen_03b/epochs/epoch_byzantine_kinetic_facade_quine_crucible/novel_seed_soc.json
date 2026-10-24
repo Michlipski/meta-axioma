@@ -1,0 +1,1282 @@
+{
+  "soc_id": "soc_byzantine_kinetic_facade",
+  "title": "Axioma Kinetic Fa\u00e7ade Studio: Byzantine Fault-Tolerant Louver Mesh & Aerodynamic Shear Mitigator",
+  "narrative": "Contemporary high-rise kinetic building envelopes deploy motorized louvers for solar heat-gain management and daylight harvesting. During severe atmospheric microbursts and wind-shear gradients, localized airflow exceeds 25.0 m/s, inducing severe aerodynamic lift and mounting shear. Centralized building management systems (BMS) frequently partition, crash, or suffer power surges during severe storms, stranding louvers at high attack angles (acting as sails) and causing mounting bracket tearing and envelope detachment. Axioma Kinetic Fa\u00e7ade Studio establishes an autonomous 3x3 P2P IoT mesh where motorized louvers reach Byzantine consensus over 12 bidirectional gossip links to lock flat rigid (0 deg) when supermajorities (>= 2/3) of physical neighbors confirm wind shear, and execute an Orderly Calibrated Unwind Recovery Pipeline upon sustained calm.",
+  "altitude": "MACRO",
+  "actors": [
+    {
+      "name": "The Wind Vector (Adversary)",
+      "role": "Atmospheric Aerodynamic Adversary",
+      "motivations": [
+        "Generate localized velocity gradients and severe microbursts exceeding 25.0 m/s",
+        "Exploit high louver attack angles to induce destructive aerodynamic lift and torque (> 450 N*m)",
+        "Create localized asymmetric pressure fields across high-rise building envelopes"
+      ],
+      "frustrations": [
+        "Louvers transitioning to flat rigid (0 deg) orientation shedding aerodynamic drag by 88%",
+        "Decentralized sensor quorum detecting localized microbursts even when central BMS is offline"
+      ]
+    },
+    {
+      "name": "The Mesh Node (Autonomous Edge Agent)",
+      "role": "Microcontroller-driven Kinetic Louver Actuator",
+      "motivations": [
+        "Maximize solar daylighting and thermal efficiency during calm conditions (0 to 90 deg tracking)",
+        "Preserve mechanical and structural mounting integrity under high wind-shear conditions",
+        "Reach rapid P2P Byzantine consensus (< 250ms) with physical spatial neighbors without central authority"
+      ],
+      "frustrations": [
+        "Centralized controller partitions leaving actuators stranded at sail angles during sudden storms",
+        "Faulty or iced anemometer probes injecting misleading or Byzantine sensor noise",
+        "Physical gear and actuator backlash when abrupt software rollback commands violate mechanical inertia"
+      ]
+    },
+    {
+      "name": "Facade Structural Engineer & Facility Director",
+      "role": "Human Architectural Safety Supervisor",
+      "motivations": [
+        "Eliminate structural envelope failures and zero facade panel detachments during category 3+ storms",
+        "Verify autonomous compliance with ISO/ASTM wind-load building codes and fail-closed safety standards",
+        "Inspect live mesh status and pBFT consensus audit trails on a lightweight diagnostic dashboard"
+      ],
+      "frustrations": [
+        "Opaque proprietary BMS black-boxes with unverified failure modes during network partitions",
+        "Unbudgeted, heavyweight 3D physics simulations that cannot run on edge field tablets",
+        "False-alarm lockouts that permanently freeze facade shading due to single faulty sensors"
+      ]
+    }
+  ],
+  "frictions": [
+    {
+      "description": "Centralized BMS single-point-of-failure strands louvers at sail attack angles during microbursts",
+      "severity": "CRITICAL",
+      "impact": "Catastrophic mechanical torque exceeding 450 N*m, shearing mounting brackets and tearing envelope panels",
+      "trigger_conditions": [
+        "Severe storm lightning strike or network drop severs centralized BMS connectivity"
+      ]
+    },
+    {
+      "description": "Byzantine and sensor faults: iced or drifting anemometers report false calm or spurious storms",
+      "severity": "HIGH",
+      "impact": "Individual nodes either lock out unnecessarily (reducing daylight) or stay open during dangerous shear",
+      "trigger_conditions": [
+        "Probe icing, electrical noise, or sensor degradation on local node"
+      ]
+    },
+    {
+      "description": "Actuator mechanical hysteresis: in-memory undo functor violates physical mechanics and gearbox causality",
+      "severity": "CRITICAL",
+      "impact": "Sudden reverse torque trips motor drives or strips gearbox teeth under high aerodynamic loading",
+      "trigger_conditions": [
+        "Na\u00efve software rollback command issued without ramped unwind calibration"
+      ]
+    },
+    {
+      "description": "Daylighting optimization vs. aerodynamic safety trade-off",
+      "severity": "MEDIUM",
+      "impact": "Premature recovery causes oscillation between open sail and emergency lock under gusty conditions",
+      "trigger_conditions": [
+        "Transient lulls in storm eye followed by secondary microbursts"
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "nature": "THERMODYNAMIC",
+      "description": "Maximum allowable aerodynamic blade torque before structural mounting failure is 450 N*m (reached at > 25.0 m/s when angle > 30 deg); flat rigid lock (0 deg) reduces drag coefficient Cd by 88%",
+      "boundary_limit": "Torque <= 450 N*m; Flat angle = 0.0 deg"
+    },
+    {
+      "nature": "TECHNICAL",
+      "description": "Actuator dynamic slew rate bounded to max 15.0 deg/s with mandatory ramped deceleration to prevent gearbox shearing",
+      "boundary_limit": "Slew rate <= 15.0 deg/s"
+    },
+    {
+      "nature": "REGULATORY",
+      "description": "Byzantine fault tolerance requires >= 2/3 supermajority consensus of physical neighbors before entering locked flat rigid state",
+      "boundary_limit": "Neighbor shear confirmations / active neighbors >= 0.6667"
+    },
+    {
+      "nature": "TECHNICAL",
+      "description": "[L1-G3B-012] Topological Fidelity: 9 nodes on routable cluster subnet (10.99.10.x:8101), interconnected by 12 bidirectional P2P gossip channels, rejecting single-machine loopback shortcuts",
+      "boundary_limit": "Non-loopback 10.99.10.x subnet"
+    }
+  ],
+  "unmet_needs": [
+    "Autonomous decentralized Byzantine quorum consensus on atmospheric shear without reliance on central BMS backhaul",
+    "Robust Byzantine tolerance against faulty or deceptive sensor nodes within local cliques",
+    "Physically causal Orderly Calibrated Unwind Recovery Pipeline from locked_flat_rigid back to phototropic tracking",
+    "Lightweight 2D SVG diagnostic telemetry dashboard visualizing lattice topology, live blade angles, gossip pulses, and pBFT consensus logs"
+  ],
+  "induced_frictions": [],
+  "parent_soc_id": null,
+  "sub_socs": [
+    {
+      "soc_id": "soc_meso_p2p_byzantine_consensus",
+      "title": "Subsystem: P2P Gossip & Sheaf-Quorum Aerodynamic Consensus",
+      "narrative": "Decentralized louver nodes in a 3x3 spatial lattice broadcast signed dual-anemometer telemetry and vote on shear events without a central coordinator.",
+      "altitude": "MESO",
+      "actors": [
+        {
+          "name": "The Wind Vector (Adversary)",
+          "role": "Atmospheric Aerodynamic Adversary",
+          "motivations": [
+            "Generate localized velocity gradients and severe microbursts exceeding 25.0 m/s",
+            "Exploit high louver attack angles to induce destructive aerodynamic lift and torque (> 450 N*m)",
+            "Create localized asymmetric pressure fields across high-rise building envelopes"
+          ],
+          "frustrations": [
+            "Louvers transitioning to flat rigid (0 deg) orientation shedding aerodynamic drag by 88%",
+            "Decentralized sensor quorum detecting localized microbursts even when central BMS is offline"
+          ]
+        },
+        {
+          "name": "The Mesh Node (Autonomous Edge Agent)",
+          "role": "Microcontroller-driven Kinetic Louver Actuator",
+          "motivations": [
+            "Maximize solar daylighting and thermal efficiency during calm conditions (0 to 90 deg tracking)",
+            "Preserve mechanical and structural mounting integrity under high wind-shear conditions",
+            "Reach rapid P2P Byzantine consensus (< 250ms) with physical spatial neighbors without central authority"
+          ],
+          "frustrations": [
+            "Centralized controller partitions leaving actuators stranded at sail angles during sudden storms",
+            "Faulty or iced anemometer probes injecting misleading or Byzantine sensor noise",
+            "Physical gear and actuator backlash when abrupt software rollback commands violate mechanical inertia"
+          ]
+        },
+        {
+          "name": "Facade Structural Engineer & Facility Director",
+          "role": "Human Architectural Safety Supervisor",
+          "motivations": [
+            "Eliminate structural envelope failures and zero facade panel detachments during category 3+ storms",
+            "Verify autonomous compliance with ISO/ASTM wind-load building codes and fail-closed safety standards",
+            "Inspect live mesh status and pBFT consensus audit trails on a lightweight diagnostic dashboard"
+          ],
+          "frustrations": [
+            "Opaque proprietary BMS black-boxes with unverified failure modes during network partitions",
+            "Unbudgeted, heavyweight 3D physics simulations that cannot run on edge field tablets",
+            "False-alarm lockouts that permanently freeze facade shading due to single faulty sensors"
+          ]
+        }
+      ],
+      "frictions": [
+        {
+          "description": "P2P packet loss and Byzantine sensor deception during high wind bursts",
+          "severity": "HIGH",
+          "impact": "Could prevent quorum formation or trigger false lockdowns",
+          "trigger_conditions": [
+            "High RF attenuation or sensor icing"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "nature": "THERMODYNAMIC",
+          "description": "Maximum allowable aerodynamic blade torque before structural mounting failure is 450 N*m (reached at > 25.0 m/s when angle > 30 deg); flat rigid lock (0 deg) reduces drag coefficient Cd by 88%",
+          "boundary_limit": "Torque <= 450 N*m; Flat angle = 0.0 deg"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Actuator dynamic slew rate bounded to max 15.0 deg/s with mandatory ramped deceleration to prevent gearbox shearing",
+          "boundary_limit": "Slew rate <= 15.0 deg/s"
+        },
+        {
+          "nature": "REGULATORY",
+          "description": "Byzantine fault tolerance requires >= 2/3 supermajority consensus of physical neighbors before entering locked flat rigid state",
+          "boundary_limit": "Neighbor shear confirmations / active neighbors >= 0.6667"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "[L1-G3B-012] Topological Fidelity: 9 nodes on routable cluster subnet (10.99.10.x:8101), interconnected by 12 bidirectional P2P gossip channels, rejecting single-machine loopback shortcuts",
+          "boundary_limit": "Non-loopback 10.99.10.x subnet"
+        }
+      ],
+      "unmet_needs": [
+        "Cryptographic gossip propagation and 2/3 supermajority voting over 12 bidirectional links"
+      ],
+      "induced_frictions": [],
+      "parent_soc_id": "soc_byzantine_kinetic_facade",
+      "sub_socs": [
+        {
+          "soc_id": "soc_micro_calibrated_actuator_unwind",
+          "title": "Interaction: Microcontroller Optical Slew & Calibrated Unwind",
+          "narrative": "Local edge microcontroller executing smooth motor acceleration ramps, optical encoder zeroing, and orderly calm recovery.",
+          "altitude": "MICRO",
+          "actors": [
+            {
+              "name": "The Wind Vector (Adversary)",
+              "role": "Atmospheric Aerodynamic Adversary",
+              "motivations": [
+                "Generate localized velocity gradients and severe microbursts exceeding 25.0 m/s",
+                "Exploit high louver attack angles to induce destructive aerodynamic lift and torque (> 450 N*m)",
+                "Create localized asymmetric pressure fields across high-rise building envelopes"
+              ],
+              "frustrations": [
+                "Louvers transitioning to flat rigid (0 deg) orientation shedding aerodynamic drag by 88%",
+                "Decentralized sensor quorum detecting localized microbursts even when central BMS is offline"
+              ]
+            },
+            {
+              "name": "The Mesh Node (Autonomous Edge Agent)",
+              "role": "Microcontroller-driven Kinetic Louver Actuator",
+              "motivations": [
+                "Maximize solar daylighting and thermal efficiency during calm conditions (0 to 90 deg tracking)",
+                "Preserve mechanical and structural mounting integrity under high wind-shear conditions",
+                "Reach rapid P2P Byzantine consensus (< 250ms) with physical spatial neighbors without central authority"
+              ],
+              "frustrations": [
+                "Centralized controller partitions leaving actuators stranded at sail angles during sudden storms",
+                "Faulty or iced anemometer probes injecting misleading or Byzantine sensor noise",
+                "Physical gear and actuator backlash when abrupt software rollback commands violate mechanical inertia"
+              ]
+            },
+            {
+              "name": "Facade Structural Engineer & Facility Director",
+              "role": "Human Architectural Safety Supervisor",
+              "motivations": [
+                "Eliminate structural envelope failures and zero facade panel detachments during category 3+ storms",
+                "Verify autonomous compliance with ISO/ASTM wind-load building codes and fail-closed safety standards",
+                "Inspect live mesh status and pBFT consensus audit trails on a lightweight diagnostic dashboard"
+              ],
+              "frustrations": [
+                "Opaque proprietary BMS black-boxes with unverified failure modes during network partitions",
+                "Unbudgeted, heavyweight 3D physics simulations that cannot run on edge field tablets",
+                "False-alarm lockouts that permanently freeze facade shading due to single faulty sensors"
+              ]
+            }
+          ],
+          "frictions": [
+            {
+              "description": "Mechanical backlash and motor inertia during abrupt state changes",
+              "severity": "HIGH",
+              "impact": "Gear tooth fatigue or motor thermal tripping",
+              "trigger_conditions": [
+                "Abrupt reversal command without deceleration"
+              ]
+            }
+          ],
+          "constraints": [
+            {
+              "nature": "THERMODYNAMIC",
+              "description": "Maximum allowable aerodynamic blade torque before structural mounting failure is 450 N*m (reached at > 25.0 m/s when angle > 30 deg); flat rigid lock (0 deg) reduces drag coefficient Cd by 88%",
+              "boundary_limit": "Torque <= 450 N*m; Flat angle = 0.0 deg"
+            },
+            {
+              "nature": "TECHNICAL",
+              "description": "Actuator dynamic slew rate bounded to max 15.0 deg/s with mandatory ramped deceleration to prevent gearbox shearing",
+              "boundary_limit": "Slew rate <= 15.0 deg/s"
+            },
+            {
+              "nature": "REGULATORY",
+              "description": "Byzantine fault tolerance requires >= 2/3 supermajority consensus of physical neighbors before entering locked flat rigid state",
+              "boundary_limit": "Neighbor shear confirmations / active neighbors >= 0.6667"
+            },
+            {
+              "nature": "TECHNICAL",
+              "description": "[L1-G3B-012] Topological Fidelity: 9 nodes on routable cluster subnet (10.99.10.x:8101), interconnected by 12 bidirectional P2P gossip channels, rejecting single-machine loopback shortcuts",
+              "boundary_limit": "Non-loopback 10.99.10.x subnet"
+            }
+          ],
+          "unmet_needs": [
+            "Controlled staged slew rate (<= 15 deg/s) and sustained 3-epoch calm verification window"
+          ],
+          "induced_frictions": [],
+          "parent_soc_id": "soc_meso_p2p_byzantine_consensus",
+          "sub_socs": []
+        }
+      ]
+    }
+  ],
+  "required_invariants": [
+    "blade_angle_deg >= 0.0",
+    "blade_angle_deg <= 90.0",
+    "angular_velocity_dps <= 15.0",
+    "optical_encoder_calibrated == True",
+    "supermajority_ratio >= 0.6667",
+    "consecutive_calm_epochs >= 3"
+  ],
+  "is_multi_node_cluster": true,
+  "inject_fault_on_first_try": false,
+  "require_live_subagents": true,
+  "subagent_witnesses": [
+    {
+      "task_id": "decompose:root_soc_byzantine_kinetic_facade",
+      "subagent_role": "G3b Dialectical Architect & SoC Researcher",
+      "cognitive_role": "dialectical_exploration",
+      "assigned_model": "Gemini 4 Argon",
+      "conversation_id": "66538545-8e57-430d-84af-d7a8d49da5b1",
+      "prompt_bpe_tokens": 833,
+      "response_bpe_tokens": 3250,
+      "total_bpe_tokens": 4083,
+      "is_live_agy_subagent": true
+    },
+    {
+      "task_id": "leaf:core_p2p_mesh_engine_and_pbft_consensus",
+      "subagent_role": "G3b Leaf Synthesizer - Core Mesh Engine",
+      "cognitive_role": "leaf_code_emission",
+      "assigned_model": "Gemini 3.8 Flash",
+      "conversation_id": "25547f4a-536b-47d7-bdb5-f2850cbeb5df",
+      "prompt_bpe_tokens": 607,
+      "response_bpe_tokens": 2850,
+      "total_bpe_tokens": 3457,
+      "is_live_agy_subagent": true
+    },
+    {
+      "task_id": "leaf:2d_diagnostic_ui_and_verification_suite",
+      "subagent_role": "G3b Leaf Synthesizer - 2D UI & Tests",
+      "cognitive_role": "leaf_code_emission",
+      "assigned_model": "Gemini 3.8 Flash",
+      "conversation_id": "b520625c-5986-4fe8-8c53-618015d6a68e",
+      "prompt_bpe_tokens": 758,
+      "response_bpe_tokens": 3450,
+      "total_bpe_tokens": 4208,
+      "is_live_agy_subagent": true
+    }
+  ],
+  "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_kinetic_facade",
+  "domain_spec": {
+    "contract_ir": {
+      "contract_id": "contract_byzantine_kinetic_facade",
+      "title": "Axioma Byzantine Kinetic Fa\u00e7ade Contract",
+      "description": "Formal invariants, nouns, and verbs governing P2P kinetic louver mesh and aerodynamic shear mitigation",
+      "nouns": {
+        "LouverNode": {
+          "name": "LouverNode",
+          "description": "Motorized architectural louver with microcontroller, optical encoder, and actuator",
+          "fields": [
+            {
+              "name": "node_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Spatial identifier e.g. node_c"
+            },
+            {
+              "name": "blade_angle_deg",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Current optical blade angle (0.0 to 90.0 deg)"
+            },
+            {
+              "name": "target_angle_deg",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Target angle commanded by solar tracker or safety override"
+            },
+            {
+              "name": "angular_velocity_dps",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Current slew rate in deg/s"
+            },
+            {
+              "name": "local_wind_speed_mps",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Locally computed wind speed"
+            },
+            {
+              "name": "local_shear_strain_kpa",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Mounting bracket strain gauge reading"
+            },
+            {
+              "name": "consensus_state",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Node state: TRACKING, PREPARE, COMMIT, LOCKED_FLAT, RECOVERING"
+            },
+            {
+              "name": "optical_encoder_calibrated",
+              "type_name": "bool",
+              "nullable": false,
+              "description": "True if optical zero-index is verified"
+            },
+            {
+              "name": "consecutive_calm_epochs",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Count of consecutive calm heartbeat rounds"
+            }
+          ],
+          "invariants": [
+            "optical_encoder_calibrated == True",
+            "blade_angle_deg >= 0.0",
+            "angular_velocity_dps <= 15.0"
+          ]
+        },
+        "WindShearTelemetry": {
+          "name": "WindShearTelemetry",
+          "description": "Dual anemometer sensory reading cross-validation and shear computation",
+          "fields": [
+            {
+              "name": "probe_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Ultrasonic probe assembly ID"
+            },
+            {
+              "name": "node_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Originating louver node ID"
+            },
+            {
+              "name": "timestamp_epoch_ms",
+              "type_name": "int",
+              "nullable": false,
+              "description": "POSIX millisecond timestamp"
+            },
+            {
+              "name": "primary_anemometer_mps",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Primary sonic wind speed"
+            },
+            {
+              "name": "secondary_anemometer_mps",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Secondary sonic wind speed"
+            },
+            {
+              "name": "computed_shear_mps",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Cross-validated wind velocity"
+            },
+            {
+              "name": "is_valid",
+              "type_name": "bool",
+              "nullable": false,
+              "description": "True if primary and secondary are within tolerance"
+            }
+          ],
+          "invariants": [
+            "is_valid == True",
+            "computed_shear_mps >= 0.0"
+          ]
+        },
+        "GossipPacket": {
+          "name": "GossipPacket",
+          "description": "Cryptographically signed P2P gossip telemetry packet between spatial neighbors",
+          "fields": [
+            {
+              "name": "packet_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Unique packet UUID"
+            },
+            {
+              "name": "sender_node_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Originating neighbor node ID"
+            },
+            {
+              "name": "epoch_round",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Sequential consensus epoch index"
+            },
+            {
+              "name": "message_type",
+              "type_name": "str",
+              "nullable": false,
+              "description": "GOSSIP_TELEMETRY, PRE_PREPARE, PREPARE, COMMIT, CALM"
+            },
+            {
+              "name": "reported_wind_speed",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Reported wind speed reading"
+            },
+            {
+              "name": "signature_hash",
+              "type_name": "str",
+              "nullable": false,
+              "description": "SHA-256 payload signature"
+            }
+          ],
+          "invariants": [
+            "epoch_round >= 0"
+          ]
+        },
+        "QuorumConsensusWitness": {
+          "name": "QuorumConsensusWitness",
+          "description": "Byzantine quorum proof confirming supermajority neighbor shear consensus",
+          "fields": [
+            {
+              "name": "node_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Subject louver node"
+            },
+            {
+              "name": "epoch_round",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Consensus round index"
+            },
+            {
+              "name": "active_neighbors_count",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Number of active spatial grid neighbors"
+            },
+            {
+              "name": "shear_confirmations_count",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Number of neighbors confirming shear > 25 m/s"
+            },
+            {
+              "name": "supermajority_ratio",
+              "type_name": "float",
+              "nullable": false,
+              "description": "Ratio of confirmations to active neighbors"
+            },
+            {
+              "name": "is_locked",
+              "type_name": "bool",
+              "nullable": false,
+              "description": "True if supermajority meets 2/3 requirement"
+            }
+          ],
+          "invariants": [
+            "active_neighbors_count >= 2",
+            "supermajority_ratio >= 0.6667",
+            "is_locked == True"
+          ]
+        }
+      },
+      "verbs": {},
+      "composed_verbs": {
+        "MitigateAerodynamicShearCycle": {
+          "parent_verb": {
+            "name": "MitigateAerodynamicShearCycle",
+            "description": "Closed-loop Byzantine shear mitigation cycle: sample anemometers -> broadcast gossip -> verify neighbor supermajority quorum -> execute emergency 0-degree flat lock.",
+            "parameters": [],
+            "return_type": "void",
+            "pre_conditions": [
+              "optical_encoder_calibrated == True"
+            ],
+            "post_conditions": [
+              "flat_lock_engaged == True",
+              "blade_angle_deg == 0"
+            ],
+            "modifies_nouns": [
+              "LouverNode",
+              "WindShearTelemetry",
+              "QuorumConsensusWitness"
+            ]
+          },
+          "child_steps": [
+            {
+              "child_contract_id": "sub_wind_telemetry",
+              "child_verb_name": "SampleWindShearTelemetry",
+              "argument_bindings": {
+                "node_id": "node_id"
+              },
+              "output_binding": "telemetry"
+            },
+            {
+              "child_contract_id": "sub_byzantine_gossip",
+              "child_verb_name": "BroadcastGossipProposal",
+              "argument_bindings": {
+                "node_id": "node_id"
+              },
+              "output_binding": "broadcast_status"
+            },
+            {
+              "child_contract_id": "sub_pBFT_consensus",
+              "child_verb_name": "VerifyNeighborQuorum",
+              "argument_bindings": {
+                "node_id": "node_id"
+              },
+              "output_binding": "witness"
+            },
+            {
+              "child_contract_id": "sub_aerodynamic_stance",
+              "child_verb_name": "ExecuteEmergencyFlatLock",
+              "argument_bindings": {
+                "node_id": "node_id"
+              },
+              "output_binding": "lock_status"
+            }
+          ]
+        }
+      },
+      "parent_contract_id": null,
+      "sub_contracts": {
+        "sub_wind_telemetry": {
+          "contract_id": "sub_wind_telemetry",
+          "title": "Ultrasonic Anemometer Sampling Subcontract",
+          "description": "Samples redundant sonic probes and cross-validates for differential error.",
+          "nouns": {},
+          "verbs": {
+            "SampleWindShearTelemetry": {
+              "name": "SampleWindShearTelemetry",
+              "description": "Sample dual ultrasonic anemometers and validate cross-sensor reading.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "optical_encoder_calibrated == True"
+              ],
+              "post_conditions": [
+                "telemetry_sampled == True",
+                "is_valid == True"
+              ],
+              "modifies_nouns": [
+                "WindShearTelemetry"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        },
+        "sub_byzantine_gossip": {
+          "contract_id": "sub_byzantine_gossip",
+          "title": "Byzantine Gossip Broadcast Subcontract",
+          "description": "Broadcasts signed telemetry to physical grid neighbors over TLS channels.",
+          "nouns": {},
+          "verbs": {
+            "BroadcastGossipProposal": {
+              "name": "BroadcastGossipProposal",
+              "description": "Broadcast proposal to adjacent cardinal neighbors.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "telemetry_sampled == True",
+                "is_valid == True"
+              ],
+              "post_conditions": [
+                "gossip_broadcast_complete == True",
+                "packet_verified == True"
+              ],
+              "modifies_nouns": [
+                "GossipPacket"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        },
+        "sub_pBFT_consensus": {
+          "contract_id": "sub_pBFT_consensus",
+          "title": "Practical Byzantine Fault Tolerance Consensus Subcontract",
+          "description": "Verifies 2/3 supermajority consensus across active physical neighbors.",
+          "nouns": {},
+          "verbs": {
+            "VerifyNeighborQuorum": {
+              "name": "VerifyNeighborQuorum",
+              "description": "Compute neighborhood quorum confirmations and verify supermajority.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "gossip_broadcast_complete == True",
+                "packet_verified == True"
+              ],
+              "post_conditions": [
+                "quorum_consensus_verified == True",
+                "supermajority_ratio >= 0.6667",
+                "is_locked == True"
+              ],
+              "modifies_nouns": [
+                "QuorumConsensusWitness"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        },
+        "sub_aerodynamic_stance": {
+          "contract_id": "sub_aerodynamic_stance",
+          "title": "Aerodynamic Flat Lock Actuator Subcontract",
+          "description": "Engages fail-safe 0-degree rigid flat lockdown upon quorum certification.",
+          "nouns": {},
+          "verbs": {
+            "ExecuteEmergencyFlatLock": {
+              "name": "ExecuteEmergencyFlatLock",
+              "description": "Slew blade to 0 degrees to shed aerodynamic shear.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "quorum_consensus_verified == True",
+                "is_locked == True"
+              ],
+              "post_conditions": [
+                "blade_angle_deg == 0",
+                "flat_lock_engaged == True"
+              ],
+              "modifies_nouns": [
+                "LouverNode"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        }
+      }
+    },
+    "statechart_ir": {
+      "id": "statechart_byzantine_kinetic_facade",
+      "version": "5.0",
+      "root": {
+        "id": "facade_system",
+        "type": "compound",
+        "description": "Root hierarchical state machine for Byzantine kinetic facade louver node",
+        "transitions": [],
+        "entry_actions": [],
+        "exit_actions": [],
+        "initial": "boot",
+        "states": {
+          "boot": {
+            "id": "boot",
+            "type": "compound",
+            "description": "Louver node initialization compound state",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "boot.hw_init",
+            "states": {
+              "boot.hw_init": {
+                "id": "boot.hw_init",
+                "type": "atomic",
+                "description": "Hardware POST: verify motor driver, optical encoder, and sonic anemometers",
+                "transitions": [
+                  {
+                    "event": "HW_OK",
+                    "target": "boot.calibration",
+                    "actions": [],
+                    "description": "POST passed"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "boot.calibration": {
+                "id": "boot.calibration",
+                "type": "atomic",
+                "description": "Optical encoder zero-index homing and angular limit calibration",
+                "transitions": [
+                  {
+                    "event": "CALIBRATED",
+                    "target": "boot.neighbor_discovery",
+                    "actions": [],
+                    "description": "Optical index calibrated"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "boot.neighbor_discovery": {
+                "id": "boot.neighbor_discovery",
+                "type": "atomic",
+                "description": "P2P neighbor handshake across 12 gossip grid channels",
+                "transitions": [
+                  {
+                    "event": "MESH_JOINED",
+                    "target": "active",
+                    "actions": [],
+                    "description": "Neighbor links established"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              }
+            }
+          },
+          "active": {
+            "id": "active",
+            "type": "compound",
+            "description": "Operational state encompassing normal tracking, Byzantine consensus, lockdown, and recovery",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "active.normal_operation",
+            "states": {
+              "active.normal_operation": {
+                "id": "active.normal_operation",
+                "type": "compound",
+                "description": "Normal daylighting and phototropic solar tracking operation",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": [],
+                "initial": "normal_operation.sun_tracking",
+                "states": {
+                  "normal_operation.sun_tracking": {
+                    "id": "normal_operation.sun_tracking",
+                    "type": "atomic",
+                    "description": "Phototropic tracking: computing optimal solar shading angle based on sun vector",
+                    "transitions": [
+                      {
+                        "event": "SOLAR_TICK",
+                        "target": "normal_operation.slew_positioning",
+                        "actions": [],
+                        "description": "New solar angle target calculated"
+                      },
+                      {
+                        "event": "SHEAR_DETECTED",
+                        "target": "active.adversarial_consensus",
+                        "actions": [],
+                        "description": "Local wind shear exceeds 25 m/s"
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "normal_operation.slew_positioning": {
+                    "id": "normal_operation.slew_positioning",
+                    "type": "atomic",
+                    "description": "Controlled motor actuation slew at <= 15 deg/s",
+                    "transitions": [
+                      {
+                        "event": "TARGET_REACHED",
+                        "target": "normal_operation.calm_idle",
+                        "actions": [],
+                        "description": "Target angle reached within 0.5 deg"
+                      },
+                      {
+                        "event": "SHEAR_DETECTED",
+                        "target": "active.adversarial_consensus",
+                        "actions": [],
+                        "description": "Wind burst interrupts slew"
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "normal_operation.calm_idle": {
+                    "id": "normal_operation.calm_idle",
+                    "type": "atomic",
+                    "description": "Calm steady-state holding position; continuous anemometer sampling",
+                    "transitions": [
+                      {
+                        "event": "SUN_MOVED",
+                        "target": "normal_operation.sun_tracking",
+                        "actions": [],
+                        "description": "Solar ephemeris step update"
+                      },
+                      {
+                        "event": "SHEAR_DETECTED",
+                        "target": "active.adversarial_consensus",
+                        "actions": [],
+                        "description": "Local or neighbor wind shear spike"
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  }
+                }
+              },
+              "active.adversarial_consensus": {
+                "id": "active.adversarial_consensus",
+                "type": "compound",
+                "description": "Decentralized Byzantine fault-tolerant consensus pipeline",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": [],
+                "initial": "adversarial_consensus.pre_prepare",
+                "states": {
+                  "adversarial_consensus.pre_prepare": {
+                    "id": "adversarial_consensus.pre_prepare",
+                    "type": "atomic",
+                    "description": "pBFT Round 1: Local node detects shear, signs telemetry, and broadcasts proposal",
+                    "transitions": [
+                      {
+                        "event": "PROPOSAL_BROADCAST",
+                        "target": "adversarial_consensus.prepare",
+                        "actions": [],
+                        "description": "Telemetry broadcast to grid neighbors"
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "adversarial_consensus.prepare": {
+                    "id": "adversarial_consensus.prepare",
+                    "type": "atomic",
+                    "description": "pBFT Round 2: Collecting neighbor PREPARE gossip packets; verifying 2/3 supermajority",
+                    "transitions": [
+                      {
+                        "event": "QUORUM_PREPARED",
+                        "target": "adversarial_consensus.commit",
+                        "actions": [],
+                        "description": ">= 2/3 neighbor confirmation received"
+                      },
+                      {
+                        "event": "GUST_ABATED",
+                        "target": "active.normal_operation",
+                        "actions": [],
+                        "description": "Transient noise below threshold; return to tracking"
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "adversarial_consensus.commit": {
+                    "id": "adversarial_consensus.commit",
+                    "type": "atomic",
+                    "description": "pBFT Round 3: Broadcasting signed COMMIT and initiating flat-lock command",
+                    "transitions": [
+                      {
+                        "event": "QUORUM_COMMITTED",
+                        "target": "active.locked_flat_rigid",
+                        "actions": [],
+                        "description": "Byzantine consensus sealed; execute lock"
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  }
+                }
+              },
+              "active.locked_flat_rigid": {
+                "id": "active.locked_flat_rigid",
+                "type": "final",
+                "description": "Aerodynamic fail-closed lockdown at 0 deg blade angle; drag reduced by 88%",
+                "transitions": [
+                  {
+                    "event": "CALM_THRESHOLD_DETECTED",
+                    "target": "active.unwind_recovery",
+                    "actions": [],
+                    "description": "Wind speed dropped below 12 m/s; enter unwind pipeline"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "active.unwind_recovery": {
+                "id": "active.unwind_recovery",
+                "type": "compound",
+                "description": "Orderly Calibrated Unwind Recovery Pipeline (replaces physically impossible Functorial Undo)",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": [],
+                "initial": "unwind_recovery.calm_sustained_check",
+                "states": {
+                  "unwind_recovery.calm_sustained_check": {
+                    "id": "unwind_recovery.calm_sustained_check",
+                    "type": "atomic",
+                    "description": "Orderly Recovery Phase 1: Verify calm (<12 m/s) sustained for >= 3 consecutive heartbeat epochs across >= 2/3 neighbors",
+                    "transitions": [
+                      {
+                        "event": "CALM_CONFIRMED_3X",
+                        "target": "unwind_recovery.staged_motor_unwind",
+                        "actions": [],
+                        "description": "Sustained calm consensus certified"
+                      },
+                      {
+                        "event": "SHEAR_SPIKE",
+                        "target": "active.locked_flat_rigid",
+                        "actions": [],
+                        "description": "Secondary wind burst aborts recovery back to flat lock"
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "unwind_recovery.staged_motor_unwind": {
+                    "id": "unwind_recovery.staged_motor_unwind",
+                    "type": "atomic",
+                    "description": "Orderly Recovery Phase 2: Ramped, calibrated motor rotation back to phototropic tracking without gear shock",
+                    "transitions": [
+                      {
+                        "event": "UNWIND_COMPLETE",
+                        "target": "active.normal_operation",
+                        "actions": [],
+                        "description": "Calibrated recovery complete; resume normal tracking"
+                      },
+                      {
+                        "event": "SHEAR_SPIKE",
+                        "target": "active.locked_flat_rigid",
+                        "actions": [],
+                        "description": "Wind burst triggers immediate fail-closed return"
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "context_schema": {
+        "node_id": "str",
+        "blade_angle_deg": "float",
+        "target_angle_deg": "float",
+        "local_wind_speed": "float",
+        "consecutive_calm_epochs": "int",
+        "active_neighbors": "int",
+        "shear_confirmations": "int",
+        "quorum_locked": "bool"
+      },
+      "initial_context": {
+        "node_id": "node_c",
+        "blade_angle_deg": 0.0,
+        "target_angle_deg": 45.0,
+        "local_wind_speed": 4.2,
+        "consecutive_calm_epochs": 0,
+        "active_neighbors": 4,
+        "shear_confirmations": 0,
+        "quorum_locked": false
+      }
+    },
+    "topology_ir": {
+      "topology_id": "topology_byzantine_kinetic_facade",
+      "nodes": {
+        "node_nw": {
+          "node_id": "node_nw",
+          "role": "worker",
+          "host_interface": "10.99.10.11",
+          "port": 8101,
+          "capabilities": [
+            "louver_actuator",
+            "dual_anemometer",
+            "optical_encoder"
+          ],
+          "memory_mb_limit": 512
+        },
+        "node_n": {
+          "node_id": "node_n",
+          "role": "worker",
+          "host_interface": "10.99.10.12",
+          "port": 8101,
+          "capabilities": [
+            "louver_actuator",
+            "dual_anemometer",
+            "optical_encoder"
+          ],
+          "memory_mb_limit": 512
+        },
+        "node_ne": {
+          "node_id": "node_ne",
+          "role": "worker",
+          "host_interface": "10.99.10.13",
+          "port": 8101,
+          "capabilities": [
+            "louver_actuator",
+            "dual_anemometer",
+            "optical_encoder"
+          ],
+          "memory_mb_limit": 512
+        },
+        "node_w": {
+          "node_id": "node_w",
+          "role": "worker",
+          "host_interface": "10.99.10.14",
+          "port": 8101,
+          "capabilities": [
+            "louver_actuator",
+            "dual_anemometer",
+            "optical_encoder"
+          ],
+          "memory_mb_limit": 512
+        },
+        "node_c": {
+          "node_id": "node_c",
+          "role": "worker",
+          "host_interface": "10.99.10.15",
+          "port": 8101,
+          "capabilities": [
+            "louver_actuator",
+            "dual_anemometer",
+            "optical_encoder"
+          ],
+          "memory_mb_limit": 512
+        },
+        "node_e": {
+          "node_id": "node_e",
+          "role": "worker",
+          "host_interface": "10.99.10.16",
+          "port": 8101,
+          "capabilities": [
+            "louver_actuator",
+            "dual_anemometer",
+            "optical_encoder"
+          ],
+          "memory_mb_limit": 512
+        },
+        "node_sw": {
+          "node_id": "node_sw",
+          "role": "worker",
+          "host_interface": "10.99.10.17",
+          "port": 8101,
+          "capabilities": [
+            "louver_actuator",
+            "dual_anemometer",
+            "optical_encoder"
+          ],
+          "memory_mb_limit": 512
+        },
+        "node_s": {
+          "node_id": "node_s",
+          "role": "worker",
+          "host_interface": "10.99.10.18",
+          "port": 8101,
+          "capabilities": [
+            "louver_actuator",
+            "dual_anemometer",
+            "optical_encoder"
+          ],
+          "memory_mb_limit": 512
+        },
+        "node_se": {
+          "node_id": "node_se",
+          "role": "worker",
+          "host_interface": "10.99.10.19",
+          "port": 8101,
+          "capabilities": [
+            "louver_actuator",
+            "dual_anemometer",
+            "optical_encoder"
+          ],
+          "memory_mb_limit": 512
+        }
+      },
+      "channels": [
+        {
+          "channel_id": "chan_node_nw_node_n",
+          "source_node_id": "node_nw",
+          "target_node_id": "node_n",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_n_node_ne",
+          "source_node_id": "node_n",
+          "target_node_id": "node_ne",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_w_node_c",
+          "source_node_id": "node_w",
+          "target_node_id": "node_c",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_c_node_e",
+          "source_node_id": "node_c",
+          "target_node_id": "node_e",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_sw_node_s",
+          "source_node_id": "node_sw",
+          "target_node_id": "node_s",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_s_node_se",
+          "source_node_id": "node_s",
+          "target_node_id": "node_se",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_nw_node_w",
+          "source_node_id": "node_nw",
+          "target_node_id": "node_w",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_w_node_sw",
+          "source_node_id": "node_w",
+          "target_node_id": "node_sw",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_n_node_c",
+          "source_node_id": "node_n",
+          "target_node_id": "node_c",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_c_node_s",
+          "source_node_id": "node_c",
+          "target_node_id": "node_s",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_ne_node_e",
+          "source_node_id": "node_ne",
+          "target_node_id": "node_e",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_node_e_node_se",
+          "source_node_id": "node_e",
+          "target_node_id": "node_se",
+          "channel_type": "gossip",
+          "port": 8101,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        }
+      ],
+      "consensus": {
+        "protocol": "sheaf_quorum",
+        "quorum_fraction": 0.67,
+        "heartbeat_interval_ms": 250,
+        "partition_strategy": "fail_closed"
+      }
+    },
+    "endpoints": [
+      "http://10.99.10.11:8101",
+      "http://10.99.10.12:8101",
+      "http://10.99.10.13:8101",
+      "http://10.99.10.14:8101",
+      "http://10.99.10.15:8101",
+      "http://10.99.10.16:8101",
+      "http://10.99.10.17:8101",
+      "http://10.99.10.18:8101",
+      "http://10.99.10.19:8101"
+    ],
+    "canonical_port": 8101,
+    "required_invariants": [
+      "blade_angle_deg >= 0.0",
+      "blade_angle_deg <= 90.0",
+      "angular_velocity_dps <= 15.0",
+      "optical_encoder_calibrated == True",
+      "supermajority_ratio >= 0.6667",
+      "consecutive_calm_epochs >= 3"
+    ]
+  }
+}

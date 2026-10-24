@@ -1,0 +1,1029 @@
+{
+  "soc_id": "soc_euclidean_canon_studio",
+  "title": "Axioma Cancrizans: Interactive Euclidean Polyrhythm & Topological Canon Studio",
+  "narrative": "Contemporary algorithmic composers and music theorists struggle to compose complex contrapuntal canons over Euclidean polyrhythmic timelines. Standard linear piano-roll DAWs obscure cyclic dihedral symmetry D_n and hide topological voice crossings. Manual Bjorklund distribution and canon transformations introduce unnoticed parallel fifths and voice collisions. Axioma Cancrizans unifies non-Euclidean rhythm necklaces, dihedral canon folding, and species counterpoint verification into an interactive, formally certified studio.",
+  "altitude": "MACRO",
+  "actors": [
+    {
+      "name": "Contemporary Contrapuntal & Algorithmic Composer",
+      "role": "Contemporary Contrapuntal & Algorithmic Composer",
+      "motivations": [
+        "Compose intricate canons over non-isochronous Euclidean polyrhythms",
+        "Explore retrograde, inversion, and Moebius transformations with mathematical rigor",
+        "Maintain strict contrapuntal consonance across polymetric LCM hyper-cycles"
+      ],
+      "frustrations": [
+        "Linear piano-roll timelines that flatten and obscure cyclic rotational symmetries",
+        "Tedious manual calculation of Bjorklund pulse distribution and LCM phase alignment",
+        "Silent introduction of parallel fifths and octaves during canon involution"
+      ]
+    },
+    {
+      "name": "Computational Musicologist & Geometric Theorist",
+      "role": "Computational Musicologist & Geometric Theorist",
+      "motivations": [
+        "Analyze maximal evenness and Toussaint planar chord geometries",
+        "Verify dihedral group D_n symmetries and topological Moebius ribbon braiding",
+        "Formally audit counterpoint consonance matrices across distributed quorum nodes"
+      ],
+      "frustrations": [
+        "Lack of formal verification tools for non-orientable canon manifolds",
+        "Disconnection between geometric rhythm theory and real-time auditory feedback",
+        "Uncertainty about voice-leading consonance in microtonal or polymetric intersections"
+      ]
+    },
+    {
+      "name": "Live Polyrhythmic Ensemble Performer",
+      "role": "Live Polyrhythmic Ensemble Performer",
+      "motivations": [
+        "Perform polyrhythmic canons with zero-latency responsive synthesis",
+        "Experiment fearlessly with topological voice-folding using 1-tap Functorial Undo",
+        "Interact with intuitive geometric visualizers representing complex contrapuntal voices"
+      ],
+      "frustrations": [
+        "High-latency web audio engines breaking performance synchrony",
+        "Irreversible UI actions that destroy complex polyrhythmic presets upon error",
+        "Opaque numerical interfaces that hinder real-time spatial musical intuition"
+      ]
+    }
+  ],
+  "frictions": [
+    {
+      "description": "Linear piano-roll timelines obscure cyclic dihedral symmetry D_n of Euclidean rhythms and hide palindromic Crab or non-orientable Moebius voice crossings",
+      "severity": "CRITICAL",
+      "impact": "Obscures geometric voice relationships and causes voice-leading collisions",
+      "trigger_conditions": [
+        "Composer attempts to fold a voice along a retrograde or inverted timeline in a standard DAW"
+      ]
+    },
+    {
+      "description": "Manual Bjorklund distribution of k pulses across n steps and coprime polymetric LCM hyper-cycles causes rhythmic drift and calculation errors",
+      "severity": "HIGH",
+      "impact": "Breaks maximal evenness and induces phase alignment drift",
+      "trigger_conditions": [
+        "Setting up coprime polyrhythmic meters (e.g. 5:7:11) manually"
+      ]
+    },
+    {
+      "description": "Applying topological canon functors (Retrograde R, Inversion I, Moebius Table R o I) introduces uninspected parallel perfect fifths/octaves and voice-leading clashes",
+      "severity": "CRITICAL",
+      "impact": "Degrades contrapuntal consonance and creates dissonant voice collisions",
+      "trigger_conditions": [
+        "Applying Crab or Moebius transformation without automated consonance checking"
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "nature": "TECHNICAL",
+      "description": "Bjorklund Maximal Evenness & Toussaint Necklace Invariant: max_ioi_diff <= 1 and polygon_area >= 0",
+      "boundary_limit": "Bjorklund E(k, n) distribution with max IOI difference <= 1"
+    },
+    {
+      "nature": "TECHNICAL",
+      "description": "Topological Involution & Moebius Braid Closure ([L1-G3B-011], [L1-002]): involution_residual == 0 with 18-state XState v5 Deep History and 1-tap Functorial Undo",
+      "boundary_limit": "Involution residual == 0, cyclic dihedral group D_n closure"
+    },
+    {
+      "nature": "TECHNICAL",
+      "description": "Contrapuntal Consonance & Anti-Loopback Topological Fidelity ([L1-G3B-012]): parallel_perfect_violations == 0 and routable cluster interfaces (10.88.10.x, zero loopback)",
+      "boundary_limit": "Zero parallel fifths/octaves, 10.88.10.x routable interfaces"
+    }
+  ],
+  "unmet_needs": [
+    "Real-time interactive cyclic Euclidean rhythm sculpting with Bjorklund E(k, n) distribution",
+    "Topological canon functors (Retrograde Crab, Inversion Mirror, Moebius Table) with 1-tap Functorial Undo",
+    "Automated contrapuntal consonance auditor and Artin braid crossing analyzer with Sheaf-Quorum verification"
+  ],
+  "induced_frictions": [],
+  "parent_soc_id": null,
+  "sub_socs": [
+    {
+      "soc_id": "soc_meso_euclidean_geometry",
+      "title": "Euclidean Geometry & Maximal Evenness Subsystem",
+      "narrative": "Bjorklund maximal evenness, Toussaint inscribed polygons, and Deep Rhythm interval vectors.",
+      "altitude": "MESO",
+      "actors": [
+        {
+          "name": "Contemporary Contrapuntal & Algorithmic Composer",
+          "role": "Contemporary Contrapuntal & Algorithmic Composer",
+          "motivations": [
+            "Compose intricate canons over non-isochronous Euclidean polyrhythms",
+            "Explore retrograde, inversion, and Moebius transformations with mathematical rigor",
+            "Maintain strict contrapuntal consonance across polymetric LCM hyper-cycles"
+          ],
+          "frustrations": [
+            "Linear piano-roll timelines that flatten and obscure cyclic rotational symmetries",
+            "Tedious manual calculation of Bjorklund pulse distribution and LCM phase alignment",
+            "Silent introduction of parallel fifths and octaves during canon involution"
+          ]
+        },
+        {
+          "name": "Computational Musicologist & Geometric Theorist",
+          "role": "Computational Musicologist & Geometric Theorist",
+          "motivations": [
+            "Analyze maximal evenness and Toussaint planar chord geometries",
+            "Verify dihedral group D_n symmetries and topological Moebius ribbon braiding",
+            "Formally audit counterpoint consonance matrices across distributed quorum nodes"
+          ],
+          "frustrations": [
+            "Lack of formal verification tools for non-orientable canon manifolds",
+            "Disconnection between geometric rhythm theory and real-time auditory feedback",
+            "Uncertainty about voice-leading consonance in microtonal or polymetric intersections"
+          ]
+        },
+        {
+          "name": "Live Polyrhythmic Ensemble Performer",
+          "role": "Live Polyrhythmic Ensemble Performer",
+          "motivations": [
+            "Perform polyrhythmic canons with zero-latency responsive synthesis",
+            "Experiment fearlessly with topological voice-folding using 1-tap Functorial Undo",
+            "Interact with intuitive geometric visualizers representing complex contrapuntal voices"
+          ],
+          "frustrations": [
+            "High-latency web audio engines breaking performance synchrony",
+            "Irreversible UI actions that destroy complex polyrhythmic presets upon error",
+            "Opaque numerical interfaces that hinder real-time spatial musical intuition"
+          ]
+        }
+      ],
+      "frictions": [
+        {
+          "description": "Uneven pulse spacing and calculation errors in manual Euclidean distributions",
+          "severity": "HIGH",
+          "impact": "Degrades rhythmic groove and polyrhythmic stability",
+          "trigger_conditions": [
+            "Euclidean onset distribution E(k, n, rho) evaluated across coprime polymetric cycle lengths",
+            "Topological canon involution operator (Cancrizans R, Spiegelkanon I, Moebius Table R o I) applied to Dux subject",
+            "Dyadic interval consonance audit and Artin braid generator crossing verification across LCM hyper-measure"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "nature": "TECHNICAL",
+          "description": "Bjorklund Maximal Evenness & Toussaint Necklace Invariant: max_ioi_diff <= 1 and polygon_area >= 0",
+          "boundary_limit": "Bjorklund E(k, n) distribution with max IOI difference <= 1"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Topological Involution & Moebius Braid Closure ([L1-G3B-011], [L1-002]): involution_residual == 0 with 18-state XState v5 Deep History and 1-tap Functorial Undo",
+          "boundary_limit": "Involution residual == 0, cyclic dihedral group D_n closure"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Contrapuntal Consonance & Anti-Loopback Topological Fidelity ([L1-G3B-012]): parallel_perfect_violations == 0 and routable cluster interfaces (10.88.10.x, zero loopback)",
+          "boundary_limit": "Zero parallel fifths/octaves, 10.88.10.x routable interfaces"
+        }
+      ],
+      "unmet_needs": [
+        "Maximal evenness Bjorklund distribution and Toussaint planar chord visualization"
+      ],
+      "induced_frictions": [],
+      "parent_soc_id": "soc_euclidean_canon_studio",
+      "sub_socs": []
+    },
+    {
+      "soc_id": "soc_meso_topological_canon_manifold",
+      "title": "Topological Canon Manifold & Dihedral Functor Subsystem",
+      "narrative": "Dihedral group D_n, Bach Cancrizans retrograde, Spiegelkanon inversion, and non-orientable Moebius ribbon gluing.",
+      "altitude": "MESO",
+      "actors": [
+        {
+          "name": "Contemporary Contrapuntal & Algorithmic Composer",
+          "role": "Contemporary Contrapuntal & Algorithmic Composer",
+          "motivations": [
+            "Compose intricate canons over non-isochronous Euclidean polyrhythms",
+            "Explore retrograde, inversion, and Moebius transformations with mathematical rigor",
+            "Maintain strict contrapuntal consonance across polymetric LCM hyper-cycles"
+          ],
+          "frustrations": [
+            "Linear piano-roll timelines that flatten and obscure cyclic rotational symmetries",
+            "Tedious manual calculation of Bjorklund pulse distribution and LCM phase alignment",
+            "Silent introduction of parallel fifths and octaves during canon involution"
+          ]
+        },
+        {
+          "name": "Computational Musicologist & Geometric Theorist",
+          "role": "Computational Musicologist & Geometric Theorist",
+          "motivations": [
+            "Analyze maximal evenness and Toussaint planar chord geometries",
+            "Verify dihedral group D_n symmetries and topological Moebius ribbon braiding",
+            "Formally audit counterpoint consonance matrices across distributed quorum nodes"
+          ],
+          "frustrations": [
+            "Lack of formal verification tools for non-orientable canon manifolds",
+            "Disconnection between geometric rhythm theory and real-time auditory feedback",
+            "Uncertainty about voice-leading consonance in microtonal or polymetric intersections"
+          ]
+        },
+        {
+          "name": "Live Polyrhythmic Ensemble Performer",
+          "role": "Live Polyrhythmic Ensemble Performer",
+          "motivations": [
+            "Perform polyrhythmic canons with zero-latency responsive synthesis",
+            "Experiment fearlessly with topological voice-folding using 1-tap Functorial Undo",
+            "Interact with intuitive geometric visualizers representing complex contrapuntal voices"
+          ],
+          "frustrations": [
+            "High-latency web audio engines breaking performance synchrony",
+            "Irreversible UI actions that destroy complex polyrhythmic presets upon error",
+            "Opaque numerical interfaces that hinder real-time spatial musical intuition"
+          ]
+        }
+      ],
+      "frictions": [
+        {
+          "description": "Mathematical errors in topological voice-crossing and involution symmetry",
+          "severity": "CRITICAL",
+          "impact": "Causes voice trajectories to tear or fail Moebius closure",
+          "trigger_conditions": [
+            "Euclidean onset distribution E(k, n, rho) evaluated across coprime polymetric cycle lengths",
+            "Topological canon involution operator (Cancrizans R, Spiegelkanon I, Moebius Table R o I) applied to Dux subject",
+            "Dyadic interval consonance audit and Artin braid generator crossing verification across LCM hyper-measure"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "nature": "TECHNICAL",
+          "description": "Bjorklund Maximal Evenness & Toussaint Necklace Invariant: max_ioi_diff <= 1 and polygon_area >= 0",
+          "boundary_limit": "Bjorklund E(k, n) distribution with max IOI difference <= 1"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Topological Involution & Moebius Braid Closure ([L1-G3B-011], [L1-002]): involution_residual == 0 with 18-state XState v5 Deep History and 1-tap Functorial Undo",
+          "boundary_limit": "Involution residual == 0, cyclic dihedral group D_n closure"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Contrapuntal Consonance & Anti-Loopback Topological Fidelity ([L1-G3B-012]): parallel_perfect_violations == 0 and routable cluster interfaces (10.88.10.x, zero loopback)",
+          "boundary_limit": "Zero parallel fifths/octaves, 10.88.10.x routable interfaces"
+        }
+      ],
+      "unmet_needs": [
+        "Dihedral group D_n functors and non-orientable Moebius ribbon braiding"
+      ],
+      "induced_frictions": [],
+      "parent_soc_id": "soc_euclidean_canon_studio",
+      "sub_socs": []
+    },
+    {
+      "soc_id": "soc_meso_contrapuntal_auditor_synth",
+      "title": "Contrapuntal Consonance Auditor & WebAudio Synthesis Subsystem",
+      "narrative": "Species counterpoint consonance matrix, Artin braid crossing solver, and polyphonic WebAudio synthesis.",
+      "altitude": "MESO",
+      "actors": [
+        {
+          "name": "Contemporary Contrapuntal & Algorithmic Composer",
+          "role": "Contemporary Contrapuntal & Algorithmic Composer",
+          "motivations": [
+            "Compose intricate canons over non-isochronous Euclidean polyrhythms",
+            "Explore retrograde, inversion, and Moebius transformations with mathematical rigor",
+            "Maintain strict contrapuntal consonance across polymetric LCM hyper-cycles"
+          ],
+          "frustrations": [
+            "Linear piano-roll timelines that flatten and obscure cyclic rotational symmetries",
+            "Tedious manual calculation of Bjorklund pulse distribution and LCM phase alignment",
+            "Silent introduction of parallel fifths and octaves during canon involution"
+          ]
+        },
+        {
+          "name": "Computational Musicologist & Geometric Theorist",
+          "role": "Computational Musicologist & Geometric Theorist",
+          "motivations": [
+            "Analyze maximal evenness and Toussaint planar chord geometries",
+            "Verify dihedral group D_n symmetries and topological Moebius ribbon braiding",
+            "Formally audit counterpoint consonance matrices across distributed quorum nodes"
+          ],
+          "frustrations": [
+            "Lack of formal verification tools for non-orientable canon manifolds",
+            "Disconnection between geometric rhythm theory and real-time auditory feedback",
+            "Uncertainty about voice-leading consonance in microtonal or polymetric intersections"
+          ]
+        },
+        {
+          "name": "Live Polyrhythmic Ensemble Performer",
+          "role": "Live Polyrhythmic Ensemble Performer",
+          "motivations": [
+            "Perform polyrhythmic canons with zero-latency responsive synthesis",
+            "Experiment fearlessly with topological voice-folding using 1-tap Functorial Undo",
+            "Interact with intuitive geometric visualizers representing complex contrapuntal voices"
+          ],
+          "frustrations": [
+            "High-latency web audio engines breaking performance synchrony",
+            "Irreversible UI actions that destroy complex polyrhythmic presets upon error",
+            "Opaque numerical interfaces that hinder real-time spatial musical intuition"
+          ]
+        }
+      ],
+      "frictions": [
+        {
+          "description": "Unnoticed parallel perfect intervals occurring at polymetric coincidence points",
+          "severity": "CRITICAL",
+          "impact": "Violates species counterpoint principles and degrades harmonic clarity",
+          "trigger_conditions": [
+            "Euclidean onset distribution E(k, n, rho) evaluated across coprime polymetric cycle lengths",
+            "Topological canon involution operator (Cancrizans R, Spiegelkanon I, Moebius Table R o I) applied to Dux subject",
+            "Dyadic interval consonance audit and Artin braid generator crossing verification across LCM hyper-measure"
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "nature": "TECHNICAL",
+          "description": "Bjorklund Maximal Evenness & Toussaint Necklace Invariant: max_ioi_diff <= 1 and polygon_area >= 0",
+          "boundary_limit": "Bjorklund E(k, n) distribution with max IOI difference <= 1"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Topological Involution & Moebius Braid Closure ([L1-G3B-011], [L1-002]): involution_residual == 0 with 18-state XState v5 Deep History and 1-tap Functorial Undo",
+          "boundary_limit": "Involution residual == 0, cyclic dihedral group D_n closure"
+        },
+        {
+          "nature": "TECHNICAL",
+          "description": "Contrapuntal Consonance & Anti-Loopback Topological Fidelity ([L1-G3B-012]): parallel_perfect_violations == 0 and routable cluster interfaces (10.88.10.x, zero loopback)",
+          "boundary_limit": "Zero parallel fifths/octaves, 10.88.10.x routable interfaces"
+        }
+      ],
+      "unmet_needs": [
+        "Automated species counterpoint audit and low-latency polyphonic WebAudio rendering"
+      ],
+      "induced_frictions": [],
+      "parent_soc_id": "soc_euclidean_canon_studio",
+      "sub_socs": []
+    }
+  ],
+  "required_invariants": [
+    "bjorklund_evenness_verified == True",
+    "max_ioi_diff <= 1",
+    "involution_residual == 0",
+    "quorum_valid == True"
+  ],
+  "is_multi_node_cluster": true,
+  "domain_spec": {
+    "contract_ir": {
+      "contract_id": "contract_soc_euclidean_canon_studio",
+      "title": "Euclidean Canon Studio Compositional Verification Contract",
+      "description": "Enforces Bjorklund maximal evenness, topological involution, and contrapuntal consonance invariants.",
+      "nouns": {
+        "EuclideanNecklace": {
+          "name": "EuclideanNecklace",
+          "description": "Euclidean rhythm necklace with Bjorklund pulses, step count, and rotational phase.",
+          "fields": [
+            {
+              "name": "voice_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Unique voice identifier"
+            },
+            {
+              "name": "pulses_k",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Number of active pulses k"
+            },
+            {
+              "name": "steps_n",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Total metric steps n"
+            },
+            {
+              "name": "rotation_rho",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Rotational offset rho"
+            },
+            {
+              "name": "max_ioi_diff",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Maximum difference between inter-onset intervals"
+            },
+            {
+              "name": "bjorklund_evenness_verified",
+              "type_name": "bool",
+              "nullable": false,
+              "description": "Flag certifying Bjorklund maximal evenness"
+            }
+          ],
+          "invariants": [
+            "bjorklund_evenness_verified == True",
+            "max_ioi_diff <= 1",
+            "steps_n >= 1"
+          ]
+        },
+        "TopologicalCanonManifold": {
+          "name": "TopologicalCanonManifold",
+          "description": "Topological canon manifold tracking dihedral operators, inversion axis, and involution residual.",
+          "fields": [
+            {
+              "name": "canon_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Canon identifier"
+            },
+            {
+              "name": "operator_type",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Dihedral operator: retrograde, inversion, or moebius_table"
+            },
+            {
+              "name": "inversion_axis_midi",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Center axis pitch in MIDI note number"
+            },
+            {
+              "name": "involution_residual",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Involution residual (0 for perfect involution)"
+            },
+            {
+              "name": "mobius_closure_valid",
+              "type_name": "bool",
+              "nullable": false,
+              "description": "Flag certifying non-orientable Moebius closure"
+            }
+          ],
+          "invariants": [
+            "mobius_closure_valid == True",
+            "involution_residual == 0"
+          ]
+        },
+        "ContrapuntalBraidAudit": {
+          "name": "ContrapuntalBraidAudit",
+          "description": "Contrapuntal consonance matrix and Artin braid crossing audit across Sheaf-Quorum nodes.",
+          "fields": [
+            {
+              "name": "audit_id",
+              "type_name": "str",
+              "nullable": false,
+              "description": "Audit run identifier"
+            },
+            {
+              "name": "hyper_cycle_lcm",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Polymetric LCM hyper-cycle step count"
+            },
+            {
+              "name": "parallel_perfect_violations",
+              "type_name": "int",
+              "nullable": false,
+              "description": "Count of prohibited parallel fifths and octaves"
+            },
+            {
+              "name": "consonance_certified",
+              "type_name": "bool",
+              "nullable": false,
+              "description": "Flag certifying zero parallel perfect violations"
+            },
+            {
+              "name": "quorum_valid",
+              "type_name": "bool",
+              "nullable": false,
+              "description": "Flag certifying Sheaf-Quorum consensus"
+            }
+          ],
+          "invariants": [
+            "consonance_certified == True",
+            "parallel_perfect_violations == 0",
+            "quorum_valid == True"
+          ]
+        }
+      },
+      "verbs": {},
+      "composed_verbs": {
+        "CompileAndCertifyTopologicalCanon": {
+          "parent_verb": {
+            "name": "CompileAndCertifyTopologicalCanon",
+            "description": "End-to-end compositional pipeline from Euclidean necklace synthesis to contrapuntal certification.",
+            "parameters": [],
+            "return_type": "void",
+            "pre_conditions": [
+              "pulses_and_steps_valid == True",
+              "coprime_lcm_bounded == True",
+              "canon_operator_selected == True"
+            ],
+            "post_conditions": [
+              "bjorklund_evenness_verified == True",
+              "mobius_closure_valid == True",
+              "consonance_certified == True",
+              "workflow_completed == True",
+              "state_persisted == True"
+            ],
+            "modifies_nouns": [
+              "EuclideanNecklace",
+              "TopologicalCanonManifold",
+              "ContrapuntalBraidAudit"
+            ]
+          },
+          "child_steps": [
+            {
+              "child_contract_id": "sub_euclidean_necklace_generator",
+              "child_verb_name": "SynthesizeEuclideanNecklace",
+              "argument_bindings": {},
+              "output_binding": null
+            },
+            {
+              "child_contract_id": "sub_topological_canon_folder",
+              "child_verb_name": "FoldTopologicalCanonManifold",
+              "argument_bindings": {},
+              "output_binding": null
+            },
+            {
+              "child_contract_id": "sub_contrapuntal_braid_auditor",
+              "child_verb_name": "CertifyContrapuntalConsonance",
+              "argument_bindings": {},
+              "output_binding": null
+            }
+          ]
+        }
+      },
+      "parent_contract_id": null,
+      "sub_contracts": {
+        "sub_euclidean_necklace_generator": {
+          "contract_id": "sub_euclidean_necklace_generator",
+          "title": "Euclidean Necklace Generator Subcontract",
+          "description": "Generates Bjorklund E(k, n) maximal evenness pulse sequences and Toussaint planar chords.",
+          "nouns": {},
+          "verbs": {
+            "SynthesizeEuclideanNecklace": {
+              "name": "SynthesizeEuclideanNecklace",
+              "description": "Synthesizes maximal evenness Euclidean rhythm necklace E(k, n) and verifies IOI distribution.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "pulses_and_steps_valid == True",
+                "coprime_lcm_bounded == True"
+              ],
+              "post_conditions": [
+                "bjorklund_evenness_verified == True",
+                "toussaint_polygon_inscribed == True"
+              ],
+              "modifies_nouns": [
+                "EuclideanNecklace"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        },
+        "sub_topological_canon_folder": {
+          "contract_id": "sub_topological_canon_folder",
+          "title": "Topological Canon Folder Subcontract",
+          "description": "Folds Euclidean voices through dihedral group D_n operators and non-orientable Moebius ribbons.",
+          "nouns": {},
+          "verbs": {
+            "FoldTopologicalCanonManifold": {
+              "name": "FoldTopologicalCanonManifold",
+              "description": "Folds polyrhythm voices through Retrograde, Inversion, or Moebius table functors.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "bjorklund_evenness_verified == True",
+                "toussaint_polygon_inscribed == True",
+                "canon_operator_selected == True"
+              ],
+              "post_conditions": [
+                "mobius_closure_valid == True",
+                "braid_crossings_computed == True"
+              ],
+              "modifies_nouns": [
+                "TopologicalCanonManifold"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        },
+        "sub_contrapuntal_braid_auditor": {
+          "contract_id": "sub_contrapuntal_braid_auditor",
+          "title": "Contrapuntal Braid Auditor Subcontract",
+          "description": "Audits dyadic intervals for parallel fifths/octaves and verifies Sheaf-Quorum consensus.",
+          "nouns": {},
+          "verbs": {
+            "CertifyContrapuntalConsonance": {
+              "name": "CertifyContrapuntalConsonance",
+              "description": "Certifies species counterpoint consonance and confirms Sheaf-Quorum validity.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "bjorklund_evenness_verified == True",
+                "mobius_closure_valid == True",
+                "braid_crossings_computed == True"
+              ],
+              "post_conditions": [
+                "consonance_certified == True",
+                "workflow_completed == True",
+                "state_persisted == True"
+              ],
+              "modifies_nouns": [
+                "EuclideanNecklace",
+                "TopologicalCanonManifold",
+                "ContrapuntalBraidAudit"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        }
+      }
+    },
+    "statechart_ir": {
+      "id": "statechart_soc_euclidean_canon_studio",
+      "version": "5.0",
+      "root": {
+        "id": "root",
+        "type": "compound",
+        "description": "Root orchestrator for Axioma Cancrizans Euclidean Canon Studio.",
+        "transitions": [],
+        "entry_actions": [],
+        "exit_actions": [],
+        "initial": "euclidean_stratum",
+        "states": {
+          "euclidean_stratum": {
+            "id": "root.euclidean_stratum",
+            "type": "compound",
+            "description": "Euclidean rhythm sculpting and Toussaint geometric polygon stratum.",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "sculpting_necklaces",
+            "states": {
+              "sculpting_necklaces": {
+                "id": "euclidean_stratum.sculpting_necklaces",
+                "type": "atomic",
+                "description": "User sculpts pulse count k, step count n, and rotational offset rho.",
+                "transitions": [
+                  {
+                    "event": "INSCRIBE_POLYGON",
+                    "target": "euclidean_stratum.analyzing_toussaint_geometry",
+                    "actions": [
+                      "calculate_bjorklund_distribution",
+                      "inscribe_toussaint_polygon"
+                    ],
+                    "description": "Generates Bjorklund pulses and projects into cyclic polygon."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "analyzing_toussaint_geometry": {
+                "id": "euclidean_stratum.analyzing_toussaint_geometry",
+                "type": "atomic",
+                "description": "Evaluates Toussaint planar chords, maximal evenness, and Deep Rhythm properties.",
+                "transitions": [
+                  {
+                    "event": "GEOMETRY_DEGENERATE",
+                    "target": "euclidean_stratum.dead_end_asymmetric_pulse",
+                    "actions": [],
+                    "description": "Degenerate pulse distribution or asymmetric clustering detected."
+                  },
+                  {
+                    "event": "VERIFY_MAXIMAL_EVENNESS",
+                    "target": "euclidean_stratum.necklace_certified",
+                    "actions": [],
+                    "description": "Bjorklund maximal evenness verified with max IOI diff <= 1.",
+                    "guard": "max_ioi_diff <= 1"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "dead_end_asymmetric_pulse": {
+                "id": "euclidean_stratum.dead_end_asymmetric_pulse",
+                "type": "atomic",
+                "description": "Geometric dead-end: non-maximal evenness or degenerate metric ratio.",
+                "transitions": [
+                  {
+                    "event": "FUNCTORIAL_UNDO_GEOMETRY",
+                    "target": "euclidean_stratum.euclidean_history",
+                    "actions": [
+                      "record_geometric_dead_end",
+                      "restore_euclidean_snapshot"
+                    ],
+                    "description": "Functorial Undo rolls back to stable Euclidean deep history."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "euclidean_history": {
+                "id": "euclidean_stratum.euclidean_history",
+                "type": "history",
+                "description": "Deep history state preserving last verified Euclidean necklace configuration.",
+                "transitions": [
+                  {
+                    "event": "RESTORE_EUCLIDEAN_HISTORY",
+                    "target": "euclidean_stratum.analyzing_toussaint_geometry",
+                    "actions": [],
+                    "description": "Restores prior stable Euclidean configuration."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": [],
+                "history": "deep"
+              },
+              "necklace_certified": {
+                "id": "euclidean_stratum.necklace_certified",
+                "type": "atomic",
+                "description": "Certified Euclidean rhythm necklace ready for topological canon transformation.",
+                "transitions": [
+                  {
+                    "event": "FOLD_CANON_MANIFOLD",
+                    "target": "root.topological_canon_stratum",
+                    "actions": [],
+                    "description": "Proceeds to topological canon folding stratum.",
+                    "guard": "bjorklund_evenness_verified == True"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              }
+            }
+          },
+          "topological_canon_stratum": {
+            "id": "root.topological_canon_stratum",
+            "type": "compound",
+            "description": "Dihedral canon folding and non-orientable Moebius ribbon manifold stratum.",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "applying_dihedral_functor",
+            "states": {
+              "applying_dihedral_functor": {
+                "id": "topological_canon_stratum.applying_dihedral_functor",
+                "type": "atomic",
+                "description": "Applies dihedral group D_n operators: Retrograde R, Inversion I, or Moebius table R o I.",
+                "transitions": [
+                  {
+                    "event": "COMPUTE_CRAB_OR_MOEBIUS",
+                    "target": "topological_canon_stratum.braiding_voice_trajectories",
+                    "actions": [
+                      "compute_retrograde_crab",
+                      "twist_moebius_ribbon"
+                    ],
+                    "description": "Folds voice along selected dihedral involution operator."
+                  },
+                  {
+                    "event": "OPERATOR_INVALID",
+                    "target": "root.euclidean_stratum",
+                    "actions": [],
+                    "description": "Aborts canon fold and reverts to Euclidean stratum."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "braiding_voice_trajectories": {
+                "id": "topological_canon_stratum.braiding_voice_trajectories",
+                "type": "atomic",
+                "description": "Solves Artin braid crossings and checks involution closure for all folded voices.",
+                "transitions": [
+                  {
+                    "event": "INVOLUTION_DRIFT_DETECTED",
+                    "target": "topological_canon_stratum.dead_end_non_orientable_tear",
+                    "actions": [],
+                    "description": "Involution residual != 0; non-orientable tear in canon ribbon."
+                  },
+                  {
+                    "event": "VERIFY_BRAID_CLOSURE",
+                    "target": "topological_canon_stratum.manifold_glued",
+                    "actions": [],
+                    "description": "Braids close seamlessly with involution_residual == 0.",
+                    "guard": "involution_residual == 0"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "dead_end_non_orientable_tear": {
+                "id": "topological_canon_stratum.dead_end_non_orientable_tear",
+                "type": "atomic",
+                "description": "Topological dead-end: unclosed Moebius ribbon or broken involution symmetry.",
+                "transitions": [
+                  {
+                    "event": "FUNCTORIAL_UNDO_TOPOLOGY",
+                    "target": "euclidean_stratum.euclidean_history",
+                    "actions": [
+                      "record_topological_tear",
+                      "functorial_rollback"
+                    ],
+                    "description": "Functorial Undo rolls back cross-stratum to Euclidean deep history."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "manifold_glued": {
+                "id": "topological_canon_stratum.manifold_glued",
+                "type": "atomic",
+                "description": "Topological canon manifold successfully glued and certified.",
+                "transitions": [
+                  {
+                    "event": "ENTER_CONTRAPUNTAL_AUDIT",
+                    "target": "root.contrapuntal_audition_stratum",
+                    "actions": [],
+                    "description": "Advances to contrapuntal audition and consonance verification stratum.",
+                    "guard": "mobius_closure_valid == True"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              }
+            }
+          },
+          "contrapuntal_audition_stratum": {
+            "id": "root.contrapuntal_audition_stratum",
+            "type": "compound",
+            "description": "Species counterpoint consonance audit and real-time WebAudio synthesis stratum.",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "auditing_dyadic_intervals",
+            "states": {
+              "auditing_dyadic_intervals": {
+                "id": "contrapuntal_audition_stratum.auditing_dyadic_intervals",
+                "type": "atomic",
+                "description": "Audits dyadic vertical intervals across all voices at every metric step.",
+                "transitions": [
+                  {
+                    "event": "PARALLEL_PERFECTS_DETECTED",
+                    "target": "contrapuntal_audition_stratum.dead_end_parallel_fifths",
+                    "actions": [],
+                    "description": "Parallel fifths or octaves detected between voices."
+                  },
+                  {
+                    "event": "CERTIFY_CONSONANCE_MATRIX",
+                    "target": "contrapuntal_audition_stratum.auditioning_webaudio_canon",
+                    "actions": [],
+                    "description": "Species counterpoint consonance matrix fully certified with zero violations.",
+                    "guard": "parallel_perfect_violations == 0"
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "dead_end_parallel_fifths": {
+                "id": "contrapuntal_audition_stratum.dead_end_parallel_fifths",
+                "type": "atomic",
+                "description": "Contrapuntal dead-end: prohibited parallel perfect fifths or octaves.",
+                "transitions": [
+                  {
+                    "event": "SOLVE_OPTIMAL_ROTATION_RHO",
+                    "target": "contrapuntal_audition_stratum.contrapuntal_history",
+                    "actions": [
+                      "solve_minimal_fifth_rotation",
+                      "restore_contrapuntal_snapshot"
+                    ],
+                    "description": "Auto-solves optimal rotational phase offset rho to eliminate parallel fifths."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "contrapuntal_history": {
+                "id": "contrapuntal_audition_stratum.contrapuntal_history",
+                "type": "history",
+                "description": "Deep history state for contrapuntal audit stratum.",
+                "transitions": [
+                  {
+                    "event": "RESTORE_CONTRAPUNTAL_STATE",
+                    "target": "contrapuntal_audition_stratum.auditing_dyadic_intervals",
+                    "actions": [],
+                    "description": "Restores audited contrapuntal state for re-verification."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": [],
+                "history": "deep"
+              },
+              "auditioning_webaudio_canon": {
+                "id": "contrapuntal_audition_stratum.auditioning_webaudio_canon",
+                "type": "atomic",
+                "description": "Live real-time WebAudio polyphonic synthesis of the verified Euclidean canon.",
+                "transitions": [
+                  {
+                    "event": "SEAL_CANON_SCORE",
+                    "target": "contrapuntal_audition_stratum.canon_mastery_complete",
+                    "actions": [
+                      "export_midi_and_json",
+                      "seal_cryptographic_score"
+                    ],
+                    "description": "Seals the completed canon score and exports MIDI/JSON assets."
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "canon_mastery_complete": {
+                "id": "contrapuntal_audition_stratum.canon_mastery_complete",
+                "type": "final",
+                "description": "Terminal certified state: Axioma Cancrizans Euclidean canon mastered and verified.",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": []
+              }
+            }
+          }
+        }
+      },
+      "context_schema": {
+        "active_stratum": "str",
+        "bjorklund_evenness_verified": "bool",
+        "mobius_closure_valid": "bool",
+        "consonance_certified": "bool",
+        "dead_end_rollbacks": "int",
+        "value_delivered": "bool"
+      },
+      "initial_context": {
+        "active_stratum": "euclidean_stratum",
+        "bjorklund_evenness_verified": false,
+        "mobius_closure_valid": false,
+        "consonance_certified": false,
+        "dead_end_rollbacks": 0,
+        "value_delivered": false
+      }
+    },
+    "topology_ir": {
+      "topology_id": "topo_soc_euclidean_canon_studio",
+      "nodes": {
+        "node_cancrizans_studio_orchestrator": {
+          "node_id": "node_cancrizans_studio_orchestrator",
+          "role": "orchestrator",
+          "host_interface": "10.88.10.10",
+          "port": 8099,
+          "capabilities": [
+            "euclidean_necklace_ui",
+            "statechart_engine",
+            "webaudio_polyphonic_synthesizer"
+          ],
+          "memory_mb_limit": 4096
+        },
+        "node_topological_braid_solver": {
+          "node_id": "node_topological_braid_solver",
+          "role": "worker",
+          "host_interface": "10.88.10.20",
+          "port": 8443,
+          "capabilities": [
+            "artin_braid_solver",
+            "dihedral_group_functor",
+            "mobius_strip_gluing"
+          ],
+          "memory_mb_limit": 4096
+        },
+        "node_contrapuntal_quorum_verifier": {
+          "node_id": "node_contrapuntal_quorum_verifier",
+          "role": "verifier",
+          "host_interface": "10.88.10.30",
+          "port": 9090,
+          "capabilities": [
+            "species_counterpoint_verifier",
+            "consonance_matrix_auditor",
+            "sheaf_quorum_witness"
+          ],
+          "memory_mb_limit": 2048
+        }
+      },
+      "channels": [
+        {
+          "channel_id": "ch_braid_geometry_stream",
+          "source_node_id": "node_cancrizans_studio_orchestrator",
+          "target_node_id": "node_topological_braid_solver",
+          "channel_type": "stream",
+          "port": 8443,
+          "latency_ms_budget": 15,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "ch_counterpoint_contract_rpc",
+          "source_node_id": "node_cancrizans_studio_orchestrator",
+          "target_node_id": "node_contrapuntal_quorum_verifier",
+          "channel_type": "rpc",
+          "port": 9090,
+          "latency_ms_budget": 10,
+          "tls_enforced": true
+        }
+      ],
+      "consensus": {
+        "protocol": "sheaf_quorum",
+        "quorum_fraction": 0.67,
+        "heartbeat_interval_ms": 500,
+        "partition_strategy": "fail_closed"
+      }
+    },
+    "endpoints": [
+      "http://10.88.10.10:8099",
+      "http://10.88.10.20:8443",
+      "http://10.88.10.30:9090"
+    ]
+  }
+}

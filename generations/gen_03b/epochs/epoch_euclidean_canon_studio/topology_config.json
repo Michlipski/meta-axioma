@@ -1,0 +1,67 @@
+{
+  "channels": [
+    {
+      "channel_id": "ch_braid_geometry_stream",
+      "channel_type": "stream",
+      "latency_ms_budget": 15,
+      "port": 8443,
+      "source_node_id": "node_cancrizans_studio_orchestrator",
+      "target_node_id": "node_topological_braid_solver",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "ch_counterpoint_contract_rpc",
+      "channel_type": "rpc",
+      "latency_ms_budget": 10,
+      "port": 9090,
+      "source_node_id": "node_cancrizans_studio_orchestrator",
+      "target_node_id": "node_contrapuntal_quorum_verifier",
+      "tls_enforced": true
+    }
+  ],
+  "consensus": {
+    "heartbeat_interval_ms": 500,
+    "partition_strategy": "fail_closed",
+    "protocol": "sheaf_quorum",
+    "quorum_fraction": 0.67
+  },
+  "nodes": {
+    "node_cancrizans_studio_orchestrator": {
+      "capabilities": [
+        "euclidean_necklace_ui",
+        "statechart_engine",
+        "webaudio_polyphonic_synthesizer"
+      ],
+      "host_interface": "10.88.10.10",
+      "memory_mb_limit": 4096,
+      "node_id": "node_cancrizans_studio_orchestrator",
+      "port": 8099,
+      "role": "orchestrator"
+    },
+    "node_contrapuntal_quorum_verifier": {
+      "capabilities": [
+        "species_counterpoint_verifier",
+        "consonance_matrix_auditor",
+        "sheaf_quorum_witness"
+      ],
+      "host_interface": "10.88.10.30",
+      "memory_mb_limit": 2048,
+      "node_id": "node_contrapuntal_quorum_verifier",
+      "port": 9090,
+      "role": "verifier"
+    },
+    "node_topological_braid_solver": {
+      "capabilities": [
+        "artin_braid_solver",
+        "dihedral_group_functor",
+        "mobius_strip_gluing"
+      ],
+      "host_interface": "10.88.10.20",
+      "memory_mb_limit": 4096,
+      "node_id": "node_topological_braid_solver",
+      "port": 8443,
+      "role": "worker"
+    }
+  },
+  "topology_id": "topo_soc_euclidean_canon_studio"
+}

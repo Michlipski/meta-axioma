@@ -11,6 +11,10 @@ The ultimate mandate of the Meta-Axioma compiler lineage is **The High-Level Jet
 
 To thoroughly stress-test the 7 structural axioms and prevent recursive overfitting, Generation $G_1$ is deploying a portfolio of **6 diverse production systems**:
 
+> ### 👑 Flagship Meta-Foundry Spotlight: System G3b & Evolution Studio
+> - **System 13: [`g3b_compiler`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03b/src/g3b_compiler/)** — The Autonomous Universal Systems Compiler (Reflexive Quine Daughter Isolation, Dual-Model Routing Argon Brain vs Flash Muscle, Waterloo Tier 1 Situation of Concern).
+> - **System 14: [`axioma_evolution_dashboard`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_evolution_dashboard/)** — Interactive 7-Stage Architectural Evolution Studio & Topology Workbench (Port `8105`, pinned G3b zenith HUD, Beehive-inspired 4-tier SVG topology, transformation deltas/catalysts, 6 subsystem lineages, and Michael Lipski's epistemic contributions).
+
 | System ID | Name | Domain / Archetype | Target Persona | Port | Status | Primary Feedback / Lesson |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **01** | [`axioma_flow`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_flow/) | Invariant Kanban & Workspace | AI Architect / Systems Engineer | `8088` | **Deployed** | Strong desktop UX; lacks active user feedback telemetry loop. |
@@ -23,7 +27,11 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 | **08** | [`portfolio`](file:///Users/michaellipski/dev/meta-axioma/apps/portfolio/) | Engineering Portfolio & Showcase Gateway | Technical Recruiters & Systems Leaders | `3000` | **Deployed (G2)** | Next.js App Router (Static Export) + Vercel Multi-Zone Rewrites (`/axioma/:path*`), academic typography, Beehive systems slot. |
 | **09** | [`axioma_fabric`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_fabric/) | Distributed Sheaf-CRDT Event Fabric | Distributed Systems & Platform Lead | `8443` | **Deployed (G2)** | Generation 2 Distributed Flagship: Sheaf Covering ($U_i$), Pairwise Cocycle Auditor ($U_i \cap U_j$), Landauer Ring Buffer ($Q = \text{bits} \cdot k_B T \ln 2$), HMAC Tokens, Real-Time PWA Canvas. |
 | **10** | [`axioma_mesh`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_mesh/) | Distributed Consensus & Cluster Orchestrator | Infrastructure Lead & Cluster Operator | `8200` | **Deployed (G3)** | Generation 3 Flagship: Transitive Sheaf-Quorum Hybrid, CQRS log rollback, cross-network blast enclaves, OpenTelemetry & Prometheus exports. |
+| **11** | [`axioma_morphic`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_morphic/) | Early Childhood Visual Category Theory | Young Canadian Learners (Ages 4-8) & Educators | `8210` | **Deployed (G3)** | MorphicKids / Morphique: Zero-PII, Bilingual EN/FR, creature stepping stones, Rest Stone (Identity), Action Wand, WCAG 2.1 AA. |
 | **12** | [`axioma_joy`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_joy/) | Visceral Category Theory & Structural Reasoning | Visceral Structural Thinkers & Art Students | `8120` | **Deployed (G2b)** | Eugenia Cheng SAIC Pedagogy: The Baker's Kitchen, 3D Factorization Cube of 30, The Analogy Bridge, Web Audio harmonic chords on commutativity, dual category C^op, [NEG-G1B-001] witness. |
+| **13** | [`g3b_compiler`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03b/src/g3b_compiler/) | Reflexive Universal Systems Compiler & Quine Factory | Zero-Trust Systems Architects & Meta-Orchestrators | `CLI / Subprocess` | **Deployed (G3b)** | 4-Milestone Escrow Architecture: Dual-Model Router ([L1-G3B-014]: Argon Brain / Flash Muscle), FractalTaskStack ([L1-G3B-015]), Zero-Bypass Self-Healing ([L1-G3B-016]), Zero-Template IR-Driven Emission, SHA-256 Telemetry, Quine Daughter Isolation (`39/39` tests passing). |
+| **14** | [`axioma_evolution_dashboard`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_evolution_dashboard/) | Architectural Evolution Studio & Topology Workbench | Enterprise Architects, Systems Leaders, Technical Recruiters | `8105` | **Deployed (G3b)** | Interactive 7-stage chronological spine (S0->G1->G2->G3->G1b->G2b->G3b), pinned G3b zenith architecture HUD, 4-tier Beehive-style SVG topology canvas, side-by-side comparative diffing, 6 transformation nodes, 6-subsystem component drill-down, and Michael Lipski's epistemic contributions. |
+| **15** | [`axioma_heliotrope`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_heliotrope/) | Heliotropic Microclimate & Solar Shadow Choreographer Studio | Permaculture Designers, Landscape Architects, Urban Homesteader | `8080` | **Deployed (G3b)** | Waterloo Tier 1 Situation of Concern (`[L1-G3B-000]`), NOAA astronomical solar position solver, 3D polygon shadow extrusion, 600-cell cumulative insolation discrete integration, asset suitability evaluation, 1-tap Functorial Undo (`[L1-002]`), and live compiler Development Process Telemetry Dashboard (`[L1-G3B-018]`). |
 
 ### Core Governance Principle: Plan-First & Optional Execution
 > **The Golden Rule for Application Synthesis:**  
@@ -161,6 +169,22 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
 
 ---
 
+### System 11: Axioma Morphic (MorphicKids / Morphique)
+- **Canonical Path:** [`generations/gen_03/apps/axioma_morphic/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/apps/axioma_morphic/) (Symlinked at [`apps/axioma_morphic/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_morphic/))
+- **App ID:** `axioma_morphic` | **Port:** `8210` | **Status:** **Deployed (G3)** (22/22 Tests Passing)
+- **Generational Lineage:** Built from ground up under Generation 3 ($G_3$) post-High-Level Jettison.
+- **Target Persona:** Young Canadian Learners (Ages 4–8) & Elementary Educators / French Immersion Teachers.
+- **Architectural Blueprint:** [`early_childhood_category_theory_canada_plan.md`](file:///Users/michaellipski/.gemini/antigravity/brain/4260a519-5298-4632-b994-96183d493ebb/early_childhood_category_theory_canada_plan.md)
+- **Key Features:**
+  - **Visual Category Theory Foundations:** Objects as Creatures, Morphisms as Action Paths, Composition ($g \circ f$) as Chaining Stepping Stones, Identity ($\text{id}$) as the Rest Stone.
+  - **Zero Minor PII Architecture:** Guarantees zero collection of student personal information, satisfying **PIPEDA**, **Quebec Law 25**, and provincial school board directives (**MFIPPA**, **FOIPPA**).
+  - **Blinded HMAC Capability Badges:** Students authenticate via pictographic animal QR cards with zero passwords.
+  - **Bilingual Parity (Official Languages Act):** 100% key-for-key and sensory parity between Canadian English (`en-CA.json`) and Canadian French (`fr-CA.json`).
+  - **Universal Accessibility (AODA / WCAG 2.1 AA):** Dual-layer SVG canvas with semantic ARIA live regions, single-switch scanning navigation (Space/Enter), and magnetic snap geometry ($\ge 32\text{ px}$).
+  - **Offline-First PWA:** ServiceWorker caching enabling 100% gameplay across low-bandwidth rural and northern schools.
+
+---
+
 ### System 12: Axioma Joy (Visceral Category Theory & Structural Reasoning Studio)
 - **Canonical Path:** [`generations/gen_02b/apps/axioma_joy/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02b/apps/axioma_joy/) (Symlinked at [`apps/axioma_joy/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_joy/))
 - **App ID:** `axioma_joy` | **Port:** `8120` | **Status:** **Deployed & Operational (G2b Certified)** (Witness: `WITNESS_PE_259E7836272D1489`)
@@ -184,6 +208,53 @@ To thoroughly stress-test the 7 structural axioms and prevent recursive overfitt
   - 1,008 Negative Transition Assertions synthesized.
   - Steps-to-Value $\le 3$ steps.
   - Live substrate execution: 6/6 tests passing (Witness: `WITNESS_PE_259E7836272D1489`).
+
+---
+
+### System 13: SystemG3bCompiler (The Autonomous Universal Systems Compiler)
+- **Canonical Path:** [`generations/gen_03b/src/g3b_compiler/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03b/src/g3b_compiler/)
+- **Concept:** Reflexive universal software systems compiler built under the 4-Milestone Physical Escrow Cadence (`Option C: 600,000 token budget — 360k exploratory / 240k protected`). Eliminates mock archetype templates and fiat token accounting in favor of a deterministic Python outer FSM, a bounded `FractalTaskStack`, and zero-template IR-driven code emission.
+- **Active Structural Invariants:** `[L1-G3B-000]`, `[L1-G3B-008..017]`, `[NEG-G1B-001]`.
+- **Key Architectural Pillars:**
+  - **Dual-Model Cognitive Router (`[L1-G3B-014]`):** Strictly separates **The Brain (`Gemini 4 Argon`)** for FSM orchestration, Waterloo SoC normalization, and hostile Zero-Trust Evaluators from **The Muscle (`Gemini 3.8 Flash`)** for indivisible leaf emission.
+  - **Bounded Fractal Task Stack & Zero-Bypass Interception (`[L1-G3B-015]`, `[L1-G3B-016]`):** Enforces $d_{\max}$, $b_{\max}$, and child capital partitioning; intercepts every Flash leaf through `ZeroTrustMicroAuditorRegistry` with exponential-backoff self-healing retries and Landauer bit-erasure accounting.
+  - **Zero-Template IR-Driven Emission & SHA-256 Telemetry:** `DynamicCodeEmitter` compiles `ContractIR`, `StatechartIR`, and `TopologyIR` object graphs directly into executable Python systems and unit tests, sealing every compilation event into a tamper-evident SHA-256 hash chain (`CryptographicTelemetryEngine`).
+  - **The Quine Daughter Isolation Protocol:** Parent ($G_{3b}$, Chain Head `b14d3575...`) emits a self-hosting Daughter Compiler ($G_{3b}'$, Chain Head `64a755b1...`) into an isolated sandbox, boots it in an independent subprocess (`compile_seed.py`), and certifies its downstream compilation of `soc_biologics_cold_chain` (`39/39` total suite tests passing on Python 3.14).
+
+---
+
+### System 14: Axioma Evolution Dashboard (Architectural Evolution Studio & Topology Workbench)
+- **Canonical Path:** [`generations/gen_03b/apps/axioma_evolution_dashboard/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_evolution_dashboard/) (Symlinked at [`apps/axioma_evolution_dashboard/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_evolution_dashboard/))
+- **App ID:** `axioma_evolution_dashboard` | **Port:** `8105` | **Status:** **Deployed & Operational (G3b Certified)** (16/16 Unit Tests Passing)
+- **Generational Lineage:** Built under Generation 3b ($G_{3b}$) following Option B Enterprise Interactive Evolution Studio proposal.
+- **Target Persona:** Enterprise Systems Architects, Engineering Leaders, Technical Recruiters, and Systems Researchers.
+- **Primary JTBD:** Rapidly comprehend, inspect, and demonstrate how Meta-Axioma evolved across its 7-stage development lifecycle ($S_0 \to G_1 \to G_2 \to G_3 \to G_{1b} \to G_{2b} \to G_{3b}$), with side-by-side comparative visual diffing, component drill-down lineages, and explicit highlighting of epistemic milestones and Michael Lipski's foundational contributions.
+- **Key Architectural Features:**
+  - **Pinned G3b Zenith Architecture HUD:** Pinned permanently to the top of the studio to showcase $G_{3b}$'s apex status, reflexive Quine universality, Dual-Model Cognitive Routing (Argon Brain vs Flash Muscle), and Waterloo Tier 1 Situation of Concern (`[L1-G3B-000]`), while retaining $G_{3b}$'s chronological place at the end of the timeline.
+  - **Interactive Chronological Timeline Spine:** Seamless navigation tracking $S_0 \to G_1 \to G_2 \to G_3 \to G_{1b} \to G_{2b} \to G_{3b}$ with live Auto-Tour playback.
+  - **Beehive-Inspired 4-Tier SVG Architectural Topology Canvas:** Standardized 4-tier grid (Ingress & Interface, Orchestration & Core Logic, Verification & Governance Gates, Substrate & Storage) with interactive nodes, hover tooltips, active flow animations, and real-time inspector drawer.
+  - **Interactive Transformation Nodes ($\Delta_1 \to \Delta_6$):** Clickable links detailing color-coded Deltas (`+ ADDED`, `- REMOVED`, `~ REFACTORED`) and explicit Catalysts (technical bottlenecks, thermodynamic decay, Jettison events).
+  - **Side-by-Side Comparison View:** Instantaneous comparative visual diffing between any two sequential or selected stages.
+  - **Component Evolutionary Lineage Drill-Down:** Deep modal tracing the isolated 7-generation trajectory across all 6 core subsystems (State Engine, Verification Gates, Thermodynamics, Code Synthesis, Human Intent, and Execution Orchestration).
+  - **Prominent Epistemic Milestones & Michael Lipski's Contributions:** Itemizes Michael's foundational contributions for each era (Exogenous Orthogonality, Human Negative Vetoes, Target $P_1$, Intent Grounding Gate, Phenomenological Tool-Being, Transitive Sheaf-Quorum Candidate $\delta$, High-Level Jettison `CERT_HLJ_*`, Anti-Phantom Gate `[NEG-G1B-001]`, Stateful Overrides, and Quine Daughter Protocol).
+  - **Mandatory Live Operational Telemetry HUD (`[L1-G3B-018]`):** Real-time Landauer Bit-Erasure dissipation calculator ($Q = k_B T \ln 2 \cdot \text{bits}$), generational dissipation ledger, and 1-tap reset.
+
+---
+
+### System 15: Axioma Heliotrope (Heliotropic Microclimate & Solar Shadow Choreographer Studio)
+- **Canonical Path:** [`apps/axioma_heliotrope/`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_heliotrope/) (Target Epoch: [`generations/gen_03b/epochs/epoch_heliotrope_studio/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03b/epochs/epoch_heliotrope_studio/))
+- **App ID:** `axioma_heliotrope` | **SoC ID:** `soc_heliotropic_microclimate_studio` | **Port:** `8080` | **Status:** **Deployed & Operational (G3b Certified)** (19/19 App Tests Passing, 4/4 Compiler Substrate Tests Passing)
+- **Generational Lineage:** Built under Generation 3b ($G_{3b}$) via `SystemG3bCompiler` with Option B Unified Budget (101,600 BPE tokens: 60% Exploratory Pool / 40% Protected Pool) and 4 live AGY subagent witnesses (`bc3199a1...`, `80299b5a...`, `0db76a85...`, `d512904b...`).
+- **Target Persona:** Elena, Permaculture Designer, Landscape Architect, and Heliotropic Homesteader.
+- **Primary JTBD:** Model physical topography and structural obstacles (2-story house with 9m pitched gable roof, detached garage, mature conical cedar tree, perimeter fence) at a given geolocation (Portland, OR: 45.5152° N, -122.6784° W), calculate real-time solar vectors and 3D polygon shadow extrusion across Solstices and Equinoxes, compute a 600-cell ($30\text{m} \times 20\text{m}$) cumulative insolation heatmap, evaluate microclimate asset suitability (Raised Vegetable Bed, Timber Gazebo, Solar Tanning Deck), and provide 1-tap Functorial Undo (`[L1-002]`).
+- **Key Architectural Features:**
+  - **Waterloo Tier 1 Situation of Concern (`[L1-G3B-000]`):** Rigorous Macro, Meso, and Micro deconstruction with 3 steps-to-value, zero compiler jargon, and active friction elimination.
+  - **Astronomical NOAA Solar Position Solver (`src/solar.py`):** Pure-Python astronomical solver computing solar declination, equation of time, solar altitude, solar azimuth, sunrise/sunset, and daylength hours.
+  - **3D Polygon Shadow Projection & 600-Cell Discrete Integration (`src/engine.py`):** Vectorized ray-polygon projection calculating ground shadow vertices and discrete cumulative direct sunlight hours across 96 daily time-steps.
+  - **Deterministic Exception Enclave (`src/enclaves.py`, `[L1-016]`):** Catches mathematical singularities or extreme out-of-bounds inputs and returns verified deterministic fallback ephemeris.
+  - **Permaculture Product Studio Canvas (`static/index.html`, `static/app.js`, `static/style.css`):** Interactive canvas with parcel layout, obstacle shadows, cumulative insolation heatmap overlay, draggable asset palette, instant microclimate qualification pill, and 1-tap `Cmd+Z` Functorial Undo.
+  - **Compiler Development Process Telemetry Dashboard (`dashboard.html` / `telemetry_dashboard.html`, `[L1-G3B-018]`):** Standalone dashboard visualizing the development process itself: thermodynamic BPE token ledger, predicted vs. actual spend, live subagent witnesses table, Quorum consensus trace, Landauer bit-erasure meters, and SHA-256 cryptographic chain head.
+  - **Substrate & Runtime Verification Witness:** 19/19 app unit tests passing (0.74s) and 4/4 IR-driven substrate tests passing (0.00s) with exit code 0.
 
 ---
 

@@ -1,0 +1,236 @@
+{
+  "app_substrate": null,
+  "app_test_execution_witness": null,
+  "chain_head_hash": "ab1380c350461e4bfb94675c0857634ef9699cb5793b9b46447bbffc4836deb3",
+  "compiler_id": "SystemG3b_Parent_Cancrizans",
+  "daughter_witness": {
+    "daughter_chain_head_hash": "a53c1b5e8b7547756cfc3b47142add4e4daf4c9d28ee01a30951fb88dc3f45f5",
+    "daughter_compiler_id": "SystemG3b_Daughter_Prime",
+    "daughter_exit_code": 0,
+    "daughter_exploratory_spent": 23093,
+    "daughter_exploratory_utilization_pct": 79.69,
+    "daughter_live_subagents_verified": 3,
+    "daughter_predicted_spend": 26438,
+    "daughter_prediction_accuracy_pct": 99.97,
+    "daughter_protected_spent": 3354,
+    "daughter_total_budget": 48300,
+    "downstream_file_count": 9,
+    "downstream_physical_tokens": 6021,
+    "downstream_soc_id": "soc_euclidean_canon_studio",
+    "downstream_tests_passed": 4
+  },
+  "disk_substrate": {
+    "file_count": 9,
+    "files": {
+      "contract_service.py": 897,
+      "domain_models.py": 306,
+      "leaf_code.py": 267,
+      "run.py": 240,
+      "statechart_engine.py": 693,
+      "tests/__init__.py": 15,
+      "tests/test_emitted_system.py": 491,
+      "topology_config.json": 285,
+      "topology_verifier.py": 345
+    },
+    "total_tokens": 3539
+  },
+  "hash_chain_events": [
+    {
+      "event_hash": "736d52e86ed151bdfe8aca6eaed71ce45704495958cdab9b02b4ff834737999e",
+      "event_type": "COMPILATION_INITIATED",
+      "index": 0,
+      "payload": {
+        "compiler_id": "SystemG3b_Parent_Cancrizans",
+        "is_multi_node_cluster": true,
+        "predicted_total_spend": 4800,
+        "require_live_subagents": true,
+        "soc_id": "soc_system_g3b_cancrizans_parent",
+        "subagent_witness_count": 3,
+        "total_budget": 7800
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "event_hash": "3778dba10a42073dd46d174fc3e1d4ef1f593ff06eeba19dfd4703dd3536e648",
+      "event_type": "CRUCIBLE_SYNTHESIS_CERTIFIED",
+      "index": 1,
+      "payload": {
+        "argon_deliberation_tokens": 1650,
+        "argon_verification_tokens": 1095,
+        "certified_soc_id": "soc_system_g3b_cancrizans_parent",
+        "flash_emission_tokens": 2311,
+        "remediation_count": 0,
+        "verified_leaves_count": 4
+      },
+      "prev_hash": "736d52e86ed151bdfe8aca6eaed71ce45704495958cdab9b02b4ff834737999e"
+    },
+    {
+      "event_hash": "81a72f3a10ee9a887b3b631eaa1a9f4fdc594529549a1559a6c2882f3578ec62",
+      "event_type": "STACK_TRACE_SEALED",
+      "index": 2,
+      "payload": {
+        "live_subagents_spawned_count": 3,
+        "recorded_subagent_witnesses_count": 3,
+        "remediation_count": 0,
+        "total_stack_operations": 12
+      },
+      "prev_hash": "3778dba10a42073dd46d174fc3e1d4ef1f593ff06eeba19dfd4703dd3536e648"
+    },
+    {
+      "event_hash": "a47a1ad991b144d2b7056347030fd16e729bdc39d966aefec7a1f74f436ff2a3",
+      "event_type": "DISK_SUBSTRATE_MEASURED",
+      "index": 3,
+      "payload": {
+        "app_file_count": 0,
+        "app_physical_tokens": 0,
+        "emitted_file_count": 9,
+        "emitted_physical_tokens": 3539,
+        "files": {
+          "contract_service.py": 897,
+          "domain_models.py": 306,
+          "leaf_code.py": 267,
+          "run.py": 240,
+          "statechart_engine.py": 693,
+          "tests/__init__.py": 15,
+          "tests/test_emitted_system.py": 491,
+          "topology_config.json": 285,
+          "topology_verifier.py": 345
+        }
+      },
+      "prev_hash": "81a72f3a10ee9a887b3b631eaa1a9f4fdc594529549a1559a6c2882f3578ec62"
+    },
+    {
+      "event_hash": "2b3fdd50b1c35b837b4bbceb0050d63d9216383107ba647729e551034744dc85",
+      "event_type": "SUBSTRATE_TEST_WITNESS",
+      "index": 4,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+        "tests_run": 4
+      },
+      "prev_hash": "a47a1ad991b144d2b7056347030fd16e729bdc39d966aefec7a1f74f436ff2a3"
+    },
+    {
+      "event_hash": "fcd40027f9270c4b39dccf14529dc7ed6440dd7542a8029d9d0825c957d99491",
+      "event_type": "QUINE_DAUGHTER_WITNESS",
+      "index": 5,
+      "payload": {
+        "daughter_chain_head_hash": "a53c1b5e8b7547756cfc3b47142add4e4daf4c9d28ee01a30951fb88dc3f45f5",
+        "daughter_compiler_id": "SystemG3b_Daughter_Prime",
+        "daughter_exit_code": 0,
+        "daughter_exploratory_spent": 23093,
+        "daughter_exploratory_utilization_pct": 79.69,
+        "daughter_live_subagents_verified": 3,
+        "daughter_predicted_spend": 26438,
+        "daughter_prediction_accuracy_pct": 99.97,
+        "daughter_protected_spent": 3354,
+        "daughter_total_budget": 48300,
+        "downstream_file_count": 9,
+        "downstream_physical_tokens": 6021,
+        "downstream_soc_id": "soc_euclidean_canon_studio",
+        "downstream_tests_passed": 4
+      },
+      "prev_hash": "2b3fdd50b1c35b837b4bbceb0050d63d9216383107ba647729e551034744dc85"
+    },
+    {
+      "event_hash": "ab1380c350461e4bfb94675c0857634ef9699cb5793b9b46447bbffc4836deb3",
+      "event_type": "THERMODYNAMIC_LEDGER_SEALED",
+      "index": 6,
+      "payload": {
+        "app_disk_tokens": 0,
+        "argon_deliberation_tokens": 1650,
+        "argon_verification_tokens": 1095,
+        "bits_erased": 0,
+        "dissipated_joules": 0.0,
+        "emitted_disk_tokens": 3539,
+        "exploratory_cap": 4680,
+        "exploratory_remaining": 719,
+        "exploratory_spent": 3961,
+        "exploratory_utilization_pct": 84.64,
+        "flash_emission_tokens": 2311,
+        "live_subagents_spawned_count": 3,
+        "predicted_exploratory_spend": 3700,
+        "predicted_total_spend": 4800,
+        "prediction_accuracy_pct": 94.67,
+        "protected_floor": 3120,
+        "protected_remaining": 2025,
+        "protected_spent": 1095,
+        "total_budget": 7800,
+        "total_combined_disk_tokens": 3539,
+        "total_spent": 5056,
+        "unspent_reserve": 2744,
+        "utilization_pct": 64.82
+      },
+      "prev_hash": "fcd40027f9270c4b39dccf14529dc7ed6440dd7542a8029d9d0825c957d99491"
+    }
+  ],
+  "live_subagents_spawned_count": 3,
+  "remediation_events": [],
+  "soc_id": "soc_system_g3b_cancrizans_parent",
+  "subagent_witnesses": [
+    {
+      "assigned_model": "Gemini 4 Argon",
+      "cognitive_role": "dialectical_exploration",
+      "conversation_id": "cfd04bbe-eb6f-4106-bdcc-e81ae84a3cfc",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 1420,
+      "response_bpe_tokens": 11196,
+      "subagent_role": "G3b Dialectical Architect & SoC Researcher",
+      "task_id": "decompose:root_soc_euclidean_canon_studio",
+      "total_bpe_tokens": 12616
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "cognitive_role": "leaf_code_emission",
+      "conversation_id": "3ae36c80-4210-4f40-9776-5bfedad913a7",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 1580,
+      "response_bpe_tokens": 18134,
+      "subagent_role": "G3b Leaf Synthesizer - Core Euclidean & Topological Canon Engine",
+      "task_id": "leaf:core_euclidean_and_topological_canon_engine",
+      "total_bpe_tokens": 19714
+    },
+    {
+      "assigned_model": "Gemini 3.8 Flash",
+      "cognitive_role": "leaf_code_emission",
+      "conversation_id": "631d5832-292a-4ad2-a423-5954c8250d32",
+      "is_live_agy_subagent": true,
+      "prompt_bpe_tokens": 1390,
+      "response_bpe_tokens": 38417,
+      "subagent_role": "G3b Leaf Synthesizer - Interactive Studio UI & Verification Suite",
+      "task_id": "leaf:interactive_studio_ui_and_verification_suite",
+      "total_bpe_tokens": 39807
+    }
+  ],
+  "test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+    "tests_run": 4
+  },
+  "thermodynamics": {
+    "app_disk_tokens": 0,
+    "argon_deliberation_tokens": 1650,
+    "argon_verification_tokens": 1095,
+    "bits_erased": 0,
+    "dissipated_joules": 0.0,
+    "emitted_disk_tokens": 3539,
+    "exploratory_cap": 4680,
+    "exploratory_remaining": 719,
+    "exploratory_spent": 3961,
+    "exploratory_utilization_pct": 84.64,
+    "flash_emission_tokens": 2311,
+    "live_subagents_spawned_count": 3,
+    "predicted_exploratory_spend": 3700,
+    "predicted_total_spend": 4800,
+    "prediction_accuracy_pct": 94.67,
+    "protected_floor": 3120,
+    "protected_remaining": 2025,
+    "protected_spent": 1095,
+    "total_budget": 7800,
+    "total_combined_disk_tokens": 3539,
+    "total_spent": 5056,
+    "unspent_reserve": 2744,
+    "utilization_pct": 64.82
+  },
+  "total_chained_events": 7
+}

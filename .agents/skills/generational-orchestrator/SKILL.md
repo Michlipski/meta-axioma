@@ -37,3 +37,18 @@ Before initiating a generational succession ($G_N \to G_{N+1}$):
 1. Ingest all failure modes, post-mortems, and human rulings recorded in `generations/gen_{N:02d}/FEEDBACK.md` and `feedback/feedback.json`.
 2. Ensure every high/critical severity lesson is translated into an inherited negative constraint (`NEG-G{N+1}-###`) or structural candidate axiom.
 3. Verify that the successor basis generator binds these constraints into Generation $N+1$'s operational charter and compiler gates before initiating construction.
+
+### 6. Mandatory Evolution Dashboard & Epistemic Tracking Synchronization ([L1-G3B-019])
+Whenever a new generation $G_{N+1}$ is scaffolded, synthesized, or transitioned:
+1. **Synchronize Evolutionary Dataset:** Update `apps/axioma_evolution_dashboard/data/evolution_data.json` and `data/evolution_data.py`:
+   - Append the new generational stage with its 4-tier Beehive topology (`nodes`, `edges`).
+   - Insert the new transformation node ($\Delta_{N \to N+1}$) with explicit Deltas (Added, Removed, Refactored) and Catalysts (Technical & Thermodynamic).
+   - Elicit and record **Michael Lipski's Epistemic Contributions**: capture the foundational human thoughts, exogenous mathematical seeds, negative invariant vetoes (`NEG-###`), and strategic pivots.
+   - Extend all 6 subsystem evolutionary lineages across the new generational boundary.
+   - Update the Pinned Zenith Architecture HUD if $G_{N+1}$ establishes a new state of the art.
+2. **Re-verify & Test Evolution Studio:**
+   - Verify `apps/axioma_evolution_dashboard/dashboard.html` and `static/index.html`.
+   - Run the empirical test suite: `python3 -m unittest discover -v -s apps/axioma_evolution_dashboard/tests` (must pass 100% with exit code 0).
+   - Sync the brain Generative UI artifact `meta_axioma_evolution_dashboard.html`.
+   - Update `SYSTEMS_PORTFOLIO.md` and `apps/README.md`.
+

@@ -1,0 +1,167 @@
+{
+  "app_substrate": null,
+  "app_test_execution_witness": null,
+  "chain_head_hash": "607ddeef05c49c5a1de226a71a586f397557caa9f77527f4d0513c01e8f8cb4d",
+  "compiler_id": "SystemG3b_Daughter_Prime",
+  "daughter_witness": null,
+  "disk_substrate": {
+    "file_count": 10,
+    "files": {
+      "contract_service.py": 1801,
+      "domain_models.py": 743,
+      "leaf_code.py": 343,
+      "run.py": 294,
+      "statechart_engine.py": 1084,
+      "telemetry_dashboard.html": 5995,
+      "tests/__init__.py": 15,
+      "tests/test_emitted_system.py": 674,
+      "topology_config.json": 479,
+      "topology_verifier.py": 345
+    },
+    "total_tokens": 11773
+  },
+  "hash_chain_events": [
+    {
+      "event_hash": "90b389ec2fc9f6d440341461bcadca330ee3c309092d30fb7a17cc82b81e9ef9",
+      "event_type": "COMPILATION_INITIATED",
+      "index": 0,
+      "payload": {
+        "compiler_id": "SystemG3b_Daughter_Prime",
+        "is_multi_node_cluster": true,
+        "predicted_total_spend": 24108,
+        "require_live_subagents": false,
+        "soc_id": "soc_epistemic_curiosity_engine",
+        "subagent_witness_count": 0,
+        "total_budget": 44500
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "event_hash": "139aaced8859ca4ed27c85682f9732b7cebfc20474cd9ab75a08040a29df2e1b",
+      "event_type": "CRUCIBLE_SYNTHESIS_CERTIFIED",
+      "index": 1,
+      "payload": {
+        "argon_deliberation_tokens": 14998,
+        "argon_verification_tokens": 8441,
+        "certified_soc_id": "soc_epistemic_curiosity_engine",
+        "flash_emission_tokens": 5887,
+        "remediation_count": 0,
+        "verified_leaves_count": 4
+      },
+      "prev_hash": "90b389ec2fc9f6d440341461bcadca330ee3c309092d30fb7a17cc82b81e9ef9"
+    },
+    {
+      "event_hash": "0a26af039a92a8b0285973f838a4847888a220dd5704d456be95ef0061005bdb",
+      "event_type": "STACK_TRACE_SEALED",
+      "index": 2,
+      "payload": {
+        "live_subagents_spawned_count": 0,
+        "recorded_subagent_witnesses_count": 0,
+        "remediation_count": 0,
+        "total_stack_operations": 12
+      },
+      "prev_hash": "139aaced8859ca4ed27c85682f9732b7cebfc20474cd9ab75a08040a29df2e1b"
+    },
+    {
+      "event_hash": "b6ea36b7baaa9bfa06a2e204eaf3e404885b69375256e0019a406a1cf7fd4202",
+      "event_type": "DISK_SUBSTRATE_MEASURED",
+      "index": 3,
+      "payload": {
+        "app_file_count": 0,
+        "app_physical_tokens": 0,
+        "emitted_file_count": 10,
+        "emitted_physical_tokens": 11773,
+        "files": {
+          "contract_service.py": 1801,
+          "domain_models.py": 743,
+          "leaf_code.py": 343,
+          "run.py": 294,
+          "statechart_engine.py": 1084,
+          "telemetry_dashboard.html": 5995,
+          "tests/__init__.py": 15,
+          "tests/test_emitted_system.py": 674,
+          "topology_config.json": 479,
+          "topology_verifier.py": 345
+        }
+      },
+      "prev_hash": "0a26af039a92a8b0285973f838a4847888a220dd5704d456be95ef0061005bdb"
+    },
+    {
+      "event_hash": "d3453758136fb41bf573de3469145965edeae863fc615c834d775eee1d5b4f77",
+      "event_type": "SUBSTRATE_TEST_WITNESS",
+      "index": 4,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+        "tests_run": 4
+      },
+      "prev_hash": "b6ea36b7baaa9bfa06a2e204eaf3e404885b69375256e0019a406a1cf7fd4202"
+    },
+    {
+      "event_hash": "607ddeef05c49c5a1de226a71a586f397557caa9f77527f4d0513c01e8f8cb4d",
+      "event_type": "THERMODYNAMIC_LEDGER_SEALED",
+      "index": 5,
+      "payload": {
+        "app_disk_tokens": 0,
+        "argon_deliberation_tokens": 14998,
+        "argon_verification_tokens": 8441,
+        "bits_erased": 0,
+        "dissipated_joules": 0.0,
+        "emitted_disk_tokens": 11773,
+        "exploratory_cap": 26700,
+        "exploratory_remaining": 5815,
+        "exploratory_spent": 20885,
+        "exploratory_utilization_pct": 78.22,
+        "flash_emission_tokens": 5887,
+        "live_subagents_spawned_count": 0,
+        "predicted_exploratory_spend": 21314,
+        "predicted_total_spend": 24108,
+        "prediction_accuracy_pct": 98.49,
+        "protected_floor": 17800,
+        "protected_remaining": 14941,
+        "protected_spent": 2859,
+        "total_budget": 44500,
+        "total_combined_disk_tokens": 11773,
+        "total_spent": 23744,
+        "unspent_reserve": 20756,
+        "utilization_pct": 53.36
+      },
+      "prev_hash": "d3453758136fb41bf573de3469145965edeae863fc615c834d775eee1d5b4f77"
+    }
+  ],
+  "live_subagents_spawned_count": 0,
+  "remediation_events": [],
+  "soc_id": "soc_epistemic_curiosity_engine",
+  "subagent_witnesses": [],
+  "test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+    "tests_run": 4
+  },
+  "thermodynamics": {
+    "app_disk_tokens": 0,
+    "argon_deliberation_tokens": 14998,
+    "argon_verification_tokens": 8441,
+    "bits_erased": 0,
+    "dissipated_joules": 0.0,
+    "emitted_disk_tokens": 11773,
+    "exploratory_cap": 26700,
+    "exploratory_remaining": 5815,
+    "exploratory_spent": 20885,
+    "exploratory_utilization_pct": 78.22,
+    "flash_emission_tokens": 5887,
+    "live_subagents_spawned_count": 0,
+    "predicted_exploratory_spend": 21314,
+    "predicted_total_spend": 24108,
+    "prediction_accuracy_pct": 98.49,
+    "protected_floor": 17800,
+    "protected_remaining": 14941,
+    "protected_spent": 2859,
+    "total_budget": 44500,
+    "total_combined_disk_tokens": 11773,
+    "total_spent": 23744,
+    "unspent_reserve": 20756,
+    "utilization_pct": 53.36
+  },
+  "total_chained_events": 6
+}

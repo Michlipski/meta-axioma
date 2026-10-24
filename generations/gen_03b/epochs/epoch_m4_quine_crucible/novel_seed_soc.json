@@ -1,0 +1,48 @@
+{
+  "soc_id": "soc_biologics_cold_chain",
+  "title": "Autonomous Biologics Cold-Chain Quorum Monitor",
+  "narrative": "Clinical biologics shipments suffer thermal excursion spoilage during multi-hop transit when sensor nodes lack local quorum validation and instant excursion lockouts.",
+  "altitude": "MACRO",
+  "actors": [
+    {
+      "name": "Clinical Pharmacist",
+      "role": "Biologics Custody Officer",
+      "motivations": [
+        "Zero thermal spoilage",
+        "Verifiable custody chain"
+      ],
+      "frustrations": [
+        "Delayed cloud alerts",
+        "Unverified sensor drift"
+      ]
+    }
+  ],
+  "frictions": [
+    {
+      "description": "Cryogenic vaccine degradation during transit handoffs",
+      "severity": "CRITICAL",
+      "impact": "Loss of life-saving biologics",
+      "trigger_conditions": []
+    }
+  ],
+  "constraints": [
+    {
+      "nature": "REGULATORY",
+      "description": "Strict thermal envelope <= 8 Celsius",
+      "boundary_limit": "8C ceiling"
+    }
+  ],
+  "unmet_needs": [
+    "Multi-node quorum sensor verification and excursion lockout"
+  ],
+  "induced_frictions": [],
+  "parent_soc_id": null,
+  "sub_socs": [],
+  "required_invariants": [
+    "temperature_celsius <= 8",
+    "quorum_valid == True"
+  ],
+  "is_multi_node_cluster": true,
+  "inject_fault_on_first_try": false,
+  "require_live_subagents": false
+}

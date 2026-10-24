@@ -1,0 +1,22 @@
+{
+  "application_id": "axioma_airscratch",
+  "generation": "G3b",
+  "witness_id": "witness_axioma_airscratch_g3b_1776019800",
+  "persona_name": "The Dual-OS Power Developer & Cross-Platform Creator",
+  "situation_of_concern": "Asynchronous Device-to-Device Scratchpad & File Drop (Mac ↔ Android)",
+  "jtbd_summary": "Instantly get code snippets, text, links, or pictures from Mac to Android (or vice versa) without emailing yourself, using third-party cloud apps, or plugging in a cable.",
+  "daily_workflow": "1. Run `python3 run.py` on Mac -> 2. Scan terminal or browser QR code with Android phone camera -> 3. Drag & drop files or paste snippets on either device -> 4. Receive instant live SSE notification on other device -> 5. 1-tap copy or download with tactile haptics -> 6. Reversible Functorial Undo (Cmd+Z) if needed -> 7. Local-first JSON export/import.",
+  "utility_metric_definition": "StepsToValue <= 3 (connect -> drop_payload -> receive_copy), PurePythonQR = 1.00 (Zero external pip packages), Reversibility = 100% (Functorial Undo), AntiPhantomWitness = WITNESS_PE_18A3B754D42E3A50.",
+  "approved_option": "Option B: AirScratch Studio Pro",
+  "thermodynamic_budget": {
+    "total_tokens": 450000,
+    "protected_capital_floor": 180000,
+    "exploratory_capital": 270000,
+    "protected_ratio": 0.40,
+    "exploratory_ratio": 0.60
+  },
+  "signed_off_by_human": true,
+  "signed_at": 1776019800.0,
+  "witness_signature": "WITNESS_PE_1FB9F7299F4EEA91",
+  "witness_hash": "1fb9f7299f4eea919f797eb75ead4f109ee634cd8eb37efa1eb0900bffa35ae4"
+}

@@ -1,0 +1,193 @@
+{
+  "app_substrate": null,
+  "app_test_execution_witness": null,
+  "chain_head_hash": "67d44f375fccd900acb59c873f91372029fe4af2215a705346317dbfce93bcc9",
+  "compiler_id": "SystemG3b_HydroVerify",
+  "daughter_witness": null,
+  "disk_substrate": {
+    "file_count": 10,
+    "files": {
+      "contract_service.py": 897,
+      "domain_models.py": 306,
+      "leaf_code.py": 267,
+      "run.py": 240,
+      "statechart_engine.py": 693,
+      "telemetry_dashboard.html": 8033,
+      "tests/__init__.py": 15,
+      "tests/test_emitted_system.py": 490,
+      "topology_config.json": 285,
+      "topology_verifier.py": 345
+    },
+    "total_tokens": 11571
+  },
+  "hash_chain_events": [
+    {
+      "event_hash": "207f55a19ffde41b74227f6103a3d379647d848d1c43e64a0ab8d5d8906b7940",
+      "event_type": "COMPILATION_INITIATED",
+      "index": 0,
+      "payload": {
+        "compiler_id": "SystemG3b_HydroVerify",
+        "is_multi_node_cluster": true,
+        "predicted_total_spend": 7040,
+        "require_live_subagents": false,
+        "soc_id": "soc_hydro_valve",
+        "subagent_witness_count": 0,
+        "total_budget": 11300
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "event_hash": "3fa1a209d63e8de97fb09fe0b6cd9239dd94461e8f6d0c54f949af534d61ded7",
+      "event_type": "CRUCIBLE_SYNTHESIS_CERTIFIED",
+      "index": 1,
+      "payload": {
+        "argon_deliberation_tokens": 2001,
+        "argon_verification_tokens": 2529,
+        "certified_soc_id": "soc_hydro_valve",
+        "flash_emission_tokens": 3298,
+        "remediation_count": 2,
+        "verified_leaves_count": 4
+      },
+      "prev_hash": "207f55a19ffde41b74227f6103a3d379647d848d1c43e64a0ab8d5d8906b7940"
+    },
+    {
+      "event_hash": "d07049d755065c5cc2dcbf177413d634086df7c5d2ae8ef2f92d7fbd05679386",
+      "event_type": "STACK_TRACE_SEALED",
+      "index": 2,
+      "payload": {
+        "live_subagents_spawned_count": 0,
+        "recorded_subagent_witnesses_count": 0,
+        "remediation_count": 2,
+        "total_stack_operations": 16
+      },
+      "prev_hash": "3fa1a209d63e8de97fb09fe0b6cd9239dd94461e8f6d0c54f949af534d61ded7"
+    },
+    {
+      "event_hash": "b8aa71d4302c3ef3bc0b0c4f5e63ffa11198d34ec4b640d70440ba83386eb40a",
+      "event_type": "DISK_SUBSTRATE_MEASURED",
+      "index": 3,
+      "payload": {
+        "app_file_count": 0,
+        "app_physical_tokens": 0,
+        "emitted_file_count": 10,
+        "emitted_physical_tokens": 11571,
+        "files": {
+          "contract_service.py": 897,
+          "domain_models.py": 306,
+          "leaf_code.py": 267,
+          "run.py": 240,
+          "statechart_engine.py": 693,
+          "telemetry_dashboard.html": 8033,
+          "tests/__init__.py": 15,
+          "tests/test_emitted_system.py": 490,
+          "topology_config.json": 285,
+          "topology_verifier.py": 345
+        }
+      },
+      "prev_hash": "d07049d755065c5cc2dcbf177413d634086df7c5d2ae8ef2f92d7fbd05679386"
+    },
+    {
+      "event_hash": "5db311e7d7c09ada8b860e746eb6cf5a1c621a740022daafea6050dc0842d25a",
+      "event_type": "SUBSTRATE_TEST_WITNESS",
+      "index": 4,
+      "payload": {
+        "exit_code": 0,
+        "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+        "tests_run": 4
+      },
+      "prev_hash": "b8aa71d4302c3ef3bc0b0c4f5e63ffa11198d34ec4b640d70440ba83386eb40a"
+    },
+    {
+      "event_hash": "67d44f375fccd900acb59c873f91372029fe4af2215a705346317dbfce93bcc9",
+      "event_type": "THERMODYNAMIC_LEDGER_SEALED",
+      "index": 5,
+      "payload": {
+        "app_disk_tokens": 0,
+        "argon_deliberation_tokens": 2001,
+        "argon_verification_tokens": 2529,
+        "bits_erased": 9480,
+        "dissipated_joules": 2.72168798305463e-17,
+        "emitted_disk_tokens": 11571,
+        "exploratory_cap": 6780,
+        "exploratory_remaining": 1481,
+        "exploratory_spent": 5299,
+        "exploratory_utilization_pct": 78.16,
+        "flash_emission_tokens": 3298,
+        "live_subagents_spawned_count": 0,
+        "predicted_exploratory_spend": 5390,
+        "predicted_total_spend": 7040,
+        "prediction_accuracy_pct": 93.54,
+        "protected_floor": 4520,
+        "protected_remaining": 3234,
+        "protected_spent": 1286,
+        "total_budget": 11300,
+        "total_combined_disk_tokens": 11571,
+        "total_spent": 6585,
+        "unspent_reserve": 4715,
+        "utilization_pct": 58.27
+      },
+      "prev_hash": "5db311e7d7c09ada8b860e746eb6cf5a1c621a740022daafea6050dc0842d25a"
+    }
+  ],
+  "live_subagents_spawned_count": 0,
+  "remediation_events": [
+    {
+      "attempt": 1,
+      "backoff_delay_ms": 100,
+      "bits_erased": 7032,
+      "defects": [
+        "[L1-G3B-012 Violation] Distributed endpoint 'http://127.0.0.1:8080' in leaf 'root:soc_hydro_valve.arch_dialectic.leaf_topology' binds to loopback '127.0.0.1'. Boundary realism requires active routable interfaces.",
+        "[L1-G3B-012 Violation] Distributed endpoint 'http://localhost:8081' in leaf 'root:soc_hydro_valve.arch_dialectic.leaf_topology' binds to loopback 'localhost'. Boundary realism requires active routable interfaces.",
+        "[L1-G3B-012 Violation] Multi-node topology 'topo_soc_hydro_valve' node 'node_primary' binds to loopback host '127.0.0.1'. Boundary realism requires distinct routable or virtual cluster network interfaces.",
+        "[L1-G3B-012 Violation] Multi-node topology 'topo_soc_hydro_valve' node 'node_replica' binds to loopback host 'localhost'. Boundary realism requires distinct routable or virtual cluster network interfaces."
+      ],
+      "max_retries": 3,
+      "task_id": "root:soc_hydro_valve.arch_dialectic.leaf_topology"
+    },
+    {
+      "attempt": 1,
+      "backoff_delay_ms": 100,
+      "bits_erased": 2448,
+      "defects": [
+        "Security Defect: Unsafe dynamic evaluation or SQL injection vector detected in 'root:soc_hydro_valve.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'pressure_kpa <= 250' is not enforced in leaf 'root:soc_hydro_valve.arch_dialectic.leaf_code'.",
+        "Contract Defect: Mandatory domain invariant 'valve_locked == True' is not enforced in leaf 'root:soc_hydro_valve.arch_dialectic.leaf_code'."
+      ],
+      "max_retries": 3,
+      "task_id": "root:soc_hydro_valve.arch_dialectic.leaf_code"
+    }
+  ],
+  "soc_id": "soc_hydro_valve",
+  "subagent_witnesses": [],
+  "test_execution_witness": {
+    "exit_code": 0,
+    "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
+    "tests_run": 4
+  },
+  "thermodynamics": {
+    "app_disk_tokens": 0,
+    "argon_deliberation_tokens": 2001,
+    "argon_verification_tokens": 2529,
+    "bits_erased": 9480,
+    "dissipated_joules": 2.72168798305463e-17,
+    "emitted_disk_tokens": 11571,
+    "exploratory_cap": 6780,
+    "exploratory_remaining": 1481,
+    "exploratory_spent": 5299,
+    "exploratory_utilization_pct": 78.16,
+    "flash_emission_tokens": 3298,
+    "live_subagents_spawned_count": 0,
+    "predicted_exploratory_spend": 5390,
+    "predicted_total_spend": 7040,
+    "prediction_accuracy_pct": 93.54,
+    "protected_floor": 4520,
+    "protected_remaining": 3234,
+    "protected_spent": 1286,
+    "total_budget": 11300,
+    "total_combined_disk_tokens": 11571,
+    "total_spent": 6585,
+    "unspent_reserve": 4715,
+    "utilization_pct": 58.27
+  },
+  "total_chained_events": 6
+}

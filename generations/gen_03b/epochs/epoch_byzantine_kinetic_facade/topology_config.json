@@ -1,0 +1,229 @@
+{
+  "channels": [
+    {
+      "channel_id": "chan_node_nw_node_n",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_nw",
+      "target_node_id": "node_n",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_n_node_ne",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_n",
+      "target_node_id": "node_ne",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_w_node_c",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_w",
+      "target_node_id": "node_c",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_c_node_e",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_c",
+      "target_node_id": "node_e",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_sw_node_s",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_sw",
+      "target_node_id": "node_s",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_s_node_se",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_s",
+      "target_node_id": "node_se",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_nw_node_w",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_nw",
+      "target_node_id": "node_w",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_w_node_sw",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_w",
+      "target_node_id": "node_sw",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_n_node_c",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_n",
+      "target_node_id": "node_c",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_c_node_s",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_c",
+      "target_node_id": "node_s",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_ne_node_e",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_ne",
+      "target_node_id": "node_e",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_node_e_node_se",
+      "channel_type": "gossip",
+      "latency_ms_budget": 20,
+      "port": 8101,
+      "source_node_id": "node_e",
+      "target_node_id": "node_se",
+      "tls_enforced": true
+    }
+  ],
+  "consensus": {
+    "heartbeat_interval_ms": 250,
+    "partition_strategy": "fail_closed",
+    "protocol": "sheaf_quorum",
+    "quorum_fraction": 0.67
+  },
+  "nodes": {
+    "node_c": {
+      "capabilities": [
+        "louver_actuator",
+        "dual_anemometer",
+        "optical_encoder"
+      ],
+      "host_interface": "10.99.10.15",
+      "memory_mb_limit": 512,
+      "node_id": "node_c",
+      "port": 8101,
+      "role": "worker"
+    },
+    "node_e": {
+      "capabilities": [
+        "louver_actuator",
+        "dual_anemometer",
+        "optical_encoder"
+      ],
+      "host_interface": "10.99.10.16",
+      "memory_mb_limit": 512,
+      "node_id": "node_e",
+      "port": 8101,
+      "role": "worker"
+    },
+    "node_n": {
+      "capabilities": [
+        "louver_actuator",
+        "dual_anemometer",
+        "optical_encoder"
+      ],
+      "host_interface": "10.99.10.12",
+      "memory_mb_limit": 512,
+      "node_id": "node_n",
+      "port": 8101,
+      "role": "worker"
+    },
+    "node_ne": {
+      "capabilities": [
+        "louver_actuator",
+        "dual_anemometer",
+        "optical_encoder"
+      ],
+      "host_interface": "10.99.10.13",
+      "memory_mb_limit": 512,
+      "node_id": "node_ne",
+      "port": 8101,
+      "role": "worker"
+    },
+    "node_nw": {
+      "capabilities": [
+        "louver_actuator",
+        "dual_anemometer",
+        "optical_encoder"
+      ],
+      "host_interface": "10.99.10.11",
+      "memory_mb_limit": 512,
+      "node_id": "node_nw",
+      "port": 8101,
+      "role": "worker"
+    },
+    "node_s": {
+      "capabilities": [
+        "louver_actuator",
+        "dual_anemometer",
+        "optical_encoder"
+      ],
+      "host_interface": "10.99.10.18",
+      "memory_mb_limit": 512,
+      "node_id": "node_s",
+      "port": 8101,
+      "role": "worker"
+    },
+    "node_se": {
+      "capabilities": [
+        "louver_actuator",
+        "dual_anemometer",
+        "optical_encoder"
+      ],
+      "host_interface": "10.99.10.19",
+      "memory_mb_limit": 512,
+      "node_id": "node_se",
+      "port": 8101,
+      "role": "worker"
+    },
+    "node_sw": {
+      "capabilities": [
+        "louver_actuator",
+        "dual_anemometer",
+        "optical_encoder"
+      ],
+      "host_interface": "10.99.10.17",
+      "memory_mb_limit": 512,
+      "node_id": "node_sw",
+      "port": 8101,
+      "role": "worker"
+    },
+    "node_w": {
+      "capabilities": [
+        "louver_actuator",
+        "dual_anemometer",
+        "optical_encoder"
+      ],
+      "host_interface": "10.99.10.14",
+      "memory_mb_limit": 512,
+      "node_id": "node_w",
+      "port": 8101,
+      "role": "worker"
+    }
+  },
+  "topology_id": "topology_byzantine_kinetic_facade"
+}
