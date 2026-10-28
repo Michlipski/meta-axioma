@@ -74,7 +74,7 @@ graph TD
 
 ## 3. System $G_2$ Modular Architecture
 
-System $G_2$ is structured inside [`generations/gen_02/src/g2_compiler/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/):
+System $G_2$ is structured inside [`generations/gen_02/src/g2_compiler/`](generations/gen_02/src/g2_compiler/):
 
 ```
 g2_compiler/

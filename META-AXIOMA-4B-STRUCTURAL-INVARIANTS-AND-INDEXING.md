@@ -4,8 +4,8 @@
 - **Specification Status:** PROPOSED ARCHITECTURAL ENFORCEMENT STANDARD (G4B COMPILER KERNEL)
 - **Predecessor Analysis:** System $G_{3b}$ Post-Mortem & Empirical Trace Introspection
 - **Companion Specifications:**
-  - [`generation_04b_recursion_charter.md`](file:///Users/michaellipski/dev/meta-axioma/generation_04b_recursion_charter.md)
-  - [`META-AXIOMA-4B-SERVICE-DECOUPLING-AND-RESEARCH-PROTOCOL.md`](file:///Users/michaellipski/dev/meta-axioma/META-AXIOMA-4B-SERVICE-DECOUPLING-AND-RESEARCH-PROTOCOL.md)
+  - [`generation_04b_recursion_charter.md`](generation_04b_recursion_charter.md)
+  - [`META-AXIOMA-4B-SERVICE-DECOUPLING-AND-RESEARCH-PROTOCOL.md`](META-AXIOMA-4B-SERVICE-DECOUPLING-AND-RESEARCH-PROTOCOL.md)
 - **Primary Authors:** Lead Systems Architect & Verification Engineering Lead (Meta-Axioma Compiler Engine)
 
 ---
@@ -483,7 +483,7 @@ The symbol graph is held in memory within the compiler process as an adjacency m
 
 ## 4. Integration Matrix: Gating the 4b Recursive Generation Pipeline
 
-The structural invariants and indexing mechanics defined in this specification interface directly with the **Generation 4b Recursion Charter** ([`generation_04b_recursion_charter.md`](file:///Users/michaellipski/dev/meta-axioma/generation_04b_recursion_charter.md)). Each phase of the fractal compilation tree is bounded by concrete verification gates:
+The structural invariants and indexing mechanics defined in this specification interface directly with the **Generation 4b Recursion Charter** ([`generation_04b_recursion_charter.md`](generation_04b_recursion_charter.md)). Each phase of the fractal compilation tree is bounded by concrete verification gates:
 
 | Pipeline Stage in 4b Recursion Charter | Governing 4b Invariant | Input Specification | Verification Gate & Boundary Check | Compiler Output / Transition |
 | :--- | :--- | :--- | :--- | :--- |

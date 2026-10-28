@@ -36,7 +36,7 @@
     "stdout_tail": "sh.test_07_landauer_thermodynamic_accounting)\nVerifies Landauer bit-erasure calculation Q = k_B * T * ln(2) * bits_erased. ... ok\ntest_08_safety_traps_and_enclaves (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_08_safety_traps_and_enclaves)\nVerifies motor jam stall, Sybil divergence, and quorum partition traps. ... ok\ntest_09_functorial_undo_redo (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_09_functorial_undo_redo)\nVerifies 1-tap Functorial Undo / Redo for engineering inspection. ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.028s\n\nOK",
     "tests_run": 22
   },
-  "chain_head_hash": "b6aed5cfd3b3e4b221b791e560734b7197a40fb20b3497f39ce247ae2f6e6b18",
+  "chain_head_hash": "03e31a2b179d73478b321ad3e148c2147ee91638347d019f5f473243942fc1aa",
   "compiler_id": "SystemG3b_Daughter_Prime",
   "daughter_witness": null,
   "disk_substrate": {
@@ -85,11 +85,11 @@
       "prev_hash": "788eab32d3b6d5b5302ae0e4e3d7b9e0ee6cdae2199ce27e005968f673edd1a2"
     },
     {
-      "event_hash": "7abda7bec10f77e33d89944500487e732d26db58dab42df1e716b2f9f6b56e84",
+      "event_hash": "95149ee060ed64b592d7b42c6e8a62f8363579654301f45379648766158fcbe9",
       "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
       "index": 2,
       "payload": {
-        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_kinetic_facade",
+        "app_output_dir": "generations/gen_03b/apps/axioma_kinetic_facade",
         "app_test_witness": {
           "exit_code": 0,
           "stdout_tail": "sh.test_07_landauer_thermodynamic_accounting)\nVerifies Landauer bit-erasure calculation Q = k_B * T * ln(2) * bits_erased. ... ok\ntest_08_safety_traps_and_enclaves (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_08_safety_traps_and_enclaves)\nVerifies motor jam stall, Sybil divergence, and quorum partition traps. ... ok\ntest_09_functorial_undo_redo (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_09_functorial_undo_redo)\nVerifies 1-tap Functorial Undo / Redo for engineering inspection. ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.028s\n\nOK",
@@ -101,7 +101,7 @@
       "prev_hash": "832ee7215fda8de032d5c93d37e064c351be4e10196a6da703fa3b07f33d3d95"
     },
     {
-      "event_hash": "fb070a0a65a2da99436d07959f25315c2ce8e7ee790d1b4ea2a6f6279ec57bcd",
+      "event_hash": "507b51427392e04399fb357d33a90dd69874809eed6467b78a45db80c511506e",
       "event_type": "STACK_TRACE_SEALED",
       "index": 3,
       "payload": {
@@ -110,10 +110,10 @@
         "remediation_count": 0,
         "total_stack_operations": 12
       },
-      "prev_hash": "7abda7bec10f77e33d89944500487e732d26db58dab42df1e716b2f9f6b56e84"
+      "prev_hash": "95149ee060ed64b592d7b42c6e8a62f8363579654301f45379648766158fcbe9"
     },
     {
-      "event_hash": "7462a2ff84eeae2a48eef5bd3ad3469355c17023ca20f827c68014cf8c2f9616",
+      "event_hash": "7d2093d88222a5dd1314c8d623631e56f63e5f5d91ede24f2c3b87a371c77716",
       "event_type": "DISK_SUBSTRATE_MEASURED",
       "index": 4,
       "payload": {
@@ -133,10 +133,10 @@
           "topology_verifier.py": 345
         }
       },
-      "prev_hash": "fb070a0a65a2da99436d07959f25315c2ce8e7ee790d1b4ea2a6f6279ec57bcd"
+      "prev_hash": "507b51427392e04399fb357d33a90dd69874809eed6467b78a45db80c511506e"
     },
     {
-      "event_hash": "522e794d90fbdccdc1d01ab9d759b6797951d7402a2ad105b8f9e880011d4c83",
+      "event_hash": "8d0be013ebcd5b6903e02c2f97014db4f9109489512e7ca2e418450789b308d0",
       "event_type": "SUBSTRATE_TEST_WITNESS",
       "index": 5,
       "payload": {
@@ -144,10 +144,10 @@
         "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
         "tests_run": 4
       },
-      "prev_hash": "7462a2ff84eeae2a48eef5bd3ad3469355c17023ca20f827c68014cf8c2f9616"
+      "prev_hash": "7d2093d88222a5dd1314c8d623631e56f63e5f5d91ede24f2c3b87a371c77716"
     },
     {
-      "event_hash": "0af0a284c48d16143d9be4d8d6991900a2733ecb7b389fc685e3e52e4a63edf0",
+      "event_hash": "0b01d541bc5392299107aef2faafed5bd32e312339e669251280c9a24a2f0089",
       "event_type": "APP_SUBSTRATE_TEST_WITNESS",
       "index": 6,
       "payload": {
@@ -155,10 +155,10 @@
         "stdout_tail": "sh.test_07_landauer_thermodynamic_accounting)\nVerifies Landauer bit-erasure calculation Q = k_B * T * ln(2) * bits_erased. ... ok\ntest_08_safety_traps_and_enclaves (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_08_safety_traps_and_enclaves)\nVerifies motor jam stall, Sybil divergence, and quorum partition traps. ... ok\ntest_09_functorial_undo_redo (test_facade_mesh.TestAxiomaKineticFacadeMesh.test_09_functorial_undo_redo)\nVerifies 1-tap Functorial Undo / Redo for engineering inspection. ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.028s\n\nOK",
         "tests_run": 22
       },
-      "prev_hash": "522e794d90fbdccdc1d01ab9d759b6797951d7402a2ad105b8f9e880011d4c83"
+      "prev_hash": "8d0be013ebcd5b6903e02c2f97014db4f9109489512e7ca2e418450789b308d0"
     },
     {
-      "event_hash": "b6aed5cfd3b3e4b221b791e560734b7197a40fb20b3497f39ce247ae2f6e6b18",
+      "event_hash": "03e31a2b179d73478b321ad3e148c2147ee91638347d019f5f473243942fc1aa",
       "event_type": "THERMODYNAMIC_LEDGER_SEALED",
       "index": 7,
       "payload": {
@@ -186,7 +186,7 @@
         "unspent_reserve": 21845,
         "utilization_pct": 55.33
       },
-      "prev_hash": "0af0a284c48d16143d9be4d8d6991900a2733ecb7b389fc685e3e52e4a63edf0"
+      "prev_hash": "0b01d541bc5392299107aef2faafed5bd32e312339e669251280c9a24a2f0089"
     }
   ],
   "live_subagents_spawned_count": 3,

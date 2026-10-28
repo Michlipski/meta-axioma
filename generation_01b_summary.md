@@ -57,8 +57,8 @@ generations/gen_01b/src/g1b_compiler/
 ```
 
 ### Emitted Applications
-- [`generations/gen_01b/apps/axioma_lexis/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01b/apps/axioma_lexis/): Standalone executable Vocabulary Studio with real XState FSM runtime, Web Speech pronunciation, Due-Queue Paced SM-2 spaced repetition, Milestone Closure, Practice Cram Mode, and Daily Habit Reminders (Port 8090).
-- [`generations/gen_01b/apps/axioma_crossword/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01b/apps/axioma_crossword/): Standalone executable Cryptic Studio with 2-column solver workbench, soft mobile keypad, and Cryptic Clue Anatomy Dissector (Port 8094).
+- [`generations/gen_01b/apps/axioma_lexis/`](generations/gen_01b/apps/axioma_lexis/): Standalone executable Vocabulary Studio with real XState FSM runtime, Web Speech pronunciation, Due-Queue Paced SM-2 spaced repetition, Milestone Closure, Practice Cram Mode, and Daily Habit Reminders (Port 8090).
+- [`generations/gen_01b/apps/axioma_crossword/`](generations/gen_01b/apps/axioma_crossword/): Standalone executable Cryptic Studio with 2-column solver workbench, soft mobile keypad, and Cryptic Clue Anatomy Dissector (Port 8094).
 
 ---
 

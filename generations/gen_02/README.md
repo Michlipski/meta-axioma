@@ -55,7 +55,7 @@ System $G_2$ is constructed from scratch to directly embody these 5 active struc
 
 ## 4. Transgenerational Epistemic Feedback & Inherited Vetoes
 
-Inherited from [`generations/gen_01/FEEDBACK.md`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/FEEDBACK.md):
+Inherited from [`generations/gen_01/FEEDBACK.md`](../gen_01/FEEDBACK.md):
 - **`NEG-G2-001` (Mandatory Elicitation Gate):** Forbids compiling non-generator applications without an approved `trace/intent_elicitation.md` artifact.
 - **`NEG-G2-002` (Verification Illusion Veto):** Forbids marking systems verified solely through unit test pass rates without human interaction confirmation.
 - **`NEG-G2-003` (Full-Flow & Domain Invariant Test Gate):** Forbids deploying systems without automated regression tests covering all user-exposed configurations and domain-specific semantic invariants.

@@ -30,10 +30,10 @@
   },
   "app_test_execution_witness": {
     "exit_code": 0,
-    "stdout_tail": "TX 4060 (192.168.10.40:11434, model qwen2.5, ... ok\ntest_04_formal_statechart_and_headless_journey_walker_ergonomics (test_app.TestAxiomaElenchusApp.test_04_formal_statechart_and_headless_journey_walker_ergonomics)\n[L1-G3B-011] & [L1-G3B-013]: FormalModelChecker certifies the 18-node deep-history ... ok\ntest_05_live_http_server_endpoints (test_app.TestAxiomaElenchusApp.test_05_live_http_server_endpoints)\n[NEG-G1B-001]: Exercises the HTTP server wire protocol (`AxiomaElenchusRequestHandler`) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.025s\n\nOK",
+    "stdout_tail": "TX 4060 (192.168.10.40:11434, model qwen2.5, ... ok\ntest_04_formal_statechart_and_headless_journey_walker_ergonomics (test_app.TestAxiomaElenchusApp.test_04_formal_statechart_and_headless_journey_walker_ergonomics)\n[L1-G3B-011] & [L1-G3B-013]: FormalModelChecker certifies the 18-node deep-history ... ok\ntest_05_live_http_server_endpoints (test_app.TestAxiomaElenchusApp.test_05_live_http_server_endpoints)\n[NEG-G1B-001]: Exercises the HTTP server wire protocol (`AxiomaElenchusRequestHandler`) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.024s\n\nOK",
     "tests_run": 5
   },
-  "chain_head_hash": "c603ce3439f386ceb2cd91a6b515a06a6f39dff1ad9e34750bf841804f8308da",
+  "chain_head_hash": "2d02771ccfecf6f7320675d36463434bce4eef55ac4322b7973a34f5d9e0fce9",
   "compiler_id": "SystemG3b_Elenchus_Direct",
   "daughter_witness": null,
   "disk_substrate": {
@@ -83,14 +83,14 @@
       "prev_hash": "bea1a8bf292bb3b1505b4859731e8650e3718f3f6c59c0e4fb6dca89870e36f5"
     },
     {
-      "event_hash": "01ec081e757528e77f6db12a5b590d35f7a9018f7f6a32b1ada535ae89532579",
+      "event_hash": "0844d25d020659dc7911be4e7ea609498381405fbbfe655074554964e4d7a885",
       "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
       "index": 2,
       "payload": {
-        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_elenchus",
+        "app_output_dir": "generations/gen_03b/apps/axioma_elenchus",
         "app_test_witness": {
           "exit_code": 0,
-          "stdout_tail": "TX 4060 (192.168.10.40:11434, model qwen2.5, ... ok\ntest_04_formal_statechart_and_headless_journey_walker_ergonomics (test_app.TestAxiomaElenchusApp.test_04_formal_statechart_and_headless_journey_walker_ergonomics)\n[L1-G3B-011] & [L1-G3B-013]: FormalModelChecker certifies the 18-node deep-history ... ok\ntest_05_live_http_server_endpoints (test_app.TestAxiomaElenchusApp.test_05_live_http_server_endpoints)\n[NEG-G1B-001]: Exercises the HTTP server wire protocol (`AxiomaElenchusRequestHandler`) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.025s\n\nOK",
+          "stdout_tail": "TX 4060 (192.168.10.40:11434, model qwen2.5, ... ok\ntest_04_formal_statechart_and_headless_journey_walker_ergonomics (test_app.TestAxiomaElenchusApp.test_04_formal_statechart_and_headless_journey_walker_ergonomics)\n[L1-G3B-011] & [L1-G3B-013]: FormalModelChecker certifies the 18-node deep-history ... ok\ntest_05_live_http_server_endpoints (test_app.TestAxiomaElenchusApp.test_05_live_http_server_endpoints)\n[NEG-G1B-001]: Exercises the HTTP server wire protocol (`AxiomaElenchusRequestHandler`) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.024s\n\nOK",
           "tests_run": 5
         },
         "audited_app_tokens": 43500,
@@ -99,7 +99,7 @@
       "prev_hash": "827830d5a7bb01773f04184d43a27a21350c0d408698a96249876a840f23ce40"
     },
     {
-      "event_hash": "1eb354ce9ca8d815d30abafcb67600244dcd9525371340080ce6275da347bc09",
+      "event_hash": "5c3e90fc463af53f41502cdbaa2cec46d4c4aef41ee7adb110d0b9cfef3ae82e",
       "event_type": "STACK_TRACE_SEALED",
       "index": 3,
       "payload": {
@@ -108,10 +108,10 @@
         "remediation_count": 2,
         "total_stack_operations": 16
       },
-      "prev_hash": "01ec081e757528e77f6db12a5b590d35f7a9018f7f6a32b1ada535ae89532579"
+      "prev_hash": "0844d25d020659dc7911be4e7ea609498381405fbbfe655074554964e4d7a885"
     },
     {
-      "event_hash": "fcaf543dcc13c18d6886ee00ecdd1b38b2fbbafe86f5345f179fc3a128b229e1",
+      "event_hash": "7d480ba241b21cde695ba7c25d2622a68e7d539b841bcac5e2a3d5ddbfe45996",
       "event_type": "DISK_SUBSTRATE_MEASURED",
       "index": 4,
       "payload": {
@@ -132,10 +132,10 @@
           "topology_verifier.py": 345
         }
       },
-      "prev_hash": "1eb354ce9ca8d815d30abafcb67600244dcd9525371340080ce6275da347bc09"
+      "prev_hash": "5c3e90fc463af53f41502cdbaa2cec46d4c4aef41ee7adb110d0b9cfef3ae82e"
     },
     {
-      "event_hash": "7b2434ddd91880c71adae28c797766f7df25587c75a0964872e86cb133e8548f",
+      "event_hash": "1976042af209ffec9e240e7ed24a849a5e1716c23bc428c4bfc2937fe95e28f9",
       "event_type": "SUBSTRATE_TEST_WITNESS",
       "index": 5,
       "payload": {
@@ -143,21 +143,21 @@
         "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
         "tests_run": 4
       },
-      "prev_hash": "fcaf543dcc13c18d6886ee00ecdd1b38b2fbbafe86f5345f179fc3a128b229e1"
+      "prev_hash": "7d480ba241b21cde695ba7c25d2622a68e7d539b841bcac5e2a3d5ddbfe45996"
     },
     {
-      "event_hash": "5eb16947e2fe57a52b83aa4806a40cf2d8e79d25698c6819dfee357fd4f32ed1",
+      "event_hash": "eb48d431c604a78ad6efb5361398d28675a7c7de63cec3521cd2ec1ff042a209",
       "event_type": "APP_SUBSTRATE_TEST_WITNESS",
       "index": 6,
       "payload": {
         "exit_code": 0,
-        "stdout_tail": "TX 4060 (192.168.10.40:11434, model qwen2.5, ... ok\ntest_04_formal_statechart_and_headless_journey_walker_ergonomics (test_app.TestAxiomaElenchusApp.test_04_formal_statechart_and_headless_journey_walker_ergonomics)\n[L1-G3B-011] & [L1-G3B-013]: FormalModelChecker certifies the 18-node deep-history ... ok\ntest_05_live_http_server_endpoints (test_app.TestAxiomaElenchusApp.test_05_live_http_server_endpoints)\n[NEG-G1B-001]: Exercises the HTTP server wire protocol (`AxiomaElenchusRequestHandler`) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.025s\n\nOK",
+        "stdout_tail": "TX 4060 (192.168.10.40:11434, model qwen2.5, ... ok\ntest_04_formal_statechart_and_headless_journey_walker_ergonomics (test_app.TestAxiomaElenchusApp.test_04_formal_statechart_and_headless_journey_walker_ergonomics)\n[L1-G3B-011] & [L1-G3B-013]: FormalModelChecker certifies the 18-node deep-history ... ok\ntest_05_live_http_server_endpoints (test_app.TestAxiomaElenchusApp.test_05_live_http_server_endpoints)\n[NEG-G1B-001]: Exercises the HTTP server wire protocol (`AxiomaElenchusRequestHandler`) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.024s\n\nOK",
         "tests_run": 5
       },
-      "prev_hash": "7b2434ddd91880c71adae28c797766f7df25587c75a0964872e86cb133e8548f"
+      "prev_hash": "1976042af209ffec9e240e7ed24a849a5e1716c23bc428c4bfc2937fe95e28f9"
     },
     {
-      "event_hash": "c603ce3439f386ceb2cd91a6b515a06a6f39dff1ad9e34750bf841804f8308da",
+      "event_hash": "2d02771ccfecf6f7320675d36463434bce4eef55ac4322b7973a34f5d9e0fce9",
       "event_type": "THERMODYNAMIC_LEDGER_SEALED",
       "index": 7,
       "payload": {
@@ -185,7 +185,7 @@
         "unspent_reserve": 23106,
         "utilization_pct": 52.16
       },
-      "prev_hash": "5eb16947e2fe57a52b83aa4806a40cf2d8e79d25698c6819dfee357fd4f32ed1"
+      "prev_hash": "eb48d431c604a78ad6efb5361398d28675a7c7de63cec3521cd2ec1ff042a209"
     }
   ],
   "live_subagents_spawned_count": 0,

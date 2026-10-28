@@ -8,12 +8,12 @@
 
 This repository is organized using the **TRACE** declarative modeling specification for AI-driven development. Rather than burying intent in imperative source code, TRACE separates what the system is into lightweight, human-readable specifications:
 
-- **[overview.md](file:///Users/michaellipski/dev/meta-axioma/overview.md):** The big picture—mission, bounded contexts, and global glossary.
-- **[stack.md](file:///Users/michaellipski/dev/meta-axioma/stack.md):** Execution stack, Python runtime, AGY agentic tools, and system defaults.
-- **[trace/](file:///Users/michaellipski/dev/meta-axioma/trace/):**
-  - **[personas/](file:///Users/michaellipski/dev/meta-axioma/trace/personas/):** System actors ([`human_architect`](file:///Users/michaellipski/dev/meta-axioma/trace/personas/human_architect.persona.md), [`meta_orchestrator`](file:///Users/michaellipski/dev/meta-axioma/trace/personas/meta_orchestrator.persona.md)).
-  - **[domains/](file:///Users/michaellipski/dev/meta-axioma/trace/domains/):** Bounded contexts ([`axiom_registry`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/axiom_registry.domain.md), [`simulation_decay`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/simulation_decay.domain.md), [`evaluation_targets`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/evaluation_targets.domain.md), [`telemetry_audit`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/telemetry_audit.domain.md)).
-  - **[flows/](file:///Users/michaellipski/dev/meta-axioma/trace/flows/):** Execution workflows ([`epoch_evolution`](file:///Users/michaellipski/dev/meta-axioma/trace/flows/epoch_evolution.flow.md), [`generational_handover`](file:///Users/michaellipski/dev/meta-axioma/trace/flows/generational_handover.flow.md)).
+- **[overview.md](overview.md):** The big picture—mission, bounded contexts, and global glossary.
+- **[stack.md](stack.md):** Execution stack, Python runtime, AGY agentic tools, and system defaults.
+- **[trace/](trace/):**
+  - **[personas/](trace/personas/):** System actors ([`human_architect`](trace/personas/human_architect.persona.md), [`meta_orchestrator`](trace/personas/meta_orchestrator.persona.md)).
+  - **[domains/](trace/domains/):** Bounded contexts ([`axiom_registry`](trace/domains/axiom_registry.domain.md), [`simulation_decay`](trace/domains/simulation_decay.domain.md), [`evaluation_targets`](trace/domains/evaluation_targets.domain.md), [`telemetry_audit`](trace/domains/telemetry_audit.domain.md)).
+  - **[flows/](trace/flows/):** Execution workflows ([`epoch_evolution`](trace/flows/epoch_evolution.flow.md), [`generational_handover`](trace/flows/generational_handover.flow.md)).
 
 ---
 
@@ -42,15 +42,15 @@ Meta-Axioma does not build compilers for recursive vanity. The overarching purpo
 
 ### Generational Directory Layout
 - **Root Level:** Holds global project context and generation-level artifacts with their generation prefix:
-  - **[generation_02_summary.md](file:///Users/michaellipski/dev/meta-axioma/generation_02_summary.md):** Complete summary of Generation 2 (Autonomous Domain Compiler).
-  - **[generation_02_architecture.md](file:///Users/michaellipski/dev/meta-axioma/generation_02_architecture.md):** Architectural specification and trajectory log for Generation 2.
-  - **[generation_02_axioms.md](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md):** Invariant registry of Generation 2's active structural axioms.
-  - **[generation_01_summary.md](file:///Users/michaellipski/dev/meta-axioma/generation_01_summary.md):** Complete summary of Generation 1 (Axiomatic search through Epoch 15).
-  - **[generation_01_architecture.md](file:///Users/michaellipski/dev/meta-axioma/generation_01_architecture.md):** Architectural specification for Generation 1.
-  - **[generation_01_axioms.md](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md):** Invariant registry of Generation 1.
-- **[generations/](file:///Users/michaellipski/dev/meta-axioma/generations/):** Contains discrete generational packages:
-  - **[generations/gen_01/](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/):** Holds the epoch telemetry history (`epoch_001.md` through `epoch_015.md`) and the ground-up implementation of System $G_1$.
-  - **[generations/gen_02/](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/):** Environment for System $G_2$, constructed from the ground up to embody multi-substrate Galois compilation, self-healing, cognitive ergonomics, zero-trust tokens, and intent grounding.
+  - **[generation_02_summary.md](generation_02_summary.md):** Complete summary of Generation 2 (Autonomous Domain Compiler).
+  - **[generation_02_architecture.md](generation_02_architecture.md):** Architectural specification and trajectory log for Generation 2.
+  - **[generation_02_axioms.md](generation_02_axioms.md):** Invariant registry of Generation 2's active structural axioms.
+  - **[generation_01_summary.md](generation_01_summary.md):** Complete summary of Generation 1 (Axiomatic search through Epoch 15).
+  - **[generation_01_architecture.md](generation_01_architecture.md):** Architectural specification for Generation 1.
+  - **[generation_01_axioms.md](generation_01_axioms.md):** Invariant registry of Generation 1.
+- **[generations/](generations/):** Contains discrete generational packages:
+  - **[generations/gen_01/](generations/gen_01/):** Holds the epoch telemetry history (`epoch_001.md` through `epoch_015.md`) and the ground-up implementation of System $G_1$.
+  - **[generations/gen_02/](generations/gen_02/):** Environment for System $G_2$, constructed from the ground up to embody multi-substrate Galois compilation, self-healing, cognitive ergonomics, zero-trust tokens, and intent grounding.
 
 ---
 
@@ -60,13 +60,13 @@ Meta-Axioma does not build compilers for recursive vanity. The overarching purpo
 - **Phase:** `PHASE_2_PORTFOLIO_CONVERGENCE`
 - **Global Efficacy Baseline ($E_{G2}$):** `3.1386` (Epoch 4 Cumulative)
 - **Active Structural Invariants ($n=7$):**
-  - [`[L1-G2-001]` Adjoint Galois Substrate Connection & Multi-Target Preservation](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation)
-  - [`[L1-G2-002]` Ephemeral Self-Healing Invariant Restoration Loop](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop)
-  - [`[L1-G2-003]` Cognitive Ergonomics & Persona Alignment Invariance](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance)
-  - [`[L1-G2-004]` Introspectable Zero-Trust Capability Scoping](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping)
-  - [`[L1-G2-005]` Mandatory Human Intent Elicitation & Grounding Boundary](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary)
-  - [`[L1-G2-006]` Phenomenological Tool-Being & Zuhandenheit Attunement Invariant](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant)
-  - [`[L1-G2-007]` Kinetic Chaining & Semantic Momentum Propagation](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation)
+  - [`[L1-G2-001]` Adjoint Galois Substrate Connection & Multi-Target Preservation](generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation)
+  - [`[L1-G2-002]` Ephemeral Self-Healing Invariant Restoration Loop](generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop)
+  - [`[L1-G2-003]` Cognitive Ergonomics & Persona Alignment Invariance](generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance)
+  - [`[L1-G2-004]` Introspectable Zero-Trust Capability Scoping](generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping)
+  - [`[L1-G2-005]` Mandatory Human Intent Elicitation & Grounding Boundary](generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary)
+  - [`[L1-G2-006]` Phenomenological Tool-Being & Zuhandenheit Attunement Invariant](generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant)
+  - [`[L1-G2-007]` Kinetic Chaining & Semantic Momentum Propagation](generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation)
 - **Active Non-Generator Systems:**
   - **Axioma Sentinel (Port 8100):** Zero-Trust Security Mesh & Enclave Auto-Repair Console.
   - **Axioma Lexis (Port 8092):** Adaptive Spaced Repetition Vocabulary Studio (PWA + Android Native Shell).

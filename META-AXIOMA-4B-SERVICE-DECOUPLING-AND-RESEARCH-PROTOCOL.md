@@ -4,9 +4,9 @@
 - **Specification Status:** PROPOSED ARCHITECTURAL ENFORCEMENT STANDARD (G4B KERNEL)
 - **Primary Thesis:** Decoupling Autonomous Research from Execution-Focused Development via Protocol Negotiation
 - **Companion Specifications:**
-  - [`generation_04b_recursion_charter.md`](file:///Users/michaellipski/dev/meta-axioma/generation_04b_recursion_charter.md)
-  - [`META-AXIOMA-4B-STRUCTURAL-INVARIANTS-AND-INDEXING.md`](file:///Users/michaellipski/dev/meta-axioma/META-AXIOMA-4B-STRUCTURAL-INVARIANTS-AND-INDEXING.md)
-  - [`generation_03b_summary.md`](file:///Users/michaellipski/dev/meta-axioma/generation_03b_summary.md)
+  - [`generation_04b_recursion_charter.md`](generation_04b_recursion_charter.md)
+  - [`META-AXIOMA-4B-STRUCTURAL-INVARIANTS-AND-INDEXING.md`](META-AXIOMA-4B-STRUCTURAL-INVARIANTS-AND-INDEXING.md)
+  - [`generation_03b_summary.md`](generation_03b_summary.md)
 - **Primary Authors:** Lead Systems Architect & Verification Engineering Lead (Meta-Axioma Compiler Engine)
 
 ---

@@ -1,7 +1,7 @@
 # 📊 Live Cryptographic Telemetry Dashboard: `soc_epistemic_curiosity_engine`
 
 - **Compiler Identity:** `SystemG3b_Elenchus_Direct`
-- **SHA-256 Chain Head Witness:** `c603ce3439f386ceb2cd91a6b515a06a6f39dff1ad9e34750bf841804f8308da`
+- **SHA-256 Chain Head Witness:** `2d02771ccfecf6f7320675d36463434bce4eef55ac4322b7973a34f5d9e0fce9`
 - **Chained Cryptographic Events:** `8`
 - **Live AGY Subagent Spawning (`invoke_subagent`):** ⚠️ `0` live `invoke_subagent` calls (Executed via in-process deterministic fallback)
 - **Substrate Test Exit Code:** `0` (`4` tests passing)
@@ -88,9 +88,9 @@
 | :---: | :--- | :--- | :--- |
 | `0` | `COMPILATION_INITIATED` | `000000000000...` | `bea1a8bf292bb3b1505b4859731e8650e3718f3f6c59c0e4fb6dca89870e36f5` |
 | `1` | `CRUCIBLE_SYNTHESIS_CERTIFIED` | `bea1a8bf292b...` | `827830d5a7bb01773f04184d43a27a21350c0d408698a96249876a840f23ce40` |
-| `2` | `APP_SUBSTRATE_AUDITED_AND_VERIFIED` | `827830d5a7bb...` | `01ec081e757528e77f6db12a5b590d35f7a9018f7f6a32b1ada535ae89532579` |
-| `3` | `STACK_TRACE_SEALED` | `01ec081e7575...` | `1eb354ce9ca8d815d30abafcb67600244dcd9525371340080ce6275da347bc09` |
-| `4` | `DISK_SUBSTRATE_MEASURED` | `1eb354ce9ca8...` | `fcaf543dcc13c18d6886ee00ecdd1b38b2fbbafe86f5345f179fc3a128b229e1` |
-| `5` | `SUBSTRATE_TEST_WITNESS` | `fcaf543dcc13...` | `7b2434ddd91880c71adae28c797766f7df25587c75a0964872e86cb133e8548f` |
-| `6` | `APP_SUBSTRATE_TEST_WITNESS` | `7b2434ddd918...` | `5eb16947e2fe57a52b83aa4806a40cf2d8e79d25698c6819dfee357fd4f32ed1` |
-| `7` | `THERMODYNAMIC_LEDGER_SEALED` | `5eb16947e2fe...` | `c603ce3439f386ceb2cd91a6b515a06a6f39dff1ad9e34750bf841804f8308da` |
+| `2` | `APP_SUBSTRATE_AUDITED_AND_VERIFIED` | `827830d5a7bb...` | `0844d25d020659dc7911be4e7ea609498381405fbbfe655074554964e4d7a885` |
+| `3` | `STACK_TRACE_SEALED` | `0844d25d0206...` | `5c3e90fc463af53f41502cdbaa2cec46d4c4aef41ee7adb110d0b9cfef3ae82e` |
+| `4` | `DISK_SUBSTRATE_MEASURED` | `5c3e90fc463a...` | `7d480ba241b21cde695ba7c25d2622a68e7d539b841bcac5e2a3d5ddbfe45996` |
+| `5` | `SUBSTRATE_TEST_WITNESS` | `7d480ba241b2...` | `1976042af209ffec9e240e7ed24a849a5e1716c23bc428c4bfc2937fe95e28f9` |
+| `6` | `APP_SUBSTRATE_TEST_WITNESS` | `1976042af209...` | `eb48d431c604a78ad6efb5361398d28675a7c7de63cec3521cd2ec1ff042a209` |
+| `7` | `THERMODYNAMIC_LEDGER_SEALED` | `eb48d431c604...` | `2d02771ccfecf6f7320675d36463434bce4eef55ac4322b7973a34f5d9e0fce9` |

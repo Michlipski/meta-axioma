@@ -3,7 +3,7 @@
 > **Synthesized by:** System $G_2$ Autonomous Domain Compiler  
 > **Target Successor:** Generation 3 ($G_3$ - Distributed Edge Swarm Compiler)  
 > **Handover Status:** Formulated & Certified in Epoch 03  
-> **Machine-Readable Dossier:** [`g3_successor_spec.json`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/g3_successor_spec.json)
+> **Machine-Readable Dossier:** [`g3_successor_spec.json`](g3_successor_spec.json)
 
 ---
 

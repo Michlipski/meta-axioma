@@ -207,6 +207,23 @@
       border-radius: 10px;
       padding: 20px;
     }
+    .tree-svg-viewport {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.4) rgba(15, 23, 42, 0.6);
+    }
+    .tree-svg-viewport::-webkit-scrollbar {
+      height: 8px;
+    }
+    .tree-svg-viewport::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.4);
+      border-radius: 4px;
+    }
+    .svg-tree-node rect {
+      transition: all 0.2s ease;
+    }
+    .svg-tree-node:hover rect {
+      filter: brightness(1.2);
+    }
     .tree-root-node {
       background: rgba(147, 51, 234, 0.12);
       border: 1px solid rgba(192, 132, 252, 0.3);
@@ -295,7 +312,7 @@
       <div class="brand-logo">G3b</div>
       <div>
         <h1>Operational &amp; Telemetry Dashboard</h1>
-        <div class="subtitle">soc_hydro_valve &bull; SystemG3b_HydroVerify &bull; SHA-256 Head: 67d44f375fccd900...</div>
+        <div class="subtitle">soc_hydro_valve &bull; SystemG3b_HydroVerify &bull; SHA-256 Head: 09586bc91c75909e...</div>
       </div>
     </div>
     <div style="display:flex; gap:10px; align-items:center;">
@@ -353,7 +370,7 @@
       </div>
       <div class="stat-box">
         <div class="stat-label">Total Emitted Disk Footprint</div>
-        <div class="stat-value text-green">11,571 BPE Tokens</div>
+        <div class="stat-value text-green">17,703 BPE Tokens</div>
       </div>
     </div>
   </div>
@@ -493,21 +510,21 @@
               <td><strong>#3</strong></td>
               <td><span class="badge badge-blue">DISK_SUBSTRATE_MEASURED</span></td>
               <td><code>d07049d755065c5c...</code></td>
-              <td><code class="hash-cell">b8aa71d4302c3ef3bc0b0c4f5e63ffa11198d34ec4b640d70440ba83386eb40a</code></td>
+              <td><code class="hash-cell">d60cbf821fa5163727a71451a952b58504313113cb617fa9ae10f158b1706f02</code></td>
             </tr>
             
             <tr>
               <td><strong>#4</strong></td>
               <td><span class="badge badge-blue">SUBSTRATE_TEST_WITNESS</span></td>
-              <td><code>b8aa71d4302c3ef3...</code></td>
-              <td><code class="hash-cell">5db311e7d7c09ada8b860e746eb6cf5a1c621a740022daafea6050dc0842d25a</code></td>
+              <td><code>d60cbf821fa51637...</code></td>
+              <td><code class="hash-cell">8ab54afb495de82026463b9e49491dec239b32f296adf64099e88a1b8bf78d18</code></td>
             </tr>
             
             <tr>
               <td><strong>#5</strong></td>
               <td><span class="badge badge-blue">THERMODYNAMIC_LEDGER_SEALED</span></td>
-              <td><code>5db311e7d7c09ada...</code></td>
-              <td><code class="hash-cell">67d44f375fccd900acb59c873f91372029fe4af2215a705346317dbfce93bcc9</code></td>
+              <td><code>8ab54afb495de820...</code></td>
+              <td><code class="hash-cell">09586bc91c75909e91fc2d84b066f7c0f5a781d1511bf747a27c3b3620109b27</code></td>
             </tr>
             
         </tbody>

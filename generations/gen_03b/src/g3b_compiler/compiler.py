@@ -157,7 +157,7 @@ class SystemG3bCompiler:
                 app_test_witness = DynamicCodeEmitter.execute_substrate_tests(app_dir)
 
             app_audit_summary = {
-                "app_output_dir": str(app_dir),
+                "app_output_dir": str(app_dir.relative_to(Path.cwd())) if app_dir.is_relative_to(Path.cwd()) else str(app_dir),
                 "audited_files_count": audited_files_count,
                 "audited_app_tokens": audited_app_tokens,
                 "app_test_witness": app_test_witness,
@@ -244,7 +244,8 @@ class SystemG3bCompiler:
         if subagent_witnesses is not None:
             seed_payload["subagent_witnesses"] = [w.to_dict() for w in subagent_witnesses]
         if app_output_dir is not None:
-            seed_payload["app_output_dir"] = str(Path(app_output_dir).resolve())
+            resolved_app = Path(app_output_dir).resolve()
+            seed_payload["app_output_dir"] = str(resolved_app.relative_to(Path.cwd())) if resolved_app.is_relative_to(Path.cwd()) else str(resolved_app)
         if downstream_domain_spec is not None:
             seed_payload["domain_spec"] = downstream_domain_spec
         seed_json_path = sandbox_root / "novel_seed_soc.json"

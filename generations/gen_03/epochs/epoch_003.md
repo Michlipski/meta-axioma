@@ -62,5 +62,5 @@ Candidate $\delta$ directly targeted the failure modes discovered in Epoch 2:
 
 With Candidate $\delta$ empirically proven superior across all three adversarial trials:
 - The `g3_compiler` core engine will update its consensus foundation from the raw single-hop sheaf to the **Transitive Sheaf-Quorum Hybrid**.
-- Raw tournament datasets are recorded in [`epochs/data/epoch_003.json`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/epochs/data/epoch_003.json).
+- Raw tournament datasets are recorded in [`epochs/data/epoch_003.json`](data/epoch_003.json).
 - Epoch 3 proves that Meta-Axioma can execute authentic architectural evolution: competing hypotheses, independent stress crucibles, empirical failure analysis, and cross-bred mutation.

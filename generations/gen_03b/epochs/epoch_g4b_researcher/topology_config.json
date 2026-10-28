@@ -1,0 +1,151 @@
+{
+  "channels": [
+    {
+      "channel_id": "chan_kernel_to_islands",
+      "channel_type": "rpc",
+      "latency_ms_budget": 20,
+      "port": 8202,
+      "source_node_id": "node_research_kernel",
+      "target_node_id": "node_island_manager",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_islands_to_taboo",
+      "channel_type": "stream",
+      "latency_ms_budget": 15,
+      "port": 8203,
+      "source_node_id": "node_island_manager",
+      "target_node_id": "node_taboo_engine",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_kernel_to_prover",
+      "channel_type": "rpc",
+      "latency_ms_budget": 25,
+      "port": 8204,
+      "source_node_id": "node_research_kernel",
+      "target_node_id": "node_z3_prover",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_kernel_to_rfc",
+      "channel_type": "event_bus",
+      "latency_ms_budget": 10,
+      "port": 8205,
+      "source_node_id": "node_research_kernel",
+      "target_node_id": "node_rfc_bus",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_taboo_to_rfc",
+      "channel_type": "event_bus",
+      "latency_ms_budget": 30,
+      "port": 8205,
+      "source_node_id": "node_taboo_engine",
+      "target_node_id": "node_rfc_bus",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_rfc_to_prover",
+      "channel_type": "rpc",
+      "latency_ms_budget": 20,
+      "port": 8204,
+      "source_node_id": "node_rfc_bus",
+      "target_node_id": "node_z3_prover",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_telemetry_stream",
+      "channel_type": "stream",
+      "latency_ms_budget": 15,
+      "port": 8206,
+      "source_node_id": "node_research_kernel",
+      "target_node_id": "node_telemetry_evaluator",
+      "tls_enforced": true
+    },
+    {
+      "channel_id": "chan_kernel_to_telemetry",
+      "channel_type": "event_bus",
+      "latency_ms_budget": 15,
+      "port": 8201,
+      "source_node_id": "node_telemetry_evaluator",
+      "target_node_id": "node_research_kernel",
+      "tls_enforced": true
+    }
+  ],
+  "consensus": {
+    "heartbeat_interval_ms": 500,
+    "partition_strategy": "fail_closed",
+    "protocol": "sheaf_quorum",
+    "quorum_fraction": 0.67
+  },
+  "nodes": {
+    "node_island_manager": {
+      "capabilities": [
+        "zero_context_quarantine",
+        "island_spawning"
+      ],
+      "host_interface": "192.168.40.20",
+      "memory_mb_limit": 1024,
+      "node_id": "node_island_manager",
+      "port": 8202,
+      "role": "worker"
+    },
+    "node_research_kernel": {
+      "capabilities": [
+        "epistemic_discovery",
+        "crucible_orchestration"
+      ],
+      "host_interface": "192.168.40.10",
+      "memory_mb_limit": 1024,
+      "node_id": "node_research_kernel",
+      "port": 8201,
+      "role": "compiler_core"
+    },
+    "node_rfc_bus": {
+      "capabilities": [
+        "spec_adjustment_ingress",
+        "protocol_negotiation"
+      ],
+      "host_interface": "192.168.40.50",
+      "memory_mb_limit": 1024,
+      "node_id": "node_rfc_bus",
+      "port": 8205,
+      "role": "gateway"
+    },
+    "node_taboo_engine": {
+      "capabilities": [
+        "weisfeiler_lehman_hash",
+        "taboo_distance_matrix"
+      ],
+      "host_interface": "192.168.40.30",
+      "memory_mb_limit": 1024,
+      "node_id": "node_taboo_engine",
+      "port": 8203,
+      "role": "verifier"
+    },
+    "node_telemetry_evaluator": {
+      "capabilities": [
+        "merkle_dag_anchoring",
+        "landauer_accounting"
+      ],
+      "host_interface": "192.168.40.60",
+      "memory_mb_limit": 1024,
+      "node_id": "node_telemetry_evaluator",
+      "port": 8206,
+      "role": "storage_leaf"
+    },
+    "node_z3_prover": {
+      "capabilities": [
+        "smt_solving",
+        "contract_composition_proof"
+      ],
+      "host_interface": "192.168.40.40",
+      "memory_mb_limit": 1024,
+      "node_id": "node_z3_prover",
+      "port": 8204,
+      "role": "verifier"
+    }
+  },
+  "topology_id": "topology_g4b_researcher"
+}

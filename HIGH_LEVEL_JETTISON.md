@@ -45,7 +45,7 @@ flowchart TD
 
 ## 3. Formal Convergence Verification & Metrics
 
-The convergence to the High-Level Jettison was audited by `HighLevelJettisonGate` ([`hlj_gate.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/hlj_gate.py)):
+The convergence to the High-Level Jettison was audited by `HighLevelJettisonGate` ([`hlj_gate.py`](generations/gen_03/src/g3_compiler/hlj_gate.py)):
 
 | Metric / Prerequisite | Required Threshold | Empirical Value | Audit Status |
 | :--- | :---: | :---: | :---: |

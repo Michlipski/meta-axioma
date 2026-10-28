@@ -4,7 +4,7 @@
 > **Status:** Operational & Certified  
 > **Primary Telos:** Unify structural $S_0$ invariants with universal ergonomic heuristics (Nielsen-Norman 10, Fitts, Hick, Miller) and empirical cognitive science benchmarks into an interlocking multi-tier compile gate, governed by stateful human overrides, dynamic weighted recursion, and thermodynamic capital partitioning.  
 > **Test Compliance:** 10/10 tests passing (`PYTHONPATH=generations/gen_02b/src python3 -m unittest discover -v -s generations/gen_02b/tests`). Emitted app execution suite: 6/6 tests passing (`python3 -m unittest discover -v -s apps/axioma_lexis/tests`). Global test suite: 22/22 tests passing (`PYTHONPATH=src python3 tests/test_all.py`).  
-> **Dogfooding Target:** [`axioma_lexis`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_lexis/) (Ground-Up Reconstruction; Witness: `WITNESS_PE_028BC22B43E8AA57`).
+> **Dogfooding Target:** [`axioma_lexis`](apps/axioma_lexis/) (Ground-Up Reconstruction; Witness: `WITNESS_PE_028BC22B43E8AA57`).
 
 ---
 
@@ -46,7 +46,7 @@ $$\text{Synthesize}(F) \iff \text{Valid}_{\text{T1}}(F) \land \big(\text{Valid}_
   - `SynthesisWorker` $\to$ `StructuralRegulator`, `ModelChecker`, `AdversarialFalsifier`.
   - `SynthesisWorker` $\to$ `SynthesisWorker` (component code emission) $\to$ `AntiMockLinter`, `SubstrateRunner`.
 - **Boundary Reflection Opinion Probe:** When a recursive worker reaches boundary depth ($d \ge 3$), a formal reflection probe (`wants_depth_4`, confidence, rationale, estimated tokens) is evaluated and logged to `trace/telemetry/recursion_depth_opinions.jsonl` for offline auditability.
-- **Live Tree Visualization:** Every run emits a live Mermaid DAG ([`recursion_tree.md`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_lexis/recursion_tree.md)) capturing execution topology, worker roles, subgoals, effective depths, and token burn.
+- **Live Tree Visualization:** Every run emits a live Mermaid DAG ([`recursion_tree.md`](apps/axioma_lexis/recursion_tree.md)) capturing execution topology, worker roles, subgoals, effective depths, and token burn.
 
 ### `[L1-G2B-004]` Thermodynamic Capital Partitioning
 Total compilation token budget $C_{\text{global}}$ is partitioned into:
@@ -131,10 +131,10 @@ Axioma Lexis was completely rebuilt from the ground up starting from the ambitio
 - **Touch Target Ergonomics (Fitts's Law):** `--touch-target: 48px` verified ($\ge 44$px).
 - **Post-Emission Substrate Tests:** 6 passing tests on live substrate (`test_runtime.py`, `test_statechart_execution.py`).
 - **Anti-Mock Substrate Audit:** 100% compliant (`anti_mock=True`, `clean_slate=True`, `visual_dignity=True`, `violations=0`).
-- **Execution DAG & Recursion Topology:** Strict prescribed taxonomy across 15 recursive and terminal nodes (max depth: 3, total tokens: 10,900 allotted, 10,430 used, 95.7% efficiency) rendered in [`recursion_tree.md`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_lexis/recursion_tree.md).
-- **Boundary Reflection Telemetry:** 4 depth-3 boundary opinions evaluated and recorded in [`trace/telemetry/recursion_depth_opinions.jsonl`](file:///Users/michaellipski/dev/meta-axioma/trace/telemetry/recursion_depth_opinions.jsonl).
-- **Orchestrator Subagent Selection & Token Allotment Telemetry:** 65 decisions evaluated with explicit rationale for why each candidate role was selected or rejected, with token allotment vs actual consumption, logged in [`trace/telemetry/orchestration_decisions.jsonl`](file:///Users/michaellipski/dev/meta-axioma/trace/telemetry/orchestration_decisions.jsonl).
-- **Interactive Telemetry UI Dashboard:** Standalone, dark-mode visual dashboard generated at [`telemetry_dashboard.html`](file:///Users/michaellipski/dev/meta-axioma/apps/axioma_lexis/telemetry_dashboard.html) featuring interactive Mermaid DAG, token budget meters, and filterable decision cards.
+- **Execution DAG & Recursion Topology:** Strict prescribed taxonomy across 15 recursive and terminal nodes (max depth: 3, total tokens: 10,900 allotted, 10,430 used, 95.7% efficiency) rendered in [`recursion_tree.md`](apps/axioma_lexis/recursion_tree.md).
+- **Boundary Reflection Telemetry:** 4 depth-3 boundary opinions evaluated and recorded in [`trace/telemetry/recursion_depth_opinions.jsonl`](trace/telemetry/recursion_depth_opinions.jsonl).
+- **Orchestrator Subagent Selection & Token Allotment Telemetry:** 65 decisions evaluated with explicit rationale for why each candidate role was selected or rejected, with token allotment vs actual consumption, logged in [`trace/telemetry/orchestration_decisions.jsonl`](trace/telemetry/orchestration_decisions.jsonl).
+- **Interactive Telemetry UI Dashboard:** Standalone, dark-mode visual dashboard generated at [`telemetry_dashboard.html`](apps/axioma_lexis/telemetry_dashboard.html) featuring interactive Mermaid DAG, token budget meters, and filterable decision cards.
 
 ---
 

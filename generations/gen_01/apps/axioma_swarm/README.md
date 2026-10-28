@@ -10,10 +10,10 @@
 Running multiple open-weights models (e.g. reasoning, coding, extraction) on consumer hardware (such as Apple Silicon Unified Memory or single Nvidia GPUs) typically results in sudden Out-Of-Memory (OOM) kernel panics when concurrent models exceed physical limits.
 
 **Axioma Swarm** enforces zero-trust physical resource constraints:
-1. **Mathematical Memory Leases ([`L1-008`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/trace_evolution.domain.md)):** Calculates model footprint ($W_{\text{weights}} + K_{\text{context}} \times L_{\text{layers}}$) prior to allocation. Rejects or gates any request that would pierce the OS reserved buffer.
+1. **Mathematical Memory Leases ([`L1-008`](../../../../trace/domains/trace_evolution.domain.md)):** Calculates model footprint ($W_{\text{weights}} + K_{\text{context}} \times L_{\text{layers}}$) prior to allocation. Rejects or gates any request that would pierce the OS reserved buffer.
 2. **Deterministic LRU Model Eviction:** Automatically evicts the least recently active resident model when VRAM headroom is tight, seamlessly swapping in specialized models.
-3. **Demarcated Exception Enclaves ([`L1-016`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/trace_evolution.domain.md)):** Isolates task processing and inference memory spikes inside exception boundaries, returning structured error witnesses and immediately releasing VRAM without taking down the host daemon.
-4. **Append-Only Event Sourcing ([`L1-002`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/trace_evolution.domain.md)):** Every model load, eviction, and task state mutation is persisted to an immutable event log in `data/events.json`.
+3. **Demarcated Exception Enclaves ([`L1-016`](../../../../trace/domains/trace_evolution.domain.md)):** Isolates task processing and inference memory spikes inside exception boundaries, returning structured error witnesses and immediately releasing VRAM without taking down the host daemon.
+4. **Append-Only Event Sourcing ([`L1-002`](../../../../trace/domains/trace_evolution.domain.md)):** Every model load, eviction, and task state mutation is persisted to an immutable event log in `data/events.json`.
 
 ---
 

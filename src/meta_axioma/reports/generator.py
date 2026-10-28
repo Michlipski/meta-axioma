@@ -30,9 +30,7 @@ class EpochReportGenerator:
         self.reports_dir.mkdir(parents=True, exist_ok=True)
         self.data_dir.mkdir(parents=True, exist_ok=True)
 
-        self.artifact_dir = artifact_dir or Path(
-            "/Users/michaellipski/.gemini/antigravity/brain/3b221eb3-4215-44f2-a4e6-3e1836ae3c68"
-        )
+        self.artifact_dir = artifact_dir or self.reports_dir
 
     def initialize_baseline_report(
         self,

@@ -1,6 +1,6 @@
 # Generation 1 Summary: The Recursive Meta-Orchestrator
 
-This document provides the complete, human-readable summary of **Generation 1 ($G_1$)** of the Axiom Bootstrapper. Detailed epoch-by-epoch telemetry and data artifacts reside in [`generations/gen_01/epochs/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/epochs/).
+This document provides the complete, human-readable summary of **Generation 1 ($G_1$)** of the Axiom Bootstrapper. Detailed epoch-by-epoch telemetry and data artifacts reside in [`generations/gen_01/epochs/`](epochs/).
 
 ---
 
@@ -12,13 +12,13 @@ This document provides the complete, human-readable summary of **Generation 1 ($
 - **Global Efficacy ($E$):** `1.1596` (Net Efficacy Gain: $+0.1596$ from $1.0000$ baseline)
 - **Rolling Efficacy Derivative ($\frac{dE}{dt}$):** `+0.0104`
 - **Active Structural Invariants ($n=7$):**
-  - [`[L1-002]` Functorial State Evolution & Morphism Preservation](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L225-L232)
-  - [`[L1-004]` Universal Grammar & Compositional Projection Constraints](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L233-L240)
-  - [`[L1-011_3]` Synthesized Structural Invariant 011_3](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L257-L264)
-  - [`[L1-008]` Landauer Thermodynamic Reversibility & Erasure Dissipation Accounting](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L281-L288)
-  - [`[L1-015]` Zero-Trust Dual-Boundary Demarcation & Introspectable MCP Governance](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L305-L315)
-  - [`[L1-016]` Demarcated Exception Enclaves & Bounded Invariant Suspension](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L329-L336)
-  - [`[L1-015_1]` Structural Realization of Compositionality (Boundary Isolation)](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L431-L434)
+  - [`[L1-002]` Functorial State Evolution & Morphism Preservation](../../generation_01_axioms.md#L225-L232)
+  - [`[L1-004]` Universal Grammar & Compositional Projection Constraints](../../generation_01_axioms.md#L233-L240)
+  - [`[L1-011_3]` Synthesized Structural Invariant 011_3](../../generation_01_axioms.md#L257-L264)
+  - [`[L1-008]` Landauer Thermodynamic Reversibility & Erasure Dissipation Accounting](../../generation_01_axioms.md#L281-L288)
+  - [`[L1-015]` Zero-Trust Dual-Boundary Demarcation & Introspectable MCP Governance](../../generation_01_axioms.md#L305-L315)
+  - [`[L1-016]` Demarcated Exception Enclaves & Bounded Invariant Suspension](../../generation_01_axioms.md#L329-L336)
+  - [`[L1-015_1]` Structural Realization of Compositionality (Boundary Isolation)](../../generation_01_axioms.md#L431-L434)
 - **Inactive Epistemic Scaffolding ($n=10$):** 10 foundational Level 0 axioms preserved in persistent memory and UI without runtime compute decay.
 - **Compute Budget Capacity:** $2,857$ simulation tokens / Depth $2$ (Active $n=7$).
 - **Active Validation Suite:** 4-way balanced verification ($S_1$ Self-Constructor, $S_2$ Self-Evaluator, $S_3$ Control Group, $P_1$ Product Usability & Ergonomics).
@@ -50,10 +50,10 @@ Generation 1 began by establishing the meta-rules of discovery ("how to research
 - **Scaffolding Preservation:** Rather than destroying Level 0 axioms, they were transitioned to `INACTIVE` scaffolding. They permanently constrain candidate generation prompts without consuming runtime simulation compute.
 
 ### Phase 2: Structural Execution (Epoch 12+)
-- **Epoch 12:** Committed [`L1-008`](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L281-L288) (+0.0150 $\Delta E$), enforcing Landauer dissipation auditing and reversible execution kernels.
-- **Epoch 13:** Committed [`L1-015`](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L305-L315) (+0.0106 $\Delta E$), integrating the Axioma paradigm: GraphQL schemas as data boundaries (Nouns), deterministic state automata as temporal boundaries (Verbs), and introspectable MCP gateways verified in ephemeral self-healing sandboxes.
-- **Epoch 14:** Committed [`L1-016`](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L329-L336) (+0.0112 $\Delta E$), establishing Demarcated Exception Enclaves (the `unsafe` principle) and deploying Target $P_1$ (`ProductUsabilityTarget`) to ensure constructed software achieves both formal mathematical rigor and human usability.
-- **Epoch 15:** Committed [`L1-015_1`](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#L431-L434) (+0.0100 $\Delta E$), confirming static structural pool saturation and establishing compositional boundary isolation.
+- **Epoch 12:** Committed [`L1-008`](../../generation_01_axioms.md#L281-L288) (+0.0150 $\Delta E$), enforcing Landauer dissipation auditing and reversible execution kernels.
+- **Epoch 13:** Committed [`L1-015`](../../generation_01_axioms.md#L305-L315) (+0.0106 $\Delta E$), integrating the Axioma paradigm: GraphQL schemas as data boundaries (Nouns), deterministic state automata as temporal boundaries (Verbs), and introspectable MCP gateways verified in ephemeral self-healing sandboxes.
+- **Epoch 14:** Committed [`L1-016`](../../generation_01_axioms.md#L329-L336) (+0.0112 $\Delta E$), establishing Demarcated Exception Enclaves (the `unsafe` principle) and deploying Target $P_1$ (`ProductUsabilityTarget`) to ensure constructed software achieves both formal mathematical rigor and human usability.
+- **Epoch 15:** Committed [`L1-015_1`](../../generation_01_axioms.md#L431-L434) (+0.0100 $\Delta E$), confirming static structural pool saturation and establishing compositional boundary isolation.
 
 ---
 
@@ -74,25 +74,25 @@ Generation 1 began by establishing the meta-rules of discovery ("how to research
 
 ## 4. Construction of System $G_1$ (Completed from the Ground Up)
 
-With the axiomatic discovery phase in $S_0$ complete (7 structural axioms verified across the 4-target suite) and Low-Level Jettison 2 executed at Epoch 15, Generation 1 has completed the ground-up construction of **System $G_1$** inside [`generations/gen_01/src/g1_compiler/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/).
+With the axiomatic discovery phase in $S_0$ complete (7 structural axioms verified across the 4-target suite) and Low-Level Jettison 2 executed at Epoch 15, Generation 1 has completed the ground-up construction of **System $G_1$** inside [`generations/gen_01/src/g1_compiler/`](src/g1_compiler/).
 
 ### 4.1 Retirement & Freezing of $S_0$ Search Harness
-- **Location:** Frozen snapshot preserved in [`generations/gen_01/harness/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/harness/).
+- **Location:** Frozen snapshot preserved in [`generations/gen_01/harness/`](harness/).
 - **Role:** The historical discovery tool provided by the human architect to discover $G_1$'s 7 structural axioms across 15 epochs.
 - **Status:** Formally locked and retired under Low-Level Jettison 2.
 
 ### 4.2 System $G_1$ Architecture: Complete Implementation
 System $G_1$ is an entirely new, standalone compiler built from scratch to directly embody the 7 active structural invariants:
-1. **[`functor.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/functor.py) (`L1-002`):** Category-theoretic `Morphism` composition and `CategoryFunctor` verifying identity and morphism preservation: $\mathcal{F}(f \circ g) = \mathcal{F}(f) \circ \mathcal{F}(g)$ and $\mathcal{F}(\text{id}) = \text{id}$.
-2. **[`grammar.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/grammar.py) (`L1-004`):** `UniversalGrammar` with `DeepSyntaxNode` invariant AST validation and surface projections ($\mathcal{P}_{\text{surface}}(\mathcal{D}_{\text{deep}}) \equiv \mathcal{D}_{\text{deep}}$).
-3. **[`persistence.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/persistence.py) (`L1-011_3`):** Modular separation of state delta from physical storage across Boundary 3 (`Boundary3PersistenceManager` with memory and filesystem adapters).
-4. **[`thermodynamics.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/thermodynamics.py) (`L1-008`):** `LandauerAccountingLedger` and `ThermodynamicReversibilityAuditor` auditing bit erasures and dissipated heat energy against the Landauer thermodynamic limit ($k_B T \ln 2$).
-5. **[`mcp_gateway.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/mcp_gateway.py) (`L1-015`):** Dual-boundary Model Context Protocol governance: typed schema constraints (Nouns), deterministic finite state automata transitions (Verbs), and ephemeral sandbox verification.
-6. **[`enclaves.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/enclaves.py) (`L1-016`):** `ExceptionEnclave` isolating failure blast radiuses, emitting cryptographic machine-readable audit witnesses, preventing state leakage, and providing humane error recovery guidance.
-7. **[`composition.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/composition.py) (`L1-015_1`):** `CompositionalBoundaryAuditor` verifying that subcomponents compose orthogonally without side effects: $\mathcal{V}(S_1 \oplus S_2) = \mathcal{V}(S_1) \otimes \mathcal{V}(S_2)$.
+1. **[`functor.py`](src/g1_compiler/functor.py) (`L1-002`):** Category-theoretic `Morphism` composition and `CategoryFunctor` verifying identity and morphism preservation: $\mathcal{F}(f \circ g) = \mathcal{F}(f) \circ \mathcal{F}(g)$ and $\mathcal{F}(\text{id}) = \text{id}$.
+2. **[`grammar.py`](src/g1_compiler/grammar.py) (`L1-004`):** `UniversalGrammar` with `DeepSyntaxNode` invariant AST validation and surface projections ($\mathcal{P}_{\text{surface}}(\mathcal{D}_{\text{deep}}) \equiv \mathcal{D}_{\text{deep}}$).
+3. **[`persistence.py`](src/g1_compiler/persistence.py) (`L1-011_3`):** Modular separation of state delta from physical storage across Boundary 3 (`Boundary3PersistenceManager` with memory and filesystem adapters).
+4. **[`thermodynamics.py`](src/g1_compiler/thermodynamics.py) (`L1-008`):** `LandauerAccountingLedger` and `ThermodynamicReversibilityAuditor` auditing bit erasures and dissipated heat energy against the Landauer thermodynamic limit ($k_B T \ln 2$).
+5. **[`mcp_gateway.py`](src/g1_compiler/mcp_gateway.py) (`L1-015`):** Dual-boundary Model Context Protocol governance: typed schema constraints (Nouns), deterministic finite state automata transitions (Verbs), and ephemeral sandbox verification.
+6. **[`enclaves.py`](src/g1_compiler/enclaves.py) (`L1-016`):** `ExceptionEnclave` isolating failure blast radiuses, emitting cryptographic machine-readable audit witnesses, preventing state leakage, and providing humane error recovery guidance.
+7. **[`composition.py`](src/g1_compiler/composition.py) (`L1-015_1`):** `CompositionalBoundaryAuditor` verifying that subcomponents compose orthogonally without side effects: $\mathcal{V}(S_1 \oplus S_2) = \mathcal{V}(S_1) \otimes \mathcal{V}(S_2)$.
 
 ### 4.3 Autonomous Generation 2 ($G_2$) Successor Formulation
-Fulfilling its primary operational mandate, System $G_1$ endogenously synthesizes the basis and evaluation targets for Generation 2 via [`basis_generator.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/basis_generator.py):
+Fulfilling its primary operational mandate, System $G_1$ endogenously synthesizes the basis and evaluation targets for Generation 2 via [`basis_generator.py`](src/g1_compiler/basis_generator.py):
 - **$G_2$ Evaluation Targets ($T_{G2}$):**
   - `G2-T1`: Higher-Order Functorial Compilation Target
   - `G2-T2`: Autonomous Self-Healing & Enclave Verification Target

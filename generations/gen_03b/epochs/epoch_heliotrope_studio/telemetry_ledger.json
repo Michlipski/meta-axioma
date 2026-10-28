@@ -33,7 +33,7 @@
     "stdout_tail": "et_placement_heuristics)\nVerifies microclimate placement rules for Raised Bed, Gazebo, and Tanning Spot. ... ok\ntest_06_functorial_undo_redo_history (test_heliotrope.TestAxiomaHeliotrope.test_06_functorial_undo_redo_history)\n[L1-002] Verifies 1-Tap Functorial Undo / Redo state transitions S_{t+1} = f(S_t, E). ... ok\ntest_07_rest_api_wire_dispatch (test_heliotrope.TestAxiomaHeliotrope.test_07_rest_api_wire_dispatch)\nVerifies full HTTP REST API endpoints through HeliotropeHTTPRequestHandler. ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.757s\n\nOK",
     "tests_run": 19
   },
-  "chain_head_hash": "1aa9fc9ee4a16eea9d8e575c7d82fa31fd799415de77a27f8e70bd41c5e0d4a3",
+  "chain_head_hash": "3a77440674ed065fc92dae3c253f92ad454bf62bd3c7dd3e2d96aa2652156396",
   "compiler_id": "SystemG3b_HeliotropeStudio",
   "daughter_witness": null,
   "disk_substrate": {
@@ -83,11 +83,11 @@
       "prev_hash": "108ffe764a8fa3f2bccdc5e1a057f49922cbe7c7cfebf5ceeef24d4a0ebeb838"
     },
     {
-      "event_hash": "8e5f6ccc2253da653d303bfdfb5de97fd00b48c8897135de20e085cfae97af48",
+      "event_hash": "a66b1991488f19e053182062cddc8a7d29d92bb4fa9c3d6ea3030c6f1d2c12d6",
       "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
       "index": 2,
       "payload": {
-        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/apps/axioma_heliotrope",
+        "app_output_dir": "apps/axioma_heliotrope",
         "app_test_witness": {
           "exit_code": 0,
           "stdout_tail": "et_placement_heuristics)\nVerifies microclimate placement rules for Raised Bed, Gazebo, and Tanning Spot. ... ok\ntest_06_functorial_undo_redo_history (test_heliotrope.TestAxiomaHeliotrope.test_06_functorial_undo_redo_history)\n[L1-002] Verifies 1-Tap Functorial Undo / Redo state transitions S_{t+1} = f(S_t, E). ... ok\ntest_07_rest_api_wire_dispatch (test_heliotrope.TestAxiomaHeliotrope.test_07_rest_api_wire_dispatch)\nVerifies full HTTP REST API endpoints through HeliotropeHTTPRequestHandler. ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.757s\n\nOK",
@@ -99,7 +99,7 @@
       "prev_hash": "843771922d2d9680fd65a6f47363f2f2eeec893c53b94c1b5335c2cca1ea2860"
     },
     {
-      "event_hash": "76fa1277a0db0fec941c0e9a01ff8f6879b47701965fc75d32d2d6d5fd93d7ef",
+      "event_hash": "441cac86526d6e152f3a3782fd4c8f8fa9e7e81fe35098efe3ed4078b7ee2113",
       "event_type": "STACK_TRACE_SEALED",
       "index": 3,
       "payload": {
@@ -108,10 +108,10 @@
         "remediation_count": 0,
         "total_stack_operations": 12
       },
-      "prev_hash": "8e5f6ccc2253da653d303bfdfb5de97fd00b48c8897135de20e085cfae97af48"
+      "prev_hash": "a66b1991488f19e053182062cddc8a7d29d92bb4fa9c3d6ea3030c6f1d2c12d6"
     },
     {
-      "event_hash": "9dcc90d3563a95ae8d5fd5abeb9442e6470e2f82bf8e203b0261ac7b75cc396d",
+      "event_hash": "f11f3abe5f7f350316ac5a302e07422742bc292c5fc2b8b42aca8a5b460dd5b6",
       "event_type": "DISK_SUBSTRATE_MEASURED",
       "index": 4,
       "payload": {
@@ -132,10 +132,10 @@
           "topology_verifier.py": 345
         }
       },
-      "prev_hash": "76fa1277a0db0fec941c0e9a01ff8f6879b47701965fc75d32d2d6d5fd93d7ef"
+      "prev_hash": "441cac86526d6e152f3a3782fd4c8f8fa9e7e81fe35098efe3ed4078b7ee2113"
     },
     {
-      "event_hash": "78d52f98cc089a0d2a08b6e684f76b54db91ae1ee5e1e6862f66518b4b2d72ca",
+      "event_hash": "7c4b56add5d264fc818aec6649e40272f10988a677d6d17a3b1c1e694ffdd9f7",
       "event_type": "SUBSTRATE_TEST_WITNESS",
       "index": 5,
       "payload": {
@@ -143,10 +143,10 @@
         "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
         "tests_run": 4
       },
-      "prev_hash": "9dcc90d3563a95ae8d5fd5abeb9442e6470e2f82bf8e203b0261ac7b75cc396d"
+      "prev_hash": "f11f3abe5f7f350316ac5a302e07422742bc292c5fc2b8b42aca8a5b460dd5b6"
     },
     {
-      "event_hash": "d50ee295b5d116bc3b6532f1b751378c118bb09d9c6348bc926350cbf3fd4d03",
+      "event_hash": "5dce0caea16941987082e75b93fcd3be74e79b3de1a9b18990b38ab5369b3971",
       "event_type": "APP_SUBSTRATE_TEST_WITNESS",
       "index": 6,
       "payload": {
@@ -154,10 +154,10 @@
         "stdout_tail": "et_placement_heuristics)\nVerifies microclimate placement rules for Raised Bed, Gazebo, and Tanning Spot. ... ok\ntest_06_functorial_undo_redo_history (test_heliotrope.TestAxiomaHeliotrope.test_06_functorial_undo_redo_history)\n[L1-002] Verifies 1-Tap Functorial Undo / Redo state transitions S_{t+1} = f(S_t, E). ... ok\ntest_07_rest_api_wire_dispatch (test_heliotrope.TestAxiomaHeliotrope.test_07_rest_api_wire_dispatch)\nVerifies full HTTP REST API endpoints through HeliotropeHTTPRequestHandler. ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.757s\n\nOK",
         "tests_run": 19
       },
-      "prev_hash": "78d52f98cc089a0d2a08b6e684f76b54db91ae1ee5e1e6862f66518b4b2d72ca"
+      "prev_hash": "7c4b56add5d264fc818aec6649e40272f10988a677d6d17a3b1c1e694ffdd9f7"
     },
     {
-      "event_hash": "1aa9fc9ee4a16eea9d8e575c7d82fa31fd799415de77a27f8e70bd41c5e0d4a3",
+      "event_hash": "3a77440674ed065fc92dae3c253f92ad454bf62bd3c7dd3e2d96aa2652156396",
       "event_type": "THERMODYNAMIC_LEDGER_SEALED",
       "index": 7,
       "payload": {
@@ -185,7 +185,7 @@
         "unspent_reserve": 94745,
         "utilization_pct": 6.75
       },
-      "prev_hash": "d50ee295b5d116bc3b6532f1b751378c118bb09d9c6348bc926350cbf3fd4d03"
+      "prev_hash": "5dce0caea16941987082e75b93fcd3be74e79b3de1a9b18990b38ab5369b3971"
     }
   ],
   "live_subagents_spawned_count": 4,

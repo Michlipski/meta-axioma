@@ -1,0 +1,1660 @@
+{
+  "soc_id": "soc_g4b_researcher",
+  "title": "Generation 4b Autonomous Decoupled Research Service (Zenith Apex Epistemic Crucible)",
+  "narrative": "In recursive self-compiling systems, the fatal pathology is the Builder Shortchanging Research dilemma. Generation 4b permanently decouples Research from Development into an autonomous sovereign service with zero code-emission tools, optimizing purely for epistemic depth, invariant completeness (100%), and failure-mode coverage under a 5-tier anti-bias framework and formal RFC protocol negotiation.",
+  "altitude": "MACRO",
+  "actors": [
+    {
+      "name": "Human Systems Architect",
+      "role": "Epistemic Sovereign & Governance Custodian",
+      "motivations": [
+        "Steer multi-generational succession",
+        "Preserve thermodynamic compute sanity",
+        "Enforce negative axiom vetoes (NEG-###)"
+      ],
+      "frustrations": [
+        "Silent degradation of invariants",
+        "Agent shortcutting and mode collapse",
+        "Unstructured natural language prompt bloat"
+      ]
+    },
+    {
+      "name": "Sovereign Research Service",
+      "role": "Theoretical Correctness & Architectural Blueprinting Engine",
+      "motivations": [
+        "Invariant completeness (100% coverage)",
+        "Topological novelty enforcement (D >= 0.40)",
+        "Formal SMT composition proofs"
+      ],
+      "frustrations": [
+        "Pressure to cut scope for delivery expediency",
+        "Builder attempts to soften invariants"
+      ]
+    },
+    {
+      "name": "Primary Builder",
+      "role": "AST Synthesizer & Substrate Implementation Engine",
+      "motivations": [
+        "Clean AST emission",
+        "Substrate runtime test execution (exit code 0)",
+        "Landauer energy efficiency"
+      ],
+      "frustrations": [
+        "Unrealistic research specs exceeding physical token ceilings"
+      ]
+    },
+    {
+      "name": "Protocol Adjudicator",
+      "role": "Impartial RFC Judge & Merkle Telemetry Anchor",
+      "motivations": [
+        "Validate formal morphism pre/post-conditions",
+        "Synthesize counter-proofs for invalid RFCs",
+        "Maintain tamper-evident Merkle DAG"
+      ],
+      "frustrations": [
+        "Malformed RFC payloads and untyped evidence"
+      ]
+    }
+  ],
+  "frictions": [
+    {
+      "description": "The Builder Shortchanging Research dilemma causes premature epistemic truncation",
+      "severity": "CRITICAL",
+      "impact": "Fragile architectures that fail under real-world partition or Byzantine conditions",
+      "trigger_conditions": []
+    },
+    {
+      "description": "Unstructured natural language error strings cause context explosion and oscillating diffs",
+      "severity": "HIGH",
+      "impact": "Prompt bloat up to 40k tokens and wasted Landauer dissipation",
+      "trigger_conditions": []
+    },
+    {
+      "description": "Mode collapse and cosmetic plagiarism recycle ubiquitous web patterns",
+      "severity": "HIGH",
+      "impact": "Loss of generational succession value and novelty starvation",
+      "trigger_conditions": []
+    }
+  ],
+  "constraints": [
+    {
+      "nature": "THERMODYNAMIC",
+      "description": "Strict 60/40 capital partition: 60% Exploratory / 40% Protected",
+      "boundary_limit": "982,300 BPE tokens (C_exploratory=589,380, C_protected=392,920)"
+    },
+    {
+      "nature": "ERGONOMIC",
+      "description": "Zero-Code Research Service Tool Boundary",
+      "boundary_limit": "Zero code-writing or shell execution tools in research enclaves"
+    },
+    {
+      "nature": "TECHNICAL",
+      "description": "Topological Fidelity Invariant [L1-G3B-012]",
+      "boundary_limit": "6 nodes on 192.168.40.0/24 subnet; 0 loopback addresses allowed"
+    }
+  ],
+  "unmet_needs": [
+    "Formal decoupling of discovery from emission via physical sandbox tool boundaries",
+    "Asynchronous typed RFC protocol negotiation (SpecAdjustmentRequest -> SpecAmendment)",
+    "Multi-island exploration guaranteed to satisfy structural taboo distance D >= 0.40",
+    "Deterministic 1-tap Functorial Undo for exploratory research dead-ends"
+  ],
+  "induced_frictions": [],
+  "parent_soc_id": null,
+  "sub_socs": [],
+  "required_invariants": [
+    "[L1-G3B-000] Waterloo Situation of Concern Normalization",
+    "[L1-G3B-011] Universal & Hierarchical IR Specification",
+    "[L1-G3B-012] Topological Fidelity Invariant",
+    "[L1-G3B-014] Dual-Model Cognitive Routing Invariant",
+    "[L1-G3B-016] Zero-Bypass Micro-Auditor Interception",
+    "[L1-G3B-017] Reflexive Quine Daughter Isolation Protocol",
+    "[L1-G3B-018] Mandatory Development Process Telemetry Dashboard Deliverable",
+    "[L1-G4B-001] Fractal Tree Recursion & Async RFC Protocol Bus",
+    "[L1-G4B-002] Zero-Code Research Service Tool Boundary",
+    "[L1-G4B-003] Merkle-DAG Cryptographic Telemetry Witness",
+    "[L1-G4B-004] Dynamic On-The-Fly Persona Specialization",
+    "[L1-G4B-005] Dialectical Inversion & Taboo Distance Matrix",
+    "[L1-G4B-006] Extreme Boundary Stress & Byzantine Fuzzing",
+    "[L1-002] Functorial State Transitions & Deterministic Undo",
+    "[NEG-G1B-001] Empirical Execution Witness & Anti-Phantom Emission Gate"
+  ],
+  "is_multi_node_cluster": true,
+  "inject_fault_on_first_try": false,
+  "require_live_subagents": true,
+  "subagent_witnesses": [
+    {
+      "task_id": "decompose:root_soc_g4b_researcher",
+      "subagent_role": "Brain Tier Lead Architect & Epistemic Researcher",
+      "cognitive_role": "human_ergonomics_architect",
+      "assigned_model": "Gemini 3.8 Flash",
+      "conversation_id": "92a9998a-2561-4cdf-a4c5-5822aa285f32",
+      "prompt_bpe_tokens": 1850,
+      "response_bpe_tokens": 9150,
+      "total_bpe_tokens": 11000,
+      "is_live_agy_subagent": true,
+      "task_description": "Stage 1: Problem Discovery, Formal Contract Proofs, and Architectural Blueprinting",
+      "parent_task_id": null,
+      "caller_role": "Meta-Orchestrator (Parent Agent)",
+      "subagent_type": "self"
+    },
+    {
+      "task_id": "leaf:core_backend_and_functorial_statechart_engine",
+      "subagent_role": "Core Backend & Functorial Engine Synthesizer",
+      "cognitive_role": "core_engine_synthesizer",
+      "assigned_model": "Gemini 3.8 Flash",
+      "conversation_id": "fc55df09-febe-4bb1-9859-8d61f1eb510d",
+      "prompt_bpe_tokens": 2100,
+      "response_bpe_tokens": 30350,
+      "total_bpe_tokens": 32450,
+      "is_live_agy_subagent": true,
+      "task_description": "Stage 2: 18 Domain Nouns, 12 Core Backend Modules, 32-State XState v5 Engine",
+      "parent_task_id": null,
+      "caller_role": "Meta-Orchestrator (Parent Agent)",
+      "subagent_type": "self"
+    },
+    {
+      "task_id": "leaf:operational_dashboard_and_telemetry_engine",
+      "subagent_role": "Operational Dashboard & Telemetry Synthesizer",
+      "cognitive_role": "operational_dashboard_synthesizer",
+      "assigned_model": "Gemini 3.8 Flash",
+      "conversation_id": "a00859bd-0866-467a-bc8b-0371ca409a6d",
+      "prompt_bpe_tokens": 1450,
+      "response_bpe_tokens": 20730,
+      "total_bpe_tokens": 22180,
+      "is_live_agy_subagent": true,
+      "task_description": "Stage 2: Standalone Development Process Telemetry Dashboard deliverable",
+      "parent_task_id": null,
+      "caller_role": "Meta-Orchestrator (Parent Agent)",
+      "subagent_type": "self"
+    },
+    {
+      "task_id": "leaf:adversarial_test_and_byzantine_qa_suite",
+      "subagent_role": "Adversarial Test & Byzantine QA Engineer",
+      "cognitive_role": "adversarial_qa_engineer",
+      "assigned_model": "Gemini 3.8 Flash",
+      "conversation_id": "5ce2505f-ee32-41d9-972f-c7fcfacc06c8",
+      "prompt_bpe_tokens": 1650,
+      "response_bpe_tokens": 17270,
+      "total_bpe_tokens": 18920,
+      "is_live_agy_subagent": true,
+      "task_description": "Stage 2: 29-test empirical adversarial test suite across 7 pillars",
+      "parent_task_id": null,
+      "caller_role": "Meta-Orchestrator (Parent Agent)",
+      "subagent_type": "self"
+    }
+  ],
+  "app_output_dir": "generations/gen_03b/apps/soc_g4b_researcher",
+  "domain_spec": {
+    "contract_ir": {
+      "contract_id": "contract_g4b_researcher",
+      "title": "Generation 4b Autonomous Decoupled Research Service Contract",
+      "description": "Formal invariants, nouns, and verbs governing sovereign research service, SMT proofs, and RFC protocol bus",
+      "nouns": {
+        "ResearchDeliverableBundle": {
+          "name": "ResearchDeliverableBundle",
+          "description": "Certified sovereign research specification bundle",
+          "fields": [
+            {
+              "name": "bundle_id",
+              "type_name": "str",
+              "nullable": "UUIDv7 identifier",
+              "description": ""
+            },
+            {
+              "name": "target_soc_id",
+              "type_name": "str",
+              "nullable": "Waterloo SoC reference",
+              "description": ""
+            },
+            {
+              "name": "reference_architecture_hash",
+              "type_name": "str",
+              "nullable": "64-char SHA-256 hash",
+              "description": ""
+            },
+            {
+              "name": "merkle_root",
+              "type_name": "str",
+              "nullable": "Root Merkle DAG hash",
+              "description": ""
+            },
+            {
+              "name": "is_certified",
+              "type_name": "bool",
+              "nullable": "Certification status",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(reference_architecture_hash) == 64",
+            "len(merkle_root) == 64"
+          ]
+        },
+        "HypothesisDefinition": {
+          "name": "HypothesisDefinition",
+          "description": "SMT-formalized theoretical conjecture",
+          "fields": [
+            {
+              "name": "hypothesis_id",
+              "type_name": "str",
+              "nullable": "Hypothesis identifier",
+              "description": ""
+            },
+            {
+              "name": "theoretical_claim",
+              "type_name": "str",
+              "nullable": "Formal hypothesis prose",
+              "description": ""
+            },
+            {
+              "name": "expected_complexity_class",
+              "type_name": "str",
+              "nullable": "Asymptotic complexity bound",
+              "description": ""
+            },
+            {
+              "name": "formal_conjecture_z3",
+              "type_name": "str",
+              "nullable": "SMT-LIB2 formal assertion",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(theoretical_claim) >= 20"
+          ]
+        },
+        "ConstraintAnalysis": {
+          "name": "ConstraintAnalysis",
+          "description": "Environmental and topological constraint extraction",
+          "fields": [
+            {
+              "name": "analysis_id",
+              "type_name": "str",
+              "nullable": "Analysis identifier",
+              "description": ""
+            },
+            {
+              "name": "physical_latency_budget_ms",
+              "type_name": "int",
+              "nullable": "Latency ceiling in ms",
+              "description": ""
+            },
+            {
+              "name": "landauer_erasure_budget_bits",
+              "type_name": "int",
+              "nullable": "Maximum bit erasure allowed",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "physical_latency_budget_ms > 0",
+            "landauer_erasure_budget_bits > 0"
+          ]
+        },
+        "FailureModeModel": {
+          "name": "FailureModeModel",
+          "description": "Byzantine and partition failure mode taxonomy",
+          "fields": [
+            {
+              "name": "model_id",
+              "type_name": "str",
+              "nullable": "Failure model identifier",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(model_id) > 0"
+          ]
+        },
+        "TradeoffMatrix": {
+          "name": "TradeoffMatrix",
+          "description": "Pareto frontier trade-off analysis",
+          "fields": [
+            {
+              "name": "matrix_id",
+              "type_name": "str",
+              "nullable": "Trade-off matrix identifier",
+              "description": ""
+            },
+            {
+              "name": "selection_proof",
+              "type_name": "str",
+              "nullable": "Formal proof of Pareto optimality",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(selection_proof) >= 10"
+          ]
+        },
+        "SpecAdjustmentRequest": {
+          "name": "SpecAdjustmentRequest",
+          "description": "Builder RFC requesting specification adjustment",
+          "fields": [
+            {
+              "name": "request_id",
+              "type_name": "str",
+              "nullable": "RFC identifier",
+              "description": ""
+            },
+            {
+              "name": "target_symbol_urn",
+              "type_name": "str",
+              "nullable": "Symbol URN under bottleneck",
+              "description": ""
+            },
+            {
+              "name": "bottleneck_type",
+              "type_name": "str",
+              "nullable": "Classification of bottleneck",
+              "description": ""
+            },
+            {
+              "name": "proposed_delta",
+              "type_name": "str",
+              "nullable": "Concrete requested amendment",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(proposed_delta) > 0"
+          ]
+        },
+        "SpecAmendment": {
+          "name": "SpecAmendment",
+          "description": "Adjudicated signed amendment or formal counter-proof",
+          "fields": [
+            {
+              "name": "amendment_id",
+              "type_name": "str",
+              "nullable": "Amendment identifier",
+              "description": ""
+            },
+            {
+              "name": "request_id",
+              "type_name": "str",
+              "nullable": "Original RFC identifier",
+              "description": ""
+            },
+            {
+              "name": "is_approved",
+              "type_name": "bool",
+              "nullable": "Approval status",
+              "description": ""
+            },
+            {
+              "name": "adjudicator_signature",
+              "type_name": "str",
+              "nullable": "Cryptographic signature",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(adjudicator_signature) == 64"
+          ]
+        },
+        "TabooDistanceMatrix": {
+          "name": "TabooDistanceMatrix",
+          "description": "Weisfeiler-Lehman topological graph hash distance matrix",
+          "fields": [
+            {
+              "name": "matrix_id",
+              "type_name": "str",
+              "nullable": "Matrix identifier",
+              "description": ""
+            },
+            {
+              "name": "min_distance_threshold",
+              "type_name": "float",
+              "nullable": "Enforced distance threshold",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "min_distance_threshold >= 0.40"
+          ]
+        },
+        "MerkleDagWitness": {
+          "name": "MerkleDagWitness",
+          "description": "Cryptographic Merkle DAG node linking parent hashes",
+          "fields": [
+            {
+              "name": "node_hash",
+              "type_name": "str",
+              "nullable": "SHA-256 node hash",
+              "description": ""
+            },
+            {
+              "name": "task_id",
+              "type_name": "str",
+              "nullable": "Task reference",
+              "description": ""
+            },
+            {
+              "name": "timestamp_ns",
+              "type_name": "int",
+              "nullable": "Nanosecond timestamp",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(node_hash) == 64",
+            "timestamp_ns > 0"
+          ]
+        },
+        "EmpiricalTelemetryReport": {
+          "name": "EmpiricalTelemetryReport",
+          "description": "Real-time execution telemetry and Landauer dissipation",
+          "fields": [
+            {
+              "name": "report_id",
+              "type_name": "str",
+              "nullable": "Report identifier",
+              "description": ""
+            },
+            {
+              "name": "landauer_bits_erased",
+              "type_name": "int",
+              "nullable": "Total erased bits",
+              "description": ""
+            },
+            {
+              "name": "substrate_test_exit_code",
+              "type_name": "int",
+              "nullable": "Subprocess exit code",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "substrate_test_exit_code == 0",
+            "landauer_bits_erased >= 0"
+          ]
+        },
+        "EpistemicCrucibleTarget": {
+          "name": "EpistemicCrucibleTarget",
+          "description": "Crucible campaign objective and token lease",
+          "fields": [
+            {
+              "name": "target_id",
+              "type_name": "str",
+              "nullable": "Target identifier",
+              "description": ""
+            },
+            {
+              "name": "exploratory_token_lease",
+              "type_name": "int",
+              "nullable": "Token lease",
+              "description": ""
+            },
+            {
+              "name": "required_island_count",
+              "type_name": "int",
+              "nullable": "Minimum isolated islands",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "required_island_count >= 3",
+            "exploratory_token_lease >= 10000"
+          ]
+        },
+        "ZeroContextIslandManifest": {
+          "name": "ZeroContextIslandManifest",
+          "description": "Quarantined research island manifest with entropy seed",
+          "fields": [
+            {
+              "name": "island_id",
+              "type_name": "str",
+              "nullable": "Island identifier",
+              "description": ""
+            },
+            {
+              "name": "assigned_seed_entropy",
+              "type_name": "str",
+              "nullable": "Cryptographic entropy seed",
+              "description": ""
+            },
+            {
+              "name": "quarantine_token_budget",
+              "type_name": "int",
+              "nullable": "Per-island budget",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "quarantine_token_budget > 0"
+          ]
+        },
+        "NoveltyArchiveEntry": {
+          "name": "NoveltyArchiveEntry",
+          "description": "Historical architectural novelty archive entry",
+          "fields": [
+            {
+              "name": "archive_id",
+              "type_name": "str",
+              "nullable": "Archive identifier",
+              "description": ""
+            },
+            {
+              "name": "weisfeiler_lehman_hash",
+              "type_name": "str",
+              "nullable": "Graph WL signature",
+              "description": ""
+            },
+            {
+              "name": "novelty_score",
+              "type_name": "float",
+              "nullable": "Lehman-Stanley novelty score",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "novelty_score >= 0.0"
+          ]
+        },
+        "DialecticalNegationSeed": {
+          "name": "DialecticalNegationSeed",
+          "description": "Injected negative constraint forcing architectural inversion",
+          "fields": [
+            {
+              "name": "seed_id",
+              "type_name": "str",
+              "nullable": "Seed identifier",
+              "description": ""
+            },
+            {
+              "name": "default_primitive",
+              "type_name": "str",
+              "nullable": "Forbidden default primitive",
+              "description": ""
+            },
+            {
+              "name": "negated_invariant",
+              "type_name": "str",
+              "nullable": "Injected NEG_PRIMITIVE invariant",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(negated_invariant) > 0"
+          ]
+        },
+        "ExtremeBoundaryArchetype": {
+          "name": "ExtremeBoundaryArchetype",
+          "description": "Hostile stress profile for edge-case validation",
+          "fields": [
+            {
+              "name": "archetype_id",
+              "type_name": "str",
+              "nullable": "Archetype identifier",
+              "description": ""
+            },
+            {
+              "name": "stress_dimension",
+              "type_name": "str",
+              "nullable": "Dimension under stress",
+              "description": ""
+            },
+            {
+              "name": "stress_magnitude",
+              "type_name": "float",
+              "nullable": "Magnitude multiplier",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "stress_magnitude > 0.0"
+          ]
+        },
+        "ByzantineFuzzVector": {
+          "name": "ByzantineFuzzVector",
+          "description": "Chaotic network vector for recovery enclave testing",
+          "fields": [
+            {
+              "name": "vector_id",
+              "type_name": "str",
+              "nullable": "Vector identifier",
+              "description": ""
+            },
+            {
+              "name": "target_channel_id",
+              "type_name": "str",
+              "nullable": "Target network channel",
+              "description": ""
+            },
+            {
+              "name": "is_trapped",
+              "type_name": "bool",
+              "nullable": "Trapping verification status",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(target_channel_id) > 0"
+          ]
+        },
+        "FormalProofArtifact": {
+          "name": "FormalProofArtifact",
+          "description": "SMT composition proof artifact",
+          "fields": [
+            {
+              "name": "proof_id",
+              "type_name": "str",
+              "nullable": "Proof identifier",
+              "description": ""
+            },
+            {
+              "name": "solver_engine",
+              "type_name": "str",
+              "nullable": "SMT solver signature",
+              "description": ""
+            },
+            {
+              "name": "solver_result",
+              "type_name": "str",
+              "nullable": "UNSAT (valid) or SAT (counter-example)",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(solver_engine) > 0"
+          ]
+        },
+        "FunctorialUndoCheckpoint": {
+          "name": "FunctorialUndoCheckpoint",
+          "description": "Snapshot enabling deterministic 1-tap rollback",
+          "fields": [
+            {
+              "name": "checkpoint_id",
+              "type_name": "str",
+              "nullable": "Checkpoint identifier",
+              "description": ""
+            },
+            {
+              "name": "statechart_snapshot_hash",
+              "type_name": "str",
+              "nullable": "64-char state hash",
+              "description": ""
+            },
+            {
+              "name": "erased_bits_to_revert",
+              "type_name": "int",
+              "nullable": "Thermodynamic bits to reclaim",
+              "description": ""
+            }
+          ],
+          "invariants": [
+            "len(statechart_snapshot_hash) == 64",
+            "erased_bits_to_revert >= 0"
+          ]
+        }
+      },
+      "verbs": {},
+      "composed_verbs": {
+        "ComposeEpistemicDiscovery": {
+          "parent_verb": {
+            "name": "ComposeEpistemicDiscovery",
+            "description": "Executes full discovery across isolated islands and formalizes hypotheses",
+            "parameters": [
+              {
+                "name": "target_id",
+                "type_name": "str",
+                "nullable": "Crucible target identifier",
+                "description": ""
+              }
+            ],
+            "return_type": "ResearchDeliverableBundle",
+            "pre_conditions": [
+              "exploratory_token_lease >= 60000"
+            ],
+            "post_conditions": [
+              "is_certified == True"
+            ],
+            "modifies_nouns": [
+              "ResearchDeliverableBundle",
+              "HypothesisDefinition",
+              "MerkleDagWitness"
+            ]
+          },
+          "child_steps": [
+            {
+              "child_contract_id": "sub_island_isolation",
+              "child_verb_name": "SpawnQuarantinedIslands",
+              "argument_bindings": {
+                "target_id": "target_id"
+              },
+              "output_binding": "island_manifests"
+            },
+            {
+              "child_contract_id": "sub_hypothesis_engine",
+              "child_verb_name": "FormulateSMTHypotheses",
+              "argument_bindings": {
+                "target_id": "target_id"
+              },
+              "output_binding": "hypotheses"
+            },
+            {
+              "child_contract_id": "sub_taboo_filter",
+              "child_verb_name": "FilterTabooDistance",
+              "argument_bindings": {
+                "target_id": "target_id"
+              },
+              "output_binding": "taboo_matrix"
+            }
+          ]
+        }
+      },
+      "parent_contract_id": null,
+      "sub_contracts": {
+        "sub_island_isolation": {
+          "contract_id": "sub_island_isolation",
+          "title": "Zero-Context Island Isolation Subcontract",
+          "description": "Spawns N>=3 hermetic research islands with unique cryptographic entropy seeds.",
+          "nouns": {},
+          "verbs": {
+            "SpawnQuarantinedIslands": {
+              "name": "SpawnQuarantinedIslands",
+              "description": "Spawn isolated islands and bind entropy seeds.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "exploratory_token_lease >= 60000"
+              ],
+              "post_conditions": [
+                "islands_seeded == True"
+              ],
+              "modifies_nouns": [
+                "ZeroContextIslandManifest"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        },
+        "sub_hypothesis_engine": {
+          "contract_id": "sub_hypothesis_engine",
+          "title": "SMT Hypothesis Formulation Subcontract",
+          "description": "Synthesizes SMT-LIB2 formalized conjectures.",
+          "nouns": {},
+          "verbs": {
+            "FormulateSMTHypotheses": {
+              "name": "FormulateSMTHypotheses",
+              "description": "Formulate hypotheses under governing axioms.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "islands_seeded == True"
+              ],
+              "post_conditions": [
+                "hypotheses_formulated == True"
+              ],
+              "modifies_nouns": [
+                "HypothesisDefinition"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        },
+        "sub_taboo_filter": {
+          "contract_id": "sub_taboo_filter",
+          "title": "Weisfeiler-Lehman Taboo Distance Filter Subcontract",
+          "description": "Computes normalized graph distance and enforces D >= 0.40.",
+          "nouns": {},
+          "verbs": {
+            "FilterTabooDistance": {
+              "name": "FilterTabooDistance",
+              "description": "Enforces taboo distance threshold across all candidate pairs.",
+              "parameters": [],
+              "return_type": "void",
+              "pre_conditions": [
+                "hypotheses_formulated == True"
+              ],
+              "post_conditions": [
+                "taboo_distance_satisfied == True",
+                "is_certified == True"
+              ],
+              "modifies_nouns": [
+                "TabooDistanceMatrix",
+                "ResearchDeliverableBundle"
+              ]
+            }
+          },
+          "composed_verbs": {},
+          "parent_contract_id": null,
+          "sub_contracts": {}
+        }
+      }
+    },
+    "statechart_ir": {
+      "id": "statechart_g4b_researcher",
+      "version": "5.0",
+      "root": {
+        "id": "researcher_system",
+        "type": "compound",
+        "description": "Root hierarchical state machine for Generation 4b Sovereign Decoupled Research Service",
+        "transitions": [],
+        "entry_actions": [],
+        "exit_actions": [],
+        "initial": "boot",
+        "states": {
+          "boot": {
+            "id": "boot",
+            "type": "compound",
+            "description": "Boot stratum",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "boot.sovereign_init",
+            "states": {
+              "boot.sovereign_init": {
+                "id": "boot.sovereign_init",
+                "type": "atomic",
+                "description": "Sovereign Init",
+                "transitions": [
+                  {
+                    "event": "EV_BOOT_POST",
+                    "target": "boot.quarantine_setup",
+                    "actions": [],
+                    "description": ""
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              },
+              "boot.quarantine_setup": {
+                "id": "boot.quarantine_setup",
+                "type": "atomic",
+                "description": "Quarantine Setup",
+                "transitions": [
+                  {
+                    "event": "EV_BOOT_READY",
+                    "target": "active.epistemic_discovery",
+                    "actions": [],
+                    "description": ""
+                  }
+                ],
+                "entry_actions": [],
+                "exit_actions": []
+              }
+            }
+          },
+          "active": {
+            "id": "active",
+            "type": "compound",
+            "description": "Active Research and Adjudication Operations",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": [],
+            "initial": "active.epistemic_discovery",
+            "states": {
+              "active.epistemic_discovery": {
+                "id": "active.epistemic_discovery",
+                "type": "compound",
+                "description": "Epistemic Discovery Stratum",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": [],
+                "initial": "island_quarantine",
+                "states": {
+                  "island_quarantine": {
+                    "id": "island_quarantine",
+                    "type": "atomic",
+                    "description": "Zero-Context Island Quarantine",
+                    "transitions": [
+                      {
+                        "event": "EV_ISLANDS_SEEDED",
+                        "target": "hypothesis_formulation",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "hypothesis_formulation": {
+                    "id": "hypothesis_formulation",
+                    "type": "atomic",
+                    "description": "Hypothesis Formulation",
+                    "transitions": [
+                      {
+                        "event": "EV_HYPOTHESIS_FORMULATED",
+                        "target": "constraint_boundary_mapping",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "constraint_boundary_mapping": {
+                    "id": "constraint_boundary_mapping",
+                    "type": "atomic",
+                    "description": "Constraint Boundary Mapping",
+                    "transitions": [
+                      {
+                        "event": "EV_BOUNDARIES_MAPPED",
+                        "target": "discovery_evaluating",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "discovery_evaluating": {
+                    "id": "discovery_evaluating",
+                    "type": "atomic",
+                    "description": "Discovery Evaluating",
+                    "transitions": [
+                      {
+                        "event": "EV_SHORTCUT_DETECTED",
+                        "target": "anti_shortcut_enclave",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_CHECKPOINT_DISCOVERY",
+                        "target": "discovery_deep_history",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_START_FUZZER",
+                        "target": "active.parallel_fuzzer",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_START_METER",
+                        "target": "active.parallel_meter",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_DISCOVERY_CERTIFIED",
+                        "target": "active.adversarial_crucible",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "discovery_deep_history": {
+                    "id": "discovery_deep_history",
+                    "type": "history",
+                    "description": "Discovery Deep History",
+                    "transitions": [
+                      {
+                        "event": "EV_RESTORE_DISCOVERY",
+                        "target": "hypothesis_formulation",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": [],
+                    "history": "deep"
+                  },
+                  "anti_shortcut_enclave": {
+                    "id": "anti_shortcut_enclave",
+                    "type": "atomic",
+                    "description": "Anti-Shortcut Recovery Enclave",
+                    "transitions": [
+                      {
+                        "event": "EV_UNWIND_SHORTCUT",
+                        "target": "hypothesis_formulation",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  }
+                }
+              },
+              "active.adversarial_crucible": {
+                "id": "active.adversarial_crucible",
+                "type": "compound",
+                "description": "Adversarial Crucible Stratum",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": [],
+                "initial": "novelty_search_active",
+                "states": {
+                  "novelty_search_active": {
+                    "id": "novelty_search_active",
+                    "type": "atomic",
+                    "description": "Novelty Search Active",
+                    "transitions": [
+                      {
+                        "event": "EV_EVALUATE_NOVELTY",
+                        "target": "taboo_distance_check",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "taboo_distance_check": {
+                    "id": "taboo_distance_check",
+                    "type": "atomic",
+                    "description": "Taboo Distance Check (D >= 0.40)",
+                    "transitions": [
+                      {
+                        "event": "EV_TABOO_BREACH",
+                        "target": "mode_collapse_enclave",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_TABOO_SATISFIED",
+                        "target": "dialectical_negation_inject",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "mode_collapse_enclave": {
+                    "id": "mode_collapse_enclave",
+                    "type": "atomic",
+                    "description": "Mode Collapse Recovery Enclave",
+                    "transitions": [
+                      {
+                        "event": "EV_FORCE_NEGATION",
+                        "target": "dialectical_negation_inject",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "dialectical_negation_inject": {
+                    "id": "dialectical_negation_inject",
+                    "type": "atomic",
+                    "description": "Dialectical Negation Inject (NEG_PRIMITIVE)",
+                    "transitions": [
+                      {
+                        "event": "EV_NEGATION_APPLIED",
+                        "target": "boundary_stress_fuzzing",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "boundary_stress_fuzzing": {
+                    "id": "boundary_stress_fuzzing",
+                    "type": "atomic",
+                    "description": "Boundary Stress & Byzantine Fuzzing",
+                    "transitions": [
+                      {
+                        "event": "EV_STRESS_PASSED",
+                        "target": "pareto_frontier_filter",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "pareto_frontier_filter": {
+                    "id": "pareto_frontier_filter",
+                    "type": "atomic",
+                    "description": "5D Pareto Frontier Filter",
+                    "transitions": [
+                      {
+                        "event": "EV_CHECKPOINT_CRUCIBLE",
+                        "target": "crucible_deep_history",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_PARETO_OPTIMAL",
+                        "target": "crucible_certified",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "crucible_deep_history": {
+                    "id": "crucible_deep_history",
+                    "type": "history",
+                    "description": "Crucible Deep History",
+                    "transitions": [
+                      {
+                        "event": "EV_RESTORE_CRUCIBLE",
+                        "target": "novelty_search_active",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": [],
+                    "history": "deep"
+                  },
+                  "crucible_certified": {
+                    "id": "crucible_certified",
+                    "type": "atomic",
+                    "description": "Crucible Certified",
+                    "transitions": [
+                      {
+                        "event": "EV_EMIT_DELIVERABLES",
+                        "target": "active.protocol_adjudication",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  }
+                }
+              },
+              "active.protocol_adjudication": {
+                "id": "active.protocol_adjudication",
+                "type": "compound",
+                "description": "Protocol Adjudication Stratum",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": [],
+                "initial": "spec_bundle_published",
+                "states": {
+                  "spec_bundle_published": {
+                    "id": "spec_bundle_published",
+                    "type": "atomic",
+                    "description": "Spec Bundle Published",
+                    "transitions": [
+                      {
+                        "event": "EV_BUILDER_ATTACHED",
+                        "target": "builder_rfc_ingress",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "builder_rfc_ingress": {
+                    "id": "builder_rfc_ingress",
+                    "type": "atomic",
+                    "description": "Builder RFC Ingress",
+                    "transitions": [
+                      {
+                        "event": "EV_SUBMIT_RFC",
+                        "target": "rfc_counter_proof_eval",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "rfc_counter_proof_eval": {
+                    "id": "rfc_counter_proof_eval",
+                    "type": "atomic",
+                    "description": "RFC Counter Proof SMT Evaluation",
+                    "transitions": [
+                      {
+                        "event": "EV_AXIOM_VIOLATION",
+                        "target": "rfc_counter_proof_enclave",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_AMENDMENT_PROVED",
+                        "target": "spec_amendment_signed",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "rfc_counter_proof_enclave": {
+                    "id": "rfc_counter_proof_enclave",
+                    "type": "atomic",
+                    "description": "RFC Counter-Proof Enclave",
+                    "transitions": [
+                      {
+                        "event": "EV_REJECT_RFC_WITH_PROOF",
+                        "target": "builder_rfc_ingress",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "spec_amendment_signed": {
+                    "id": "spec_amendment_signed",
+                    "type": "atomic",
+                    "description": "Spec Amendment Signed",
+                    "transitions": [
+                      {
+                        "event": "EV_CHECKPOINT_ADJUDICATION",
+                        "target": "adjudication_deep_history",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_ALL_RFCS_RESOLVED",
+                        "target": "generational_handover_ready",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "adjudication_deep_history": {
+                    "id": "adjudication_deep_history",
+                    "type": "history",
+                    "description": "Adjudication Deep History",
+                    "transitions": [
+                      {
+                        "event": "EV_RESTORE_ADJUDICATION",
+                        "target": "spec_bundle_published",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": [],
+                    "history": "deep"
+                  },
+                  "generational_handover_ready": {
+                    "id": "generational_handover_ready",
+                    "type": "atomic",
+                    "description": "Generational Handover Ready",
+                    "transitions": [
+                      {
+                        "event": "EV_TRIGGER_GLOBAL_UNWIND",
+                        "target": "unwind_recovery_enclave",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_SEAL_CRUCIBLE",
+                        "target": "epistemic_zenith_sealed",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  }
+                }
+              },
+              "active.parallel_fuzzer": {
+                "id": "active.parallel_fuzzer",
+                "type": "compound",
+                "description": "Concurrent Byzantine Fuzzer Region",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": [],
+                "initial": "fuzzer_quiescent",
+                "states": {
+                  "fuzzer_quiescent": {
+                    "id": "fuzzer_quiescent",
+                    "type": "atomic",
+                    "description": "Fuzzer Quiescent",
+                    "transitions": [
+                      {
+                        "event": "EV_FUZZ_TICK",
+                        "target": "fuzzer_generating_vectors",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "fuzzer_generating_vectors": {
+                    "id": "fuzzer_generating_vectors",
+                    "type": "atomic",
+                    "description": "Fuzzer Generating Vectors",
+                    "transitions": [
+                      {
+                        "event": "EV_VECTORS_DISPATCHED",
+                        "target": "fuzzer_evaluating_response",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "fuzzer_evaluating_response": {
+                    "id": "fuzzer_evaluating_response",
+                    "type": "atomic",
+                    "description": "Fuzzer Evaluating Response",
+                    "transitions": [
+                      {
+                        "event": "EV_FAULT_TRAPPED",
+                        "target": "fuzzer_fault_trapped",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "fuzzer_fault_trapped": {
+                    "id": "fuzzer_fault_trapped",
+                    "type": "atomic",
+                    "description": "Fuzzer Fault Trapped",
+                    "transitions": [
+                      {
+                        "event": "EV_FAULT_LOGGED",
+                        "target": "active.epistemic_discovery",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  }
+                }
+              },
+              "active.parallel_meter": {
+                "id": "active.parallel_meter",
+                "type": "compound",
+                "description": "Landauer Thermodynamic Meter Region",
+                "transitions": [],
+                "entry_actions": [],
+                "exit_actions": [],
+                "initial": "meter_monitoring",
+                "states": {
+                  "meter_monitoring": {
+                    "id": "meter_monitoring",
+                    "type": "atomic",
+                    "description": "Meter Monitoring",
+                    "transitions": [
+                      {
+                        "event": "EV_BIT_ERASURE_EVENT",
+                        "target": "meter_bit_erasure_sample",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "meter_bit_erasure_sample": {
+                    "id": "meter_bit_erasure_sample",
+                    "type": "atomic",
+                    "description": "Meter Bit Erasure Sample",
+                    "transitions": [
+                      {
+                        "event": "EV_REBALANCE_CAPITAL",
+                        "target": "meter_capital_rebalance",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "meter_capital_rebalance": {
+                    "id": "meter_capital_rebalance",
+                    "type": "atomic",
+                    "description": "Meter Capital Rebalance",
+                    "transitions": [
+                      {
+                        "event": "EV_BUDGET_EXHAUSTED",
+                        "target": "meter_cutoff_tripped",
+                        "actions": [],
+                        "description": ""
+                      },
+                      {
+                        "event": "EV_CONTINUE_MONITORING",
+                        "target": "active.epistemic_discovery",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  },
+                  "meter_cutoff_tripped": {
+                    "id": "meter_cutoff_tripped",
+                    "type": "atomic",
+                    "description": "Meter Cutoff Tripped",
+                    "transitions": [
+                      {
+                        "event": "EV_RETRY_METER",
+                        "target": "active.epistemic_discovery",
+                        "actions": [],
+                        "description": ""
+                      }
+                    ],
+                    "entry_actions": [],
+                    "exit_actions": []
+                  }
+                }
+              }
+            }
+          },
+          "unwind_recovery_enclave": {
+            "id": "unwind_recovery_enclave",
+            "type": "atomic",
+            "description": "Global Unwind Recovery Enclave",
+            "transitions": [
+              {
+                "event": "EV_UNWIND_COMPLETE",
+                "target": "generational_handover_ready",
+                "actions": [],
+                "description": ""
+              }
+            ],
+            "entry_actions": [],
+            "exit_actions": []
+          },
+          "epistemic_zenith_sealed": {
+            "id": "epistemic_zenith_sealed",
+            "type": "final",
+            "description": "Epistemic Zenith Sealed",
+            "transitions": [],
+            "entry_actions": [],
+            "exit_actions": []
+          }
+        }
+      },
+      "context_schema": {
+        "target_id": "str",
+        "campaign_id": "str",
+        "erased_bits": "int",
+        "unspent_capital": "int"
+      },
+      "initial_context": {}
+    },
+    "topology_ir": {
+      "topology_id": "topology_g4b_researcher",
+      "nodes": {
+        "node_research_kernel": {
+          "node_id": "node_research_kernel",
+          "role": "compiler_core",
+          "host_interface": "192.168.40.10",
+          "port": 8201,
+          "capabilities": [
+            "epistemic_discovery",
+            "crucible_orchestration"
+          ],
+          "memory_mb_limit": 1024
+        },
+        "node_island_manager": {
+          "node_id": "node_island_manager",
+          "role": "worker",
+          "host_interface": "192.168.40.20",
+          "port": 8202,
+          "capabilities": [
+            "zero_context_quarantine",
+            "island_spawning"
+          ],
+          "memory_mb_limit": 1024
+        },
+        "node_taboo_engine": {
+          "node_id": "node_taboo_engine",
+          "role": "verifier",
+          "host_interface": "192.168.40.30",
+          "port": 8203,
+          "capabilities": [
+            "weisfeiler_lehman_hash",
+            "taboo_distance_matrix"
+          ],
+          "memory_mb_limit": 1024
+        },
+        "node_z3_prover": {
+          "node_id": "node_z3_prover",
+          "role": "verifier",
+          "host_interface": "192.168.40.40",
+          "port": 8204,
+          "capabilities": [
+            "smt_solving",
+            "contract_composition_proof"
+          ],
+          "memory_mb_limit": 1024
+        },
+        "node_rfc_bus": {
+          "node_id": "node_rfc_bus",
+          "role": "gateway",
+          "host_interface": "192.168.40.50",
+          "port": 8205,
+          "capabilities": [
+            "spec_adjustment_ingress",
+            "protocol_negotiation"
+          ],
+          "memory_mb_limit": 1024
+        },
+        "node_telemetry_evaluator": {
+          "node_id": "node_telemetry_evaluator",
+          "role": "storage_leaf",
+          "host_interface": "192.168.40.60",
+          "port": 8206,
+          "capabilities": [
+            "merkle_dag_anchoring",
+            "landauer_accounting"
+          ],
+          "memory_mb_limit": 1024
+        }
+      },
+      "channels": [
+        {
+          "channel_id": "chan_kernel_to_islands",
+          "source_node_id": "node_research_kernel",
+          "target_node_id": "node_island_manager",
+          "channel_type": "rpc",
+          "port": 8202,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_islands_to_taboo",
+          "source_node_id": "node_island_manager",
+          "target_node_id": "node_taboo_engine",
+          "channel_type": "stream",
+          "port": 8203,
+          "latency_ms_budget": 15,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_kernel_to_prover",
+          "source_node_id": "node_research_kernel",
+          "target_node_id": "node_z3_prover",
+          "channel_type": "rpc",
+          "port": 8204,
+          "latency_ms_budget": 25,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_kernel_to_rfc",
+          "source_node_id": "node_research_kernel",
+          "target_node_id": "node_rfc_bus",
+          "channel_type": "event_bus",
+          "port": 8205,
+          "latency_ms_budget": 10,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_taboo_to_rfc",
+          "source_node_id": "node_taboo_engine",
+          "target_node_id": "node_rfc_bus",
+          "channel_type": "event_bus",
+          "port": 8205,
+          "latency_ms_budget": 30,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_rfc_to_prover",
+          "source_node_id": "node_rfc_bus",
+          "target_node_id": "node_z3_prover",
+          "channel_type": "rpc",
+          "port": 8204,
+          "latency_ms_budget": 20,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_telemetry_stream",
+          "source_node_id": "node_research_kernel",
+          "target_node_id": "node_telemetry_evaluator",
+          "channel_type": "stream",
+          "port": 8206,
+          "latency_ms_budget": 15,
+          "tls_enforced": true
+        },
+        {
+          "channel_id": "chan_kernel_to_telemetry",
+          "source_node_id": "node_telemetry_evaluator",
+          "target_node_id": "node_research_kernel",
+          "channel_type": "event_bus",
+          "port": 8201,
+          "latency_ms_budget": 15,
+          "tls_enforced": true
+        }
+      ],
+      "consensus": {
+        "protocol": "sheaf_quorum",
+        "quorum_fraction": 0.67,
+        "heartbeat_interval_ms": 500,
+        "partition_strategy": "fail_closed"
+      }
+    },
+    "endpoints": [
+      "http://192.168.40.10:8201",
+      "http://192.168.40.20:8202",
+      "http://192.168.40.30:8203",
+      "http://192.168.40.40:8204",
+      "http://192.168.40.50:8205",
+      "http://192.168.40.60:8206"
+    ],
+    "canonical_port": 8201,
+    "required_invariants": [
+      "[L1-G3B-000] Waterloo Situation of Concern Normalization",
+      "[L1-G3B-011] Universal & Hierarchical IR Specification",
+      "[L1-G3B-012] Topological Fidelity Invariant",
+      "[L1-G3B-014] Dual-Model Cognitive Routing Invariant",
+      "[L1-G3B-016] Zero-Bypass Micro-Auditor Interception",
+      "[L1-G3B-017] Reflexive Quine Daughter Isolation Protocol",
+      "[L1-G3B-018] Mandatory Development Process Telemetry Dashboard Deliverable",
+      "[L1-G4B-001] Fractal Tree Recursion & Async RFC Protocol Bus",
+      "[L1-G4B-002] Zero-Code Research Service Tool Boundary",
+      "[L1-G4B-003] Merkle-DAG Cryptographic Telemetry Witness",
+      "[L1-G4B-004] Dynamic On-The-Fly Persona Specialization",
+      "[L1-G4B-005] Dialectical Inversion & Taboo Distance Matrix",
+      "[L1-G4B-006] Extreme Boundary Stress & Byzantine Fuzzing",
+      "[L1-002] Functorial State Transitions & Deterministic Undo",
+      "[NEG-G1B-001] Empirical Execution Witness & Anti-Phantom Emission Gate"
+    ]
+  }
+}

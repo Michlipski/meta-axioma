@@ -1,7 +1,7 @@
 # 📊 Live Cryptographic Telemetry Dashboard: `soc_biologics_cold_chain`
 
 - **Compiler Identity:** `SystemG3b_Daughter_Prime`
-- **SHA-256 Chain Head Witness:** `a4a16c92956d6e6b06b8267dea425acc432684c0edeadfe4a0c2eb69fdb25f8c`
+- **SHA-256 Chain Head Witness:** `267ec468d2f0a7110f9d9e80f45ed1af7bbe449da93321cbab01689542cbf391`
 - **Chained Cryptographic Events:** `6`
 - **Live AGY Subagent Spawning (`invoke_subagent`):** ⚠️ `0` live `invoke_subagent` calls (Executed via in-process deterministic fallback)
 - **Substrate Test Exit Code:** `0` (`4` tests passing)
@@ -23,7 +23,7 @@
 | **Total Exploratory Spent** | `3,735` | `945` remaining (`79.8%` pool utilization) |
 | **Total Protected Spent** | `1,095` | `2,025` remaining |
 | **Total Budget Spent** | `4,830` | `61.9%` overall budget utilization |
-| **Emitted Epoch Disk Tokens** | `9,529` | Measured across `10` compiler epoch files |
+| **Emitted Epoch Disk Tokens** | `9,531` | Measured across `10` compiler epoch files |
 | **Emitted App Directory Tokens** | `0` | Measured across `0` application files |
 | **Landauer Bits Erased** | `0` bits | Discarded defective leaf attempts |
 | **Landauer Heat Dissipated ($Q$)** | `0.000000e+00` J | $Q = k_B T \ln(2) \cdot \text{bits}$ at $T=300\text{K}$ |
@@ -45,7 +45,7 @@
 | `leaf_code.py` | `267` |
 | `run.py` | `240` |
 | `statechart_engine.py` | `693` |
-| `telemetry_dashboard.html` | `5,991` |
+| `telemetry_dashboard.html` | `5,993` |
 | `tests/__init__.py` | `15` |
 | `tests/test_emitted_system.py` | `490` |
 | `topology_config.json` | `285` |
@@ -60,6 +60,6 @@
 | `0` | `COMPILATION_INITIATED` | `000000000000...` | `5b2254fe5869552f91cc6c00f4f951028cd8362a1531e6e4fb7687bd87e51d6a` |
 | `1` | `CRUCIBLE_SYNTHESIS_CERTIFIED` | `5b2254fe5869...` | `600b1bd7052a4a4346476d1b2a93b7f0815323701babdf61fd83f2e789238a57` |
 | `2` | `STACK_TRACE_SEALED` | `600b1bd7052a...` | `602c6e19f3588192920c570ccaadf1fa2050c3de37985ec58100a722756afc76` |
-| `3` | `DISK_SUBSTRATE_MEASURED` | `602c6e19f358...` | `b3bbd9581a5491ce47cb39580252327d64f2fb7fa270895ac669643c208ea6d8` |
-| `4` | `SUBSTRATE_TEST_WITNESS` | `b3bbd9581a54...` | `6d07c4a25acab3758fc9161e3c0aac60e4ef587e2c7b5ca21bc6d8c50a1aaecc` |
-| `5` | `THERMODYNAMIC_LEDGER_SEALED` | `6d07c4a25aca...` | `a4a16c92956d6e6b06b8267dea425acc432684c0edeadfe4a0c2eb69fdb25f8c` |
+| `3` | `DISK_SUBSTRATE_MEASURED` | `602c6e19f358...` | `a6e43f84367fc5969cd71cadaac11e07cfba21f7dfaa679079b8f3a081f3cae5` |
+| `4` | `SUBSTRATE_TEST_WITNESS` | `a6e43f84367f...` | `d9d1f31b077dbb4771fec8f390d8cc3be016e3364053c33228910f88d598e609` |
+| `5` | `THERMODYNAMIC_LEDGER_SEALED` | `d9d1f31b077d...` | `267ec468d2f0a7110f9d9e80f45ed1af7bbe449da93321cbab01689542cbf391` |

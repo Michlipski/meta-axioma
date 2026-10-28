@@ -3,7 +3,7 @@
 > **Generation:** $G_3$ (Distributed Systems & Complex Backend Compiler)  
 > **Status:** **EVOLUTIONARY CONVERGENCE ACHIEVED (Epochs 1, 2, and 3 Complete)**  
 > **Predecessor Origin:** Autonomous succession from **System $G_2$** authorized by Human Architect.  
-> Detailed epoch telemetry resides in [`generations/gen_03/epochs/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/epochs/).
+> Detailed epoch telemetry resides in [`generations/gen_03/epochs/`](generations/gen_03/epochs/).
 
 ---
 
@@ -61,9 +61,9 @@ graph TD
 ## 3. Production System Integration & Test Suite
 
 The winning **Transitive Sheaf-Quorum Hybrid** architecture has been formally bound into the production core:
-- **Core Engine:** [`sheaf_consensus.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/sheaf_consensus.py) upgraded with transitive multi-hop relaying.
-- **Production Observability & User Zero Auditing:** [`observability.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/observability.py) exporting standard OpenTelemetry spans, Prometheus metrics, and tracking real human operator telemetry while enforcing `NEG-G3-011` (anti-synthetic persona fraud).
-- **High-Level Jettison Gate:** [`hlj_gate.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/hlj_gate.py) validating the 6 prerequisites for terminating meta-compiler recursion and emitting `CERT_HLJ_*`.
+- **Core Engine:** [`sheaf_consensus.py`](generations/gen_03/src/g3_compiler/sheaf_consensus.py) upgraded with transitive multi-hop relaying.
+- **Production Observability & User Zero Auditing:** [`observability.py`](generations/gen_03/src/g3_compiler/observability.py) exporting standard OpenTelemetry spans, Prometheus metrics, and tracking real human operator telemetry while enforcing `NEG-G3-011` (anti-synthetic persona fraud).
+- **High-Level Jettison Gate:** [`hlj_gate.py`](generations/gen_03/src/g3_compiler/hlj_gate.py) validating the 6 prerequisites for terminating meta-compiler recursion and emitting `CERT_HLJ_*`.
 - **Flagship Production Systems:**
   - **Axioma Fabric ($G_2$):** Distributed Sheaf-CRDT event broker, Landauer ring buffer, zero-ambient HMAC tokens, and responsive operations dashboard.
   - **Axioma Mesh ($G_3$):** 5-node distributed cluster mesh, Ingress Gateway, CQRS event log, and cluster exception enclaves.

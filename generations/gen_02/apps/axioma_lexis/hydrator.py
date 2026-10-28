@@ -175,7 +175,7 @@ def _lookup_online_definition(word: str) -> Optional[Dict[str, str]]:
     # 1. Wiktionary Plain-Text Extract API (pure explaintext output)
     try:
         w_url = f"https://en.wiktionary.org/w/api.php?action=query&prop=extracts&explaintext=1&titles={urllib.parse.quote(clean)}&format=json"
-        req = urllib.request.Request(w_url, headers={"User-Agent": "AxiomaLexis/2.0 (michaellipski@meta-axioma.local)"})
+        req = urllib.request.Request(w_url, headers={"User-Agent": "AxiomaLexis/2.0 (bot@meta-axioma.local)"})
         with urllib.request.urlopen(req, timeout=4.0) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             for p in data.get("query", {}).get("pages", {}).values():

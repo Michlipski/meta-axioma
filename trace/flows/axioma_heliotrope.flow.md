@@ -1,6 +1,6 @@
 # Flow: Axioma Heliotrope Workflow (`flow_heliotropic_choreography`)
 
-- **Domain:** [`trace/domains/axioma_heliotrope.domain.md`](file:///Users/michaellipski/dev/meta-axioma/trace/domains/axioma_heliotrope.domain.md)
+- **Domain:** [`trace/domains/axioma_heliotrope.domain.md`](../domains/axioma_heliotrope.domain.md)
 - **Primary Persona:** Elena, Permaculture Designer & Heliotropic Landscaper
 - **Steps to Value:** $\le 3$
 

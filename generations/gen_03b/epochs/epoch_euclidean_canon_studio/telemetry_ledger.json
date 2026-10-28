@@ -31,7 +31,7 @@
     "stdout_tail": "e)\nVerifies [L1-G3B-012] anti-loopback topology verifier and [L1-016] Exception Enclave healing. ... ok\ntest_07_preset_library_loading (test_app.TestAxiomaCancrizansStudio.test_07_preset_library_loading)\nVerifies loading all 4 curated historical and geometric presets. ... ok\ntest_08_live_http_server_end_to_end_integration (test_app.TestAxiomaCancrizansStudio.test_08_live_http_server_end_to_end_integration)\nExercises complete HTTP wire protocol across all API routes and static asset serving. ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.175s\n\nOK",
     "tests_run": 8
   },
-  "chain_head_hash": "3ee3e281cbc5f55e3f17867f2427a6675072cceb6a16477694d5a0baf36dec64",
+  "chain_head_hash": "44ce73c102b11ba8a57092ce06b709c86f16cfcbacd219a5f9821187ec74eeb4",
   "compiler_id": "SystemG3b_Cancrizans_Direct",
   "daughter_witness": {
     "daughter_chain_head_hash": "a53c1b5e8b7547756cfc3b47142add4e4daf4c9d28ee01a30951fb88dc3f45f5",
@@ -95,11 +95,11 @@
       "prev_hash": "a582ab0e837f40d48e5303e325180b15a521d68739ecbdb27e04cf87d5a178c6"
     },
     {
-      "event_hash": "d18d0080c4dfbb6a2e3db1d595cfbed4bd8d6e8e4a794a69b5dd845212b6b8d0",
+      "event_hash": "f1d33bfac1714c78661d78f4fa282c15afa4b18ae2141fead962a6503c2a93a1",
       "event_type": "APP_SUBSTRATE_AUDITED_AND_VERIFIED",
       "index": 2,
       "payload": {
-        "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_cancrizans",
+        "app_output_dir": "generations/gen_03b/apps/axioma_cancrizans",
         "app_test_witness": {
           "exit_code": 0,
           "stdout_tail": "e)\nVerifies [L1-G3B-012] anti-loopback topology verifier and [L1-016] Exception Enclave healing. ... ok\ntest_07_preset_library_loading (test_app.TestAxiomaCancrizansStudio.test_07_preset_library_loading)\nVerifies loading all 4 curated historical and geometric presets. ... ok\ntest_08_live_http_server_end_to_end_integration (test_app.TestAxiomaCancrizansStudio.test_08_live_http_server_end_to_end_integration)\nExercises complete HTTP wire protocol across all API routes and static asset serving. ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.175s\n\nOK",
@@ -111,7 +111,7 @@
       "prev_hash": "963a7cdd4bee94e02cdd14a6ab31beccf3dcead14755413c977455eb4b7aaaa0"
     },
     {
-      "event_hash": "58452fed2cb54b53e44c11e3da4d61281cb64ed4eacd319f7298c52687142871",
+      "event_hash": "276824f95480619e6e700fbf98c2c17f9cec03c238a0ae8cf8ceb30033f00d67",
       "event_type": "STACK_TRACE_SEALED",
       "index": 3,
       "payload": {
@@ -120,10 +120,10 @@
         "remediation_count": 2,
         "total_stack_operations": 16
       },
-      "prev_hash": "d18d0080c4dfbb6a2e3db1d595cfbed4bd8d6e8e4a794a69b5dd845212b6b8d0"
+      "prev_hash": "f1d33bfac1714c78661d78f4fa282c15afa4b18ae2141fead962a6503c2a93a1"
     },
     {
-      "event_hash": "750bacc2ab233c894066aaf0f9e1c83b430838cfad22276a1b7dcf0fe263e263",
+      "event_hash": "4481d4245d7ece1024772069f1ead1fe51514dd9e1fb76cf48405b96e349b816",
       "event_type": "DISK_SUBSTRATE_MEASURED",
       "index": 4,
       "payload": {
@@ -143,10 +143,10 @@
           "topology_verifier.py": 345
         }
       },
-      "prev_hash": "58452fed2cb54b53e44c11e3da4d61281cb64ed4eacd319f7298c52687142871"
+      "prev_hash": "276824f95480619e6e700fbf98c2c17f9cec03c238a0ae8cf8ceb30033f00d67"
     },
     {
-      "event_hash": "df923d6edbdc9994d1d6269835c978611cee55758eec18370399d61cf42cc644",
+      "event_hash": "6af1410e3fc3e00be0d42028d272233383d1b0a02754be09f4579bf87d19f1e2",
       "event_type": "SUBSTRATE_TEST_WITNESS",
       "index": 5,
       "payload": {
@@ -154,10 +154,10 @@
         "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
         "tests_run": 4
       },
-      "prev_hash": "750bacc2ab233c894066aaf0f9e1c83b430838cfad22276a1b7dcf0fe263e263"
+      "prev_hash": "4481d4245d7ece1024772069f1ead1fe51514dd9e1fb76cf48405b96e349b816"
     },
     {
-      "event_hash": "e3792011edbcb5f08b6f2c6122a7a69385b382b528f1c5a12322af606f8e0c74",
+      "event_hash": "8ff8bc9d06941e16518f420e8b1fb68f0fda58ca1a913df93272e9a722a2c6d1",
       "event_type": "APP_SUBSTRATE_TEST_WITNESS",
       "index": 6,
       "payload": {
@@ -165,10 +165,10 @@
         "stdout_tail": "e)\nVerifies [L1-G3B-012] anti-loopback topology verifier and [L1-016] Exception Enclave healing. ... ok\ntest_07_preset_library_loading (test_app.TestAxiomaCancrizansStudio.test_07_preset_library_loading)\nVerifies loading all 4 curated historical and geometric presets. ... ok\ntest_08_live_http_server_end_to_end_integration (test_app.TestAxiomaCancrizansStudio.test_08_live_http_server_end_to_end_integration)\nExercises complete HTTP wire protocol across all API routes and static asset serving. ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.175s\n\nOK",
         "tests_run": 8
       },
-      "prev_hash": "df923d6edbdc9994d1d6269835c978611cee55758eec18370399d61cf42cc644"
+      "prev_hash": "6af1410e3fc3e00be0d42028d272233383d1b0a02754be09f4579bf87d19f1e2"
     },
     {
-      "event_hash": "f0961823145e0a189d9161a024cab61335bf983f1681c7e3d9230323d68c3465",
+      "event_hash": "2fcd226e80d220b493c5cc371ce3786be67ac63f4e98a5743a712fc46177b9d2",
       "event_type": "QUINE_DAUGHTER_WITNESS",
       "index": 7,
       "payload": {
@@ -187,10 +187,10 @@
         "downstream_soc_id": "soc_euclidean_canon_studio",
         "downstream_tests_passed": 4
       },
-      "prev_hash": "e3792011edbcb5f08b6f2c6122a7a69385b382b528f1c5a12322af606f8e0c74"
+      "prev_hash": "8ff8bc9d06941e16518f420e8b1fb68f0fda58ca1a913df93272e9a722a2c6d1"
     },
     {
-      "event_hash": "3ee3e281cbc5f55e3f17867f2427a6675072cceb6a16477694d5a0baf36dec64",
+      "event_hash": "44ce73c102b11ba8a57092ce06b709c86f16cfcbacd219a5f9821187ec74eeb4",
       "event_type": "THERMODYNAMIC_LEDGER_SEALED",
       "index": 8,
       "payload": {
@@ -218,7 +218,7 @@
         "unspent_reserve": 21853,
         "utilization_pct": 54.76
       },
-      "prev_hash": "f0961823145e0a189d9161a024cab61335bf983f1681c7e3d9230323d68c3465"
+      "prev_hash": "2fcd226e80d220b493c5cc371ce3786be67ac63f4e98a5743a712fc46177b9d2"
     }
   ],
   "live_subagents_spawned_count": 3,

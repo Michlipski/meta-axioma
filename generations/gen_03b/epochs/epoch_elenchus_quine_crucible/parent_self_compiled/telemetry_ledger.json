@@ -1,10 +1,10 @@
 {
   "app_substrate": null,
   "app_test_execution_witness": null,
-  "chain_head_hash": "1922c904b5616cf715c77e743bebf851a9e41128f4cb0a3005c3cb9d9d2768b7",
+  "chain_head_hash": "bd18307f2510bef0e118d38b85c4f2ee5d15ae4feef83bb065f7d3f3a0ca81c8",
   "compiler_id": "SystemG3b_Parent_Elenchus",
   "daughter_witness": {
-    "daughter_chain_head_hash": "607ddeef05c49c5a1de226a71a586f397557caa9f77527f4d0513c01e8f8cb4d",
+    "daughter_chain_head_hash": "abfad0e2cbcc60b5f6797fe84b9ca4a33060f44778a6f3e1f3e369b2b5d9ce62",
     "daughter_compiler_id": "SystemG3b_Daughter_Prime",
     "daughter_exit_code": 0,
     "daughter_exploratory_spent": 20885,
@@ -15,7 +15,7 @@
     "daughter_protected_spent": 2859,
     "daughter_total_budget": 44500,
     "downstream_file_count": 10,
-    "downstream_physical_tokens": 11773,
+    "downstream_physical_tokens": 11771,
     "downstream_soc_id": "soc_epistemic_curiosity_engine",
     "downstream_tests_passed": 4
   },
@@ -27,13 +27,13 @@
       "leaf_code.py": 267,
       "run.py": 240,
       "statechart_engine.py": 693,
-      "telemetry_dashboard.html": 6433,
+      "telemetry_dashboard.html": 6431,
       "tests/__init__.py": 15,
       "tests/test_emitted_system.py": 491,
       "topology_config.json": 285,
       "topology_verifier.py": 345
     },
-    "total_tokens": 9972
+    "total_tokens": 9970
   },
   "hash_chain_events": [
     {
@@ -78,21 +78,21 @@
       "prev_hash": "1561f2753be5830ed723d629148509574177ddc148c586e11ee985cd93e18dec"
     },
     {
-      "event_hash": "a95c29b0cf7c19f41a8724032674b796c84add87c047c7f1c75a848a988175ac",
+      "event_hash": "88e402049aee84949d99a9cf4207ef49e618bdab440a577a9dc9cd06b4debb11",
       "event_type": "DISK_SUBSTRATE_MEASURED",
       "index": 3,
       "payload": {
         "app_file_count": 0,
         "app_physical_tokens": 0,
         "emitted_file_count": 10,
-        "emitted_physical_tokens": 9972,
+        "emitted_physical_tokens": 9970,
         "files": {
           "contract_service.py": 897,
           "domain_models.py": 306,
           "leaf_code.py": 267,
           "run.py": 240,
           "statechart_engine.py": 693,
-          "telemetry_dashboard.html": 6433,
+          "telemetry_dashboard.html": 6431,
           "tests/__init__.py": 15,
           "tests/test_emitted_system.py": 491,
           "topology_config.json": 285,
@@ -102,7 +102,7 @@
       "prev_hash": "3ef5e6dcd92af886430c8d61603756543ff0aeab898909261d6d5d5c8d2c8bf3"
     },
     {
-      "event_hash": "c8adffc3c153f08346d2c73acf26e40dc7fe669af8f85e9e103e4ca3da9e6e74",
+      "event_hash": "2c31eda17e028e51c1c100309d3793f8e6d392247e9aac336d1ab7958e92d1c4",
       "event_type": "SUBSTRATE_TEST_WITNESS",
       "index": 4,
       "payload": {
@@ -110,14 +110,14 @@
         "stdout_tail": "test_compositional_contract_and_functorial_undo (test_emitted_system.TestEmittedSystem.test_compositional_contract_and_functorial_undo) ... ok\ntest_distributed_topology_fidelity (test_emitted_system.TestEmittedSystem.test_distributed_topology_fidelity) ... ok\ntest_domain_noun_invariants (test_emitted_system.TestEmittedSystem.test_domain_noun_invariants) ... ok\ntest_hierarchical_statechart_transitions (test_emitted_system.TestEmittedSystem.test_hierarchical_statechart_transitions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK",
         "tests_run": 4
       },
-      "prev_hash": "a95c29b0cf7c19f41a8724032674b796c84add87c047c7f1c75a848a988175ac"
+      "prev_hash": "88e402049aee84949d99a9cf4207ef49e618bdab440a577a9dc9cd06b4debb11"
     },
     {
-      "event_hash": "44942cc4e9ee5c2efd8d1acd8eeefc2a8116b6e6cd5b151b063ccda40c7b2777",
+      "event_hash": "1d8985079e826127c5ad34751b1a39be9913ecabb0a8179e84f56ec3ef524d0a",
       "event_type": "QUINE_DAUGHTER_WITNESS",
       "index": 5,
       "payload": {
-        "daughter_chain_head_hash": "607ddeef05c49c5a1de226a71a586f397557caa9f77527f4d0513c01e8f8cb4d",
+        "daughter_chain_head_hash": "abfad0e2cbcc60b5f6797fe84b9ca4a33060f44778a6f3e1f3e369b2b5d9ce62",
         "daughter_compiler_id": "SystemG3b_Daughter_Prime",
         "daughter_exit_code": 0,
         "daughter_exploratory_spent": 20885,
@@ -128,14 +128,14 @@
         "daughter_protected_spent": 2859,
         "daughter_total_budget": 44500,
         "downstream_file_count": 10,
-        "downstream_physical_tokens": 11773,
+        "downstream_physical_tokens": 11771,
         "downstream_soc_id": "soc_epistemic_curiosity_engine",
         "downstream_tests_passed": 4
       },
-      "prev_hash": "c8adffc3c153f08346d2c73acf26e40dc7fe669af8f85e9e103e4ca3da9e6e74"
+      "prev_hash": "2c31eda17e028e51c1c100309d3793f8e6d392247e9aac336d1ab7958e92d1c4"
     },
     {
-      "event_hash": "1922c904b5616cf715c77e743bebf851a9e41128f4cb0a3005c3cb9d9d2768b7",
+      "event_hash": "bd18307f2510bef0e118d38b85c4f2ee5d15ae4feef83bb065f7d3f3a0ca81c8",
       "event_type": "THERMODYNAMIC_LEDGER_SEALED",
       "index": 6,
       "payload": {
@@ -144,7 +144,7 @@
         "argon_verification_tokens": 2177,
         "bits_erased": 0,
         "dissipated_joules": 0.0,
-        "emitted_disk_tokens": 9972,
+        "emitted_disk_tokens": 9970,
         "exploratory_cap": 4680,
         "exploratory_remaining": 843,
         "exploratory_spent": 3837,
@@ -158,12 +158,12 @@
         "protected_remaining": 2025,
         "protected_spent": 1095,
         "total_budget": 7800,
-        "total_combined_disk_tokens": 9972,
+        "total_combined_disk_tokens": 9970,
         "total_spent": 4932,
         "unspent_reserve": 2868,
         "utilization_pct": 63.23
       },
-      "prev_hash": "44942cc4e9ee5c2efd8d1acd8eeefc2a8116b6e6cd5b151b063ccda40c7b2777"
+      "prev_hash": "1d8985079e826127c5ad34751b1a39be9913ecabb0a8179e84f56ec3ef524d0a"
     }
   ],
   "live_subagents_spawned_count": 0,
@@ -181,7 +181,7 @@
     "argon_verification_tokens": 2177,
     "bits_erased": 0,
     "dissipated_joules": 0.0,
-    "emitted_disk_tokens": 9972,
+    "emitted_disk_tokens": 9970,
     "exploratory_cap": 4680,
     "exploratory_remaining": 843,
     "exploratory_spent": 3837,
@@ -195,7 +195,7 @@
     "protected_remaining": 2025,
     "protected_spent": 1095,
     "total_budget": 7800,
-    "total_combined_disk_tokens": 9972,
+    "total_combined_disk_tokens": 9970,
     "total_spent": 4932,
     "unspent_reserve": 2868,
     "utilization_pct": 63.23

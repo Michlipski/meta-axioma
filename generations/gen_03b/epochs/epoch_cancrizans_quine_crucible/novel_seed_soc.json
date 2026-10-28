@@ -398,7 +398,7 @@
       "is_live_agy_subagent": true
     }
   ],
-  "app_output_dir": "/Users/michaellipski/dev/meta-axioma/generations/gen_03b/apps/axioma_cancrizans",
+  "app_output_dir": "generations/gen_03b/apps/axioma_cancrizans",
   "domain_spec": {
     "contract_ir": {
       "contract_id": "contract_soc_euclidean_canon_studio",

@@ -9,7 +9,7 @@
   - **Candidate $\alpha$:** Topological Cellular Sheaf Consensus (Robinson 2014, 2020)
   - **Candidate $\beta$:** Delta-State Conflict-Free Replicated Data Types (Almeida, Baquero, Shoker 2016, 2018)
   - **Candidate $\gamma$:** Quorum Log Replication with State Machine Commits (Ongaro & Ousterhout 2014)
-- **Harness:** [`crucible/harness.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/crucible/harness.py) (Asymmetric Partitions, Chaotic Flapping Links with 20% Packet Loss, High-Frequency Conflict Storms).
+- **Harness:** [`crucible/harness.py`](../crucible/harness.py) (Asymmetric Partitions, Chaotic Flapping Links with 20% Packet Loss, High-Frequency Conflict Storms).
 
 ---
 
@@ -75,4 +75,4 @@ Rather than blindly selecting a single winner, the empirical data dictates an **
 ---
 
 ## 4. Telemetry Dataset
-Raw trial data is preserved in [`epochs/data/epoch_002.json`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/epochs/data/epoch_002.json).
+Raw trial data is preserved in [`epochs/data/epoch_002.json`](data/epoch_002.json).

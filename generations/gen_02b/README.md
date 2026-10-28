@@ -39,4 +39,4 @@ python3 run.py
 5. **Ambitious Discovery Protocol (`[L1-G2B-005]`):** Broad domain expansion before deliberate scope-cutting.
 6. **Anti-Phantom Emission Gate (`[NEG-G1B-001]`):** Mandatory non-zero file emission and passing live runtime substrate tests.
 
-See [`generation_02b_summary.md`](file:///Users/michaellipski/dev/meta-axioma/generation_02b_summary.md) for complete details.
+See [`generation_02b_summary.md`](../../generation_02b_summary.md) for complete details.

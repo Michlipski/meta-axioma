@@ -17,7 +17,7 @@ python3 .agents/skills/app-purger/scripts/purge_app.py axioma_atelier
 ===========================================================
  Trace Discovery Report for App: axioma_atelier (short: atelier)
 ===========================================================
-Repository Root: /Users/michaellipski/dev/meta-axioma
+Repository Root: /path/to/meta-axioma
 
 📁 Target Directories & Files (4 items):
   - [DIR] generations/gen_02b/apps/axioma_atelier

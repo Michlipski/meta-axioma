@@ -36,17 +36,17 @@
 
 ## 2. Ground-Up Construction of System $G_2$
 
-System $G_2$ was compiled from scratch into [`generations/gen_02/src/g2_compiler/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/):
+System $G_2$ was compiled from scratch into [`generations/gen_02/src/g2_compiler/`](../src/g2_compiler/):
 
 | Component File | Basis Axiom | Formal Guarantees |
 | :--- | :--- | :--- |
-| [`galois_substrate.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/galois_substrate.py) | `L1-G2-001` | Adjoint connection $\mathcal{F} \dashv \mathcal{G}$, unit $\eta$ & counit $\epsilon$ round-trip closure across CLI, Web PWA, Microservice, and Embedded Edge runtimes. |
-| [`self_healing.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/self_healing.py) | `L1-G2-002` | Ephemeral exception enclave execution, bounded multi-pass repair ($k \le 3$), and verified zero blast-leakage. |
-| [`cognitive_ergonomics.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/cognitive_ergonomics.py) | `L1-G2-003` | Mental model KL divergence auditing $D_{\text{KL}}(\text{User} \parallel \text{System})$, cognitive friction indexing, and persona goal velocity scoring. |
-| [`capability_scoping.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/capability_scoping.py) | `L1-G2-004` | Introspectable capability token management with HMAC SHA-256 witnesses, prohibiting ambient or unscoped authority. |
-| [`intent_grounding.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/intent_grounding.py) | `L1-G2-005` | Phase 0 Human Intent Elicitation Gate; raises `GenerationalRegressionFault` on un-grounded compilation attempts. |
-| [`basis_generator.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/basis_generator.py) | Mandate $\to G_3$ | Endogenous synthesizer formulating Generation 3 evaluation targets (`G3-T1` through `G3-T4`) and basis axioms (`L1-G3-001` through `L1-G3-005`). |
-| [`engine.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/engine.py) | System $G_2$ Core | Unified compiler engine orchestrating all 5 modules, the 4-target verification suite, and Landauer thermodynamic decay auditing. |
+| [`galois_substrate.py`](../src/g2_compiler/galois_substrate.py) | `L1-G2-001` | Adjoint connection $\mathcal{F} \dashv \mathcal{G}$, unit $\eta$ & counit $\epsilon$ round-trip closure across CLI, Web PWA, Microservice, and Embedded Edge runtimes. |
+| [`self_healing.py`](../src/g2_compiler/self_healing.py) | `L1-G2-002` | Ephemeral exception enclave execution, bounded multi-pass repair ($k \le 3$), and verified zero blast-leakage. |
+| [`cognitive_ergonomics.py`](../src/g2_compiler/cognitive_ergonomics.py) | `L1-G2-003` | Mental model KL divergence auditing $D_{\text{KL}}(\text{User} \parallel \text{System})$, cognitive friction indexing, and persona goal velocity scoring. |
+| [`capability_scoping.py`](../src/g2_compiler/capability_scoping.py) | `L1-G2-004` | Introspectable capability token management with HMAC SHA-256 witnesses, prohibiting ambient or unscoped authority. |
+| [`intent_grounding.py`](../src/g2_compiler/intent_grounding.py) | `L1-G2-005` | Phase 0 Human Intent Elicitation Gate; raises `GenerationalRegressionFault` on un-grounded compilation attempts. |
+| [`basis_generator.py`](../src/g2_compiler/basis_generator.py) | Mandate $\to G_3$ | Endogenous synthesizer formulating Generation 3 evaluation targets (`G3-T1` through `G3-T4`) and basis axioms (`L1-G3-001` through `L1-G3-005`). |
+| [`engine.py`](../src/g2_compiler/engine.py) | System $G_2$ Core | Unified compiler engine orchestrating all 5 modules, the 4-target verification suite, and Landauer thermodynamic decay auditing. |
 
 ---
 

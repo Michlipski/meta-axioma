@@ -31,16 +31,16 @@ Generation 3 ($G_3$) bootstrapped not as a trivial frontend sync widget, but as 
 
 ## 2. Ground-Up Construction of System $G_3$
 
-The core distributed compiler engine was synthesized into [`generations/gen_03/src/g3_compiler/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/):
+The core distributed compiler engine was synthesized into [`generations/gen_03/src/g3_compiler/`](../src/g3_compiler/):
 
 | Component Module | Invariant | Formal Distributed Guarantees |
 | :--- | :--- | :--- |
-| [`sheaf_consensus.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/sheaf_consensus.py) | `L1-G3-001` | Topological open cover gluing $\mathcal{F}(U \cap V)$, network partition simulation, and 0th Cohomology error calculation: $H^0(\mathcal{U}, \mathcal{F}) \cong \text{Sections}(\mathcal{F}) \implies \text{Cocycle Error} = 0.0$. |
-| [`zero_trust_mesh.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/zero_trust_mesh.py) | `L1-G3-002` | HMAC SHA-256 capability authority with monotone permission attenuation, parent-token lineage tracking, sub-service binding, and instant token revocation. |
-| [`cluster_topology.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/cluster_topology.py) | `L1-G3-003` | Multi-node cluster orchestration, 3-pass ephemeral enclave healing, automated node quarantine, and Landauer bit-erasure thermal auditing ($k_B T \ln 2$). |
-| [`event_broker.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/event_broker.py) | `L1-G3-004` | Immutable append-only log, vector clock causal ordering, CQRS state left-folds, and 1-click functorial rollback morphisms to named cluster checkpoints. |
-| [`models.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/models.py) | Mathematical Core | Typed AST representations for distributed capability tokens, sheaf sections, cluster metadata, events, and thermodynamic audits. |
-| [`engine.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/src/g3_compiler/engine.py) | System $G_3$ Engine | Unified orchestrator executing the 4-target verification suite (`G3-T1` through `G3-T4`) and providing topological inspection. |
+| [`sheaf_consensus.py`](../src/g3_compiler/sheaf_consensus.py) | `L1-G3-001` | Topological open cover gluing $\mathcal{F}(U \cap V)$, network partition simulation, and 0th Cohomology error calculation: $H^0(\mathcal{U}, \mathcal{F}) \cong \text{Sections}(\mathcal{F}) \implies \text{Cocycle Error} = 0.0$. |
+| [`zero_trust_mesh.py`](../src/g3_compiler/zero_trust_mesh.py) | `L1-G3-002` | HMAC SHA-256 capability authority with monotone permission attenuation, parent-token lineage tracking, sub-service binding, and instant token revocation. |
+| [`cluster_topology.py`](../src/g3_compiler/cluster_topology.py) | `L1-G3-003` | Multi-node cluster orchestration, 3-pass ephemeral enclave healing, automated node quarantine, and Landauer bit-erasure thermal auditing ($k_B T \ln 2$). |
+| [`event_broker.py`](../src/g3_compiler/event_broker.py) | `L1-G3-004` | Immutable append-only log, vector clock causal ordering, CQRS state left-folds, and 1-click functorial rollback morphisms to named cluster checkpoints. |
+| [`models.py`](../src/g3_compiler/models.py) | Mathematical Core | Typed AST representations for distributed capability tokens, sheaf sections, cluster metadata, events, and thermodynamic audits. |
+| [`engine.py`](../src/g3_compiler/engine.py) | System $G_3$ Engine | Unified orchestrator executing the 4-target verification suite (`G3-T1` through `G3-T4`) and providing topological inspection. |
 
 ---
 

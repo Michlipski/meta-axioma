@@ -207,6 +207,23 @@
       border-radius: 10px;
       padding: 20px;
     }
+    .tree-svg-viewport {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.4) rgba(15, 23, 42, 0.6);
+    }
+    .tree-svg-viewport::-webkit-scrollbar {
+      height: 8px;
+    }
+    .tree-svg-viewport::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.4);
+      border-radius: 4px;
+    }
+    .svg-tree-node rect {
+      transition: all 0.2s ease;
+    }
+    .svg-tree-node:hover rect {
+      filter: brightness(1.2);
+    }
     .tree-root-node {
       background: rgba(147, 51, 234, 0.12);
       border: 1px solid rgba(192, 132, 252, 0.3);
@@ -295,7 +312,7 @@
       <div class="brand-logo">G3b</div>
       <div>
         <h1>Operational &amp; Telemetry Dashboard</h1>
-        <div class="subtitle">soc_epistemic_curiosity_engine &bull; SystemG3b_Daughter_Prime &bull; SHA-256 Head: 607ddeef05c49c5a...</div>
+        <div class="subtitle">soc_epistemic_curiosity_engine &bull; SystemG3b_Daughter_Prime &bull; SHA-256 Head: abfad0e2cbcc60b5...</div>
       </div>
     </div>
     <div style="display:flex; gap:10px; align-items:center;">
@@ -353,7 +370,7 @@
       </div>
       <div class="stat-box">
         <div class="stat-label">Total Emitted Disk Footprint</div>
-        <div class="stat-value text-green">11,773 BPE Tokens</div>
+        <div class="stat-value text-green">11,771 BPE Tokens</div>
       </div>
     </div>
   </div>
@@ -460,21 +477,21 @@
               <td><strong>#3</strong></td>
               <td><span class="badge badge-blue">DISK_SUBSTRATE_MEASURED</span></td>
               <td><code>0a26af039a92a8b0...</code></td>
-              <td><code class="hash-cell">b6ea36b7baaa9bfa06a2e204eaf3e404885b69375256e0019a406a1cf7fd4202</code></td>
+              <td><code class="hash-cell">d938cb9ada7358268a26a69b9856f44f12ffe0756fcc481e5327d3ee3a340b21</code></td>
             </tr>
             
             <tr>
               <td><strong>#4</strong></td>
               <td><span class="badge badge-blue">SUBSTRATE_TEST_WITNESS</span></td>
-              <td><code>b6ea36b7baaa9bfa...</code></td>
-              <td><code class="hash-cell">d3453758136fb41bf573de3469145965edeae863fc615c834d775eee1d5b4f77</code></td>
+              <td><code>d938cb9ada735826...</code></td>
+              <td><code class="hash-cell">eb98354d5fb721a0437e1359b7c6e6e114815ddbd303e87b6bac8ba81c2a0b41</code></td>
             </tr>
             
             <tr>
               <td><strong>#5</strong></td>
               <td><span class="badge badge-blue">THERMODYNAMIC_LEDGER_SEALED</span></td>
-              <td><code>d3453758136fb41b...</code></td>
-              <td><code class="hash-cell">607ddeef05c49c5a1de226a71a586f397557caa9f77527f4d0513c01e8f8cb4d</code></td>
+              <td><code>eb98354d5fb721a0...</code></td>
+              <td><code class="hash-cell">abfad0e2cbcc60b5f6797fe84b9ca4a33060f44778a6f3e1f3e369b2b5d9ce62</code></td>
             </tr>
             
         </tbody>

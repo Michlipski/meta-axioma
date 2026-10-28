@@ -79,3 +79,18 @@ This catalog outlines the active compilers and generators within Meta-Axioma. Pr
   - `[L1-G3B-015]` Stack Purity & Bounded Recursion (`FractalTaskStack` enforcing $d_{\max}$, $b_{\max}$, and BPE-weighted child capital partitioning).
   - `[L1-G3B-016]` Zero-Bypass Micro-Auditor Interception & Self-Healing (`ZeroTrustMicroAuditorRegistry` with exponential backoff retries).
   - `[L1-G3B-017]` & `[NEG-G1B-001]` Zero-Template IR-Driven Emission, Subprocess Test Verification, and SHA-256 Chained Cryptographic Telemetry (`telemetry_ledger.json` + `telemetry_dashboard.md`).
+
+---
+
+## 7. System G4b Compiler (`generations/gen_04b/services/builder/`)
+- **Archetype:** Service-Oriented Sovereign Mesh & Recursive Subagent Tree Compiler
+- **Reference Services & Apps:** `soc_g4b_researcher`, `soc_g4b_builder`, `soc_g4b_audit`, `soc_g4b_telemetry`, `soc_g4b_governance`
+- **Governing Invariants:**
+  - `[L1-G4B-001]` Decoupled Research Sovereignty & Service Mesh Isolation (Research operates in independent enclave emitting immutable `ResearchDeliverableBundle`).
+  - `[L1-G4B-002]` Hierarchical Fractional Budget Leasing & Landauer Decay (Recursive subagent tree depth $d \le 4$, branching factor $b \le 5$, leasing ratio $\lambda \le 0.80$, thermal cutoff $C_{\min} = 1,024$).
+  - `[L1-G4B-003]` Merkle-DAG Cryptographic Telemetry Witness (Aggregates leaf execution witnesses into hierarchical Merkle roots sealed in `telemetry_ledger.json` and `telemetry_dashboard.html`).
+  - `[L1-G4B-004]` Dynamic On-the-Fly Persona Specialization (`define_subagent` for domain-specific micro-subagents).
+  - `[L1-G4B-005]` Subtree-Isolated Self-Healing Backpropagation (Local fault trapping and repair without unwinding ancestor contexts).
+  - `[L1-G4B-008]` Mandatory Post-Synthesis Orchestrator Witness Reconciliation Gate (Physical `conversationId` injection, zero placeholder UUIDs).
+  - `[L1-G3B-012]` Dedicated Non-Loopback Network Topology (`192.168.40.0/24`).
+  - `[L1-G3B-018]` & `[NEG-G1B-001]` Standalone zero-CDN Development Process Telemetry Dashboard deliverable (`dashboard.html` / `telemetry_dashboard.html`) passing `HERM-001..005` with verified subprocess test suite (exit code 0).

@@ -6,13 +6,13 @@
 - **Phase:** `PHASE_2_PORTFOLIO_CONVERGENCE`
 - **Global Efficacy Baseline ($E_{G2}$):** `3.1386` (Epoch 4 Delta: `+0.9940`)
 - **Active Structural Invariants ($n=7$):**
-  - [`[L1-G2-001]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation) Adjoint Galois Substrate Connection & Multi-Target Preservation
-  - [`[L1-G2-002]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop) Ephemeral Self-Healing Invariant Restoration Loop
-  - [`[L1-G2-003]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance) Cognitive Ergonomics & Persona Alignment Invariance
-  - [`[L1-G2-004]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping) Introspectable Zero-Trust Capability Scoping
-  - [`[L1-G2-005]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary) Mandatory Human Intent Elicitation & Grounding Boundary
-  - [`[L1-G2-006]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant) Phenomenological Tool-Being & Zuhandenheit Attunement Invariant
-  - [`[L1-G2-007]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation) Kinetic Chaining & Semantic Momentum Propagation
+  - [`[L1-G2-001]`](../../../generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation) Adjoint Galois Substrate Connection & Multi-Target Preservation
+  - [`[L1-G2-002]`](../../../generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop) Ephemeral Self-Healing Invariant Restoration Loop
+  - [`[L1-G2-003]`](../../../generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance) Cognitive Ergonomics & Persona Alignment Invariance
+  - [`[L1-G2-004]`](../../../generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping) Introspectable Zero-Trust Capability Scoping
+  - [`[L1-G2-005]`](../../../generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary) Mandatory Human Intent Elicitation & Grounding Boundary
+  - [`[L1-G2-006]`](../../../generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant) Phenomenological Tool-Being & Zuhandenheit Attunement Invariant
+  - [`[L1-G2-007]`](../../../generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation) Kinetic Chaining & Semantic Momentum Propagation
 - **Inherited Negative Invariants ($n=9$):**
   - `NEG-G2-001`: Anti-Proliferation Boundary
   - `NEG-G2-002`: Zero Ambient Authority

@@ -6,13 +6,13 @@
 - **Phase:** `PHASE_1_DOMAIN_EXECUTION`
 - **Global Efficacy Baseline ($E_{G2}$):** `2.1446` (Epoch 3 Delta: `+0.9850`)
 - **Active Structural Invariants ($n=7$):**
-  - [`[L1-G2-001]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation) Adjoint Galois Substrate Connection & Multi-Target Preservation
-  - [`[L1-G2-002]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop) Ephemeral Self-Healing Invariant Restoration Loop
-  - [`[L1-G2-003]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance) Cognitive Ergonomics & Persona Alignment Invariance
-  - [`[L1-G2-004]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping) Introspectable Zero-Trust Capability Scoping
-  - [`[L1-G2-005]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary) Mandatory Human Intent Elicitation & Grounding Boundary
-  - [`[L1-G2-006]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant) Phenomenological Tool-Being & Zuhandenheit Attunement Invariant
-  - [`[L1-G2-007]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation) Kinetic Chaining & Semantic Momentum Propagation
+  - [`[L1-G2-001]`](../../../generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation) Adjoint Galois Substrate Connection & Multi-Target Preservation
+  - [`[L1-G2-002]`](../../../generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop) Ephemeral Self-Healing Invariant Restoration Loop
+  - [`[L1-G2-003]`](../../../generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance) Cognitive Ergonomics & Persona Alignment Invariance
+  - [`[L1-G2-004]`](../../../generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping) Introspectable Zero-Trust Capability Scoping
+  - [`[L1-G2-005]`](../../../generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary) Mandatory Human Intent Elicitation & Grounding Boundary
+  - [`[L1-G2-006]`](../../../generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant) Phenomenological Tool-Being & Zuhandenheit Attunement Invariant
+  - [`[L1-G2-007]`](../../../generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation) Kinetic Chaining & Semantic Momentum Propagation
 - **Inherited Negative Invariants ($n=3$):** `NEG-G2-001`, `NEG-G2-002`, `NEG-G2-003`
 - **Thermodynamic Compute Decay Budget:**
   $$T_2(7) = \frac{10,000}{1 + 0.5 \times 7} = 2,222 \text{ simulation tokens / depth 2}$$
@@ -22,7 +22,7 @@
 
 ## 1. Multi-Substrate Live Operational Verification
 
-In Epoch 3, System 07 (**Axioma Sentinel**) was subjected to live operational stress across all 3 physical extremities, verifying the zero-distortion guarantee of [`[L1-G2-001]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation) and the momentum retention of [`[L1-G2-007]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation):
+In Epoch 3, System 07 (**Axioma Sentinel**) was subjected to live operational stress across all 3 physical extremities, verifying the zero-distortion guarantee of [`[L1-G2-001]`](../../../generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation) and the momentum retention of [`[L1-G2-007]`](../../../generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation):
 
 ```mermaid
 sequenceDiagram
@@ -47,13 +47,13 @@ sequenceDiagram
     Server-->>Operator: Render Reactive Visual HUD
 ```
 
-1. **Terminal CLI ([`cli.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_sentinel/cli.py)):**
+1. **Terminal CLI ([`cli.py`](../apps/axioma_sentinel/cli.py)):**
    - Verified commands: `status`, `tokens`, `simulate-breach`, and `rollback`.
    - Verified zero ambient permissions: commands requiring capabilities must present valid HMAC-signed tokens.
-2. **Headless Edge Daemon ([`daemon.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_sentinel/daemon.py)):**
+2. **Headless Edge Daemon ([`daemon.py`](../apps/axioma_sentinel/daemon.py)):**
    - Ran 5 consecutive background audit loops.
    - Total Landauer bit-erasure dissipation: $2.76 \times 10^{-19} \text{ Joules} \ll 10^{-18} \text{ Joules}$ limit.
-3. **Web Reactive HUD & HTTP Server ([`server.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_sentinel/server.py)):**
+3. **Web Reactive HUD & HTTP Server ([`server.py`](../apps/axioma_sentinel/server.py)):**
    - Serving on port `8100` (`http://127.0.0.1:8100/`).
    - Enhanced with unified epoch dashboard routing:
      - `/epochs` serves Generation 2 Epoch Telemetry Dashboard.
@@ -66,7 +66,7 @@ sequenceDiagram
 
 - **Zuhandenheit Flow State:** During nominal tool actions, the cognitive rupture index remained at $R_{\text{rupture}} = 0.0820 \ll 0.45$. The system operates as a transparent extension of operator intent.
 - **Enclave Remediation [L1-G2-002]:** Injected fault conditions triggered immediate enclave isolation. Recovery completed on Pass 1 ($k \le 3$) with verified post-condition $\text{Blast}(E_k) \cap \text{Env}_{\text{ext}} = \emptyset$.
-- **Lesson Binding:** Operational telemetry continuously updates [`feedback.json`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/feedback/feedback.json), guaranteeing that transgenerational memory informs successor compilation.
+- **Lesson Binding:** Operational telemetry continuously updates [`feedback.json`](../feedback/feedback.json), guaranteeing that transgenerational memory informs successor compilation.
 
 ---
 
@@ -84,7 +84,7 @@ sequenceDiagram
 
 ## 4. Generation 3 ($G_3$) Successor Handover Readiness
 
-With System $G_2$ fully operational, the $G_3$ Basis Synthesizer ([`basis_generator.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/basis_generator.py)) has formulated the formal transition specification:
+With System $G_2$ fully operational, the $G_3$ Basis Synthesizer ([`basis_generator.py`](../src/g2_compiler/basis_generator.py)) has formulated the formal transition specification:
 
 - **Target Landscape for $G_3$:**
   1. `G3-T1`: Hyper-Functorial Category Morphisms

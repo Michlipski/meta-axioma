@@ -207,6 +207,23 @@
       border-radius: 10px;
       padding: 20px;
     }
+    .tree-svg-viewport {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.4) rgba(15, 23, 42, 0.6);
+    }
+    .tree-svg-viewport::-webkit-scrollbar {
+      height: 8px;
+    }
+    .tree-svg-viewport::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.4);
+      border-radius: 4px;
+    }
+    .svg-tree-node rect {
+      transition: all 0.2s ease;
+    }
+    .svg-tree-node:hover rect {
+      filter: brightness(1.2);
+    }
     .tree-root-node {
       background: rgba(147, 51, 234, 0.12);
       border: 1px solid rgba(192, 132, 252, 0.3);
@@ -295,7 +312,7 @@
       <div class="brand-logo">G3b</div>
       <div>
         <h1>Operational &amp; Telemetry Dashboard</h1>
-        <div class="subtitle">soc_system_g3b_quine &bull; SystemG3b_Parent_Quine &bull; SHA-256 Head: 8b218268f4415047...</div>
+        <div class="subtitle">soc_system_g3b_quine &bull; SystemG3b_Parent_Quine &bull; SHA-256 Head: e4437ac49427d5b3...</div>
       </div>
     </div>
     <div style="display:flex; gap:10px; align-items:center;">
@@ -353,7 +370,7 @@
       </div>
       <div class="stat-box">
         <div class="stat-label">Total Emitted Disk Footprint</div>
-        <div class="stat-value text-green">9,971 BPE Tokens</div>
+        <div class="stat-value text-green">9,972 BPE Tokens</div>
       </div>
     </div>
   </div>
@@ -378,7 +395,7 @@
                 </div>
                 <div class="stat-box">
                   <div class="stat-label">DAUGHTER CHAIN HEAD</div>
-                  <div class="stat-value" style="font-size:12px;"><code>a4a16c92956d6e6b06b8267dea42...</code></div>
+                  <div class="stat-value" style="font-size:12px;"><code>267ec468d2f0a7110f9d9e80f45e...</code></div>
                 </div>
               </div>
             </div>
@@ -484,28 +501,28 @@
               <td><strong>#3</strong></td>
               <td><span class="badge badge-blue">DISK_SUBSTRATE_MEASURED</span></td>
               <td><code>7c248860444a3846...</code></td>
-              <td><code class="hash-cell">f2c6a1ae537bd8c6dc13f2fe4dd7f9e91ef8927ff721e02d4c234e1839275f42</code></td>
+              <td><code class="hash-cell">cc79e6a611dfd7f0260aa112994f197de4577b63ee4e20d919a2efaaed559fc5</code></td>
             </tr>
             
             <tr>
               <td><strong>#4</strong></td>
               <td><span class="badge badge-blue">SUBSTRATE_TEST_WITNESS</span></td>
-              <td><code>f2c6a1ae537bd8c6...</code></td>
-              <td><code class="hash-cell">2fdb2d5d0ff32d7754eb85d3cce5efed049a4dfa4b7a188f1a9247fabd16db56</code></td>
+              <td><code>cc79e6a611dfd7f0...</code></td>
+              <td><code class="hash-cell">3e043bab810ad62386786af12cde1c89bd5d86bebd0e420090b653b6514089a3</code></td>
             </tr>
             
             <tr>
               <td><strong>#5</strong></td>
               <td><span class="badge badge-blue">QUINE_DAUGHTER_WITNESS</span></td>
-              <td><code>2fdb2d5d0ff32d77...</code></td>
-              <td><code class="hash-cell">16a9c9f521d32be304c91e1eb3d2684e95266345dd349c54f267a5072133706e</code></td>
+              <td><code>3e043bab810ad623...</code></td>
+              <td><code class="hash-cell">3672a163b086ddaa37e2b0677cac585f8ed02bed4198f01afd49d0fcca632df9</code></td>
             </tr>
             
             <tr>
               <td><strong>#6</strong></td>
               <td><span class="badge badge-blue">THERMODYNAMIC_LEDGER_SEALED</span></td>
-              <td><code>16a9c9f521d32be3...</code></td>
-              <td><code class="hash-cell">8b218268f4415047a647860ebde1e3f91ccb228754db6a157ddf9a4c7ba28e4a</code></td>
+              <td><code>3672a163b086ddaa...</code></td>
+              <td><code class="hash-cell">e4437ac49427d5b349ec8ac24f9666b3f664c36e534077ab9c120b9f12b897f7</code></td>
             </tr>
             
         </tbody>

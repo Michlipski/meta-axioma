@@ -26,13 +26,13 @@ In Epoch 2, the human architect injected two cross-domain knowledge graphs to pr
 
 ### A. Phenomenological Tool-Being (Heideggerian Ontology)
 - **Domain:** Philosophy of Technology & Phenomenological Ontology
-- **Synthesized Axiom:** [`[L1-G2-006]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant) Phenomenological Tool-Being & Zuhandenheit Attunement Invariant.
+- **Synthesized Axiom:** [`[L1-G2-006]`](../../../generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant) Phenomenological Tool-Being & Zuhandenheit Attunement Invariant.
 - **Structural Breakthrough:** Transcends mechanical error logging. Measures the continuous shift from *Zuhandenheit* (transparent extension of will, $\Psi_{\text{tool}} \approx 1.0$) to *Vorhandenheit* (conspicuous object breakdown, $R_{\text{rupture}} \ge 0.45$).
-- **Telemetry Circuit:** Captures excess dwell, hesitation ratio, undo clustering, and unhandled obstacles, piping flow disruptions directly into [`feedback.json`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/feedback/feedback.json).
+- **Telemetry Circuit:** Captures excess dwell, hesitation ratio, undo clustering, and unhandled obstacles, piping flow disruptions directly into [`feedback.json`](../feedback/feedback.json).
 
 ### B. Kinetic Chaining (Biomechanics & Kinesiology)
 - **Domain:** Movement Biomechanics & Bernstein's Articulation Problem
-- **Synthesized Axiom:** [`[L1-G2-007]`](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation) Kinetic Chaining & Semantic Momentum Propagation.
+- **Synthesized Axiom:** [`[L1-G2-007]`](../../../generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation) Kinetic Chaining & Semantic Momentum Propagation.
 - **Structural Breakthrough:** Prevents brittle syntactical coupling at translation boundaries. Translates the core AST into distal extremities using *compliant impedance matching* that preserves semantic momentum ($\mathbf{p}_{\text{semantic}} = \mathcal{M}_{\text{core}} \cdot \mathbf{v}_{\text{intent}}$) with $>95\%$ momentum retention and $<0.05$ joint impedance loss.
 
 ---
@@ -54,9 +54,9 @@ graph TD
     Core --> DaemonJoint --> Daemon["Headless Edge Daemon<br/>(Continuous Health & Landauer Audit)"]
 ```
 
-1. **Web Reactive HUD ([`dashboard.html`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_sentinel/dashboard.html)):** Running on port `8100` with 1-click `Cmd+Z` rollback and live auto-repair visualizer.
-2. **Terminal CLI ([`cli.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_sentinel/cli.py)):** Provides zero-friction command execution (`status`, `dispatch`, `simulate-breach`, `rollback`, `tokens`) with identical state hash preservation.
-3. **Headless Edge Daemon ([`daemon.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/apps/axioma_sentinel/daemon.py)):** Background process running periodic Landauer bit-erasure audits and automated enclave integrity checks.
+1. **Web Reactive HUD ([`dashboard.html`](../apps/axioma_sentinel/dashboard.html)):** Running on port `8100` with 1-click `Cmd+Z` rollback and live auto-repair visualizer.
+2. **Terminal CLI ([`cli.py`](../apps/axioma_sentinel/cli.py)):** Provides zero-friction command execution (`status`, `dispatch`, `simulate-breach`, `rollback`, `tokens`) with identical state hash preservation.
+3. **Headless Edge Daemon ([`daemon.py`](../apps/axioma_sentinel/daemon.py)):** Background process running periodic Landauer bit-erasure audits and automated enclave integrity checks.
 
 ---
 

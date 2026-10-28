@@ -3,7 +3,7 @@
 > **Generation:** $G_3$ (Distributed Systems & Complex Backend Compiler)  
 > **Status:** **OPERATIONAL (Phase 1 Distributed Foundation Initialized)**  
 > **Predecessor Origin:** Synthesized autonomously by **System $G_2$** following completion of the Usable App Standard.  
-> Detailed epoch telemetry resides in [`generations/gen_03/epochs/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_03/epochs/).
+> Detailed epoch telemetry resides in [`generations/gen_03/epochs/`](generations/gen_03/epochs/).
 
 ---
 

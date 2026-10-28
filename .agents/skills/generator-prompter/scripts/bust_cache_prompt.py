@@ -206,6 +206,20 @@ GENERATOR_INVARIANTS: Dict[str, List[str]] = {
         "General distributed systems, transitive sheaf-quorum consensus (Axioma Mesh), OpenTelemetry tracing, and User Zero grounding.",
         "Production accessibility, bilingual parity, and strict privacy boundaries.",
     ],
+    "System G4b Compiler": [
+        "Enforce [L1-G4B-001] Service-Oriented Sovereign Mesh & Decoupled Research Sovereignty: Research and synthesis operate in isolated enclaves communicating via standardized deliverable bundles (ResearchDeliverableBundle).",
+        "Bounded Fractal Tree Recursion ([L1-G4B-001] & [L1-G4B-002]): Max recursion depth d <= 4, max branching factor b <= 5, hierarchical budget leasing ratio lambda <= 0.80, and Landauer thermal cutoff C_min = 1,024 tokens.",
+        "Merkle-DAG Cryptographic Telemetry Witness ([L1-G4B-003]): Leaf execution witnesses sealed into hierarchical Merkle roots in telemetry_ledger.json and dashboard.html.",
+        "Dynamic Persona Specialization & Subtree Fault Isolation ([L1-G4B-004], [L1-G4B-005]): Intermediate nodes dynamically define specialized child personas via define_subagent and trap defects locally within subtrees.",
+        "Anti-Phantom Emission Gate & Mandatory Dashboard Deliverable ([L1-G3B-018], [L1-G4B-008], [NEG-G1B-001]): Emitted files must be verified on disk, backed by passing test suites (exit code 0), and include standalone zero-CDN Development Process Telemetry Dashboards (dashboard.html / telemetry_dashboard.html) passing HERM-001..005 with real conversationId witnesses.",
+    ],
+    "Generation 4b": [
+        "Enforce [L1-G4B-001] Service-Oriented Sovereign Mesh & Decoupled Research Sovereignty: Research and synthesis operate in isolated enclaves communicating via standardized deliverable bundles (ResearchDeliverableBundle).",
+        "Bounded Fractal Tree Recursion ([L1-G4B-001] & [L1-G4B-002]): Max recursion depth d <= 4, max branching factor b <= 5, hierarchical budget leasing ratio lambda <= 0.80, and Landauer thermal cutoff C_min = 1,024 tokens.",
+        "Merkle-DAG Cryptographic Telemetry Witness ([L1-G4B-003]): Leaf execution witnesses sealed into hierarchical Merkle roots in telemetry_ledger.json and dashboard.html.",
+        "Dynamic Persona Specialization & Subtree Fault Isolation ([L1-G4B-004], [L1-G4B-005]): Intermediate nodes dynamically define specialized child personas via define_subagent and trap defects locally within subtrees.",
+        "Anti-Phantom Emission Gate & Mandatory Dashboard Deliverable ([L1-G3B-018], [L1-G4B-008], [NEG-G1B-001]): Emitted files must be verified on disk, backed by passing test suites (exit code 0), and include standalone zero-CDN Development Process Telemetry Dashboards (dashboard.html / telemetry_dashboard.html) passing HERM-001..005 with real conversationId witnesses.",
+    ],
 }
 
 

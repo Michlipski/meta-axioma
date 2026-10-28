@@ -3,7 +3,7 @@
 > **Generation:** $G_2$ (Autonomous Domain Compiler)  
 > **Status:** **OPERATIONAL (Epoch 4 Complete · Portfolio Convergence Certified)**  
 > **Predecessor Origin:** Transitioned autonomously from **System $G_1$** via Target $S_2$ and `G2BasisSynthesizer`.  
-> Detailed epoch telemetry resides in [`generations/gen_02/epochs/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/epochs/).
+> Detailed epoch telemetry resides in [`generations/gen_02/epochs/`](generations/gen_02/epochs/).
 
 ---
 
@@ -25,19 +25,19 @@ Generation 2 marks the elevation of Meta-Axioma from pure foundational bootstrap
 - **Current Epoch:** 4 (Complete)
 - **Phase:** `PHASE_2_PORTFOLIO_CONVERGENCE`
 - **Active Structural Invariants ($n=8$):**
-  - [`[L1-G2-001]` Adjoint Galois Substrate Connection & Multi-Target Preservation](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation)
-  - [`[L1-G2-002]` Ephemeral Self-Healing Invariant Restoration Loop](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop)
-  - [`[L1-G2-003]` Cognitive Ergonomics & Persona Alignment Invariance](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance)
-  - [`[L1-G2-004]` Introspectable Zero-Trust Capability Scoping](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping)
-  - [`[L1-G2-005]` Mandatory Human Intent Elicitation & Grounding Boundary](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary)
-  - [`[L1-G2-006]` Phenomenological Tool-Being & Zuhandenheit Attunement Invariant](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant)
-  - [`[L1-G2-007]` Kinetic Chaining & Semantic Momentum Propagation](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation)
-  - [`[L1-G2-008]` Distributed Evolutionary Island Synthesis & Decoupled Chaos Verification](file:///Users/michaellipski/dev/meta-axioma/generation_02_axioms.md#l1-g2-008-distributed-evolutionary-island-synthesis--decoupled-chaos-verification)
+  - [`[L1-G2-001]` Adjoint Galois Substrate Connection & Multi-Target Preservation](generation_02_axioms.md#l1-g2-001-adjoint-galois-substrate-connection--multi-target-preservation)
+  - [`[L1-G2-002]` Ephemeral Self-Healing Invariant Restoration Loop](generation_02_axioms.md#l1-g2-002-ephemeral-self-healing-invariant-restoration-loop)
+  - [`[L1-G2-003]` Cognitive Ergonomics & Persona Alignment Invariance](generation_02_axioms.md#l1-g2-003-cognitive-ergonomics--persona-alignment-invariance)
+  - [`[L1-G2-004]` Introspectable Zero-Trust Capability Scoping](generation_02_axioms.md#l1-g2-004-introspectable-zero-trust-capability-scoping)
+  - [`[L1-G2-005]` Mandatory Human Intent Elicitation & Grounding Boundary](generation_02_axioms.md#l1-g2-005-mandatory-human-intent-elicitation--grounding-boundary)
+  - [`[L1-G2-006]` Phenomenological Tool-Being & Zuhandenheit Attunement Invariant](generation_02_axioms.md#l1-g2-006-phenomenological-tool-being--zuhandenheit-attunement-invariant)
+  - [`[L1-G2-007]` Kinetic Chaining & Semantic Momentum Propagation](generation_02_axioms.md#l1-g2-007-kinetic-chaining--semantic-momentum-propagation)
+  - [`[L1-G2-008]` Distributed Evolutionary Island Synthesis & Decoupled Chaos Verification](generation_02_axioms.md#l1-g2-008-distributed-evolutionary-island-synthesis--decoupled-chaos-verification)
 - **Inherited Negative Constraints ($n=9$):** `NEG-G2-001` through `NEG-G2-009` (including `NEG-G2-009` Cruciverbalist Lexical Purity).
 - **Inherited Scaffolding Pool:** 10 Level 0 Meta-Axioms + 9 Level 1 Structural Axioms from $G_1$ (including `L1-017` & `L1-018`)
 - **Thermodynamic Compute Decay Budget:** $T_2(8) = 2,000$ simulation tokens (Depth 3).
 - **Epoch 4 Aggregate Delta E:** $+0.9940$ across the 4-target suite (Cumulative Efficacy: $3.1386$).
-- **Successor Status:** Generation 3 ($G_3$) successor target landscape certified in [`g3_successor_targets.md`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/g3_successor_targets.md).
+- **Successor Status:** Generation 3 ($G_3$) successor target landscape certified in [`g3_successor_targets.md`](generations/gen_02/g3_successor_targets.md).
 - **Deployed Production Systems ($G_2$):**
   - **SYS-07: Axioma Sentinel** (Port 8100) — Zero-Trust Security Mesh & Enclave Auto-Repair Console.
   - **SYS-08: Axioma Lexis** (Port 8092) — Adaptive Spaced Repetition Vocabulary Studio (PWA + Android Native Shell).
@@ -73,15 +73,15 @@ graph TD
 
 ## 4. Ground-Up Construction of System $G_2$
 
-Implemented in [`generations/gen_02/src/g2_compiler/`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/):
+Implemented in [`generations/gen_02/src/g2_compiler/`](generations/gen_02/src/g2_compiler/):
 
-1. **[`galois_substrate.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/galois_substrate.py) (`L1-G2-001`):** Adjoint Galois connections $\mathcal{F} \dashv \mathcal{G}$ with unit/counit preservation.
-2. **[`self_healing.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/self_healing.py) (`L1-G2-002`):** Sandbox enclaves with multi-pass remediation and blast containment.
-3. **[`cognitive_ergonomics.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/cognitive_ergonomics.py) (`L1-G2-003`):** KL divergence auditing and cognitive friction calculation.
-4. **[`capability_scoping.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/capability_scoping.py) (`L1-G2-004`):** Cryptographic capability tokens and audit witnesses.
-5. **[`intent_grounding.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/intent_grounding.py) (`L1-G2-005`):** Phase 0 Human Intent Elicitation Gate.
-6. **[`basis_generator.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/basis_generator.py) (Mandate $\to G_3$):** Endogenous Generation 3 target and basis synthesizer.
-7. **[`engine.py`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_02/src/g2_compiler/engine.py):** Unified compiler orchestrator.
+1. **[`galois_substrate.py`](generations/gen_02/src/g2_compiler/galois_substrate.py) (`L1-G2-001`):** Adjoint Galois connections $\mathcal{F} \dashv \mathcal{G}$ with unit/counit preservation.
+2. **[`self_healing.py`](generations/gen_02/src/g2_compiler/self_healing.py) (`L1-G2-002`):** Sandbox enclaves with multi-pass remediation and blast containment.
+3. **[`cognitive_ergonomics.py`](generations/gen_02/src/g2_compiler/cognitive_ergonomics.py) (`L1-G2-003`):** KL divergence auditing and cognitive friction calculation.
+4. **[`capability_scoping.py`](generations/gen_02/src/g2_compiler/capability_scoping.py) (`L1-G2-004`):** Cryptographic capability tokens and audit witnesses.
+5. **[`intent_grounding.py`](generations/gen_02/src/g2_compiler/intent_grounding.py) (`L1-G2-005`):** Phase 0 Human Intent Elicitation Gate.
+6. **[`basis_generator.py`](generations/gen_02/src/g2_compiler/basis_generator.py) (Mandate $\to G_3$):** Endogenous Generation 3 target and basis synthesizer.
+7. **[`engine.py`](generations/gen_02/src/g2_compiler/engine.py):** Unified compiler orchestrator.
 
 ---
 

@@ -5,7 +5,7 @@
 - **Branch:** `s0-nonlinear-evolution`
 - **Succession Certificate:** `CERT_G1_FBFC5AB7BB6129DB`
 - **Trace ID:** `TRACE_G1_EVO_1791926864996`
-- **Axiomatic Authority:** [`[L1-017]` Non-Linear Exploratory Trajectory](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#l1-017-non-linear-exploratory-trajectory--tree-search-invariance) & [`[L1-018]` Independent Decoupled Adversarial Falsification](file:///Users/michaellipski/dev/meta-axioma/generation_01_axioms.md#l1-018-independent-decoupled-adversarial-falsification)
+- **Axiomatic Authority:** [`[L1-017]` Non-Linear Exploratory Trajectory](../generation_01_axioms.md#l1-017-non-linear-exploratory-trajectory--tree-search-invariance) & [`[L1-018]` Independent Decoupled Adversarial Falsification](../generation_01_axioms.md#l1-018-independent-decoupled-adversarial-falsification)
 
 ---
 
@@ -98,7 +98,7 @@ Under `L1-018`, candidate architectures were subjected to an independent chaos h
 
 To overcome these dead ends, System $G_1$ applied three evolutionary mutation operators:
 
-1. **`ConstraintTightening`:** Wrapped all state cores in [`ExceptionEnclave`](file:///Users/michaellipski/dev/meta-axioma/generations/gen_01/src/g1_compiler/enclaves.py) (`L1-016`), tightened replication timeouts to $50\text{ ms}$, and added HMAC capability scoping.
+1. **`ConstraintTightening`:** Wrapped all state cores in [`ExceptionEnclave`](../generations/gen_01/src/g1_compiler/enclaves.py) (`L1-016`), tightened replication timeouts to $50\text{ ms}$, and added HMAC capability scoping.
 2. **`AstSubtreeSplice`:** Spliced pairwise cocycle reconciliation mechanisms into the replication layer, reducing Landauer bit erasures by $-32\text{ bits}$ via reversible morphism reconstruction.
 3. **`CrossIslandRecombination`:** Recombined the surviving leaders of Island Alpha (Sheaf Mesh) and Island Beta (CRDT Lattice).
 
