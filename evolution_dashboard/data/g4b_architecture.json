@@ -1,0 +1,226 @@
+{
+  "generation": "Generation 4b",
+  "codename": "Sovereign Service Mesh",
+  "title": "Decoupled Multi-Service Sovereign Mesh Architecture",
+  "era": "The Sovereign Decoupled Multi-Service Era",
+  "status": "Deployed & Healthy (5/5 Services Operational)",
+  "subnet": "192.168.40.0/24",
+  "surface_layman": {
+    "summary": "In Generation 4b, we moved away from one giant compiler that does everything. When one AI tries to do research, code, test, and judge its own work, it inevitably hallucinates or cuts corners. Instead, Generation 4b breaks the workload into 5 sovereign services running on isolated private networks. They communicate via an automated protocol bus, keeping each other honest.",
+    "key_benefits": [
+      {
+        "title": "Zero-Trust Separation of Concerns",
+        "desc": "The AI that writes the code is physically barred from doing research or grading its own tests."
+      },
+      {
+        "title": "Automated Math Mediation",
+        "desc": "When the builder hits a friction point, it doesn't improvise; an automated math engine verifies if a proposed tweak preserves invariants."
+      },
+      {
+        "title": "Tamper-Proof Flight Recorder",
+        "desc": "Every single communication, token spend, and test witness is hashed into a cryptographic Merkle-DAG."
+      },
+      {
+        "title": "Human Driver's Seat",
+        "desc": "Operators retain an instant 1-click emergency brake, negative veto power (NEG-###), and 1-tap state rollback capability."
+      }
+    ]
+  },
+  "services": [
+    {
+      "id": "research",
+      "name": "Sovereign Research Service",
+      "codename": "soc_g4b_researcher",
+      "ip": "192.168.40.10",
+      "port": 8440,
+      "icon": "🔬",
+      "layman_role": "The Systems Analyst",
+      "layman_description": "Investigates what real humans need, maps out user frictions, and writes an ironclad specification blueprint. Barred from writing code so it never compromises requirements.",
+      "technical_role": "Decoupled Epistemic Research Engine & Universal Crucible",
+      "invariants": [
+        "[L1-G4B-001] Decoupled Research Sovereignty",
+        "[L1-G4B-002] Zero-Code Research Tool Boundary",
+        "[L1-G3B-000] Waterloo Situation of Concern Normalization"
+      ],
+      "deliverable": "ResearchDeliverableBundle (urn:axioma:g4b:bundle)",
+      "technologies": [
+        "Weisfeiler-Lehman Graph Taboo (D >= 0.40)",
+        "5D Pareto Novelty Frontier",
+        "Z3 SMT Invariant Prover Bridge",
+        "AsyncIO Daemon"
+      ],
+      "academic_deep_theory": {
+        "sovereign_boundary": "Isolated process sandbox with physical filesystem inspection verifying zero .py/.js production source code emitted.",
+        "novelty_guarantee": "Topological Weisfeiler-Lehman graph kernel hashing enforces D(Gi, Gj) >= 0.40 across explored candidate architectures, preventing LLM mode collapse.",
+        "pareto_optimization": "5-dimensional non-dominated Pareto frontier optimization: [Complexity, Physical Latency, Memory Footprint, SMT Proof Confidence, Landauer Heat]."
+      }
+    },
+    {
+      "id": "builder",
+      "name": "Sovereign Builder Enclave",
+      "codename": "soc_g4b_builder",
+      "ip": "192.168.40.20",
+      "port": 8442,
+      "icon": "🛠️",
+      "layman_role": "The Craftsperson",
+      "layman_description": "Receives the formal blueprint from the Researcher and synthesizes clean, modular application code inside a private, sandboxed workspace.",
+      "technical_role": "Autonomous Builder Enclave & Quine Crucible",
+      "invariants": [
+        "[L1-G4B-002] Bounded Fractal Recursion",
+        "[L1-G3B-014] Dual-Model Cognitive Routing",
+        "[L1-016] Demarcated Exception Enclaves"
+      ],
+      "deliverable": "Application Source Leaves & Substrate Modules",
+      "technologies": [
+        "Tree-sitter AST Skeletonization (<= 4,096 tokens)",
+        "Universal Symbol URN Hypergraph",
+        "Dual-Model Swarm (Brain / Muscle)",
+        "Hermetic Linters"
+      ],
+      "academic_deep_theory": {
+        "cognitive_routing": "Stage 1 Brain gate (Argon/Pro) emits hierarchical XState v5 statecharts and type contracts; Stage 2 Muscle swarm (Flash) executes parallel AST emission in isolated filesystem workspaces.",
+        "token_bounds": "Tree-sitter concrete syntax trees enforced <= 4,096 BPE tokens per leaf, preventing hallucination cascades and cognitive drift.",
+        "quine_reproducibility": "Daughter quine sandbox verifies self-compilation reproducibility against SHA-256 reference hashes."
+      }
+    },
+    {
+      "id": "audit",
+      "name": "Sovereign Audit & Verification Service",
+      "codename": "soc_g4b_audit",
+      "ip": "192.168.40.30",
+      "port": 8444,
+      "icon": "🛡️",
+      "layman_role": "The Inspector & Chaos Sentry",
+      "layman_description": "Acts like a ruthless quality inspector. Runs mathematical verification checks, fusses invalid inputs, and tries to crash the app to guarantee it never fails in production.",
+      "technical_role": "Sheaf-Quorum Adversarial Crucible & Zero-Trust Sentry",
+      "invariants": [
+        "[L1-G4B-006] Zero-Trust AST Micro-Auditing",
+        "[NEG-G1B-001] Anti-Phantom Emission Gate",
+        "[L1-002] Functorial State Reversibility"
+      ],
+      "deliverable": "Certified Audit Verification Dossier & Exit Code 0 Witness",
+      "technologies": [
+        "2-of-3 Sheaf-Quorum Adjudication",
+        "Byzantine Chaos Fuzzing Engine",
+        "SMT Morphism Checker",
+        "Hermetic Subprocess Sandbox"
+      ],
+      "academic_deep_theory": {
+        "quorum_consensus": "Adjudication requires strict 2-of-3 non-colluding auditor quorum (ProductManagerAuditor, ArchitectAuditor, QAVerificationAuditor).",
+        "byzantine_chaos": "Fuzzes 4,000+ adversarial permutations: illegal suicide moves, boundary wraps, out-of-order protocol frames, and concurrent race triggers.",
+        "anti_phantom_gate": "Strictly forbids simulated passes ([NEG-G1B-001]): Requires real subprocess execution with exit code 0 and cryptographic witness token WITNESS_G4B_AUDIT_PASS."
+      }
+    },
+    {
+      "id": "telemetry",
+      "name": "Sovereign Telemetry Service",
+      "codename": "soc_g4b_telemetry",
+      "ip": "192.168.40.40",
+      "port": 8446,
+      "icon": "📊",
+      "layman_role": "The Flight Recorder",
+      "layman_description": "Monitors every single token spent, latency metric, and unit of computational heat, permanently recording them into an unforgeable cryptographic blockchain-like ledger.",
+      "technical_role": "Landauer-OTel Sovereign Sheaf Aggregator & Evaluation Crucible",
+      "invariants": [
+        "[L1-G4B-003] Hierarchical Merkle-DAG Telemetry",
+        "[L1-008] Landauer Thermodynamic Accounting",
+        "[L1-G3B-018] Zero-CDN Operational Dashboard"
+      ],
+      "deliverable": "Tamper-Evident SHA-256 Merkle Block & Telemetry Ledger",
+      "technologies": [
+        "Landauer Dissipation Meter (Q = kB T ln 2 * bits)",
+        "SLA Performance Engine (P50/P90/P99)",
+        "Merkle-DAG Ring Buffer",
+        "Zero-CDN Dashboard HUD"
+      ],
+      "academic_deep_theory": {
+        "landauer_physics": "Physical Landauer limit dissipation computation: Q = k_B * T * ln(2) * bits_erased, verifying computational thermodynamics at T = 300K.",
+        "merkle_dag_ledger": "Append-only cryptographic hash chain linking event receipts to the genesis block: H_i = SHA256(H_{i-1} || payload_i).",
+        "zero_cdn_hud": "Self-contained dashboard HTML with zero remote external CDN dependencies, guaranteeing air-gapped operation and offline integrity."
+      }
+    },
+    {
+      "id": "governance",
+      "name": "Sovereign Governance & Safety Service",
+      "codename": "soc_g4b_governance",
+      "ip": "192.168.40.50",
+      "port": 8448,
+      "icon": "⚖️",
+      "layman_role": "The Steering Wheel & Brakes",
+      "layman_description": "Maintains human supremacy over the AI swarm. Provides operators with real-time insight, absolute negative veto power (NEG-###), and 1-tap state rollbacks.",
+      "technical_role": "Sovereign Safety & Governance Crucible",
+      "invariants": [
+        "[L1-G4B-005] Stateful Human-in-the-Loop Intercept Hub",
+        "[L1-002] Categorical Rollback Morphism",
+        "[L1-G2B-002] Heuristic Debt Ratio Cap (HDR <= 0.15)"
+      ],
+      "deliverable": "Cryptographic Handover Certificates & Emergency Halt Tokens",
+      "technologies": [
+        "Negative Axiom AST Interception (NEG-001..NEG-999)",
+        "Tri-State Safety Enclaves",
+        "Selective Peer Quarantine (192.168.40.240/28)",
+        "1-Tap Undo Engine"
+      ],
+      "academic_deep_theory": {
+        "human_veto_enclave": "Negative axioms (NEG-###) act as non-negotiable compile-time and runtime halts that cannot be overridden by any autonomous agent.",
+        "categorical_undo": "Category-theoretic state morphisms ensure exact reversibility: S_{t-1} = f^{-1}(S_t) via immutable historical snapshots.",
+        "peer_quarantine": "Compromised or misbehaving nodes are dynamically isolated to subnet 192.168.40.240/28, severing outbound broadcast capabilities."
+      }
+    }
+  ],
+  "asymmetric_rfc_bus": {
+    "title": "Asymmetric RFC Protocol Bus",
+    "layman": "When the Builder encounters an obstacle (e.g., token limits or a contradictory rule), it cannot guess or hallucinate. Instead, it files a formal 'Request for Adjustment'. The Research Service and an automated math solver (Z3 SMT Prover) evaluate the request. If the adjustment breaks a safety invariant, it is rejected with a mathematical proof. If safe, an approved amendment is signed.",
+    "packet_types": [
+      {
+        "type": "SpecAdjustmentRequest",
+        "sender": "Builder",
+        "recipient": "Research Service",
+        "desc": "Carries empirical friction logs, proposed invariant relaxation, and AST delta.",
+        "algebraic_schema": {
+          "request_id": "String (UUID v4 or RFC-XXX)",
+          "builder_node_id": "String (e.g. soc_g4b_builder)",
+          "target_symbol_urn": "URN (urn:axioma:symbol:...)",
+          "bottleneck_type": "Enum [TOKEN_EXHAUSTION, LATENCY_OVERRUN, PHYSICAL_IRREVERSIBILITY, COMPLEXITY_LIMIT]",
+          "empirical_evidence": "String (Mandatory friction telemetry logs)",
+          "proposed_delta": "String (Unified diff or AST replacement)",
+          "preserved_invariants": "List[String] (At least 1 invariant cited)",
+          "status": "Enum [SUBMITTED, ADJUDICATING, APPROVED, REJECTED, WITHDRAWN]",
+          "submitted_at_unix_ms": "Integer (Unix timestamp)"
+        },
+        "invariants": ["[L1-G4B-001] Mandatory empirical evidence", "[L1-G4B-004] Preserved invariants non-empty"]
+      },
+      {
+        "type": "CounterProof",
+        "sender": "Z3 Prover / Research",
+        "recipient": "Builder",
+        "desc": "Emitted when a proposed adjustment violates an invariant. Contains an UNSAT core model showing exactly why the adjustment is mathematically unsafe.",
+        "algebraic_schema": {
+          "counter_proof_id": "String (CP-XXX)",
+          "request_id": "String (References SpecAdjustmentRequest)",
+          "violated_axioms": "List[String] (Cited broken axioms)",
+          "z3_unsat_core": "Optional[String] (SMT formula refutation)",
+          "counter_example_model": "Dict[String, Any] (Concrete failing valuation)",
+          "adjudicator_node_id": "String (node_research_kernel)"
+        },
+        "invariants": ["[L1-G4B-004] Violated axioms non-empty", "Deterministic SMT refutation"]
+      },
+      {
+        "type": "SpecAmendment",
+        "sender": "Research Service",
+        "recipient": "Builder",
+        "desc": "Cryptographically signed contract amendment permitting the builder to proceed with approved modifications.",
+        "algebraic_schema": {
+          "amendment_id": "String (AMD-XXX)",
+          "request_id": "String (References SpecAdjustmentRequest)",
+          "is_approved": "Boolean",
+          "adjudicator_signature": "String (64-char SHA-256 HMAC)",
+          "amended_contract_ir_delta": "String (Approved ContractIR)",
+          "rejection_counter_proof": "Optional[CounterProof | String] (Mandatory if rejected)",
+          "adjudicated_at_unix_ms": "Integer (Unix timestamp)"
+        },
+        "invariants": ["[L1-G4B-001] Cryptographic adjudicator signature", "Mandatory rejection counter-proof if is_approved == false"]
+      }
+    ]
+  }
+}

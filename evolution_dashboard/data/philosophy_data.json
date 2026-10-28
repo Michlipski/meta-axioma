@@ -1,0 +1,179 @@
+{
+  "title": "Axiomatic Foundations & System Invariants",
+  "tagline": "Formal Verification and Structural Bounds in Autonomous Synthesis",
+  "surface_layman": {
+    "headline": "Axiomatic Foundations & System Invariants",
+    "summary": "Generative software synthesis without formal bounds is prone to context degradation, invalid state mutations, and unverified assumptions. Meta-Axioma structures generative pipelines within decidable mathematical lattices and contract invariants, ensuring that emitted architectures remain provably consistent and subject to direct operator governance.",
+    "row_1_pillars": [
+      {
+        "id": "bounding_in_math",
+        "icon": "🛡️",
+        "row": 1,
+        "badge": "Foundational Invariant",
+        "title": "Bounding AI in Math, Not Prompts",
+        "subtitle": "SMT Z3 Prover Verification & Decidable Bounded Lattices",
+        "layman": "Instead of asking an AI to 'please write bug-free code', we run every proposed state and transition through automated mathematical solvers (SMT provers). If an AI suggests something invalid, the math engine physically rejects it before a single line of code can run.",
+        "deep_concept": "Gödel / Turing Boundary Circumvention & SMT Model Checking",
+        "deep_detail": "Traditional programs cannot solve the Halting Problem in the general case (Turing undecidability). Meta-Axioma bypasses this by bounding all system behaviors inside finite, decidable verification lattices and SMT Z3 contract morphisms. Every mutation must admit a machine-checkable proof of invariant preservation.",
+        "latex_formula": "$$\\forall m \\in \\mathcal{M}, \\quad \\text{SMTVerify}(m, \\mathcal{I}) \\implies \\text{Admit}(m)$$"
+      },
+      {
+        "id": "brain_vs_muscle",
+        "icon": "🧠",
+        "row": 1,
+        "badge": "Cognitive Routing",
+        "title": "The Brain vs. The Muscle",
+        "subtitle": "Dual-Model Cognitive Routing ([L1-G3B-014]) & Anti-Race Gating",
+        "layman": "Big AI reasoning models are brilliant at high-level planning, but expensive and slow. Small AI models are blazing fast at writing code, but lack big-picture judgment. We use a 'Brain' AI to design the blueprint, and a swarm of fast 'Muscle' AIs to assemble the pieces in parallel sandboxes.",
+        "deep_concept": "Dual-Model Cognitive Routing ([L1-G3B-014]) & Anti-Race Gating",
+        "deep_detail": "Enforces a strict two-stage sequential gate: Stage 1 utilizes large reasoning models (Argon/Pro Brain) to formally normalize Waterloo Situation of Concern (SoC) hierarchies and IR contracts. Stage 2 spawns specialized parallel workers (Gemini Flash Muscle) in isolated sandboxes, eliminating context contamination and API quota exhaustion.",
+        "latex_formula": "$$\\text{Brain}(\\text{SoC}) \\overset{\\text{Gate}}{\\longrightarrow} \\bigotimes_{i=1}^k \\text{Muscle}_i(\\text{Leaf}_i)$$"
+      },
+      {
+        "id": "dual_lattice_projection",
+        "icon": "📐",
+        "row": 1,
+        "badge": "Orthogonal Projection",
+        "title": "Dual-Lattice Orthogonal Projection",
+        "subtitle": "Maximally Orthogonal Research Axioms ⟶ Systems Design Invariant Lattice",
+        "layman": "Before you design a house, you need an architect who explores all possibilities without being biased by how fast the bricks can be laid. In Meta-Axioma, we maintain two independent sets of math rules: (1) Research Axioms that force the AI to explore wildly diverse, unbiased concepts, and (2) Systems Design Axioms that guarantee whatever software gets built is fast, reliable, and indestructible. The thinkers and the builders collaborate forever across an automated boundary.",
+        "deep_concept": "Galois Adjunction (F ⊣ G) & Graph Taboo Distance (D ≥ 0.40)",
+        "deep_detail": "Modeled as an Adjoint Galois Connection $\\mathcal{F} \\dashv \\mathcal{G}$ between an epistemic research lattice $\\mathcal{L}_{\\text{research}}$ and a concrete runtime invariant lattice $\\mathcal{L}_{\\text{design}}$. The research space maximizes Shannon entropy under Weisfeiler-Lehman topological graph taboo constraints ($D \\ge 0.40$), ensuring basis vectors are pairwise orthogonal (⟨vᵢ, vⱼ⟩ = 0 for i ≠ j). Functorial projection $\\mathcal{F}$ maps these unconstrained exploratory topologies into a minimal, non-redundant set of production invariants.",
+        "latex_formula": "$$\\mathcal{F}: \\mathcal{L}_{\\text{research}} \\longrightarrow \\mathcal{L}_{\\text{design}}, \\quad \\langle v_i, v_j \\rangle = 0 \\; (\\forall i \\ne j)$$"
+      }
+    ],
+    "row_2_pillars": [
+      {
+        "id": "sovereign_separation_of_powers",
+        "icon": "🏛️",
+        "row": 2,
+        "badge": "Constitutional Topology",
+        "title": "Sovereign Separation of Powers",
+        "subtitle": "Decoupled 5-Service Mesh on Private Subnet 192.168.40.0/24",
+        "layman": "In a healthy democracy, we don't let the same branch write the laws, enforce the laws, and judge its own trials. When one AI tries to plan, code, test, and grade itself, it hides bugs. Meta-Axioma runs 5 sovereign services—Analyst, Craftsperson, Inspector, Flight Recorder, and Human Driver—on an isolated network, keeping each other honest.",
+        "deep_concept": "Cybernetic Homeostasis & Asymmetric RFC Bus (protocols/rfc_protocol.py)",
+        "deep_detail": "Enforces Ashby's Law of Requisite Variety via physical service isolation on `192.168.40.0/24`. The Builder Enclave is physically barred from modifying specifications without an asymmetric `SpecAdjustmentRequest`. The Z3 SMT Prover arbitrates as an automated constitutional court: satisfying invariant extensions ($SAT$) receive signed `SpecAmendment` certificates; invariant violations ($UNSAT$) yield formal `CounterProof` models.",
+        "latex_formula": "$$\\text{SAT}(\\Delta \\cup \\mathcal{I}) \\implies \\text{SpecAmendment}, \\quad \\text{UNSAT} \\implies \\text{CounterProof}$$"
+      },
+      {
+        "id": "thermodynamic_entropy_recycling",
+        "icon": "⚡",
+        "row": 2,
+        "badge": "Physical Information Theory",
+        "title": "Thermodynamic Entropy Recycling",
+        "subtitle": "Landauer Limits & Closed Thermodynamic Computing Cycles",
+        "layman": "Traditional AI coding burns massive amounts of energy and tokens guessing randomly, throwing away 99% of its memory. Meta-Axioma treats AI coding like physical thermodynamics: every decision has an energy cost ($Q = k_B T \\ln 2 \\cdot \\text{bits}$). We cool creative ideas into unbreakable rules, and 1-tap undo restores any state without losing data or generating waste heat.",
+        "deep_concept": "Landauer Dissipation Bound & Functorial Reversibility ([L1-002], [L1-008])",
+        "deep_detail": "Governed by Landauer's physical erasure limit $Q \\ge k_B T \\ln 2 \\cdot \\Delta H$. Unbounded LLM loops suffer catastrophic entropy blowout. Meta-Axioma enforces logically reversible state transitions ($S_{t+1} = f(S_t, E)$ with inverse $S_{t-1} = f^{-1}(S_t)$), asymptotically approaching zero dissipation. Token capital is strictly partitioned into 60% Exploratory Capital and 40% Protected Sinks via `DynamicBudgetCalibrator`.",
+        "latex_formula": "$$Q \\ge k_B T \\ln 2 \\cdot \\Delta H, \\quad S_{t-1} = f^{-1}(S_t)$$"
+      },
+      {
+        "id": "functorial_dialectic",
+        "icon": "⚔️",
+        "row": 2,
+        "badge": "Adversarial Verification",
+        "title": "The Functorial Dialectic",
+        "subtitle": "Constructive Tension: Generative Thesis ⊗ Adversarial Antithesis",
+        "layman": "The greatest flaw in AI is sycophancy: models agree with their own bad ideas. Meta-Axioma is built on constructive conflict. The Researcher proposes ambitious human features (Thesis), the Chaos Sentry attacks them with 4,000 invalid inputs and SMT solvers (Antithesis), and code only ships if it survives the battle (Synthesis).",
+        "deep_concept": "Blass-Lawvere Game Semantics & Sheaf-Quorum Adjudication",
+        "deep_detail": "Formalized as an adversarial zero-sum game between Proponent $\\mathcal{P}$ (Builder/Researcher proposing morphisms) and Opponent $\\mathcal{O}$ (Z3 SMT Prover & Byzantine Chaos Fuzzer). Software release requires a winning strategy over the entire statechart transition covering path, certified by 2-of-3 Sheaf-Quorum consensus and empirical execution witnesses ([NEG-G1B-001]).",
+        "latex_formula": "$$\\text{Thesis} \\otimes \\text{Antithesis} \\overset{\\text{SMT}}{\\Longrightarrow} \\text{Synthesis} \\quad (\\text{Exit Code } 0)$$"
+      }
+    ],
+    "the_triad": {
+      "title": "The Core Invariant Triad",
+      "subtitle": "Three non-negotiable commitments enforced across every generation:",
+      "points": [
+        {
+          "name": "1. Grounded in Reality",
+          "layman": "Software should not be built in an academic vacuum. Systems must address concrete operational requirements, respect physical compute limits, and be verified through direct day-to-day dogfooding.",
+          "formal": "Landauer dissipation limits, physical token metering, WCAG 2.1 AA accessibility, and empirical execution witnesses ([NEG-G1B-001])."
+        },
+        {
+          "name": "2. Fully Human-Controlled",
+          "layman": "Autonomous generation must remain strictly accountable. Operators retain absolute veto power, exception enclaves isolate failures, and 1-tap undo restores any state in a single click.",
+          "formal": "Human Negative Axioms (NEG-###) as absolute vetoes, zero-trust MCP boundaries, and Functorial categorical reversibility ([L1-002]): {t-1} = f^{-1}(S_t)$."
+        },
+        {
+          "name": "3. Mathematically Non-Contradictory",
+          "layman": "The system cannot hold two conflicting beliefs or generate conflicting code. Every rule is part of a universal grammar that is checked for self-consistency before execution.",
+          "formal": "Category-theoretic functorial preservation, algebraic product/sum contract IR, and sheaf-quorum cocycle consensus across distributed nodes."
+        }
+      ]
+    },
+    "core_pillars": [
+      {
+        "id": "bounding_in_math",
+        "icon": "🛡️",
+        "row": 1,
+        "badge": "Foundational Invariant",
+        "title": "Bounding AI in Math, Not Prompts",
+        "subtitle": "SMT Z3 Prover Verification & Decidable Bounded Lattices",
+        "layman": "Instead of asking an AI to 'please write bug-free code', we run every proposed state and transition through automated mathematical solvers (SMT provers). If an AI suggests something invalid, the math engine physically rejects it before a single line of code can run.",
+        "deep_concept": "Gödel / Turing Boundary Circumvention & SMT Model Checking",
+        "deep_detail": "Traditional programs cannot solve the Halting Problem in the general case (Turing undecidability). Meta-Axioma bypasses this by bounding all system behaviors inside finite, decidable verification lattices and SMT Z3 contract morphisms. Every mutation must admit a machine-checkable proof of invariant preservation.",
+        "latex_formula": "$$\\forall m \\in \\mathcal{M}, \\quad \\text{SMTVerify}(m, \\mathcal{I}) \\implies \\text{Admit}(m)$$"
+      },
+      {
+        "id": "brain_vs_muscle",
+        "icon": "🧠",
+        "row": 1,
+        "badge": "Cognitive Routing",
+        "title": "The Brain vs. The Muscle",
+        "subtitle": "Dual-Model Cognitive Routing ([L1-G3B-014]) & Anti-Race Gating",
+        "layman": "Big AI reasoning models are brilliant at high-level planning, but expensive and slow. Small AI models are blazing fast at writing code, but lack big-picture judgment. We use a 'Brain' AI to design the blueprint, and a swarm of fast 'Muscle' AIs to assemble the pieces in parallel sandboxes.",
+        "deep_concept": "Dual-Model Cognitive Routing ([L1-G3B-014]) & Anti-Race Gating",
+        "deep_detail": "Enforces a strict two-stage sequential gate: Stage 1 utilizes large reasoning models (Argon/Pro Brain) to formally normalize Waterloo Situation of Concern (SoC) hierarchies and IR contracts. Stage 2 spawns specialized parallel workers (Gemini Flash Muscle) in isolated sandboxes, eliminating context contamination and API quota exhaustion.",
+        "latex_formula": "$$\\text{Brain}(\\text{SoC}) \\overset{\\text{Gate}}{\\longrightarrow} \\bigotimes_{i=1}^k \\text{Muscle}_i(\\text{Leaf}_i)$$"
+      },
+      {
+        "id": "dual_lattice_projection",
+        "icon": "📐",
+        "row": 1,
+        "badge": "Orthogonal Projection",
+        "title": "Dual-Lattice Orthogonal Projection",
+        "subtitle": "Maximally Orthogonal Research Axioms ⟶ Systems Design Invariant Lattice",
+        "layman": "Before you design a house, you need an architect who explores all possibilities without being biased by how fast the bricks can be laid. In Meta-Axioma, we maintain two independent sets of math rules: (1) Research Axioms that force the AI to explore wildly diverse, unbiased concepts, and (2) Systems Design Axioms that guarantee whatever software gets built is fast, reliable, and indestructible. The thinkers and the builders collaborate forever across an automated boundary.",
+        "deep_concept": "Galois Adjunction (F ⊣ G) & Graph Taboo Distance (D ≥ 0.40)",
+        "deep_detail": "Modeled as an Adjoint Galois Connection $\\mathcal{F} \\dashv \\mathcal{G}$ between an epistemic research lattice $\\mathcal{L}_{\\text{research}}$ and a concrete runtime invariant lattice $\\mathcal{L}_{\\text{design}}$. The research space maximizes Shannon entropy under Weisfeiler-Lehman topological graph taboo constraints ($D \\ge 0.40$), ensuring basis vectors are pairwise orthogonal (⟨vᵢ, vⱼ⟩ = 0 for i ≠ j). Functorial projection $\\mathcal{F}$ maps these unconstrained exploratory topologies into a minimal, non-redundant set of production invariants.",
+        "latex_formula": "$$\\mathcal{F}: \\mathcal{L}_{\\text{research}} \\longrightarrow \\mathcal{L}_{\\text{design}}, \\quad \\langle v_i, v_j \\rangle = 0 \\; (\\forall i \\ne j)$$"
+      },
+      {
+        "id": "sovereign_separation_of_powers",
+        "icon": "🏛️",
+        "row": 2,
+        "badge": "Constitutional Topology",
+        "title": "Sovereign Separation of Powers",
+        "subtitle": "Decoupled 5-Service Mesh on Private Subnet 192.168.40.0/24",
+        "layman": "In a healthy democracy, we don't let the same branch write the laws, enforce the laws, and judge its own trials. When one AI tries to plan, code, test, and grade itself, it hides bugs. Meta-Axioma runs 5 sovereign services—Analyst, Craftsperson, Inspector, Flight Recorder, and Human Driver—on an isolated network, keeping each other honest.",
+        "deep_concept": "Cybernetic Homeostasis & Asymmetric RFC Bus (protocols/rfc_protocol.py)",
+        "deep_detail": "Enforces Ashby's Law of Requisite Variety via physical service isolation on `192.168.40.0/24`. The Builder Enclave is physically barred from modifying specifications without an asymmetric `SpecAdjustmentRequest`. The Z3 SMT Prover arbitrates as an automated constitutional court: satisfying invariant extensions ($SAT$) receive signed `SpecAmendment` certificates; invariant violations ($UNSAT$) yield formal `CounterProof` models.",
+        "latex_formula": "$$\\text{SAT}(\\Delta \\cup \\mathcal{I}) \\implies \\text{SpecAmendment}, \\quad \\text{UNSAT} \\implies \\text{CounterProof}$$"
+      },
+      {
+        "id": "thermodynamic_entropy_recycling",
+        "icon": "⚡",
+        "row": 2,
+        "badge": "Physical Information Theory",
+        "title": "Thermodynamic Entropy Recycling",
+        "subtitle": "Landauer Limits & Closed Thermodynamic Computing Cycles",
+        "layman": "Traditional AI coding burns massive amounts of energy and tokens guessing randomly, throwing away 99% of its memory. Meta-Axioma treats AI coding like physical thermodynamics: every decision has an energy cost ($Q = k_B T \\ln 2 \\cdot \\text{bits}$). We cool creative ideas into unbreakable rules, and 1-tap undo restores any state without losing data or generating waste heat.",
+        "deep_concept": "Landauer Dissipation Bound & Functorial Reversibility ([L1-002], [L1-008])",
+        "deep_detail": "Governed by Landauer's physical erasure limit $Q \\ge k_B T \\ln 2 \\cdot \\Delta H$. Unbounded LLM loops suffer catastrophic entropy blowout. Meta-Axioma enforces logically reversible state transitions ($S_{t+1} = f(S_t, E)$ with inverse $S_{t-1} = f^{-1}(S_t)$), asymptotically approaching zero dissipation. Token capital is strictly partitioned into 60% Exploratory Capital and 40% Protected Sinks via `DynamicBudgetCalibrator`.",
+        "latex_formula": "$$Q \\ge k_B T \\ln 2 \\cdot \\Delta H, \\quad S_{t-1} = f^{-1}(S_t)$$"
+      },
+      {
+        "id": "functorial_dialectic",
+        "icon": "⚔️",
+        "row": 2,
+        "badge": "Adversarial Verification",
+        "title": "The Functorial Dialectic",
+        "subtitle": "Constructive Tension: Generative Thesis ⊗ Adversarial Antithesis",
+        "layman": "The greatest flaw in AI is sycophancy: models agree with their own bad ideas. Meta-Axioma is built on constructive conflict. The Researcher proposes ambitious human features (Thesis), the Chaos Sentry attacks them with 4,000 invalid inputs and SMT solvers (Antithesis), and code only ships if it survives the battle (Synthesis).",
+        "deep_concept": "Blass-Lawvere Game Semantics & Sheaf-Quorum Adjudication",
+        "deep_detail": "Formalized as an adversarial zero-sum game between Proponent $\\mathcal{P}$ (Builder/Researcher proposing morphisms) and Opponent $\\mathcal{O}$ (Z3 SMT Prover & Byzantine Chaos Fuzzer). Software release requires a winning strategy over the entire statechart transition covering path, certified by 2-of-3 Sheaf-Quorum consensus and empirical execution witnesses ([NEG-G1B-001]).",
+        "latex_formula": "$$\\text{Thesis} \\otimes \\text{Antithesis} \\overset{\\text{SMT}}{\\Longrightarrow} \\text{Synthesis} \\quad (\\text{Exit Code } 0)$$"
+      }
+    ]
+  }
+}

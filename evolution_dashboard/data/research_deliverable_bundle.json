@@ -1,0 +1,117 @@
+{
+  "bundle_id": "urn:axioma:g4b:bundle:evolution_dashboard",
+  "target_soc_id": "soc_reimagined_evolution_dashboard",
+  "hypothesis_id": "hyp_dual_layer_progressive_disclosure",
+  "constraint_analysis_id": "ca_sovereign_mesh_topology",
+  "failure_mode_id": "fmm_cognitive_overload_and_byzantine_drift",
+  "tradeoff_matrix_id": "tm_dual_layer_disclosure_optimization",
+  "reference_architecture_hash": "e5fc90827202e2ccf0a6c6e3d35a7c1f5593b488081eb1be0ae3cd3b668743ab",
+  "merkle_root": "a493599225d9abb228a11d78cbc9e32f1a5b46b0d164c64619e070dc49b2f277",
+  "is_certified": true,
+  "metadata": {
+    "author": "Stage 1 Brain Gate - Generation 4b Domain Ontologist & Waterloo Research Architect",
+    "generation": "Generation 4b",
+    "timestamp_utc": "2026-10-27T22:35:00Z",
+    "target_application": "evolution_dashboard",
+    "deliverable_urn": "urn:axioma:g4b:bundle:evolution_dashboard"
+  },
+  "hypothesis": {
+    "hypothesis_id": "hyp_dual_layer_progressive_disclosure",
+    "theoretical_claim": "Dual-layer progressive disclosure (Layman Surface vs Academic Systems Theory) circumvents cognitive friction while preserving formal mathematical decodability and peer-reviewable SMT proofs.",
+    "governing_axioms": [
+      "[L1-G3B-000] Waterloo Situation of Concern Normalization",
+      "[L1-G3B-014] Dual-Model Cognitive Routing",
+      "[L1-008] Landauer Thermodynamic Accounting",
+      "[L1-002] Categorical Reversibility & Functorial Undo",
+      "[NEG-G1B-001] Anti-Phantom Emission Gate"
+    ],
+    "expected_complexity_class": "O(1)",
+    "formal_conjecture_z3": "(assert (= cognitive_frictional_drag 0))",
+    "novelty_score": 0.95
+  },
+  "constraint_analysis": {
+    "analysis_id": "ca_sovereign_mesh_topology",
+    "physical_latency_budget_ms": 50,
+    "landauer_erasure_budget_bits": 1000000,
+    "topological_interfaces": [
+      "192.168.40.10:8440",
+      "192.168.40.20:8442",
+      "192.168.40.30:8444",
+      "192.168.40.40:8446",
+      "192.168.40.50:8448"
+    ],
+    "vetoed_negative_axioms": [
+      "[NEG-G1B-001] Anti-Phantom Emission Gate",
+      "[NEG-001] No loopback binding in distributed topologies",
+      "[NEG-002] No unverified builder self-grading"
+    ]
+  },
+  "failure_mode_model": {
+    "model_id": "fmm_cognitive_overload_and_byzantine_drift",
+    "byzantine_vectors": [
+      "unverified_phantom_emission",
+      "jargon_alienation_dropoff",
+      "asymmetric_rfc_deadlock"
+    ],
+    "partition_scenarios": [
+      "builder_isolated_partition",
+      "telemetry_link_interruption"
+    ],
+    "deadlock_states": [
+      "unresolved_rfc_deadlock",
+      "stale_quorum_split_brain"
+    ],
+    "recovery_pipeline_urns": [
+      "urn:axioma:recovery:undo_morphism",
+      "urn:axioma:recovery:governance_override",
+      "urn:axioma:recovery:peer_quarantine"
+    ]
+  },
+  "tradeoff_matrix": {
+    "matrix_id": "tm_dual_layer_disclosure_optimization",
+    "evaluated_options": [
+      "option_1_academic_only",
+      "option_2_layman_only",
+      "option_3_dual_layer_progressive"
+    ],
+    "pareto_frontier_options": [
+      "option_3_dual_layer_progressive"
+    ],
+    "scoring_weights": {
+      "comprehensibility_score": 0.35,
+      "formal_rigor_score": 0.35,
+      "latency_score": 0.15,
+      "novelty_score": 0.15
+    },
+    "selection_proof": "Option 3 dominates all candidate options on the 4D Pareto frontier by providing <= 60s layman comprehension while retaining 100% formal mathematical rigor on demand."
+  },
+  "soc_hierarchy": {
+    "macro": "Cognitive Ergonomics & Epistemic Opacity in Autonomous Systems Compilers [L1-G3B-000]",
+    "meso": {
+      "meso_1": "Communication & Epistemic Boundary (Surface Layman vs Formal Theory)",
+      "meso_2": "Decoupled Multi-Service Compilation Topology (Sovereign 5-node private network 192.168.40.0/24)",
+      "meso_3": "Interactive Empirical Simulation & Witness Ledger (5-step trace of axioma_go)"
+    },
+    "micro": {
+      "invariants": [
+        "[L1-G4B-001] Decoupled Research Sovereignty",
+        "[L1-G4B-002] Zero-Code Research Tool Boundary",
+        "[L1-G4B-003] Hierarchical Merkle-DAG Telemetry",
+        "[L1-G4B-004] Asymmetric RFC Protocol Bus & Z3 SMT Prover Bridge",
+        "[L1-G4B-005] Stateful Human-in-the-Loop Intercept Hub",
+        "[L1-G4B-006] Zero-Trust AST Micro-Auditing",
+        "[L1-G3B-014] Dual-Model Cognitive Routing",
+        "[L1-008] Landauer Thermodynamic Accounting",
+        "[L1-002] Functorial State Reversibility",
+        "[NEG-G1B-001] Anti-Phantom Emission Gate"
+      ],
+      "contracts": {
+        "asymmetric_rfc": [
+          "SpecAdjustmentRequest",
+          "CounterProof",
+          "SpecAmendment"
+        ]
+      }
+    }
+  }
+}

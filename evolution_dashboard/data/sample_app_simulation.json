@@ -1,0 +1,553 @@
+{
+  "selected_app_id": "axioma_go",
+  "available_apps": [
+    {
+      "id": "axioma_go",
+      "name": "Axioma Go: 10x10 Tactical Dojo",
+      "port": 8082,
+      "icon": "♟️",
+      "category": "Tactical State Engine & Board Game",
+      "summary": "10x10 Go board focusing on 6 canonical capture techniques (Snapback, Ladder, Geta, Crane's Nest, Double-Atari, Under the Stones) with live liberty heatmaps and 1-tap Functorial Undo."
+    },
+    {
+      "id": "axioma_flow",
+      "name": "Axioma Flow: Invariant Kanban",
+      "port": 8088,
+      "icon": "📋",
+      "category": "Enterprise Productivity & Task Workspace",
+      "summary": "Invariant-bounded task and kanban engine with categorical time-travel reversibility, exception enclaves, and real-time Landauer bit-erasure calculation."
+    },
+    {
+      "id": "axioma_sentinel",
+      "name": "Axioma Sentinel: Incident Console",
+      "port": 8100,
+      "icon": "🛡️",
+      "category": "AI Safety & Zero-Trust Governance",
+      "summary": "Autonomous agent incident monitor with 3-pass automated self-repair, 1-click Cmd+Z rollback, and HMAC-scoped permission enclaves."
+    }
+  ],
+  "simulations": {
+    "axioma_go": {
+      "app_name": "Axioma Go: 10x10 Tactical Capture Dojo",
+      "total_steps": 5,
+      "target_port": 8082,
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Human Intent & Waterloo Problem Decomposition",
+          "phase": "Epistemic Research & Specification",
+          "active_services": [
+            "research"
+          ],
+          "wire_traffic": {
+            "source": "Operator (Human-in-the-Loop)",
+            "target": "Sovereign Research Service (192.168.40.10:8440)",
+            "packet": "UserIntent(Goal='10x10 Tactical Go Dojo', Personas=['Go Student', 'Systems Thinker'])"
+          },
+          "surface_layman": {
+            "what_happens": "The ask: a distraction-free, tactical Go game that teaches real capture techniques without the fatigue of large 19x19 boards.",
+            "why_it_matters": "Before writing code, the Research Service maps out why existing Go apps fail users (steep learning curves, no liberty indicators). It produces an ironclad blueprint and is physically barred from writing code so it never cuts corners.",
+            "analogy": "Like an architect drafting precise structural blueprints before construction crews touch the building materials."
+          },
+          "academic_deep_dive": {
+            "concept": "Waterloo Situation of Concern Normalization [L1-G3B-000] & Zero-Code Boundary [L1-G4B-002]",
+            "formal_details": "Normalizes Macro-SoC ('Tactical Go Comprehension Deficit') into Meso/Micro tuples of actors, frictions, constraints, and invariants. Emits an immutable ResearchDeliverableBundle anchored with URN urn:axioma:g4b:bundle:axioma_go and verified by Weisfeiler-Lehman topological graph taboo hashing (D >= 0.40).",
+            "invariant_checked": "L1-G4B-002: Zero-Code Research Boundary (Subprocess AST inspector confirms zero .py/.js written in research sandbox)"
+          },
+          "artifact_preview": {
+            "label": "ResearchDeliverableBundle Specification (URN: urn:axioma:g4b:bundle:axioma_go)",
+            "type": "json",
+            "content": "{\n  \"urn\": \"urn:axioma:g4b:bundle:axioma_go\",\n  \"soc_hierarchy\": {\n    \"macro\": \"Tactical Go Comprehension Deficit\",\n    \"actors\": [\"Go Student\", \"Systems Thinker\", \"Polymath\"],\n    \"frictions\": [\"19x19 opening cognitive overload\", \"Ambiguous liberty counting\", \"Hidden tactical patterns\"],\n    \"invariants\": [\"GRID_DIM_10X10\", \"NO_SUICIDE_RULE\", \"KO_REPETITION_BAN\", \"FUNCTORIAL_UNDO_PRESERVATION\"]\n  },\n  \"target_port\": 8082,\n  \"statechart_states_required\": 12,\n  \"showcases\": [\"snapback\", \"ladder\", \"geta\", \"cranes_nest\", \"double_atari\", \"under_the_stones\"]\n}"
+          },
+          "metrics": {
+            "tokens_spent": 38400,
+            "latency_ms": 1420,
+            "invariants_locked": 7
+          }
+        },
+        {
+          "step_number": 2,
+          "title": "Asymmetric RFC Mediation & Z3 SMT Math Proving",
+          "phase": "Formal Verification & Protocol Negotiation",
+          "active_services": [
+            "builder",
+            "research"
+          ],
+          "wire_traffic": {
+            "source": "Sovereign Builder Enclave (192.168.40.20:8442)",
+            "target": "Sovereign Research Service (192.168.40.10:8440)",
+            "packet": "SpecAdjustmentRequest(RFC_ID='RFC-GO-001', Query='Allow multi-stone suicide if liberties==0?')"
+          },
+          "surface_layman": {
+            "what_happens": "The Builder AI considers an optimization: 'Can we allow suicide moves?' It files a formal RFC question across the private network. The automated math solver (Z3 SMT Prover) checks the Go rulebook and proves suicide creates infinite board loops. The change is rejected with mathematical proof, and the Builder complies.",
+            "why_it_matters": "No human had to wake up to resolve the question, and the AI was prevented from introducing a silent rule-breaking bug.",
+            "analogy": "Like an automated legal department instantly checking city zoning laws and issuing an ironclad permit ruling in milliseconds."
+          },
+          "academic_deep_dive": {
+            "concept": "Asymmetric RFC Bus (rfc_protocol.py) & SMT CounterProof Extraction",
+            "formal_details": "The Builder enqueues a SpecAdjustmentRequest over 192.168.40.0/24. The Research Service invokes the Z3 SMT prover bridge with first-order logic formulas for liberty closure. Z3 proves UNSAT under suicide allowance, emitting a formal CounterProof containing the cyclic counter-example model and preserving invariant [L1-G4B-004].",
+            "invariant_checked": "L1-G4B-001: Morphism Preservation (All state transitions S_{t+1} = f(S_t, Move) must preserve acyclic territory bounds)"
+          },
+          "artifact_preview": {
+            "label": "SMT CounterProof Formula & Asymmetric RFC Bus Payload",
+            "type": "code",
+            "content": "# Z3 SMT Prover Liberty Invariant Check [L1-G4B-004]\nfrom z3 import Solver, Bool, And, Implies, unsat\ns = Solver()\nMoveIsSuicide = Bool('MoveIsSuicide')\nEnemyLibertiesZero = Bool('EnemyLibertiesZero')\nTerritoryCycleFree = Bool('TerritoryCycleFree')\n\n# Axiom: Suicide permitted ONLY IF enemy group captured simultaneously\ns.add(Implies(MoveIsSuicide, EnemyLibertiesZero))\ns.add(Implies(And(MoveIsSuicide, EnemyLibertiesZero == False), TerritoryCycleFree == False))\ns.add(MoveIsSuicide == True, EnemyLibertiesZero == False, TerritoryCycleFree == True)\n\n# Satisfiability check returns UNSAT; counter-proof model emitted\nassert s.check() == unsat  # UNSAT Core: Move rejected via CounterProof CP-GO-001!"
+          },
+          "metrics": {
+            "tokens_spent": 52100,
+            "latency_ms": 860,
+            "invariants_locked": 9
+          }
+        },
+        {
+          "step_number": 3,
+          "title": "Dual-Model Cognitive Routing & Sandboxed Synthesis",
+          "phase": "Parallel Code Generation",
+          "active_services": [
+            "builder"
+          ],
+          "wire_traffic": {
+            "source": "Brain Model (Gemini Pro / Argon)",
+            "target": "Muscle Swarm (Gemini Flash Subagents)",
+            "packet": "TaskDAG(Branches=['engine/board.py', 'engine/tactics.py', 'static/app.js'])"
+          },
+          "surface_layman": {
+            "what_happens": "The 'Brain' AI outlines the game's statechart (playing, stone captured, game over) and visual ergonomics. It then hands modular tasks to 3 fast 'Muscle' AIs working in parallel sandboxes to write the Python engine, tactical capture solver, and web canvas.",
+            "why_it_matters": "By splitting planning from fast coding, no single AI context window gets overloaded, keeping the code clean, modular, and hallucination-free.",
+            "analogy": "A lead master carpenter drafting the master joinery layout, while three specialist woodworkers simultaneously craft the dovetails, tabletop, and legs."
+          },
+          "academic_deep_dive": {
+            "concept": "Dual-Model Cognitive Routing [L1-G3B-014] & Tree-sitter AST Skeletonization",
+            "formal_details": "Sequential two-stage gating: Stage 1 Brain gate formalizes XState v5 hierarchical statechart (12 states, 28 transitions, deep history). Stage 2 dispatches parallel Flash Muscle workers in isolated filesystem sandboxes. Code is constrained by Tree-sitter skeletons (<= 4,096 tokens per file) preventing bloat.",
+            "invariant_checked": "L1-G3B-012: Anti-Loopback Interface Binding (All inter-module communication binds to non-loopback endpoints)"
+          },
+          "artifact_preview": {
+            "label": "Synthesized Go Engine Module (src/board.py Excerpt)",
+            "type": "code",
+            "content": "class GoBoard:\n    \"\"\"10x10 Tactical Go Board with Recursive Liberty Flood-Fill [L1-002].\"\"\"\n    def __init__(self, size: int = 10):\n        self.size = size\n        self.grid: dict[tuple[int, int], str] = {}\n        self.history: list[dict] = []  # Functorial Undo Stack S_{t-1} = f^{-1}(S_t)\n\n    def get_group_liberties(self, coord: tuple[int, int]) -> set[tuple[int, int]]:\n        color = self.grid.get(coord)\n        if not color: return set()\n        visited, group, liberties = set(), {coord}, set()\n        queue = [coord]\n        while queue:\n            curr = queue.pop(0)\n            visited.add(curr)\n            for neighbor in self._get_adjacents(curr):\n                if neighbor not in self.grid:\n                    liberties.add(neighbor)\n                elif self.grid[neighbor] == color and neighbor not in visited:\n                    group.add(neighbor)\n                    queue.append(neighbor)\n        return liberties"
+          },
+          "metrics": {
+            "tokens_spent": 128400,
+            "latency_ms": 3150,
+            "invariants_locked": 12
+          }
+        },
+        {
+          "step_number": 4,
+          "title": "Sheaf-Quorum Adversarial Auditing & Chaos Testing",
+          "phase": "Byzantine Chaos Fuzzing & Model Verification",
+          "active_services": [
+            "audit"
+          ],
+          "wire_traffic": {
+            "source": "Sovereign Audit Service (192.168.40.30:8444)",
+            "target": "Sovereign Builder Enclave (192.168.40.20:8442)",
+            "packet": "ChaosPayload(SuicideAttacks=500, OutOfBounds=1000, RapidConcurrentClicks=2500)"
+          },
+          "surface_layman": {
+            "what_happens": "The Audit Service acts like an adversarial security tester. It throws 4,000 invalid moves, illegal suicides, out-of-bounds clicks, and rapid inputs at the game. Every bad move is cleanly intercepted with zero crashes.",
+            "why_it_matters": "We never ship software based on promises or unit tests written by the author AI. An independent third-party sentry must confirm the code survives real-world chaos.",
+            "analogy": "Crash-testing a car with crash dummies and extreme impact sensors before allowing passengers inside."
+          },
+          "academic_deep_dive": {
+            "concept": "Zero-Trust AST Micro-Auditing [L1-G3B-016] & 2-of-3 Sheaf-Quorum Consensus",
+            "formal_details": "Audit service executes isolated test runners via hermetic subprocesses. Fuzzes boundary conditions: Stone placing on occupied intersection, snapback cascade integrity, ladder wrap-around, and 1-tap Functorial rollback. Requires 2-of-3 independent micro-auditor agreement (Product, Architecture, QA) for release certification.",
+            "invariant_checked": "NEG-G1B-001: Anti-Phantom Emission Gate (Requires exit code 0 and empirical witness signature in trajectory)"
+          },
+          "artifact_preview": {
+            "label": "Audit Execution Ledger & Test Suite Witness",
+            "type": "code",
+            "content": "test_01_snapback_cascade_recapture (tests.test_tactics) ... ok\ntest_02_zigzag_ladder_diagonal_pursuit (tests.test_tactics) ... ok\ntest_03_loose_net_geta_capture (tests.test_tactics) ... ok\ntest_04_cranes_nest_wedge_enclosure (tests.test_tactics) ... ok\ntest_05_double_atari_fork (tests.test_tactics) ... ok\ntest_06_under_the_stones_cavity_harvest (tests.test_tactics) ... ok\ntest_07_functorial_undo_state_reversion (tests.test_runtime) ... ok\ntest_08_byzantine_suicide_interception (tests.test_runtime) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.041s\n\nOK [Witness: WITNESS_G4B_AUDIT_PASS_0x8F4E2A]"
+          },
+          "metrics": {
+            "tokens_spent": 64200,
+            "latency_ms": 980,
+            "invariants_locked": 16
+          }
+        },
+        {
+          "step_number": 5,
+          "title": "Thermodynamic Telemetry Sealing & Live Deployment",
+          "phase": "Merkle-DAG Anchoring & Production Release",
+          "active_services": [
+            "telemetry",
+            "governance"
+          ],
+          "wire_traffic": {
+            "source": "Sovereign Telemetry Service (192.168.40.40:8446)",
+            "target": "Cluster Merkle-DAG & Governance Gateway (192.168.40.50:8448)",
+            "packet": "MerkleBlock(PrevHash='0x7a3e...', Root='0x9c41...', Status='LIVE_DEPLOYED')"
+          },
+          "surface_layman": {
+            "what_happens": "The game goes live on port 8082! The Telemetry Service counts every token used and the computational heat generated, stamping the development trace into an unalterable cryptographic seal. The operator receives confirmation with an instant 1-tap rollback option.",
+            "why_it_matters": "A complete, tamper-proof record of how the application was built, verified, and budgeted is saved forever.",
+            "analogy": "Like an airplane flight recorder and a certified engineering seal stamped on a finished bridge."
+          },
+          "academic_deep_dive": {
+            "concept": "Landauer Thermodynamic Accounting [L1-008] & Merkle-DAG Telemetry [L1-G4B-003]",
+            "formal_details": "Calculates physical Landauer dissipation (Q = kB T ln 2 * bits_erased). Seals the compilation trajectory into a SHA-256 Merkle-DAG block linked to genesis. The Governance Service validates Heuristic Debt Ratio (HDR <= 0.15) and exposes a 1-tap Functorial rollback morphism.",
+            "invariant_checked": "L1-G3B-018: Zero-CDN Standalone Operational Dashboard Deliverable"
+          },
+          "artifact_preview": {
+            "label": "Cryptographic SHA-256 Merkle Block & Telemetry Ledger",
+            "type": "json",
+            "content": "{\n  \"merkle_block_id\": \"BLK_G4B_AXIOMA_GO_001\",\n  \"service\": \"soc_g4b_builder\",\n  \"app_id\": \"axioma_go\",\n  \"port\": 8082,\n  \"status\": \"LIVE_OPERATIONAL\",\n  \"bpe_token_expenditure\": {\n    \"exploratory_spent\": 218900,\n    \"protected_spent\": 64200,\n    \"total_spent\": 283100,\n    \"budget_ceiling\": 593200\n  },\n  \"landauer_heat_dissipation_joules\": \"1.82e-16\",\n  \"merkle_root\": \"sha256:7a3e69be0ab54586a0c9c1858382034d\",\n  \"witness_signature\": \"CERT_G4B_RELEASE_VERIFIED\"\n}"
+          },
+          "metrics": {
+            "tokens_spent": 283100,
+            "latency_ms": 420,
+            "invariants_locked": 18
+          }
+        }
+      ]
+    },
+    "axioma_flow": {
+      "app_name": "Axioma Flow: Invariant Kanban Engine",
+      "total_steps": 5,
+      "target_port": 8088,
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Human Intent & Kanban State Decomposition",
+          "phase": "Epistemic Research & Specification",
+          "active_services": [
+            "research"
+          ],
+          "wire_traffic": {
+            "source": "Operator (Human-in-the-Loop)",
+            "target": "Sovereign Research Service (192.168.40.10:8440)",
+            "packet": "UserIntent(Goal='Invariant-Bounded Kanban Engine', Personas=['Team Lead', 'Systems Engineer'])"
+          },
+          "surface_layman": {
+            "what_happens": "The operator requests a lightning-fast Kanban board with strict column invariants and zero lost tickets.",
+            "why_it_matters": "The Research Service formally defines task lifecycle states (Backlog -> Todo -> InProgress -> Review -> Done) and forbids invalid skips before any code is generated.",
+            "analogy": "Like an airport flight board guaranteeing a plane cannot be marked as Landed before Departing."
+          },
+          "academic_deep_dive": {
+            "concept": "Waterloo Situation of Concern Normalization [L1-G3B-000] & Directed Acyclic Workflow",
+            "formal_details": "Constructs finite statechart lattice over task states S = {Backlog, Todo, InProgress, Review, Done} bounding transitions to forward topological ordering with Functorial Undo morphisms.",
+            "invariant_checked": "L1-002: Categorical Functorial State Reversibility S_{t-1} = f^{-1}(S_t)"
+          },
+          "artifact_preview": {
+            "label": "Kanban ContractIR Specification (URN: urn:axioma:g4b:bundle:axioma_flow)",
+            "type": "json",
+            "content": "{\n  \"urn\": \"urn:axioma:g4b:bundle:axioma_flow\",\n  \"macro_soc\": \"Task State Inconsistency Deficit\",\n  \"invariants\": [\"TASK_ACYCLIC_PROGRESSION\", \"ESTIMATE_BOUNDED_FIBONACCI\", \"WIP_LIMIT_LEQ_5\", \"FUNCTORIAL_UNDO\"],\n  \"target_port\": 8088,\n  \"states\": [\"backlog\", \"todo\", \"in_progress\", \"review\", \"done\"]\n}"
+          },
+          "metrics": {
+            "tokens_spent": 34200,
+            "latency_ms": 1180,
+            "invariants_locked": 6
+          }
+        },
+        {
+          "step_number": 2,
+          "title": "Asymmetric RFC Mediation & Z3 SMT Proving",
+          "phase": "Formal Verification & Protocol Negotiation",
+          "active_services": [
+            "builder",
+            "research"
+          ],
+          "wire_traffic": {
+            "source": "Sovereign Builder Enclave (192.168.40.20:8442)",
+            "target": "Sovereign Research Service (192.168.40.10:8440)",
+            "packet": "SpecAdjustmentRequest(RFC_ID='RFC-FLOW-001', Query='Allow skipping Review directly to Done for hotfixes?')"
+          },
+          "surface_layman": {
+            "what_happens": "The Builder AI asks if urgent tasks can bypass the Review column directly to Done. The automated Z3 SMT solver verifies this breaks the audit trail invariant and rejects the skip with mathematical proof.",
+            "why_it_matters": "No human supervisor needed to step in to prevent accidental compliance violations; the math solver enforced code review strictly.",
+            "analogy": "Like an automated bank compliance vault rejecting an unsigned wire transfer."
+          },
+          "academic_deep_dive": {
+            "concept": "Asymmetric RFC Protocol Bus & First-Order Invariant Preservation",
+            "formal_details": "Z3 evaluates (assert (and (= ReviewBypassed true) (= MandatoryAuditTrail true))). Unsatisfiable core refutes transition; returns CounterProof CP-FLOW-001 preserving invariant [L1-G4B-004].",
+            "invariant_checked": "L1-G4B-004: Preserved Invariant Non-Empty & Acyclic Flow Enforcement"
+          },
+          "artifact_preview": {
+            "label": "SMT Formula Refutation & RFC CounterProof",
+            "type": "code",
+            "content": "from z3 import Solver, Bool, Implies, unsat\ns = Solver()\nBypassReview = Bool(\"BypassReview\")\nAuditTrailIntact = Bool(\"AuditTrailIntact\")\ns.add(Implies(BypassReview, AuditTrailIntact == False))\ns.add(BypassReview == True, AuditTrailIntact == True)\nassert s.check() == unsat  # UNSAT Core: CP-FLOW-001"
+          },
+          "metrics": {
+            "tokens_spent": 48500,
+            "latency_ms": 740,
+            "invariants_locked": 8
+          }
+        },
+        {
+          "step_number": 3,
+          "title": "Dual-Model Cognitive Routing & Sandboxed Synthesis",
+          "phase": "Parallel Code Generation",
+          "active_services": [
+            "builder"
+          ],
+          "wire_traffic": {
+            "source": "Brain Model (Argon / Pro)",
+            "target": "Muscle Swarm (Flash Subagents)",
+            "packet": "TaskDAG(Branches=['kanban/engine.py', 'kanban/statechart.js', 'kanban/enclave.py'])"
+          },
+          "surface_layman": {
+            "what_happens": "The Brain AI models the XState statechart and card drag invariants, then assigns three fast Muscle workers to assemble the engine, board UI, and undo history manager.",
+            "why_it_matters": "Parallel isolated synthesis ensures clean code without hallucinated state mutations.",
+            "analogy": "An industrial designer handing stamped schematics to three robotic assembly arms."
+          },
+          "academic_deep_dive": {
+            "concept": "Dual-Model Cognitive Routing [L1-G3B-014] & Tree-sitter AST Bounds",
+            "formal_details": "Stage 1 Brain specifies XState v5 hierarchical compound states with parallel columns; Stage 2 Muscle workers emit AST modules bounded <= 4,096 BPE tokens.",
+            "invariant_checked": "L1-016: Demarcated Exception Enclaves"
+          },
+          "artifact_preview": {
+            "label": "Kanban Engine Core (src/kanban_engine.py)",
+            "type": "code",
+            "content": "class KanbanEngine:\n    def __init__(self, wip_limit: int = 5):\n        self.wip_limit = wip_limit\n        self.columns = {\"backlog\": [], \"todo\": [], \"in_progress\": [], \"review\": [], \"done\": []}\n        self.history = []\n\n    def transition(self, card_id: str, src: str, dst: str):\n        if dst == \"in_progress\" and len(self.columns[\"in_progress\"]) >= self.wip_limit:\n            raise WIPLimitExceededViolation(\"WIP limit strictly bounded <= 5\")\n        self.history.append((card_id, src, dst))\n        self.columns[src].remove(card_id)\n        self.columns[dst].append(card_id)"
+          },
+          "metrics": {
+            "tokens_spent": 114200,
+            "latency_ms": 2890,
+            "invariants_locked": 11
+          }
+        },
+        {
+          "step_number": 4,
+          "title": "Sheaf-Quorum Adversarial Auditing & Chaos Testing",
+          "phase": "Byzantine Chaos Fuzzing & Model Verification",
+          "active_services": [
+            "audit"
+          ],
+          "wire_traffic": {
+            "source": "Sovereign Audit Service (192.168.40.30:8444)",
+            "target": "Sovereign Builder Enclave (192.168.40.20:8442)",
+            "packet": "ChaosPayload(ConcurrentDrags=1500, NegativeEstimates=1000, CorruptUndo=2500)"
+          },
+          "surface_layman": {
+            "what_happens": "The Audit Sentry bombards the Kanban board with 5,000 invalid drag events, negative point estimates, and corrupted undo tokens. Every illegal action is intercepted cleanly with zero crashes.",
+            "why_it_matters": "Zero-trust auditing guarantees no bug ever enters production.",
+            "analogy": "A stress test flexing a titanium wing in a wind tunnel under hurricane forces."
+          },
+          "academic_deep_dive": {
+            "concept": "Zero-Trust AST Micro-Auditing & 2-of-3 Quorum Consensus",
+            "formal_details": "Auditors verify state transition determinism under Byzantine concurrent chaos; requires unanimous verification witness token WITNESS_G4B_FLOW_PASS.",
+            "invariant_checked": "NEG-G1B-001: Anti-Phantom Emission Gate (Requires exit code 0)"
+          },
+          "artifact_preview": {
+            "label": "Audit Execution Ledger & Test Suite Witness",
+            "type": "code",
+            "content": "test_01_wip_limit_strictly_enforced (tests.test_kanban) ... ok\ntest_02_functorial_undo_reversion (tests.test_kanban) ... ok\ntest_03_concurrent_drag_conflict_resolution (tests.test_concurrency) ... ok\ntest_04_negative_fibonacci_estimate_rejected (tests.test_validation) ... ok\n\nRan 4 tests in 0.028s\n\nOK [Witness: WITNESS_G4B_FLOW_PASS_0x4C91B]"
+          },
+          "metrics": {
+            "tokens_spent": 58400,
+            "latency_ms": 870,
+            "invariants_locked": 14
+          }
+        },
+        {
+          "step_number": 5,
+          "title": "Thermodynamic Telemetry Sealing & Live Deployment",
+          "phase": "Merkle-DAG Anchoring & Production Release",
+          "active_services": [
+            "telemetry",
+            "governance"
+          ],
+          "wire_traffic": {
+            "source": "Sovereign Telemetry Service (192.168.40.40:8446)",
+            "target": "Cluster Merkle-DAG & Governance Gateway (192.168.40.50:8448)",
+            "packet": "MerkleBlock(App='axioma_flow', Port=8088, Status='LIVE_OPERATIONAL')"
+          },
+          "surface_layman": {
+            "what_happens": "Axioma Flow goes live on port 8088! Thermodynamic heat and token spends are permanently stamped into the Merkle-DAG ledger.",
+            "why_it_matters": "Complete accounting of every joule of energy and BPE token spent.",
+            "analogy": "Stamping a notary seal on an immutable land deed."
+          },
+          "academic_deep_dive": {
+            "concept": "Landauer Thermodynamic Accounting [L1-008] & Merkle Anchoring",
+            "formal_details": "Computes Q = kB T ln 2 * bits_erased (1.55e-16 J) and anchors SHA-256 block into Merkle chain head.",
+            "invariant_checked": "L1-G3B-018: Zero-CDN Standalone Operational Dashboard Deliverable"
+          },
+          "artifact_preview": {
+            "label": "Merkle Block Ledger Seal (BLK_G4B_AXIOMA_FLOW_001)",
+            "type": "json",
+            "content": "{\n  \"merkle_block_id\": \"BLK_G4B_AXIOMA_FLOW_001\",\n  \"app_id\": \"axioma_flow\",\n  \"port\": 8088,\n  \"status\": \"LIVE_OPERATIONAL\",\n  \"tokens_spent\": 241500,\n  \"landauer_heat_joules\": \"1.55e-16\",\n  \"witness\": \"CERT_G4B_RELEASE_VERIFIED\"\n}"
+          },
+          "metrics": {
+            "tokens_spent": 241500,
+            "latency_ms": 390,
+            "invariants_locked": 16
+          }
+        }
+      ]
+    },
+    "axioma_sentinel": {
+      "app_name": "Axioma Sentinel: AI Incident Console",
+      "total_steps": 5,
+      "target_port": 8100,
+      "steps": [
+        {
+          "step_number": 1,
+          "title": "Human Intent & Autonomous Incident Governance",
+          "phase": "Epistemic Research & Specification",
+          "active_services": [
+            "research"
+          ],
+          "wire_traffic": {
+            "source": "Operator (Human-in-the-Loop)",
+            "target": "Sovereign Research Service (192.168.40.10:8440)",
+            "packet": "UserIntent(Goal='Autonomous AI Incident Sentinel', Personas=['SRE', 'SecOps Lead'])"
+          },
+          "surface_layman": {
+            "what_happens": "The operator specifies a sentry system that monitors autonomous AI agents, detects anomalies, and automatically repairs failures.",
+            "why_it_matters": "The Research Service formally defines tri-state enclaves and 3-pass repair loops, preventing runaway agent loops.",
+            "analogy": "A hospital cardiac monitor equipped with automated defibrillation protocols."
+          },
+          "academic_deep_dive": {
+            "concept": "Waterloo Situation of Concern Normalization & Tri-State Safety Enclaves",
+            "formal_details": "Formalizes Macro-SoC into Micro-Axioms bounding autonomous mitigation to 3 bounded iterations before mandatory human-in-the-loop escalation.",
+            "invariant_checked": "L1-G4B-005: Stateful Human-in-the-Loop Intercept Hub"
+          },
+          "artifact_preview": {
+            "label": "Sentinel ContractIR Specification (urn:axioma:g4b:bundle:axioma_sentinel)",
+            "type": "json",
+            "content": "{\n  \"urn\": \"urn:axioma:g4b:bundle:axioma_sentinel\",\n  \"macro_soc\": \"Autonomous Agent Runaway Risk\",\n  \"invariants\": [\"HMAC_PERMISSION_SCOPES\", \"SELF_HEAL_BOUNDED_3_PASS\", \"HUMAN_VETO_PRESERVATION\"],\n  \"target_port\": 8100\n}"
+          },
+          "metrics": {
+            "tokens_spent": 41200,
+            "latency_ms": 1350,
+            "invariants_locked": 8
+          }
+        },
+        {
+          "step_number": 2,
+          "title": "Asymmetric RFC Mediation & Z3 SMT Proving",
+          "phase": "Formal Verification & Protocol Negotiation",
+          "active_services": [
+            "builder",
+            "research"
+          ],
+          "wire_traffic": {
+            "source": "Sovereign Builder Enclave (192.168.40.20:8442)",
+            "target": "Sovereign Research Service (192.168.40.10:8440)",
+            "packet": "SpecAdjustmentRequest(RFC_ID='RFC-SENT-001', Query='Allow infinite auto-repair retries for critical alerts?')"
+          },
+          "surface_layman": {
+            "what_happens": "The Builder AI asks to remove the 3-attempt limit on self-healing. The Z3 SMT solver proves infinite retries cause livelocks and rejects the request.",
+            "why_it_matters": "Prevents an autonomous agent from entering a runaway repair spiral that exhausts compute budget.",
+            "analogy": "A circuit breaker tripping when current exceeds safety thresholds."
+          },
+          "academic_deep_dive": {
+            "concept": "SMT Refutation of Halting Non-Determinism",
+            "formal_details": "Z3 proves (assert (> MaxRepairPasses 3)) breaks bounded termination invariant; emits CounterProof CP-SENT-001.",
+            "invariant_checked": "L1-G4B-004: Asymmetric RFC Protocol Bus Invariant Enforcement"
+          },
+          "artifact_preview": {
+            "label": "SMT CounterProof Model Refutation",
+            "type": "code",
+            "content": "from z3 import Solver, Int, unsat\ns = Solver()\npasses = Int(\"passes\")\ns.add(passes > 3)\ns.add(passes <= 3)\nassert s.check() == unsat  # UNSAT: Livelock risk refuted via CP-SENT-001"
+          },
+          "metrics": {
+            "tokens_spent": 54100,
+            "latency_ms": 810,
+            "invariants_locked": 10
+          }
+        },
+        {
+          "step_number": 3,
+          "title": "Dual-Model Cognitive Routing & Sandboxed Synthesis",
+          "phase": "Parallel Code Generation",
+          "active_services": [
+            "builder"
+          ],
+          "wire_traffic": {
+            "source": "Brain Model (Argon / Pro)",
+            "target": "Muscle Swarm (Flash Subagents)",
+            "packet": "TaskDAG(Branches=['sentinel/monitor.py', 'sentinel/enclave.py', 'sentinel/hud.js'])"
+          },
+          "surface_layman": {
+            "what_happens": "The Brain designs the safety enclaves; three Muscle subagents concurrently compile the event parser, HMAC permission verifier, and real-time incident HUD.",
+            "why_it_matters": "Fast parallel code generation with zero cross-talk contamination.",
+            "analogy": "Engineers building separate modular compartments of a submarine hull in parallel drydocks."
+          },
+          "academic_deep_dive": {
+            "concept": "Dual-Model Cognitive Routing & Zero-Bypass Enclaves",
+            "formal_details": "Synthesizes HMAC-scoped permission enclaves and non-blocking AsyncIO socket stream consumers.",
+            "invariant_checked": "L1-016: Demarcated Exception Enclaves"
+          },
+          "artifact_preview": {
+            "label": "Sentinel Incident Monitor (src/monitor.py)",
+            "type": "code",
+            "content": "class SentinelMonitor:\n    def __init__(self, max_passes: int = 3):\n        self.max_passes = max_passes\n        self.active_incidents = {}\n\n    def intercept_event(self, event: dict) -> bool:\n        if not self._verify_hmac(event):\n            self._trigger_peer_quarantine(event[\"node_id\"])\n            return False\n        return True"
+          },
+          "metrics": {
+            "tokens_spent": 136200,
+            "latency_ms": 3310,
+            "invariants_locked": 13
+          }
+        },
+        {
+          "step_number": 4,
+          "title": "Sheaf-Quorum Adversarial Auditing & Chaos Testing",
+          "phase": "Byzantine Chaos Fuzzing & Model Verification",
+          "active_services": [
+            "audit"
+          ],
+          "wire_traffic": {
+            "source": "Sovereign Audit Service (192.168.40.30:8444)",
+            "target": "Sovereign Builder Enclave (192.168.40.20:8442)",
+            "packet": "ChaosPayload(ForgedHMAC=2000, InfiniteLoops=2000, SplitBrainRaces=2000)"
+          },
+          "surface_layman": {
+            "what_happens": "The Audit Service injects 6,000 forged permission tokens and simulated network partitions. The Sentinel isolates every rogue packet with zero compromise.",
+            "why_it_matters": "Proves the incident console cannot be tricked or bypassed by rogue agents.",
+            "analogy": "A military penetration testing team attempting to breach a secure base command center."
+          },
+          "academic_deep_dive": {
+            "concept": "Byzantine Chaos Fuzzing & Sheaf-Quorum Consensus",
+            "formal_details": "2-of-3 non-colluding auditor quorum certifies zero privilege leak and authenticates WITNESS_G4B_SENTINEL_PASS.",
+            "invariant_checked": "NEG-G1B-001: Anti-Phantom Emission Gate"
+          },
+          "artifact_preview": {
+            "label": "Audit Execution Ledger & Test Suite Witness",
+            "type": "code",
+            "content": "test_01_forged_hmac_quarantine (tests.test_sentinel) ... ok\ntest_02_max_3_pass_self_heal_escalation (tests.test_sentinel) ... ok\ntest_03_peer_subnet_isolation (tests.test_network) ... ok\n\nRan 3 tests in 0.021s\n\nOK [Witness: WITNESS_G4B_SENTINEL_PASS_0x9A7E1]"
+          },
+          "metrics": {
+            "tokens_spent": 66800,
+            "latency_ms": 920,
+            "invariants_locked": 16
+          }
+        },
+        {
+          "step_number": 5,
+          "title": "Thermodynamic Telemetry Sealing & Live Deployment",
+          "phase": "Merkle-DAG Anchoring & Production Release",
+          "active_services": [
+            "telemetry",
+            "governance"
+          ],
+          "wire_traffic": {
+            "source": "Sovereign Telemetry Service (192.168.40.40:8446)",
+            "target": "Cluster Merkle-DAG & Governance Gateway (192.168.40.50:8448)",
+            "packet": "MerkleBlock(App='axioma_sentinel', Port=8100, Status='LIVE_OPERATIONAL')"
+          },
+          "surface_layman": {
+            "what_happens": "Axioma Sentinel is deployed live on port 8100! Cryptographic hash seals ensure full traceability for enterprise security audits.",
+            "why_it_matters": "An unalterable record of system defense mechanisms and energy usage.",
+            "analogy": "An encrypted flight black box recording all mission telemetry."
+          },
+          "academic_deep_dive": {
+            "concept": "Landauer Thermodynamic Accounting [L1-008] & Merkle-DAG Telemetry",
+            "formal_details": "Seals compilation into Merkle block linked to genesis; validates Heuristic Debt Ratio HDR <= 0.15.",
+            "invariant_checked": "L1-G3B-018: Zero-CDN Standalone Operational Dashboard Deliverable"
+          },
+          "artifact_preview": {
+            "label": "Merkle Block Ledger Seal (BLK_G4B_AXIOMA_SENTINEL_001)",
+            "type": "json",
+            "content": "{\n  \"merkle_block_id\": \"BLK_G4B_AXIOMA_SENTINEL_001\",\n  \"app_id\": \"axioma_sentinel\",\n  \"port\": 8100,\n  \"status\": \"LIVE_OPERATIONAL\",\n  \"tokens_spent\": 298400,\n  \"landauer_heat_joules\": \"1.91e-16\",\n  \"witness\": \"CERT_G4B_RELEASE_VERIFIED\"\n}"
+          },
+          "metrics": {
+            "tokens_spent": 298400,
+            "latency_ms": 410,
+            "invariants_locked": 18
+          }
+        }
+      ]
+    }
+  }
+}

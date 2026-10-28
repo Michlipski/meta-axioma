@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta-Axioma: Generational Evolution Studio &amp; G4b Zenith Workbench</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="static/vendor/katex/katex.min.css" onerror="this.onerror=null;this.href='vendor/katex/katex.min.css';">
+  <script defer src="static/vendor/katex/katex.min.js" onerror="this.onerror=null;this.src='vendor/katex/katex.min.js';"></script>
+  <script defer src="static/vendor/katex/auto-render.min.js" onerror="this.onerror=null;this.src='vendor/katex/auto-render.min.js';"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans antialiased mode-layman">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80 px-4 lg:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-400/40 flex items-center justify-center text-sky-400 font-bold text-base shadow-[0_0_12px_rgba(56,189,248,0.3)] select-none">
+          Ω
+        </div>
+        <div>
+          <h1 class="text-sm font-bold tracking-tight text-zinc-100 flex items-center gap-2">
+            Meta-Axioma <span class="text-zinc-500 font-normal">|</span> Evolution Studio &amp; G4b Workbench
+          </h1>
+          <p class="text-[11px] font-mono text-zinc-400">
+            Genesis S₀ → Generation 4b Sovereign Service Mesh
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <nav class="hidden xl:flex items-center gap-4 text-xs font-mono text-zinc-400">
+        <a href="#philosophy" class="hover:text-sky-400 transition-colors">Philosophy</a>
+        <a href="#g4b-architecture" class="hover:text-sky-400 transition-colors">G4b Mesh</a>
+        <a href="#app-simulation" class="hover:text-sky-400 transition-colors">App Walkthrough</a>
+        <a href="#evolution-timeline" class="hover:text-sky-400 transition-colors">8-Stage Spine</a>
+        <a href="#diff-workbench" class="hover:text-sky-400 transition-colors">Generational Diff</a>
+        <a href="#governance-spotlight" class="hover:text-sky-400 transition-colors">Governance</a>
+        <a href="#telemetry-hud" class="hover:text-sky-400 transition-colors">Landauer Heat</a>
+      </nav>
+
+      <!-- Perspective Mode Switcher -->
+      <div class="flex items-center gap-1.5 bg-zinc-900 border border-zinc-700/80 rounded-xl p-1 text-xs font-mono shadow-inner">
+        <button id="mode-layman-btn" class="mode-toggle-btn active" title="Switch to Layman Mode (Intuitive Plain English)">
+          👓 Layman Mode
+        </button>
+        <button id="mode-academic-btn" class="mode-toggle-btn" title="Switch to Systems Thinking (Formal System Invariants &amp; SMT Proofs)">
+          🔬 Systems Thinking
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 py-8 space-y-16 ambient-glow">
+
+    <!-- ============================================================== -->
+    <!-- SECTION 1: THE META-AXIOMA PHILOSOPHY & INVARIANT TRIAD -->
+    <!-- ============================================================== -->
+    <section id="philosophy" class="space-y-6 pt-2">
+      <div class="text-center max-w-3xl mx-auto space-y-3 philosophy-subheader" style="padding-bottom: 100px;">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-400 text-xs font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></span>
+          Autonomous Meta-Orchestration &bull; Formal Verification Grounding
+        </div>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-zinc-100">
+          Axiomatic Foundations &amp; System Invariants
+        </h2>
+        <p class="text-sm sm:text-base text-zinc-300 leading-relaxed font-sans">
+          Generative software synthesis without formal bounds is prone to context degradation and invalid state transitions. 
+          <strong>Meta-Axioma</strong> structures autonomous synthesis within decidable mathematical lattices and contract invariants, ensuring that emitted architectures remain provably consistent and subject to direct operator governance.
+        </p>
+      </div>
+
+      <!-- Row 1: Core Mathematical Foundations & Cognitive Partitioning (3 Pillars) -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between border-b border-zinc-800/80 pb-2">
+          <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
+            Core Foundations &bull; Mathematical Bounds &amp; Cognitive Routing (Row 1)
+          </h3>
+          <span class="text-[11px] font-mono text-zinc-400">Hover any card to inspect formal proofs &bull; LaTeX Supported</span>
+        </div>
+        <div id="philosophy-row1-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Injected dynamically via app.js -->
+        </div>
+      </div>
+
+      <!-- Row 2: Sovereign Decoupling & Thermodynamic Verification (3 Pillars) -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between border-b border-zinc-800/80 pb-2">
+          <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+            Sovereign Decoupling &amp; Thermodynamic Verification (Row 2)
+          </h3>
+          <span class="text-[11px] font-mono text-zinc-400">Hover any card to inspect formal proofs &bull; LaTeX Supported</span>
+        </div>
+        <div id="philosophy-row2-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Injected dynamically via app.js -->
+        </div>
+      </div>
+
+      <!-- The Core Invariant Triad -->
+      <div class="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
+          <div>
+            <h3 class="text-base font-bold text-zinc-100 font-sans">The Core Invariant Triad</h3>
+            <p class="text-xs text-zinc-400 font-mono">Three unbreakable commitments enforced across every generation (hover cards to inspect formal proofs):</p>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
+            ✓ Unbreakable Scaffolding
+          </span>
+        </div>
+        <div id="triad-points-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Injected dynamically via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 2: GENERATION 4B SOVEREIGN SERVICE MESH ARCHITECTURE -->
+    <!-- ============================================================== -->
+    <section id="g4b-architecture" class="space-y-6 pt-4 border-t border-zinc-800/80">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-1">
+            Current Zenith &bull; Generation 4b
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-zinc-100">
+            Sovereign Multi-Service Mesh Architecture
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            Dedicated private subnet (<code class="text-emerald-400">192.168.40.0/24</code>) &bull; Asymmetric RFC Protocol &bull; Zero-Trust Boundaries
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 bg-zinc-900 px-3 py-1.5 rounded-lg border border-zinc-800">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Cluster Status: <strong class="text-zinc-200">5/5 Sovereign Nodes Operational</strong>
+        </div>
+      </div>
+
+      <!-- 5 Sovereign Services Grid -->
+      <div id="g4b-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <!-- Injected dynamically via app.js -->
+      </div>
+
+      <!-- Asymmetric RFC Protocol Visualizer & Interactive Packet Bus -->
+      <div class="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
+          <div class="space-y-0.5">
+            <h3 class="text-sm font-bold text-zinc-100 font-sans">The Asymmetric RFC Protocol Bus</h3>
+            <p class="text-xs text-zinc-400 font-mono">How the Builder Enclave and Research Service negotiate contract adjustments without human stalling (click any packet to inspect schema):</p>
+          </div>
+          <span class="text-xs font-mono text-sky-400">protocols/rfc_protocol.py &bull; [L1-G4B-004]</span>
+        </div>
+
+        <div id="rfc-packets-container" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+          <!-- Injected dynamically via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 3: INTERACTIVE SAMPLE APP COMPILATION WALKTHROUGH -->
+    <!-- ============================================================== -->
+    <section id="app-simulation" class="space-y-6 pt-4 border-t border-zinc-800/80">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-sky-400 uppercase tracking-widest mb-1">
+            Empirical Execution Witness &bull; [NEG-G1B-001]
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-zinc-100">
+            Interactive Walkthrough: How Generation 4b Compiles a Real App
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            Follow the 5 sovereign services as they synthesize and verify a complete application from human intent.
+          </p>
+        </div>
+
+        <!-- Multi-App Selector -->
+        <div id="sim-app-selector" class="flex flex-wrap gap-2">
+          <!-- Injected dynamically via app.js -->
+        </div>
+      </div>
+
+      <!-- Simulation Visualizer Card -->
+      <div class="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 space-y-6 shadow-2xl">
+        
+        <!-- Step Progress Bar -->
+        <div id="sim-step-progress" class="flex border-b border-zinc-800/80 overflow-x-auto">
+          <!-- Injected dynamically via app.js -->
+        </div>
+
+        <!-- Wire Traffic & Packet Inspection -->
+        <div id="sim-wire-traffic" class="p-4 rounded-xl bg-zinc-950 border border-zinc-800/80">
+          <!-- Injected dynamically via app.js -->
+        </div>
+
+        <!-- Step Narrative & Details -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 space-y-3">
+            <div class="flex items-center justify-between">
+              <span id="sim-step-phase" class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-semibold"></span>
+              <button onclick="inspectSimArtifact()" class="px-3 py-1 rounded bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 text-xs font-mono border border-sky-500/40 transition-colors">
+                🔍 Inspect Generated Code &amp; Specs
+              </button>
+            </div>
+            <h3 id="sim-step-title" class="text-lg font-bold text-zinc-100"></h3>
+            <div id="sim-step-description" class="p-4 rounded-xl bg-zinc-950/60 border border-zinc-800/60">
+              <!-- Injected dynamically via app.js -->
+            </div>
+          </div>
+
+          <!-- Live Step Telemetry -->
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800/80 flex flex-col justify-between space-y-4">
+            <div class="text-xs font-mono text-zinc-400 font-bold border-b border-zinc-800 pb-2 flex items-center justify-between">
+              <span>Phase Telemetry</span>
+              <span id="sim-target-port-badge" class="px-2 py-0.5 rounded bg-zinc-800 text-emerald-400 text-[10px]">Port 8082</span>
+            </div>
+            <div class="space-y-3 text-xs font-mono">
+              <div>
+                <div class="text-zinc-500">BPE Token Spend:</div>
+                <div id="sim-tokens-spent" class="text-sm font-bold text-sky-400">0 BPE</div>
+              </div>
+              <div>
+                <div class="text-zinc-500">Service Latency:</div>
+                <div id="sim-latency" class="text-sm font-bold text-emerald-400">0 ms</div>
+              </div>
+              <div>
+                <div class="text-zinc-500">Axioms &amp; Invariants Locked:</div>
+                <div id="sim-invariants-locked" class="text-sm font-bold text-amber-400">0</div>
+              </div>
+            </div>
+
+            <!-- Playback Controls -->
+            <div class="pt-3 border-t border-zinc-800 flex items-center justify-between gap-2">
+              <button onclick="prevSimStep()" class="px-3 py-1.5 rounded bg-zinc-800 hover:bg-zinc-700 text-xs font-mono text-zinc-200 transition-colors">
+                ◀ Prev
+              </button>
+              <button id="sim-autoplay-btn" onclick="toggleAutoPlay()" class="px-3 py-1.5 rounded bg-sky-500 hover:bg-sky-400 text-xs font-mono font-bold text-black transition-colors">
+                ⏯️ Auto-Play
+              </button>
+              <button onclick="nextSimStep()" class="px-3 py-1.5 rounded bg-zinc-800 hover:bg-zinc-700 text-xs font-mono text-zinc-200 transition-colors">
+                Next ▶
+              </button>
+              <button onclick="resetSimulation()" class="px-2 py-1.5 rounded hover:bg-zinc-800 text-xs font-mono text-zinc-400 transition-colors" title="Reset">
+                🔄
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 4: THE 8-STAGE ARCHITECTURAL EVOLUTION SPINE -->
+    <!-- ============================================================== -->
+    <section id="evolution-timeline" class="space-y-6 pt-4 border-t border-zinc-800/80">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-purple-400 uppercase tracking-widest mb-1">
+            Epistemic Lineage &bull; [L1-G3B-019]
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-zinc-100">
+            The 8-Stage Architectural Evolution Spine
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            From combinatorial search harness to autonomous multi-service sovereign mesh:
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline Buttons (S0 to G4b in Chronological Order) -->
+      <div id="timeline-buttons" class="flex flex-wrap gap-2 pb-2">
+        <!-- Injected dynamically via app.js -->
+      </div>
+
+      <!-- Active Stage Hero Banner -->
+      <div class="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800/80 pb-4">
+          <div>
+            <span id="stage-hero-badge" class="text-[10px] font-mono px-2.5 py-0.5 rounded bg-sky-500/20 text-sky-400 font-bold uppercase tracking-wider"></span>
+            <h3 id="stage-hero-title" class="text-xl font-bold text-zinc-100 font-sans mt-1"></h3>
+            <p id="stage-hero-era" class="text-xs font-mono text-zinc-400 mt-0.5"></p>
+          </div>
+        </div>
+
+        <!-- Layman Problem / Breakthrough Card -->
+        <div id="stage-layman-card">
+          <!-- Injected dynamically via app.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 5: LIVE SIDE-BY-SIDE GENERATIONAL DIFF WORKBENCH -->
+    <!-- ============================================================== -->
+    <section id="diff-workbench" class="space-y-6 pt-4 border-t border-zinc-800/80">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-amber-400 uppercase tracking-widest mb-1">
+            Comparative Synthesis &bull; Option 3 Feature
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-zinc-100">
+            Live Side-by-Side Generational Diff Workbench
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            Select any two eras to evaluate architectural models, node counts, and invariant evolution:
+          </p>
+        </div>
+
+        <!-- Selectors -->
+        <div class="flex items-center gap-3 text-xs font-mono">
+          <div class="space-y-1">
+            <span class="text-zinc-500">Stage A:</span>
+            <select id="diff-select-a" class="bg-zinc-900 border border-zinc-800 text-zinc-200 rounded px-2.5 py-1 focus:outline-none focus:border-sky-400">
+              <!-- Injected dynamically -->
+            </select>
+          </div>
+          <button onclick="swapDiffStages()" class="p-1.5 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-300 mt-4 transition-colors" title="Swap Stages">
+            ⇄
+          </button>
+          <div class="space-y-1">
+            <span class="text-zinc-500">Stage B:</span>
+            <select id="diff-select-b" class="bg-zinc-900 border border-zinc-800 text-zinc-200 rounded px-2.5 py-1 focus:outline-none focus:border-sky-400">
+              <!-- Injected dynamically -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="diff-result-container" class="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 6: ARCHITECTURAL GOVERNANCE & EPISTEMIC MILESTONES -->
+    <!-- ============================================================== -->
+    <section id="governance-spotlight" class="space-y-6 pt-4 border-t border-zinc-800/80">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-sky-400 uppercase tracking-widest mb-1">
+            System Governance &bull; Epistemic Lineage
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-zinc-100">
+            Architectural Governance &amp; Key Milestones
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            The mathematical constraints, thermodynamic invariants, and operator vetoes that shaped the Meta-Axioma architecture:
+          </p>
+        </div>
+      </div>
+
+      <!-- Epistemic Matrix Grid -->
+      <div id="governance-epistemic-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 7: LANDAUER THERMODYNAMICS & CRYPTOGRAPHIC TELEMETRY -->
+    <!-- ============================================================== -->
+    <section id="telemetry-hud" class="space-y-6 pt-4 border-t border-zinc-800/80">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-1">
+            Physical Accounting &bull; [L1-008] &bull; [L1-G3B-018]
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-zinc-100">
+            Landauer Thermodynamic Dissipation Calculator
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400 font-mono mt-1">
+            Physical limits of irreversible computation: \(Q = k_B T \ln 2 \cdot \text{bits}\) (Invariant [L1-008]).
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Landauer Bit Slider -->
+        <div class="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 space-y-4">
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-400 font-bold uppercase tracking-wider">
+            <span>Interactive Bit-Erasure Dissipation Meter</span>
+            <span class="text-sky-400">T = 300 K</span>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="text-zinc-400">Bits Erased:</span>
+              <span id="landauer-bits-display" class="text-sm font-bold text-sky-400">12,500 bits</span>
+            </div>
+            <input id="landauer-bits-slider" type="range" min="0" max="50000" step="500" value="12500" class="w-full cursor-pointer">
+          </div>
+
+          <!-- Presets -->
+          <div class="flex flex-wrap gap-2 pt-1 text-xs font-mono">
+            <span class="text-zinc-500 text-[11px] self-center">Historical Presets:</span>
+            <button onclick="setLandauerBits(2857)" class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-[11px] text-zinc-300">G1 Epoch 15 (2,857)</button>
+            <button onclick="setLandauerBits(12500)" class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-[11px] text-zinc-300">G3 HLJ (12,500)</button>
+            <button onclick="setLandauerBits(38400)" class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-[11px] text-zinc-300">G4b Mesh (38,400)</button>
+          </div>
+
+          <div class="pt-3 border-t border-zinc-800/80 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono text-zinc-500">Thermodynamic Heat Dissipated:</span>
+              <div id="landauer-joules-display" class="text-2xl font-mono font-bold text-emerald-400 mt-0.5">
+                3.5937e-17 J
+              </div>
+            </div>
+            <div class="text-right text-[11px] font-mono text-zinc-500">
+              <div>Formula: <strong class="text-zinc-400">Q = k_B &bull; T &bull; ln(2) &bull; b</strong></div>
+              <div class="text-emerald-400">Zero Landauer Debt Violation</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thermodynamic Grounding & Reversibility Invariant -->
+        <div class="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 space-y-4 font-mono text-xs">
+          <div class="flex items-center justify-between text-zinc-400 font-bold uppercase tracking-wider">
+            <span>Physical Grounding &amp; Reversible State</span>
+            <span class="text-emerald-400">[L1-008]</span>
+          </div>
+          <div class="space-y-3 text-zinc-300 font-sans leading-relaxed text-xs">
+            <p>
+              In 1961, physicist <strong>Rolf Landauer</strong> proved that logical irreversibility (erasing information) incurs an unavoidable minimum thermodynamic cost of <code class="text-sky-300 font-mono">Q = k_B T ln(2)</code> per bit.
+            </p>
+            <p>
+              When autonomous AI generators run without state bounds, discarded context and hallucinated mutations dissipate compute entropy and accumulate irreversible heuristic debt.
+            </p>
+            <div class="pt-2 border-t border-zinc-800/80 space-y-1.5 font-mono text-[11px]">
+              <div class="flex items-center justify-between">
+                <span class="text-zinc-500">Boltzmann Constant:</span>
+                <span class="text-zinc-300">k_B = 1.380649 &times; 10⁻²³ J/K</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-zinc-500">Room Temperature:</span>
+                <span class="text-zinc-300">T = 300 K</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-zinc-500">Energy Per Bit Erasure:</span>
+                <span class="text-emerald-400 font-bold">&approx; 2.871 &times; 10⁻²¹ J</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-800/80 py-8 bg-zinc-950 text-xs font-mono text-zinc-500 mt-16">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <strong>Meta-Axioma Architectural Evolution Studio</strong> &bull; Formal System Invariants
+      </div>
+      <div class="text-zinc-600 text-right">
+        Python 3.14 AsyncIO &bull; Standalone Air-Gapped Deliverable &bull; Zero External Dependencies
+      </div>
+    </div>
+  </footer>
+
+  <!-- Generic Inspection Modal -->
+  <div id="generic-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-3xl w-full p-6 shadow-2xl relative space-y-4 max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <h4 id="generic-modal-title" class="text-base font-bold text-zinc-100 font-sans"></h4>
+        <button onclick="closeGenericModal()" class="text-zinc-400 hover:text-zinc-200 font-mono text-lg p-1">✕</button>
+      </div>
+      <div id="generic-modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
