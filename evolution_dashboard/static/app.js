@@ -29,6 +29,7 @@ const STAGE_ORDER = ["s0", "g1", "g1b", "g2", "g2b", "g3", "g3b", "g4b"];
 
 // Bootstrap on DOM Ready
 document.addEventListener("DOMContentLoaded", async () => {
+  initPortfolioBackLink();
   await loadInitialData();
   initPerspectiveMode();
   renderPhilosophySection();
@@ -105,6 +106,22 @@ function sortStagesChronologically(stages) {
     if (idxA !== -1 && idxB !== -1) return idxA - idxB;
     return 0;
   });
+}
+
+// Portfolio Backlink Initializer (supports direct host and reverse-proxy paths)
+function initPortfolioBackLink() {
+  const backLink = document.getElementById("portfolio-back-link");
+  if (!backLink) return;
+
+  // If visiting directly from an external referrer (such as the portfolio) on a different host
+  if (document.referrer) {
+    try {
+      const refUrl = new URL(document.referrer);
+      if (refUrl.host !== window.location.host) {
+        backLink.href = refUrl.origin;
+      }
+    } catch (_) {}
+  }
 }
 
 // Sanitize any KaTeX private-use \uE020 characters (broken \ne slash overlays) into standard Unicode ≠

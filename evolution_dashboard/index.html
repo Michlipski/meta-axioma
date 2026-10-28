@@ -73,6 +73,57 @@ code, kbd, samp, pre, .font-mono {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
 
+/* Header Portfolio Backlink & Divider */
+.portfolio-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.625rem;
+  background-color: rgba(24, 24, 27, 0.85);
+  border: 1px solid #27272a;
+  border-radius: 0.5rem;
+  color: #a1a1aa;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.portfolio-back-btn:hover {
+  background-color: #27272a;
+  border-color: #3f3f46;
+  color: #f4f4f5;
+}
+
+.portfolio-back-btn svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #a1a1aa;
+  transition: transform 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.portfolio-back-btn:hover svg {
+  color: #38bdf8;
+  transform: translateX(-2px);
+}
+
+.header-divider {
+  height: 1.25rem;
+  width: 1px;
+  background-color: #27272a;
+  flex-shrink: 0;
+}
+
+@media (max-width: 639px) {
+  .header-divider {
+    display: none;
+  }
+}
+
 /* Background Grids & Ambient Glow */
 .tech-grid {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
@@ -650,6 +701,16 @@ input[type="range"]::-moz-range-thumb {
   <header class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80 px-4 lg:px-8 py-3">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
+        <!-- Back to Portfolio Link -->
+        <a href="/" id="portfolio-back-link" class="portfolio-back-btn" title="Back to Portfolio">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+          </svg>
+          <span>Portfolio</span>
+        </a>
+
+        <div class="header-divider"></div>
+
         <div class="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-400/40 flex items-center justify-center text-sky-400 font-bold text-base shadow-[0_0_12px_rgba(56,189,248,0.3)] select-none">
           Ω
         </div>
@@ -1141,6 +1202,7 @@ const STAGE_ORDER = ["s0", "g1", "g1b", "g2", "g2b", "g3", "g3b", "g4b"];
 
 // Bootstrap on DOM Ready
 document.addEventListener("DOMContentLoaded", async () => {
+  initPortfolioBackLink();
   await loadInitialData();
   initPerspectiveMode();
   renderPhilosophySection();
@@ -1217,6 +1279,22 @@ function sortStagesChronologically(stages) {
     if (idxA !== -1 && idxB !== -1) return idxA - idxB;
     return 0;
   });
+}
+
+// Portfolio Backlink Initializer (supports direct host and reverse-proxy paths)
+function initPortfolioBackLink() {
+  const backLink = document.getElementById("portfolio-back-link");
+  if (!backLink) return;
+
+  // If visiting directly from an external referrer (such as the portfolio) on a different host
+  if (document.referrer) {
+    try {
+      const refUrl = new URL(document.referrer);
+      if (refUrl.host !== window.location.host) {
+        backLink.href = refUrl.origin;
+      }
+    } catch (_) {}
+  }
 }
 
 // Sanitize any KaTeX private-use \uE020 characters (broken \ne slash overlays) into standard Unicode ≠

@@ -66,6 +66,57 @@ code, kbd, samp, pre, .font-mono {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
 
+/* Header Portfolio Backlink & Divider */
+.portfolio-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.625rem;
+  background-color: rgba(24, 24, 27, 0.85);
+  border: 1px solid #27272a;
+  border-radius: 0.5rem;
+  color: #a1a1aa;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.portfolio-back-btn:hover {
+  background-color: #27272a;
+  border-color: #3f3f46;
+  color: #f4f4f5;
+}
+
+.portfolio-back-btn svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #a1a1aa;
+  transition: transform 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.portfolio-back-btn:hover svg {
+  color: #38bdf8;
+  transform: translateX(-2px);
+}
+
+.header-divider {
+  height: 1.25rem;
+  width: 1px;
+  background-color: #27272a;
+  flex-shrink: 0;
+}
+
+@media (max-width: 639px) {
+  .header-divider {
+    display: none;
+  }
+}
+
 /* Background Grids & Ambient Glow */
 .tech-grid {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
