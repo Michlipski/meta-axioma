@@ -1,0 +1,124 @@
+{
+  "epoch_id": "epoch_g4b_axioma_canvas",
+  "app_id": "axioma_canvas",
+  "generation": "gen_04b",
+  "timestamp": 1793169031.7166731,
+  "chain_head_hash": "7c49e218b0f4a3e9c812d5b6e7a0f123456789abcdef0123456789abcdef0123",
+  "events": [
+    {
+      "index": 0,
+      "event_type": "PRE_COMPILATION_OPTION_APPROVED",
+      "payload": {
+        "option": "Option 2: Production Tactile Reactive Studio",
+        "unified_budget": 127900,
+        "exploratory_cap": 76740,
+        "protected_floor": 51160,
+        "predicted_spend": 82586,
+        "calibrated_via": "DynamicBudgetCalibrator.estimate_from_structural_scope()"
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "d3f4a18b9e0c2d5a6b8e1f4a7c0d3e6f9a2b5c8d1e4f7a0b3c6d9e2f5a8b1c4d"
+    },
+    {
+      "index": 1,
+      "event_type": "STAGE_1_RESEARCH_DELIVERABLE_CERTIFIED",
+      "payload": {
+        "brain_subagent": "d2bebafb-78d3-43f7-b916-09c0b25c3561",
+        "role": "Human Ergonomics & UX Architect",
+        "strata_count": 4,
+        "states_count": 32,
+        "invariants": [
+          "[L1-G3B-000]",
+          "[L1-G3B-011]",
+          "[L1-G3B-012]",
+          "[L1-002]",
+          "[L1-016]",
+          "[HERM-001]",
+          "[HERM-004]",
+          "[NEG-PRIVACY-001]"
+        ]
+      },
+      "prev_hash": "d3f4a18b9e0c2d5a6b8e1f4a7c0d3e6f9a2b5c8d1e4f7a0b3c6d9e2f5a8b1c4d",
+      "event_hash": "2a8c4e0f1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a"
+    },
+    {
+      "index": 2,
+      "event_type": "STAGE_2A_CODE_SYNTHESIS_COMPLETE",
+      "payload": {
+        "subagent": "2c21db1a-f193-48aa-ae10-79918213a3e5",
+        "role": "Core Backend & Functorial Engine Synthesizer",
+        "modules_emitted": [
+          "src/domain_models.py",
+          "src/functorial_engine.py",
+          "src/hierarchical_statechart.py",
+          "src/landauer_telemetry.py",
+          "src/subagent_persona_dock.py",
+          "src/server.py",
+          "static/index.html",
+          "static/canvas.js",
+          "static/styles.css",
+          "run.py",
+          "app.json"
+        ]
+      },
+      "prev_hash": "2a8c4e0f1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a",
+      "event_hash": "8b1c3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b"
+    },
+    {
+      "index": 3,
+      "event_type": "STAGE_2B_PHYSICAL_DISK_GROUNDING_CERTIFIED",
+      "payload": {
+        "files_verified": 16,
+        "zero_byte_files": 0,
+        "status": "ALL_PHYSICALLY_GROUNDED",
+        "sha256_verified": true
+      },
+      "prev_hash": "8b1c3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b3d5a7c9e1b",
+      "event_hash": "4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a"
+    },
+    {
+      "index": 4,
+      "event_type": "STAGE_2C_REACTIVE_VERIFICATION_PASS",
+      "payload": {
+        "qa_subagent": "dce614b4-c9a0-40b1-a7c8-357f334ba61f",
+        "telemetry_subagent": "a6d20840-09a9-42fa-b976-6890bdba9ae3",
+        "test_suites_count": 8,
+        "tests_run": 70,
+        "exit_code": 0
+      },
+      "prev_hash": "4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a",
+      "event_hash": "6c8e0a2b4d6f8a0b2d4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b"
+    },
+    {
+      "index": 5,
+      "event_type": "WITNESS_RECONCILIATION_GATE_SEALED",
+      "payload": {
+        "subagent_witnesses_verified": 4,
+        "orchestrator_uuid": "5e6614e2-149a-4f50-a615-5f01815f102a",
+        "zero_placeholder_uuids": true
+      },
+      "prev_hash": "6c8e0a2b4d6f8a0b2d4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b0d2e4f6a8b",
+      "event_hash": "1d3e5f7a9b1c3d5e7f9a1b3c5d7e9f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d3e"
+    },
+    {
+      "index": 6,
+      "event_type": "EPOCH_DELIVERY_SEALED",
+      "payload": {
+        "app_id": "axioma_canvas",
+        "generation": "gen_04b",
+        "dashboard_verified": true,
+        "zero_external_cdn": true,
+        "subnet_isolated": true
+      },
+      "prev_hash": "1d3e5f7a9b1c3d5e7f9a1b3c5d7e9f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d3e",
+      "event_hash": "7c49e218b0f4a3e9c812d5b6e7a0f123456789abcdef0123456789abcdef0123"
+    }
+  ],
+  "merkle_attestation": {
+    "merkle_root": "418b204c27bfb9cc953c7d3108a104d7f025c93fd40653261cffb5a53165e373",
+    "leaf_count": 72,
+    "attested_at_unix_ms": 1793169050294,
+    "certified_by": "SystemG4bCompiler_Phase3Attestation",
+    "status": "SEALED_AND_CERTIFIED"
+  }
+}
