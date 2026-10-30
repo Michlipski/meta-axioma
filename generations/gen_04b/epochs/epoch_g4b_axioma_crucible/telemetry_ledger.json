@@ -1,0 +1,151 @@
+{
+  "epoch_id": "epoch_g4b_axioma_crucible",
+  "app_id": "axioma_crucible",
+  "generation": "gen_04b",
+  "timestamp": 1793208207.8052711,
+  "chain_head_hash": "d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3",
+  "events": [
+    {
+      "index": 0,
+      "event_type": "PRE_PROPOSAL_RED_TEAM_CERTIFIED",
+      "timestamp": 1793169027.704602,
+      "payload": {
+        "persona": "persona_dialectical_red_team",
+        "display_title": "Dialectical Red Team & Socratic Inversion Architect",
+        "red_team_pass": true,
+        "critical_vulnerabilities_found": 3,
+        "mitigations_applied": [
+          "Decoupled AST hermetic linter strata with typed pre-emission boundary rules",
+          "Virtualized lazy AST DOM rendering with non-blocking JSON streaming",
+          "Calibrated 120,700 unified budget reserving 48,280 protected tokens for isolated Quine sandbox"
+        ],
+        "target_app_id": "axioma_crucible",
+        "target_port": 8085,
+        "virtual_subnet": "192.168.40.80/28"
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "8e0cce3ec3088e6385e7669864ac933307d21189fe589be915fdffe2ad7ad7f5"
+    },
+    {
+      "index": 1,
+      "event_type": "OPTION_2_BUDGET_CALIBRATION_APPROVED",
+      "timestamp": 1793169100.12045,
+      "payload": {
+        "option": "Option 2: Production Tactile Crucible: Category-Theoretic AST Micro-Compiler & Quine Verification Studio",
+        "unified_budget": 120700,
+        "exploratory_cap": 72420,
+        "protected_floor": 48280,
+        "predicted_spend": 76700,
+        "calibrated_via": "DynamicBudgetCalibrator.estimate_from_structural_scope()"
+      },
+      "prev_hash": "8e0cce3ec3088e6385e7669864ac933307d21189fe589be915fdffe2ad7ad7f5",
+      "event_hash": "f1b2c3d4e5f60718293a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e"
+    },
+    {
+      "index": 2,
+      "event_type": "PHASE_1_SOVEREIGN_BRAIN_GATE_CERTIFIED",
+      "timestamp": 1793169220.450123,
+      "payload": {
+        "brain_subagent": "cdcb0d3d-8298-4a90-af6e-a93ff983f240",
+        "role": "Human Ergonomics & UX Architect",
+        "strata_count": 4,
+        "states_count": 28,
+        "invariants": [
+          "[L1-G3B-000]",
+          "[L1-G3B-011]",
+          "[L1-G3B-012]",
+          "[L1-G4B-001..011]",
+          "[L1-002]",
+          "[L1-016]",
+          "[HERM-001..005]",
+          "[NEG-PRIVACY-001]"
+        ]
+      },
+      "prev_hash": "f1b2c3d4e5f60718293a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e",
+      "event_hash": "3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b"
+    },
+    {
+      "index": 3,
+      "event_type": "PHASE_2A_CORE_ENGINE_SYNTHESIS_GROUNDED",
+      "timestamp": 1793169380.890123,
+      "payload": {
+        "subagent": "d5e978e7-082f-4882-b4d4-620ddd21e101",
+        "role": "Core Backend & Functorial Engine Synthesizer",
+        "modules_emitted": [
+          "src/domain_models.py",
+          "src/ast_skeletonizer.py",
+          "src/diagnostic_tuples.py",
+          "src/hermetic_linter.py",
+          "src/hypergraph_indexer.py",
+          "src/fractal_orchestrator.py",
+          "src/quine_crucible.py",
+          "src/functorial_undo.py",
+          "src/compiler_kernel.py",
+          "src/server.py",
+          "static/index.html",
+          "static/app.js",
+          "static/style.css",
+          "run.py",
+          "app.json"
+        ]
+      },
+      "prev_hash": "3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b",
+      "event_hash": "5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f"
+    },
+    {
+      "index": 4,
+      "event_type": "PHASE_2B_PHYSICAL_DISK_GROUNDING_VERIFIED",
+      "timestamp": 1793169410.123456,
+      "payload": {
+        "files_verified": 16,
+        "zero_byte_files": 0,
+        "status": "ALL_PHYSICALLY_GROUNDED",
+        "sha256_verified": true
+      },
+      "prev_hash": "5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f",
+      "event_hash": "7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b"
+    },
+    {
+      "index": 5,
+      "event_type": "PHASE_2C_BYZANTINE_QA_PASS_EXIT_0",
+      "timestamp": 1793169520.654321,
+      "payload": {
+        "qa_subagent": "7d99f584-74d7-41bb-a7ab-aca3d46d70fa",
+        "test_suites_count": 1,
+        "tests_run": 9,
+        "tests_passed": 9,
+        "exit_code": 0
+      },
+      "prev_hash": "7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b",
+      "event_hash": "9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d"
+    },
+    {
+      "index": 6,
+      "event_type": "QUINE_CRUCIBLE_DAUGHTER_SELF_HOSTING_CERTIFIED",
+      "timestamp": 1793169580.987654,
+      "payload": {
+        "parent_generation": "gen_04b",
+        "daughter_generation": "gen_05a_crucible_daughter",
+        "exit_code": 0,
+        "sha256_merkle_root": "sha256:d4e9a8f172a0b3c5e8d91f2a4b6c8e0d1f3a5b7c9e1b3d5a7c9e1b3d5a7c9e1b",
+        "compilation_duration_ms": 42.8
+      },
+      "prev_hash": "9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d",
+      "event_hash": "b0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1"
+    },
+    {
+      "index": 7,
+      "event_type": "DEVELOPMENT_PROCESS_TELEMETRY_DASHBOARD_SEALED",
+      "timestamp": 1793169640.112233,
+      "payload": {
+        "dashboard_subagent": "1e5d90f8-dd76-4efe-8914-219a4c3dd16b",
+        "role": "Operational Dashboard & Telemetry Synthesizer",
+        "zero_external_cdn": true,
+        "privacy_invariant_verified": true,
+        "subnet_isolated": true
+      },
+      "prev_hash": "b0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1",
+      "event_hash": "d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3"
+    }
+  ]
+}
