@@ -1,0 +1,181 @@
+{
+  "epoch_id": "epoch_g4b_axioma_go",
+  "app_id": "axioma_go",
+  "generation": "gen_04b",
+  "timestamp": 1793121009.420725,
+  "chain_head_hash": "4c0dc3d7ceb5da8ad152c8105affb726a2f9bc7658099391b26abf2d81e58dd1",
+  "events": [
+    {
+      "index": 0,
+      "event_type": "PRE_COMPILATION_OPTION_APPROVED",
+      "payload": {
+        "option": "Option 2: Axioma Go Tactical Dojo",
+        "unified_budget": 113300,
+        "exploratory_cap": 67980,
+        "protected_floor": 45320
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "2ad30ac56aba778665115dca34f3033dfdaba081e9853a8f8b8d25fa87cfe8b8"
+    },
+    {
+      "index": 1,
+      "event_type": "STAGE_1_RESEARCH_DELIVERABLE_CERTIFIED",
+      "payload": {
+        "bundle_id": "0192d4b0-a681-792f-bfa0-1010c0de4b01",
+        "soc": "soc_g4b_axioma_go_dojo",
+        "invariants": [
+          "INV-GO-001",
+          "INV-GO-002",
+          "INV-GO-003",
+          "INV-GO-004",
+          "INV-GO-005"
+        ]
+      },
+      "prev_hash": "2ad30ac56aba778665115dca34f3033dfdaba081e9853a8f8b8d25fa87cfe8b8",
+      "event_hash": "68815fa1baa8e95f2ca06bae9818eb3ed9f2797c9c480bc1352c827fa4d4ff3a"
+    },
+    {
+      "index": 2,
+      "event_type": "STAGE_2_MUSCLE_SYNTHESIS_COMPLETE",
+      "payload": {
+        "modules": [
+          "go_engine.py",
+          "functorial_undo.py",
+          "showcases.py",
+          "server.py",
+          "static/",
+          "tests/"
+        ]
+      },
+      "prev_hash": "68815fa1baa8e95f2ca06bae9818eb3ed9f2797c9c480bc1352c827fa4d4ff3a",
+      "event_hash": "0e8c288494d0fe21e44474f3dc2fe51a7b080eef62f32c9acc8bd1554f6c4b82"
+    },
+    {
+      "index": 3,
+      "event_type": "EMPIRICAL_TEST_VERIFICATION_PASS",
+      "payload": {
+        "tests_run": 54,
+        "failures": 0,
+        "errors": 0,
+        "exit_code": 0
+      },
+      "prev_hash": "0e8c288494d0fe21e44474f3dc2fe51a7b080eef62f32c9acc8bd1554f6c4b82",
+      "event_hash": "ee70f5d30ee0dabc8a1a8431dcb8cb9a24e8161389623a6bf880b1480dbca776"
+    },
+    {
+      "index": 4,
+      "event_type": "WITNESS_RECONCILIATION_GATE_SEALED",
+      "payload": {
+        "subagent_witnesses": 5,
+        "herm_005_passed": true
+      },
+      "prev_hash": "ee70f5d30ee0dabc8a1a8431dcb8cb9a24e8161389623a6bf880b1480dbca776",
+      "event_hash": "4c0dc3d7ceb5da8ad152c8105affb726a2f9bc7658099391b26abf2d81e58dd1"
+    }
+  ],
+  "subagents": [
+    {
+      "conversation_id": "f9226e0a-468b-477b-962b-b3ba7b37984b",
+      "role": "Domain Ontologist & Waterloo Research Architect",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Stage 1 (Brain)",
+      "tokens": {
+        "prompt": 14250,
+        "completion": 3820,
+        "total": 18070
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "2236e53b-70d0-4cf8-93e6-7af47ee6af83",
+      "role": "Core Go Engine & Functorial Reversibility Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Stage 2 (Muscle 1)",
+      "tokens": {
+        "prompt": 12400,
+        "completion": 4680,
+        "total": 17080
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "a80c8a73-4d91-4fc9-9f6c-97d285767c3a",
+      "role": "Automated Showcase & Tactical Sequence Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Stage 2 (Muscle 2)",
+      "tokens": {
+        "prompt": 11800,
+        "completion": 4120,
+        "total": 15920
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "9a9ad805-5a56-4e2b-8dc7-a5e0ca33c27a",
+      "role": "Tactile Board UI & Sovereign HTTP Server Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Stage 2 (Muscle 3)",
+      "tokens": {
+        "prompt": 13900,
+        "completion": 5240,
+        "total": 19140
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "cdd97a31-d543-42a8-b07f-a6c1df02d1db",
+      "role": "Adversarial QA & Telemetry Dashboard Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Stage 2 (Muscle 4)",
+      "tokens": {
+        "prompt": 10800,
+        "completion": 4450,
+        "total": 15250
+      },
+      "status": "CERTIFIED_COMPLETE"
+    }
+  ],
+  "thermodynamics": {
+    "total_budget": 113300,
+    "exploratory_pool": 67980,
+    "protected_pool": 45320,
+    "predicted_spend": 73160,
+    "actual_subagent_tokens": 85460,
+    "substrate_tokens": 158817,
+    "bits_erased": 2734720,
+    "heat_dissipated_joules": 7.851323376603107e-15
+  },
+  "substrate": {
+    "file_count": 27,
+    "total_tokens": 158817,
+    "files": {
+      "README.md": 1586,
+      "app.json": 493,
+      "dashboard.html": 22018,
+      "data/app_state.json": 62,
+      "data/seed.json": 62,
+      "generate_dashboard.py": 22399,
+      "run.py": 750,
+      "schema/nouns.json": 633,
+      "schema/verbs.json": 430,
+      "src/__init__.py": 402,
+      "src/engine.py": 9384,
+      "src/functorial_undo.py": 3300,
+      "src/go_engine.py": 10477,
+      "src/server.py": 4141,
+      "src/showcases.py": 13687,
+      "static/app.js": 9719,
+      "static/index.html": 6720,
+      "static/style.css": 10902,
+      "telemetry_dashboard.html": 22018,
+      "tests/__init__.py": 17,
+      "tests/test_app.py": 647,
+      "tests/test_dashboard_integrity.py": 1508,
+      "tests/test_go_engine.py": 7060,
+      "tests/test_server_and_ui.py": 4343,
+      "tests/test_showcases.py": 4567,
+      "trace/app.domain.md": 918,
+      "trace/ux_flow.flow.md": 574
+    }
+  }
+}
