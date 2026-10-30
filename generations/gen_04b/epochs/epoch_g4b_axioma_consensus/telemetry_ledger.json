@@ -1,0 +1,248 @@
+{
+  "epoch_id": "epoch_g4b_axioma_consensus",
+  "app_id": "axioma_consensus",
+  "generation": "gen_04b",
+  "timestamp": 1793165925.851042,
+  "chain_head_hash": "5a9473f1e0dab7ef1720e94335bd30f512505f13fd08ddd395f26a19c4cf81db",
+  "events": [
+    {
+      "index": 0,
+      "event_type": "PRE_COMPILATION_OPTION_APPROVED",
+      "payload": {
+        "option": "Option 2: Production Byzantine Mesh & Sheaf-Quorum Node",
+        "unified_budget": 143100,
+        "exploratory_cap": 85860,
+        "protected_floor": 57240,
+        "calibrated_via": "DynamicBudgetCalibrator"
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "41f9ec6f64b6eb73648b97f8e57dc63e5fe358aa609ea98ca8f476f5abd380f2"
+    },
+    {
+      "index": 1,
+      "event_type": "STAGE_1_RESEARCH_DELIVERABLE_CERTIFIED",
+      "payload": {
+        "brain_subagent": "b292a7e6-3446-40cc-996b-99d6a2ddad0d",
+        "role": "Domain Ontologist & Distributed Systems Architect",
+        "states_count": 28,
+        "transitions_count": 68,
+        "invariants": [
+          "[L1-G4B-001]",
+          "[L1-G3B-000]",
+          "[L1-G3B-011]",
+          "[L1-G3B-012]",
+          "[NEG-PRIMITIVE-001]",
+          "[NEG-PRIMITIVE-002]",
+          "[NEG-PRIMITIVE-003]",
+          "[NEG-PRIMITIVE-004]",
+          "[NEG-PRIMITIVE-005]",
+          "[NEG-PRIVACY-001]"
+        ]
+      },
+      "prev_hash": "41f9ec6f64b6eb73648b97f8e57dc63e5fe358aa609ea98ca8f476f5abd380f2",
+      "event_hash": "5b8b5944ad61a916707dae5ca5d2eaa63830ea8e3ba376ed95858c1e83cdfae7"
+    },
+    {
+      "index": 2,
+      "event_type": "STAGE_2A_MUSCLE_SYNTHESIS_COMPLETE",
+      "payload": {
+        "subagents": [
+          {
+            "id": "0971da58-5613-45ac-959c-34b764da4cde",
+            "role": "Core Causal Engine & CRDT Semilattice Synthesizer"
+          },
+          {
+            "id": "31211b68-39c0-412c-bdf0-3a46d90e8d0a",
+            "role": "Sovereign Gossip Mesh & Sheaf-Quorum Synthesizer"
+          },
+          {
+            "id": "b98a90ec-177f-47bd-8a43-aa8d94092083",
+            "role": "Asymmetric RFC Bus & Z3 SMT Prover Synthesizer"
+          },
+          {
+            "id": "3e26911c-9f2b-4c21-b80a-29372c2b4b6c",
+            "role": "Tactile Consensus Cockpit HUD & Sovereign Server Synthesizer"
+          }
+        ]
+      },
+      "prev_hash": "5b8b5944ad61a916707dae5ca5d2eaa63830ea8e3ba376ed95858c1e83cdfae7",
+      "event_hash": "72444d7699a5dbc9e71f15ab4dc55e81e2875976d035d5a9dc26c55a55bd7fb2"
+    },
+    {
+      "index": 3,
+      "event_type": "STAGE_2B_PHYSICAL_DISK_GROUNDING_CERTIFIED",
+      "payload": {
+        "files_verified": 26,
+        "zero_byte_files": 0,
+        "status": "ALL_PHYSICALLY_GROUNDED"
+      },
+      "prev_hash": "72444d7699a5dbc9e71f15ab4dc55e81e2875976d035d5a9dc26c55a55bd7fb2",
+      "event_hash": "0a852d1fa095be49f39199667fe053dbec12296e83d7144263493ec0847f035c"
+    },
+    {
+      "index": 4,
+      "event_type": "STAGE_2C_REACTIVE_VERIFICATION_PASS",
+      "payload": {
+        "qa_subagent": "f6cb779a-655c-42b6-b761-18ac4f601d55",
+        "telemetry_subagent": "64d96329-c41a-4461-8e0c-606aa4c71e5b",
+        "tests_run": 65,
+        "failures": 0,
+        "errors": 0,
+        "exit_code": 0
+      },
+      "prev_hash": "0a852d1fa095be49f39199667fe053dbec12296e83d7144263493ec0847f035c",
+      "event_hash": "c81f431bf2624e84bb2ac4731188190a6dc47da4cc908a1d663de149fc9efc67"
+    },
+    {
+      "index": 5,
+      "event_type": "WITNESS_RECONCILIATION_GATE_SEALED",
+      "payload": {
+        "subagent_witnesses": 7,
+        "herm_005_passed": true,
+        "subnet_enforced": "192.168.40.0/24",
+        "port": 8083
+      },
+      "prev_hash": "c81f431bf2624e84bb2ac4731188190a6dc47da4cc908a1d663de149fc9efc67",
+      "event_hash": "5a9473f1e0dab7ef1720e94335bd30f512505f13fd08ddd395f26a19c4cf81db"
+    }
+  ],
+  "subagents": [
+    {
+      "conversation_id": "b292a7e6-3446-40cc-996b-99d6a2ddad0d",
+      "role": "Domain Ontologist & Distributed Systems Architect",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 1 (Brain Gate)",
+      "tokens": {
+        "prompt": 18200,
+        "completion": 10250,
+        "total": 28450
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "0971da58-5613-45ac-959c-34b764da4cde",
+      "role": "Core Causal Engine & CRDT Semilattice Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2A (Muscle 1)",
+      "tokens": {
+        "prompt": 14500,
+        "completion": 7680,
+        "total": 22180
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "31211b68-39c0-412c-bdf0-3a46d90e8d0a",
+      "role": "Sovereign Gossip Mesh & Sheaf-Quorum Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2A (Muscle 2)",
+      "tokens": {
+        "prompt": 16200,
+        "completion": 8600,
+        "total": 24800
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "b98a90ec-177f-47bd-8a43-aa8d94092083",
+      "role": "Asymmetric RFC Bus & Z3 SMT Prover Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2A (Muscle 3)",
+      "tokens": {
+        "prompt": 15400,
+        "completion": 8500,
+        "total": 23900
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "3e26911c-9f2b-4c21-b80a-29372c2b4b6c",
+      "role": "Tactile Consensus Cockpit HUD & Sovereign Server Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2A (Muscle 4)",
+      "tokens": {
+        "prompt": 17800,
+        "completion": 9800,
+        "total": 27600
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "f6cb779a-655c-42b6-b761-18ac4f601d55",
+      "role": "Adversarial Test & Byzantine QA Engineer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2C (Muscle 5)",
+      "tokens": {
+        "prompt": 16500,
+        "completion": 8800,
+        "total": 25300
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    {
+      "conversation_id": "64d96329-c41a-4461-8e0c-606aa4c71e5b",
+      "role": "Operational Dashboard & Telemetry Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2C (Muscle 6)",
+      "tokens": {
+        "prompt": 12400,
+        "completion": 6100,
+        "total": 18500
+      },
+      "status": "CERTIFIED_COMPLETE"
+    }
+  ],
+  "thermodynamics": {
+    "total_budget": 143100,
+    "exploratory_pool": 85860,
+    "protected_pool": 57240,
+    "predicted_spend": 86900,
+    "actual_subagent_tokens": 170730,
+    "substrate_tokens": 255525,
+    "bits_erased": 4579200,
+    "heat_dissipated_joules": 1.3145e-14
+  },
+  "substrate": {
+    "file_count": 37,
+    "total_tokens": 255525,
+    "files": {
+      "README.md": 2237,
+      "app.json": 598,
+      "dashboard.html": 14932,
+      "generate_dashboard.py": 15293,
+      "run.py": 716,
+      "telemetry_dashboard.html": 14932,
+      "telemetry_metrics.json": 1608,
+      "trace/contract_ir.json": 7706,
+      "trace/situation_of_concern.md": 2793,
+      "trace/statechart_ir.json": 6610,
+      "trace/topology_ir.json": 1304,
+      "tests/__init__.py": 13,
+      "tests/test_adversarial_byzantine_suite.py": 7462,
+      "tests/test_dashboard_integrity.py": 1295,
+      "tests/test_functorial_reversal.py": 2265,
+      "tests/test_gossip_mesh_and_sheaf.py": 2663,
+      "tests/test_rfc_bus.py": 2005,
+      "tests/test_server_and_cockpit.py": 3688,
+      "tests/test_z3_smt_prover.py": 2699,
+      "schema/__init__.py": 214,
+      "schema/protocol_contracts.py": 6745,
+      "static/index.html": 11690,
+      "static/vendor/katex/auto-render.min.js": 869,
+      "static/vendor/katex/katex.min.css": 5799,
+      "static/vendor/katex/katex.min.js": 69259,
+      "data/rfc_merkle_ledger.json": 11561,
+      "src/__init__.py": 1103,
+      "src/byzantine_chaos.py": 5046,
+      "src/crdt_models.py": 5303,
+      "src/functorial_reversal.py": 6917,
+      "src/gossip_mesh.py": 7341,
+      "src/rfc_bus.py": 5671,
+      "src/semilattice.py": 2493,
+      "src/server.py": 8264,
+      "src/sheaf_quorum.py": 6253,
+      "src/vector_clock.py": 2915,
+      "src/z3_smt_prover.py": 7263
+    }
+  }
+}
