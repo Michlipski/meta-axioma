@@ -1,0 +1,28 @@
+"""Generation 4b Sovereign Builder Service Package (`services/builder/src`)."""
+
+from .domain_models import (
+    ASTNodeType,
+    ASTSkeletonSnapshot,
+    BuilderExecutionBundle,
+    ByzantineChaosReport,
+    CausalConvergenceAttestation,
+    DiagnosticSeverity,
+    DiagnosticTuple,
+    DomainInvariantViolation,
+    DynamicPersonaManifest,
+    FractalTreeNode,
+    FunctorialUndoCheckpoint,
+    HermeticLinterReport,
+    HierarchicalBudgetLease,
+    LeafEmissionEvent,
+    LeaseAllocationStatus,
+    MerkleTreeRootAttestation,
+    PhysicalDiskWitness,
+    QuineDaughterManifest,
+    QuineReactiveManifest,
+    ReactiveAuditReport,
+    ReactiveVerificationGate,
+    RFCSubmissionRecord,
+    SubtreeHealingEnvelope,
+    TaskExecutionStatus,
+)

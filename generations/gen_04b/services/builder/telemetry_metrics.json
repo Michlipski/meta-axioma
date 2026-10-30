@@ -1,0 +1,15 @@
+{
+  "target_type": "service",
+  "target_name": "builder",
+  "main_conversation_id": "821a58a1-099a-4bca-90cc-a387258eb8d4",
+  "main_tokens": {
+    "steps": 192,
+    "input_fresh": 533354,
+    "output": 47137,
+    "cache_read": 10297484,
+    "total_volume": 10877975
+  },
+  "subagent_metrics": {},
+  "status": "RECONCILED",
+  "reconciled_via": "Sovereign Telemetry Service Data Plane"
+}
