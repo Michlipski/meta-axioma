@@ -1,0 +1,91 @@
+{
+  "target_type": "app",
+  "target_name": "axioma_consensus",
+  "main_conversation_id": "a25f8f51-b261-4e36-bd10-0a095e0028e5",
+  "chain_head_hash": "5a9473f1e0dab7ef1720e94335bd30f512505f13fd08ddd395f26a19c4cf81db",
+  "unified_budget": 143100,
+  "exploratory_pool": 85860,
+  "protected_pool": 57240,
+  "tests_passed": 65,
+  "subagent_metrics": {
+    "b292a7e6-3446-40cc-996b-99d6a2ddad0d": {
+      "role": "Domain Ontologist & Distributed Systems Architect",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 1 (Brain Gate)",
+      "tokens": {
+        "prompt": 18200,
+        "completion": 10250,
+        "total": 28450
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    "0971da58-5613-45ac-959c-34b764da4cde": {
+      "role": "Core Causal Engine & CRDT Semilattice Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2A (Muscle 1)",
+      "tokens": {
+        "prompt": 14500,
+        "completion": 7680,
+        "total": 22180
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    "31211b68-39c0-412c-bdf0-3a46d90e8d0a": {
+      "role": "Sovereign Gossip Mesh & Sheaf-Quorum Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2A (Muscle 2)",
+      "tokens": {
+        "prompt": 16200,
+        "completion": 8600,
+        "total": 24800
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    "b98a90ec-177f-47bd-8a43-aa8d94092083": {
+      "role": "Asymmetric RFC Bus & Z3 SMT Prover Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2A (Muscle 3)",
+      "tokens": {
+        "prompt": 15400,
+        "completion": 8500,
+        "total": 23900
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    "3e26911c-9f2b-4c21-b80a-29372c2b4b6c": {
+      "role": "Tactile Consensus Cockpit HUD & Sovereign Server Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2A (Muscle 4)",
+      "tokens": {
+        "prompt": 17800,
+        "completion": 9800,
+        "total": 27600
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    "f6cb779a-655c-42b6-b761-18ac4f601d55": {
+      "role": "Adversarial Test & Byzantine QA Engineer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2C (Muscle 5)",
+      "tokens": {
+        "prompt": 16500,
+        "completion": 8800,
+        "total": 25300
+      },
+      "status": "CERTIFIED_COMPLETE"
+    },
+    "64d96329-c41a-4461-8e0c-606aa4c71e5b": {
+      "role": "Operational Dashboard & Telemetry Synthesizer",
+      "model": "Gemini 3.8 Flash",
+      "stage": "Phase 2C (Muscle 6)",
+      "tokens": {
+        "prompt": 12400,
+        "completion": 6100,
+        "total": 18500
+      },
+      "status": "CERTIFIED_COMPLETE"
+    }
+  },
+  "status": "RECONCILED",
+  "reconciled_via": "Sovereign Telemetry Service Data Plane"
+}

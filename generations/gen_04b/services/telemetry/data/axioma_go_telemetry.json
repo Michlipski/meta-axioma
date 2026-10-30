@@ -1,0 +1,71 @@
+{
+  "target_type": "app",
+  "target_name": "axioma_go",
+  "main_conversation_id": "0a775420-508d-4d70-88ab-159d5b887e45",
+  "main_tokens": {
+    "steps": 247,
+    "input_fresh": 949911,
+    "cache_read": 28255386,
+    "output": 259967,
+    "total_volume": 29465264
+  },
+  "subagent_metrics": {
+    "f9226e0a-468b-477b-962b-b3ba7b37984b": {
+      "phase": "Brain: Research Architect",
+      "role": "Domain Ontologist & Waterloo Research Architect",
+      "tier": "Brain Gate",
+      "model": "Gemini 3.8 Flash",
+      "steps": 64,
+      "input_fresh": 337443,
+      "cache_read": 4057336,
+      "output": 71373,
+      "total_volume": 4466152
+    },
+    "2236e53b-70d0-4cf8-93e6-7af47ee6af83": {
+      "phase": "Muscle 1: Core Engine",
+      "role": "Core Go Engine & Functorial Reversibility Synthesizer",
+      "tier": "Muscle 1",
+      "model": "Gemini 3.8 Flash",
+      "steps": 37,
+      "input_fresh": 142122,
+      "cache_read": 1263794,
+      "output": 45789,
+      "total_volume": 1451705
+    },
+    "a80c8a73-4d91-4fc9-9f6c-97d285767c3a": {
+      "phase": "Muscle 2: Tactical Showcases",
+      "role": "Automated Showcase & Tactical Sequence Synthesizer",
+      "tier": "Muscle 2",
+      "model": "Gemini 3.8 Flash",
+      "steps": 64,
+      "input_fresh": 232308,
+      "cache_read": 5427685,
+      "output": 55702,
+      "total_volume": 5715695
+    },
+    "9a9ad805-5a56-4e2b-8dc7-a5e0ca33c27a": {
+      "phase": "Muscle 3: Tactile Board UI",
+      "role": "Tactile Board UI & Sovereign HTTP Server Synthesizer",
+      "tier": "Muscle 3",
+      "model": "Gemini 3.8 Flash",
+      "steps": 108,
+      "input_fresh": 454232,
+      "cache_read": 9979338,
+      "output": 109192,
+      "total_volume": 10542762
+    },
+    "cdd97a31-d543-42a8-b07f-a6c1df02d1db": {
+      "phase": "Muscle 4: Adversarial QA & Telemetry",
+      "role": "Adversarial QA & Telemetry Dashboard Synthesizer",
+      "tier": "Muscle 4",
+      "model": "Gemini 3.8 Flash",
+      "steps": 146,
+      "input_fresh": 463820,
+      "cache_read": 17763292,
+      "output": 142643,
+      "total_volume": 18369755
+    }
+  },
+  "status": "RECONCILED",
+  "reconciled_via": "Sovereign Telemetry Service Data Plane"
+}

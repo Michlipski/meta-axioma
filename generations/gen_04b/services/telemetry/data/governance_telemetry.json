@@ -1,0 +1,13 @@
+{
+  "service": "governance",
+  "main_conversation_id": "a08ed387-f92b-47e9-89f0-c9dc21f8696b",
+  "main_tokens": {
+    "steps": 324,
+    "input_fresh": 834876,
+    "output": 88461,
+    "cache_read": 19505042,
+    "total_volume": 20428379
+  },
+  "subagent_metrics": {},
+  "status": "RECONCILED"
+}

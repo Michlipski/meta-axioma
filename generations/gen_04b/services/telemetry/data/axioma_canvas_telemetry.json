@@ -1,0 +1,82 @@
+{
+  "target_type": "app",
+  "target_name": "axioma_canvas",
+  "main_conversation_id": "5e6614e2-149a-4f50-a615-5f01815f102a",
+  "main_tokens": {
+    "steps": 130,
+    "input_fresh": 420419,
+    "output": 38522,
+    "cache_read": 3866849,
+    "total_volume": 4325790
+  },
+  "subagent_metrics": {
+    "d2bebafb-78d3-43f7-b916-09c0b25c3561": {
+      "phase": "Brain: Research & Architecture Gate",
+      "role": "Human Ergonomics & UX Architect",
+      "tier": "Brain Gate",
+      "model": "Gemini 3.8 Flash",
+      "steps": 42,
+      "output_tokens": 24180,
+      "status": "CERTIFIED_COMPLETE",
+      "artifacts": [
+        "trace/situation_of_concern.md",
+        "trace/contract_ir.json",
+        "trace/statechart_ir.json",
+        "trace/topology_ir.json"
+      ]
+    },
+    "2c21db1a-f193-48aa-ae10-79918213a3e5": {
+      "phase": "Muscle 1: Core Backend & Functorial Engine Synthesizer",
+      "role": "Core Backend & Functorial Engine Synthesizer",
+      "tier": "Muscle 1",
+      "model": "Gemini 3.8 Flash",
+      "steps": 54,
+      "output_tokens": 31450,
+      "status": "CERTIFIED_COMPLETE",
+      "artifacts": [
+        "src/domain_models.py",
+        "src/functorial_engine.py",
+        "src/hierarchical_statechart.py",
+        "src/landauer_telemetry.py",
+        "src/subagent_persona_dock.py",
+        "src/server.py",
+        "static/index.html",
+        "static/canvas.js",
+        "static/styles.css",
+        "run.py",
+        "app.json"
+      ]
+    },
+    "dce614b4-c9a0-40b1-a7c8-357f334ba61f": {
+      "phase": "Muscle 2: Adversarial Test & Byzantine QA Engineer",
+      "role": "Adversarial Test & Byzantine QA Engineer",
+      "tier": "Muscle 2",
+      "model": "Gemini 3.8 Flash",
+      "steps": 38,
+      "output_tokens": 21200,
+      "status": "ACTIVE",
+      "artifacts": [
+        "tests/test_adversarial_suite.py"
+      ]
+    },
+    "a6d20840-09a9-42fa-b976-6890bdba9ae3": {
+      "phase": "Muscle 3: Operational Dashboard & Telemetry Synthesizer",
+      "role": "Operational Dashboard & Telemetry Synthesizer",
+      "tier": "Muscle 3",
+      "model": "Gemini 3.8 Flash",
+      "steps": 28,
+      "output_tokens": 16850,
+      "status": "ACTIVE",
+      "artifacts": [
+        "generate_dashboard.py",
+        "dashboard.html",
+        "telemetry_dashboard.html",
+        "telemetry_metrics.json",
+        "epoch_summary.md",
+        "telemetry_ledger.json"
+      ]
+    }
+  },
+  "status": "RECONCILED",
+  "reconciled_via": "Sovereign Telemetry Service Data Plane"
+}

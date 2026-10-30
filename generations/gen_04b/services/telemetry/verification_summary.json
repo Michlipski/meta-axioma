@@ -1,0 +1,39 @@
+{
+  "service": "soc_g4b_telemetry",
+  "phase": "Generation 4b Phase 4",
+  "timestamp_unix_ms": 1793321040876,
+  "endpoint": "192.168.40.40:8446",
+  "token_budget": 880300,
+  "exploratory_capital": 528180,
+  "protected_capital": 352120,
+  "thermodynamics": {
+    "total_bits_erased": 7040,
+    "heat_dissipated_joules": 2.021169135095422e-17,
+    "tokens_burned": 47000,
+    "token_lease_budget": 880300,
+    "exploratory_capital": 528180,
+    "exploratory_spent": 35000,
+    "exploratory_remaining": 493180,
+    "protected_capital": 352120,
+    "protected_spent": 12000,
+    "protected_remaining": 340120,
+    "is_certified": false,
+    "erasure_events_count": 2,
+    "recovery_events_count": 1
+  },
+  "sla": {
+    "p50_latency_ms": 19.5,
+    "p90_latency_ms": 27.0,
+    "p99_latency_ms": 29.0,
+    "error_rate": 0.0,
+    "availability_pct": 100.0,
+    "throughput_rps": 100.0,
+    "passes_sla": true
+  },
+  "merkle_root": "b0cc5a05543ee5546f102f5260faacf46304a598b3b0a8244337af8df7f4fe66",
+  "attestation_id": "attest_g4b_telemetry_zenith_01",
+  "attestation_signature": "13d26956a7ecebf11ffec64efc3f9d52401a58eb760027fde8d171f61db2b289",
+  "byzantine_trapped_count": 4,
+  "statechart_state": "state_operational_certified",
+  "operational_certified": true
+}
