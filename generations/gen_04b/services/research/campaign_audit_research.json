@@ -1,0 +1,52 @@
+{
+  "campaign_id": "campaign_g4b_audit_formal_verification",
+  "target_soc": "soc_g4b_audit",
+  "node_ip": "192.168.40.30",
+  "port": 8444,
+  "taboo_distances": {
+    "dist_ab": 1.0,
+    "dist_ac": 1.0,
+    "dist_bc": 1.0
+  },
+  "dialectical_inversions": [
+    "NEG-PRIMITIVE-001: Centralized coordinator or leader node is strictly forbidden.",
+    "NEG-PRIMITIVE-004: Synchronous thread-blocking calls are strictly forbidden.",
+    "NEG-PRIMITIVE-002: In-place mutation of shared memory is strictly forbidden."
+  ],
+  "byzantine_trapped_ratio": 1.0,
+  "candidates": [
+    {
+      "id": "cand_option_a_pipeline",
+      "name": "Option A: Bounded Sequential Verification Pipeline",
+      "topology_hash": "fb908527e49f8cf2c237c98f3f7ab160903b5dcbe1ae257313cdedac8f05ffe2",
+      "invariant_coverage": 0.94,
+      "byzantine_resilience": 0.85,
+      "steps_to_value": 3,
+      "landauer_bits_erased": 3800,
+      "landauer_budget_bits": 25000
+    },
+    {
+      "id": "cand_option_b_actor_mesh",
+      "name": "Option B: Decoupled Actor Mesh Verification Daemon",
+      "topology_hash": "1c4a98b9ceac91bcd51c79be713be36343ff887e0aab17cc5ee98dc1d2021649",
+      "invariant_coverage": 0.98,
+      "byzantine_resilience": 0.92,
+      "steps_to_value": 2,
+      "landauer_bits_erased": 4900,
+      "landauer_budget_bits": 30000
+    },
+    {
+      "id": "cand_option_c_sheaf_triad",
+      "name": "Option C: Zenith Apex Sheaf-Quorum Adversarial Crucible",
+      "topology_hash": "f595f6168f7b7f84e243e962c019ad2ddb770a3f5d97292a41aad42541c1a9f9",
+      "invariant_coverage": 1.0,
+      "byzantine_resilience": 0.99,
+      "steps_to_value": 2,
+      "landauer_bits_erased": 5600,
+      "landauer_budget_bits": 35000
+    }
+  ],
+  "smt_proof_valid": true,
+  "smt_solver_engine": "NativeSMTProver_v4b",
+  "merkle_root": "7c30b2cc67388b8d9837ff542de75c5aab89dc6317c420c05727ccdcca14bfba"
+}

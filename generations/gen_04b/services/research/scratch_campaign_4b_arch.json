@@ -1,0 +1,18 @@
+{
+  "campaign_id": "campaign_g4b_high_level_architecture",
+  "selected_candidate": "cand_option_a_service_mesh_fractal",
+  "selected_option_name": "Option A: Asynchronous Sovereign Service Mesh with Fractal Builder Tree",
+  "taboo_distances": {
+    "d_ab": 1.0,
+    "d_ac": 1.0,
+    "d_bc": 1.0
+  },
+  "pareto_scores": {
+    "cand_option_a_service_mesh_fractal": 0.9064642704488801,
+    "cand_option_b_hypergraph_ast": 0.8057448693955798,
+    "cand_option_c_shadow_dyad": 0.7915784083442857
+  },
+  "z3_proof_valid": true,
+  "z3_solver_result": "UNSAT",
+  "merkle_root": "124c46d72381f69d359acd7690eae4a06057817f7dba0398c60681ed735de795"
+}

@@ -1,0 +1,52 @@
+{
+  "campaign_id": "campaign_g4b_telemetry_evaluation",
+  "target_soc": "soc_g4b_telemetry",
+  "node_ip": "192.168.40.40",
+  "port": 8446,
+  "taboo_distances": {
+    "dist_ab": 1.0,
+    "dist_ac": 1.0,
+    "dist_bc": 1.0
+  },
+  "dialectical_inversions": [
+    "NEG-PRIMITIVE-003: Fixed periodic sleep/polling loops are strictly forbidden.",
+    "NEG-PRIMITIVE-004: Synchronous thread-blocking calls are strictly forbidden.",
+    "NEG-PRIMITIVE-002: In-place mutation of shared memory is strictly forbidden."
+  ],
+  "byzantine_trapped_ratio": 1.0,
+  "candidates": [
+    {
+      "id": "cand_option_a_linear_ring",
+      "name": "Option A: Bounded Linear Ring Buffer Telemetry Aggregator",
+      "topology_hash": "f9cb549c0f63886c00d398ae34b74aeb08a6f7bbdb2fb01449bbf9e0eff3128d",
+      "invariant_coverage": 0.93,
+      "byzantine_resilience": 0.86,
+      "steps_to_value": 3,
+      "landauer_bits_erased": 4100,
+      "landauer_budget_bits": 28000
+    },
+    {
+      "id": "cand_option_b_sharded_stream",
+      "name": "Option B: Decoupled Sharded Stream Evaluator Mesh",
+      "topology_hash": "b328b73b5eb5e1113a9a82fc243ae31bda97719e55f5f54eeae3dcbc3c84f37d",
+      "invariant_coverage": 0.97,
+      "byzantine_resilience": 0.93,
+      "steps_to_value": 2,
+      "landauer_bits_erased": 5200,
+      "landauer_budget_bits": 32000
+    },
+    {
+      "id": "cand_option_c_zenith_sheaf_crucible",
+      "name": "Option C: Zenith Apex Landauer-OTel Sovereign Sheaf Aggregator & Thermodynamic Evaluation Crucible",
+      "topology_hash": "a1ef43cae941dec839493ea92d10d1e03d97f393ac14467d916ebd9db323805f",
+      "invariant_coverage": 1.0,
+      "byzantine_resilience": 0.99,
+      "steps_to_value": 2,
+      "landauer_bits_erased": 5800,
+      "landauer_budget_bits": 38000
+    }
+  ],
+  "smt_proof_valid": true,
+  "smt_solver_engine": "NativeSMTProver_v4b",
+  "merkle_root": "27c8ac9ce86bc62ca75abbbeb207c0ebd4f049d59b0a8c535b27839fb498dfed"
+}

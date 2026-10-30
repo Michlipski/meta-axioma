@@ -1,0 +1,52 @@
+{
+  "campaign_id": "campaign_g4b_governance_safety",
+  "target_soc": "soc_g4b_governance",
+  "node_ip": "192.168.40.50",
+  "port": 8448,
+  "taboo_distances": {
+    "dist_ab": 1.0,
+    "dist_ac": 1.0,
+    "dist_bc": 1.0
+  },
+  "dialectical_inversions": [
+    "NEG-PRIMITIVE-001: Centralized coordinator or leader node is strictly forbidden.",
+    "NEG-PRIMITIVE-004: Synchronous thread-blocking calls are strictly forbidden.",
+    "NEG-PRIMITIVE-002: In-place mutation of shared memory is strictly forbidden."
+  ],
+  "byzantine_trapped_ratio": 1.0,
+  "candidates": [
+    {
+      "id": "cand_option_a_lean_intercept",
+      "name": "Option A: Lean Sovereign Intercept Kernel",
+      "topology_hash": "32edcf0c343f8249211d52f65b6a74615a2443647430b855ef9ca802e9067438",
+      "invariant_coverage": 0.94,
+      "byzantine_resilience": 0.88,
+      "steps_to_value": 3,
+      "landauer_bits_erased": 3900,
+      "landauer_budget_bits": 26000
+    },
+    {
+      "id": "cand_option_b_comprehensive_sentinel",
+      "name": "Option B: Comprehensive Sovereign Sentinel",
+      "topology_hash": "5783d533efb18e47ee7de2329246e0828548c7e87addbe11f067507bc5715bd9",
+      "invariant_coverage": 0.98,
+      "byzantine_resilience": 0.94,
+      "steps_to_value": 2,
+      "landauer_bits_erased": 4900,
+      "landauer_budget_bits": 31000
+    },
+    {
+      "id": "cand_option_c_zenith_governance_crucible",
+      "name": "Option C: Zenith Apex Sovereign Safety & Governance Crucible",
+      "topology_hash": "c47b5e0694078a97718f3b34486590601a469ebfab6d1587d130e6da33645ac8",
+      "invariant_coverage": 1.0,
+      "byzantine_resilience": 0.99,
+      "steps_to_value": 2,
+      "landauer_bits_erased": 5600,
+      "landauer_budget_bits": 36000
+    }
+  ],
+  "smt_proof_valid": true,
+  "smt_solver_engine": "NativeSMTProver_v4b",
+  "merkle_root": "16c6b3c8d7367d3c08a0034b658195f7d9c4a023af62bd229824b1af059e4f3a"
+}
