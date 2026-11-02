@@ -13,12 +13,8 @@
 
 Explore the interactive, dual-mode slide presentation detailing the foundational mathematics, historical generational pivot, and modern Generation 4b architecture:
 
-- 🖥️ **[presentation.html](presentation.html)** — **Interactive Presentation Deck: "Meta-Axioma: Philosophy, Process & Generational Architecture"**
-  - **Dual Explanation Modes:** One-click toggle between **Academic Formalism** (Category Theory, Gödelian limits, Landauer erasure, Weisfeiler-Lehman kernels, Z3 SMT proofs) and **Layman / Executive** narratives.
-  - **10 Core Slides:** Foundations & Inception, Orthogonal Axiom Discovery, The Jettison Framework, The Quine Compiler, Generational Crisis & Pivot to 'b', Generation 4b Sovereign Service Mesh, 5 Key LLM Stability Ideas, Functorial Dialectic & Empirical Witness, Future Roadmap, and Takeaways.
-  - **Built-in Speaker Notes:** Press `S` or click *Speaker Notes* for an embedded talking-points cheat sheet for every slide.
-  - **Mathematical Fidelity:** Live KaTeX LaTeX rendering with client-side fallback parsing.
-  - **Keyboard Navigation:** `Left` / `Right` arrows, `Space` to advance, `M` to toggle explanation mode.
+- 🖥️ **Interactive Presentation Deck: "Meta-Axioma: Philosophy, Process & Generational Architecture"**
+  - Download and view the presentation deck at **[presentation.html](presentation.html)**
 
 For deep telemetry and interactive architectural statechart visualization, also see:
 - 📊 **[evolution_dashboard/](evolution_dashboard/)** — **Flagship Architectural Evolution Studio & G4b Zenith Workbench (Port 8105)**: Full chronological spine ($S_0 \to G_1 \to G_2 \to G_3 \to G_{1b} \to G_{2b} \to G_{3b} \to G_{4b}$), Beehive 4-tier SVG topology, live side-by-side diff workbench, and interactive compilation walkthrough.
