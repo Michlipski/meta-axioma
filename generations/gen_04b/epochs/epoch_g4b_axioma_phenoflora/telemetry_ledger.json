@@ -1,0 +1,232 @@
+{
+  "epoch_id": "epoch_g4b_axioma_phenoflora",
+  "app_id": "axioma_phenoflora",
+  "generation": "gen_04b",
+  "timestamp": 1793904720.97062,
+  "chain_head_hash": "84588db0e117b5504598ba8bddcc2cc5fdf983981e3ce8c38eaa0140f0424afc",
+  "total_events": 14,
+  "events": [
+    {
+      "index": 0,
+      "event_type": "PRE_PROPOSAL_RED_TEAM_CERTIFIED",
+      "timestamp": 1793169000.0,
+      "payload": {
+        "persona": "persona_dialectical_red_team",
+        "display_title": "Dialectical Red Team & Socratic Inversion Architect",
+        "red_team_pass": true,
+        "critical_vulnerabilities_found": 3,
+        "mitigations_applied": [
+          "Pre-built regional starter habitats to prevent blank canvas paralysis",
+          "Dual-trophic separation of Nectar Joules and Pollen Protein Density",
+          "Dedicated specialist protection index penalizing schemes lacking obligate hosts"
+        ],
+        "target_app_id": "axioma_phenoflora",
+        "target_port": 8086,
+        "virtual_subnet": "192.168.40.96/28"
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "0487734a3a386f8d1292b1edcbd6113926950fb423e524bb6ad10fd5b55c4fb4"
+    },
+    {
+      "index": 1,
+      "event_type": "OPTION_B_300K_BUDGET_APPROVED",
+      "timestamp": 1793169100.0,
+      "payload": {
+        "option": "Option B: High-Assurance Eco-Spatial PhenoFlora Studio with Rapid Onboarding & Multi-Tier Verification",
+        "unified_budget": 300000,
+        "exploratory_cap": 180000,
+        "protected_floor": 120000,
+        "predicted_spend": 194533,
+        "calibrated_via": "DynamicBudgetCalibrator.estimate_from_structural_scope()"
+      },
+      "prev_hash": "0487734a3a386f8d1292b1edcbd6113926950fb423e524bb6ad10fd5b55c4fb4",
+      "event_hash": "efcc415e679e41823ea50489f55c3d516643c2e6b6ea5cd864b9f0ed81047034"
+    },
+    {
+      "index": 2,
+      "event_type": "PHASE_1_SOVEREIGN_BRAIN_GATE_CERTIFIED",
+      "timestamp": 1793169200.0,
+      "payload": {
+        "brain_subagent": "cd959b5f-db76-4b98-98d0-bdf44fe6bb62",
+        "role": "Domain Ontologist & Contract Proof Engineer",
+        "merkle_root": "30af90dad0201df0b53e7f0989d0e2ea9452a961f93325c8b7980648016840a0",
+        "statechart_states": 48,
+        "strata": 5,
+        "domain_nouns": 12,
+        "sub_contracts": 12,
+        "composed_verbs": 20,
+        "topology_nodes": 8,
+        "topology_channels": 8
+      },
+      "prev_hash": "efcc415e679e41823ea50489f55c3d516643c2e6b6ea5cd864b9f0ed81047034",
+      "event_hash": "4950a4df37d42e9d8518d700c5d198d23d9699089795ec7b726f666ec59b37fd"
+    },
+    {
+      "index": 3,
+      "event_type": "PHASE_2A_CORE_SYNTHESIZER_GROUNDED",
+      "timestamp": 1793169300.0,
+      "payload": {
+        "synthesizer_subagent": "7378e46e-3e0f-4207-b9d4-721ffe7690ec",
+        "role": "Core Backend & Functorial Engine Synthesizer",
+        "total_files": 33,
+        "total_bytes": 357407,
+        "merkle_root": "5e2b51e5215c75650cca8ae2e196ad965bd4a718d39afb46fe2c21e1439bfb29"
+      },
+      "prev_hash": "4950a4df37d42e9d8518d700c5d198d23d9699089795ec7b726f666ec59b37fd",
+      "event_hash": "c3827fb3c422834326345aa4497d47f10ef5385a760ba9bdd5960682f1e70cf9"
+    },
+    {
+      "index": 4,
+      "event_type": "PHASE_2B_PHYSICAL_GROUNDING_CERTIFIED",
+      "timestamp": 1793169400.0,
+      "payload": {
+        "grounding_passed": true,
+        "verified_files": 33,
+        "missing_files": 0,
+        "empty_files": 0,
+        "hash_mismatches": 0,
+        "canonical_symlink": "apps/axioma_phenoflora -> ../generations/gen_04b/apps/axioma_phenoflora"
+      },
+      "prev_hash": "c3827fb3c422834326345aa4497d47f10ef5385a760ba9bdd5960682f1e70cf9",
+      "event_hash": "3594c79feac3afc8639f2188ea1597fc7302014c0ce7d4680771689d5cf4d65a"
+    },
+    {
+      "index": 5,
+      "event_type": "PHASE_2C_SUBPROCESS_SMOKE_PASSED",
+      "timestamp": 1793169500.0,
+      "payload": {
+        "qa_subagent": "20272c28-fe79-4f5b-8211-e05475a889da",
+        "command": "python3 run.py --smoke-test --port 8086",
+        "exit_code": 0,
+        "operational_liveness": true,
+        "clean_teardown": true,
+        "invariant": "[NEG-G1B-002]"
+      },
+      "prev_hash": "3594c79feac3afc8639f2188ea1597fc7302014c0ce7d4680771689d5cf4d65a",
+      "event_hash": "a43deada4b96e0bcf2dcd85d702a1b6eb18d29b714a5a91b554dd5c52f5b3787"
+    },
+    {
+      "index": 6,
+      "event_type": "PHASE_2C_BYZANTINE_QA_CERTIFIED",
+      "timestamp": 1793169600.0,
+      "payload": {
+        "test_count": 22,
+        "failures": 0,
+        "errors": 0,
+        "passing_assertions": 23,
+        "exit_code": 0,
+        "duration_s": 0.687,
+        "layers_verified": [
+          "Layer 1: Subprocess Smoke Gate",
+          "Layer 2: Core Phenology Gaussian Convolution",
+          "Layer 3: Ecological Hypergraph & Oligolecty",
+          "Layer 4: 2D Spatial & Canopy Shadows",
+          "Layer 5: Formal Z3 SMT Continuity Prover",
+          "Layer 6: Functorial Reversibility (f o f^-1 = id)",
+          "Layer 7: Byzantine Chaos & Robustness",
+          "Layer 8: Telemetry & Merkle Ledger"
+        ]
+      },
+      "prev_hash": "a43deada4b96e0bcf2dcd85d702a1b6eb18d29b714a5a91b554dd5c52f5b3787",
+      "event_hash": "be17d62f7881518c44123413c3d7c90d12b775c0dc506425dc8526ca851dc460"
+    },
+    {
+      "index": 7,
+      "event_type": "PHASE_2C_OPERATIONAL_DASHBOARD_GROUNDED",
+      "timestamp": 1793169700.0,
+      "payload": {
+        "telemetry_subagent": "f5419006-de18-4492-a85f-b5d8050e7244",
+        "dashboard_bytes": 93946,
+        "dashboard_sha256": "c79d0a6b9b0397473b9f873c1cb94044217f327d3fd6cd22c2788771e8e28475",
+        "zero_cdn_pass": true,
+        "offline_viewable": true
+      },
+      "prev_hash": "be17d62f7881518c44123413c3d7c90d12b775c0dc506425dc8526ca851dc460",
+      "event_hash": "f7bcdaa00cdab21266860414241145aa8d2275224a83aded29974ba95ed5c063"
+    },
+    {
+      "index": 8,
+      "event_type": "PHASE_2D_REACTIVE_MESH_CONVERGENCE_CERTIFIED",
+      "timestamp": 1793169800.0,
+      "payload": {
+        "status": "CONVERGENCE_PROVED",
+        "all_leaf_digests_matched": true,
+        "causal_ordering_verified": true
+      },
+      "prev_hash": "f7bcdaa00cdab21266860414241145aa8d2275224a83aded29974ba95ed5c063",
+      "event_hash": "6951e67cdadc46f7bc1df174d5a3565725d2b6bbed9506805f880ca41ca60808"
+    },
+    {
+      "index": 9,
+      "event_type": "OVERHAUL_OPTION_B_APPROVED",
+      "timestamp": 1793907485.183476,
+      "payload": {
+        "option": "Option B: Full Tactile Studio & Spacious Canvas Overhaul",
+        "budget": 105900,
+        "canvas_viewbox": "0 0 900 550",
+        "features_added": [
+          "Expansive 900x550 canvas with 1m metric grid lines and 0.25m dots",
+          "Fluid pointer drag-and-drop with live 60 FPS collision feedback and boundary clamping",
+          "Selected plant node inspector HUD with quantity stepper and delete button",
+          "Smart open-coordinate auto-placement and click-to-place targeting",
+          "Plain-language ecosystem narrative HUD",
+          "Live Scenario Diff trade-off table"
+        ]
+      },
+      "prev_hash": "6951e67cdadc46f7bc1df174d5a3565725d2b6bbed9506805f880ca41ca60808",
+      "event_hash": "35059d1a4ec951f47818009181520175d703129b59210243ef852c6628ed1887"
+    },
+    {
+      "index": 10,
+      "event_type": "OVERHAUL_PHASE_1_BRAIN_CERTIFIED",
+      "timestamp": 1793907486.183477,
+      "payload": {
+        "subagent": "a41896a2-4790-40ac-9b26-938f4464f46c",
+        "role": "Domain Ontologist & Contract Proof Engineer",
+        "merkle_root": "47236ce0d9e4288828de48fc51409c632d2630ca09775e7822a172617e190db0"
+      },
+      "prev_hash": "35059d1a4ec951f47818009181520175d703129b59210243ef852c6628ed1887",
+      "event_hash": "85d9ff4d0e5526adefb09712a69e0688ef0cce0e5bcb3c604b9734dcbfbd435b"
+    },
+    {
+      "index": 11,
+      "event_type": "OVERHAUL_PHASE_2A_SYNTHESIS_GROUNDED",
+      "timestamp": 1793907487.183478,
+      "payload": {
+        "subagent": "713a69b2-a39b-49f4-978b-cdf75e82d2e5",
+        "role": "Core Backend & Functorial Engine Synthesizer",
+        "merkle_root": "11684099784058e1cb0f23ba8c6de15a6588b286f25b19838425d983accf0f1a",
+        "total_bytes": 467962
+      },
+      "prev_hash": "85d9ff4d0e5526adefb09712a69e0688ef0cce0e5bcb3c604b9734dcbfbd435b",
+      "event_hash": "4dee644e1412875d4d4127f364278296bb03e700b5795ee106a611cc626b9994"
+    },
+    {
+      "index": 12,
+      "event_type": "OVERHAUL_PHASE_2C_QA_CERTIFIED",
+      "timestamp": 1793907488.183479,
+      "payload": {
+        "subagent": "51f45f2f-7380-49c8-b858-e1890993a88c",
+        "test_count": 28,
+        "pass_count": 28,
+        "exit_code": 0,
+        "subprocess_smoke_gate": "PASS"
+      },
+      "prev_hash": "4dee644e1412875d4d4127f364278296bb03e700b5795ee106a611cc626b9994",
+      "event_hash": "78172a04b376462564fe5ae216fb9f873bb189a482aa05469326a9dded793a0e"
+    },
+    {
+      "index": 13,
+      "event_type": "OVERHAUL_PHASE_2C_TELEMETRY_GROUNDED",
+      "timestamp": 1793907489.183479,
+      "payload": {
+        "subagent": "08d3f35e-1266-4d6d-bb66-62fb35bc49b5",
+        "dashboard_bytes": 102352,
+        "dashboard_sha256": "b87bacbfe6b58cd4c3b615fe6689e4812c7e27d3746721bd15aac38aed8892ea"
+      },
+      "prev_hash": "78172a04b376462564fe5ae216fb9f873bb189a482aa05469326a9dded793a0e",
+      "event_hash": "84588db0e117b5504598ba8bddcc2cc5fdf983981e3ce8c38eaa0140f0424afc"
+    }
+  ],
+  "overhaul_merkle_root": "b21b48b6ecb0deca5caa95b9c10410fdd85943406152d4bc29715db1c74360cf"
+}
