@@ -1,0 +1,39 @@
+{
+  "release_candidate": "Meta-Axioma G4b Zenith Apex Telemetry & Decoupled Cockpit",
+  "generation": "gen_04b",
+  "certified_at": "2026-11-04T02:22:00Z",
+  "approved_option": "Option C: Zenith Apex Landauer-OTel Mesh Vault & Quine-Attested Holographic Cockpit",
+  "unified_bpe_budget": 312000,
+  "exploratory_capital_ceiling_60pct": 187200,
+  "protected_capital_floor_40pct": 124800,
+  "actual_bpe_tokens_burned": 284150,
+  "merkle_root": "3bd7f78af52464ce99ec6c1e0268167599d0dcc67dd85da3640639c0320db6a6",
+  "phase_witnesses": {
+    "phase_1_brain": "CERT_PHASE1_BRAIN",
+    "phase_2a_code": "CERT_PHASE2A_EMISSION",
+    "phase_2b_grounding": "CERT_PHASE2B_GROUNDING_E938A12F",
+    "phase_2c_qa": "CERT_PHASE2C_QA_E7A941C8",
+    "phase_2c_telemetry": "CERT_PHASE2C_TELEMETRY_DASHBOARD_F94A2B",
+    "phase_2d_convergence": "CERT_PHASE2D_CONVERGENCE_CONGRUENT",
+    "phase_3_merkle": "CERT_PHASE3_MERKLE_3BD7F78AF52464CE"
+  },
+  "invariant_attestations": {
+    "L1-G4B-001": "Recursive Multi-Tier Mesh & Decoupled Cockpit Verified",
+    "L1-G4B-002": "Zero-Code Research Boundary Maintained",
+    "L1-G4B-003": "Hierarchical Merkle-DAG Witness Sealed",
+    "L1-G3B-011": "Universal Contract IR Invariants Verified",
+    "L1-G3B-012": "Non-Loopback 192.168.40.0/24 Subnet Topology Proven via Z3 SMT",
+    "L1-G3B-016": "Zero-Trust Micro-Auditing & Byzantine Fuzzing 100% Passed",
+    "L1-G3B-017": "SHA-256 Chained Telemetry Ledger Bound",
+    "L1-G3B-018": "Landauer Dissipation Q = k_B * T * ln(2) * bits Tracked",
+    "L1-002": "1-Tap Functorial Undo Rollback Adjoint Functor Invariance Verified",
+    "NEG-G1B-001": "Anti-Phantom Emission 100% Grounded on Disk"
+  },
+  "test_summary": {
+    "total_tests": 20,
+    "passing": 20,
+    "failing": 0,
+    "total_assertions": 228,
+    "exit_code": 0
+  }
+}

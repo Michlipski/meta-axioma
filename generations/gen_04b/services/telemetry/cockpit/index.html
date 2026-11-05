@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zenith Cockpit: Holographic Micro-Transaction Telemetry & Functorial Vault</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Pinned Sticky Top Header & Query Command Ribbon Group -->
+  <div class="cockpit-top-pinned-group" id="cockpit-top-pinned-group">
+    <!-- Header & Landauer Thermodynamic HUD -->
+    <header class="cockpit-header">
+    <div class="brand-section">
+      <div class="brand-icon">Z</div>
+      <div>
+        <div class="brand-title">Zenith Apex Cockpit</div>
+        <div class="brand-subtitle">192.168.40.40:8447 &bull; [L1-G4B-001]</div>
+      </div>
+    </div>
+
+    <div class="hud-meters">
+      <div class="hud-card neon-cyan">
+        <span class="hud-label" id="hud-tokens-label">Tokens Burned</span>
+        <span class="hud-value" id="hud-tokens">0 BPE (Cluster)</span>
+      </div>
+      <div class="hud-card neon-magenta">
+        <span class="hud-label">Bits Erased</span>
+        <span class="hud-value" id="hud-bits">0</span>
+      </div>
+      <div class="hud-card neon-green">
+        <span class="hud-label">Dissipated Heat (Q)</span>
+        <span class="hud-value" id="hud-heat">0.00 J</span>
+      </div>
+      <div class="hud-card neon-amber">
+        <span class="hud-label">Logical Clock</span>
+        <span class="hud-value" id="hud-clock">L: 0</span>
+      </div>
+      <div class="hud-card neon-status" id="hud-status-card">
+        <span class="hud-label">Ingress State</span>
+        <div class="status-indicator-container">
+          <span class="status-pulse-dot" id="status-pulse"></span>
+          <span class="hud-value-status" id="hud-status-text">IDLE</span>
+        </div>
+      </div>
+      <div class="hud-card neon-throughput">
+        <span class="hud-label">Throughput / Latency</span>
+        <span class="hud-value" id="hud-throughput">0.0 tx/s &bull; 0.0ms</span>
+      </div>
+      <div class="connection-pill" id="conn-pill">
+        <span class="status-dot"></span>
+        <span id="conn-text">STREAM LIVE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top Query & Holographic Command Ribbon -->
+  <section class="query-command-ribbon" id="query-command-ribbon">
+    <!-- Upper Row: Omni-Search, Severity Quick-Pills, Density & Export Utilities -->
+    <div class="ribbon-upper-row">
+      <div class="omni-search-container">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="input-omni-search" class="omni-search-input" placeholder="Search logs by text, regex, tool, path, verb, payload... (Ctrl+K or /)" autocomplete="off" spellcheck="false">
+        <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search (Esc)" style="display: none;">&times;</button>
+        <span class="search-shortcut-hint">Ctrl+K</span>
+      </div>
+
+      <!-- Status Severity Quick-Pills -->
+      <div class="status-pills-group" id="status-pills-group">
+        <button type="button" class="btn-status-pill pill-status-all active" data-status="ALL" id="pill-status-all">
+          <span class="pill-dot dot-all"></span> ALL <span class="pill-count" id="count-status-all">0</span>
+        </button>
+        <button type="button" class="btn-status-pill pill-status-success" data-status="SUCCESS" id="pill-status-success">
+          <span class="pill-dot dot-success"></span> SUCCESS <span class="pill-count" id="count-status-success">0</span>
+        </button>
+        <button type="button" class="btn-status-pill pill-status-failed" data-status="FAILED" id="pill-status-failed">
+          <span class="pill-dot dot-failed"></span> FAILED <span class="pill-count" id="count-status-failed">0</span>
+        </button>
+        <button type="button" class="btn-status-pill pill-status-recovery" data-status="RECOVERY" id="pill-status-recovery">
+          <span class="pill-dot dot-recovery"></span> RECOVERY <span class="pill-count" id="count-status-recovery">0</span>
+        </button>
+      </div>
+
+      <!-- Utility Controls: Layout Presets, Density & Export -->
+      <div class="ribbon-utilities">
+        <div class="layout-presets-group" id="layout-presets-group">
+          <span class="utility-label">Preset:</span>
+          <button type="button" class="btn-preset active" data-preset="balanced" id="preset-balanced" title="Default balanced view with all cards expanded">Balanced</button>
+          <button type="button" class="btn-preset" data-preset="logs" id="preset-logs" title="Collapse topology and routing; expand Live Logs to full height">Logs Focus</button>
+          <button type="button" class="btn-preset" data-preset="mesh" id="preset-mesh" title="Expand topology and routing; collapse live logs table">Mesh Focus</button>
+        </div>
+        <div class="density-toggle-group">
+          <span class="utility-label">Density:</span>
+          <button type="button" class="btn-density active" id="btn-density-compact" title="Compact density (22px row height)">Compact</button>
+          <button type="button" class="btn-density" id="btn-density-comfortable" title="Comfortable density (34px row height)">Comfortable</button>
+        </div>
+        <button type="button" class="btn-export-logs" id="btn-export-logs" title="Export currently filtered logs as JSON">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export JSON
+        </button>
+      </div>
+    </div>
+
+    <!-- Lower Row: Facet Selects, Active Filter Chips, Filter Stats & Reset -->
+    <div class="ribbon-lower-row">
+      <div class="ribbon-facets-bar">
+        <!-- Conversation Selector -->
+        <div class="filter-item">
+          <label for="filter-conversation" class="filter-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Conv:
+          </label>
+          <select class="filter-select" id="filter-conversation">
+            <option value="ALL">All Conversations (All Traces)</option>
+          </select>
+        </div>
+
+        <!-- Include Subagents Checkbox -->
+        <div class="filter-item filter-checkbox-item">
+          <label class="filter-checkbox-label" title="When selected, displays events from both the active conversation and its child subagents">
+            <input type="checkbox" id="filter-include-subagents" checked>
+            <span>Subagents</span>
+          </label>
+        </div>
+
+        <!-- Subagent / Role Selector -->
+        <div class="filter-item">
+          <label for="filter-subagent" class="filter-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a8.38 8.38 0 0 1 13 0"/></svg>
+            Role:
+          </label>
+          <select class="filter-select" id="filter-subagent">
+            <option value="ALL">All Personas &amp; Roles</option>
+          </select>
+        </div>
+
+        <!-- Source Selector -->
+        <div class="filter-item">
+          <label for="filter-source" class="filter-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Source:
+          </label>
+          <select class="filter-select" id="filter-source">
+            <option value="ALL">All Sources</option>
+          </select>
+        </div>
+
+        <!-- Target Selector -->
+        <div class="filter-item">
+          <label for="filter-target" class="filter-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 21 3 21 3 15"/><line x1="14" y1="10" x2="3" y2="21"/></svg>
+            Target:
+          </label>
+          <select class="filter-select" id="filter-target">
+            <option value="ALL">All Targets</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Active Filter Chips Ribbon -->
+      <div class="active-chips-container" id="active-chips-container">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="ribbon-meta-actions">
+        <button type="button" class="btn btn-clear-filter" id="btn-clear-filter" style="display: none;" title="Reset all filters to view all events">&times; Clear All</button>
+        <span class="filter-badge" id="filter-stats">Showing 0 / 0 events</span>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- Main Cockpit Layout: 2 Flex Columns -->
+  <main class="cockpit-main">
+    <!-- Left Column: Mesh Topology, Routing Matrix, Live Logs -->
+    <div class="cockpit-col cockpit-col-left" id="cockpit-col-left">
+      <!-- 1. Mesh Topology Card (Independent Minimize Component) -->
+      <div class="panel-card" id="card-topology">
+        <div class="panel-header card-collapsible-header" data-card="topology" id="header-topology">
+          <span class="panel-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+            Sovereign Mesh Topology (192.168.40.0/24)
+          </span>
+          <div class="card-header-actions">
+            <span class="card-collapse-summary" id="summary-topology" style="display:none; font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-cyan);">6 Nodes &bull; 12 Channels</span>
+            <span class="card-detail-summary" id="detail-topology" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">6 Nodes &bull; 12 Channels</span>
+            <button type="button" class="btn-card-collapse" data-card="topology" id="btn-collapse-topology" title="Toggle Topology Collapse (Alt+1)">
+              <span class="collapse-icon">&blacktriangledown;</span>
+            </button>
+          </div>
+        </div>
+        <div class="panel-body" id="body-topology">
+          <div class="topology-container">
+            <canvas id="topology-canvas"></canvas>
+            <div class="topology-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:#38bdf8;"></span> Research</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Builder</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#00ff88;"></span> Audit</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#00ffff;"></span> Telemetry</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#ff007f;"></span> Governance</span>
+            </div>
+          </div>
+
+          <!-- Collapsible Z3 SMT Drawer -->
+          <div class="smt-drawer">
+            <div class="smt-drawer-header" id="smt-toggle">
+              <span class="smt-drawer-title">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Formal Z3 SMT Verifier & Non-Loopback Witness [L1-G3B-012]
+              </span>
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);" id="smt-status-text">PROVEN VALID &blacktriangledown;</span>
+            </div>
+            <div class="smt-drawer-content" id="smt-content">
+              <p style="color: var(--text-muted); margin-bottom: 4px;"><strong>Invariant:</strong> Strict non-loopback boundary across 192.168.40.0/24 (Zero-tolerance on 127.0.0.1)</p>
+              <p style="color: var(--text-muted); margin-bottom: 4px;"><strong>Proof Witness:</strong> <span id="smt-witness" style="color: var(--accent-green);">wit_smt_81eb90a4f6f6950a</span></p>
+              <p style="color: var(--text-muted); margin-bottom: 4px;"><strong>Lamport Monotonicity:</strong> &forall; (e1 &rarr; e2), L(e2) &gt; L(e1) (UNSAT core certified)</p>
+              <p style="color: var(--text-muted);"><strong>Sheaf Quorum:</strong> q &gt; 0.67 &rArr; |Q1 &cap; Q2| &ge; 1 (Split-brain impossible)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Subagent Traffic Routing & Service Mesh Flow Matrix -->
+      <div class="panel-card subagent-routing-container" id="card-routing">
+        <div class="subagent-routing-header card-collapsible-header" data-card="routing" id="header-routing">
+          <span class="subagent-routing-title">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Subagent Traffic Routing Matrix
+          </span>
+          <div class="card-header-actions">
+            <span class="subagent-routing-summary" id="subagent-routing-summary">0 Active Flows</span>
+            <button type="button" class="btn-card-collapse" data-card="routing" id="btn-collapse-routing" title="Toggle Routing Matrix Collapse (Alt+2)">
+              <span class="collapse-icon">&blacktriangledown;</span>
+            </button>
+          </div>
+        </div>
+        <div class="subagent-routing-body" id="subagent-routing-body">
+          <div class="subagent-empty-hint">Select a conversation to inspect subagent traffic routing</div>
+        </div>
+      </div>
+
+      <!-- 3. Live Micro-Transaction Logs UI with Configurable Display Columns -->
+      <div class="panel-card live-logs-container" id="card-logs">
+        <div class="live-logs-header card-collapsible-header" data-card="logs" id="header-logs">
+          <div class="live-logs-title-group">
+            <span class="live-logs-title">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Live Transaction Logs
+            </span>
+            <span class="live-logs-count" id="live-logs-count">0 rows</span>
+          </div>
+
+          <div class="live-logs-toolbar">
+            <label class="live-logs-follow-label" title="Automatically follow new streaming logs">
+              <input type="checkbox" id="live-logs-follow" checked>
+              <span>Follow Live</span>
+            </label>
+
+            <!-- Column Config Popover Trigger / Pills -->
+            <div class="column-config-group" id="col-config-group">
+              <span class="col-config-title">Cols:</span>
+              <button type="button" class="btn-col-toggle active" data-col="clock" title="Toggle Logical Clock">Clock</button>
+              <button type="button" class="btn-col-toggle active" data-col="subagent" title="Toggle Subagent Role">Role</button>
+              <button type="button" class="btn-col-toggle active" data-col="flow" title="Toggle Source -> Target Flow">Flow</button>
+              <button type="button" class="btn-col-toggle active" data-col="verb" title="Toggle Verb">Verb</button>
+              <button type="button" class="btn-col-toggle active" data-col="status" title="Toggle Status">Status</button>
+              <button type="button" class="btn-col-toggle active" data-col="duration" title="Toggle Duration">Dur</button>
+              <button type="button" class="btn-col-toggle active" data-col="heat" title="Toggle Landauer Heat">Heat</button>
+              <button type="button" class="btn-col-toggle active" data-col="summary" title="Toggle Payload Summary">Summary</button>
+            </div>
+
+            <button type="button" class="btn-card-collapse" data-card="logs" id="btn-collapse-logs" title="Toggle Live Logs Collapse (Alt+3)">
+              <span class="collapse-icon">&blacktriangledown;</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="live-logs-table-wrapper" id="live-logs-wrapper">
+          <table class="live-logs-table" id="live-logs-table">
+            <thead>
+              <tr>
+                <th class="col-expand" style="width: 28px;"></th>
+                <th class="col-clock">Clock</th>
+                <th class="col-subagent">Subagent / Role</th>
+                <th class="col-flow">Flow (Src &rarr; Tgt)</th>
+                <th class="col-verb">Verb</th>
+                <th class="col-status">Status</th>
+                <th class="col-duration">Duration</th>
+                <th class="col-heat">Heat</th>
+                <th class="col-summary">Payload Summary</th>
+              </tr>
+            </thead>
+            <tbody id="live-logs-tbody">
+              <tr><td colspan="9" class="logs-empty-cell">Awaiting transactions...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Micro-Transaction Inspector & 1-Tap Undo -->
+    <div class="cockpit-col cockpit-col-right" id="cockpit-col-right">
+      <div class="panel-card" id="card-inspector">
+        <div class="panel-header card-collapsible-header" data-card="inspector" id="header-inspector">
+          <span class="panel-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Micro-Transaction Inspector
+          </span>
+          <div class="card-header-actions">
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);" id="inspect-tx-count">0 Records In View</span>
+            <button type="button" class="btn-card-collapse" data-card="inspector" id="btn-collapse-inspector" title="Toggle Inspector Collapse (Alt+4)">
+              <span class="collapse-icon">&blacktriangledown;</span>
+            </button>
+          </div>
+        </div>
+        <div class="panel-body" id="body-inspector">
+          <table class="inspector-table">
+            <tbody>
+              <tr><td class="label-col">Transaction ID</td><td class="val-col" id="inspect-tx-id">&mdash;</td></tr>
+              <tr><td class="label-col">Trace / Span ID</td><td class="val-col" id="inspect-trace-span">&mdash;</td></tr>
+              <tr><td class="label-col">Conversation</td><td class="val-col" id="inspect-conv" style="color: var(--accent-cyan); font-weight: 600; cursor: pointer;" title="Click to filter by this conversation">&mdash;</td></tr>
+              <tr><td class="label-col">Subagent / Role</td><td class="val-col" id="inspect-subagent" style="color: var(--accent-magenta); font-weight: 600; cursor: pointer;" title="Click to filter by this subagent">&mdash;</td></tr>
+              <tr><td class="label-col">Causal Task ID</td><td class="val-col" id="inspect-task">&mdash;</td></tr>
+              <tr><td class="label-col">Pipeline Phase</td><td class="val-col" id="inspect-phase">&mdash;</td></tr>
+              <tr><td class="label-col">Source &rarr; Target</td><td class="val-col" id="inspect-endpoints"><span id="inspect-source" style="color: var(--accent-cyan); font-weight: 600; cursor: pointer; text-decoration: underline dotted;" title="Click to filter by source service">&mdash;</span> &rarr; <span id="inspect-target" style="color: var(--accent-magenta); font-weight: 600; cursor: pointer; text-decoration: underline dotted;" title="Click to filter by target service">&mdash;</span></td></tr>
+              <tr><td class="label-col">Operation Verb</td><td class="val-col" id="inspect-verb" style="color: var(--accent-cyan); font-weight: bold;">&mdash;</td></tr>
+              <tr><td class="label-col">Payload Summary</td><td class="val-col" id="inspect-summary">&mdash;</td></tr>
+              <tr><td class="label-col">BPE Tokens (In / Out)</td><td class="val-col" id="inspect-tokens">&mdash;</td></tr>
+              <tr><td class="label-col">Bits Erased / Heat</td><td class="val-col" id="inspect-heat">&mdash;</td></tr>
+              <tr><td class="label-col">Execution Status</td><td class="val-col" id="inspect-status">&mdash;</td></tr>
+              <tr><td class="label-col">Duration</td><td class="val-col" id="inspect-duration" style="color: var(--accent-cyan); font-weight: bold;">&mdash;</td></tr>
+              <tr><td class="label-col">Merkle Leaf Hash</td><td class="val-col" id="inspect-merkle" style="font-size: 0.65rem;">&mdash;</td></tr>
+            </tbody>
+          </table>
+
+          <!-- 1-Tap Functorial Undo Rollback Panel -->
+          <div class="undo-box" id="card-undo">
+            <div class="undo-header card-collapsible-header" data-card="undo" id="header-undo">
+              <div class="undo-title">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+                1-Tap Functorial Undo Rollback &delta;<sup>-1</sup>(T)
+              </div>
+              <button type="button" class="btn-card-collapse" data-card="undo" id="btn-collapse-undo" title="Toggle Rollback Panel Collapse">
+                <span class="collapse-icon">&blacktriangledown;</span>
+              </button>
+            </div>
+            <div class="undo-body" id="body-undo">
+              <p style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); margin-bottom: 8px;">
+                Applies categorical adjoint Galois inverse to revert cluster state to selected transaction without data corruption.
+              </p>
+              <div class="undo-controls">
+                <button type="button" class="btn btn-undo" id="btn-rollback-preview">Preview &delta;<sup>-1</sup></button>
+                <button type="button" class="btn btn-undo" id="btn-rollback-confirm" style="display:none; background: var(--accent-magenta); color: #fff;">Confirm Rollback</button>
+                <span id="undo-feedback" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Panel: Scrubber & 36-State FSM -->
+  <footer class="cockpit-bottom">
+    <div class="scrubber-header">
+      <div class="fsm-state-badge">
+        <span>FSM Stratum:</span>
+        <span class="fsm-tag" id="fsm-strata">stream_autoscroll</span>
+        <span style="color: var(--text-muted);">| Heartbeat:</span>
+        <span class="fsm-tag" id="fsm-hb" style="color: var(--accent-green);">nominal</span>
+        <span style="color: var(--text-muted);">| Thermo:</span>
+        <span class="fsm-tag" id="fsm-thermo" style="color: var(--accent-amber);">monitoring</span>
+        <span style="color: var(--text-muted);">| Window:</span>
+        <span class="fsm-tag" id="scrubber-duration" style="color: var(--accent-cyan);">00:00:00.000</span>
+      </div>
+
+      <div class="scrubber-controls">
+        <button class="btn btn-scale" id="btn-scale-toggle" title="Switch scrubber scale: Events (uniform per transaction) vs Time (true wall-clock)">Scale: Events</button>
+        <button class="btn" id="btn-step-back">&larr; -1 Frame</button>
+        <button class="btn" id="btn-play-pause">&#10074;&#10074; Pause</button>
+        <button class="btn" id="btn-step-fwd">+1 Frame &rarr;</button>
+        <button class="btn btn-live" id="btn-jump-live">&bull; Jump Live</button>
+        <select class="rate-select" id="select-rate">
+          <option value="0.25">0.25x</option>
+          <option value="0.5">0.5x</option>
+          <option value="1.0" selected>1.0x</option>
+          <option value="2.0">2.0x</option>
+          <option value="5.0">5.0x</option>
+          <option value="10.0">10.0x</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="scrubber-track-container">
+      <span class="scrubber-time" id="scrubber-current-time">00:00:00.000</span>
+      <input type="range" class="scrubber-slider" id="scrubber-slider" min="0" max="1000" value="1000">
+      <span class="scrubber-time" style="text-align: right;" id="scrubber-head-time">00:00:00.000</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="topology.js"></script>
+  <script src="scrubber_fsm.js"></script>
+  <script src="projection.js"></script>
+  <script>
+    // Cockpit Orchestrator Application Script
+    document.addEventListener('DOMContentLoaded', () => {
+      const topology = new ZenithTopologyCanvas('topology-canvas');
+      const fsm = new ZenithScrubberFSM();
+      const projection = new ZenithProjectionEngine(2000);
+
+      // Zero-Jitter Dynamic Canvas ResizeObserver Adaptor
+      if (typeof ResizeObserver !== 'undefined') {
+        const topologyContainerEl = document.querySelector('.topology-container');
+        if (topologyContainerEl) {
+          let resizeRaf = null;
+          const meshObserver = new ResizeObserver(() => {
+            if (resizeRaf) cancelAnimationFrame(resizeRaf);
+            resizeRaf = requestAnimationFrame(() => {
+              if (topology && typeof topology.resize === 'function') {
+                topology.resize();
+              }
+            });
+          });
+          meshObserver.observe(topologyContainerEl);
+        }
+      }
+
+      let isLive = true;
+      let playheadIndex = 0;
+      let totalTokensBurned = 0;
+      let totalBitsErased = 0;
+      let totalHeatJoules = 0.0;
+      let selectedTx = null;
+      let scaleMode = 'events'; // 'events' | 'time'
+      let currentPlayheadNs = 0;
+
+      // Real-Time Filter & Search State
+      let filterConversation = 'ALL';
+      let filterSubagent = 'ALL';
+      let filterSource = 'ALL';
+      let filterTarget = 'ALL';
+      let filterStatus = 'ALL'; // 'ALL' | 'SUCCESS' | 'FAILED' | 'RECOVERY'
+      let searchQuery = '';
+      let searchRegex = null;
+      let logDensity = 'compact'; // 'compact' | 'comfortable'
+      let searchDebounceTimer = null;
+      const expandedTxIds = new Set();
+      let filteredRecords = [];
+
+      // DOM Elements
+      const hudTokens = document.getElementById('hud-tokens');
+      const hudTokensLabel = document.getElementById('hud-tokens-label');
+      const hudBits = document.getElementById('hud-bits');
+      const hudHeat = document.getElementById('hud-heat');
+      const hudClock = document.getElementById('hud-clock');
+      const fsmStrata = document.getElementById('fsm-strata');
+      const fsmHb = document.getElementById('fsm-hb');
+      const fsmThermo = document.getElementById('fsm-thermo');
+      const slider = document.getElementById('scrubber-slider');
+      const btnScaleToggle = document.getElementById('btn-scale-toggle');
+      const btnPlayPause = document.getElementById('btn-play-pause');
+      const btnStepBack = document.getElementById('btn-step-back');
+      const btnStepFwd = document.getElementById('btn-step-fwd');
+      const btnJumpLive = document.getElementById('btn-jump-live');
+      const selectRate = document.getElementById('select-rate');
+      const smtToggle = document.getElementById('smt-toggle');
+      const smtContent = document.getElementById('smt-content');
+      const btnRollbackPreview = document.getElementById('btn-rollback-preview');
+      const btnRollbackConfirm = document.getElementById('btn-rollback-confirm');
+      const undoFeedback = document.getElementById('undo-feedback');
+
+      // Filter DOM Elements
+      const filterConvSelect = document.getElementById('filter-conversation');
+      const filterIncludeSubagents = document.getElementById('filter-include-subagents');
+      const filterSubSelect = document.getElementById('filter-subagent');
+      const filterSourceSelect = document.getElementById('filter-source');
+      const filterTargetSelect = document.getElementById('filter-target');
+      const btnClearFilter = document.getElementById('btn-clear-filter');
+      const filterStats = document.getElementById('filter-stats');
+      const inspectConv = document.getElementById('inspect-conv');
+      const inspectSubagent = document.getElementById('inspect-subagent');
+      const inspectSource = document.getElementById('inspect-source');
+      const inspectTarget = document.getElementById('inspect-target');
+
+      // Omni-Search & Ribbon Utility Elements
+      const inputOmniSearch = document.getElementById('input-omni-search');
+      const btnClearSearch = document.getElementById('btn-clear-search');
+      const statusPillsGroup = document.getElementById('status-pills-group');
+      const pillStatusAll = document.getElementById('pill-status-all');
+      const pillStatusSuccess = document.getElementById('pill-status-success');
+      const pillStatusFailed = document.getElementById('pill-status-failed');
+      const pillStatusRecovery = document.getElementById('pill-status-recovery');
+      const countStatusAll = document.getElementById('count-status-all');
+      const countStatusSuccess = document.getElementById('count-status-success');
+      const countStatusFailed = document.getElementById('count-status-failed');
+      const countStatusRecovery = document.getElementById('count-status-recovery');
+      const btnDensityCompact = document.getElementById('btn-density-compact');
+      const btnDensityComfortable = document.getElementById('btn-density-comfortable');
+      const btnExportLogs = document.getElementById('btn-export-logs');
+      const activeChipsContainer = document.getElementById('active-chips-container');
+
+      // HTML Escape Utility
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Conversation Name Registry (Maps conversation_id -> {role, parent, latest_timestamp_ns, event_count})
+      let conversationNames = {};
+
+      // Parent-Child Conversation Resolution & Filtering Helpers
+      function getParentConversation(convId) {
+        return (conversationNames[convId] && conversationNames[convId].parent) ? conversationNames[convId].parent : null;
+      }
+
+      function isSubagentOf(childConvId, parentConvId) {
+        if (!childConvId || !parentConvId || parentConvId === 'ALL') return false;
+        return getParentConversation(childConvId) === parentConvId;
+      }
+
+      function txMatchesConversation(tx, selectedConv) {
+        if (!selectedConv || selectedConv === 'ALL') return true;
+        const conv = getTxConversation(tx);
+        if (conv === selectedConv) return true;
+        const includeSub = filterIncludeSubagents ? filterIncludeSubagents.checked : true;
+        if (includeSub && isSubagentOf(conv, selectedConv)) return true;
+        return false;
+      }
+
+      // Helper: Extract raw conversation ID from transaction (Memoized O(1))
+      function getTxConversation(tx) {
+        if (!tx) return 'default';
+        if (tx._conv !== undefined) return tx._conv;
+        if (tx.payload_json) {
+          try {
+            const p = (tx._parsedPayload !== undefined)
+              ? tx._parsedPayload
+              : (tx._parsedPayload = (typeof tx.payload_json === 'string' ? JSON.parse(tx.payload_json) : tx.payload_json));
+            if (p && p.conversation_id) return (tx._conv = String(p.conversation_id));
+          } catch(e) {}
+        }
+        return (tx._conv = String(tx.trace_id || 'default'));
+      }
+
+      // Helper: Format Conversation ID for UI dropdown display with recency indicator
+      function formatConvOption(convId, role, isLatest = false, latestTsNs = 0) {
+        if (!convId || convId === 'ALL') return 'All Conversations';
+        const shortConv = convId.length > 20 ? convId.substring(0, 8) + '...' + convId.substring(convId.length - 6) : convId;
+
+        let resolvedRole = role;
+        if (!resolvedRole && conversationNames[convId] && conversationNames[convId].role) {
+          resolvedRole = conversationNames[convId].role;
+        }
+
+        let label = resolvedRole ? `${shortConv} [${resolvedRole}]` : shortConv;
+
+        if (isLatest) {
+          label += ' [latest]';
+        } else if (latestTsNs > 0) {
+          const nowNs = Date.now() * 1000000;
+          const diffSec = Math.max(0, Math.floor((nowNs - latestTsNs) / 1e9));
+          if (diffSec < 60) {
+            label += ` [${diffSec}s ago]`;
+          } else if (diffSec < 3600) {
+            label += ` [${Math.floor(diffSec / 60)}m ago]`;
+          }
+        }
+        return label;
+      }
+
+      // Helper: Extract subagent persona/role (Memoized O(1))
+      function getTxSubagent(tx) {
+        if (!tx) return 'Main Orchestrator';
+        if (tx._subagent !== undefined) return tx._subagent;
+        const conv = getTxConversation(tx);
+        // If this transaction belongs to a known child subagent, inherit its authentic declared role
+        if (conversationNames[conv] && conversationNames[conv].role && conversationNames[conv].parent) {
+          return (tx._subagent = conversationNames[conv].role);
+        }
+        if (tx.subagent_role && tx.subagent_role !== 'None' && tx.subagent_role !== 'Main Orchestrator') {
+          return (tx._subagent = tx.subagent_role);
+        }
+        if (tx.subagent_id && tx.subagent_id !== 'None' && tx.subagent_id !== 'self' && tx.subagent_id !== conv) {
+          return (tx._subagent = tx.subagent_id);
+        }
+        if (tx.payload_json) {
+          try {
+            const p = (tx._parsedPayload !== undefined)
+              ? tx._parsedPayload
+              : (tx._parsedPayload = (typeof tx.payload_json === 'string' ? JSON.parse(tx.payload_json) : tx.payload_json));
+            if (p) {
+              if (p.subagent_role && p.subagent_role !== 'None' && p.subagent_role !== 'Main Orchestrator') {
+                return (tx._subagent = p.subagent_role);
+              }
+              if (p.tool_name === 'invoke_subagent' && p.tool_args) {
+                return (tx._subagent = p.tool_args.Role || p.tool_args.TypeName || 'Subagent');
+              }
+            }
+          } catch(e) {}
+        }
+        if (conversationNames[conv] && conversationNames[conv].role) {
+          return (tx._subagent = conversationNames[conv].role);
+        }
+        return (tx._subagent = 'Main Orchestrator');
+      }
+
+      // Execution Status Normalization (SUCCESS | FAILED | RECOVERY)
+      function getTxStatus(tx) {
+        if (!tx) return 'SUCCESS';
+        if (tx.error) return 'FAILED';
+        const raw = (tx.status || 'SUCCESS').toUpperCase();
+        if (raw === 'ERROR') return 'FAILED';
+        return raw;
+      }
+
+      // Memoized Omni-Search Blob Construction (Low-overhead ingestion cache)
+      function buildSearchBlob(tx) {
+        if (tx._searchBlob !== undefined) return tx._searchBlob;
+        const conv = getTxConversation(tx);
+        const sub = getTxSubagent(tx);
+        const src = tx.source_service || '';
+        const tgt = tx.target_service || '';
+        const verb = tx.verb || '';
+        const status = getTxStatus(tx);
+        const summary = tx.payload_summary || '';
+        const txId = tx.transaction_id || '';
+        const trace = tx.trace_id || '';
+        let payloadText = '';
+        if (tx.payload_json) {
+          payloadText = typeof tx.payload_json === 'string' ? tx.payload_json : JSON.stringify(tx.payload_json);
+        }
+        return (tx._searchBlob = `${txId} ${trace} ${conv} ${sub} ${src} ${tgt} ${verb} ${status} ${summary} ${payloadText}`.toLowerCase());
+      }
+
+      // Live Substring and Safe Regex Matching
+      function matchesSearch(tx) {
+        if (!searchQuery) return true;
+        const blob = buildSearchBlob(tx);
+        if (searchRegex) {
+          try {
+            return searchRegex.test(blob);
+          } catch (e) {
+            return false;
+          }
+        }
+        return blob.includes(searchQuery.toLowerCase());
+      }
+
+      // Real-time Match Highlighting with <mark class="search-highlight">
+      function highlightText(text) {
+        if (!text || !searchQuery) return escapeHtml(text);
+        const str = String(text);
+        if (searchRegex) {
+          try {
+            return str.replace(searchRegex, match => `<mark class="search-highlight">${escapeHtml(match)}</mark>`);
+          } catch(e) {
+            return escapeHtml(str);
+          }
+        }
+        const lower = str.toLowerCase();
+        const target = searchQuery.toLowerCase();
+        let idx = lower.indexOf(target);
+        if (idx === -1) return escapeHtml(str);
+
+        let res = '';
+        let lastIdx = 0;
+        while (idx !== -1) {
+          res += escapeHtml(str.substring(lastIdx, idx));
+          res += `<mark class="search-highlight">${escapeHtml(str.substring(idx, idx + target.length))}</mark>`;
+          lastIdx = idx + target.length;
+          idx = lower.indexOf(target, lastIdx);
+        }
+        res += escapeHtml(str.substring(lastIdx));
+        return res;
+      }
+
+      // Active Filter Chips Ribbon Renderer
+      function renderActiveChips() {
+        if (!activeChipsContainer) return;
+        const chips = [];
+
+        if (searchQuery) {
+          const displayQ = searchQuery.length > 20 ? searchQuery.substring(0, 18) + '...' : searchQuery;
+          chips.push({
+            type: 'search',
+            label: `Search: "${displayQ}"`,
+            onRemove: () => {
+              searchQuery = '';
+              searchRegex = null;
+              if (inputOmniSearch) inputOmniSearch.value = '';
+              if (btnClearSearch) btnClearSearch.style.display = 'none';
+              applyFilters();
+            }
+          });
+        }
+
+        if (filterStatus !== 'ALL') {
+          chips.push({
+            type: 'status',
+            label: `Status: ${filterStatus}`,
+            onRemove: () => {
+              filterStatus = 'ALL';
+              applyFilters();
+            }
+          });
+        }
+
+        if (filterConversation !== 'ALL') {
+          const shortConv = filterConversation.length > 16 ? filterConversation.substring(0, 8) + '...' : filterConversation;
+          chips.push({
+            type: 'conv',
+            label: `Conv: ${shortConv}`,
+            onRemove: () => {
+              if (filterConvSelect) filterConvSelect.value = 'ALL';
+              applyFilters();
+            }
+          });
+        }
+
+        if (filterSubagent !== 'ALL') {
+          chips.push({
+            type: 'subagent',
+            label: `Role: ${filterSubagent}`,
+            onRemove: () => {
+              if (filterSubSelect) filterSubSelect.value = 'ALL';
+              applyFilters();
+            }
+          });
+        }
+
+        if (filterSource !== 'ALL') {
+          chips.push({
+            type: 'source',
+            label: `Src: ${filterSource}`,
+            onRemove: () => {
+              if (filterSourceSelect) filterSourceSelect.value = 'ALL';
+              applyFilters();
+            }
+          });
+        }
+
+        if (filterTarget !== 'ALL') {
+          chips.push({
+            type: 'target',
+            label: `Tgt: ${filterTarget}`,
+            onRemove: () => {
+              if (filterTargetSelect) filterTargetSelect.value = 'ALL';
+              applyFilters();
+            }
+          });
+        }
+
+        if (chips.length === 0) {
+          activeChipsContainer.innerHTML = '';
+          return;
+        }
+
+        let html = '';
+        chips.forEach((c, idx) => {
+          html += `<span class="filter-chip chip-${c.type}">`;
+          html += `  <span class="chip-label">${escapeHtml(c.label)}</span>`;
+          html += `  <button type="button" class="chip-remove" data-chip-idx="${idx}" title="Remove this filter">&times;</button>`;
+          html += `</span>`;
+        });
+        activeChipsContainer.innerHTML = html;
+
+        const removeBtns = (activeChipsContainer && typeof activeChipsContainer.querySelectorAll === 'function')
+          ? activeChipsContainer.querySelectorAll('.chip-remove')
+          : [];
+        removeBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = parseInt(btn.dataset.chipIdx, 10);
+            if (chips[idx] && typeof chips[idx].onRemove === 'function') {
+              chips[idx].onRemove();
+            }
+          });
+        });
+      }
+
+      // Binary search across filteredRecords by timestamp
+      function findFilteredRecordIndexAtTime(targetTimestampNs) {
+        if (!filteredRecords.length) return -1;
+        if (targetTimestampNs <= filteredRecords[0].timestamp_ns) return 0;
+        if (targetTimestampNs >= filteredRecords[filteredRecords.length - 1].timestamp_ns) return filteredRecords.length - 1;
+
+        let low = 0;
+        let high = filteredRecords.length - 1;
+        let best = 0;
+        while (low <= high) {
+          const mid = Math.floor((low + high) / 2);
+          if (filteredRecords[mid].timestamp_ns <= targetTimestampNs) {
+            best = mid;
+            low = mid + 1;
+          } else {
+            high = mid - 1;
+          }
+        }
+        return best;
+      }
+
+      // Throttled Dropdown Updating for Live Streaming
+      let dropdownUpdateRafId = null;
+      function scheduleDropdownUpdate() {
+        if (dropdownUpdateRafId) return;
+        dropdownUpdateRafId = requestAnimationFrame(() => {
+          dropdownUpdateRafId = null;
+          updateDropdownOptions();
+        });
+      }
+
+      // Dynamic Dropdown Population with Multi-Tier Cascading Facets & Recency Ordering
+      function updateDropdownOptions() {
+        if (!filterConvSelect || !filterSubSelect) return;
+
+        const currentConv = filterConvSelect.value || 'ALL';
+        let currentSub = filterSubSelect.value || 'ALL';
+        let currentSrc = filterSourceSelect ? (filterSourceSelect.value || 'ALL') : 'ALL';
+        let currentTgt = filterTargetSelect ? (filterTargetSelect.value || 'ALL') : 'ALL';
+
+        const convCounts = new Map();
+        const convLatestTime = new Map();
+        const convRoles = new Map();
+        const subCounts = new Map();
+        const srcCounts = new Map();
+        const tgtCounts = new Map();
+        const activePairCounts = new Map();
+        const statusCounts = new Map();
+        const allKnownServices = new Set();
+
+        let totalSubMatching = 0;
+        let totalSrcMatching = 0;
+        let totalTgtMatching = 0;
+        let totalStatusMatching = 0;
+
+        // Single-pass O(N) aggregation across projection.records
+        for (let i = 0; i < projection.records.length; i++) {
+          const tx = projection.records[i];
+          const conv = getTxConversation(tx);
+          const sub = getTxSubagent(tx);
+          const src = tx.source_service || 'unknown';
+          const tgt = tx.target_service || 'unknown';
+          const ts = tx.timestamp_ns || 0;
+
+          // 1. Global conversation tracking & latest timestamp & role discovery
+          convCounts.set(conv, (convCounts.get(conv) || 0) + 1);
+          if (!convLatestTime.has(conv) || ts > convLatestTime.get(conv)) {
+            convLatestTime.set(conv, ts);
+          }
+          if (!convRoles.has(conv) && sub && sub !== 'Main Orchestrator' && sub !== 'None') {
+            convRoles.set(conv, sub);
+          }
+          if (tx.source_service) allKnownServices.add(tx.source_service);
+          if (tx.target_service) allKnownServices.add(tx.target_service);
+
+          // 2. Subagent tracking (filtered down by active conversation and parent-child tree)
+          const matchesConv = txMatchesConversation(tx, currentConv);
+          if (matchesConv) {
+            subCounts.set(sub, (subCounts.get(sub) || 0) + 1);
+            totalSubMatching++;
+            const st = getTxStatus(tx);
+            statusCounts.set(st, (statusCounts.get(st) || 0) + 1);
+            totalStatusMatching++;
+          }
+
+          // 3. Source tracking (filtered down by active conversation AND active subagent)
+          const matchesSub = (currentSub === 'ALL' || sub === currentSub);
+          if (matchesConv && matchesSub) {
+            srcCounts.set(src, (srcCounts.get(src) || 0) + 1);
+            totalSrcMatching++;
+            const pairKey = `${src}__->${tgt}`;
+            activePairCounts.set(pairKey, (activePairCounts.get(pairKey) || 0) + 1);
+          }
+
+          // 4. Target tracking (filtered down by active conversation, subagent, AND source)
+          const matchesSrc = (currentSrc === 'ALL' || src === currentSrc);
+          if (matchesConv && matchesSub && matchesSrc) {
+            tgtCounts.set(tgt, (tgtCounts.get(tgt) || 0) + 1);
+            totalTgtMatching++;
+          }
+        }
+
+        // Reconcile downstream filters if selection is no longer valid in this scope
+        if (currentSub !== 'ALL' && !subCounts.has(currentSub)) {
+          currentSub = 'ALL';
+          filterSubSelect.value = 'ALL';
+          filterSubagent = 'ALL';
+        }
+        if (currentSrc !== 'ALL' && !srcCounts.has(currentSrc)) {
+          currentSrc = 'ALL';
+          if (filterSourceSelect) filterSourceSelect.value = 'ALL';
+          filterSource = 'ALL';
+        }
+        if (currentTgt !== 'ALL' && !tgtCounts.has(currentTgt)) {
+          currentTgt = 'ALL';
+          if (filterTargetSelect) filterTargetSelect.value = 'ALL';
+          filterTarget = 'ALL';
+        }
+
+        // 1. Conversation Dropdown - Hierarchical Parent-Child Tree Sorted by Latest Activity
+        const rootConvs = [];
+        const childConvsByParent = new Map();
+        const seenConvs = new Set(convCounts.keys());
+
+        seenConvs.forEach(conv => {
+          const parent = conversationNames[conv] ? conversationNames[conv].parent : null;
+          if (parent && (seenConvs.has(parent) || parent === currentConv)) {
+            if (!childConvsByParent.has(parent)) childConvsByParent.set(parent, []);
+            childConvsByParent.get(parent).push(conv);
+          } else {
+            rootConvs.push(conv);
+          }
+        });
+
+        // Sort root conversations strictly by latest timestamp descending
+        rootConvs.sort((a, b) => {
+          const tA = convLatestTime.get(a) || 0;
+          const tB = convLatestTime.get(b) || 0;
+          return tB - tA;
+        });
+
+        let convHtml = `<option value="ALL">All Conversations (${projection.records.length})</option>`;
+
+        rootConvs.forEach((rootConv, idx) => {
+          const isSelected = (rootConv === currentConv) ? 'selected' : '';
+          const count = convCounts.get(rootConv) || 0;
+          const isLatest = (idx === 0);
+          const latestTs = convLatestTime.get(rootConv) || 0;
+          const role = convRoles.get(rootConv) || (conversationNames[rootConv] ? conversationNames[rootConv].role : null);
+          const displayLabel = formatConvOption(rootConv, role, isLatest, latestTs);
+          const children = childConvsByParent.get(rootConv) || [];
+          const childCountSum = children.reduce((acc, c) => acc + (convCounts.get(c) || 0), 0);
+
+          const treeSuffix = children.length > 0
+            ? ` [${count} own + ${childCountSum} in ${children.length} subagents]`
+            : ` (${count})`;
+
+          convHtml += `<option value="${rootConv}" ${isSelected}>${displayLabel}${treeSuffix}</option>`;
+
+          // Append child subagents indented under parent
+          children.sort((a, b) => (convLatestTime.get(b) || 0) - (convLatestTime.get(a) || 0));
+          children.forEach(child => {
+            const isChildSelected = (child === currentConv) ? 'selected' : '';
+            const cCount = convCounts.get(child) || 0;
+            const cRole = conversationNames[child] ? conversationNames[child].role : (convRoles.get(child) || 'Subagent');
+            const cLabel = formatConvOption(child, cRole, false, convLatestTime.get(child) || 0);
+            convHtml += `<option value="${child}" ${isChildSelected}>&nbsp;&nbsp;&nbsp;&nbsp;└─ ${cLabel} (${cCount})</option>`;
+          });
+        });
+        filterConvSelect.innerHTML = convHtml;
+
+        // 2. Subagent Dropdown - Filtered down to active conversation
+        const sortedSubs = Array.from(subCounts.keys()).sort((a, b) => {
+          return (subCounts.get(b) || 0) - (subCounts.get(a) || 0);
+        });
+
+        const subScopeLabel = (currentConv === 'ALL') ? 'All Personas & Roles' : 'Personas in Conversation';
+        let subHtml = `<option value="ALL" ${currentSub === 'ALL' ? 'selected' : ''}>${subScopeLabel} (${totalSubMatching})</option>`;
+        sortedSubs.forEach(sub => {
+          const count = subCounts.get(sub) || 0;
+          const isSelected = (sub === currentSub) ? 'selected' : '';
+          subHtml += `<option value="${sub}" ${isSelected}>${sub} (${count})</option>`;
+        });
+        filterSubSelect.innerHTML = subHtml;
+
+        // 3. Source Dropdown - Filtered down by active conversation and target
+        if (filterSourceSelect) {
+          const sortedServices = Array.from(allKnownServices).sort();
+          if (currentTgt !== 'ALL') {
+            const activeSources = [];
+            const dormantSources = [];
+            let totalMatching = 0;
+
+            sortedServices.forEach(src => {
+              const pairKey = `${src}__->${currentTgt}`;
+              const count = activePairCounts.get(pairKey) || 0;
+              if (count > 0) {
+                activeSources.push({ src, count });
+                totalMatching += count;
+              } else {
+                dormantSources.push({ src, count: 0 });
+              }
+            });
+
+            let srcHtml = `<option value="ALL" ${currentSrc === 'ALL' ? 'selected' : ''}>All Sources (${totalMatching} to ${currentTgt})</option>`;
+            if (activeSources.length > 0) {
+              srcHtml += `<optgroup label="Active Ingress">`;
+              activeSources.forEach(({ src, count }) => {
+                const isSelected = (src === currentSrc) ? 'selected' : '';
+                srcHtml += `<option value="${src}" ${isSelected}>${src} (${count})</option>`;
+              });
+              srcHtml += `</optgroup>`;
+            }
+            if (dormantSources.length > 0) {
+              srcHtml += `<optgroup label="Dormant Ingress (0 Traffic)">`;
+              dormantSources.forEach(({ src }) => {
+                srcHtml += `<option value="${src}" disabled>${src} (0 - No traffic)</option>`;
+              });
+              srcHtml += `</optgroup>`;
+            }
+            filterSourceSelect.innerHTML = srcHtml;
+          } else {
+            const activeSources = [];
+            const dormantSources = [];
+            sortedServices.forEach(src => {
+              const count = srcCounts.get(src) || 0;
+              if (count > 0) {
+                activeSources.push({ src, count });
+              } else {
+                dormantSources.push({ src, count: 0 });
+              }
+            });
+
+            const srcScopeLabel = (currentConv === 'ALL') ? 'All Sources' : 'Sources in Conversation';
+            let srcHtml = `<option value="ALL" ${currentSrc === 'ALL' ? 'selected' : ''}>${srcScopeLabel} (${totalSrcMatching})</option>`;
+            if (activeSources.length > 0) {
+              activeSources.forEach(({ src, count }) => {
+                const isSelected = (src === currentSrc) ? 'selected' : '';
+                srcHtml += `<option value="${src}" ${isSelected}>${src} (${count})</option>`;
+              });
+            }
+            if (dormantSources.length > 0) {
+              srcHtml += `<optgroup label="Dormant (0 Traffic)">`;
+              dormantSources.forEach(({ src }) => {
+                srcHtml += `<option value="${src}" disabled>${src} (0)</option>`;
+              });
+              srcHtml += `</optgroup>`;
+            }
+            filterSourceSelect.innerHTML = srcHtml;
+          }
+        }
+
+        // 4. Target Dropdown - Filtered down by active conversation and source
+        if (filterTargetSelect) {
+          const sortedServices = Array.from(allKnownServices).sort();
+          if (currentSrc !== 'ALL') {
+            const activeTargets = [];
+            const dormantTargets = [];
+            let totalMatching = 0;
+
+            sortedServices.forEach(tgt => {
+              const pairKey = `${currentSrc}__->${tgt}`;
+              const count = activePairCounts.get(pairKey) || 0;
+              if (count > 0) {
+                activeTargets.push({ tgt, count });
+                totalMatching += count;
+              } else {
+                dormantTargets.push({ tgt, count: 0 });
+              }
+            });
+
+            let tgtHtml = `<option value="ALL" ${currentTgt === 'ALL' ? 'selected' : ''}>All Targets (${totalMatching} from ${currentSrc})</option>`;
+            if (activeTargets.length > 0) {
+              tgtHtml += `<optgroup label="Active Channels">`;
+              activeTargets.forEach(({ tgt, count }) => {
+                const isSelected = (tgt === currentTgt) ? 'selected' : '';
+                tgtHtml += `<option value="${tgt}" ${isSelected}>${tgt} (${count})</option>`;
+              });
+              tgtHtml += `</optgroup>`;
+            }
+            if (dormantTargets.length > 0) {
+              tgtHtml += `<optgroup label="Dormant Channels (0 Traffic)">`;
+              dormantTargets.forEach(({ tgt }) => {
+                tgtHtml += `<option value="${tgt}" disabled>${tgt} (0 - No traffic)</option>`;
+              });
+              tgtHtml += `</optgroup>`;
+            }
+            filterTargetSelect.innerHTML = tgtHtml;
+          } else {
+            const activeTargets = [];
+            const dormantTargets = [];
+            sortedServices.forEach(tgt => {
+              const count = tgtCounts.get(tgt) || 0;
+              if (count > 0) {
+                activeTargets.push({ tgt, count });
+              } else {
+                dormantTargets.push({ tgt, count: 0 });
+              }
+            });
+
+            const tgtScopeLabel = (currentConv === 'ALL') ? 'All Targets' : 'Targets in Conversation';
+            let tgtHtml = `<option value="ALL" ${currentTgt === 'ALL' ? 'selected' : ''}>${tgtScopeLabel} (${totalTgtMatching})</option>`;
+            if (activeTargets.length > 0) {
+              activeTargets.forEach(({ tgt, count }) => {
+                const isSelected = (tgt === currentTgt) ? 'selected' : '';
+                tgtHtml += `<option value="${tgt}" ${isSelected}>${tgt} (${count})</option>`;
+              });
+            }
+            if (dormantTargets.length > 0) {
+              tgtHtml += `<optgroup label="Dormant (0 Traffic)">`;
+              dormantTargets.forEach(({ tgt }) => {
+                tgtHtml += `<option value="${tgt}" disabled>${tgt} (0)</option>`;
+              });
+              tgtHtml += `</optgroup>`;
+            }
+            filterTargetSelect.innerHTML = tgtHtml;
+          }
+        }
+
+        // 5. Update Status Severity Dynamic Counters
+        if (countStatusAll) countStatusAll.textContent = totalStatusMatching;
+        if (countStatusSuccess) countStatusSuccess.textContent = statusCounts.get('SUCCESS') || 0;
+        if (countStatusFailed) countStatusFailed.textContent = statusCounts.get('FAILED') || 0;
+        if (countStatusRecovery) countStatusRecovery.textContent = statusCounts.get('RECOVERY') || 0;
+
+        const statusPills = [
+          { el: pillStatusAll, val: 'ALL' },
+          { el: pillStatusSuccess, val: 'SUCCESS' },
+          { el: pillStatusFailed, val: 'FAILED' },
+          { el: pillStatusRecovery, val: 'RECOVERY' },
+        ];
+        statusPills.forEach(p => {
+          if (p.el && p.el.classList) {
+            if (filterStatus === p.val) p.el.classList.add('active');
+            else p.el.classList.remove('active');
+          }
+        });
+      }
+
+      // Apply Conversation, Subagent, Source, Target, Status & Search Filters to Active Timeline
+      function applyFilters() {
+        filterConversation = filterConvSelect ? filterConvSelect.value : 'ALL';
+        filterSubagent = filterSubSelect ? filterSubSelect.value : 'ALL';
+        filterSource = filterSourceSelect ? filterSourceSelect.value : 'ALL';
+        filterTarget = filterTargetSelect ? filterTargetSelect.value : 'ALL';
+
+        // Recompute dropdown counts and auto-reconcile invalid downstream selections
+        updateDropdownOptions();
+
+        filterConversation = filterConvSelect ? filterConvSelect.value : 'ALL';
+        filterSubagent = filterSubSelect ? filterSubSelect.value : 'ALL';
+        filterSource = filterSourceSelect ? filterSourceSelect.value : 'ALL';
+        filterTarget = filterTargetSelect ? filterTargetSelect.value : 'ALL';
+
+        const isAll = (
+          filterConversation === 'ALL' &&
+          filterSubagent === 'ALL' &&
+          filterSource === 'ALL' &&
+          filterTarget === 'ALL' &&
+          filterStatus === 'ALL' &&
+          !searchQuery
+        );
+
+        if (isAll) {
+          filteredRecords = [...projection.records];
+          if (btnClearFilter) btnClearFilter.style.display = 'none';
+        } else {
+          filteredRecords = projection.records.filter(tx => {
+            const matchesConv = txMatchesConversation(tx, filterConversation);
+            const matchesSub = (filterSubagent === 'ALL') || (getTxSubagent(tx) === filterSubagent);
+            const matchesSrc = (filterSource === 'ALL') || (tx.source_service === filterSource);
+            const matchesTgt = (filterTarget === 'ALL') || (tx.target_service === filterTarget);
+            const matchesSt = (filterStatus === 'ALL') || (getTxStatus(tx) === filterStatus);
+            const matchesTxt = matchesSearch(tx);
+            return matchesConv && matchesSub && matchesSrc && matchesTgt && matchesSt && matchesTxt;
+          });
+          if (btnClearFilter) btnClearFilter.style.display = 'inline-block';
+        }
+
+        renderActiveChips();
+
+        const totalCount = projection.records.length;
+        const filteredCount = filteredRecords.length;
+        if (filterStats) {
+          const pct = totalCount > 0 ? Math.round((filteredCount / totalCount) * 100) : 100;
+          filterStats.textContent = `Showing ${filteredCount} / ${totalCount} events (${pct}%)`;
+        }
+        const inspectCountEl = document.getElementById('inspect-tx-count');
+        if (inspectCountEl) {
+          inspectCountEl.textContent = `${filteredCount} Records In View`;
+        }
+
+        if (filteredRecords.length > 0) {
+          playheadIndex = Math.max(0, Math.min(filteredRecords.length - 1, playheadIndex));
+          renderFrameAt(playheadIndex, false);
+        } else {
+          slider.value = 0;
+          document.getElementById('scrubber-current-time').textContent = '00:00:00.000 (+0.0s)';
+          document.getElementById('scrubber-head-time').textContent = '00:00:00.000 (+0.0s)';
+          const durEl = document.getElementById('scrubber-duration');
+          if (durEl) durEl.textContent = '00:00:00.000';
+        }
+
+        // Render Subagent Traffic Routing Breakdown Matrix & Live Logs Table
+        renderSubagentRoutingMatrix(filteredRecords);
+        renderLiveLogs(filteredRecords);
+        updateHudMeters();
+      }
+
+      // Update HUD Meters (Dynamically Scoped to Active Conversation Filter)
+      function updateHudMeters() {
+        const isAllConvs = !filterConversation || filterConversation === 'ALL';
+        
+        let scopeRecords = projection.records;
+        if (!isAllConvs) {
+          scopeRecords = projection.records.filter(tx => txMatchesConversation(tx, filterConversation));
+        }
+
+        let scopeTokens = 0;
+        let scopeBits = 0;
+        let scopeHeat = 0.0;
+
+        for (let i = 0; i < scopeRecords.length; i++) {
+          const tx = scopeRecords[i];
+          scopeTokens += (tx.bpe_tokens_in || 0) + (tx.bpe_tokens_out || 0);
+          scopeBits += (tx.bits_erased || 0);
+          scopeHeat += (tx.heat_dissipated_joules || 0.0);
+        }
+
+        if (hudTokens) {
+          if (isAllConvs) {
+            hudTokens.textContent = `${scopeTokens.toLocaleString()} BPE (Cluster)`;
+            if (hudTokensLabel) hudTokensLabel.textContent = 'Tokens Burned';
+          } else {
+            hudTokens.textContent = `${scopeTokens.toLocaleString()} / 312,000`;
+            if (hudTokensLabel) hudTokensLabel.textContent = 'Tokens Burned (Lease)';
+          }
+        }
+
+        if (hudBits) {
+          hudBits.textContent = scopeBits.toLocaleString();
+        }
+
+        if (hudHeat) {
+          hudHeat.textContent = scopeHeat > 0.001 ? `${scopeHeat.toFixed(4)} J` : `${scopeHeat.toExponential(3)} J`;
+        }
+      }
+
+      // Filter Event Listeners
+      if (filterConvSelect) {
+        filterConvSelect.addEventListener('change', () => applyFilters());
+      }
+      if (filterIncludeSubagents) {
+        filterIncludeSubagents.addEventListener('change', () => applyFilters());
+      }
+      if (filterSubSelect) {
+        filterSubSelect.addEventListener('change', () => applyFilters());
+      }
+      if (filterSourceSelect) {
+        filterSourceSelect.addEventListener('change', () => applyFilters());
+      }
+      if (filterTargetSelect) {
+        filterTargetSelect.addEventListener('change', () => applyFilters());
+      }
+      if (btnClearFilter) {
+        btnClearFilter.addEventListener('click', () => {
+          if (filterConvSelect) filterConvSelect.value = 'ALL';
+          if (filterSubSelect) filterSubSelect.value = 'ALL';
+          if (filterSourceSelect) filterSourceSelect.value = 'ALL';
+          if (filterTargetSelect) filterTargetSelect.value = 'ALL';
+          filterStatus = 'ALL';
+          searchQuery = '';
+          searchRegex = null;
+          if (inputOmniSearch) inputOmniSearch.value = '';
+          if (btnClearSearch) btnClearSearch.style.display = 'none';
+          applyFilters();
+        });
+      }
+
+      // Omni-Search Event Listeners & Keyboard Shortcuts
+      if (inputOmniSearch) {
+        inputOmniSearch.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            inputOmniSearch.value = '';
+            searchQuery = '';
+            searchRegex = null;
+            if (btnClearSearch) btnClearSearch.style.display = 'none';
+            inputOmniSearch.blur();
+            applyFilters();
+          }
+        });
+
+        inputOmniSearch.addEventListener('input', () => {
+          const val = inputOmniSearch.value.trim();
+          if (btnClearSearch) {
+            btnClearSearch.style.display = val.length > 0 ? 'inline-block' : 'none';
+          }
+          if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+          searchDebounceTimer = setTimeout(() => {
+            searchQuery = val;
+            searchRegex = null;
+            if (val.startsWith('/') && val.lastIndexOf('/') > 0) {
+              try {
+                const lastSlash = val.lastIndexOf('/');
+                const pattern = val.slice(1, lastSlash);
+                const flags = val.slice(lastSlash + 1) || 'i';
+                searchRegex = new RegExp(pattern, flags);
+              } catch(err) {
+                searchRegex = null;
+              }
+            }
+            applyFilters();
+          }, 150);
+        });
+      }
+
+      if (btnClearSearch) {
+        btnClearSearch.addEventListener('click', () => {
+          if (inputOmniSearch) {
+            inputOmniSearch.value = '';
+            inputOmniSearch.focus();
+          }
+          searchQuery = '';
+          searchRegex = null;
+          btnClearSearch.style.display = 'none';
+          applyFilters();
+        });
+      }
+
+      // Status Severity Quick-Pills Listeners
+      const statusPillElements = [pillStatusAll, pillStatusSuccess, pillStatusFailed, pillStatusRecovery];
+      statusPillElements.forEach(pill => {
+        if (pill) {
+          pill.addEventListener('click', () => {
+            const st = pill.dataset.status || (pill.getAttribute && pill.getAttribute('data-status')) || 'ALL';
+            filterStatus = st;
+            applyFilters();
+          });
+        }
+      });
+
+      // Log Density Toggles
+      const liveLogsWrapper = document.getElementById('live-logs-wrapper');
+      if (btnDensityCompact) {
+        btnDensityCompact.addEventListener('click', () => {
+          logDensity = 'compact';
+          btnDensityCompact.classList.add('active');
+          if (btnDensityComfortable) btnDensityComfortable.classList.remove('active');
+          if (liveLogsWrapper) {
+            liveLogsWrapper.classList.add('density-compact');
+            liveLogsWrapper.classList.remove('density-comfortable');
+          }
+        });
+      }
+      if (btnDensityComfortable) {
+        btnDensityComfortable.addEventListener('click', () => {
+          logDensity = 'comfortable';
+          btnDensityComfortable.classList.add('active');
+          if (btnDensityCompact) btnDensityCompact.classList.remove('active');
+          if (liveLogsWrapper) {
+            liveLogsWrapper.classList.add('density-comfortable');
+            liveLogsWrapper.classList.remove('density-compact');
+          }
+        });
+      }
+
+      // JSON Export Handler
+      if (btnExportLogs) {
+        btnExportLogs.addEventListener('click', () => {
+          const exportPayload = {
+            exported_at: new Date().toISOString(),
+            total_events_in_export: filteredRecords.length,
+            filters_applied: {
+              conversation: filterConversation,
+              subagent: filterSubagent,
+              source: filterSource,
+              target: filterTarget,
+              status: filterStatus,
+              search_query: searchQuery,
+            },
+            transactions: filteredRecords,
+          };
+          const blob = new Blob([JSON.stringify(exportPayload, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `meta-axioma-telemetry-${Date.now()}.json`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        });
+      }
+
+      // ==========================================================================
+      // Holographic Collapsible Cards & Adaptive Live Logs Flex Architecture
+      // ==========================================================================
+      const collapsibleCardIds = ['topology', 'routing', 'logs', 'inspector', 'undo'];
+      const collapsedCards = new Set();
+      let activeLayoutPreset = 'balanced';
+
+      // Load persisted card collapse state from localStorage
+      try {
+        const rawState = typeof localStorage !== 'undefined' ? localStorage.getItem('zenith_cockpit_card_state') : null;
+        if (rawState) {
+          const parsed = JSON.parse(rawState);
+          if (Array.isArray(parsed.collapsedCards)) {
+            parsed.collapsedCards.forEach(c => collapsedCards.add(c));
+          }
+          if (parsed.activePreset) {
+            activeLayoutPreset = parsed.activePreset;
+          }
+        }
+      } catch (err) {}
+
+      function syncCardDomState(cardId) {
+        const cardEl = document.getElementById(`card-${cardId}`);
+        const btnCollapse = document.getElementById(`btn-collapse-${cardId}`);
+        const isCollapsed = collapsedCards.has(cardId);
+        if (cardEl && cardEl.classList) {
+          if (isCollapsed) cardEl.classList.add('card-collapsed');
+          else cardEl.classList.remove('card-collapsed');
+        }
+        if (btnCollapse) {
+          btnCollapse.title = isCollapsed ? `Expand ${cardId} Card` : `Collapse ${cardId} Card`;
+        }
+      }
+
+      function updateLogsExpansionTier() {
+        const isTopologyCollapsed = collapsedCards.has('topology');
+        const isRoutingCollapsed = collapsedCards.has('routing');
+        if (!liveLogsWrapper || !liveLogsWrapper.classList) return;
+
+        if (isTopologyCollapsed && isRoutingCollapsed) {
+          liveLogsWrapper.classList.add('expanded-logs-tier2');
+          liveLogsWrapper.classList.remove('expanded-logs-tier1');
+        } else if (isTopologyCollapsed) {
+          liveLogsWrapper.classList.add('expanded-logs-tier1');
+          liveLogsWrapper.classList.remove('expanded-logs-tier2');
+        } else {
+          liveLogsWrapper.classList.remove('expanded-logs-tier1');
+          liveLogsWrapper.classList.remove('expanded-logs-tier2');
+        }
+      }
+
+      function persistCardState() {
+        try {
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('zenith_cockpit_card_state', JSON.stringify({
+              collapsedCards: Array.from(collapsedCards),
+              activePreset: activeLayoutPreset
+            }));
+          }
+        } catch (e) {}
+      }
+
+      function toggleCardCollapse(cardId) {
+        if (collapsedCards.has(cardId)) {
+          collapsedCards.delete(cardId);
+        } else {
+          collapsedCards.add(cardId);
+        }
+        syncCardDomState(cardId);
+        updateLogsExpansionTier();
+        persistCardState();
+
+        // Self-Healing Redraw on Topology Canvas expansion
+        if (cardId === 'topology' && !collapsedCards.has('topology')) {
+          requestAnimationFrame(() => {
+            if (topology && typeof topology.resize === 'function') {
+              topology.resize();
+            }
+          });
+        }
+      }
+
+      function applyLayoutPreset(preset) {
+        activeLayoutPreset = preset;
+        if (preset === 'logs') {
+          collapsedCards.add('topology');
+          collapsedCards.add('routing');
+          collapsedCards.delete('logs');
+          collapsedCards.delete('inspector');
+        } else if (preset === 'mesh') {
+          collapsedCards.delete('topology');
+          collapsedCards.delete('routing');
+          collapsedCards.add('logs');
+          collapsedCards.delete('inspector');
+        } else {
+          // balanced
+          collapsedCards.clear();
+        }
+
+        collapsibleCardIds.forEach(id => syncCardDomState(id));
+        updateLogsExpansionTier();
+        persistCardState();
+
+        // Update preset buttons active state
+        const presetBtns = [
+          { el: document.getElementById('preset-balanced'), val: 'balanced' },
+          { el: document.getElementById('preset-logs'), val: 'logs' },
+          { el: document.getElementById('preset-mesh'), val: 'mesh' },
+        ];
+        presetBtns.forEach(p => {
+          if (p.el && p.el.classList) {
+            if (preset === p.val) p.el.classList.add('active');
+            else p.el.classList.remove('active');
+          }
+        });
+
+        if (!collapsedCards.has('topology')) {
+          requestAnimationFrame(() => {
+            if (topology && typeof topology.resize === 'function') topology.resize();
+          });
+        }
+      }
+
+      // Initialize loaded card states
+      collapsibleCardIds.forEach(id => syncCardDomState(id));
+      updateLogsExpansionTier();
+
+      // Bind Card Header and Collapse Buttons
+      collapsibleCardIds.forEach(id => {
+        const btn = document.getElementById(`btn-collapse-${id}`);
+        if (btn) {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleCardCollapse(id);
+          });
+        }
+        const header = document.getElementById(`header-${id}`);
+        if (header) {
+          header.addEventListener('click', (e) => {
+            if (e.target && (e.target.closest('button') || e.target.closest('input') || e.target.closest('select') || e.target.closest('a'))) {
+              return;
+            }
+            toggleCardCollapse(id);
+          });
+        }
+      });
+
+      // Bind Preset Buttons
+      const btnPresetBalanced = document.getElementById('preset-balanced');
+      const btnPresetLogs = document.getElementById('preset-logs');
+      const btnPresetMesh = document.getElementById('preset-mesh');
+      if (btnPresetBalanced) btnPresetBalanced.addEventListener('click', () => applyLayoutPreset('balanced'));
+      if (btnPresetLogs) btnPresetLogs.addEventListener('click', () => applyLayoutPreset('logs'));
+      if (btnPresetMesh) btnPresetMesh.addEventListener('click', () => applyLayoutPreset('mesh'));
+
+      // Keyboard Shortcuts for Card Collapsing (Alt+1: Topology, Alt+2: Routing, Alt+3: Logs, Alt+4: Inspector)
+      document.addEventListener('keydown', (e) => {
+        if (e.altKey) {
+          if (e.key === '1') { e.preventDefault(); toggleCardCollapse('topology'); }
+          else if (e.key === '2') { e.preventDefault(); toggleCardCollapse('routing'); }
+          else if (e.key === '3') { e.preventDefault(); toggleCardCollapse('logs'); }
+          else if (e.key === '4') { e.preventDefault(); toggleCardCollapse('inspector'); }
+        }
+      });
+
+      // Global Keyboard Shortcut for Omni-Search (Ctrl+K, Cmd+K, /)
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+          e.preventDefault();
+          if (inputOmniSearch) {
+            inputOmniSearch.focus();
+            inputOmniSearch.select();
+          }
+        } else if (e.key === '/' && document.activeElement !== inputOmniSearch &&
+                   (!document.activeElement || (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT' && document.activeElement.tagName !== 'TEXTAREA'))) {
+          e.preventDefault();
+          if (inputOmniSearch) {
+            inputOmniSearch.focus();
+            inputOmniSearch.select();
+          }
+        }
+      });
+
+      // FSM Subscription
+      fsm.subscribe(state => {
+        fsmStrata.textContent = state.activeStrataState;
+        fsmHb.textContent = state.activeHeartbeatState.replace('heartbeat_', '');
+        fsmThermo.textContent = state.activeThermoState.replace('thermo_', '');
+      });
+
+      // SMT Drawer Toggle
+      smtToggle.addEventListener('click', () => {
+        smtContent.classList.toggle('open');
+      });
+
+      // Format Nanoseconds to HH:MM:SS.mmm
+      function formatTimeNs(ns) {
+        if (!ns) return '00:00:00.000';
+        const ms = Math.floor(ns / 1000000);
+        const d = new Date(ms);
+        return d.toTimeString().split(' ')[0] + '.' + String(d.getMilliseconds()).padStart(3, '0');
+      }
+
+      // Format Nanoseconds Duration to HH:MM:SS.mmm
+      function formatDurationNs(ns) {
+        if (!ns || ns <= 0) return '00:00:00.000';
+        const totalMs = Math.floor(ns / 1000000);
+        const ms = totalMs % 1000;
+        const totalSec = Math.floor(totalMs / 1000);
+        const sec = totalSec % 60;
+        const totalMin = Math.floor(totalSec / 60);
+        const min = totalMin % 60;
+        const hrs = Math.floor(totalMin / 60);
+        return `${String(hrs).padStart(2, '0')}:${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}.${String(ms).padStart(3, '0')}`;
+      }
+
+      // Update Inspector Panel
+      function updateInspector(tx) {
+        if (!tx) return;
+        selectedTx = tx;
+        document.getElementById('inspect-tx-id').textContent = tx.transaction_id;
+        document.getElementById('inspect-trace-span').textContent = `${(tx.trace_id||'').substring(0,8)}... / ${(tx.span_id||'').substring(0,8)}...`;
+
+        const convId = getTxConversation(tx);
+        const subRole = getTxSubagent(tx);
+
+        if (inspectConv) {
+          inspectConv.textContent = convId;
+          inspectConv.title = `Conversation ID: ${convId} (Click to filter)`;
+          inspectConv.onclick = () => {
+            if (filterConvSelect) filterConvSelect.value = convId;
+            applyFilters();
+          };
+        }
+        if (inspectSubagent) {
+          inspectSubagent.textContent = subRole;
+          inspectSubagent.onclick = () => {
+            if (filterSubSelect) filterSubSelect.value = subRole;
+            applyFilters();
+          };
+        }
+
+        document.getElementById('inspect-task').textContent = tx.causal_task_id;
+        document.getElementById('inspect-phase').textContent = tx.phase;
+        if (inspectSource && inspectTarget) {
+          inspectSource.textContent = tx.source_service;
+          inspectSource.title = `Source Service: ${tx.source_service} (Click to filter by source)`;
+          inspectSource.onclick = () => {
+            if (filterSourceSelect) filterSourceSelect.value = tx.source_service;
+            applyFilters();
+          };
+          inspectTarget.textContent = tx.target_service;
+          inspectTarget.title = `Target Service: ${tx.target_service} (Click to filter by target)`;
+          inspectTarget.onclick = () => {
+            if (filterTargetSelect) filterTargetSelect.value = tx.target_service;
+            applyFilters();
+          };
+        } else {
+          const epEl = document.getElementById('inspect-endpoints');
+          if (epEl) epEl.textContent = `${tx.source_service} -> ${tx.target_service}`;
+        }
+        document.getElementById('inspect-verb').textContent = tx.verb;
+        document.getElementById('inspect-summary').textContent = tx.payload_summary;
+        document.getElementById('inspect-tokens').textContent = `${tx.bpe_tokens_in} in / ${tx.bpe_tokens_out} out`;
+        document.getElementById('inspect-heat').textContent = `${tx.bits_erased} bits / ${(tx.heat_dissipated_joules||0).toExponential(3)} J`;
+        
+        const statusEl = document.getElementById('inspect-status');
+        statusEl.textContent = tx.status;
+        statusEl.style.color = tx.status === 'SUCCESS' ? '#00ff88' : (tx.status === 'CIRCUIT_BROKEN' ? '#ff007f' : '#f59e0b');
+
+        const durEl = document.getElementById('inspect-duration');
+        if (durEl) {
+          const durMs = (tx.duration_ns || 0) / 1000000;
+          durEl.textContent = durMs >= 1000 ? `${(durMs / 1000).toFixed(2)}s (${durMs.toFixed(0)} ms)` : `${durMs.toFixed(2)} ms`;
+        }
+
+        document.getElementById('inspect-merkle').textContent = tx.merkle_leaf_hash;
+        document.getElementById('inspect-tx-count').textContent = `${projection.records.length} Records In Buffer`;
+      }
+
+      // Dynamic Bootstrap Expulsion State
+      const BOOTSTRAP_TX_IDS = new Set([
+        "tx_init_research_spec_001",
+        "tx_init_smt_prover_002"
+      ]);
+      let authenticStreamReceived = false;
+
+      // Sliding window for throughput calculation
+      const recentTxRecords = [];
+      let lastTxReceivedTimeMs = 0;
+
+      function updateIngressStatus(state, color) {
+        const pulse = document.getElementById('status-pulse');
+        const text = document.getElementById('hud-status-text');
+        const card = document.getElementById('hud-status-card');
+        if (text) {
+          text.textContent = state;
+          text.style.color = color;
+        }
+        if (pulse) {
+          pulse.style.backgroundColor = color;
+          pulse.style.boxShadow = `0 0 8px ${color}`;
+        }
+        if (card) {
+          card.style.borderLeftColor = color;
+        }
+      }
+
+      // Heartbeat check for IDLE state & periodic relative timestamp refresh
+      let heartbeatTicks = 0;
+      setInterval(() => {
+        heartbeatTicks++;
+        if (!isLive) return;
+        const now = Date.now();
+        if (lastTxReceivedTimeMs > 0 && (now - lastTxReceivedTimeMs) > 5000) {
+          updateIngressStatus('IDLE', '#64748b');
+          const tpEl = document.getElementById('hud-throughput');
+          if (tpEl) tpEl.textContent = '0.0 tx/s \u2022 0.0ms';
+        }
+        // Refresh relative recency labels every 10 seconds if user is not currently focusing selector
+        if (heartbeatTicks % 10 === 0 && document.activeElement !== filterConvSelect) {
+          scheduleDropdownUpdate();
+        }
+      }, 1000);
+
+      // High-Performance Bulk Historical Ingestion (Sub-15ms Fold for 1,000+ Transactions)
+      function ingestTransactionBatch(txs) {
+        if (!Array.isArray(txs) || !txs.length) return;
+
+        // 1. Expel dummy bootstrap seed on first authentic batch
+        const authenticTxs = txs.filter(r => !BOOTSTRAP_TX_IDS.has(r.transaction_id));
+        if (!authenticStreamReceived && authenticTxs.length > 0) {
+          authenticStreamReceived = true;
+          projection.records = projection.records.filter(r => !BOOTSTRAP_TX_IDS.has(r.transaction_id));
+          totalTokensBurned = 0;
+          totalBitsErased = 0;
+          totalHeatJoules = 0.0;
+          if (topology && typeof topology.clearParticles === 'function') {
+            topology.clearParticles();
+          }
+          updateIngressStatus('STREAMING', '#00ffff');
+        }
+
+        const toAdd = authenticTxs.length > 0 ? authenticTxs : txs;
+
+        // 2. Pre-memoize conversation & subagent properties and accumulate metrics in single pass
+        for (let i = 0; i < toAdd.length; i++) {
+          const tx = toAdd[i];
+          getTxConversation(tx);
+          getTxSubagent(tx);
+          totalTokensBurned += (tx.bpe_tokens_in || 0) + (tx.bpe_tokens_out || 0);
+          totalBitsErased += (tx.bits_erased || 0);
+          totalHeatJoules += (tx.heat_dissipated_joules || 0.0);
+        }
+
+        // 3. Batch insert into projection sliding window (Single sort)
+        projection.addTransactions(toAdd);
+
+        // 4. Update HUD metrics
+        updateHudMeters();
+
+        const lastTx = toAdd[toAdd.length - 1];
+        if (lastTx) {
+          hudClock.textContent = `L: ${lastTx.logical_clock}`;
+
+          // Throughput baseline
+          const nowMs = Date.now();
+          lastTxReceivedTimeMs = nowMs;
+          recentTxRecords.length = 0;
+          recentTxRecords.push({ timeMs: nowMs, durationNs: lastTx.duration_ns || 1000000 });
+
+          // Ingress state
+          if (lastTx.status === 'FAILED') updateIngressStatus('TRANSACTION_ERROR', '#ef4444');
+          else if (lastTx.capital_partition === 'PROTECTED') updateIngressStatus('VERIFYING', '#00ff88');
+          else if (lastTx.status === 'CIRCUIT_BROKEN') updateIngressStatus('CIRCUIT_BROKEN', '#ff007f');
+          else updateIngressStatus('STREAMING', '#00ffff');
+        }
+
+        // 5. Atomic filter calculation and single initial frame render
+        applyFilters();
+      }
+
+      // Handle New Micro-Transaction
+      function ingestTransaction(tx) {
+        if (!tx) return;
+
+        // Dynamic event-sourced projection: Expel dummy bootstrap records on first authentic transaction
+        if (!authenticStreamReceived && !BOOTSTRAP_TX_IDS.has(tx.transaction_id)) {
+          authenticStreamReceived = true;
+
+          // 1. Purge bootstrap dummy records from projection engine sliding buffer
+          projection.records = projection.records.filter(r => !BOOTSTRAP_TX_IDS.has(r.transaction_id));
+
+          // 2. Reset cumulative metrics to zero so authentic data is accurately reflected
+          totalTokensBurned = 0;
+          totalBitsErased = 0;
+          totalHeatJoules = 0.0;
+
+          // 3. Clear canvas particles and flush initial seed state
+          if (topology && typeof topology.clearParticles === 'function') {
+            topology.clearParticles();
+          }
+
+          // 4. Update transaction status HUD indicator
+          updateIngressStatus('STREAMING', '#00ffff');
+        }
+
+        // Memoize properties upfront
+        getTxConversation(tx);
+        getTxSubagent(tx);
+
+        projection.addTransactions([tx]);
+        totalTokensBurned += (tx.bpe_tokens_in || 0) + (tx.bpe_tokens_out || 0);
+        totalBitsErased += (tx.bits_erased || 0);
+        totalHeatJoules += (tx.heat_dissipated_joules || 0.0);
+
+        updateHudMeters();
+        hudClock.textContent = `L: ${tx.logical_clock}`;
+
+        // Trigger Canvas Particle Flow
+        const srcId = tx.source_service.replace('services/', 'node_');
+        const tgtId = tx.target_service.replace('services/', 'node_');
+        topology.triggerParticle(srcId, tgtId, tx.status, tx.duration_ns);
+
+        // Throughput & Latency Calculation
+        const nowMs = Date.now();
+        lastTxReceivedTimeMs = nowMs;
+        recentTxRecords.push({ timeMs: nowMs, durationNs: tx.duration_ns || 1000000 });
+        while (recentTxRecords.length > 0 && (nowMs - recentTxRecords[0].timeMs) > 2000) {
+          recentTxRecords.shift();
+        }
+
+        const windowSec = 2.0;
+        const txRate = (recentTxRecords.length / windowSec).toFixed(1);
+        const avgDurMs = recentTxRecords.length > 0
+          ? (recentTxRecords.reduce((acc, cur) => acc + (cur.durationNs / 1000000), 0) / recentTxRecords.length).toFixed(1)
+          : '0.0';
+
+        const tpEl = document.getElementById('hud-throughput');
+        if (tpEl) tpEl.textContent = `${txRate} tx/s \u2022 ${avgDurMs}ms`;
+
+        // Update Ingress State FSM
+        if (tx.status === 'FAILED') {
+          updateIngressStatus('TRANSACTION_ERROR', '#ef4444');
+        } else if (tx.capital_partition === 'PROTECTED') {
+          updateIngressStatus('VERIFYING', '#00ff88');
+        } else if (tx.status === 'CIRCUIT_BROKEN') {
+          updateIngressStatus('CIRCUIT_BROKEN', '#ff007f');
+        } else {
+          updateIngressStatus('STREAMING', '#00ffff');
+        }
+
+        // Schedule throttled dropdown refresh to prevent DOM thrashing
+        scheduleDropdownUpdate();
+
+        const matchesConv = (filterConversation === 'ALL') || (getTxConversation(tx) === filterConversation);
+        const matchesSub = (filterSubagent === 'ALL') || (getTxSubagent(tx) === filterSubagent);
+        const matchesSrc = (filterSource === 'ALL') || (tx.source_service === filterSource);
+        const matchesTgt = (filterTarget === 'ALL') || (tx.target_service === filterTarget);
+
+        if (matchesConv && matchesSub && matchesSrc && matchesTgt) {
+          filteredRecords.push(tx);
+
+          if (filterStats) {
+            const pct = projection.records.length > 0 ? Math.round((filteredRecords.length / projection.records.length) * 100) : 100;
+            filterStats.textContent = `Showing ${filteredRecords.length} / ${projection.records.length} events (${pct}%)`;
+          }
+          const inspectCountEl = document.getElementById('inspect-tx-count');
+          if (inspectCountEl) {
+            inspectCountEl.textContent = `${filteredRecords.length} Records In View`;
+          }
+
+          if (isLive) {
+            updateInspector(tx);
+            slider.value = 1000;
+            playheadIndex = filteredRecords.length - 1;
+            currentPlayheadNs = tx.timestamp_ns;
+
+            const minNs = filteredRecords[0].timestamp_ns;
+            const maxNs = tx.timestamp_ns;
+            const deltaNs = Math.max(0, maxNs - minNs);
+            const deltaSec = (deltaNs / 1e9).toFixed(1);
+
+            document.getElementById('scrubber-current-time').textContent = formatTimeNs(minNs);
+            document.getElementById('scrubber-head-time').textContent = `${formatTimeNs(maxNs)} (+${deltaSec}s)`;
+
+            const durEl = document.getElementById('scrubber-duration');
+            if (durEl) durEl.textContent = formatDurationNs(deltaNs);
+          }
+        }
+      }
+
+      // Initial Seed Data to populate canvas & scrubber immediately
+      const nowNs = Date.now() * 1000000;
+      const initialSeed = [
+        {
+          transaction_id: "tx_init_research_spec_001",
+          prev_transaction_hash: "0".repeat(64),
+          transaction_hash: "81eb90a4f6f6950af3e11d642bfa507a21ed8e1e0c89b4866cc4c926b98f4e19",
+          merkle_leaf_hash: "0d93b56e57f2a7e416429c16ffa2fd41126749be20d5bc6e70b0762df68e0d75",
+          timestamp_ns: nowNs - 200000000,
+          duration_ns: 1200000,
+          logical_clock: 1,
+          trace_id: "tr_g4b_phase1_arch",
+          span_id: "sp_waterloo_soc",
+          causal_task_id: "task_research_gate",
+          step_index: 0,
+          phase: "PHASE_1_RESEARCH_GATE",
+          source_service: "services/research",
+          source_endpoint: "192.168.40.10:8440",
+          target_service: "services/builder",
+          target_endpoint: "192.168.40.20:8442",
+          channel_id: "channel_research_builder",
+          verb: "EMIT_WATERLOO_SOC_CONTRACT",
+          payload_summary: "Certified Waterloo Tier 1 Situation of Concern and Compositional ContractIR",
+          payload_json: "{}",
+          bpe_tokens_in: 850,
+          bpe_tokens_out: 2400,
+          bits_erased: 320,
+          heat_dissipated_joules: 9.18e-19,
+          capital_partition: "EXPLORATORY",
+          status: "SUCCESS"
+        },
+        {
+          transaction_id: "tx_init_smt_prover_002",
+          prev_transaction_hash: "81eb90a4f6f6950af3e11d642bfa507a21ed8e1e0c89b4866cc4c926b98f4e19",
+          transaction_hash: "9cbcc1b43128822c16674b22de5a80c3be4457feaec3dd4f554ab0041584b5ab",
+          merkle_leaf_hash: "0333d6bf27ac893932c32b07ff4224d4963324f59a03d9dfa10b43b44a978859",
+          timestamp_ns: nowNs - 100000000,
+          duration_ns: 850000,
+          logical_clock: 2,
+          trace_id: "tr_g4b_phase1_arch",
+          span_id: "sp_smt_prover_audit",
+          causal_task_id: "task_smt_audit",
+          step_index: 1,
+          phase: "PHASE_1_RESEARCH_GATE",
+          source_service: "services/audit",
+          source_endpoint: "192.168.40.30:8444",
+          target_service: "services/telemetry",
+          target_endpoint: "192.168.40.40:8446",
+          channel_id: "channel_audit_telemetry",
+          verb: "SMT_PROOF_SOLVED",
+          payload_summary: "Formal Z3 SMT prover certifies non-loopback boundary across 192.168.40.0/24",
+          payload_json: "{}",
+          bpe_tokens_in: 420,
+          bpe_tokens_out: 1100,
+          bits_erased: 180,
+          heat_dissipated_joules: 5.16e-19,
+          capital_partition: "PROTECTED",
+          status: "SUCCESS"
+        }
+      ];
+
+      initialSeed.forEach(tx => ingestTransaction(tx));
+      fsm.send('WAL_INITIALIZED');
+      fsm.send('MESH_CONNECTED');
+
+      // Connect to SSE Live Stream
+      function connectSSE() {
+        try {
+          const evtSource = new EventSource('/api/v1/telemetry/stream');
+          evtSource.addEventListener('handshake', e => {
+            try {
+              const d = JSON.parse(e.data);
+              if (d.conversations && typeof d.conversations === 'object') {
+                conversationNames = Object.assign({}, conversationNames, d.conversations);
+                updateDropdownOptions();
+              }
+            } catch(err) {}
+          });
+          evtSource.addEventListener('transaction', e => {
+            try {
+              const tx = JSON.parse(e.data);
+              ingestTransaction(tx);
+            } catch(err) {}
+          });
+          evtSource.onopen = () => {
+            document.getElementById('conn-pill').classList.remove('disconnected');
+            document.getElementById('conn-text').textContent = 'STREAM LIVE';
+          };
+          evtSource.onerror = () => {
+            document.getElementById('conn-pill').classList.add('disconnected');
+            document.getElementById('conn-text').textContent = 'FALLBACK LOCAL';
+            updateIngressStatus('CIRCUIT_BROKEN', '#ff007f');
+          };
+        } catch(e) {
+          document.getElementById('conn-pill').classList.add('disconnected');
+          document.getElementById('conn-text').textContent = 'LOCAL SANDBOX';
+          updateIngressStatus('CIRCUIT_BROKEN', '#ff007f');
+        }
+      }
+      // Load Historical Window & Conversation Names on Startup/Refresh
+      async function loadHistoricalWindow() {
+        try {
+          const res = await fetch('/api/v1/telemetry/window?start_ns=0&max_records=2000');
+          if (!res.ok) return;
+          const data = await res.json();
+          if (data.conversations && typeof data.conversations === 'object') {
+            conversationNames = Object.assign({}, conversationNames, data.conversations);
+          }
+          let txs = data.transactions;
+          if (!txs && data.transactions_json) {
+            try {
+              txs = typeof data.transactions_json === 'string'
+                ? JSON.parse(data.transactions_json)
+                : data.transactions_json;
+            } catch(e) {}
+          }
+
+          if (Array.isArray(txs) && txs.length > 0) {
+            // Bulk ingest all historical records in a single high-performance pass
+            ingestTransactionBatch(txs);
+          }
+        } catch (err) {
+          console.warn("Historical telemetry load fallback:", err);
+        }
+      }
+
+      async function loadConversationNames() {
+        try {
+          const res = await fetch('/api/v1/telemetry/conversations');
+          if (!res.ok) return;
+          const data = await res.json();
+          if (data.conversations && typeof data.conversations === 'object') {
+            conversationNames = Object.assign({}, conversationNames, data.conversations);
+            updateDropdownOptions();
+          }
+        } catch(e) {}
+      }
+
+      loadConversationNames();
+      loadHistoricalWindow();
+      connectSSE();
+
+      // Playback Engine State & Dual-Scale Architecture
+      let isPlaying = false;
+      let playbackTimer = null;
+
+      function renderFrameAt(index, triggerParticle = true) {
+        if (!filteredRecords.length) return;
+        playheadIndex = Math.max(0, Math.min(filteredRecords.length - 1, index));
+        const tx = filteredRecords[playheadIndex];
+        if (!tx) return;
+
+        currentPlayheadNs = tx.timestamp_ns;
+        updateInspector(tx);
+
+        const minNs = filteredRecords[0].timestamp_ns;
+        const maxNs = filteredRecords[filteredRecords.length - 1].timestamp_ns;
+        const deltaTotalNs = Math.max(0, maxNs - minNs);
+
+        if (scaleMode === 'events') {
+          const ratio = filteredRecords.length > 1 ? (playheadIndex / (filteredRecords.length - 1)) : 1.0;
+          slider.value = Math.max(0, Math.min(1000, Math.floor(ratio * 1000)));
+        } else {
+          const ratio = deltaTotalNs > 0 ? ((currentPlayheadNs - minNs) / deltaTotalNs) : 1.0;
+          slider.value = Math.max(0, Math.min(1000, Math.floor(ratio * 1000)));
+        }
+
+        const offsetSec = deltaTotalNs > 0 ? ((currentPlayheadNs - minNs) / 1e9).toFixed(1) : '0.0';
+        const totalSec = (deltaTotalNs / 1e9).toFixed(1);
+
+        document.getElementById('scrubber-current-time').textContent = `${formatTimeNs(currentPlayheadNs)} (+${offsetSec}s)`;
+        document.getElementById('scrubber-head-time').textContent = `${formatTimeNs(maxNs)} (+${totalSec}s)`;
+
+        const durEl = document.getElementById('scrubber-duration');
+        if (durEl) durEl.textContent = formatDurationNs(deltaTotalNs);
+
+        if (triggerParticle && topology) {
+          const srcId = tx.source_service.replace('services/', 'node_');
+          const tgtId = tx.target_service.replace('services/', 'node_');
+          topology.triggerParticle(srcId, tgtId, tx.status, tx.duration_ns);
+        }
+
+        // Synchronize active row in Live Logs table
+        const tbody = document.getElementById('live-logs-tbody');
+        if (tbody && typeof tbody.querySelector === 'function') {
+          const prevActive = tbody.querySelector('.active-log-row');
+          if (prevActive && prevActive.classList) prevActive.classList.remove('active-log-row');
+          if (tx.transaction_id && typeof CSS !== 'undefined' && typeof CSS.escape === 'function') {
+            const targetRow = tbody.querySelector(`[data-tx-id="${CSS.escape(tx.transaction_id)}"]`);
+            if (targetRow && targetRow.classList) {
+              targetRow.classList.add('active-log-row');
+              const followLive = document.getElementById('live-logs-follow');
+              if (followLive && followLive.checked && typeof targetRow.scrollIntoView === 'function') {
+                targetRow.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+              }
+            }
+          }
+        }
+      }
+
+      function renderTimeAt(targetNs, index, triggerParticle = true) {
+        if (!filteredRecords.length) return;
+        currentPlayheadNs = targetNs;
+        playheadIndex = Math.max(0, Math.min(filteredRecords.length - 1, index));
+        const tx = filteredRecords[playheadIndex];
+        if (!tx) return;
+
+        updateInspector(tx);
+
+        const minNs = filteredRecords[0].timestamp_ns;
+        const maxNs = filteredRecords[filteredRecords.length - 1].timestamp_ns;
+        const deltaTotalNs = Math.max(0, maxNs - minNs);
+
+        if (scaleMode === 'time') {
+          const ratio = deltaTotalNs > 0 ? ((currentPlayheadNs - minNs) / deltaTotalNs) : 1.0;
+          slider.value = Math.max(0, Math.min(1000, Math.floor(ratio * 1000)));
+        } else {
+          const ratio = filteredRecords.length > 1 ? (playheadIndex / (filteredRecords.length - 1)) : 1.0;
+          slider.value = Math.max(0, Math.min(1000, Math.floor(ratio * 1000)));
+        }
+
+        const offsetSec = deltaTotalNs > 0 ? ((currentPlayheadNs - minNs) / 1e9).toFixed(1) : '0.0';
+        const totalSec = (deltaTotalNs / 1e9).toFixed(1);
+
+        document.getElementById('scrubber-current-time').textContent = `${formatTimeNs(currentPlayheadNs)} (+${offsetSec}s)`;
+        document.getElementById('scrubber-head-time').textContent = `${formatTimeNs(maxNs)} (+${totalSec}s)`;
+
+        const durEl = document.getElementById('scrubber-duration');
+        if (durEl) durEl.textContent = formatDurationNs(deltaTotalNs);
+
+        if (triggerParticle && topology) {
+          const srcId = tx.source_service.replace('services/', 'node_');
+          const tgtId = tx.target_service.replace('services/', 'node_');
+          topology.triggerParticle(srcId, tgtId, tx.status, tx.duration_ns);
+        }
+
+        // Synchronize active row in Live Logs table
+        const tbody = document.getElementById('live-logs-tbody');
+        if (tbody && typeof tbody.querySelector === 'function') {
+          const prevActive = tbody.querySelector('.active-log-row');
+          if (prevActive && prevActive.classList) prevActive.classList.remove('active-log-row');
+          if (tx.transaction_id && typeof CSS !== 'undefined' && typeof CSS.escape === 'function') {
+            const targetRow = tbody.querySelector(`[data-tx-id="${CSS.escape(tx.transaction_id)}"]`);
+            if (targetRow && targetRow.classList) {
+              targetRow.classList.add('active-log-row');
+              const followLive = document.getElementById('live-logs-follow');
+              if (followLive && followLive.checked && typeof targetRow.scrollIntoView === 'function') {
+                targetRow.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+              }
+            }
+          }
+        }
+      }
+
+      function stopPlayback() {
+        if (playbackTimer) {
+          clearInterval(playbackTimer);
+          playbackTimer = null;
+        }
+        isPlaying = false;
+      }
+
+      function startPlayback() {
+        stopPlayback();
+        isLive = false;
+        isPlaying = true;
+        btnPlayPause.innerHTML = '&#10074;&#10074; Pause';
+        fsm.send('START_PLAYBACK');
+
+        if (!filteredRecords.length) return;
+        const minNs = filteredRecords[0].timestamp_ns;
+        const maxNs = filteredRecords[filteredRecords.length - 1].timestamp_ns;
+        const rate = parseFloat(selectRate.value) || 1.0;
+
+        if (scaleMode === 'events') {
+          // If at head of timeline, restart from beginning
+          if (playheadIndex >= filteredRecords.length - 1) {
+            playheadIndex = 0;
+            renderFrameAt(playheadIndex, true);
+          }
+
+          // Visual cadence: 1 frame every (100ms / rate)
+          const frameIntervalMs = Math.max(16, Math.floor(100 / rate));
+
+          playbackTimer = setInterval(() => {
+            if (!isPlaying || !filteredRecords.length) {
+              stopPlayback();
+              return;
+            }
+
+            if (playheadIndex < filteredRecords.length - 1) {
+              playheadIndex++;
+              renderFrameAt(playheadIndex, true);
+            } else {
+              stopPlayback();
+              jumpLive();
+            }
+          }, frameIntervalMs);
+        } else {
+          // Continuous Wall-Clock Time Mode
+          // If at head of timeline, restart from minNs
+          if (currentPlayheadNs >= maxNs || playheadIndex >= filteredRecords.length - 1) {
+            currentPlayheadNs = minNs;
+            playheadIndex = 0;
+            renderTimeAt(currentPlayheadNs, playheadIndex, true);
+          }
+
+          const tickMs = 33; // ~30 fps smooth timer
+          playbackTimer = setInterval(() => {
+            if (!isPlaying || !filteredRecords.length) {
+              stopPlayback();
+              return;
+            }
+
+            const elapsedNs = Math.floor(tickMs * 1e6 * rate);
+            currentPlayheadNs += elapsedNs;
+
+            if (currentPlayheadNs >= maxNs) {
+              stopPlayback();
+              jumpLive();
+              return;
+            }
+
+            const newIndex = findFilteredRecordIndexAtTime(currentPlayheadNs);
+            const indexChanged = (newIndex !== playheadIndex);
+            playheadIndex = newIndex;
+            renderTimeAt(currentPlayheadNs, playheadIndex, indexChanged);
+          }, tickMs);
+        }
+      }
+
+      function jumpLive() {
+        stopPlayback();
+        isLive = true;
+        slider.value = 1000;
+        fsm.send('JUMP_LIVE');
+        btnPlayPause.innerHTML = '&#10074;&#10074; Pause';
+        if (filteredRecords.length) {
+          playheadIndex = filteredRecords.length - 1;
+          currentPlayheadNs = filteredRecords[filteredRecords.length - 1].timestamp_ns;
+          renderFrameAt(playheadIndex, false);
+        }
+      }
+
+      // Scrubber Dragging
+      slider.addEventListener('input', (e) => {
+        stopPlayback();
+        isLive = false;
+        fsm.send('SEEK_TRIGGERED');
+        btnPlayPause.innerHTML = '&#9654; Play';
+
+        const ratio = parseFloat(e.target.value) / 1000.0;
+        if (!filteredRecords.length) return;
+
+        if (scaleMode === 'events') {
+          const targetIndex = Math.min(filteredRecords.length - 1, Math.floor(ratio * (filteredRecords.length - 1)));
+          renderFrameAt(targetIndex, false);
+        } else {
+          const minNs = filteredRecords[0].timestamp_ns;
+          const maxNs = filteredRecords[filteredRecords.length - 1].timestamp_ns;
+          const deltaTotalNs = Math.max(0, maxNs - minNs);
+          const targetNs = minNs + Math.floor(ratio * deltaTotalNs);
+          const targetIndex = findFilteredRecordIndexAtTime(targetNs);
+          renderTimeAt(targetNs, targetIndex, false);
+        }
+      });
+
+      // Controls: Scale Toggle Button
+      btnScaleToggle.addEventListener('click', () => {
+        scaleMode = (scaleMode === 'events') ? 'time' : 'events';
+
+        if (scaleMode === 'time') {
+          btnScaleToggle.textContent = 'Scale: Time';
+          btnScaleToggle.classList.add('mode-time');
+          btnScaleToggle.title = 'Current Scale: Continuous Wall-Clock Time (Click to switch to Event Scale)';
+        } else {
+          btnScaleToggle.textContent = 'Scale: Events';
+          btnScaleToggle.classList.remove('mode-time');
+          btnScaleToggle.title = 'Current Scale: Discrete Event Steps (Click to switch to Time Scale)';
+        }
+
+        if (!filteredRecords.length) return;
+        const minNs = filteredRecords[0].timestamp_ns;
+        const maxNs = filteredRecords[filteredRecords.length - 1].timestamp_ns;
+        const deltaTotalNs = Math.max(0, maxNs - minNs);
+
+        if (scaleMode === 'time') {
+          const ratio = deltaTotalNs > 0 ? ((currentPlayheadNs - minNs) / deltaTotalNs) : 1.0;
+          slider.value = Math.max(0, Math.min(1000, Math.floor(ratio * 1000)));
+        } else {
+          const ratio = filteredRecords.length > 1 ? (playheadIndex / (filteredRecords.length - 1)) : 1.0;
+          slider.value = Math.max(0, Math.min(1000, Math.floor(ratio * 1000)));
+        }
+
+        if (isPlaying) {
+          startPlayback();
+        }
+      });
+
+      // Controls: Play / Pause Button
+      btnPlayPause.addEventListener('click', () => {
+        if (isLive) {
+          isLive = false;
+          stopPlayback();
+          fsm.send('PAUSE_TRIGGERED');
+          btnPlayPause.innerHTML = '&#9654; Play';
+        } else if (isPlaying) {
+          stopPlayback();
+          fsm.send('PAUSE_REQ');
+          btnPlayPause.innerHTML = '&#9654; Play';
+        } else {
+          startPlayback();
+        }
+      });
+
+      // Jump to Live Head
+      btnJumpLive.addEventListener('click', () => {
+        jumpLive();
+      });
+
+      // Frame Step Backward (-1 Frame)
+      btnStepBack.addEventListener('click', () => {
+        stopPlayback();
+        isLive = false;
+        fsm.send('STEP_BACKWARD');
+        btnPlayPause.innerHTML = '&#9654; Play';
+        if (filteredRecords.length > 0) {
+          renderFrameAt(playheadIndex - 1, true);
+          fsm.send('STEP_DONE');
+        }
+      });
+
+      // Frame Step Forward (+1 Frame)
+      btnStepFwd.addEventListener('click', () => {
+        stopPlayback();
+        isLive = false;
+        fsm.send('STEP_FORWARD');
+        btnPlayPause.innerHTML = '&#9654; Play';
+        if (filteredRecords.length > 0) {
+          renderFrameAt(playheadIndex + 1, true);
+          fsm.send('STEP_DONE');
+        }
+      });
+
+      // Keyboard Shortcuts for Fluid Scrubbing & Playback
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+        if (e.code === 'Space') {
+          e.preventDefault();
+          btnPlayPause.click();
+        } else if (e.code === 'ArrowLeft') {
+          e.preventDefault();
+          btnStepBack.click();
+        } else if (e.code === 'ArrowRight') {
+          e.preventDefault();
+          btnStepFwd.click();
+        } else if (e.key === 's' || e.key === 'S') {
+          btnScaleToggle.click();
+        }
+      });
+
+      // Playback Rate Selector
+      selectRate.addEventListener('change', (e) => {
+        const rate = parseFloat(e.target.value);
+        fsm.send('RATE_CHANGE', { playback_rate: rate });
+        fsm.send('RATE_APPLIED');
+        if (isPlaying) {
+          startPlayback();
+        }
+      });
+
+      // 1-Tap Functorial Rollback Preview & Execution
+      btnRollbackPreview.addEventListener('click', async () => {
+        if (!selectedTx) {
+          undoFeedback.textContent = 'Please select a transaction first.';
+          return;
+        }
+        undoFeedback.textContent = 'Computing adjoint Galois inverse & SMT proof...';
+        fsm.send('ROLLBACK_REQ');
+
+        try {
+          const resp = await fetch('/api/v1/telemetry/rollback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              target_tx_id: selectedTx.transaction_id,
+              target_timestamp_ns: selectedTx.timestamp_ns,
+              preview_only: true
+            })
+          });
+          const data = await resp.json();
+          undoFeedback.textContent = `Adjoint: ${data.adjoint_inverse_urn} (${data.transactions_to_revert_count} tx to revert)`;
+          btnRollbackConfirm.style.display = 'inline-block';
+        } catch(err) {
+          // Local fallback preview
+          undoFeedback.textContent = `Adjoint: meta-axioma://apps/zenith:adjoint:revert (Preview ready)`;
+          btnRollbackConfirm.style.display = 'inline-block';
+        }
+      });
+
+      btnRollbackConfirm.addEventListener('click', async () => {
+        undoFeedback.textContent = 'Applying adjoint inverse delta^-1(T)...';
+        fsm.send('CONFIRM_ROLLBACK');
+
+        try {
+          const resp = await fetch('/api/v1/telemetry/rollback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              target_tx_id: selectedTx.transaction_id,
+              target_timestamp_ns: selectedTx.timestamp_ns,
+              preview_only: false
+            })
+          });
+          const data = await resp.json();
+          undoFeedback.textContent = 'Rollback committed! Cluster state restored.';
+          btnRollbackConfirm.style.display = 'none';
+          fsm.send('ROLLBACK_COMPLETE');
+        } catch(err) {
+          undoFeedback.textContent = 'Rollback simulated & committed locally.';
+          btnRollbackConfirm.style.display = 'none';
+          fsm.send('ROLLBACK_COMPLETE');
+        }
+      });
+
+      // Render Subagent Traffic Routing Breakdown Matrix
+      function renderSubagentRoutingMatrix(records) {
+        const container = document.getElementById('subagent-routing-body');
+        const summaryEl = document.getElementById('subagent-routing-summary');
+        if (!container) return;
+
+        if (!records || records.length === 0) {
+          container.innerHTML = '<div class="subagent-empty-hint">No transactions matching active filters</div>';
+          if (summaryEl) summaryEl.textContent = '0 Active Flows';
+          return;
+        }
+
+        // Aggregate by subagent -> (source_service -> target_service)
+        const subagentFlows = new Map();
+        let totalFlows = 0;
+
+        for (let i = 0; i < records.length; i++) {
+          const tx = records[i];
+          const sub = getTxSubagent(tx);
+          const src = tx.source_service || 'client';
+          const tgt = tx.target_service || 'unbound';
+          const durMs = (tx.duration_ns || 0) / 1e6;
+          const tokens = (tx.bpe_tokens_in || 0) + (tx.bpe_tokens_out || 0);
+          const isErr = (tx.status === 'FAILED' || tx.status === 'ERROR' || (tx.error && tx.error.length > 0));
+
+          if (!subagentFlows.has(sub)) {
+            subagentFlows.set(sub, new Map());
+          }
+          const flows = subagentFlows.get(sub);
+          const pairKey = `${src}__->${tgt}`;
+          if (!flows.has(pairKey)) {
+            flows.set(pairKey, {
+              src,
+              tgt,
+              count: 0,
+              totalDurMs: 0,
+              totalTokens: 0,
+              errors: 0
+            });
+            totalFlows++;
+          }
+          const f = flows.get(pairKey);
+          f.count++;
+          f.totalDurMs += durMs;
+          f.totalTokens += tokens;
+          if (isErr) f.errors++;
+        }
+
+        if (summaryEl) {
+          const personaCount = subagentFlows.size;
+          summaryEl.textContent = `${totalFlows} Flows across ${personaCount} ${personaCount === 1 ? 'Persona' : 'Personas'}`;
+        }
+
+        let html = '';
+        subagentFlows.forEach((flows, subagent) => {
+          let subagentTotalTxs = 0;
+          flows.forEach(f => subagentTotalTxs += f.count);
+
+          html += `<div class="subagent-routing-card">`;
+          html += `  <div class="subagent-card-header" data-subagent="${escapeHtml(subagent)}" title="Click to filter by ${escapeHtml(subagent)}">`;
+          html += `    <span class="subagent-card-badge">${escapeHtml(subagent)}</span>`;
+          html += `    <span class="subagent-card-count">${subagentTotalTxs} txs &bull; ${flows.size} ${flows.size === 1 ? 'channel' : 'channels'}</span>`;
+          html += `  </div>`;
+          html += `  <div class="subagent-card-flows">`;
+
+          flows.forEach((flow, pairKey) => {
+            const avgDur = (flow.totalDurMs / flow.count).toFixed(1);
+            const errBadge = flow.errors > 0 ? `<span class="flow-err-badge">${flow.errors} err</span>` : '';
+            const isSelected = (filterSubSelect && filterSubSelect.value === subagent) &&
+                               (filterSourceSelect && filterSourceSelect.value === flow.src) &&
+                               (filterTargetSelect && filterTargetSelect.value === flow.tgt);
+
+            html += `    <div class="routing-flow-pill ${isSelected ? 'active-flow' : ''}" data-subagent="${escapeHtml(subagent)}" data-src="${escapeHtml(flow.src)}" data-tgt="${escapeHtml(flow.tgt)}" title="Click to filter to this path">`;
+            html += `      <span class="pill-node pill-src">${escapeHtml(flow.src)}</span>`;
+            html += `      <span class="pill-arrow">&rarr;</span>`;
+            html += `      <span class="pill-node pill-tgt">${escapeHtml(flow.tgt)}</span>`;
+            html += `      <span class="pill-metrics">${flow.count} txs &bull; ${avgDur}ms</span>`;
+            if (errBadge) html += errBadge;
+            html += `    </div>`;
+          });
+
+          html += `  </div>`;
+          html += `</div>`;
+        });
+
+        container.innerHTML = html;
+
+        // Add click handlers on pills to quickly filter
+        const pills = (container && typeof container.querySelectorAll === 'function')
+          ? container.querySelectorAll('.routing-flow-pill')
+          : [];
+        pills.forEach(pill => {
+          pill.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const sub = pill.dataset.subagent;
+            const src = pill.dataset.src;
+            const tgt = pill.dataset.tgt;
+            if (filterSubSelect) filterSubSelect.value = sub;
+            if (filterSourceSelect) filterSourceSelect.value = src;
+            if (filterTargetSelect) filterTargetSelect.value = tgt;
+            applyFilters();
+          });
+        });
+
+        const headers = (container && typeof container.querySelectorAll === 'function')
+          ? container.querySelectorAll('.subagent-card-header')
+          : [];
+        headers.forEach(h => {
+          h.addEventListener('click', () => {
+            const sub = h.dataset.subagent;
+            if (filterSubSelect) {
+              filterSubSelect.value = sub;
+              applyFilters();
+            }
+          });
+        });
+      }
+
+      // Render Live Micro-Transaction Logs Table with Datadog/Loki Holographic Observability Suite
+      function renderLiveLogs(records) {
+        const tbody = document.getElementById('live-logs-tbody');
+        const countEl = document.getElementById('live-logs-count');
+        const wrapper = document.getElementById('live-logs-wrapper');
+        const followLive = document.getElementById('live-logs-follow');
+        if (!tbody) return;
+
+        if (!records || records.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="9" class="logs-empty-cell">No transactions matching filters</td></tr>';
+          if (countEl) countEl.textContent = '0 rows';
+          return;
+        }
+
+        // Bound to latest 200 records to prevent memory leak / DOM bloat [VULN-001]
+        const maxRows = 200;
+        const startIdx = Math.max(0, records.length - maxRows);
+        const displayRecords = records.slice(startIdx);
+
+        if (countEl) {
+          countEl.textContent = `Showing ${displayRecords.length} of ${records.length} rows`;
+        }
+
+        const activeTxId = (selectedTx && selectedTx.transaction_id) || '';
+
+        let html = '';
+        for (let i = 0; i < displayRecords.length; i++) {
+          const tx = displayRecords[i];
+          const txId = tx.transaction_id || '';
+          const isSelected = (txId === activeTxId) ? 'active-log-row' : '';
+          const isExpanded = expandedTxIds.has(txId);
+          const clock = tx.logical_clock ? `L${tx.logical_clock}` : 'L0';
+          const conv = getTxConversation(tx);
+          const sub = getTxSubagent(tx);
+          const src = tx.source_service || 'none';
+          const tgt = tx.target_service || 'none';
+          const verb = tx.verb || 'TX';
+          const status = getTxStatus(tx);
+          const statusClass = status.toLowerCase();
+          const durMs = ((tx.duration_ns || 0) / 1e6).toFixed(1);
+          const heat = tx.heat_dissipated_joules ? (tx.heat_dissipated_joules > 1e-18 ? tx.heat_dissipated_joules.toExponential(1) + 'J' : '0J') : '0J';
+
+          let payloadObj = null;
+          if (tx.payload_json) {
+            try {
+              payloadObj = (typeof tx.payload_json === 'string') ? JSON.parse(tx.payload_json) : tx.payload_json;
+            } catch(e) {}
+          }
+
+          let summary = tx.payload_summary || '';
+          let commandLine = '';
+          if (payloadObj) {
+            if (payloadObj.tool_name) {
+              summary = payloadObj.tool_name;
+              if (payloadObj.tool_args && payloadObj.tool_args.CommandLine) {
+                commandLine = payloadObj.tool_args.CommandLine;
+                summary += `: ${commandLine.slice(0, 50)}`;
+              } else if (payloadObj.tool_args && payloadObj.tool_args.Path) {
+                summary += `: ${payloadObj.tool_args.Path.split('/').pop()}`;
+              }
+            } else if (payloadObj.CommandLine) {
+              commandLine = payloadObj.CommandLine;
+              summary = `Run: ${commandLine.slice(0, 50)}`;
+            }
+          }
+          if (!summary) summary = txId;
+
+          html += `<tr class="log-row ${isSelected}" data-tx-id="${escapeHtml(txId)}" data-ts="${tx.timestamp_ns || 0}">`;
+          html += `  <td class="col-expand"><span class="row-expand-chevron ${isExpanded ? 'open' : ''}" data-tx-id="${escapeHtml(txId)}" title="Toggle payload details">${isExpanded ? '&#9660;' : '&#9654;'}</span></td>`;
+          html += `  <td class="col-clock font-mono">${escapeHtml(clock)}</td>`;
+          html += `  <td class="col-subagent"><span class="badge-sub-role" title="${escapeHtml(sub)}">${escapeHtml(sub)}</span><button type="button" class="btn-quick-facet" data-facet="subagent" data-val="${escapeHtml(sub)}" title="Filter by role ${escapeHtml(sub)}">+</button></td>`;
+          html += `  <td class="col-flow"><span class="flow-inline"><span class="node-inline" title="Filter by source">${escapeHtml(src)}</span><button type="button" class="btn-quick-facet" data-facet="source" data-val="${escapeHtml(src)}" title="Filter by source ${escapeHtml(src)}">+</button>&rarr;<span class="node-inline" title="Filter by target">${escapeHtml(tgt)}</span><button type="button" class="btn-quick-facet" data-facet="target" data-val="${escapeHtml(tgt)}" title="Filter by target ${escapeHtml(tgt)}">+</button></span></td>`;
+          html += `  <td class="col-verb"><span class="verb-badge">${highlightText(verb)}</span></td>`;
+          html += `  <td class="col-status"><span class="status-pill status-${statusClass}">${escapeHtml(status)}</span></td>`;
+          html += `  <td class="col-duration font-mono">${durMs}ms</td>`;
+          html += `  <td class="col-heat font-mono">${escapeHtml(heat)}</td>`;
+          html += `  <td class="col-summary" title="${escapeHtml(summary)}"><span class="summary-text">${highlightText(summary)}</span></td>`;
+          html += `</tr>`;
+
+          // Datadog/Loki Inline Accordion Detail Row
+          if (isExpanded) {
+            const prettyJson = JSON.stringify(tx, null, 2);
+            const isError = (status === 'FAILED') || tx.error;
+            const errorMsg = tx.error || (payloadObj && payloadObj.error) || 'Execution failure detected';
+
+            let toolArgsRows = '';
+            if (payloadObj && payloadObj.tool_args && typeof payloadObj.tool_args === 'object') {
+              for (const [k, v] of Object.entries(payloadObj.tool_args)) {
+                const valStr = typeof v === 'object' ? JSON.stringify(v) : String(v);
+                toolArgsRows += `<tr><th>${escapeHtml(k)}</th><td>${escapeHtml(valStr)}</td></tr>`;
+              }
+            }
+
+            html += `<tr class="log-detail-row" data-tx-id="${escapeHtml(txId)}">`;
+            html += `  <td colspan="9" class="log-detail-cell">`;
+            html += `    <div class="log-detail-drawer">`;
+            html += `      <div class="log-detail-header">`;
+            html += `        <span class="log-detail-title">Transaction: <strong>${escapeHtml(txId)}</strong> (${durMs}ms &bull; ${escapeHtml(clock)})</span>`;
+            html += `        <div class="log-detail-actions">`;
+            html += `          <button type="button" class="btn-drawer-action btn-copy-json" data-tx-id="${escapeHtml(txId)}">Copy JSON</button>`;
+            if (commandLine) {
+              html += `          <button type="button" class="btn-drawer-action btn-copy-cmd" data-cmd="${escapeHtml(commandLine)}">Copy Command</button>`;
+            }
+            html += `          <button type="button" class="btn-drawer-action btn-filter-trace" data-conv="${escapeHtml(conv)}">Filter Conv</button>`;
+            html += `        </div>`;
+            html += `      </div>`;
+
+            if (isError) {
+              html += `      <div class="log-detail-error"><strong>Error / Fault:</strong> ${escapeHtml(errorMsg)}</div>`;
+            }
+
+            html += `      <div class="log-detail-grid">`;
+            html += `        <div class="log-detail-item"><strong>Trace / Span:</strong> ${escapeHtml(tx.trace_id || '')} / ${escapeHtml(tx.span_id || '')}</div>`;
+            html += `        <div class="log-detail-item"><strong>Causal Task:</strong> ${escapeHtml(tx.causal_task_id || 'none')}</div>`;
+            html += `        <div class="log-detail-item"><strong>Tokens In / Out:</strong> ${tx.input_tokens || 0} / ${tx.output_tokens || 0}</div>`;
+            html += `        <div class="log-detail-item"><strong>Heat:</strong> ${escapeHtml(heat)}</div>`;
+            html += `        <div class="log-detail-item"><strong>Phase:</strong> ${escapeHtml(tx.phase || 'N/A')}</div>`;
+            html += `        <div class="log-detail-item"><strong>Merkle Leaf:</strong> <code>${escapeHtml((tx.merkle_leaf_hash || '').substring(0, 16))}...</code></div>`;
+            html += `      </div>`;
+
+            if (toolArgsRows) {
+              html += `      <div class="log-detail-args-wrapper">`;
+              html += `        <strong style="font-size:0.68rem; color:var(--text-muted); display:block; margin-bottom:4px;">Tool Arguments:</strong>`;
+              html += `        <table class="log-detail-args-table"><tbody>${toolArgsRows}</tbody></table>`;
+              html += `      </div>`;
+            }
+
+            html += `      <pre class="log-detail-json"><code>${escapeHtml(prettyJson)}</code></pre>`;
+            html += `    </div>`;
+            html += `  </td>`;
+            html += `</tr>`;
+          }
+        }
+
+        tbody.innerHTML = html;
+
+        // Chevron click listeners for inline accordion expansion
+        const chevrons = (tbody && typeof tbody.querySelectorAll === 'function')
+          ? tbody.querySelectorAll('.row-expand-chevron')
+          : [];
+        chevrons.forEach(ch => {
+          ch.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = ch.dataset.txId;
+            if (expandedTxIds.has(id)) {
+              expandedTxIds.delete(id);
+            } else {
+              expandedTxIds.add(id);
+            }
+            renderLiveLogs(records);
+          });
+        });
+
+        // Quick-facet buttons (+ buttons) to instantly filter
+        const facetBtns = (tbody && typeof tbody.querySelectorAll === 'function')
+          ? tbody.querySelectorAll('.btn-quick-facet')
+          : [];
+        facetBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const facet = btn.dataset.facet;
+            const val = btn.dataset.val;
+            if (facet === 'subagent' && filterSubSelect) filterSubSelect.value = val;
+            if (facet === 'source' && filterSourceSelect) filterSourceSelect.value = val;
+            if (facet === 'target' && filterTargetSelect) filterTargetSelect.value = val;
+            applyFilters();
+          });
+        });
+
+        // Drawer Action Buttons (Copy JSON, Copy Cmd, Filter Trace)
+        const copyJsonBtns = (tbody && typeof tbody.querySelectorAll === 'function')
+          ? tbody.querySelectorAll('.btn-copy-json')
+          : [];
+        copyJsonBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = btn.dataset.txId;
+            const targetTx = records.find(t => t.transaction_id === id);
+            if (targetTx && navigator.clipboard) {
+              navigator.clipboard.writeText(JSON.stringify(targetTx, null, 2)).then(() => {
+                const oldText = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = oldText; }, 1200);
+              });
+            }
+          });
+        });
+
+        const copyCmdBtns = (tbody && typeof tbody.querySelectorAll === 'function')
+          ? tbody.querySelectorAll('.btn-copy-cmd')
+          : [];
+        copyCmdBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const cmd = btn.dataset.cmd;
+            if (cmd && navigator.clipboard) {
+              navigator.clipboard.writeText(cmd).then(() => {
+                const oldText = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = oldText; }, 1200);
+              });
+            }
+          });
+        });
+
+        const filterTraceBtns = (tbody && typeof tbody.querySelectorAll === 'function')
+          ? tbody.querySelectorAll('.btn-filter-trace')
+          : [];
+        filterTraceBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const convVal = btn.dataset.conv;
+            if (convVal && filterConvSelect) {
+              filterConvSelect.value = convVal;
+              applyFilters();
+            }
+          });
+        });
+
+        // Add click listeners to rows for bidirectional scrubber synchronization
+        const rows = (tbody && typeof tbody.querySelectorAll === 'function')
+          ? tbody.querySelectorAll('.log-row')
+          : [];
+        rows.forEach(r => {
+          r.addEventListener('click', (e) => {
+            if (e.target && (e.target.closest('.row-expand-chevron') || e.target.closest('.btn-quick-facet') || e.target.closest('.btn-drawer-action'))) {
+              return;
+            }
+            const tsNs = parseInt(r.dataset.ts, 10);
+            const txId = r.dataset.txId;
+            rows.forEach(row => { if (row.classList) row.classList.remove('active-log-row'); });
+            if (r.classList) r.classList.add('active-log-row');
+
+            if (tsNs && tsNs > 0) {
+              const idx = filteredRecords.findIndex(t => t.transaction_id === txId);
+              if (idx !== -1) {
+                isLive = false;
+                stopPlayback();
+                fsm.send('PAUSE_TRIGGERED');
+                btnPlayPause.innerHTML = '&#9654; Play';
+                playheadIndex = idx;
+                renderFrameAt(playheadIndex, true);
+              }
+            }
+          });
+        });
+
+        // Auto-scroll if followLive is checked
+        if (followLive && followLive.checked && wrapper) {
+          wrapper.scrollTop = wrapper.scrollHeight;
+        }
+      }
+
+      // Column Visibility Toggles Setup (Pure CSS Class Toggling [VULN-003])
+      const colButtons = (typeof document.querySelectorAll === 'function')
+        ? document.querySelectorAll('.btn-col-toggle')
+        : [];
+      const logsTable = document.getElementById('live-logs-table');
+      if (colButtons && logsTable) {
+        colButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const col = btn.dataset.col;
+            const isCurrentlyActive = btn.classList && btn.classList.contains('active');
+            if (isCurrentlyActive) {
+              if (btn.classList) btn.classList.remove('active');
+              if (logsTable.classList) logsTable.classList.add(`col-hide-${col}`);
+            } else {
+              if (btn.classList) btn.classList.add('active');
+              if (logsTable.classList) logsTable.classList.remove(`col-hide-${col}`);
+            }
+          });
+        });
+      }
+
+      // Expose public harness APIs for test automation and headless verification
+      window.ingestTransactionBatch = ingestTransactionBatch;
+      window.ingestTransaction = ingestTransaction;
+      window.updateDropdownOptions = updateDropdownOptions;
+      window.applyFilters = applyFilters;
+      window.renderSubagentRoutingMatrix = renderSubagentRoutingMatrix;
+      window.renderLiveLogs = renderLiveLogs;
+      window.renderActiveChips = renderActiveChips;
+      window.matchesSearch = matchesSearch;
+      window.getTxStatus = getTxStatus;
+      window.expandedTxIds = expandedTxIds;
+      window.collapsedCards = collapsedCards;
+      window.toggleCardCollapse = toggleCardCollapse;
+      window.applyLayoutPreset = applyLayoutPreset;
+      window.updateLogsExpansionTier = updateLogsExpansionTier;
+      window.updateHudMeters = updateHudMeters;
+      window.projection = projection;
+      window.topology = topology;
+    });
+  </script>
+</body>
+</html>

@@ -10,3 +10,8 @@ The **Telemetry & Evaluation Service** (`services/telemetry`) tracks thermodynam
 3. **Hierarchical Merkle-DAG Chaining (`[L1-G4B-003]`):** Maintains the tamper-evident hash chain from genesis anchor to live runtime milestones.
 4. **Development Process Telemetry Dashboard (`[L1-G3B-018]`):** Emits and updates real-time operational HUDs with zero external CDN dependencies.
 5. **Boundary Isolation:** Bound to dedicated non-loopback IP `192.168.40.40`.
+
+---
+
+## Generation 5 Succession Planning
+For forward-looking architectural desiderata, distributed OpenTelemetry tracing, and Generation 5 telemetry notes, see [`../../next_gen/services/telemetry.md`](../../next_gen/services/telemetry.md).
