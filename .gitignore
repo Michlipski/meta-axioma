@@ -63,6 +63,17 @@ coverage.xml
 *.bak
 *.swp
 *~
+.scratch/
+scratch/
+
+# SQLite Databases & Journals
+*.db
+*.db-shm
+*.db-wal
+*.sqlite3
+
+# Quine Crucible Test Sandboxes
+generations/gen_04b/services/builder/quine_sandboxes/crucible_gen_05a_*
 
 # IDEs
 .idea/
