@@ -1,0 +1,108 @@
+# ==============================================================================
+# Meta-Axioma: Generation 4b Sovereign Service Mesh Multi-Container Topology
+#
+# Physically isolates all 5 sovereign service enclaves into independent
+# Docker containers on an isolated bridge network (192.168.40.0/24) with
+# static IP assignments per [L1-G3B-012] Dedicated Non-Loopback Invariant:
+#   - 192.168.40.10: Sovereign Research Service (Deliberation / Zero-Code)
+#   - 192.168.40.20: Sovereign Builder Enclave (Code Synthesis / Quine Crucible)
+#   - 192.168.40.30: Sovereign Audit & Formal Verification Service (SMT / Micro-Auditors)
+#   - 192.168.40.40: Sovereign Telemetry & Presentation Cockpit (Ingest & HUD)
+#   - 192.168.40.50: Sovereign Governance & Safety Service (Invariants / Vetoes)
+# ==============================================================================
+
+networks:
+  sovereign-mesh:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.40.0/24
+          gateway: 192.168.40.1
+
+services:
+  # 1. Sovereign Research Service (192.168.40.10)
+  soc-research:
+    image: python:3.12-slim
+    container_name: axioma_research
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: python3 scripts/run_sovereign_mesh.py --service research --mode native
+    networks:
+      sovereign-mesh:
+        ipv4_address: 192.168.40.10
+    ports:
+      - "8440:8440"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  # 2. Sovereign Builder Enclave (192.168.40.20)
+  soc-builder:
+    image: python:3.12-slim
+    container_name: axioma_builder
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: python3 scripts/run_sovereign_mesh.py --service builder --mode native
+    networks:
+      sovereign-mesh:
+        ipv4_address: 192.168.40.20
+    ports:
+      - "8442:8442"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  # 3. Sovereign Audit & Formal Verification Service (192.168.40.30)
+  soc-audit:
+    image: python:3.12-slim
+    container_name: axioma_audit
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: python3 scripts/run_sovereign_mesh.py --service audit --mode native
+    networks:
+      sovereign-mesh:
+        ipv4_address: 192.168.40.30
+    ports:
+      - "8444:8444"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  # 4. Sovereign Telemetry & Presentation Cockpit (192.168.40.40)
+  soc-telemetry:
+    image: python:3.12-slim
+    container_name: axioma_telemetry
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: python3 scripts/run_sovereign_mesh.py --service telemetry --mode native
+    networks:
+      sovereign-mesh:
+        ipv4_address: 192.168.40.40
+    ports:
+      - "8446:8446" # Ingest Server (HTTP / SSE)
+      - "8447:8447" # Interactive Cockpit Web HUD
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  # 5. Sovereign Governance & Safety Service (192.168.40.50)
+  soc-governance:
+    image: python:3.12-slim
+    container_name: axioma_governance
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: python3 scripts/run_sovereign_mesh.py --service governance --mode native
+    networks:
+      sovereign-mesh:
+        ipv4_address: 192.168.40.50
+    ports:
+      - "8448:8448"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
