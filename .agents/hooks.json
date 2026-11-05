@@ -1,0 +1,62 @@
+{
+  "adversarial-plan-gate": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "ask_question",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 scripts/adversarial_plan_guard.py 2>/dev/null || python3 ../scripts/adversarial_plan_guard.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  },
+  "atomic-task-guard": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "edit_file|write_file|run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 scripts/atomic_task_guard.py 2>/dev/null || python3 ../scripts/atomic_task_guard.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  },
+  "governance-gate": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "edit_file|write_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 scripts/governance_pre_tool_guard.py 2>/dev/null || python3 ../scripts/governance_pre_tool_guard.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  },
+  "telemetry-interceptor": {
+    "enabled": true,
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 scripts/telemetry_post_tool_hook.py 2>/dev/null || python3 ../scripts/telemetry_post_tool_hook.py 2>/dev/null || true",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
