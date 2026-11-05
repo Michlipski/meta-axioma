@@ -14,9 +14,17 @@ Autonomous agents default to "simulated completion"—declaring a system, featur
    - Any compiler or code generator task must emit tangible, non-zero-byte files to the file system.
    - Never report completion before verifying that all required manifest files exist on disk (`path.exists()` and `st_size > 0`).
 
-2. **Mandatory Substrate Test Execution:**
+2. **Mandatory Substrate Test Execution & Subprocess Entrypoint Smoke Invariant (`[NEG-G1B-001]`, `[NEG-G1B-002]`):**
    - Writing tests to disk is insufficient. The tests must be **executed** on the target runtime substrate (e.g., Python 3.14 `unittest`).
    - The agent must inspect actual stdout/stderr, confirm zero failures/errors, verify a non-zero test count, and display the execution witness in the trajectory.
+   - **Anti-Mock Entrypoint Gate (`[NEG-G1B-002]`):** Unit tests that import internal classes with in-memory mocks (`MockStreamWriter`, mock sockets, simulated state machines) **DO NOT prove that an application runs**.
+   - Whenever an application, server, daemon, or tool defines an entrypoint binary or launcher script (e.g. `run.py`, `main.py`, CLI command, daemon launcher):
+     1. The test suite or verification phase **MUST** execute the actual entrypoint script in an independent OS subprocess (`subprocess.Popen(["python3", entrypoint_path, ...])` or `subprocess.run`).
+     2. The smoke test must assert:
+        - **Zero Startup Crashes:** The process initializes without top-level import crashes (e.g. `ImportError: attempted relative import with no known parent package`), missing module dependencies, path resolution panics, or syntax errors.
+        - **Operational Liveness / Healthcheck:** The process produces an observable startup confirmation in stdout/stderr, binds its operational interface (or runs with a `--smoke-test` / `--dry-run` flag), and responds to a healthcheck probe within a bounded timeout ($t \le 5\text{s}$).
+        - **Clean Teardown:** The process terminates cleanly with exit code 0 or responds to `SIGTERM`/`SIGINT` without hang or deadlock.
+   - Declaring an application or service verified based exclusively on in-memory mock unit tests without an empirical subprocess entrypoint smoke test is strictly forbidden as a `SimulatedCompletionViolation`.
 
 3. **Ban on Cosmetic Proxy Assertions & Semantic Phantoms (`[L1-G3B-011]`):**
    - Writing tests that check cosmetic proxies (`len(output) > 0`, `assert "<rect" in svg`, `assert "class " in code`) as proof of functional competence is strictly prohibited.
