@@ -27,6 +27,16 @@ You are collaborating on **Meta-Axioma**, a recursive axiomatic self-compiler de
 - **Generational Organization:** `generations/gen_XX/` (with generation summaries at root level)
 - **Tooling Rule:** Zero paid external APIs. Strictly native AGY capabilities and free/open-source tools.
 
+### First-Class Interaction Modes & Slash Commands
+To eliminate prompt crafting friction, Meta-Axioma defines dedicated workspace skills triggered via `/` slash commands:
+1. **`/ask-antigravity` (Mode 1 — Direct Developer Pair-Programming):** Lightweight, zero-ceremony Q&A, codebase navigation, script drafting, and pair programming. No Waterloo SoC decompositions or token budgeting required.
+2. **`/latest-researcher` (Mode 2 — Sovereign Research Service):** Activates Generation 4b `services/research/` (192.168.40.10) under `[L1-G4B-002]` (Zero-Code Boundary) to deconstruct Waterloo Tier 1 SoCs (`[L1-G3B-000]`), formulate domain contracts (`ContractIR`), statecharts (`StatechartIR`), and topology without writing application code.
+3. **`/latest-compiler` (Mode 3 — External Application Compilation):** Orchestrates the full Gen 4b service mesh (Research, Builder, Audit, Telemetry, Governance) to build external applications into `apps/<app_name>/` via the 3-Phase Causal Reactive Pipeline (`[INV-G4B-CAUSAL-001..003]`) after human approval of `project_proposals.md` (`[NEG-GOV-GATE-001]`).
+4. **`/latest-self-evolution` (Mode 4 — Compiler Self-Improvement):** Directs the latest compiler to work on itself. The researcher/compiler always faces a dual-path architectural choice: refactor/extend current Gen 4b services, or seriously evaluate proposing a move to Generation 5 ($G_{N+1}$) if the current architecture won't cleanly support the feature. Proposing succession requires a specific ask to the human architect with complete technical reasoning before proceeding.
+5. **`/red-team` (Mode 5 — Adversarial Socratic Inversion):** Activates the Socratic Red Team (`[L1-G4B-009]`, `[INV-G4B-REDTEAM-001]`) to stress-test assumptions, test Byzantine failure modes, and verify negative constraints (`NEG-PRIMITIVE-001..005`).
+6. **`/telemetry-cockpit` (Mode 6 — Telemetry, Event Store & Timeline Scrubber):** Launches/inspects the decoupled telemetry cockpit (`192.168.40.40`), visual node graph of active services/tasks, SQLite WAL event stream (`event_store.py`), and transaction timeline scrubber.
+7. **`/ablation-runner` (Mode 7 — Empirical Benchmarking & 5-Way Ablations):** Executes standardized 5-way ablation benchmarks (SMT prover, XState v5 statecharts, micro-auditors, functorial undo, thermodynamic budget calibration) to validate that architectural layers mathematically earn their keep.
+
 ---
 
 ## 3. Operational Directives
@@ -46,8 +56,15 @@ Before modifying architecture, engine components, or generational targets, consu
 - Keep epoch-level telemetry strictly inside `generations/gen_{XX}/epochs/`.
 - Maintain complete, human-readable generation summaries at root level (`generation_01_summary.md`, `generation_03b_summary.md`).
 - Ensure all TRACE files remain lightweight, scannable, and written in natural language.
+- **Designated In-Workspace Scratch Directory (`.scratch/`):**
+  - All temporary generation scripts, intermediate raw JSON buffers, streaming byte chunks, or experimental test runners MUST be written to the git-ignored `.scratch/` directory at the project root (e.g. `.scratch/compile_full_bundle.py`).
+  - **Absolute Prohibition on Ambient `/tmp` Usage:** Operating in `/tmp` or `/private/tmp` is strictly forbidden to prevent macOS canonical path permission errors and hermetic linter violations (`HERM-003`). Writing to `.scratch/` is 100% sandboxed, git-ignored, and requires zero user elevation.
 
 ### Directive 3: Plan-First, Mandatory Detailed Proposals Document (`write_to_file`), & Execution Gate
+- **[NEG-GOV-GATE-001] Absolute Prohibition of Direct Code Modifications Without Approval:**
+  - Autonomous agents are **STRICTLY PROHIBITED** from using `edit_file`, `write_file`, or terminal mutation commands on ANY application or generation source code (`generations/`, `apps/`, `src/`) before physically emitting `project_proposals.md` and obtaining explicit human approval via `ask_question`.
+  - **Physical Runtime Interception:** This invariant is physically enforced at runtime across all conversations by `.agents/hooks.json` via `scripts/governance_pre_tool_guard.py`. Any tool call attempting to edit or create code files in protected generation directories without an existing `project_proposals.md` in the artifact directory is **intercepted and hard-denied** at the system level.
+  - **The Researcher Zero-Code Invariant (`[L1-G4B-002]`):** When operating as or delegating to the **Sovereign Research Service (`services/research/`, 192.168.40.10)**, the agent is physically barred from writing application code. Its sole permitted deliverables are proposals, `ResearchDeliverableBundle` specifications, and protocol schemas.
 - **Mandatory Physical Emission of the Detailed Proposals Document (`project_proposals.md`) BEFORE `ask_question`:**
   - For any application or system design, formulating a rigorous high-level plan paired with **Dynamic Project Proposals** (`[L1-G2B-004]`, `[L1-G2B-005]`, calibrated via `DynamicBudgetCalibrator.estimate_from_structural_scope()`) is the first and most essential deliverable.
   - **CRITICAL RULE — Emit Document First (`write_to_file`), Then Ask (`ask_question`):** You MUST physically call `write_to_file` to create a standalone, user-facing **Detailed Project Proposals Document** at `<appDataDir>/brain/<conversation-id>/project_proposals.md` (with `ArtifactMetadata={"UserFacing": True, "RequestFeedback": False, "Summary": "..."}`) **BEFORE** invoking `ask_question`.
@@ -78,10 +95,19 @@ Before modifying architecture, engine components, or generational targets, consu
   - Never bypass the compiler pipeline, and never settle for generic placeholder entities.
   - Supply domain-specific `ContractIR` (custom domain nouns, fields, invariants, and compositional verbs), `StatechartIR` (hierarchical XState v5 compound/parallel states), `TopologyIR`, and full interactive application modules (`apps/<app_name>/` + `generations/gen_03b/epochs/<epoch_name>/`) through `SystemG3bCompiler.compile(..., target_output_dir=epoch_dir, app_output_dir=app_dir, subagent_witnesses=witnesses, require_live_subagents=True)` so every leaf and every application file is verified by `ZeroTrustMicroAuditorRegistry`, `FormalModelChecker`, and `HeadlessJourneyWalker` (`[L1-G3B-013]`), and sealed into `telemetry_ledger.json` + `telemetry_dashboard.md` / `dashboard.html` via `CryptographicTelemetryEngine`.
 
-### Directive 4: Empirical Execution Witness & Anti-Phantom Emission Gate ([NEG-G1B-001])
+### Directive 4: Empirical Execution Witness, Anti-Phantom Emission & Subprocess Smoke Gate ([NEG-G1B-001], [NEG-G1B-002])
 - **Mandatory Physical Emission:** For any compilation or synthesis task, emitting working, non-zero-byte files to disk is non-negotiable. Autonomous agents are strictly forbidden from asserting that an application or compiler is complete without physically inspecting its emitted files on disk.
 - **Mandatory Substrate Test Execution:** It is strictly prohibited to declare an application verified based on abstract in-memory representations or unexecuted source code. The emitted test suite must be programmatically executed against the live runtime environment, demonstrating exit code 0 and non-zero passing assertions with an empirical witness signature in the trajectory.
-- **Immediate Abort on Missing/Failing Runtime Artifacts:** If emission is omitted without an explicit dry-run flag, if manifest files are missing/empty, or if post-emission test execution fails, compilation must raise a fatal violation (`PhantomEmissionViolation` or `PostEmissionExecutionFailure`) and halt immediately.
+- **Anti-Mock Subprocess Entrypoint Smoke Invariant ([NEG-G1B-002]):**
+  - Unit tests that import internal classes with in-memory mocks (`MockStreamWriter`, mock sockets, simulated in-memory state machines) **DO NOT prove that an application or server runs**.
+  - Whenever an application, server, daemon, or tool defines an entrypoint binary or launcher script (e.g. `run.py`, `main.py`, CLI binary, or service daemon launcher):
+    1. The emitted test harness and QA verification phases **MUST programmatically invoke the actual entrypoint script in an independent OS subprocess** (`subprocess.Popen(["python3", entrypoint_path, ...])` or `subprocess.run`).
+    2. The smoke test must assert:
+       - **Zero Startup Crashes:** The entrypoint boots without top-level import crashes (specifically catching top-level vs. package relative import bugs like `ImportError: attempted relative import with no known parent package`), missing module dependencies, path resolution panics, or syntax errors.
+       - **Operational Liveness / Healthcheck:** The process produces an observable startup confirmation in stdout/stderr, binds its operational interface (or runs with a `--smoke-test` / `--dry-run` flag), and responds to a healthcheck probe within a bounded timeout ($t \le 5\text{s}$).
+       - **Clean Teardown:** The process terminates cleanly with exit code 0 or responds to `SIGTERM`/`SIGINT` without hang or deadlock.
+    3. Declaring an application or service verified based exclusively on in-memory mock unit tests without an empirical subprocess entrypoint smoke test is strictly categorized as a `SimulatedCompletionViolation` and halts compilation immediately.
+- **Immediate Abort on Missing/Failing Runtime Artifacts:** If emission is omitted without an explicit dry-run flag, if manifest files are missing/empty, or if post-emission test execution fails, compilation must raise a fatal violation (`PhantomEmissionViolation`, `EntrypointSmokeViolation`, or `PostEmissionExecutionFailure`) and halt immediately.
 
 ### Directive 5: Mandatory Live Subagent Spawning (`invoke_subagent`), 3-Phase Causal Reactive Pipeline, Orthogonal Personas, & Full-App Telemetry (`[L1-G3B-014]`, `[L1-G3B-016]`, `[L1-G4B-001]`, `[INV-G4B-CAUSAL-001..003]`)
 - **Mandatory Live AGY Subagent Spawning via `invoke_subagent` (`[L1-G3B-014]`, `[L1-G4B-001]`):**
@@ -104,7 +130,7 @@ Before modifying architecture, engine components, or generational targets, consu
       - **Phase 2C: Reactive Verification & Byzantine QA Muscle (Parallel Spawning Only Post-Phase 2B — `Model="flash"`):**
         - Spawned **ONLY AFTER** Phase 2B confirms complete physical disk grounding and seals preliminary SHA-256 digests.
         - Execute parallel verification and operational telemetry:
-          - `Adversarial Test & Byzantine QA Engineer` (`CognitiveRole.ADVERSARIAL_QA_ENGINEER`): Injects Byzantine chaos, property fuzzing, and executes empirical substrate test suites against the physically grounded files on disk, verifying exit code 0 and non-zero passing assertions.
+          - `Adversarial Test & Byzantine QA Engineer` (`CognitiveRole.ADVERSARIAL_QA_ENGINEER`): Injects Byzantine chaos, property fuzzing, executes empirical substrate test suites against the physically grounded files on disk, and executes the mandatory subprocess entrypoint smoke test (`[NEG-G1B-002]`, spawning `run.py` / `main.py` in an independent OS process to prove zero import crashes, socket binding, and clean teardown), verifying exit code 0 and non-zero passing assertions.
           - `Operational Dashboard & Telemetry Synthesizer` (`CognitiveRole.OPERATIONAL_DASHBOARD_SYNTHESIZER`): Compiles standalone, zero-CDN `dashboard.html` / `telemetry_dashboard.html` (`[L1-G3B-018]`), binding live physical metrics and subagent execution witnesses.
       - **Phase 2D: Reactive Mesh Leaf Convergence Gate (`[INV-G4B-CAUSAL-003]`):**
         - Verify that all leaf execution witnesses, zero-trust micro-audits, and empirical test runs causally converge across the reactive mesh.
