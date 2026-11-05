@@ -36,6 +36,7 @@ generations/gen_04b/
 │   └── governance/                     # Governance & Safety Service
 ├── apps/                               # Non-generator production applications compiled by G4b
 ├── epochs/                             # Compilation epochs & Merkle ledgers
+├── next_gen/                           # Generation 5 successor charter & per-service planning hub
 └── tests/                              # Generational cross-service integration tests
 ```
 
@@ -82,3 +83,16 @@ To run the full cluster launcher:
 ```bash
 python3 generations/gen_04b/run.py
 ```
+
+---
+
+## 5. Generation 5 Succession Planning (`next_gen/`)
+
+Generation 4b maintains an active generational and per-service planning hub for its successor, **Generation 5 ($G_5$)**, located in [`next_gen/`](next_gen/README.md):
+- **[Succession Charter & Master Index](next_gen/README.md)**: Roadmap, directory index, and governance links.
+- **[Generational Thesis & Paradigm Shifts](next_gen/general/thesis_and_paradigm.md)**: Core $G_5$ North Star, distributed mesh, and Landauer dissipation bounds.
+- **[Succession Triggers & Invariant Gates](next_gen/general/succession_triggers.md)**: Verification criteria, Heuristic Debt Ratio ceiling ($\text{HDR} \le 0.15$), and formal handover certificate issuance.
+- **[Candidate Novel Services](next_gen/general/candidate_services.md)**: Proposals for new enclaves (`services/deployer/`, `services/simulator/`, `services/knowledge_graph/`).
+- **[Per-Service Evolution Dossiers](next_gen/README.md#per-service-level-specialized-evolution)**: Specialized roadmaps for [Research](next_gen/services/research.md), [Builder](next_gen/services/builder.md), [Audit](next_gen/services/audit.md), [Telemetry](next_gen/services/telemetry.md), and [Governance](next_gen/services/governance.md).
+- **[Evolution Note Template](next_gen/templates/evolution_note_template.md)**: Standardized schema for authoring new evolutionary notes.
+
