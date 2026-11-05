@@ -24,6 +24,61 @@ class AuditDomainInvariantViolation(Exception):
     pass
 
 
+class BijectiveVerificationViolation(AuditDomainInvariantViolation):
+    """Raised when bijective mapping between ContractIR and AST symbols fails."""
+    pass
+
+
+class RogueSymbolViolation(BijectiveVerificationViolation):
+    """Raised when an unmapped rogue function or class is detected in AST (BIJ-001)."""
+    pass
+
+
+class UnimplementedVerbViolation(BijectiveVerificationViolation):
+    """Raised when a contract verb is not implemented in AST code (BIJ-001)."""
+    pass
+
+
+class SpecificationDriftViolation(BijectiveVerificationViolation):
+    """Raised when docstring spec hash or contract clauses diverge from ContractIR (BIJ-002)."""
+    pass
+
+
+class SignatureMismatchViolation(BijectiveVerificationViolation):
+    """Raised when function signature or types do not match contract verb (BIJ-003)."""
+    pass
+
+
+class OperationalMitigationViolation(AuditDomainInvariantViolation):
+    """Raised when declared operational hazards lack physical AST mitigations."""
+    pass
+
+
+class UnprotectedStateMutationViolation(OperationalMitigationViolation):
+    """Raised when self.* state is mutated without declared lock guard (OP-001)."""
+    pass
+
+
+class ResourceLeakViolation(OperationalMitigationViolation):
+    """Raised when allocated resources lack a dominating try-finally cleanup (OP-002)."""
+    pass
+
+
+class UnboundedNetworkCallViolation(OperationalMitigationViolation):
+    """Raised when network calls lack an explicit positive timeout argument (OP-003)."""
+    pass
+
+
+class RawExceptionLeakViolation(OperationalMitigationViolation):
+    """Raised when raw system exceptions leak unhandled without domain translation (OP-004)."""
+    pass
+
+
+class UnrenderedLatexViolation(AuditDomainInvariantViolation):
+    """Raised when an emitted HTML deliverable contains raw, unrendered LaTeX without a math engine (HERM-006)."""
+    pass
+
+
 # =========================================================================
 # Enumerations (5 Core Enums)
 # =========================================================================

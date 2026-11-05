@@ -184,6 +184,110 @@ def run_dynamic(payload: str):
         cand_report = self.auditor.audit_candidate(candidate)
         self.assertTrue(cand_report.is_hermetic)
 
+    # 11. Authorized Local IPC Mode
+    def test_authorized_local_ipc_allows_loopback_while_flagging_ambient_escapes(self) -> None:
+        local_ipc_auditor = ZeroTrustMicroAuditor(allow_local_ipc=True)
+
+        # Authorized local IPC code
+        local_code = """
+def bind_local():
+    host = "127.0.0.1"
+    port = 8447
+    socket_path = ".scratch/sockets/telemetry.sock"
+"""
+        report = local_ipc_auditor.audit_source(local_code, leaf_id="leaf_local_ipc")
+        self.assertTrue(report.is_hermetic)
+        self.assertEqual(len(report.violations), 0)
+
+        # Local IPC code that still attempts prohibited ambient escape (/tmp)
+        dirty_local_code = """
+def bind_local_with_escape():
+    host = "127.0.0.1"
+    tmp_path = "/tmp/insecure.sock"
+"""
+        escape_report = local_ipc_auditor.audit_source(dirty_local_code, leaf_id="leaf_dirty_local")
+        self.assertFalse(escape_report.is_hermetic)
+        rules = [v.rule_id for v in escape_report.violations]
+        self.assertNotIn("HERM-001", rules)  # Loopback permitted under LOCAL_IPC
+        self.assertIn("HERM-003", rules)     # But /tmp is STILL strictly caught!
+
+    # 12. HERM-006: Unrendered LaTeX Rejected Without Math Engine
+    def test_herm_006_unrendered_latex_rejected(self) -> None:
+        html_with_latex = """<!DOCTYPE html>
+<html>
+<head><title>Test Deliverable</title></head>
+<body>
+    <p>Operating temperature is \\(T = 300K\\).</p>
+    <div id="formula">$$Q_{\\min} = 10$$</div>
+</body>
+</html>"""
+        report = self.auditor.audit_html_deliverable(html_with_latex, deliverable_id="test_unrendered_latex")
+        self.assertFalse(report.is_hermetic)
+        rules = [v.rule_id for v in report.violations]
+        self.assertIn("HERM-006", rules)
+        culprits = [v.culprit_token for v in report.violations]
+        self.assertTrue(any(r"\(T = 300K\)" in c for c in culprits))
+        self.assertTrue(any(r"$$Q_{\min} = 10$$" in c for c in culprits))
+        for v in report.violations:
+            if v.rule_id == "HERM-006":
+                self.assertEqual(v.severity, AuditSeverity.FATAL)
+
+    # 13. HERM-006: Semantic HTML and Unicode Accepted
+    def test_herm_006_semantic_unicode_accepted(self) -> None:
+        html_with_unicode = """<!DOCTYPE html>
+<html>
+<head><title>Test Deliverable</title></head>
+<body>
+    <p>Operating temperature is <i>T</i> = 300K.</p>
+    <div>&forall; <i>L</i> &in; CodeLeaves: Audited(<i>L</i>) == True</div>
+</body>
+</html>"""
+        report = self.auditor.audit_html_deliverable(html_with_unicode, deliverable_id="test_semantic_unicode")
+        self.assertTrue(report.is_hermetic)
+        self.assertEqual(len(report.violations), 0)
+
+    # 14. HERM-006: JS Template Strings and Currency Tolerated
+    def test_herm_006_js_template_strings_and_currency_tolerated(self) -> None:
+        html_with_currency_and_templates = """<!DOCTYPE html>
+<html>
+<head><title>Test Deliverable</title></head>
+<body>
+    <script>
+        const endpoint = `https://mesh.axioma.internal/${ip}:${port}/api`;
+        const costStr = `Total: $100`;
+    </script>
+    <p>The total capital spend was $100, while the budget was $143,100.</p>
+    <p>Escaped dollar: \\$250.</p>
+</body>
+</html>"""
+        report = self.auditor.audit_html_deliverable(html_with_currency_and_templates, deliverable_id="test_tolerated")
+        latex_violations = [v for v in report.violations if v.rule_id == "HERM-006"]
+        self.assertEqual(len(latex_violations), 0)
+        self.assertTrue(report.is_hermetic)
+
+    # 15. HERM-006: Hermetic KaTeX with Auto-Render Accepted
+    def test_herm_006_hermetic_katex_with_autorender_accepted(self) -> None:
+        html_with_katex = """<!DOCTYPE html>
+<html>
+<head>
+    <title>Test KaTeX Deliverable</title>
+    <script>/* embedded hermetic KaTeX engine */</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body);
+        });
+    </script>
+</head>
+<body>
+    <p>Inline formula: \\(T = 300K\\)</p>
+    <div>Display formula: $$E = mc^2$$</div>
+</body>
+</html>"""
+        report = self.auditor.audit_html_deliverable(html_with_katex, deliverable_id="test_katex_accepted")
+        latex_violations = [v for v in report.violations if v.rule_id == "HERM-006"]
+        self.assertEqual(len(latex_violations), 0)
+        self.assertTrue(report.is_hermetic)
+
 
 if __name__ == "__main__":
     unittest.main()

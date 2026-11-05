@@ -6,9 +6,11 @@ Enforces:
   - Postcondition Consequence (Covariance): Post_child |= Post_parent
 - Statechart Deadlock-Freedom Verification:
   - Terminal reachability and absence of absorbing non-terminal deadlocks.
+- State Transition Invariant Verification:
+  - Proves that transition guards preserve target and domain invariants.
 - Dual-Engine Symbolic Solver:
   - Native SMT Prover (`NativeSMTProver_v4b`) for pure zero-dependency formal proofs.
-  - Seamless Z3 Prover bridge fallback if z3 is present in the environment.
+  - Seamless Z3 Prover bridge if z3 is present in the environment.
 - Returns typed `SMTModelCheckResult`.
 """
 
@@ -30,10 +32,18 @@ from .domain_models import (
 
 
 class NativeSMTProver_v4b:
-    """Zero-dependency symbolic propositional and bounded arithmetic SMT prover."""
+    """Zero-dependency symbolic propositional and bounded arithmetic SMT prover with Z3 binding."""
 
     def __init__(self) -> None:
         self.proof_steps: List[str] = []
+        self._z3_available = False
+        try:
+            import z3  # type: ignore
+            self._z3_available = True
+            self.solver_engine = f"Z3Py_{z3.__version__}"
+        except ImportError:
+            self._z3_available = False
+            self.solver_engine = "NativeSMTProver_v4b"
 
     def _normalize_expr(self, expr: str) -> str:
         """Normalizes boolean syntax to standard Python expression tokens."""
@@ -54,6 +64,70 @@ class NativeSMTProver_v4b:
         keywords = {"and", "or", "not", "True", "False", "true", "false", "in", "is"}
         return {t for t in tokens if t not in keywords}
 
+    def _check_z3(
+        self, norm_ante: str, norm_cons: str, all_vars: List[str]
+    ) -> Optional[Tuple[bool, Optional[Dict[str, bool]], Optional[str]]]:
+        """Evaluates (antecedent and not consequent) satisfiability using Z3."""
+        if not self._z3_available:
+            return None
+        try:
+            import z3  # type: ignore
+
+            solver = z3.Solver()
+            var_map = {v: z3.Bool(v) for v in all_vars}
+
+            ante_tree = ast.parse(norm_ante, mode="eval")
+            cons_tree = ast.parse(norm_cons, mode="eval")
+
+            def ast_to_z3(node: ast.AST) -> Any:
+                if isinstance(node, ast.Expression):
+                    return ast_to_z3(node.body)
+                if isinstance(node, ast.Constant):
+                    return z3.BoolVal(bool(node.value))
+                if isinstance(node, ast.Name):
+                    if node.id in ("True", "true"):
+                        return z3.BoolVal(True)
+                    if node.id in ("False", "false"):
+                        return z3.BoolVal(False)
+                    return var_map.get(node.id, z3.Bool(node.id))
+                if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
+                    return z3.Not(ast_to_z3(node.operand))
+                if isinstance(node, ast.BoolOp):
+                    sub = [ast_to_z3(v) for v in node.values]
+                    return z3.And(*sub) if isinstance(node.op, ast.And) else z3.Or(*sub)
+                if isinstance(node, ast.Compare):
+                    left_z = ast_to_z3(node.left)
+                    right_z = ast_to_z3(node.comparators[0])
+                    op = node.ops[0]
+                    if isinstance(op, ast.LtE):  # implies
+                        return z3.Implies(left_z, right_z)
+                    elif isinstance(op, ast.Eq):
+                        return left_z == right_z
+                    elif isinstance(op, ast.NotEq):
+                        return left_z != right_z
+                return None
+
+            ante_z = ast_to_z3(ante_tree)
+            cons_z = ast_to_z3(cons_tree)
+            if ante_z is not None and cons_z is not None:
+                solver.add(ante_z)
+                solver.add(z3.Not(cons_z))
+                res = solver.check()
+                if res == z3.unsat:
+                    self.proof_steps.append("Z3 Solver check confirmed negation is UNSAT -> Theorem proved valid.")
+                    return True, None, f"unsat_core({','.join(all_vars)})"
+                elif res == z3.sat:
+                    model = solver.model()
+                    cex: Dict[str, bool] = {str(d): bool(z3.is_true(model[d])) for d in model.decls()}
+                    for v in all_vars:
+                        if v not in cex:
+                            cex[v] = False
+                    self.proof_steps.append(f"Z3 Solver counter-example model found: {cex}")
+                    return False, cex, None
+        except Exception:
+            pass
+        return None
+
     def check_implication(
         self, antecedent: str, consequent: str
     ) -> Tuple[bool, Optional[Dict[str, bool]], Optional[str]]:
@@ -66,13 +140,11 @@ class NativeSMTProver_v4b:
         self.proof_steps.append(f"Goal: Prove entailment ({antecedent}) |= ({consequent})")
 
         if not antecedent or antecedent.strip().lower() in ("true", "1"):
-            # antecedent is trivially true
             norm_ante = "True"
         else:
             norm_ante = self._normalize_expr(antecedent)
 
         if not consequent or consequent.strip().lower() in ("true", "1"):
-            # consequent is trivially true -> always valid
             self.proof_steps.append("Consequent is tautological True -> Entailment is trivially SAT.")
             return True, None, "tautology(consequent)"
 
@@ -86,10 +158,14 @@ class NativeSMTProver_v4b:
         vars_cons = self._extract_variables(norm_cons)
         all_vars = sorted(list(vars_ante | vars_cons))
 
+        # Check with Z3 if installed
+        z3_res = self._check_z3(norm_ante, norm_cons, all_vars)
+        if z3_res is not None:
+            return z3_res
+
         if not all_vars:
             # Constant expression evaluation
             try:
-                # Safe eval of pure boolean literal constants
                 val = eval(negation_formula, {"__builtins__": {}}, {})
                 if not val:
                     self.proof_steps.append("Negation evaluated to False -> UNSAT proved.")
@@ -116,7 +192,6 @@ class NativeSMTProver_v4b:
                     self.proof_steps.append(f"Satisfying assignment found for negation at {env} -> Counter-example!")
                     return False, env, None
             except Exception:
-                # Ignore arithmetic mismatch in boolean check
                 pass
 
         # If no assignment satisfies the negation, the implication is formally valid!
@@ -131,12 +206,8 @@ class SMTModelChecker:
     def __init__(self, checker_node_id: str = "node_smt_oracle") -> None:
         self.checker_node_id = checker_node_id
         self.native_prover = NativeSMTProver_v4b()
-        self._z3_available = False
-        try:
-            import z3  # type: ignore
-            self._z3_available = True
-        except ImportError:
-            self._z3_available = False
+        self._z3_available = self.native_prover._z3_available
+        self.solver_engine = self.native_prover.solver_engine
 
     def verify_contract_morphism(
         self,
@@ -154,7 +225,7 @@ class SMTModelChecker:
         """
         check_id = f"chk_smt_{uuid.uuid4().hex[:12]}"
         proof_steps = 0
-        solver_engine = "NativeSMTProver_v4b"
+        solver_engine = self.solver_engine
 
         p_pre = parent_pre or "True"
         c_pre = child_pre or "True"
@@ -210,6 +281,35 @@ class SMTModelChecker:
             unsat_core=combined_core,
             counter_example={},
         )
+
+    def verify_state_transition_invariant(
+        self,
+        source_state: str,
+        target_state: str,
+        transition_event: str,
+        guard_condition: Optional[str] = None,
+        source_invariants: Optional[List[str]] = None,
+        target_invariants: Optional[List[str]] = None,
+        global_invariants: Optional[List[str]] = None,
+    ) -> Tuple[bool, Optional[Dict[str, Any]], Optional[str]]:
+        """Formally verifies that a statechart transition preserves domain and target invariants under guard."""
+        ante_parts = []
+        if global_invariants:
+            ante_parts.extend(global_invariants)
+        if source_invariants:
+            ante_parts.extend(source_invariants)
+        if guard_condition and guard_condition.strip():
+            ante_parts.append(guard_condition)
+        antecedent = " and ".join(f"({p})" for p in ante_parts) if ante_parts else "True"
+
+        cons_parts = []
+        if global_invariants:
+            cons_parts.extend(global_invariants)
+        if target_invariants:
+            cons_parts.extend(target_invariants)
+        consequent = " and ".join(f"({p})" for p in cons_parts) if cons_parts else "True"
+
+        return self.native_prover.check_implication(antecedent, consequent)
 
     def verify_statechart_deadlock_freedom(
         self,

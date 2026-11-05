@@ -8,3 +8,8 @@ The **Audit & Formal Verification Service** (`services/audit`) provides independ
 2. **SMT Formal Model Checking:** Verifies category-theoretic morphism preservation, Functorial undo properties, and absence of deadlocks.
 3. **Byzantine & Chaos Fuzzing:** Dispatches extreme boundary stress vectors (partition, packet drop, memory pressure) to verify fault tolerance.
 4. **Boundary Isolation:** Bound to dedicated non-loopback IP `192.168.40.30`.
+
+---
+
+## Generation 5 Succession Planning
+For forward-looking architectural desiderata, continuous property fuzzing, and Generation 5 audit notes, see [`../../next_gen/services/audit.md`](../../next_gen/services/audit.md).

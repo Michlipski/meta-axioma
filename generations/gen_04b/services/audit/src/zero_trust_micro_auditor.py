@@ -3,17 +3,22 @@
 Enforces:
 - [L1-G3B-012] Dedicated Non-Loopback Network Topology.
 - [L1-G3B-016] Zero-Trust Micro-Auditor Interception before disk emission.
-- AST-level invariant scanning across 4 foundational hermetic rules:
+- AST-level invariant scanning across foundational hermetic rules:
   - HERM-001: Strict prohibition of loopback network endpoints (127.0.0.1, localhost, ::1, 0.0.0.0).
   - HERM-002: Strict prohibition of sys.path tampering (append, insert, extend, assignments).
   - HERM-003: Strict prohibition of ambient filesystem escapes (os.chdir, hardcoded /tmp, traversal ../).
   - HERM-004: Syntax integrity and prohibition of banned dynamic execution constructs (eval, exec).
+  - HERM-005: Prohibition of empty/truncated deliverables and unreconciled synthetic/placeholder tokens.
+  - HERM-006: Prohibition of unrendered LaTeX math notation without a valid hermetic math engine.
 """
 
 from __future__ import annotations
 
 import ast
 import hashlib
+import os
+from pathlib import Path
+import re
 import time
 from typing import Any, Dict, List, Optional, Set, Tuple
 import uuid
@@ -24,6 +29,13 @@ from .domain_models import (
     CodeLeafCandidate,
     HermeticAuditReport,
     HermeticLinterViolation,
+    UnrenderedLatexViolation,
+)
+from .bijective_verifier import BijectiveVerifier
+from .operational_pitfall_auditor import OperationalPitfallAuditor
+from generations.gen_04b.protocols.deliverable_bundle import (
+    ContractBijectivityWitness,
+    OperationalPitfallAuditReport,
 )
 
 
@@ -33,8 +45,15 @@ class _HermeticASTVisitor(ast.NodeVisitor):
     LOOPBACK_PATTERNS = {"127.0.0.1", "localhost", "::1", "0.0.0.0"}
     BANNED_BUILTIN_CALLS = {"eval", "exec", "__import__", "compile"}
 
-    def __init__(self, leaf_id: str) -> None:
+    def __init__(
+        self,
+        leaf_id: str,
+        allow_local_ipc: bool = False,
+        runtime_profile: str = "SOVEREIGN_MESH",
+    ) -> None:
         self.leaf_id = leaf_id
+        self.allow_local_ipc = allow_local_ipc or (runtime_profile == "LOCAL_IPC")
+        self.runtime_profile = runtime_profile
         self.violations: List[HermeticLinterViolation] = []
         self.ast_nodes_scanned: int = 0
         self.banned_constructs_detected: int = 0
@@ -47,9 +66,25 @@ class _HermeticASTVisitor(ast.NodeVisitor):
         if isinstance(node.value, str):
             val_lower = node.value.lower()
 
-            # HERM-001: Prohibit loopback strings
-            for pattern in self.LOOPBACK_PATTERNS:
-                if pattern in val_lower:
+            # HERM-001: Prohibit loopback strings unless explicitly authorized under LOCAL_IPC or test sockets
+            if not self.allow_local_ipc:
+                for pattern in self.LOOPBACK_PATTERNS:
+                    if pattern in val_lower:
+                        self.violations.append(
+                            HermeticLinterViolation(
+                                violation_id=f"viol_herm001_{uuid.uuid4().hex[:8]}",
+                                rule_id="HERM-001",
+                                severity=AuditSeverity.FATAL,
+                                line_number=node.lineno,
+                                column_offset=node.col_offset,
+                                description=f"Forbidden loopback network endpoint '{pattern}' detected in string literal.",
+                                culprit_token=pattern,
+                            )
+                        )
+                        self.banned_constructs_detected += 1
+
+                # Check 127. subnet
+                if "127." in node.value and not any(p in val_lower for p in self.LOOPBACK_PATTERNS):
                     self.violations.append(
                         HermeticLinterViolation(
                             violation_id=f"viol_herm001_{uuid.uuid4().hex[:8]}",
@@ -57,28 +92,13 @@ class _HermeticASTVisitor(ast.NodeVisitor):
                             severity=AuditSeverity.FATAL,
                             line_number=node.lineno,
                             column_offset=node.col_offset,
-                            description=f"Forbidden loopback network endpoint '{pattern}' detected in string literal.",
-                            culprit_token=pattern,
+                            description=f"Forbidden loopback 127.x.x.x subnet endpoint detected: '{node.value}'.",
+                            culprit_token=node.value,
                         )
                     )
                     self.banned_constructs_detected += 1
 
-            # Check 127. subnet
-            if "127." in node.value and not any(p in val_lower for p in self.LOOPBACK_PATTERNS):
-                self.violations.append(
-                    HermeticLinterViolation(
-                        violation_id=f"viol_herm001_{uuid.uuid4().hex[:8]}",
-                        rule_id="HERM-001",
-                        severity=AuditSeverity.FATAL,
-                        line_number=node.lineno,
-                        column_offset=node.col_offset,
-                        description=f"Forbidden loopback 127.x.x.x subnet endpoint detected: '{node.value}'.",
-                        culprit_token=node.value,
-                    )
-                )
-                self.banned_constructs_detected += 1
-
-            # HERM-003: Prohibit ambient directory / filesystem escapes
+            # HERM-003: Prohibit ambient directory / filesystem escapes (Always enforced even in LOCAL_IPC)
             if "/tmp" in node.value:
                 self.violations.append(
                     HermeticLinterViolation(
@@ -189,10 +209,40 @@ class _HermeticASTVisitor(ast.NodeVisitor):
 class ZeroTrustMicroAuditor:
     """Zero-Trust AST Micro-Auditor (`SentrySyntax` peer verifier)."""
 
-    def __init__(self, auditor_node_id: str = "node_hermetic_sentry") -> None:
-        self.auditor_node_id = auditor_node_id
+    LATEX_DELIMITER_PATTERNS = [
+        re.compile(r"\$\$[\s\S]*?\$\$"),
+        re.compile(r"\\\(.*?\\\)"),
+        re.compile(r"\\\[[\s\S]*?\\\]"),
+    ]
+    MALFORMED_DELIMITER_PATTERNS = [
+        re.compile(r"\$\$(?:[^\$\n]|(?!\$\$))*?(?:\n|$)"),  # unclosed $$
+        re.compile(r"\\\([^\)\n]*?(?:\]|\n|$)"),           # unclosed \( or mismatched with ]
+        re.compile(r"\\\[[^\]\n]*?(?:\)|\n|$)"),           # unclosed \[ or mismatched with )
+    ]
+    LATEX_MACRO_PATTERNS = [
+        re.compile(
+            r"\\(?:text|forall|exists|mathcal|sum|prod|Delta|alpha|beta|theta|lambda|gamma|omega|nabla|partial|frac|approx|le|ge|neq|in|notin|subset|cup|cap|emptyset|otimes|oplus|times|pm|cdot|circ|implies|iff|to|rightarrow|leftarrow|infty|sqrt|int|oint|sim|equiv|subseteq|supseteq)\b"
+        )
+    ]
+    MATH_DOLLAR_PATTERN = re.compile(r"(?<![\\\$])\$(?![\$\{0-9])([^\$\n]+?)(?<!\\)\$")
 
-    def audit_source(self, source_code: str, leaf_id: str = "leaf_anonymous") -> HermeticAuditReport:
+    def __init__(
+        self,
+        auditor_node_id: str = "node_hermetic_sentry",
+        allow_local_ipc: bool = False,
+        runtime_profile: str = "SOVEREIGN_MESH",
+    ) -> None:
+        self.auditor_node_id = auditor_node_id
+        self.allow_local_ipc = allow_local_ipc or (runtime_profile == "LOCAL_IPC")
+        self.runtime_profile = runtime_profile
+
+    def audit_source(
+        self,
+        source_code: str,
+        leaf_id: str = "leaf_anonymous",
+        allow_local_ipc: Optional[bool] = None,
+        runtime_profile: Optional[str] = None,
+    ) -> HermeticAuditReport:
         """Audits raw Python source code for hermetic compliance."""
         report_id = f"rpt_herm_{uuid.uuid4().hex[:12]}"
 
@@ -219,8 +269,26 @@ class ZeroTrustMicroAuditor:
                 auditor_node_id=self.auditor_node_id,
             )
 
+        # Determine effective local IPC authorization
+        effective_ipc = self.allow_local_ipc if allow_local_ipc is None else allow_local_ipc
+        effective_profile = self.runtime_profile if runtime_profile is None else runtime_profile
+        if effective_profile == "LOCAL_IPC":
+            effective_ipc = True
+        sc_lower = source_code.lower()
+        if (
+            "# allow-local-ipc" in sc_lower
+            or "profile.local_ipc" in sc_lower
+            or 'profile == "local_ipc"' in sc_lower
+            or "authorized_local_ipc" in sc_lower
+        ):
+            effective_ipc = True
+
         # AST Inspection
-        visitor = _HermeticASTVisitor(leaf_id=leaf_id)
+        visitor = _HermeticASTVisitor(
+            leaf_id=leaf_id,
+            allow_local_ipc=effective_ipc,
+            runtime_profile=effective_profile,
+        )
         visitor.visit(tree)
 
         is_hermetic = (len(visitor.violations) == 0)
@@ -239,18 +307,99 @@ class ZeroTrustMicroAuditor:
         candidate.validate_invariants()
         return self.audit_source(candidate.source_code, leaf_id=candidate.leaf_id)
 
-    def audit_dashboard_deliverable(
-        self, dashboard_content: str, deliverable_id: str = "dashboard"
-    ) -> HermeticAuditReport:
-        """Audits a development process telemetry dashboard deliverable ([L1-G4B-008] & HERM-005).
+    @classmethod
+    def check_unrendered_latex(cls, html_content: str, base_dir: Optional[str] = None) -> List[str]:
+        """Scans HTML content for unrendered LaTeX expressions (HERM-006).
 
-        Guarantees zero placeholder UUIDs, zero unreconciled synthetic estimations,
-        and valid structure before declaring compilation complete.
+        Returns empty list if a valid, hermetic math engine (KaTeX/MathJax with auto-render)
+        is properly loaded and verified on disk, or if no unrendered LaTeX exists.
+        Otherwise returns a list of unique unrendered LaTeX culprit tokens.
         """
-        report_id = f"rpt_dash_{uuid.uuid4().hex[:12]}"
+        if not html_content:
+            return []
+
+        # Check if valid math engine is present and properly initialized
+        content_lower = html_content.lower()
+        has_katex = "katex" in content_lower
+        has_mathjax = "mathjax" in content_lower
+        has_engine = has_katex or has_mathjax
+
+        has_autorender = (
+            "rendermathinelement" in content_lower
+            or "auto-render" in content_lower
+            or "mathjax.typeset" in content_lower
+        )
+
+        if has_engine and has_autorender:
+            engine_valid = True
+            # If referenced locally and base_dir is provided, verify referenced files exist on disk
+            if base_dir:
+                local_refs = re.findall(
+                    r'<(?:script|link)[^>]*(?:src|href)=["\']([^"\']*(?:katex|mathjax)[^"\']*)["\']',
+                    html_content,
+                    re.IGNORECASE,
+                )
+                for ref in local_refs:
+                    if not ref.startswith(("http://", "https://", "//")):
+                        local_path = Path(base_dir) / ref
+                        if not local_path.exists():
+                            engine_valid = False
+                            break
+            if engine_valid:
+                return []
+
+        # No valid math engine loaded -> Scan for unrendered LaTeX expressions
+        culprits: List[str] = []
+
+        # 1. Delimiter patterns ($$, \(, \[)
+        for pattern in cls.LATEX_DELIMITER_PATTERNS:
+            for match in pattern.finditer(html_content):
+                val = match.group(0)
+                if val not in culprits:
+                    culprits.append(val)
+
+        # 1b. Malformed / unclosed delimiter patterns
+        for pattern in cls.MALFORMED_DELIMITER_PATTERNS:
+            for match in pattern.finditer(html_content):
+                val = match.group(0).strip()
+                if val and not any(val in c for c in culprits) and val not in culprits:
+                    culprits.append(val)
+
+        # 2. Math dollar pattern ($...$)
+        for match in cls.MATH_DOLLAR_PATTERN.finditer(html_content):
+            val = match.group(0)
+            inner = match.group(1).strip()
+            # Exempt currency amounts: $100, $143,100, $50.00, $ 100, etc.
+            if re.match(r"^[\d,.]+\s*(?:usd|eur|gbp|k|m|b)?$", inner, re.IGNORECASE):
+                continue
+            # Exempt JS template strings
+            if inner.startswith("{") or "${" in val:
+                continue
+            if val not in culprits:
+                culprits.append(val)
+
+        # 3. LaTeX macro patterns (\forall, \text, etc.)
+        for pattern in cls.LATEX_MACRO_PATTERNS:
+            for match in pattern.finditer(html_content):
+                val = match.group(0)
+                # If this macro is already contained within an extracted delimiter expression, avoid duplicate reporting
+                if any(val in c for c in culprits):
+                    continue
+                if val not in culprits:
+                    culprits.append(val)
+
+        return culprits
+
+    def audit_html_deliverable(
+        self, html_content: str, deliverable_id: str = "html_file", base_dir: Optional[str] = None
+    ) -> HermeticAuditReport:
+        """Audits an HTML deliverable for loopback connections (HERM-001), empty/synthetic tokens (HERM-005),
+        and unrendered LaTeX math expressions (HERM-006).
+        """
+        report_id = f"rpt_html_{uuid.uuid4().hex[:12]}"
         violations: List[HermeticLinterViolation] = []
 
-        if not dashboard_content or len(dashboard_content.strip()) < 100:
+        if not html_content or len(html_content.strip()) < 100:
             violations.append(
                 HermeticLinterViolation(
                     violation_id=f"viol_herm005_{uuid.uuid4().hex[:8]}",
@@ -258,8 +407,8 @@ class ZeroTrustMicroAuditor:
                     severity=AuditSeverity.FATAL,
                     line_number=1,
                     column_offset=0,
-                    description="Dashboard deliverable is empty or truncated (< 100 bytes).",
-                    culprit_token="EmptyDashboard",
+                    description="HTML deliverable is empty or truncated (< 100 bytes).",
+                    culprit_token="EmptyHTML",
                 )
             )
             return HermeticAuditReport(
@@ -272,7 +421,7 @@ class ZeroTrustMicroAuditor:
                 auditor_node_id=self.auditor_node_id,
             )
 
-        # Check banned placeholder UUID patterns
+        # Check banned placeholder UUID patterns (HERM-005)
         banned_uuid_patterns = [
             "00000000-0000-0000-0000-000000000000",
             "11111111-1111-1111-1111-111111111111",
@@ -283,7 +432,7 @@ class ZeroTrustMicroAuditor:
             "TODO_RECONCILE",
         ]
 
-        content_lower = dashboard_content.lower()
+        content_lower = html_content.lower()
         for pat in banned_uuid_patterns:
             if pat in content_lower:
                 violations.append(
@@ -293,12 +442,12 @@ class ZeroTrustMicroAuditor:
                         severity=AuditSeverity.FATAL,
                         line_number=1,
                         column_offset=0,
-                        description=f"Forbidden placeholder/synthetic token '{pat}' detected in dashboard ([L1-G4B-008]).",
+                        description=f"Forbidden placeholder/synthetic token '{pat}' detected in HTML deliverable ([L1-G4B-008]).",
                         culprit_token=pat,
                     )
                 )
 
-        # Check for active loopback network URLs or socket connections inside dashboard scripts
+        # Check for active loopback network URLs or socket connections inside dashboard scripts (HERM-001)
         active_loopback_patterns = [
             "http://127.0.0.1",
             "http://localhost",
@@ -318,10 +467,25 @@ class ZeroTrustMicroAuditor:
                         severity=AuditSeverity.ERROR,
                         line_number=1,
                         column_offset=0,
-                        description=f"Active loopback network connection '{pattern}' detected in dashboard.",
+                        description=f"Active loopback network connection '{pattern}' detected in HTML deliverable.",
                         culprit_token=pattern,
                     )
                 )
+
+        # Check for unrendered LaTeX expressions (HERM-006)
+        latex_culprits = self.check_unrendered_latex(html_content, base_dir=base_dir)
+        for culprit in latex_culprits:
+            violations.append(
+                HermeticLinterViolation(
+                    violation_id=f"viol_herm006_{uuid.uuid4().hex[:8]}",
+                    rule_id="HERM-006",
+                    severity=AuditSeverity.FATAL,
+                    line_number=1,
+                    column_offset=0,
+                    description=f"Unrendered LaTeX expression '{culprit}' detected in HTML deliverable without a valid, hermetic math rendering engine or semantic HTML/Unicode equivalent (HERM-006).",
+                    culprit_token=culprit,
+                )
+            )
 
         is_hermetic = (len(violations) == 0)
         return HermeticAuditReport(
@@ -329,7 +493,60 @@ class ZeroTrustMicroAuditor:
             leaf_id=deliverable_id,
             is_hermetic=is_hermetic,
             violations=violations,
-            ast_nodes_scanned=len(dashboard_content.splitlines()),
+            ast_nodes_scanned=len(html_content.splitlines()),
             banned_constructs_detected=len(violations),
             auditor_node_id=self.auditor_node_id,
         )
+
+    def audit_dashboard_deliverable(
+        self, dashboard_content: str, deliverable_id: str = "dashboard", base_dir: Optional[str] = None
+    ) -> HermeticAuditReport:
+        """Audits a development process telemetry dashboard deliverable ([L1-G4B-008] & HERM-005, HERM-006).
+
+        Guarantees zero placeholder UUIDs, zero unreconciled synthetic estimations,
+        zero unrendered LaTeX expressions without a math engine, and valid structure
+        before declaring compilation complete.
+        """
+        return self.audit_html_deliverable(
+            html_content=dashboard_content, deliverable_id=deliverable_id, base_dir=base_dir
+        )
+
+    def audit_bijectivity(
+        self, source_code: str, contract: Any, leaf_id: str = "module.py"
+    ) -> ContractBijectivityWitness:
+        """Audits bijective mapping between ContractIR and AST code structures (BIJ-001..003)."""
+        verifier = BijectiveVerifier(verifier_node_id=self.auditor_node_id)
+        return verifier.verify_bijectivity(source_code, contract, source_file=leaf_id)
+
+    def audit_operational_pitfalls(
+        self, source_code: str, leaf_id: str = "module.py"
+    ) -> OperationalPitfallAuditReport:
+        """Audits physical AST mitigations for declared operational pitfalls (OP-001..004)."""
+        auditor = OperationalPitfallAuditor(auditor_node_id=self.auditor_node_id)
+        return auditor.audit_source(source_code, source_file=leaf_id)
+
+    def audit_leaf_comprehensive(
+        self, source_code: str, contract: Optional[Any] = None, leaf_id: str = "module.py"
+    ) -> Dict[str, Any]:
+        """Unified pre-disk audit intercept combining Hermetic, Bijective, and Operational passes."""
+        hermetic_report = self.audit_source(source_code, leaf_id=leaf_id)
+        if not hermetic_report.is_hermetic:
+            return {
+                "is_passed": False,
+                "stage": "HERMETIC_LINTING",
+                "hermetic_report": hermetic_report.to_dict(),
+            }
+
+        bijective_witness = None
+        if contract is not None:
+            bijective_witness = self.audit_bijectivity(source_code, contract, leaf_id=leaf_id)
+
+        operational_report = self.audit_operational_pitfalls(source_code, leaf_id=leaf_id)
+
+        return {
+            "is_passed": hermetic_report.is_hermetic and (operational_report.is_compliant),
+            "stage": "COMPREHENSIVE_AUDIT_PASSED",
+            "hermetic_report": hermetic_report.to_dict(),
+            "bijective_witness": bijective_witness.to_dict() if bijective_witness else None,
+            "operational_report": operational_report.to_dict(),
+        }

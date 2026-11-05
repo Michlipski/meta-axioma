@@ -24,7 +24,19 @@ from .domain_models import (
     QuorumVerdict,
     SMTModelCheckResult,
     assert_non_loopback,
+    BijectiveVerificationViolation,
+    RogueSymbolViolation,
+    UnimplementedVerbViolation,
+    SpecificationDriftViolation,
+    SignatureMismatchViolation,
+    OperationalMitigationViolation,
+    UnprotectedStateMutationViolation,
+    ResourceLeakViolation,
+    UnboundedNetworkCallViolation,
+    RawExceptionLeakViolation,
 )
+from .bijective_verifier import BijectiveVerifier
+from .operational_pitfall_auditor import OperationalPitfallAuditor, operational_contract
 from .zero_trust_micro_auditor import ZeroTrustMicroAuditor
 from .smt_model_checker import SMTModelChecker, NativeSMTProver_v4b
 from .byzantine_chaos_fuzzer import ByzantineChaosFuzzer
@@ -61,7 +73,20 @@ __all__ = [
     "QuorumVerdict",
     "SMTModelCheckResult",
     "assert_non_loopback",
+    "BijectiveVerificationViolation",
+    "RogueSymbolViolation",
+    "UnimplementedVerbViolation",
+    "SpecificationDriftViolation",
+    "SignatureMismatchViolation",
+    "OperationalMitigationViolation",
+    "UnprotectedStateMutationViolation",
+    "ResourceLeakViolation",
+    "UnboundedNetworkCallViolation",
+    "RawExceptionLeakViolation",
     # Verification Engines & Subsystems
+    "BijectiveVerifier",
+    "OperationalPitfallAuditor",
+    "operational_contract",
     "ZeroTrustMicroAuditor",
     "SMTModelChecker",
     "NativeSMTProver_v4b",
