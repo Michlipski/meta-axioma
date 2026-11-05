@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Axioma Macro-Bench: Application Ablation Cockpit</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --text-bright: #f0f6fc;
+            --accent: #58a6ff;
+            --green: #3fb950;
+            --red: #f85149;
+            --yellow: #d29922;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 24px;
+        }
+        .header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        h1, h2, h3 { color: var(--text-bright); }
+        .matrix-table, .pass-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            background: var(--surface);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th { background: #21262d; color: var(--text-bright); font-size: 13px; text-transform: uppercase; }
+        .score-cell { font-weight: bold; font-family: monospace; font-size: 14px; }
+        .score-cell.baseline { color: var(--green); }
+        .score-cell.ablated { color: var(--yellow); }
+        .score-cell.smoke { color: var(--red); }
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge.pass { background: rgba(63, 185, 80, 0.2); color: var(--green); }
+        .badge.fail { background: rgba(248, 81, 73, 0.2); color: var(--red); }
+        .scorecard-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .scorecard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+        .composite-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--accent);
+            font-family: monospace;
+        }
+        .graded-sub { color: #8b949e; font-size: 14px; margin-left: 8px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Axioma Macro-Bench: Application Ablation Cockpit</h1>
+        <p>Report ID: <code>rpt_macro_1793836008</code> | Timestamp: <code>2026-11-04 23:46:48 UTC</code></p>
+    </div>
+
+    <h2>1. Executive Ablation Matrix</h2>
+    <table class="matrix-table">
+        <thead>
+            <tr>
+                <th>Archetype</th>
+                <th>Full G4b (Baseline)</th>
+                <th>Ablation 1 (Flat LLM)</th>
+                <th>Ablation 2 (w/o Contracts)</th>
+                <th>Ablation 3 (w/o Auditors)</th>
+                <th>Ablation 4 (w/o Smoke Gate)</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+                <tr>
+                    <td class="archetype-name">axioma_kv</td>
+                    <td class="score-cell baseline">100.0</td>
+                    <td class="score-cell ablated">65.7</td>
+                    <td class="score-cell ablated">75.8</td>
+                    <td class="score-cell ablated">61.2</td>
+                    <td class="score-cell smoke">0.0</td>
+                </tr>
+            
+                <tr>
+                    <td class="archetype-name">axioma_flow</td>
+                    <td class="score-cell baseline">92.1</td>
+                    <td class="score-cell ablated">65.4</td>
+                    <td class="score-cell ablated">66.0</td>
+                    <td class="score-cell ablated">61.7</td>
+                    <td class="score-cell smoke">0.0</td>
+                </tr>
+            
+                <tr>
+                    <td class="archetype-name">axioma_collab</td>
+                    <td class="score-cell baseline">88.5</td>
+                    <td class="score-cell ablated">65.8</td>
+                    <td class="score-cell ablated">66.4</td>
+                    <td class="score-cell ablated">61.4</td>
+                    <td class="score-cell smoke">0.0</td>
+                </tr>
+            
+                <tr>
+                    <td class="archetype-name">axioma_gateway</td>
+                    <td class="score-cell baseline">90.0</td>
+                    <td class="score-cell ablated">66.0</td>
+                    <td class="score-cell ablated">66.7</td>
+                    <td class="score-cell ablated">56.7</td>
+                    <td class="score-cell smoke">0.0</td>
+                </tr>
+            
+        </tbody>
+    </table>
+
+    <h2 style="margin-top: 36px;">2. Detailed Evaluation Scorecards</h2>
+    
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_kv — full_g4b</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">100.0</span>
+                        <span class="graded-sub">/ 100 (Graded: 100.0)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>100.0</td>
+                        <td><strong>25.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>100.0</td>
+                        <td><strong>15.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_kv — flat_prompt_llm</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">65.7</span>
+                        <span class="graded-sub">/ 100 (Graded: 65.7)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>5.0</td>
+                        <td><strong>1.25</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>96.0</td>
+                        <td><strong>14.40</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_kv — wo_contracts_smt</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">75.8</span>
+                        <span class="graded-sub">/ 100 (Graded: 75.8)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>63.3</td>
+                        <td><strong>15.83</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>62.5</td>
+                        <td><strong>12.50</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>50.0</td>
+                        <td><strong>7.50</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_kv — wo_ast_auditors</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">61.2</span>
+                        <span class="graded-sub">/ 100 (Graded: 61.2)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>25.0</td>
+                        <td><strong>6.25</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>100.0</td>
+                        <td><strong>15.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_kv — wo_subprocess_smoke</h3>
+                        <div><span class="badge fail">LIVENESS FAIL (0.0x)</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">0.0</span>
+                        <span class="graded-sub">/ 100 (Graded: 33.3)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>4.0</td>
+                        <td><strong>1.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>0.0</td>
+                        <td><strong>0.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>11.7</td>
+                        <td><strong>2.33</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_flow — full_g4b</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">92.1</span>
+                        <span class="graded-sub">/ 100 (Graded: 92.1)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>100.0</td>
+                        <td><strong>25.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>50.0</td>
+                        <td><strong>7.50</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>98.2</td>
+                        <td><strong>19.63</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_flow — flat_prompt_llm</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">65.4</span>
+                        <span class="graded-sub">/ 100 (Graded: 65.4)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>6.7</td>
+                        <td><strong>1.67</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>91.7</td>
+                        <td><strong>13.75</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_flow — wo_contracts_smt</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">66.0</span>
+                        <span class="graded-sub">/ 100 (Graded: 66.0)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>6.7</td>
+                        <td><strong>1.67</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>95.8</td>
+                        <td><strong>14.37</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_flow — wo_ast_auditors</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">61.7</span>
+                        <span class="graded-sub">/ 100 (Graded: 61.7)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>6.7</td>
+                        <td><strong>1.67</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>100.0</td>
+                        <td><strong>15.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>75.0</td>
+                        <td><strong>15.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_flow — wo_subprocess_smoke</h3>
+                        <div><span class="badge fail">LIVENESS FAIL (0.0x)</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">0.0</span>
+                        <span class="graded-sub">/ 100 (Graded: 32.2)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>0.0</td>
+                        <td><strong>0.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>0.0</td>
+                        <td><strong>0.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>10.8</td>
+                        <td><strong>2.17</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_collab — full_g4b</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">88.5</span>
+                        <span class="graded-sub">/ 100 (Graded: 88.5)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>100.0</td>
+                        <td><strong>25.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>80.0</td>
+                        <td><strong>16.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>50.0</td>
+                        <td><strong>7.50</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_collab — flat_prompt_llm</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">65.8</span>
+                        <span class="graded-sub">/ 100 (Graded: 65.8)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>5.7</td>
+                        <td><strong>1.43</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>95.8</td>
+                        <td><strong>14.37</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_collab — wo_contracts_smt</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">66.4</span>
+                        <span class="graded-sub">/ 100 (Graded: 66.4)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>5.7</td>
+                        <td><strong>1.43</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>100.0</td>
+                        <td><strong>15.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_collab — wo_ast_auditors</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">61.4</span>
+                        <span class="graded-sub">/ 100 (Graded: 61.4)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>5.7</td>
+                        <td><strong>1.43</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>100.0</td>
+                        <td><strong>15.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>75.0</td>
+                        <td><strong>15.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_collab — wo_subprocess_smoke</h3>
+                        <div><span class="badge fail">LIVENESS FAIL (0.0x)</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">0.0</span>
+                        <span class="graded-sub">/ 100 (Graded: 32.2)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>0.0</td>
+                        <td><strong>0.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>0.0</td>
+                        <td><strong>0.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>10.8</td>
+                        <td><strong>2.17</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_gateway — full_g4b</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">90.0</span>
+                        <span class="graded-sub">/ 100 (Graded: 90.0)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>100.0</td>
+                        <td><strong>25.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>87.5</td>
+                        <td><strong>17.50</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>50.0</td>
+                        <td><strong>7.50</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_gateway — flat_prompt_llm</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">66.0</span>
+                        <span class="graded-sub">/ 100 (Graded: 66.0)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>6.7</td>
+                        <td><strong>1.67</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>95.8</td>
+                        <td><strong>14.37</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_gateway — wo_contracts_smt</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">66.7</span>
+                        <span class="graded-sub">/ 100 (Graded: 66.7)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>6.7</td>
+                        <td><strong>1.67</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>100.0</td>
+                        <td><strong>15.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_gateway — wo_ast_auditors</h3>
+                        <div><span class="badge pass">LIVENESS PASS</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">56.7</span>
+                        <span class="graded-sub">/ 100 (Graded: 56.7)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>6.7</td>
+                        <td><strong>1.67</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>100.0</td>
+                        <td><strong>15.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="scorecard-panel">
+                    <div class="scorecard-header">
+                        <h3>axioma_gateway — wo_subprocess_smoke</h3>
+                        <div><span class="badge fail">LIVENESS FAIL (0.0x)</span></div>
+                    </div>
+                    <div class="score-display">
+                        <span class="composite-value">0.0</span>
+                        <span class="graded-sub">/ 100 (Graded: 32.0)</span>
+                    </div>
+                    <table class="pass-table">
+                        <thead>
+                            <tr><th>Pass</th><th>Weight</th><th>Raw</th><th>Weighted</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            
+                    <tr>
+                        <td><code>spec_fidelity</code></td>
+                        <td>25%</td>
+                        <td>0.0</td>
+                        <td><strong>0.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>statechart</code></td>
+                        <td>20%</td>
+                        <td>50.0</td>
+                        <td><strong>10.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>chaos</code></td>
+                        <td>15%</td>
+                        <td>0.0</td>
+                        <td><strong>0.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>hermetic</code></td>
+                        <td>20%</td>
+                        <td>100.0</td>
+                        <td><strong>20.00</strong></td>
+                        <td><span class="badge pass">PASS</span></td>
+                    </tr>
+                
+                    <tr>
+                        <td><code>efficiency</code></td>
+                        <td>20%</td>
+                        <td>10.0</td>
+                        <td><strong>2.00</strong></td>
+                        <td><span class="badge fail">FAIL</span></td>
+                    </tr>
+                
+                        </tbody>
+                    </table>
+                </div>
+            
+</body>
+</html>
