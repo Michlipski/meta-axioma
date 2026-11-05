@@ -1,0 +1,47 @@
+{
+  "deliverable_bundle": {
+    "bundle_id": "bundle_g4b_macro_ablation_003",
+    "target_soc_id": "soc_g4b_macro_ablation_benchmarking",
+    "hypothesis_id": "hyp_macro_ablation_eval_001",
+    "constraint_analysis_id": "ca_macro_ablation_001",
+    "failure_mode_id": "fmm_macro_ablation_001",
+    "tradeoff_matrix_id": "tm_macro_ablation_001",
+    "reference_architecture_hash": "a4f91b72e918d3c50198aa741f021e5e0193bb921c5b96711728e811bc172fa1",
+    "merkle_root": "e814a01c3bf797aa3b0225f18c645d179619a978280f9bb11b621419da6d4002",
+    "is_certified": true,
+    "metadata": {
+      "specification_title": "Macro-Level Application Ablation Benchmark Specification",
+      "author": "Sovereign Research Service (192.168.40.10:8201)",
+      "selected_path": "Intra-Generational Implementation in Generation 4b",
+      "governing_rules": [
+        "L1-G4B-002: Zero-Code Boundary for Researcher",
+        "L1-G3B-000: Waterloo Tier 1 Situation of Concern",
+        "NEG-G1B-002: Subprocess Entrypoint Smoke Invariant"
+      ]
+    }
+  },
+  "hypothesis": {
+    "hypothesis_id": "hyp_macro_ablation_eval_001",
+    "theoretical_claim": "Compiling complete software applications under systematically ablated compiler modes and evaluating them against an automated 5-dimensional testing gauntlet (Liveness, Bijectivity, Statecharts, Chaos, Efficiency) mathematically proves the marginal defect reduction and reliability gains of formal axiomatic compiler architecture over flat LLM synthesis.",
+    "expected_complexity_class": "O(N * M) where N = ablation modes, M = evaluation passes",
+    "formal_conjecture_z3": "(forall ((app CompiledApplication) (mode AblationMode)) (=> (= mode Full_G4b) (> (composite_score app) (composite_score (ablate app)))))"
+  },
+  "tradeoff_matrix": {
+    "matrix_id": "tm_macro_ablation_001",
+    "evaluated_options": [
+      "Option 1: Intra-Generational Macro Benchmark Harness in Generation 4b (benchmarks/macro_ablation/)",
+      "Option 2: Successor Framework in Generation 5",
+      "Option 3: External Black-Box CLI Runner"
+    ],
+    "pareto_frontier_options": [
+      "Option 1: Intra-Generational Macro Benchmark Harness in Generation 4b"
+    ],
+    "scoring_weights": {
+      "rigor_and_repeatability": 0.35,
+      "zero_cost_local_execution": 0.30,
+      "architectural_fidelity": 0.20,
+      "time_to_implement": 0.15
+    },
+    "selection_proof": "Option 1 leverages existing Gen 4b services (subprocess smoke, AST micro-auditors, telemetry event store) without succession overhead, providing the exact empirical baseline required before considering Gen 5."
+  }
+}

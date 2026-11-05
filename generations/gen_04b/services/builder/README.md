@@ -11,3 +11,8 @@ The **Sovereign Builder Enclave** (`services/builder`) is the primary generative
    - Halts synthesis of affected modules until Research adjudicates with a cryptographically signed `SpecAmendment` or refutes with a mathematical `CounterProof`.
    - Never alters specifications unilaterally.
 4. **Boundary Isolation:** Bound to dedicated non-loopback IP `192.168.40.20`.
+
+---
+
+## Generation 5 Succession Planning
+For forward-looking architectural desiderata, streaming AST pipelines, and Generation 5 builder notes, see [`../../next_gen/services/builder.md`](../../next_gen/services/builder.md).
