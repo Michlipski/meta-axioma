@@ -1024,20 +1024,20 @@
           <span class="badge badge-amber">&Delta;Q = k_B T ln(2) &bull; n</span>
         </div>
         <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
-          Landauer thermodynamic limit for irreversible information bit erasure across the telemetry state space at \(T = 300.0\text{ K}\):
+          Landauer thermodynamic limit for irreversible information bit erasure across the telemetry state space at <i>T</i> = 300.0 K:
         </p>
 
         <div style="background:#04060a; border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:16px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-size:13px; color:var(--text-muted);">Calculated Heat Dissipated (\(Q\)):</span>
+            <span style="font-size:13px; color:var(--text-muted);">Calculated Heat Dissipated (<i>Q</i>):</span>
             <span style="font-size:22px; font-weight:800; font-family:var(--font-mono); color:var(--amber);" id="landauer-joules-display">5.282 &times; 10<sup>-17</sup> J</span>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px; color:var(--text-dim);">
-            <span>Bits Erased (\(n\)):</span>
+            <span>Bits Erased (<i>n</i>):</span>
             <span style="font-family:var(--font-mono); font-weight:700; color:var(--text);" id="landauer-bits-display">18,400 bits</span>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px; color:var(--text-dim);">
-            <span>Boltzmann Constant (\(k_B\)):</span>
+            <span>Boltzmann Constant (<i>k</i><sub>B</sub>):</span>
             <span style="font-family:var(--font-mono);">1.380649 &times; 10<sup>-23</sup> J/K</span>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--text-dim);">
@@ -1137,27 +1137,27 @@
             <tbody>
               <tr>
                 <td><code>I_zero_loopback</code></td>
-                <td>\(\text{Binding}(Node) \cap \{127.0.0.1, \text{localhost}, 0.0.0.0\} == \emptyset\)</td>
+                <td>Binding(Node) &cap; {127.0.0.1, localhost, 0.0.0.0} == &empty;</td>
                 <td><span class="badge badge-emerald">&#10003; VERIFIED</span></td>
               </tr>
               <tr>
                 <td><code>I_thermodynamic_partition</code></td>
-                <td>\(\text{ExploratorySpend} \le 528,180 \land \text{ProtectedFloor} \ge 352,120\)</td>
+                <td>ExploratorySpend &le; 528,180 &and; ProtectedFloor &ge; 352,120</td>
                 <td><span class="badge badge-emerald">&#10003; VERIFIED</span></td>
               </tr>
               <tr>
                 <td><code>I_sla_quantile_bound</code></td>
-                <td>\(P_{99} \le 50.0\text{ms} \land \text{Availability} \ge 99.0\% \land \text{Err} \le 1\%\)</td>
+                <td><i>P</i><sub>99</sub> &le; 50.0ms &and; Availability &ge; 99.0% &and; Err &le; 1%</td>
                 <td><span class="badge badge-emerald">&#10003; VERIFIED</span></td>
               </tr>
               <tr>
                 <td><code>I_merkle_dag_immutability</code></td>
-                <td>\(\forall B_i: \text{Hash}(B_i) == \text{SHA256}(\text{PrevHash} \parallel \text{Payload})\)</td>
+                <td>&forall; <i>B</i><sub><i>i</i></sub>: Hash(<i>B</i><sub><i>i</i></sub>) == SHA256(PrevHash &parallel; Payload)</td>
                 <td><span class="badge badge-emerald">&#10003; VERIFIED</span></td>
               </tr>
               <tr>
                 <td><code>I_functorial_reversibility</code></td>
-                <td>\(\forall C: F^{-1}(S_{t+1}) = S_t \land \Delta\text{BitsErased} \ge 0\)</td>
+                <td>&forall; <i>C</i>: <i>F</i><sup>-1</sup>(<i>S</i><sub><i>t</i>+1</sub>) = <i>S</i><sub><i>t</i></sub> &and; &Delta;BitsErased &ge; 0</td>
                 <td><span class="badge badge-emerald">&#10003; VERIFIED</span></td>
               </tr>
             </tbody>

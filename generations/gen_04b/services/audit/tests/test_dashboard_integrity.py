@@ -61,6 +61,23 @@ class TestAuditDashboardIntegrity(unittest.TestCase):
         )
         self.assertEqual(len(report.violations), 0)
 
+    def test_herm_006_zero_unrendered_latex(self) -> None:
+        """Verify dashboard passes HERM-006 micro-auditor with zero unrendered LaTeX expressions."""
+        content = self.dashboard_html.read_text(encoding="utf-8")
+        culprits = self.auditor.check_unrendered_latex(content)
+        self.assertEqual(
+            len(culprits),
+            0,
+            f"Unrendered LaTeX expressions detected in dashboard.html: {culprits}"
+        )
+        report = self.auditor.audit_dashboard_deliverable(content, deliverable_id="audit_dashboard")
+        latex_violations = [v for v in report.violations if v.rule_id == "HERM-006"]
+        self.assertEqual(
+            len(latex_violations),
+            0,
+            f"HERM-006 violations detected in dashboard: {[v.description for v in latex_violations]}"
+        )
+
     def test_subagent_conversation_ids_are_valid_uuids(self) -> None:
         """Verify all subagent conversation IDs in the witness table are valid UUIDv4 strings."""
         content = self.dashboard_html.read_text(encoding="utf-8")

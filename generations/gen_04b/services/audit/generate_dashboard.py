@@ -963,20 +963,20 @@ def generate_dashboard_html() -> str:
           <span class="badge badge-amber">&Delta;Q = k_B T ln(2) &bull; n</span>
         </div>
         <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
-          Landauer thermodynamic limit for irreversible bit erasure in the SMT state space at ambient operating temperature \(T = 298.15\text{ K}\):
+          Landauer thermodynamic limit for irreversible bit erasure in the SMT state space at ambient operating temperature <i>T</i> = 298.15 K:
         </p>
 
         <div style="background:#04060a; border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:16px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-size:13px; color:var(--text-muted);">Calculated Heat Dissipated (\(Q\)):</span>
+            <span style="font-size:13px; color:var(--text-muted);">Calculated Heat Dissipated (<i>Q</i>):</span>
             <span style="font-size:22px; font-weight:800; font-family:var(--font-mono); color:var(--amber);" id="landauer-joules-display">1.598 &times; 10<sup>-17</sup> J</span>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px; color:var(--text-dim);">
-            <span>Bits Erased (\(n\)):</span>
+            <span>Bits Erased (<i>n</i>):</span>
             <span style="font-family:var(--font-mono); font-weight:700; color:var(--text);" id="landauer-bits-display">5,600 bits</span>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px; color:var(--text-dim);">
-            <span>Boltzmann Constant (\(k_B\)):</span>
+            <span>Boltzmann Constant (<i>k</i><sub>B</sub>):</span>
             <span style="font-family:var(--font-mono);">1.380649 &times; 10<sup>-23</sup> J/K</span>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--text-dim);">
@@ -1066,27 +1066,27 @@ def generate_dashboard_html() -> str:
             <tbody>
               <tr>
                 <td><code>I_zero_trust_coverage</code></td>
-                <td>\(\forall L \in \text{CodeLeaves}: \text{Audited}(L) == \text{True}\)</td>
+                <td>&forall; <i>L</i> &in; CodeLeaves: Audited(<i>L</i>) == True</td>
                 <td><span class="badge badge-emerald">&#10003; 100% PROVEN</span></td>
               </tr>
               <tr>
                 <td><code>I_loopback_prohibited</code></td>
-                <td>\(\text{Binding}(Node) \cap \{127.0.0.1, \text{localhost}\} == \emptyset\)</td>
+                <td>Binding(Node) &cap; {127.0.0.1, localhost} == &empty;</td>
                 <td><span class="badge badge-emerald">&#10003; 100% PROVEN</span></td>
               </tr>
               <tr>
                 <td><code>I_morphism_preservation</code></td>
-                <td>\(F(g \circ f) = F(g) \circ F(f) \land F(\text{id}_A) = \text{id}_{F(A)}\)</td>
+                <td><i>F</i>(<i>g</i> &compfn; <i>f</i>) = <i>F</i>(<i>g</i>) &compfn; <i>F</i>(<i>f</i>) &and; <i>F</i>(id<sub><i>A</i></sub>) = id<sub><i>F</i>(<i>A</i>)</sub></td>
                 <td><span class="badge badge-emerald">&#10003; 100% PROVEN</span></td>
               </tr>
               <tr>
                 <td><code>I_deadlock_freedom</code></td>
-                <td>\(\forall S \in \text{ReachStates}: \exists E : \delta(S, E) \neq \bot\)</td>
+                <td>&forall; <i>S</i> &in; ReachStates: &exist; <i>E</i> : &delta;(<i>S</i>, <i>E</i>) &ne; &bot;</td>
                 <td><span class="badge badge-emerald">&#10003; 100% PROVEN</span></td>
               </tr>
               <tr>
                 <td><code>I_byzantine_resilience</code></td>
-                <td>\(N \ge 3f + 1 \implies \text{QuorumAgreement} == \text{True}\)</td>
+                <td><i>N</i> &ge; 3<i>f</i> + 1 &implies; QuorumAgreement == True</td>
                 <td><span class="badge badge-emerald">&#10003; 100% PROVEN</span></td>
               </tr>
             </tbody>

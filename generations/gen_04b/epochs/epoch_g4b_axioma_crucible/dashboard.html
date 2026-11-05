@@ -566,7 +566,7 @@
       </div>
       <div class="card-value">8.158 <span style="font-size:14px; color:var(--text-muted);">aJ</span></div>
       <div class="card-subtext">
-        <span style="color:var(--emerald);">98.4%</span> Reversible Morphisms ($f^{-1}$)
+        <span style="color:var(--emerald);">98.4%</span> Reversible Morphisms (<i>f</i><sup>&minus;1</sup>)
       </div>
     </div>
 
@@ -708,7 +708,7 @@
           <div style="background:rgba(0,0,0,0.3); padding:10px 12px; border-radius:6px; border-left:3px solid var(--emerald);">
             <strong style="color:var(--emerald); font-size:12px;">Micro-SoC: Deterministic Invariants &amp; Ergonomics</strong>
             <p style="font-size:12px; color:var(--text-muted); margin-top:3px;">
-              Envelope bound &le; 4,096 BPE, typed DiagnosticTuples (zero freeform strings), 1-tap Functorial Undo ($f^{-1}$), and $\min(\text{StepsToValue}) \le 3$.
+              Envelope bound &le; 4,096 BPE, typed DiagnosticTuples (zero freeform strings), 1-tap Functorial Undo (<i>f</i><sup>&minus;1</sup>), and min(StepsToValue) &le; 3.
             </p>
           </div>
         </div>
@@ -889,7 +889,7 @@
           <span class="badge badge-purple">[L1-G4B-008]</span>
         </div>
         <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
-          Maintains universal canonical symbol identifiers with $O(1)$ hypergraph resolution and category-theoretic classification:
+          Maintains universal canonical symbol identifiers with <i>O</i>(1) hypergraph resolution and category-theoretic classification:
         </p>
         <div class="math-formula">
           URN = urn:axioma:g4b:crucible:{package}:{module}:{symbol}
@@ -920,7 +920,7 @@
             </tr>
             <tr>
               <td><code>Monad</code></td>
-              <td>Composable computation with unit and bind ($M \circ M \to M$)</td>
+              <td>Composable computation with unit and bind (<i>M</i> &compfn; <i>M</i> &rarr; <i>M</i>)</td>
               <td><code>5</code></td>
             </tr>
           </tbody>
@@ -1233,7 +1233,7 @@
           <span class="badge badge-emerald">[L1-G4B-003]</span>
         </div>
         <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
-          Verifies genuine generational self-hosting by executing a live daughter compiler ($G_N \to G_{N+1}$) in an isolated sandbox subprocess:
+          Verifies genuine generational self-hosting by executing a live daughter compiler (<i>G<sub>N</sub></i> &rarr; <i>G</i><sub><i>N</i>+1</sub>) in an isolated sandbox subprocess:
         </p>
 
         <table>
@@ -1426,7 +1426,7 @@
 
           <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.25); padding:10px 14px; border-radius:8px;">
             <div>
-              <strong style="font-size:13px; color:var(--text);">Functorial Morphism Undo ($f^{-1}$)</strong>
+              <strong style="font-size:13px; color:var(--text);">Functorial Morphism Undo (<i>f</i><sup>&minus;1</sup>)</strong>
               <div style="font-size:11px; color:var(--text-dim);">Reverses last AST mutation with zero bit-level entropy loss</div>
             </div>
             <button class="btn-action btn-purple" onclick="simulateUndo()">Functorial Undo</button>
@@ -1435,7 +1435,7 @@
           <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.25); padding:10px 14px; border-radius:8px;">
             <div>
               <strong style="font-size:13px; color:var(--text);">Launch Quine Crucible Daughter</strong>
-              <div style="font-size:11px; color:var(--text-dim);">Executes isolated self-compilation sandbox ($G_N \to G_{N+1}$)</div>
+              <div style="font-size:11px; color:var(--text-dim);">Executes isolated self-compilation sandbox (<i>G<sub>N</sub></i> &rarr; <i>G</i><sub><i>N</i>+1</sub>)</div>
             </div>
             <button class="btn-action btn-rose" onclick="simulateQuine()">Trigger Quine</button>
           </div>
