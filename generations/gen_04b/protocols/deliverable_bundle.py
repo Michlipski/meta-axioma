@@ -10,6 +10,7 @@ Enforces:
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from enum import Enum
 import hashlib
 import json
 from typing import Any, Dict, List, Optional
@@ -18,6 +19,166 @@ from typing import Any, Dict, List, Optional
 class DeliverableProtocolViolation(Exception):
     """Raised when a deliverable bundle or sub-artifact violates its invariant rules."""
     pass
+
+
+class OperationalPitfall(str, Enum):
+    """Operational risk categories for backend and distributed services."""
+    CONCURRENCY_STATE_RACE = "CONCURRENCY_STATE_RACE"
+    RESOURCE_LEAK_UNCLOSED = "RESOURCE_LEAK_UNCLOSED"
+    TRANSIENT_NETWORK_FAILURE = "TRANSIENT_NETWORK_FAILURE"
+    UNHANDLED_BOUNDARY_EXCEPTION = "UNHANDLED_BOUNDARY_EXCEPTION"
+    UNBOUNDED_QUEUE_BACKPRESSURE = "UNBOUNDED_QUEUE_BACKPRESSURE"
+    DEADLOCK_CIRCULAR_WAIT = "DEADLOCK_CIRCULAR_WAIT"
+
+
+class MitigationRule(str, Enum):
+    """Required structural AST mitigations enforcing operational safety."""
+    WITH_LOCK_GUARD = "WITH_LOCK_GUARD"
+    TRY_FINALLY_CLEANUP = "TRY_FINALLY_CLEANUP"
+    BOUNDED_TIMEOUT = "BOUNDED_TIMEOUT"
+    EXPONENTIAL_BACKOFF_RETRY = "EXPONENTIAL_BACKOFF_RETRY"
+    EXCEPTION_TRANSLATION_ENCLAVE = "EXCEPTION_TRANSLATION_ENCLAVE"
+    BOUNDED_BUFFER_LIMIT = "BOUNDED_BUFFER_LIMIT"
+
+
+@dataclass
+class MitigationPattern:
+    """Formal mapping between an operational pitfall and its required AST mitigation rule."""
+    pitfall: OperationalPitfall
+    rule: MitigationRule
+    target_guard: Optional[str] = None
+    cleanup_target: Optional[str] = None
+    max_timeout_sec: Optional[float] = None
+
+    def validate_invariants(self) -> None:
+        if self.rule == MitigationRule.WITH_LOCK_GUARD and not self.target_guard:
+            raise DeliverableProtocolViolation("WITH_LOCK_GUARD requires target_guard identifier.")
+        if self.rule == MitigationRule.TRY_FINALLY_CLEANUP and not self.cleanup_target:
+            raise DeliverableProtocolViolation("TRY_FINALLY_CLEANUP requires cleanup_target identifier.")
+        if self.rule == MitigationRule.BOUNDED_TIMEOUT and self.max_timeout_sec is not None:
+            if self.max_timeout_sec <= 0.0:
+                raise DeliverableProtocolViolation("max_timeout_sec must be strictly positive.")
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "pitfall": self.pitfall.value,
+            "rule": self.rule.value,
+            "target_guard": self.target_guard,
+            "cleanup_target": self.cleanup_target,
+            "max_timeout_sec": self.max_timeout_sec,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> MitigationPattern:
+        instance = cls(
+            pitfall=OperationalPitfall(data["pitfall"]),
+            rule=MitigationRule(data["rule"]),
+            target_guard=data.get("target_guard"),
+            cleanup_target=data.get("cleanup_target"),
+            max_timeout_sec=float(data["max_timeout_sec"]) if data.get("max_timeout_sec") is not None else None,
+        )
+        instance.validate_invariants()
+        return instance
+
+
+@dataclass
+class ContractBijectivityWitness:
+    """Attestation certifying a 100% bijective mapping between ContractIR and AST code structures."""
+    witness_id: str
+    contract_id: str
+    source_file: str
+    is_bijective: bool
+    mapped_verbs: List[str] = field(default_factory=list)
+    unmapped_verbs: List[str] = field(default_factory=list)
+    rogue_functions: List[str] = field(default_factory=list)
+    docstring_hash_matches: bool = True
+    spec_hashes: Dict[str, str] = field(default_factory=dict)
+    timestamp_unix_ms: int = 0
+
+    def validate_invariants(self) -> None:
+        if not self.witness_id:
+            raise DeliverableProtocolViolation("witness_id must not be empty.")
+        if not self.contract_id:
+            raise DeliverableProtocolViolation("contract_id must not be empty.")
+        if self.is_bijective:
+            if len(self.unmapped_verbs) > 0 or len(self.rogue_functions) > 0 or not self.docstring_hash_matches:
+                raise DeliverableProtocolViolation(
+                    "Witness cannot be marked is_bijective when unmapped verbs, rogue functions, or hash drift exist."
+                )
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "witness_id": self.witness_id,
+            "contract_id": self.contract_id,
+            "source_file": self.source_file,
+            "is_bijective": self.is_bijective,
+            "mapped_verbs": list(self.mapped_verbs),
+            "unmapped_verbs": list(self.unmapped_verbs),
+            "rogue_functions": list(self.rogue_functions),
+            "docstring_hash_matches": self.docstring_hash_matches,
+            "spec_hashes": dict(self.spec_hashes),
+            "timestamp_unix_ms": self.timestamp_unix_ms,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> ContractBijectivityWitness:
+        instance = cls(
+            witness_id=data["witness_id"],
+            contract_id=data["contract_id"],
+            source_file=data.get("source_file", ""),
+            is_bijective=bool(data["is_bijective"]),
+            mapped_verbs=list(data.get("mapped_verbs", [])),
+            unmapped_verbs=list(data.get("unmapped_verbs", [])),
+            rogue_functions=list(data.get("rogue_functions", [])),
+            docstring_hash_matches=bool(data.get("docstring_hash_matches", True)),
+            spec_hashes=dict(data.get("spec_hashes", {})),
+            timestamp_unix_ms=int(data.get("timestamp_unix_ms", 0)),
+        )
+        instance.validate_invariants()
+        return instance
+
+
+@dataclass
+class OperationalPitfallAuditReport:
+    """Report certifying physical AST-level mitigations for declared operational pitfalls."""
+    report_id: str
+    source_file: str
+    is_compliant: bool
+    violations: List[Dict[str, Any]] = field(default_factory=list)
+    mitigations_verified: List[str] = field(default_factory=list)
+    auditor_node_id: str = "node_hermetic_sentry"
+    timestamp_unix_ms: int = 0
+
+    def validate_invariants(self) -> None:
+        if not self.report_id:
+            raise DeliverableProtocolViolation("report_id must not be empty.")
+        if self.is_compliant and len(self.violations) > 0:
+            raise DeliverableProtocolViolation("Audit report cannot be compliant with active violations.")
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "report_id": self.report_id,
+            "source_file": self.source_file,
+            "is_compliant": self.is_compliant,
+            "violations": self.violations,
+            "mitigations_verified": self.mitigations_verified,
+            "auditor_node_id": self.auditor_node_id,
+            "timestamp_unix_ms": self.timestamp_unix_ms,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> OperationalPitfallAuditReport:
+        instance = cls(
+            report_id=data["report_id"],
+            source_file=data.get("source_file", ""),
+            is_compliant=bool(data["is_compliant"]),
+            violations=list(data.get("violations", [])),
+            mitigations_verified=list(data.get("mitigations_verified", [])),
+            auditor_node_id=data.get("auditor_node_id", "node_hermetic_sentry"),
+            timestamp_unix_ms=int(data.get("timestamp_unix_ms", 0)),
+        )
+        instance.validate_invariants()
+        return instance
 
 
 @dataclass
