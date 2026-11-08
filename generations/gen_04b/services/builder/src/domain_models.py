@@ -70,6 +70,30 @@ class LeaseAllocationStatus(str, Enum):
     UNWOUND = "UNWOUND"
 
 
+class CognitiveRole(str, Enum):
+    """Classification of cognitive task for model routing and role quarantine ([SPEC-G4B-BUILDER-001])."""
+    # The Brain
+    ORCHESTRATOR_FSM = "orchestrator_fsm"
+    SOC_NORMALIZATION = "soc_normalization"
+    MODEL_CHECKER = "model_checker"
+    JOURNEY_WALKER = "journey_walker"
+    ZERO_TRUST_AUDITOR = "zero_trust_auditor"
+    DIALECTICAL_EXPLORATION = "dialectical_exploration"
+    HUMAN_ERGONOMICS_ARCHITECT = "human_ergonomics_architect"
+    DOMAIN_ONTOLOGIST = "domain_ontologist"
+    DISTRIBUTED_TOPOLOGY_ARCHITECT = "distributed_topology_architect"
+    STATECHART_FSM_ENGINEER = "statechart_fsm_engineer"
+
+    # The Muscle
+    LEAF_CODE_EMISSION = "leaf_code_emission"
+    LEAF_SCHEMA_EMISSION = "leaf_schema_emission"
+    LEAF_DATA_EMISSION = "leaf_data_emission"
+    LEAF_STYLE_EMISSION = "leaf_style_emission"
+    CORE_ENGINE_SYNTHESIZER = "core_engine_synthesizer"
+    OPERATIONAL_DASHBOARD_SYNTHESIZER = "operational_dashboard_synthesizer"
+    ADVERSARIAL_QA_ENGINEER = "adversarial_qa_engineer"
+
+
 # =========================================================================
 # 1. BuilderExecutionBundle
 # =========================================================================

@@ -106,6 +106,43 @@ class SymbolHypergraphIndexer:
         node = self.resolve_symbol(urn_str)
         return node.dependencies if node else set()
 
+    def get_neighborhood(self, urn_str: str, max_depth: int = 2) -> Set[str]:
+        """Traverses the relational hypergraph up to max_depth (topological distance d <= max_depth).
+
+        Enforces the Skeleton Cache Eviction Invariant:
+        Symbols with topological distance d > max_depth from the target symbol are trimmed,
+        preserving only transitive type dependencies within prompt budget.
+        """
+        node = self.resolve_symbol(urn_str)
+        if not node:
+            return set()
+
+        visited: Set[str] = {node.canonical_urn_str()}
+        current_layer: Set[str] = {node.canonical_urn_str()}
+
+        for _ in range(max_depth):
+            next_layer: Set[str] = set()
+            for curr_urn in current_layer:
+                curr_node = self._nodes.get(curr_urn)
+                if not curr_node:
+                    continue
+                for dep in curr_node.dependencies:
+                    canonical_dep = self._canonical_or_raw(dep)
+                    if canonical_dep not in visited:
+                        visited.add(canonical_dep)
+                        next_layer.add(canonical_dep)
+            current_layer = next_layer
+            if not current_layer:
+                break
+
+        return visited
+
+    def _canonical_or_raw(self, urn_str: str) -> str:
+        try:
+            return SymbolURN.parse(urn_str).to_string()
+        except Exception:
+            return urn_str
+
     def register_hyperedge(self, edge_id: str, relation_name: str, member_urns: List[str], invariants: Optional[List[str]] = None) -> Hyperedge:
         """Registers a multi-way relational hyperedge between symbols."""
         edge = Hyperedge(

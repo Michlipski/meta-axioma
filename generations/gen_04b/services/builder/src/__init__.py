@@ -6,6 +6,7 @@ from .domain_models import (
     BuilderExecutionBundle,
     ByzantineChaosReport,
     CausalConvergenceAttestation,
+    CognitiveRole,
     DiagnosticSeverity,
     DiagnosticTuple,
     DomainInvariantViolation,
@@ -25,4 +26,25 @@ from .domain_models import (
     RFCSubmissionRecord,
     SubtreeHealingEnvelope,
     TaskExecutionStatus,
+)
+from .engine_synthesizer import (
+    BuilderQuarantineViolation,
+    EngineSynthesizer,
+    validate_mutation_target,
+)
+from .qa_synthesizer import (
+    QABoundaryViolation,
+    QASynthesizer,
+    sanitize_context_for_qa,
+    validate_qa_target,
+)
+from .ui_scaffolder import (
+    HermeticityViolation,
+    NarrativeHUDTemplate,
+    StudioCSSTemplate,
+    TactileCanvasTemplate,
+    UIScaffolder,
+    clamp_coordinates,
+    format_narrative_diff,
+    screen_to_spatial,
 )

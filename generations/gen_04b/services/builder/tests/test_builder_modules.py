@@ -394,6 +394,73 @@ class Calculator:
         finally:
             Path(empty_path).unlink(missing_ok=True)
 
+    def test_hypergraph_neighborhood_pruning(self):
+        """Verifies topological distance d <= 2 pruning in SymbolHypergraphIndexer."""
+        indexer = SymbolHypergraphIndexer()
+        # Build chain A -> B -> C -> D
+        indexer.index_symbol("urn:axioma:g4b:demo:d", ASTNodeType.MODULE, "d.py")
+        indexer.index_symbol("urn:axioma:g4b:demo:c", ASTNodeType.MODULE, "c.py", dependencies=["urn:axioma:g4b:demo:d"])
+        indexer.index_symbol("urn:axioma:g4b:demo:b", ASTNodeType.MODULE, "b.py", dependencies=["urn:axioma:g4b:demo:c"])
+        indexer.index_symbol("urn:axioma:g4b:demo:a", ASTNodeType.MODULE, "a.py", dependencies=["urn:axioma:g4b:demo:b"])
+
+        # Neighborhood at depth 1 should have A and B
+        n1 = indexer.get_neighborhood("urn:axioma:g4b:demo:a", max_depth=1)
+        self.assertEqual(n1, {"urn:axioma:g4b:demo:a", "urn:axioma:g4b:demo:b"})
+
+        # Neighborhood at depth 2 should have A, B, and C (prunes D at distance 3)
+        n2 = indexer.get_neighborhood("urn:axioma:g4b:demo:a", max_depth=2)
+        self.assertEqual(n2, {"urn:axioma:g4b:demo:a", "urn:axioma:g4b:demo:b", "urn:axioma:g4b:demo:c"})
+        self.assertNotIn("urn:axioma:g4b:demo:d", n2)
+
+    def test_leaf_prompt_context_assembly(self):
+        """Verifies assembling bounded prompt context with AST skeletons."""
+        kernel = SovereignBuilderKernel(node_ip="192.168.40.20", port=8442)
+        code_b = '''
+def calculate_metric(val: float) -> float:
+    """Calculates Landauer metric."""
+    intermediate = val * 42.0
+    return intermediate + 3.14
+'''
+        # Compile module B
+        ok, msg = kernel.compile_module(
+            module_path="services/builder/src/metric.py",
+            source_code=code_b,
+            symbol_urn="urn:axioma:g4b:math:metric",
+        )
+        self.assertTrue(ok)
+        skel_b = kernel.get_skeleton("urn:axioma:g4b:math:metric")
+        self.assertIsNotNone(skel_b)
+        self.assertIn("def calculate_metric(val)", skel_b.preserved_signatures)
+        self.assertIn("...", skel_b.skeleton_code)
+
+        # Index module A which depends on B
+        kernel.hypergraph.index_symbol(
+            urn_str="urn:axioma:g4b:app:main",
+            node_type=ASTNodeType.MODULE,
+            file_path="services/builder/src/main.py",
+            dependencies=["urn:axioma:g4b:math:metric"],
+        )
+
+        # Assemble context for leaf synthesizer A
+        ctx = kernel.assemble_leaf_prompt_context("urn:axioma:g4b:app:main", max_depth=2)
+        self.assertTrue(ctx["is_bounded"])
+        self.assertIn("urn:axioma:g4b:math:metric", ctx["dependency_skeletons"])
+        self.assertIn("...", ctx["dependency_skeletons"]["urn:axioma:g4b:math:metric"])
+        self.assertLessEqual(ctx["estimated_context_tokens"], 4096)
+
+        # Verify EngineSynthesizer leaf prompt formatting
+        leaf_prompt = kernel.engine_synthesizer.format_leaf_prompt(
+            task_id="task_leaf_synthesis_01",
+            target_file="services/builder/src/main.py",
+            role_title="Core Engine Synthesizer",
+            contract_spec={"required_invariant": "metric >= 0"},
+            dependency_skeletons=ctx["dependency_skeletons"],
+        )
+        self.assertTrue(leaf_prompt["is_within_enclave_budget"])
+        self.assertIn("calculate_metric", leaf_prompt["prompt_text"])
+        self.assertIn("...", leaf_prompt["prompt_text"])
+        self.assertLessEqual(leaf_prompt["estimated_bpe_tokens"], 4096)
+
 
 if __name__ == "__main__":
     unittest.main()

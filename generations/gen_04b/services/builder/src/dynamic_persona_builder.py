@@ -14,6 +14,7 @@ import time
 from typing import Any, Dict, List, Optional
 
 from .domain_models import (
+    CognitiveRole,
     DomainInvariantViolation,
     DynamicPersonaManifest,
 )
@@ -162,6 +163,52 @@ class DynamicPersonaBuilder:
                 "Bypassing micro-auditor verification gates",
                 "Permitting loopback network bindings in synthesized leaves",
                 "Impure state transitions with unrecorded side effects",
+            ],
+        )
+
+    @classmethod
+    def create_quarantined_engine_synthesizer_persona(cls) -> DynamicPersonaManifest:
+        """Synthesizes the Quarantined Core Engine Synthesizer persona ([SPEC-G4B-BUILDER-001])."""
+        return cls.create_persona(
+            role_title="Quarantined Core Engine Synthesizer",
+            cognitive_role=CognitiveRole.CORE_ENGINE_SYNTHESIZER.value,
+            model_tier="flash",
+            system_prompt=(
+                "You are the Quarantined Core Engine Synthesizer for Meta-Axioma G4b. "
+                "Your objective is to emit production code leaves strictly inside services/<service>/src/, "
+                "apps/<app>/src/, apps/<app>/static/, or src/. "
+                "You are quarantined from authoring, modifying, or touching any test files or tests/ directories. "
+                "Any attempt to mutate test files violates the builder quarantine invariant."
+            ),
+            governing_axioms=["[INV-G4B-CAUSAL-003]", "[SPEC-G4B-BUILDER-001]"],
+            banned_antipatterns=[
+                "Authoring test files in tests/",
+                "Modifying test files or test suites",
+                "Emitting tests and implementation in a single unsegregated turn",
+                "Violating file mutation boundary whitelist",
+            ],
+        )
+
+    @classmethod
+    def create_adversarial_qa_persona(cls) -> DynamicPersonaManifest:
+        """Synthesizes the Adversarial QA Engineer persona ([SPEC-G4B-BUILDER-001])."""
+        return cls.create_persona(
+            role_title="Adversarial Test and Byzantine QA Engineer",
+            cognitive_role=CognitiveRole.ADVERSARIAL_QA_ENGINEER.value,
+            model_tier="flash",
+            system_prompt=(
+                "You are the Adversarial Test & Byzantine QA Engineer for Meta-Axioma G4b. "
+                "Your objective is black-box verification and defect injection testing. "
+                "You receive sanitized public API contracts and operational specifications. "
+                "You are strictly prohibited from modifying production source code in src/ or reading builder internal scratchpads. "
+                "Author rigorous adversarial tests and execute empirical subprocess smoke tests."
+            ),
+            governing_axioms=["[INV-G4B-CAUSAL-003]", "[SPEC-G4B-BUILDER-001]", "[NEG-G1B-002]"],
+            banned_antipatterns=[
+                "Reading builder internal scratchpads or private implementation details",
+                "Authoring tautological tests matching known shortcuts",
+                "Modifying production source code in src/",
+                "In-memory mock tests without live empirical execution witnesses",
             ],
         )
 

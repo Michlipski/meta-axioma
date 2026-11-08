@@ -94,10 +94,24 @@ def main() -> None:
 
     # Target IS protected. Check if project_proposals.md exists in artifactDirectoryPath
     has_proposals = False
+    has_qfd = False
     if artifact_dir:
         proposals_file = Path(artifact_dir) / "project_proposals.md"
         if proposals_file.exists() and proposals_file.stat().st_size > 50:
             has_proposals = True
+            try:
+                content = proposals_file.read_text(encoding="utf-8")
+                # Assert valid QFD specification section or qfd_merkle_root witness
+                if (
+                    "qfd_merkle_root" in content
+                    or "House of Quality" in content
+                    or "## QFD" in content
+                    or "QFD Matrix" in content
+                    or "HouseOfQualityIR" in content
+                ):
+                    has_qfd = True
+            except Exception:
+                has_qfd = False
 
     if not has_proposals:
         # HARD BLOCK: Zero proposals emitted
@@ -110,6 +124,20 @@ def main() -> None:
                 "You must first: (1) analyze the Waterloo Situation of Concern, "
                 "(2) physically write 'project_proposals.md' via write_file to your artifact directory, "
                 "and (3) elicit approval from the human architect via ask_question before modifying code."
+            )
+        }
+        print(json.dumps(deny_response))
+        return
+
+    if not has_qfd:
+        # HARD BLOCK: Missing QFD specification or qfd_merkle_root witness
+        deny_response = {
+            "decision": "deny",
+            "reason": (
+                "FATAL GOVERNANCE VIOLATION [SPEC-G4B-RESEARCH-QFD-001 / DIRECTIVE 3]: "
+                f"Modification to generation source code '{target_path.name}' is strictly prohibited. "
+                "'project_proposals.md' in artifact directory lacks a valid QFD specification section "
+                "or 'qfd_merkle_root' witness. Proposals must be grounded in a sealed House of Quality matrix."
             )
         }
         print(json.dumps(deny_response))

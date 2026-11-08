@@ -10,6 +10,11 @@ Enforces:
   redirections (e.g. `echo ... > target.py` or `cat <<EOF > target.py`).
 - Pre-Emission AST Micro-Audit: Flags immediate operational pitfalls (missing timeouts,
   unbounded loops) before writing to protected code trees.
+- Builder-Tester Adversarial Isolation ([SPEC-G4B-BUILDER-001]):
+  * Builder roles (CORE_ENGINE_SYNTHESIZER) are quarantined from modifying `tests/`.
+  * QA roles (ADVERSARIAL_QA_ENGINEER) are prohibited from modifying `src/`.
+  * Tracks synthesis provenance in `.scratch/synthesis_turn_log.json` to prevent
+    single-turn unsegregated code and test emission without mutation verification.
 """
 
 from __future__ import annotations
@@ -21,6 +26,7 @@ from pathlib import Path
 import re
 import sys
 import textwrap
+import time
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 
@@ -30,6 +36,25 @@ PROTECTED_PATTERNS = ["/generations/", "/apps/", "/src/"]
 SHELL_REDIRECT_PATTERN = re.compile(
     r"(?:>|>>|tee\s+(?:-a\s+)?)\s*([\"']?)(?:generations|apps|src)/[^\s\"']+\1"
 )
+
+# Role keywords for adversarial role segregation ([SPEC-G4B-BUILDER-001])
+BUILDER_ROLE_KEYWORDS = ["builder", "core_engine_synthesizer", "synthesizer", "muscle"]
+QA_ROLE_KEYWORDS = ["qa", "adversarial_qa", "byzantine", "tester"]
+
+# Prohibited test patterns for builder role quarantine
+PROHIBITED_TEST_PATTERNS = [
+    re.compile(r"(?:^|/)tests?/"),
+    re.compile(r"(?:^|/)test_[^/]+\.py$"),
+    re.compile(r"(?:^|/)[^/]+_test\.py$"),
+]
+
+# Production code patterns prohibited for QA role
+PROD_CODE_PATTERNS = [
+    re.compile(r"(?:^|/)(?:generations/[^/]+/)?services/[^/]+/src/"),
+    re.compile(r"(?:^|/)apps/[^/]+/src/"),
+    re.compile(r"(?:^|/)apps/[^/]+/static/"),
+    re.compile(r"(?:^|/)src/"),
+]
 
 
 def is_scratch_or_exempt(path_str: str) -> bool:
@@ -43,6 +68,16 @@ def is_scratch_or_exempt(path_str: str) -> bool:
         "/.git/",
     ]
     return any(marker in norm for marker in exempt_markers)
+
+
+def is_test_path(norm_path: str) -> bool:
+    """Checks whether the normalized path points to a test file or test directory."""
+    return any(p.search(norm_path) for p in PROHIBITED_TEST_PATTERNS)
+
+
+def is_prod_code_path(norm_path: str) -> bool:
+    """Checks whether the normalized path points to production source code."""
+    return any(p.search(norm_path) for p in PROD_CODE_PATTERNS)
 
 
 def is_protected_code_path(target_path: Path, workspace_paths: List[str]) -> bool:
@@ -64,6 +99,223 @@ def is_protected_code_path(target_path: Path, workspace_paths: List[str]) -> boo
                     return True
 
     return False
+
+
+def resolve_active_role(payload: Dict[str, Any], workspace_paths: List[str]) -> Tuple[str, str]:
+    """Resolves active cognitive role and conversation ID from payload, env, or scratch state."""
+    conversation_id = payload.get("conversationId") or payload.get("conversation_id") or ""
+    subagent_role = payload.get("subagentRole") or payload.get("subagent_role") or ""
+
+    if not subagent_role:
+        env_role = os.environ.get("AXIOMA_COGNITIVE_ROLE") or os.environ.get("ACTIVE_COGNITIVE_ROLE")
+        if env_role:
+            subagent_role = env_role
+
+    if not subagent_role:
+        for ws in workspace_paths:
+            role_file = Path(ws) / ".scratch" / "active_role.json"
+            if role_file.exists():
+                try:
+                    data = json.loads(role_file.read_text(encoding="utf-8"))
+                    subagent_role = data.get("role", "")
+                    if not conversation_id:
+                        conversation_id = data.get("conversation_id", "")
+                    if subagent_role:
+                        break
+                except Exception:
+                    pass
+
+    if not subagent_role and conversation_id:
+        for ws in workspace_paths:
+            tel_file = Path(ws) / ".scratch" / "telemetry_hook_state.json"
+            if tel_file.exists():
+                try:
+                    data = json.loads(tel_file.read_text(encoding="utf-8"))
+                    sub = data.get("subagents", {}).get(conversation_id, {})
+                    if isinstance(sub, dict) and "role" in sub:
+                        subagent_role = sub["role"]
+                        break
+                except Exception:
+                    pass
+
+    return subagent_role, conversation_id
+
+
+def check_builder_quarantine(target_path: Path, role: str) -> Tuple[bool, str]:
+    """Enforces that builder roles are quarantined from touching tests/ ([SPEC-G4B-BUILDER-001])."""
+    role_lower = role.lower()
+    norm = str(target_path.resolve()).replace("\\", "/")
+
+    # Builder role strictly quarantined from modifying tests
+    if any(kw in role_lower for kw in BUILDER_ROLE_KEYWORDS) and not any(kw in role_lower for kw in QA_ROLE_KEYWORDS):
+        if is_test_path(norm):
+            return False, (
+                f"BUILDER ROLE QUARANTINE VIOLATION [SPEC-G4B-BUILDER-001]: "
+                f"Active role '{role}' (CORE_ENGINE_SYNTHESIZER) is quarantined "
+                f"from authoring or modifying test files: '{target_path.name}'. "
+                "Tests must be authored by an independent ADVERSARIAL_QA_ENGINEER subagent."
+            )
+
+    # QA role quarantined from modifying production code
+    if any(kw in role_lower for kw in QA_ROLE_KEYWORDS) and not any(kw in role_lower for kw in BUILDER_ROLE_KEYWORDS):
+        if is_prod_code_path(norm) and not is_test_path(norm):
+            return False, (
+                f"QA ROLE BOUNDARY VIOLATION [SPEC-G4B-BUILDER-001]: "
+                f"Active role '{role}' (ADVERSARIAL_QA_ENGINEER) is prohibited from "
+                f"modifying production source code: '{target_path.name}'. "
+                "QA must author black-box tests strictly inside tests/."
+            )
+
+    return True, "Role quarantine valid"
+
+
+def get_turn_log_path(workspace_paths: List[str]) -> Path:
+    """Finds or initializes the synthesis turn log path."""
+    for ws in workspace_paths:
+        scratch = Path(ws) / ".scratch"
+        if scratch.exists():
+            return scratch / "synthesis_turn_log.json"
+    scratch = Path.cwd() / ".scratch"
+    scratch.mkdir(parents=True, exist_ok=True)
+    return scratch / "synthesis_turn_log.json"
+
+
+def load_synthesis_turn_log(log_path: Path) -> Dict[str, Any]:
+    """Loads provenance records from synthesis turn log."""
+    if log_path.exists():
+        try:
+            data = json.loads(log_path.read_text(encoding="utf-8"))
+            if isinstance(data, dict):
+                data.setdefault("records", [])
+                data.setdefault("unsegregated_pairs", [])
+                return data
+        except Exception:
+            pass
+    return {"records": [], "unsegregated_pairs": []}
+
+
+def save_synthesis_turn_log(log_path: Path, data: Dict[str, Any]) -> None:
+    """Safely saves synthesis turn log."""
+    try:
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = log_path.with_suffix(".tmp")
+        tmp.write_text(json.dumps(data, indent=2), encoding="utf-8")
+        tmp.replace(log_path)
+    except Exception:
+        pass
+
+
+def record_synthesis_provenance(
+    log_path: Path,
+    target_path: Path,
+    conv_id: str,
+    role: str,
+) -> Dict[str, Any]:
+    """Records file mutation provenance in .scratch/synthesis_turn_log.json."""
+    data = load_synthesis_turn_log(log_path)
+    norm = str(target_path.resolve()).replace("\\", "/")
+    category = "TEST" if is_test_path(norm) else ("SRC" if is_prod_code_path(norm) else "OTHER")
+
+    record = {
+        "file_path": norm,
+        "filename": target_path.name,
+        "category": category,
+        "conversation_id": conv_id,
+        "role": role,
+        "timestamp_unix_ms": int(time.time() * 1000),
+    }
+    data["records"].append(record)
+
+    # Track potential unsegregated single-turn code and test emission
+    if category == "TEST" and conv_id:
+        target_stem = target_path.stem.replace("test_", "").replace("_test", "")
+        # Find if the same conversation previously emitted the corresponding src
+        matching_src = next(
+            (
+                r for r in data["records"]
+                if r.get("category") == "SRC"
+                and r.get("conversation_id") == conv_id
+                and target_stem in Path(r["file_path"]).stem
+            ),
+            None,
+        )
+        if matching_src:
+            pair = {
+                "src_path": matching_src["file_path"],
+                "test_path": norm,
+                "conversation_id": conv_id,
+                "mutation_verified": False,
+                "flagged_at_unix_ms": int(time.time() * 1000),
+            }
+            if not any(
+                p.get("src_path") == pair["src_path"] and p.get("test_path") == pair["test_path"]
+                for p in data["unsegregated_pairs"]
+            ):
+                data["unsegregated_pairs"].append(pair)
+
+    save_synthesis_turn_log(log_path, data)
+    return data
+
+
+def check_anti_collusion(
+    log_path: Path,
+    target_path: Path,
+    conv_id: str,
+    role: str,
+) -> Tuple[bool, str]:
+    """Verifies that tests and implementation were not emitted in the same unsegregated turn without mutation verification."""
+    norm = str(target_path.resolve()).replace("\\", "/")
+    if not is_test_path(norm) or not conv_id:
+        return True, "Anti-collusion check passed"
+
+    data = load_synthesis_turn_log(log_path)
+    target_stem = target_path.stem.replace("test_", "").replace("_test", "")
+
+    # Look for matching src authored by the exact same conversation context
+    matching_src = next(
+        (
+            r for r in data["records"]
+            if r.get("category") == "SRC"
+            and r.get("conversation_id") == conv_id
+            and target_stem in Path(r["file_path"]).stem
+            and not (role and any(kw in role.lower() for kw in QA_ROLE_KEYWORDS))
+        ),
+        None,
+    )
+    if matching_src:
+        # Check if mutation verification has occurred
+        verified_stems = data.get("verified_stems", [])
+        verified = (
+            target_stem in verified_stems
+            or any(
+                p.get("src_path") == matching_src["file_path"]
+                and p.get("test_path") == norm
+                and p.get("mutation_verified") is True
+                for p in data.get("unsegregated_pairs", [])
+            )
+        )
+        if not verified:
+            return False, (
+                f"ANTI-COLLUSION VIOLATION [SPEC-G4B-BUILDER-001]: Attempted to author acceptance test "
+                f"'{target_path.name}' in the same unsegregated conversation context ({conv_id[:12]}) "
+                f"that emitted implementation '{Path(matching_src['file_path']).name}'. "
+                "Tests must be generated by an independent ADVERSARIAL_QA_ENGINEER subagent, "
+                "or undergo automated physical mutation falsification."
+            )
+
+    return True, "Anti-collusion check passed"
+
+
+def mark_mutation_verified(log_path: Path, src_stem: str) -> None:
+    """Marks unsegregated pairs matching src_stem as mutation verified."""
+    data = load_synthesis_turn_log(log_path)
+    data.setdefault("verified_stems", [])
+    if src_stem not in data["verified_stems"]:
+        data["verified_stems"].append(src_stem)
+    for p in data.get("unsegregated_pairs", []):
+        if src_stem in p.get("src_path", ""):
+            p["mutation_verified"] = True
+    save_synthesis_turn_log(log_path, data)
 
 
 def verify_source_ast_pitfalls(content: str, filename: str) -> Tuple[bool, str]:
@@ -200,13 +452,44 @@ def main() -> None:
             return
 
         target_path = Path(raw_path)
+        norm_str = str(target_path.resolve()).replace("\\", "/")
 
-        # Check if protected
+        # Check if exempt or scratch
+        if is_scratch_or_exempt(norm_str):
+            print(json.dumps({"decision": "allow"}))
+            return
+
+        # Resolve role and conversation ID
+        role, conv_id = resolve_active_role(payload, workspace_paths)
+        log_path = get_turn_log_path(workspace_paths)
+
+        # 1. Role Quarantine Check ([SPEC-G4B-BUILDER-001])
+        quarantine_ok, quarantine_msg = check_builder_quarantine(target_path, role)
+        if not quarantine_ok:
+            print(json.dumps({
+                "decision": "deny",
+                "reason": quarantine_msg,
+            }))
+            return
+
+        # 2. Anti-Collusion Check ([SPEC-G4B-BUILDER-001])
+        collusion_ok, collusion_msg = check_anti_collusion(log_path, target_path, conv_id, role)
+        if not collusion_ok:
+            print(json.dumps({
+                "decision": "deny",
+                "reason": collusion_msg,
+            }))
+            return
+
+        # 3. Record Synthesis Provenance in Turn Log
+        record_synthesis_provenance(log_path, target_path, conv_id, role)
+
+        # 4. Check if protected code path for task sequencing & AST audit
         if not is_protected_code_path(target_path, workspace_paths):
             print(json.dumps({"decision": "allow"}))
             return
 
-        # 1. Task sequence gate
+        # 5. Task sequence gate
         seq_valid, seq_msg = check_task_manifest_sequencing(target_path, workspace_paths)
         if not seq_valid:
             print(json.dumps({
@@ -215,7 +498,7 @@ def main() -> None:
             }))
             return
 
-        # 2. AST pitfall check on resulting file content
+        # 6. AST pitfall check on resulting file content
         content = tool_args.get("Content", "")
         if not content and tool_name == "edit_file":
             target = tool_args.get("Target", "")

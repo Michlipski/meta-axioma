@@ -36,11 +36,13 @@ from .domain_models import (
     TaskExecutionStatus,
 )
 from .dynamic_persona_builder import DynamicPersonaBuilder
+from .engine_synthesizer import BuilderQuarantineViolation, EngineSynthesizer
 from .fractal_orchestrator import BoundedFractalOrchestrator
 from .functorial_undo import FunctorialUndoManager
 from .hermetic_linter import HermeticLinter
 from .hypergraph_indexer import SymbolHypergraphIndexer
 from .builder_topology import BuilderTopologyManager, NetworkPartitionError, PartitionPolicy
+from .qa_synthesizer import QABoundaryViolation, QASynthesizer
 from .quine_crucible import QuineCrucibleEngine
 from .rfc_protocol_client import RFCProtocolClient
 from .statechart_engine import G4bBuilderStatechartEngine
@@ -80,6 +82,9 @@ class SovereignBuilderKernel:
         self.topology = BuilderTopologyManager(node_ip=node_ip, port=port)
         self.rfc_client = RFCProtocolClient(builder_node_id=f"node_builder_{node_ip}:{port}")
         self.crucible = QuineCrucibleEngine()
+        self.engine_synthesizer = EngineSynthesizer()
+        self.qa_synthesizer = QASynthesizer()
+        self._skeleton_cache: Dict[str, ASTSkeletonSnapshot] = {}
 
         # Master execution bundle
         self.execution_bundle: Optional[BuilderExecutionBundle] = None
@@ -146,6 +151,8 @@ class SovereignBuilderKernel:
         # 2. Extract AST Skeleton for Prompt Payload Minimization
         self.statechart.send("EV_PATCH_EVAL")
         skeleton_snapshot = self.skeletonizer.extract_skeleton(source_code, module_path, symbol_urn)
+        self._skeleton_cache[symbol_urn] = skeleton_snapshot
+        self._skeleton_cache[module_path] = skeleton_snapshot
 
         # 3. Universal Hypergraph Indexing
         self.hypergraph.index_symbol(
@@ -167,6 +174,81 @@ class SovereignBuilderKernel:
     def signal_dispatch_builders(self) -> Tuple[str, str, str]:
         """Dispatches specialized builder subagents for AST leaf synthesis."""
         return self.statechart.send("EV_DISPATCH_BUILDERS")
+
+    def dispatch_quarantined_engine_synthesizer(
+        self,
+        module_path: str,
+        source_code: str,
+        symbol_urn: Optional[str] = None,
+        node_type: ASTNodeType = ASTNodeType.MODULE,
+        dependencies: Optional[List[str]] = None,
+    ) -> Tuple[bool, str, LeafEmissionEvent]:
+        """Dispatches quarantined engine synthesizer ([SPEC-G4B-BUILDER-001]).
+
+        Validates mutation boundaries, audits hermeticity, indexes AST symbol,
+        and records emission with physical disk witness.
+        """
+        # 1. Enforce builder quarantine against test files
+        self.engine_synthesizer.validate_target(module_path)
+
+        # 2. Compile and index module
+        compiled, msg = self.compile_module(
+            module_path=module_path,
+            source_code=source_code,
+            symbol_urn=symbol_urn or f"urn:axioma:g4b:{Path(module_path).stem}",
+            node_type=node_type,
+            dependencies=dependencies,
+        )
+        if not compiled:
+            raise DomainInvariantViolation(f"Compilation failed for {module_path}: {msg}")
+
+        # 3. Record emission in quarantined engine synthesizer
+        event = self.engine_synthesizer.record_emission(
+            file_path=module_path,
+            source_code=source_code,
+            symbol_urn=symbol_urn,
+        )
+        return True, "QUARANTINED_EMISSION_RECORDED", event
+
+    def dispatch_adversarial_qa(
+        self,
+        test_file_path: str,
+        acceptance_spec: Dict[str, Any],
+        flow_contracts: Optional[List[str]] = None,
+        public_api_signatures: Optional[List[str]] = None,
+        timeout_seconds: float = 30.0,
+    ) -> Tuple[bool, ByzantineChaosReport, Dict[str, Any]]:
+        """Dispatches independent adversarial QA subagent ([SPEC-G4B-BUILDER-001]).
+
+        Sanitizes context, enforces QA boundary (prohibiting production code mutations),
+        and executes black-box test suite against live grounded code.
+        """
+        # 1. Enforce QA role boundary
+        self.qa_synthesizer.validate_target(test_file_path)
+
+        # 2. Sanitize context, stripping builder internals
+        interface_skeletons = {
+            k: v.skeleton_code for k, v in self._skeleton_cache.items()
+            if not k.startswith("urn:")
+        }
+        sanitized_context = self.qa_synthesizer.prepare_sanitized_context(
+            acceptance_spec=acceptance_spec,
+            flow_contracts=flow_contracts,
+            public_api_signatures=public_api_signatures,
+            interface_skeletons=interface_skeletons or None,
+        )
+
+        # 3. Execute test suite
+        report = self.qa_synthesizer.execute_test_suite(
+            test_file_path=test_file_path,
+            timeout_seconds=timeout_seconds,
+        )
+
+        # 4. If passed, transition statechart
+        if report.passed:
+            self.signal_chaos_tests_passed(report)
+
+        return report.passed, report, sanitized_context
 
     def verify_substrate_emitted(self, file_path: str) -> PhysicalDiskWitness:
         """Verifies physical disk emission of substrate artifact and transitions gate ([NEG-G1B-001])."""
@@ -267,3 +349,41 @@ class SovereignBuilderKernel:
             self.execution_bundle.status = TaskExecutionStatus.COMPLETED
 
         return attestation
+
+    def get_skeleton(self, identifier: str) -> Optional[ASTSkeletonSnapshot]:
+        """Retrieves a cached AST skeleton snapshot by symbol URN or file path."""
+        return self._skeleton_cache.get(identifier)
+
+    def assemble_leaf_prompt_context(
+        self,
+        target_symbol_urn: str,
+        max_depth: int = 2,
+        max_context_tokens: int = 4096,
+    ) -> Dict[str, Any]:
+        """Assembles a bounded context payload for leaf subagents enforcing [L1-G4B-008].
+
+        Prunes transitive dependencies beyond distance d > max_depth using the hypergraph,
+        and injects AST interface skeletons instead of full implementation bodies.
+        """
+        neighborhood = self.hypergraph.get_neighborhood(target_symbol_urn, max_depth=max_depth)
+        dependency_skeletons: Dict[str, str] = {}
+        accumulated_tokens = 0
+
+        for dep_urn in sorted(neighborhood):
+            if dep_urn == target_symbol_urn:
+                continue
+            skel = self._skeleton_cache.get(dep_urn)
+            if skel:
+                if accumulated_tokens + skel.estimated_bpe_tokens > max_context_tokens - 512:
+                    break
+                dependency_skeletons[dep_urn] = skel.skeleton_code
+                accumulated_tokens += skel.estimated_bpe_tokens
+
+        return {
+            "target_symbol_urn": target_symbol_urn,
+            "dependency_skeletons": dependency_skeletons,
+            "pruned_dependency_count": max(0, len(neighborhood) - len(dependency_skeletons) - 1),
+            "estimated_context_tokens": accumulated_tokens,
+            "max_enclave_tokens": max_context_tokens,
+            "is_bounded": accumulated_tokens <= max_context_tokens,
+        }
