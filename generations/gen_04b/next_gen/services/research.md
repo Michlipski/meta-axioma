@@ -15,6 +15,7 @@ In Generation 4b, the **Sovereign Research Service** (`services/research/`) esta
 
 The Gen 4b Researcher currently features:
 - Waterloo Tier 1 Situation of Concern (`[L1-G3B-000]`) parser (Macro/Meso/Micro).
+- House of Quality (QFD) Engine (`qfd_engine.py`) and MCDA TOPSIS Ranker (`mcda_ranker.py`) for mathematically deriving engineering characteristics and Pareto-optimal proposal ranking.
 - Z3 Prover Bridge (`z3_prover_bridge.py`) for checking contract invariants.
 - Taboo distance matrices (`graph_taboo_engine.py`) to prevent repeating known architectural traps.
 - Inversion Engine (`inversion_engine.py`) and Socratic Red Team (`[L1-G4B-009]`).
@@ -46,6 +47,11 @@ Instead of a single research synthesis pass, Gen 5 will execute an **Autonomous 
 ### 3.3 Dynamic Entropy-Based Token Calibrator
 - Measures Kolmogorov complexity and state space graph entropy of the domain specification to compute precise Landauer token allowances for downstream Builder synthesis.
 
+### 3.4 Autonomic Closed-Loop QFD Mesh & Sheaf-Theoretic Roof Resolution
+- Upgrades the static QFD House of Quality to a 4-tier cascading feedback mesh (Research -> Builder -> Deployer -> Simulator) as detailed in [`general/qfd_autonomic_mesh.md`](../general/qfd_autonomic_mesh.md).
+- Models negative correlation roof contradictions as non-vanishing 1st Sheaf Cohomology cocycles ($\check{H}^1(\mathcal{U}, \mathcal{F}) \neq 0$), proving obstruction elimination via TRIZ category morphisms.
+- Evaluates relationship tensor weights via game-theoretic Nash equilibrium debate across sovereign multi-agent personas, sealed with cryptographic quorum attestation.
+
 ---
 
 ## 4. Proposed Invariants for Gen 5 Research
@@ -53,6 +59,7 @@ Instead of a single research synthesis pass, Gen 5 will execute an **Autonomous 
 - **`[L1-G5-RES-001]` The Zero-Code Immutability Invariant:** Unconditional preservation of the Zero-Code Boundary (`[L1-G4B-002]`). The Research Service must never possess write access to code compilation targets.
 - **`[L1-G5-RES-002]` Mandatory Dialectical Council Attestation:** No `ResearchDeliverableBundle` may be emitted to Builder without a cryptographic attestation of Socratic Red Team debate and resolution of all Tier 1 concerns.
 - **`[L1-G5-RES-003]` Functorial IR Contract Preservation:** All emitted `ContractIR` schemas must prove identity and morphism preservation under category-theoretic composition.
+- **`[L1-G5-RES-004]` Autonomic QFD Invariant Grounding:** All proposed options must conform to `[L1-G5-QFD-001..003]`, guaranteeing closed-loop telemetry convergence, sheaf cohomology obstruction freedom, and signed quorum consensus.
 
 ---
 

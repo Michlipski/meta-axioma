@@ -38,6 +38,7 @@ generations/gen_04b/next_gen/
 │   ├── succession_triggers.md          # Formal & empirical gates (links to succession_gatekeeper.py)
 │   ├── candidate_services.md           # Proposed novel services for Gen 5 (Deployer, Simulator, etc.)
 │   ├── hostile_asymmetric_mesh.md      # Gen 5 Hostile Asymmetric Multi-Agent Architecture (Choice 2)
+│   ├── qfd_autonomic_mesh.md           # Gen 5 Autonomic Closed-Loop QFD Mesh & Sheaf Cohomology Roof Resolution
 │   └── traffic_distribution_and_thermodynamic_insights.md # Empirical Traffic, Negative Invariants & Landauer Calibration
 ├── services/                           # Per-service evolutionary dossiers
 │   ├── research.md                     # G5 Sovereign Research Dossier
@@ -57,8 +58,9 @@ generations/gen_04b/next_gen/
 1. **[Audit Triage & Generational Streams](general/audit_triage_and_next_steps.md)**: The definitive audit triage separating immediate Gen 4b single-workstation hardening (subprocess smoke gates, Tree-sitter AST, SQLite WAL) from Gen 5 multi-host paradigm shifts (WireGuard mesh, Deployer/Simulator enclaves).
 2. **[Core Thesis & Paradigm Shifts](general/thesis_and_paradigm.md)**: The foundational premise of Gen 5, Landauer dissipation bounds, and the transition from local mesh to distributed sovereign swarms.
 3. **[Traffic Distribution & Thermodynamic Insights](general/traffic_distribution_and_thermodynamic_insights.md)**: Empirical findings from 886 Gen 4b transactions, topological zero-traffic negative proofs, the 80% ingress sink law, and verb-weighted dynamic budget calibration.
-4. **[Succession Triggers & Invariant Gates](general/succession_triggers.md)**: The mathematical constraints, Heuristic Debt Ratio (HDR $\le 0.15$), and test gates required to trigger handover.
-5. **[Candidate Novel Services](general/candidate_services.md)**: Proposals for new enclaves not present in 4b (`services/deployer/`, `services/simulator/`, `services/knowledge_graph/`, `services/event_mesh/`).
+4. **[Autonomic Closed-Loop QFD Mesh](general/qfd_autonomic_mesh.md)**: 4-Phase cascading deployment (Research -> Builder -> Deployer -> Simulator), dynamic continuous VOC friction streams, Sheaf Cohomology ($H^1$) roof contradiction elimination via TRIZ category morphisms, and multi-agent Socratic Nash equilibrium quorum.
+5. **[Succession Triggers & Invariant Gates](general/succession_triggers.md)**: The mathematical constraints, Heuristic Debt Ratio (HDR $\le 0.15$), and test gates required to trigger handover.
+6. **[Candidate Novel Services](general/candidate_services.md)**: Proposals for new enclaves not present in 4b (`services/deployer/`, `services/simulator/`, `services/knowledge_graph/`, `services/event_mesh/`).
 
 ### Per-Service Level (Specialized Evolution)
 - **[Research Service Evolution](services/research.md)**: Multi-agent dialectics, automated lemma synthesis, dynamic Waterloo SoC deconstruction.

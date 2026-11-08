@@ -144,6 +144,13 @@ The following items are paradigm shifts that constitute the core architectural c
   - Integrate hardware energy counters (Intel/AMD RAPL and NVIDIA NVML) directly into the Telemetry Service.
   - Measure the exact microjoules dissipated per token and per compilation pass, verifying the Landauer thesis: synthesis dissipates physical heat, while formal verification is a conservative, zero-erasure observer sink.
 
+### 4.6 Polyglot Tree-Sitter AST Skeletonization & Sheaf-CRDT Distributed AST Cache
+* **The Paradigm Shift:** Eliminating the non-Python context window ceiling (up to $39,807$ tokens on HTML/JS dashboards) and local AST cache misses.
+* **Gen 5 Specification:**
+  - **Native Multi-Language Tree-Sitter Grammar Mesh:** Ingests Python 3.14, TypeScript/React, Rust, and Web Components into unified AST interfaces, stripping UI template bodies and implementation details while preserving type contracts and state machine hooks. Enforces strict $\le 4,096$ BPE tokens (`[L1-G5-BLD-004]`) regardless of programming language.
+  - **Sheaf-CRDT Distributed AST Cache:** Replaces local single-node in-memory caches with a P2P distributed symbol cache synchronized across sovereign mesh nodes over WireGuard. Enables instant $O(1)$ symbol URN resolution and topological distance pruning ($d \le 2$) across remote worker nodes without centralized bottlenecks.
+  - **Semantic AST Diffing (`DeltaVector`):** Synthesizers emit structural AST edit operations (`InsertNode`, `ReplaceBody`) rather than re-emitting whole files, eliminating oscillating diffs and stochastic token burn during repair cycles.
+
 ---
 
 ## 5. Slide 09 Alignment: The 3-Horizon Executive Roadmap
