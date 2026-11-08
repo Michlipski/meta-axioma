@@ -1,0 +1,107 @@
+{
+  "total_steps_executed": 5,
+  "statechart_coverage_pct": 100.0,
+  "unhandled_console_errors": [],
+  "max_observed_latency_ms": 0.593916978687048,
+  "journey_status": "PASSED",
+  "step_results": [
+    {
+      "step_id": "step_01_boot_page",
+      "status": "PASSED",
+      "latency_ms": 0.0007920898497104645,
+      "action_type": "NAVIGATE",
+      "target_selector": "#template-spring-queen",
+      "dom_mutation_verified": true,
+      "bounding_box": {
+        "x": 0,
+        "y": 0,
+        "width": 1920.0,
+        "height": 1080.0,
+        "z_index": 0,
+        "is_visible": true,
+        "selector": "body"
+      },
+      "error_message": null,
+      "state_after": null
+    },
+    {
+      "step_id": "step_02_load_starter_template",
+      "status": "PASSED",
+      "latency_ms": 0.593916978687048,
+      "action_type": "CLICK",
+      "target_selector": "#template-spring-queen",
+      "dom_mutation_verified": true,
+      "bounding_box": {
+        "x": 380.0,
+        "y": 14.0,
+        "width": 130.0,
+        "height": 36.0,
+        "z_index": 10,
+        "is_visible": true,
+        "selector": "#template-spring-queen"
+      },
+      "error_message": null,
+      "state_after": null
+    },
+    {
+      "step_id": "step_03_assert_canvas_rerender",
+      "status": "PASSED",
+      "latency_ms": 0.01858314499258995,
+      "action_type": "WAIT",
+      "target_selector": "#spatial-svg",
+      "dom_mutation_verified": true,
+      "bounding_box": {
+        "x": 20.0,
+        "y": 160.0,
+        "width": 900.0,
+        "height": 550.0,
+        "z_index": 1,
+        "is_visible": true,
+        "selector": "#spatial-svg"
+      },
+      "error_message": null,
+      "state_after": null
+    },
+    {
+      "step_id": "step_04_click_smt_prover",
+      "status": "PASSED",
+      "latency_ms": 0.5927090533077717,
+      "action_type": "CLICK",
+      "target_selector": "#btn-run-prover",
+      "dom_mutation_verified": true,
+      "bounding_box": {
+        "x": 520.0,
+        "y": 14.0,
+        "width": 120.0,
+        "height": 36.0,
+        "z_index": 10,
+        "is_visible": true,
+        "selector": "#btn-run-prover"
+      },
+      "error_message": null,
+      "state_after": null
+    },
+    {
+      "step_id": "step_05_assert_trophic_sat",
+      "status": "PASSED",
+      "latency_ms": 0.012292061001062393,
+      "action_type": "WAIT",
+      "target_selector": "#smt-status-pill",
+      "dom_mutation_verified": true,
+      "bounding_box": {
+        "x": 520.0,
+        "y": 14.0,
+        "width": 120.0,
+        "height": 36.0,
+        "z_index": 10,
+        "is_visible": true,
+        "selector": "#smt-status-pill"
+      },
+      "error_message": null,
+      "state_after": null
+    }
+  ],
+  "flow_name": "PhenoFloraContinuousContinuityJourney",
+  "timestamp": 1793930687.915336,
+  "witness_hash": "a9b9b663d24a4edff926bba7dd7ad9be5a4fbaa763052d1fba77f7511f54fb0c"
+}

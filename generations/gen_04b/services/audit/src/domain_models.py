@@ -79,6 +79,50 @@ class UnrenderedLatexViolation(AuditDomainInvariantViolation):
     pass
 
 
+class TautologicalTestViolation(AuditDomainInvariantViolation):
+    """Raised when tests pass despite code mutation, proving the test suite is tautological ([INV-G4B-MUTATION-001])."""
+    pass
+
+
+class SemanticStateSpoofingViolation(AuditDomainInvariantViolation):
+    """Raised when in-memory dictionary state spoofing is detected instead of real execution ([HERM-ANTIMOCK-001])."""
+    pass
+
+
+# =========================================================================
+# Presentation Plane Domain Invariant Violations ([L1-G4B-015])
+# =========================================================================
+
+class PresentationAuditViolation(AuditDomainInvariantViolation):
+    """Base domain violation for UI/UX presentation micro-auditor defects ([L1-G4B-015])."""
+    pass
+
+
+class DOMBijectivityViolation(PresentationAuditViolation):
+    """Raised under HERM-UI-001 when JS queries DOM elements non-existent in HTML or un-whitelisted."""
+    pass
+
+
+class ResponsiveCanvasViolation(PresentationAuditViolation):
+    """Raised under HERM-UI-002 when canvas/SVG uses fixed pixel bounds without responsive CSS."""
+    pass
+
+
+class StatechartDOMBisimulationViolation(PresentationAuditViolation):
+    """Raised under HERM-UI-003 when human statechart events lack matching DOM interaction triggers."""
+    pass
+
+
+class HeadlessUIWalkerViolation(PresentationAuditViolation):
+    """Raised when headless UI walker detects runtime server or presentation crashes."""
+    pass
+
+
+class HeadlessUIErgonomicsViolation(PresentationAuditViolation):
+    """Raised when an empirical UI journey fails the 4 Universal Human Ergonomics Axioms."""
+    pass
+
+
 # =========================================================================
 # Enumerations (5 Core Enums)
 # =========================================================================
@@ -825,4 +869,95 @@ class AuditServiceTopologyState:
             registered_channels=dict(data.get("registered_channels", {})),
         )
         instance.validate_invariants()
+        return instance
+
+
+# =========================================================================
+# Physical Mutation & Falsification Domain Models ([INV-G4B-MUTATION-001])
+# =========================================================================
+
+@dataclass
+class MutationWitness:
+    """Attestation witness proving physical mutation falsification results ([INV-G4B-MUTATION-001])."""
+    witness_id: str
+    target_file: str
+    mutation_pattern: Tuple[str, str]
+    test_command: List[str]
+    exit_code: int
+    stdout_snippet: str
+    stderr_snippet: str
+    original_sha256: str
+    mutated_sha256: str
+    restored_sha256: str
+    verified: bool
+    timestamp_ns: int = field(default_factory=time.time_ns)
+
+    def validate_invariants(self) -> None:
+        if not self.witness_id:
+            raise AuditDomainInvariantViolation("witness_id must not be empty.")
+        if not self.target_file:
+            raise AuditDomainInvariantViolation("target_file must not be empty.")
+        if len(self.original_sha256) != 64:
+            raise AuditDomainInvariantViolation(f"original_sha256 must be a 64-char SHA-256 hash (got {len(self.original_sha256)}).")
+        if len(self.mutated_sha256) != 64:
+            raise AuditDomainInvariantViolation(f"mutated_sha256 must be a 64-char SHA-256 hash (got {len(self.mutated_sha256)}).")
+        if len(self.restored_sha256) != 64:
+            raise AuditDomainInvariantViolation(f"restored_sha256 must be a 64-char SHA-256 hash (got {len(self.restored_sha256)}).")
+        if self.original_sha256 != self.restored_sha256:
+            raise AuditDomainInvariantViolation("restored_sha256 does not match original_sha256.")
+
+    def compute_witness_hash(self) -> str:
+        pattern_str = f"{self.mutation_pattern[0]}->{self.mutation_pattern[1]}" if self.mutation_pattern else ""
+        payload = (
+            f"{self.witness_id}:{self.target_file}:{pattern_str}:{self.exit_code}:"
+            f"{self.original_sha256}:{self.mutated_sha256}:{self.restored_sha256}:"
+            f"{self.verified}:{self.timestamp_ns}"
+        )
+        return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+    def compute_hash(self) -> str:
+        """Alias for compute_witness_hash."""
+        return self.compute_witness_hash()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "witness_id": self.witness_id,
+            "target_file": self.target_file,
+            "mutation_pattern": list(self.mutation_pattern),
+            "test_command": list(self.test_command),
+            "exit_code": self.exit_code,
+            "stdout_snippet": self.stdout_snippet,
+            "stderr_snippet": self.stderr_snippet,
+            "original_sha256": self.original_sha256,
+            "mutated_sha256": self.mutated_sha256,
+            "restored_sha256": self.restored_sha256,
+            "verified": self.verified,
+            "timestamp_ns": self.timestamp_ns,
+            "witness_hash": self.compute_witness_hash(),
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> MutationWitness:
+        pattern = data.get("mutation_pattern", ("", ""))
+        if isinstance(pattern, (list, tuple)):
+            p0 = str(pattern[0]) if len(pattern) > 0 else ""
+            p1 = str(pattern[1]) if len(pattern) > 1 else ""
+            pat_tuple = (p0, p1)
+        else:
+            pat_tuple = ("", "")
+
+        instance = cls(
+            witness_id=str(data.get("witness_id", "")),
+            target_file=str(data.get("target_file", "")),
+            mutation_pattern=pat_tuple,
+            test_command=[str(c) for c in data.get("test_command", [])],
+            exit_code=int(data.get("exit_code", -1)),
+            stdout_snippet=str(data.get("stdout_snippet", "")),
+            stderr_snippet=str(data.get("stderr_snippet", "")),
+            original_sha256=str(data.get("original_sha256", "")),
+            mutated_sha256=str(data.get("mutated_sha256", "")),
+            restored_sha256=str(data.get("restored_sha256", "")),
+            verified=bool(data.get("verified", False)),
+            timestamp_ns=int(data.get("timestamp_ns", time.time_ns())),
+        )
         return instance

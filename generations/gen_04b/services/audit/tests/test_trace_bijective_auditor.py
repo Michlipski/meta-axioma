@@ -16,6 +16,7 @@ from generations.gen_04b.services.audit.src.trace_bijective_auditor import (
     UnimplementedTraceEntityViolation,
     RogueCodeEntityViolation,
     TraceFieldMismatchViolation,
+    TraceTypeMismatchViolation,
 )
 
 
@@ -117,6 +118,57 @@ class NodeState:
         with self.assertRaises(TraceFieldMismatchViolation):
             self.auditor.audit_bijectivity(trace_md, code_py, raise_on_error=True)
 
+    def test_type_morphism_valid_synthetic(self) -> None:
+        """Proves TRACE-001D passes when field types match bijectively."""
+        trace_md = """
+# ENTITY: TaskMetric
+MUST HAVE:
+- task_id: String
+- duration_ms: Integer
+- heat_joules: Float
+- is_certified: Boolean
+- tags: List[String]
+"""
+        code_py = """
+from dataclasses import dataclass
+from typing import List
+
+@dataclass
+class TaskMetric:
+    task_id: str
+    duration_ms: int
+    heat_joules: float
+    is_certified: bool
+    tags: List[str]
+"""
+        report = self.auditor.audit_bijectivity(trace_md, code_py, check_types=True, raise_on_error=True)
+        self.assertTrue(report.is_bijective)
+        self.assertEqual(len(report.type_mismatches), 0)
+
+    def test_type_morphism_mismatch_violation(self) -> None:
+        """Detects TRACE-001D: type divergence between TRACE and AST dataclasses."""
+        trace_md = """
+# ENTITY: AccountBalance
+MUST HAVE:
+- account_id: String
+- balance_cents: Integer
+"""
+        code_py = """
+from dataclasses import dataclass
+
+@dataclass
+class AccountBalance:
+    account_id: str
+    balance_cents: str  # Incompatible type: str instead of int
+"""
+        report = self.auditor.audit_bijectivity(trace_md, code_py, check_types=True)
+        self.assertFalse(report.is_bijective)
+        self.assertIn("AccountBalance", report.type_mismatches)
+        self.assertIn("balance_cents", report.type_mismatches["AccountBalance"])
+
+        with self.assertRaises(TraceTypeMismatchViolation):
+            self.auditor.audit_bijectivity(trace_md, code_py, check_types=True, raise_on_error=True)
+
     def test_audit_live_gen04b_apps(self) -> None:
         """Audits all 5 live gen_04b applications and proves 100% bijectivity."""
         apps_root = self.repo_root / "generations" / "gen_04b" / "apps"
@@ -129,7 +181,7 @@ class NodeState:
         ]
         for app_name in target_apps:
             app_dir = apps_root / app_name
-            report = self.auditor.audit_app_directory(app_dir)
+            report = self.auditor.audit_app_directory(app_dir, check_types=True)
             self.assertTrue(
                 report.is_bijective,
                 f"Application '{app_name}' failed TRACE-001 audit! Violations: {report.violations}"

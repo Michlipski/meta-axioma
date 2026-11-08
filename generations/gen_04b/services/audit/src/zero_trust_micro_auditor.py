@@ -10,6 +10,7 @@ Enforces:
   - HERM-004: Syntax integrity and prohibition of banned dynamic execution constructs (eval, exec).
   - HERM-005: Prohibition of empty/truncated deliverables and unreconciled synthetic/placeholder tokens.
   - HERM-006: Prohibition of unrendered LaTeX math notation without a valid hermetic math engine.
+  - HERM-ANTIMOCK-001: Strict prohibition of in-memory simulated DOM spoofing (dynamic_dom_elements, mock_dom).
 """
 
 from __future__ import annotations
@@ -33,6 +34,8 @@ from .domain_models import (
 )
 from .bijective_verifier import BijectiveVerifier
 from .operational_pitfall_auditor import OperationalPitfallAuditor
+from .presentation_micro_auditor import PresentationMicroAuditor, PresentationAuditReport
+from .headless_ui_walker import HeadlessUIWalker, HeadlessUIWalkReport
 from generations.gen_04b.protocols.deliverable_bundle import (
     ContractBijectivityWitness,
     OperationalPitfallAuditReport,
@@ -44,6 +47,12 @@ class _HermeticASTVisitor(ast.NodeVisitor):
 
     LOOPBACK_PATTERNS = {"127.0.0.1", "localhost", "::1", "0.0.0.0"}
     BANNED_BUILTIN_CALLS = {"eval", "exec", "__import__", "compile"}
+    BANNED_MOCK_DOM_TOKENS = {
+        "dynamic_dom_elements",
+        "mock_dom",
+        "simulated_dom",
+        "fake_dom_elements",
+    }
 
     def __init__(
         self,
@@ -186,6 +195,46 @@ class _HermeticASTVisitor(ast.NodeVisitor):
 
         self.generic_visit(node)
 
+    def visit_Name(self, node: ast.Name) -> None:
+        # HERM-ANTIMOCK-001: Traps prohibited in-memory simulated DOM variables
+        if node.id.lower() in self.BANNED_MOCK_DOM_TOKENS:
+            self.violations.append(
+                HermeticLinterViolation(
+                    violation_id=f"viol_antimock_{uuid.uuid4().hex[:8]}",
+                    rule_id="HERM-ANTIMOCK-001",
+                    severity=AuditSeverity.FATAL,
+                    line_number=node.lineno,
+                    column_offset=node.col_offset,
+                    description=(
+                        f"Prohibited in-memory UI/DOM state spoofing variable '{node.id}' detected under [HERM-ANTIMOCK-001]. "
+                        f"Autonomous test suites and journey walkers must use real headless runtime probes."
+                    ),
+                    culprit_token=node.id,
+                )
+            )
+            self.banned_constructs_detected += 1
+        self.generic_visit(node)
+
+    def visit_Attribute(self, node: ast.Attribute) -> None:
+        # HERM-ANTIMOCK-001: Traps prohibited in-memory simulated DOM attributes (e.g. self.dynamic_dom_elements)
+        if node.attr.lower() in self.BANNED_MOCK_DOM_TOKENS:
+            self.violations.append(
+                HermeticLinterViolation(
+                    violation_id=f"viol_antimock_{uuid.uuid4().hex[:8]}",
+                    rule_id="HERM-ANTIMOCK-001",
+                    severity=AuditSeverity.FATAL,
+                    line_number=node.lineno,
+                    column_offset=node.col_offset,
+                    description=(
+                        f"Prohibited in-memory UI/DOM state spoofing attribute '{node.attr}' detected under [HERM-ANTIMOCK-001]. "
+                        f"Autonomous test suites and journey walkers must use real headless runtime probes."
+                    ),
+                    culprit_token=node.attr,
+                )
+            )
+            self.banned_constructs_detected += 1
+        self.generic_visit(node)
+
     def visit_Assign(self, node: ast.Assign) -> None:
         # Check assignments to sys.path = [...]
         for target in node.targets:
@@ -203,6 +252,68 @@ class _HermeticASTVisitor(ast.NodeVisitor):
                         )
                     )
                     self.banned_constructs_detected += 1
+
+            # HERM-ANTIMOCK-001: Traps dict assignments target["mock_dom"] = ...
+            elif isinstance(target, ast.Subscript):
+                if isinstance(target.slice, ast.Constant) and isinstance(target.slice.value, str):
+                    key_lower = target.slice.value.lower()
+                    if key_lower in self.BANNED_MOCK_DOM_TOKENS:
+                        self.violations.append(
+                            HermeticLinterViolation(
+                                violation_id=f"viol_antimock_{uuid.uuid4().hex[:8]}",
+                                rule_id="HERM-ANTIMOCK-001",
+                                severity=AuditSeverity.FATAL,
+                                line_number=target.lineno,
+                                column_offset=target.col_offset,
+                                description=(
+                                    f"Prohibited in-memory UI/DOM state spoofing dict assignment key '{target.slice.value}' "
+                                    f"detected under [HERM-ANTIMOCK-001]."
+                                ),
+                                culprit_token=target.slice.value,
+                            )
+                        )
+                        self.banned_constructs_detected += 1
+        self.generic_visit(node)
+
+    def visit_Dict(self, node: ast.Dict) -> None:
+        # HERM-ANTIMOCK-001: Traps dict literals with mock DOM keys
+        for key in node.keys:
+            if isinstance(key, ast.Constant) and isinstance(key.value, str):
+                if key.value.lower() in self.BANNED_MOCK_DOM_TOKENS:
+                    self.violations.append(
+                        HermeticLinterViolation(
+                            violation_id=f"viol_antimock_{uuid.uuid4().hex[:8]}",
+                            rule_id="HERM-ANTIMOCK-001",
+                            severity=AuditSeverity.FATAL,
+                            line_number=key.lineno,
+                            column_offset=key.col_offset,
+                            description=(
+                                f"Prohibited in-memory UI/DOM state spoofing dict key '{key.value}' "
+                                f"detected under [HERM-ANTIMOCK-001]."
+                            ),
+                            culprit_token=key.value,
+                        )
+                    )
+                    self.banned_constructs_detected += 1
+        self.generic_visit(node)
+
+    def visit_arg(self, node: ast.arg) -> None:
+        # HERM-ANTIMOCK-001: Traps function parameter names
+        if node.arg.lower() in self.BANNED_MOCK_DOM_TOKENS:
+            self.violations.append(
+                HermeticLinterViolation(
+                    violation_id=f"viol_antimock_{uuid.uuid4().hex[:8]}",
+                    rule_id="HERM-ANTIMOCK-001",
+                    severity=AuditSeverity.FATAL,
+                    line_number=node.lineno,
+                    column_offset=node.col_offset,
+                    description=(
+                        f"Prohibited in-memory UI/DOM state spoofing parameter '{node.arg}' detected under [HERM-ANTIMOCK-001]."
+                    ),
+                    culprit_token=node.arg,
+                )
+            )
+            self.banned_constructs_detected += 1
         self.generic_visit(node)
 
 
@@ -235,6 +346,8 @@ class ZeroTrustMicroAuditor:
         self.auditor_node_id = auditor_node_id
         self.allow_local_ipc = allow_local_ipc or (runtime_profile == "LOCAL_IPC")
         self.runtime_profile = runtime_profile
+        self.presentation_auditor = PresentationMicroAuditor()
+        self.headless_walker = HeadlessUIWalker(auditor_node_id=auditor_node_id)
 
     def audit_source(
         self,
@@ -487,6 +600,29 @@ class ZeroTrustMicroAuditor:
                 )
             )
 
+        # Check for presentation plane violations (HERM-UI-002 Responsive Canvas / Viewport)
+        if "<canvas" in content_lower:
+            parsed = self.presentation_auditor.parse_html(html_content)
+            inline_css = "\n".join(re.findall(r"<style[^>]*>(.*?)</style>", html_content, re.DOTALL | re.IGNORECASE))
+            resp_pass, canvas_viols, _ = self.presentation_auditor.audit_responsive_canvas_viewport(
+                has_viewport_meta=parsed.has_viewport_meta,
+                canvas_nodes=parsed.canvas_nodes,
+                svg_nodes=parsed.svg_nodes,
+                css_content=inline_css,
+            )
+            for viol in canvas_viols:
+                violations.append(
+                    HermeticLinterViolation(
+                        violation_id=f"viol_hermui002_{uuid.uuid4().hex[:8]}",
+                        rule_id="HERM-UI-002",
+                        severity=AuditSeverity.ERROR,
+                        line_number=1,
+                        column_offset=0,
+                        description=f"Presentation responsiveness violation: {viol}",
+                        culprit_token="CanvasViewport",
+                    )
+                )
+
         is_hermetic = (len(violations) == 0)
         return HermeticAuditReport(
             report_id=report_id,
@@ -496,6 +632,38 @@ class ZeroTrustMicroAuditor:
             ast_nodes_scanned=len(html_content.splitlines()),
             banned_constructs_detected=len(violations),
             auditor_node_id=self.auditor_node_id,
+        )
+
+    def audit_presentation_deliverable(
+        self,
+        html_content: str,
+        js_content: str = "",
+        css_content: str = "",
+        statechart_events: Optional[List[str]] = None,
+        app_id: str = "app",
+        allow_raise: bool = False,
+    ) -> PresentationAuditReport:
+        """Audits static presentation bundle under [L1-G4B-015] (HERM-UI-001..003)."""
+        return self.presentation_auditor.audit_static_bundle(
+            html_content=html_content,
+            js_content=js_content,
+            css_content=css_content,
+            statechart_events=statechart_events,
+            app_id=app_id,
+            allow_raise=allow_raise,
+        )
+
+    def walk_application_headless(
+        self,
+        app_dir: str | Path,
+        primary_endpoint: str = "/api/health",
+        allow_raise: bool = False,
+    ) -> HeadlessUIWalkReport:
+        """Executes Phase 2C Tier 2 Headless UI Walk against an application ([L1-G4B-015])."""
+        return self.headless_walker.walk_app(
+            app_dir=app_dir,
+            primary_endpoint=primary_endpoint,
+            allow_raise=allow_raise,
         )
 
     def audit_dashboard_deliverable(
@@ -526,9 +694,13 @@ class ZeroTrustMicroAuditor:
         return auditor.audit_source(source_code, source_file=leaf_id)
 
     def audit_leaf_comprehensive(
-        self, source_code: str, contract: Optional[Any] = None, leaf_id: str = "module.py"
+        self,
+        source_code: str,
+        contract: Optional[Any] = None,
+        leaf_id: str = "module.py",
+        presentation_bundle: Optional[Dict[str, str]] = None,
     ) -> Dict[str, Any]:
-        """Unified pre-disk audit intercept combining Hermetic, Bijective, and Operational passes."""
+        """Unified pre-disk audit intercept combining Hermetic, Bijective, Operational, and Presentation passes."""
         hermetic_report = self.audit_source(source_code, leaf_id=leaf_id)
         if not hermetic_report.is_hermetic:
             return {
@@ -543,10 +715,28 @@ class ZeroTrustMicroAuditor:
 
         operational_report = self.audit_operational_pitfalls(source_code, leaf_id=leaf_id)
 
+        presentation_report = None
+        if presentation_bundle:
+            presentation_report = self.audit_presentation_deliverable(
+                html_content=presentation_bundle.get("html", ""),
+                js_content=presentation_bundle.get("js", ""),
+                css_content=presentation_bundle.get("css", ""),
+                statechart_events=presentation_bundle.get("statechart_events"),
+                app_id=presentation_bundle.get("app_id", "app"),
+                allow_raise=False,
+            )
+
+        is_passed = (
+            hermetic_report.is_hermetic
+            and operational_report.is_compliant
+            and (presentation_report.is_certified if presentation_report else True)
+        )
+
         return {
-            "is_passed": hermetic_report.is_hermetic and (operational_report.is_compliant),
-            "stage": "COMPREHENSIVE_AUDIT_PASSED",
+            "is_passed": is_passed,
+            "stage": "COMPREHENSIVE_AUDIT_PASSED" if is_passed else "COMPREHENSIVE_AUDIT_FAILED",
             "hermetic_report": hermetic_report.to_dict(),
             "bijective_witness": bijective_witness.to_dict() if bijective_witness else None,
             "operational_report": operational_report.to_dict(),
+            "presentation_report": presentation_report.to_dict() if presentation_report else None,
         }

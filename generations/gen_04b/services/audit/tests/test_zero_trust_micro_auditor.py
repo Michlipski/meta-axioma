@@ -288,6 +288,36 @@ def bind_local_with_escape():
         self.assertEqual(len(latex_violations), 0)
         self.assertTrue(report.is_hermetic)
 
+    # 16. HERM-ANTIMOCK-001: Traps Simulated In-Memory DOM Dictionaries and Variables
+    def test_herm_antimock_traps_simulated_dom_variables_and_assignments(self) -> None:
+        snippets = [
+            "dynamic_dom_elements = {}\ndynamic_dom_elements['#spatial'] = {'status': 'ok'}",
+            "mock_dom = {'active': True}",
+            "simulated_dom = dict()",
+            "fake_dom_elements = []",
+            "def run():\n    state['dynamic_dom_elements'] = 1",
+            "def test(mock_dom=None):\n    pass",
+        ]
+        for idx, snip in enumerate(snippets):
+            report = self.auditor.audit_source(snip, leaf_id=f"leaf_antimock_{idx}")
+            self.assertFalse(report.is_hermetic)
+            antimock_viols = [v for v in report.violations if v.rule_id == "HERM-ANTIMOCK-001"]
+            self.assertGreaterEqual(len(antimock_viols), 1, f"Failed to trap snippet {idx}: {snip}")
+            self.assertEqual(antimock_viols[0].severity, AuditSeverity.FATAL)
+
+    def test_herm_antimock_allows_clean_external_runtime_code(self) -> None:
+        clean_code = """
+import subprocess
+
+def run_probe():
+    res = subprocess.run(["node", "probe_runner.js", "--url", "http://127.0.0.1:8086"])
+    return res.returncode
+"""
+        report = self.auditor.audit_source(clean_code, leaf_id="leaf_clean_probe", allow_local_ipc=True)
+        antimock_viols = [v for v in report.violations if v.rule_id == "HERM-ANTIMOCK-001"]
+        self.assertEqual(len(antimock_viols), 0)
+        self.assertTrue(report.is_hermetic)
+
 
 if __name__ == "__main__":
     unittest.main()

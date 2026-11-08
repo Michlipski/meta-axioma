@@ -55,7 +55,11 @@ from generations.gen_04b.services.audit.src.domain_models import (
     QuorumConsensusWitness,
     QuorumVerdict,
     SMTModelCheckResult,
+    DOMBijectivityViolation,
+    ResponsiveCanvasViolation,
 )
+from generations.gen_04b.services.audit.src.presentation_micro_auditor import PresentationMicroAuditor
+from generations.gen_04b.services.audit.src.headless_ui_walker import HeadlessUIWalker
 from generations.gen_04b.services.audit.src.zero_trust_micro_auditor import ZeroTrustMicroAuditor
 from generations.gen_04b.services.audit.src.smt_model_checker import SMTModelChecker
 from generations.gen_04b.services.audit.src.byzantine_chaos_fuzzer import ByzantineChaosFuzzer
@@ -131,6 +135,63 @@ def process_audit_telemetry(event_id: str, bits_erased: int) -> dict:
     print(f"  Is Hermetic:        {hermetic_rpt.is_hermetic}")
     assert hermetic_rpt.is_hermetic, "Expected candidate to pass hermetic linting!"
     print("  [SUCCESS] HERM-001 through HERM-004 verified: Zero loopback, zero sys.path tampering, zero /tmp.")
+
+    # 3B. Presentation Plane Verification & 2-Tier Hybrid UI Assurance ([L1-G4B-015])
+    print("\n[STEP 3B]: Executing 2-Tier Hybrid UI Assurance Engine ([L1-G4B-015])...")
+    pres_auditor = PresentationMicroAuditor()
+    clean_html = """<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><div id="root"><canvas id="stage"></canvas><button id="btn-undo" data-action="TRIGGER_UNDO">Undo</button></div></body></html>"""
+    clean_js = """const root = document.getElementById('root'); const stage = document.querySelector('#stage'); const btn = document.getElementById('btn-undo');"""
+    clean_css = """:root { --theme: #00ffaa; } #root { display: flex; width: 100%; } #stage { max-width: 100%; aspect-ratio: 16 / 9; }"""
+    pres_rpt = pres_auditor.audit_static_bundle(
+        html_content=clean_html,
+        js_content=clean_js,
+        css_content=clean_css,
+        statechart_events=["TRIGGER_UNDO"],
+        app_id="app_operational_test",
+        allow_raise=True,
+    )
+    print(f"  Tier 1 Bijectivity: {pres_rpt.herm_ui_001_bijectivity_pass} (HERM-UI-001)")
+    print(f"  Tier 1 Responsive:  {pres_rpt.herm_ui_002_responsiveness_pass} (HERM-UI-002)")
+    print(f"  Tier 1 Bisimulation:{pres_rpt.herm_ui_003_bisimulation_pass} (HERM-UI-003)")
+    assert pres_rpt.is_certified, "Presentation static audit failed!"
+
+    # Chaos Injection 1: Missing DOM ID
+    chaos_bad_js = clean_js + "\nconst dead = document.getElementById('nonexistent_id');"
+    caught_dom_viol = False
+    try:
+        pres_auditor.audit_static_bundle(clean_html, chaos_bad_js, clean_css, allow_raise=True)
+    except DOMBijectivityViolation:
+        caught_dom_viol = True
+    assert caught_dom_viol, "Expected DOMBijectivityViolation for nonexistent_id!"
+    print("  [SUCCESS] Chaos 1: DOMBijectivityViolation trapped on missing DOM ID.")
+
+    # Chaos Injection 2: Fixed-pixel 600x400 canvas without responsive CSS
+    chaos_bad_html = clean_html.replace('<canvas id="stage"></canvas>', '<canvas id="stage" width="600" height="400"></canvas>')
+    chaos_bad_css = "body { background: #000; }"
+    caught_canvas_viol = False
+    try:
+        pres_auditor.audit_static_bundle(chaos_bad_html, clean_js, chaos_bad_css, allow_raise=True)
+    except ResponsiveCanvasViolation:
+        caught_canvas_viol = True
+    assert caught_canvas_viol, "Expected ResponsiveCanvasViolation on unconstrained 600x400 canvas!"
+    print("  [SUCCESS] Chaos 2: ResponsiveCanvasViolation trapped on fixed-pixel 600x400 canvas.")
+
+    # Tier 2 Walk against operational app
+    pheno_path = WORKSPACE_ROOT / "generations" / "gen_04b" / "apps" / "axioma_phenoflora"
+    if not pheno_path.exists():
+        pheno_path = WORKSPACE_ROOT / "apps" / "axioma_phenoflora"
+    if pheno_path.exists():
+        walker = HeadlessUIWalker()
+        walk_rpt = walker.walk_app(pheno_path, allow_raise=False)
+        print(f"  Tier 2 App Walk:    {pheno_path.name} (Port {walk_rpt.port})")
+        print(f"  Boot Clean:         {walk_rpt.boot_clean}")
+        print(f"  Teardown Clean:     {walk_rpt.teardown_clean}")
+        print(f"  Axiom 1 (Panics):   {walk_rpt.axiom_evaluations['AXIOM_1_ZERO_CONSOLE_PANICS'].passed}")
+        print(f"  Axiom 2 (Viewport): {walk_rpt.axiom_evaluations['AXIOM_2_VIEWPORT_BOUNDING_BOX_CONTAINMENT'].passed}")
+        print(f"  Axiom 3 (Sensory):  {walk_rpt.axiom_evaluations['AXIOM_3_SENSORY_LIVENESS_GUARANTEE'].passed}")
+        print(f"  Axiom 4 (Occlusion):{walk_rpt.axiom_evaluations['AXIOM_4_NON_OCCLUSION_AND_ESCAPE_HATCH'].passed}")
+        assert walk_rpt.is_certified, "Headless UI walk failed for axioma_phenoflora!"
+        print("  [SUCCESS] 4 Universal Human Ergonomics Axioms formally certified.")
 
     # 4. Formal SMT Model Checking
     print("\n[STEP 4]: Executing Formal SMT Model Checker (OracleSMT)...")

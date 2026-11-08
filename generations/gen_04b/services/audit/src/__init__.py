@@ -34,10 +34,46 @@ from .domain_models import (
     ResourceLeakViolation,
     UnboundedNetworkCallViolation,
     RawExceptionLeakViolation,
+    PresentationAuditViolation,
+    DOMBijectivityViolation,
+    ResponsiveCanvasViolation,
+    StatechartDOMBisimulationViolation,
+    HeadlessUIWalkerViolation,
+    HeadlessUIErgonomicsViolation,
+    TautologicalTestViolation,
+    SemanticStateSpoofingViolation,
+    MutationWitness,
 )
 from .bijective_verifier import BijectiveVerifier
 from .operational_pitfall_auditor import OperationalPitfallAuditor, operational_contract
+from .presentation_micro_auditor import (
+    PresentationMicroAuditor,
+    PresentationAuditReport,
+    DOMQueryWitness,
+    CanvasResponsivenessWitness,
+    StatechartBisimulationWitness,
+)
+from .headless_ui_walker import (
+    HeadlessUIWalker,
+    HeadlessUIWalkReport,
+    ErgonomicsAxiom,
+    PurePythonJSSyntaxChecker,
+)
+from .journey_walker import (
+    BoundingBox,
+    DOMMutationTimeoutViolation,
+    FlowParser,
+    HeadlessUIJourneyWalker,
+    JourneyReport,
+    JourneyStep,
+    JourneyStepResult,
+    JourneyVerificationFailure,
+    OcclusionViolation,
+    ViewportClippingViolation,
+    VisualOcclusionChecker,
+)
 from .zero_trust_micro_auditor import ZeroTrustMicroAuditor
+from .mutation_fuzzer import PhysicalMutationFalsifier, check_and_restore_stale_mutations
 from .smt_model_checker import SMTModelChecker, NativeSMTProver_v4b
 from .byzantine_chaos_fuzzer import ByzantineChaosFuzzer
 from .sheaf_quorum_consensus import SheafQuorumConsensusEngine, PeerVote
@@ -51,7 +87,30 @@ from .service_topology import (
     NetworkPartitionError,
     PartitionPolicy,
 )
+from .trace_bijective_auditor import (
+    TraceBijectiveAuditor,
+    TraceAuditReport,
+    TraceBijectiveViolation,
+    UnimplementedTraceEntityViolation,
+    RogueCodeEntityViolation,
+    TraceFieldMismatchViolation,
+    TraceTypeMismatchViolation,
+)
+from .trilateral_completeness_auditor import (
+    TrilateralCompletenessAuditor,
+    TrilateralAuditReport,
+    TriPlanarMerkleAttestation,
+    TrilateralAuditViolation,
+)
 from .audit_kernel import SovereignAuditKernel
+from .qfd_consistency_auditor import (
+    QFDConsistencyAuditor,
+    QFDConsistencyAuditResult,
+    TemporalCausalityViolation,
+    OrphanFeatureViolation,
+    RoofCoverageViolation,
+    RecommendationParityViolation,
+)
 
 __all__ = [
     # Domain Models & Enums
@@ -83,11 +142,42 @@ __all__ = [
     "ResourceLeakViolation",
     "UnboundedNetworkCallViolation",
     "RawExceptionLeakViolation",
+    "PresentationAuditViolation",
+    "DOMBijectivityViolation",
+    "ResponsiveCanvasViolation",
+    "StatechartDOMBisimulationViolation",
+    "HeadlessUIWalkerViolation",
+    "HeadlessUIErgonomicsViolation",
+    "TautologicalTestViolation",
+    "SemanticStateSpoofingViolation",
+    "MutationWitness",
     # Verification Engines & Subsystems
     "BijectiveVerifier",
     "OperationalPitfallAuditor",
     "operational_contract",
+    "PresentationMicroAuditor",
+    "PresentationAuditReport",
+    "DOMQueryWitness",
+    "CanvasResponsivenessWitness",
+    "StatechartBisimulationWitness",
+    "HeadlessUIWalker",
+    "HeadlessUIWalkReport",
+    "ErgonomicsAxiom",
+    "PurePythonJSSyntaxChecker",
+    "BoundingBox",
+    "DOMMutationTimeoutViolation",
+    "FlowParser",
+    "HeadlessUIJourneyWalker",
+    "JourneyReport",
+    "JourneyStep",
+    "JourneyStepResult",
+    "JourneyVerificationFailure",
+    "OcclusionViolation",
+    "ViewportClippingViolation",
+    "VisualOcclusionChecker",
     "ZeroTrustMicroAuditor",
+    "PhysicalMutationFalsifier",
+    "check_and_restore_stale_mutations",
     "SMTModelChecker",
     "NativeSMTProver_v4b",
     "ByzantineChaosFuzzer",
@@ -105,4 +195,21 @@ __all__ = [
     "PartitionPolicy",
     # Master Sovereign Kernel
     "SovereignAuditKernel",
+    # TRACE Bijective Auditor
+    "TraceBijectiveAuditor",
+    "TraceAuditReport",
+    "TraceBijectiveViolation",
+    "TraceTypeMismatchViolation",
+    # Trilateral Completeness Auditor
+    "TrilateralCompletenessAuditor",
+    "TrilateralAuditReport",
+    "TriPlanarMerkleAttestation",
+    "TrilateralAuditViolation",
+    # QFD Consistency Auditor & Violations
+    "QFDConsistencyAuditor",
+    "QFDConsistencyAuditResult",
+    "TemporalCausalityViolation",
+    "OrphanFeatureViolation",
+    "RoofCoverageViolation",
+    "RecommendationParityViolation",
 ]
