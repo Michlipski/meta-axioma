@@ -15,6 +15,23 @@ import hashlib
 import json
 from typing import Any, Dict, List, Optional
 
+try:
+    from generations.gen_04b.protocols.acceptance_spec import (
+        AcceptanceProtocolViolation,
+        AcceptanceSpecIR,
+        DomainArchetype,
+        FalsificationVector,
+        MutationType,
+    )
+except ImportError:
+    from .acceptance_spec import (
+        AcceptanceProtocolViolation,
+        AcceptanceSpecIR,
+        DomainArchetype,
+        FalsificationVector,
+        MutationType,
+    )
+
 
 class DeliverableProtocolViolation(Exception):
     """Raised when a deliverable bundle or sub-artifact violates its invariant rules."""
@@ -397,6 +414,7 @@ class ResearchDeliverableBundle:
     reference_architecture_hash: str  # 64-char SHA-256 hex
     merkle_root: str                  # 64-char SHA-256 hex
     is_certified: bool = False
+    acceptance_spec: Optional[AcceptanceSpecIR] = None
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     def validate_invariants(self) -> None:
@@ -404,6 +422,8 @@ class ResearchDeliverableBundle:
             raise DeliverableProtocolViolation("bundle_id must not be empty.")
         if not self.target_soc_id:
             raise DeliverableProtocolViolation("target_soc_id must not be empty.")
+        if self.acceptance_spec is not None:
+            self.acceptance_spec.validate_invariants()
         if self.is_certified:
             if len(self.reference_architecture_hash) != 64:
                 raise DeliverableProtocolViolation(
@@ -427,11 +447,18 @@ class ResearchDeliverableBundle:
             "reference_architecture_hash": self.reference_architecture_hash,
             "merkle_root": self.merkle_root,
             "is_certified": self.is_certified,
+            "acceptance_spec": self.acceptance_spec.to_dict() if self.acceptance_spec is not None else None,
             "metadata": self.metadata,
         }
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> ResearchDeliverableBundle:
+        acceptance_spec_data = data.get("acceptance_spec")
+        acceptance_spec = (
+            AcceptanceSpecIR.from_dict(acceptance_spec_data)
+            if acceptance_spec_data is not None
+            else None
+        )
         instance = cls(
             bundle_id=data["bundle_id"],
             target_soc_id=data["target_soc_id"],
@@ -442,6 +469,7 @@ class ResearchDeliverableBundle:
             reference_architecture_hash=data["reference_architecture_hash"],
             merkle_root=data["merkle_root"],
             is_certified=data.get("is_certified", False),
+            acceptance_spec=acceptance_spec,
             metadata=data.get("metadata", {}),
         )
         instance.validate_invariants()

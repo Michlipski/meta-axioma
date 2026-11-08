@@ -36,6 +36,24 @@ from .rfc_protocol_bus import RFCProtocolBus, RFCValidationError
 from .merkle_witness_engine import MerkleWitnessEngine, MerkleIntegrityTamperFault
 from .statechart_engine import G4bStatechartEngine, StatechartTransitionError, FunctorialUndoError
 from .auxiliary_hooks import AuditVerificationHook, TelemetryEvaluationHook, GovernanceSafetyHook
+from .contract_ui import LayoutArchetype, ErgonomicsContract, UIContractSpecification
+from .spec_emitter import AcceptanceSpecEmitter, DomainArchetypePresetCatalog
+from .qfd_engine import (
+    CharacteristicType,
+    OptimizationDirection,
+    CorrelationType,
+    RelationshipStrength,
+    CustomerRequirement,
+    EngineeringCharacteristic,
+    CorrelationRoofEdge,
+    HouseOfQualityIR,
+    QFDEngine,
+)
+from .mcda_ranker import (
+    CandidateOptionVector,
+    MCDARankResult,
+    MCDARanker,
+)
 
 __all__ = [
     # Domain Models
@@ -87,4 +105,25 @@ __all__ = [
     "AuditVerificationHook",
     "TelemetryEvaluationHook",
     "GovernanceSafetyHook",
+    # ContractIR-UI
+    "LayoutArchetype",
+    "ErgonomicsContract",
+    "UIContractSpecification",
+    # Acceptance Spec Emitter
+    "AcceptanceSpecEmitter",
+    "DomainArchetypePresetCatalog",
+    # QFD House of Quality Engine & IR
+    "CharacteristicType",
+    "OptimizationDirection",
+    "CorrelationType",
+    "RelationshipStrength",
+    "CustomerRequirement",
+    "EngineeringCharacteristic",
+    "CorrelationRoofEdge",
+    "HouseOfQualityIR",
+    "QFDEngine",
+    # MCDA TOPSIS Ranker
+    "CandidateOptionVector",
+    "MCDARankResult",
+    "MCDARanker",
 ]

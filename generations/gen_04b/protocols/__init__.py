@@ -6,6 +6,13 @@ Enforces:
 - [L1-G4B-003] Hierarchical Merkle-DAG Witness Telemetry.
 """
 
+from .acceptance_spec import (
+    AcceptanceProtocolViolation,
+    AcceptanceSpecIR,
+    DomainArchetype,
+    FalsificationVector,
+    MutationType,
+)
 from .deliverable_bundle import (
     ConstraintAnalysis,
     DeliverableProtocolViolation,
@@ -32,6 +39,11 @@ from .urn_registry import (
 )
 
 __all__ = [
+    "AcceptanceProtocolViolation",
+    "AcceptanceSpecIR",
+    "DomainArchetype",
+    "FalsificationVector",
+    "MutationType",
     "ConstraintAnalysis",
     "DeliverableProtocolViolation",
     "FailureModeModel",
