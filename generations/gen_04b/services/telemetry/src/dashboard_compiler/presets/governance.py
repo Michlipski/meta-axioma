@@ -1,548 +1,30 @@
-"""Generator for Generation 4b Sovereign Governance & Safety Telemetry Dashboard.
-
-Synthesizes 100% self-contained, zero-external-CDN HTML5 dashboard for Option C:
-Apex Sovereign Safety & Governance Crucible (`soc_g4b_governance` on 192.168.40.50:8448).
-Enforces Directive 6, [L1-G3B-018], [L1-G3B-014], [L1-G3B-012], [L1-G2B-002], and [L1-G4B-008].
-"""
+"""Domain Preset for governance ([L1-G4B-008])."""
 
 from __future__ import annotations
 
-import os
-from pathlib import Path
-import sys
+from typing import TYPE_CHECKING, List
 
+if TYPE_CHECKING:
+    from ..schema import CustomDashboardSection, DashboardAST
 
-def generate_dashboard_html() -> str:
-    return r"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Development Process Telemetry Dashboard | Sovereign Governance &amp; Safety Service (soc_g4b_governance)</title>
-  <style>
-    :root {
-      --bg: #07090e;
-      --bg-surface: rgba(13, 18, 30, 0.88);
-      --bg-surface-elevated: rgba(20, 28, 48, 0.94);
-      --border: rgba(255, 255, 255, 0.08);
-      --border-bright: rgba(56, 189, 248, 0.35);
-      --border-emerald: rgba(16, 185, 129, 0.35);
-      --border-amber: rgba(245, 158, 11, 0.35);
-      --border-rose: rgba(244, 63, 94, 0.35);
-      --border-purple: rgba(168, 85, 247, 0.35);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --cyan: #38bdf8;
-      --cyan-glow: rgba(56, 189, 248, 0.25);
-      --emerald: #10b981;
-      --emerald-glow: rgba(16, 185, 129, 0.25);
-      --amber: #f59e0b;
-      --amber-glow: rgba(245, 158, 11, 0.25);
-      --rose: #f43f5e;
-      --rose-glow: rgba(244, 63, 94, 0.25);
-      --purple: #a855f7;
-      --purple-glow: rgba(168, 85, 247, 0.25);
-      --indigo: #6366f1;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --font-mono: "SF Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
-    }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+def get_custom_sections(ast: DashboardAST) -> List[CustomDashboardSection]:
+    from ..schema import CustomDashboardSection
+    return [
+        CustomDashboardSection(
+            section_id="governance_domain_suite",
+            title="Governance Domain Suite",
+            html_content=CUSTOM_HTML,
+            order=50,
+        )
+    ]
 
-    body {
-      background: var(--bg);
-      background-image:
-        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.04) 0%, transparent 60%);
-      color: var(--text);
-      font-family: var(--font-sans);
-      min-height: 100vh;
-      padding: 24px;
-      line-height: 1.5;
-    }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 24px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-      gap: 16px;
-    }
+def get_custom_script(ast: DashboardAST) -> str:
+    return CUSTOM_SCRIPT
 
-    .header-title-group h1 {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--text);
-    }
 
-    .header-title-group p {
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-top: 4px;
-    }
-
-    .badge-group {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      font-size: 11px;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
-
-    .badge-cyan { background: rgba(56, 189, 248, 0.12); color: var(--cyan); border: 1px solid var(--border-bright); }
-    .badge-emerald { background: rgba(16, 185, 129, 0.12); color: var(--emerald); border: 1px solid var(--border-emerald); }
-    .badge-amber { background: rgba(245, 158, 11, 0.12); color: var(--amber); border: 1px solid var(--border-amber); }
-    .badge-rose { background: rgba(244, 63, 94, 0.12); color: var(--rose); border: 1px solid var(--border-rose); }
-    .badge-purple { background: rgba(168, 85, 247, 0.12); color: var(--purple); border: 1px solid var(--border-purple); }
-
-    /* Top Streaming HUD */
-    .hud-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .hud-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      backdrop-filter: blur(12px);
-      transition: border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .hud-card:hover {
-      border-color: var(--border-bright);
-      transform: translateY(-2px);
-    }
-
-    .hud-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--text-dim);
-      letter-spacing: 0.05em;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .hud-val {
-      font-size: 22px;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      color: var(--text);
-    }
-
-    .hud-val small {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text-muted);
-    }
-
-    .hud-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* Navigation Tabs */
-    .nav-tabs {
-      display: flex;
-      gap: 8px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 24px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
-    .tab-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .tab-btn:hover {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .tab-btn.active {
-      color: var(--cyan);
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid var(--border-bright);
-    }
-
-    .tab-panel {
-      display: none;
-      animation: fadeIn 0.25s ease forwards;
-    }
-
-    .tab-panel.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Common Card Styles */
-    .card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      backdrop-filter: blur(12px);
-      margin-bottom: 20px;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding-bottom: 12px;
-    }
-
-    .card-title {
-      font-size: 16px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text);
-    }
-
-    .card-title .indicator {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 8px var(--cyan);
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 20px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    /* Tables */
-    .table-container {
-      overflow-x: auto;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      text-align: left;
-    }
-
-    th {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 12px 14px;
-      font-weight: 600;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      border-bottom: 1px solid var(--border);
-    }
-
-    td {
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      color: var(--text);
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .mono-cell {
-      font-family: var(--font-mono);
-      font-size: 12px;
-    }
-
-    /* Progress bars & gauges */
-    .progress-track {
-      width: 100%;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 9999px;
-      overflow: hidden;
-      margin: 8px 0;
-      position: relative;
-    }
-
-    .progress-fill {
-      height: 100%;
-      border-radius: 9999px;
-      transition: width 0.4s ease;
-    }
-
-    .fill-cyan { background: linear-gradient(90deg, #0284c7, #38bdf8); }
-    .fill-emerald { background: linear-gradient(90deg, #059669, #10b981); }
-    .fill-amber { background: linear-gradient(90deg, #d97706, #f59e0b); }
-    .fill-rose { background: linear-gradient(90deg, #e11d48, #f43f5e); }
-    .fill-purple { background: linear-gradient(90deg, #7c3aed, #a855f7); }
-
-    /* Interactive Console & Controls */
-    .code-editor, textarea.console-input {
-      width: 100%;
-      background: #040609;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
-      color: #38bdf8;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      resize: vertical;
-      min-height: 120px;
-      margin-bottom: 12px;
-    }
-
-    .code-editor:focus, textarea.console-input:focus {
-      outline: none;
-      border-color: var(--cyan);
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(56, 189, 248, 0.15);
-      color: var(--cyan);
-      border: 1px solid var(--border-bright);
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: var(--font-sans);
-    }
-
-    .btn:hover {
-      background: rgba(56, 189, 248, 0.25);
-      transform: translateY(-1px);
-    }
-
-    .btn-rose {
-      background: rgba(244, 63, 94, 0.15);
-      color: var(--rose);
-      border-color: var(--border-rose);
-    }
-    .btn-rose:hover { background: rgba(244, 63, 94, 0.25); }
-
-    .btn-emerald {
-      background: rgba(16, 185, 129, 0.15);
-      color: var(--emerald);
-      border-color: var(--border-emerald);
-    }
-    .btn-emerald:hover { background: rgba(16, 185, 129, 0.25); }
-
-    .btn-amber {
-      background: rgba(245, 158, 11, 0.15);
-      color: var(--amber);
-      border-color: var(--border-amber);
-    }
-    .btn-amber:hover { background: rgba(245, 158, 11, 0.25); }
-
-    .console-output {
-      background: #030508;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--text-muted);
-      max-height: 220px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-    }
-
-    .filter-pills {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .filter-pill {
-      padding: 4px 12px;
-      border-radius: 9999px;
-      font-size: 11px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.15s ease;
-    }
-
-    .filter-pill.active {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: var(--cyan);
-      color: var(--cyan);
-    }
-
-    /* Slider row */
-    .slider-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 12px;
-    }
-
-    .slider-row label {
-      width: 140px;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .slider-row input[type="range"] {
-      flex: 1;
-      accent-color: var(--cyan);
-    }
-
-    .slider-val {
-      width: 80px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--cyan);
-      text-align: right;
-    }
-
-    /* Merkle visualizer */
-    .merkle-chain {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .merkle-block {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: border-color 0.2s ease;
-    }
-
-    .merkle-block:hover {
-      border-color: var(--border-bright);
-    }
-
-    .merkle-block-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .merkle-index {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--cyan);
-      padding: 2px 8px;
-      background: rgba(56, 189, 248, 0.1);
-      border-radius: 4px;
-    }
-
-    .merkle-meta {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .merkle-hash {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ========================================================================= -->
-  <!-- HEADER & SOVEREIGN ATTESTATION                                            -->
-  <!-- ========================================================================= -->
-  <header>
-    <div class="header-title-group">
-      <h1>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--cyan);">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          <path d="m9 12 2 2 4-4"/>
-        </svg>
-        Sovereign Governance &amp; Safety Service
-        <span style="font-size:14px; font-weight:400; color:var(--text-dim); font-family:var(--font-mono);">soc_g4b_governance</span>
-      </h1>
-      <p>
-        Zero-Bypass Negative Axiom Interception &bull; Stateful HITL Heuristic Debt Amortization &bull; Generational Succession Gate &bull; Landauer Limits
-      </p>
-    </div>
-    <div class="badge-group">
-      <span class="badge badge-cyan">&#9679; DIRECTIVE 6 CERTIFIED</span>
-      <span class="badge badge-purple">OPTION C ZENITH CRUCIBLE</span>
-      <span class="badge badge-emerald">&#10003; 192.168.40.50:8448</span>
-      <span class="badge badge-amber">HERMETIC HERM-005</span>
-      <span class="badge badge-rose">Z3 UNSAT PROVEN</span>
-    </div>
-  </header>
-
-  <!-- ========================================================================= -->
+CUSTOM_HTML = r"""<!-- ========================================================================= -->
   <!-- TOP STREAMING HUD (6 METRIC CARDS)                                        -->
   <!-- ========================================================================= -->
   <div class="hud-grid">
@@ -1219,12 +701,12 @@ def generate_dashboard_html() -> str:
         </div>
       </div>
 
-      <!-- Michael Lipski Supervisor Ruling History -->
+      <!-- Supervisor Architect Supervisor Ruling History -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">
             <span class="indicator" style="background:var(--purple);"></span>
-            Supervisor Ruling History &bull; Michael Lipski
+            Supervisor Ruling History &bull; Supervisor Architect
           </div>
           <span class="badge badge-purple">SYSTEMS ARCHITECT</span>
         </div>
@@ -1338,7 +820,7 @@ def generate_dashboard_html() -> str:
               <td><span class="badge badge-purple">AXIOMATIC_CONTRADICTION</span></td>
               <td>Permit 2-of-3 degraded quorum during transient subnet partition</td>
               <td><span class="badge badge-purple">&#9878; ESCALATED_TO_HITL</span></td>
-              <td class="mono-cell" style="font-size:11px; color:var(--purple);">Michael Lipski approved temporary degraded quorum with mandatory audit logging.</td>
+              <td class="mono-cell" style="font-size:11px; color:var(--purple);">Supervisor Architect approved temporary degraded quorum with mandatory audit logging.</td>
             </tr>
           </tbody>
         </table>
@@ -1664,7 +1146,7 @@ def generate_dashboard_html() -> str:
           <div class="merkle-block-header">
             <span class="merkle-index">#02</span>
             <div>
-              <div class="merkle-meta">Stateful HITL Intercept Engine &amp; Michael Lipski Rulings</div>
+              <div class="merkle-meta">Stateful HITL Intercept Engine &amp; Supervisor Architect Rulings</div>
               <div class="merkle-hash">Hash: 7892bfe1c0451a9e8471203b57118ca47d89614210a56cb971092a3487102eac</div>
             </div>
           </div>
@@ -1793,9 +1275,9 @@ def candidate_function():
 
   <!-- ========================================================================= -->
   <!-- VANILLA JAVASCRIPT LOGIC (ZERO EXTERNAL LIBRARIES)                        -->
-  <!-- ========================================================================= -->
-  <script>
-    // Tab Switching
+  <!-- ========================================================================= -->"""
+
+CUSTOM_SCRIPT = r"""// Tab Switching
     function switchTab(tabId) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -2013,28 +1495,4 @@ def candidate_function():
     window.addEventListener('DOMContentLoaded', () => {
       initMeshCanvas();
       updateLandauerSimulation();
-    });
-  </script>
-</body>
-</html>
-"""
-
-
-def write_dashboards() -> None:
-    content = generate_dashboard_html()
-    base_dir = Path(__file__).resolve().parent
-    repo_root = base_dir.parents[3]
-    paths = [
-        base_dir / "dashboard.html",
-        base_dir / "telemetry_dashboard.html",
-        repo_root / "generations" / "gen_04b" / "epochs" / "epoch_g4b_governance" / "telemetry_dashboard.html",
-        repo_root / "generations" / "gen_04b" / "epochs" / "epoch_g4b_governance" / "dashboard.html",
-    ]
-    for p in paths:
-        p.parent.mkdir(parents=True, exist_ok=True)
-        p.write_text(content, encoding="utf-8")
-        print(f"Emitted {p} ({len(content)} bytes)")
-
-
-if __name__ == "__main__":
-    write_dashboards()
+    });"""

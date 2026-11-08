@@ -22,6 +22,7 @@ repo_root = current_dir.parents[5]
 if str(repo_root) not in sys.path:
     sys.path.insert(0, str(repo_root))
 
+from generations.gen_04b.services.telemetry.src.dashboard_compiler import TelemetryDashboardCompiler
 from generations.gen_04b.services.audit.src.zero_trust_micro_auditor import ZeroTrustMicroAuditor
 
 
@@ -32,14 +33,12 @@ class TestTelemetryDashboardIntegrity(unittest.TestCase):
         self.service_dir = Path(__file__).resolve().parent.parent
         self.dashboard_html = self.service_dir / "dashboard.html"
         self.telemetry_html = self.service_dir / "telemetry_dashboard.html"
-        self.generate_py = self.service_dir / "generate_dashboard.py"
         self.auditor = ZeroTrustMicroAuditor(auditor_node_id="test_dashboard_auditor")
 
     def test_dashboard_files_exist_and_non_trivial(self) -> None:
         """Verify dashboard deliverables physically exist on disk and meet size floor."""
         self.assertTrue(self.dashboard_html.exists(), "dashboard.html must physically exist on disk")
         self.assertTrue(self.telemetry_html.exists(), "telemetry_dashboard.html must physically exist on disk")
-        self.assertTrue(self.generate_py.exists(), "generate_dashboard.py must physically exist on disk")
 
         # Size floor: rich standalone dashboard must be >= 50,000 bytes
         self.assertGreater(self.dashboard_html.stat().st_size, 50000)
@@ -88,16 +87,17 @@ class TestTelemetryDashboardIntegrity(unittest.TestCase):
         for tag in banned_tags:
             self.assertNotIn(tag, content, f"Unreconciled template tag '{tag}' found in dashboard")
 
-    def test_generate_dashboard_script_execution(self) -> None:
-        """Verify generate_dashboard.py executes cleanly and re-emits identical deliverables."""
-        res = subprocess.run(
-            [sys.executable, str(self.generate_py)],
-            capture_output=True,
-            text=True,
-            cwd=str(repo_root),
-        )
-        self.assertEqual(res.returncode, 0, f"generate_dashboard.py failed with: {res.stderr}")
-        self.assertTrue(self.dashboard_html.exists())
+    def test_telemetry_dashboard_compiler_execution(self) -> None:
+        """Verify TelemetryDashboardCompiler executes cleanly and produces valid deliverables ([L1-G4B-008])."""
+        p1, p2 = TelemetryDashboardCompiler.compile_and_save(self.service_dir)
+        self.assertTrue(p1.exists())
+        self.assertTrue(p2.exists())
+        self.assertGreater(p1.stat().st_size, 50000, "dashboard.html must be >50KB")
+        self.assertGreater(p2.stat().st_size, 50000, "telemetry_dashboard.html must be >50KB")
+        
+        content = p1.read_text(encoding="utf-8")
+        report = self.auditor.audit_dashboard_deliverable(content, deliverable_id=p1.name, base_dir=str(self.service_dir))
+        self.assertTrue(report.is_hermetic, f"Compiler output failed audit: {[v.description for v in report.violations]}")
 
 
 if __name__ == "__main__":

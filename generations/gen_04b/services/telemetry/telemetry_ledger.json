@@ -35,5 +35,22 @@
     "failing": 0,
     "total_assertions": 228,
     "exit_code": 0
-  }
+  },
+  "chain_head_hash": "58bbd297a188e07b55bbd88f5081497af1c8e58aca757ff7fcb7265ff88651a3",
+  "events": [
+    {
+      "index": 0,
+      "event_type": "TELEMETRY_COMPILER_SOVEREIGN_MIGRATION",
+      "timestamp": 1793930281.97424,
+      "payload": {
+        "merkle_root": "c394aa8f0e29635a7ed7ec60df59945c718bd7c8783ee9dcf129bee3eccd3713",
+        "kernel_files_count": 20,
+        "bespoke_generators_deleted": 9,
+        "tests_passed": 200,
+        "status": "CERTIFIED_COMPLETE"
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "58bbd297a188e07b55bbd88f5081497af1c8e58aca757ff7fcb7265ff88651a3"
+    }
+  ]
 }
