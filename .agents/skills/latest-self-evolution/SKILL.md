@@ -73,11 +73,19 @@ If the researcher/compiler determines that Generation $N+1$ (Generation 5) shoul
      - The architectural motivation and Waterloo SoC of the compiler improvement.
      - Comparative options (including the generational succession option if applicable).
      - Adversarial Red Team critique (`[L1-G4B-009]`) analyzing backward compatibility risks.
+     - **Mandatory `G5SuccessionNote` Schema Embedding (`.agents/rules/g5_succession_prompter.md`):** Every option that defers scope, encounters single-host limits, or identifies Generation 5 requirements must embed a ````json:g5_succession_note ... ```` block.
    - Elicit human choice via `ask_question` (especially if proposing $G_{N+1}$).
-3. **Staged Implementation:**
+3. **Post-Selection G5 Succession Synchronization:**
+   - Once an option is chosen by the human architect, execute the automated synchronization script:
+     ```bash
+     python3 scripts/sync_next_gen_notes.py --proposals-file <path_to_proposals> --option <option_name_or_index> --yes
+     ```
+   - This idempotently splices the succession note into `generations/gen_04b/next_gen/` (using `<!-- BEGIN G5_SYNC: <id> -->` guards), indexes new RFCs in `next_gen/README.md`, and creates reversible undo snapshots in `.scratch/next_gen_undo_snapshots/`.
+   - Validate proposal blocks at any time via `python3 scripts/sync_next_gen_notes.py --check`.
+4. **Staged Implementation:**
    - If Path A approved: Implement changes within `generations/gen_04b/services/` or `protocols/`.
    - If Path B approved: Engage `/generational-orchestrator` to initialize `generations/gen_05/`, evaluate predecessor axioms, and construct the successor from scratch.
-4. **Empirical Substrate Verification:**
+5. **Empirical Substrate Verification:**
    - Run the full generational test discovery:
      ```bash
      python3 -m unittest discover -v -s generations/gen_04b/tests
