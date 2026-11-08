@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Pytest shim delegating to python3 -m unittest in sandboxed environments
+exec python3 -m unittest "$@"

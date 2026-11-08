@@ -42,3 +42,17 @@ If the conversation evolves from a lightweight inquiry into modifying protected 
    - If the task requires refactoring or evolving `generations/`, remind the user of `[NEG-GOV-GATE-001]` and recommend switching to `/latest-self-evolution`.
 4. **Adversarial Stress-Testing:**
    - If the user wants to break, critique, or invert assumptions of a proposal or design, recommend `/red-team`.
+
+---
+
+## 3. Token-Efficient Codebase Exploration (`scripts/skeleton.py`)
+
+When exploring unfamiliar, large Python modules across `generations/`, `apps/`, or `src/`:
+- **Prefer AST Skeletonization First:** Avoid loading massive 800-line source files into the context window via `read_file` if you only need the module's API contracts, class hierarchies, or method signatures.
+- **Run the CLI Tool:** Use `run_command` to execute:
+  ```bash
+  python3 scripts/skeleton.py path/to/module.py
+  # Or inspect a whole directory with token statistics:
+  python3 scripts/skeleton.py path/to/dir/ -r --stats
+  ```
+- **Token Reduction:** AST skeletonization replaces method and function bodies with `...`, dropping prompt token consumption by **$70\%\text{–}83\%$** while strictly preserving type signatures, docstrings, and parameter names (`[L1-G4B-007]`).
