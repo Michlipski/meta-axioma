@@ -99,6 +99,45 @@ No file can be written to the canonical codebase or merged into production witho
 
 ---
 
+<!-- BEGIN G5_SYNC: g5-cognitive-routing-heterogeneous-attestation -->
+### Provider-Attested Heterogeneous Gemini 4 Routing (Neon / Hydrogen / Argon / Carbon) (Sync from Option 2 (Recommended): Canonical Gen 4b protocols/cognitive_routing.py + Full Service/Telemetry/Skill Alignment)
+
+#### 2. Friction Points & Architectural Limitations
+- In Gen 4b, AGY invoke_subagent only exposes a 4-value Model enum ('pro', 'flash', 'flash_lite', 'inherit'), preventing deterministic wire-level separation between Gemini 4 Neon (Brain) and Gemini 4 Argon (Cross-Model Red Team).
+- Subagent invoker calls return only a conversationId string, requiring static token placeholders in orchestrator.py until post-hoc reconciliation via reconcile_dashboard_telemetry.py.
+
+#### 3. Generation 5 Desired Capabilities & Specification
+- Native typed model_family_uri dispatch (gemini-4-neon, gemini-4-hydrogen, gemini-4-argon, gemini-4-carbon) via headless Gen 5 SDK/CLI without AGY enum collapse.
+- Cryptographically signed runtime receipts returning attested model_family_uri, fresh/cached/output BPE counts, and cross-model diversity proofs over mesh.events.*.
+
+#### 4. Formal Invariants & Negative Constraints
+- [L1-G5-014] Heterogeneous Cross-Model Attestation: Audit and Red-Team enclaves MUST verify provider-signed model_family_uri != Builder model_family_uri when cross-model diversity is required.
+- [NEG-G5-014] Zero Static Witness Stubbing: Telemetry sinks MUST reject unattested model claims or synthetic pre-reconciliation token constants.
+
+#### 5. Open Questions & Research Spikes
+- Prototype google.antigravity.Agent / Gemini 4 SDK adapter emitting signed ModelAttestationEnvelope payloads directly into TelemetryVault.
+- Measure Byzantine defect-detection lift of Neon Brain + Argon Red Team vs. Neon Brain + Neon Red Team across the 5-way ablation harness.
+<!-- END G5_SYNC: g5-cognitive-routing-heterogeneous-attestation -->
+
+<!-- BEGIN G5_SYNC: g5-hermetic-worker-chaos-and-ebpf -->
+### OS-Isolated Worker Evaluation & Kernel-Level Chaos Probes for Gen 5 Macro-Bench (Sync from Option 2: Coordinated Full Calibration & Strict Gen 4b Hardening)
+
+#### 2. Friction Points & Architectural Limitations
+- macOS sandbox profile denies outbound TCP connect(('127.0.0.1', port)) with EPERM, restricting Gen 4b ChaosEvaluator to socket.socketpair() and subprocess lifecycle probes rather than full multi-host packet chaos.
+- In-process dynamic import of candidate engines in ChaosEvaluator and StatechartEvaluator requires manual sys.modules/sys.path snapshotting and remains vulnerable to hostile candidate side effects at import time.
+
+#### 3. Generation 5 Desired Capabilities & Specification
+- Run each Macro-Bench evaluation pass inside an ephemeral OS-isolated worker namespace/container with network namespace chaos injection (packet drop, latency jitter, half-open TCP).
+- Replace heuristic Python AST statechart fallback with deterministic dynamic trace capture (eBPF / sys.monitoring trace hooks) verifying every declared XState v5 transition edge at runtime.
+
+#### 4. Formal Invariants & Negative Constraints
+- [L1-G5-BENCH-01] Every candidate dynamic evaluation executes in a fresh OS process/container with zero shared Python interpreter state.
+- [NEG-G5-BENCH-01] Static AST fallback cannot certify statechart compliance without a companion runtime trace witness.
+
+#### 5. Open Questions & Research Spikes
+- Benchmark Python 3.14 sys.monitoring low-overhead transition trace capture vs. Linux eBPF uprobes for Generation 5.
+<!-- END G5_SYNC: g5-hermetic-worker-chaos-and-ebpf -->
+
 ## 4. Formal Invariants & Negative Constraints
 
 - **`[L1-G5-ASYM-001]` Strict Asymmetric Payoff:** The Adversary’s objective function must be strictly orthogonal to the Builder’s completion status.

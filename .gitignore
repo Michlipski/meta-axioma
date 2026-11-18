@@ -65,6 +65,7 @@ coverage.xml
 *~
 .scratch/
 scratch/
+unittest.py
 
 # SQLite Databases & Journals
 *.db

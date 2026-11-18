@@ -5,6 +5,19 @@ from __future__ import annotations
 import html
 from typing import TYPE_CHECKING
 
+try:
+    from generations.gen_04b.protocols.cognitive_routing import is_brain_model_label
+except ImportError:
+    def is_brain_model_label(model_label: str, tier_label: str = "") -> bool:
+        model_lower = model_label.lower()
+        tier_lower = tier_label.lower()
+        return (
+            "neon" in model_lower
+            or "argon" in model_lower
+            or "brain" in tier_lower
+            or "red team" in tier_lower
+        )
+
 if TYPE_CHECKING:
     from .schema import DashboardAST, SubagentWitness
 
@@ -21,10 +34,10 @@ def render_subagent_hud(ast: DashboardAST) -> str:
     subagent_rows = []
     for s in ast.subagents:
         # Determine model badge
-        is_argon = "argon" in s.model.lower() or "brain" in s.tier.lower()
+        is_brain = is_brain_model_label(s.model, s.tier)
         model_badge = (
             f'<span class="badge badge-purple">{html.escape(s.model)}</span>'
-            if is_argon
+            if is_brain
             else f'<span class="badge badge-cyan">{html.escape(s.model)}</span>'
         )
 

@@ -14,10 +14,13 @@ Enforces:
 
 from __future__ import annotations
 
+import fcntl
 import hashlib
 import json
 import os
 from pathlib import Path
+import socket
+import struct
 import sys
 import time
 import urllib.error
@@ -53,14 +56,18 @@ def resolve_workspace_root() -> Path:
 
 
 def load_state(scratch_dir: Path) -> Dict[str, Any]:
-    """Loads Lamport logical clock and hash-chain state from scratch enclave."""
+    """Loads Lamport logical clock and hash-chain state from scratch enclave under shared lock."""
     state_file = scratch_dir / "telemetry_hook_state.json"
     if state_file.exists():
         try:
             with open(state_file, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                if isinstance(data, dict):
-                    return data
+                fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+                try:
+                    data = json.load(f)
+                    if isinstance(data, dict):
+                        return data
+                finally:
+                    fcntl.flock(f.fileno(), fcntl.LOCK_UN)
         except Exception:
             pass
     return {
@@ -72,25 +79,35 @@ def load_state(scratch_dir: Path) -> Dict[str, Any]:
 
 
 def save_state(scratch_dir: Path, state: Dict[str, Any]) -> None:
-    """Persists state safely to scratch enclave."""
+    """Persists state safely to scratch enclave under exclusive lock."""
     try:
         scratch_dir.mkdir(parents=True, exist_ok=True)
         state_file = scratch_dir / "telemetry_hook_state.json"
-        tmp_file = scratch_dir / "telemetry_hook_state.json.tmp"
-        with open(tmp_file, "w", encoding="utf-8") as f:
-            json.dump(state, f, indent=2)
-        tmp_file.replace(state_file)
+        with open(state_file, "a+", encoding="utf-8") as f:
+            fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+            try:
+                f.seek(0)
+                f.truncate(0)
+                json.dump(state, f, indent=2)
+                f.flush()
+            finally:
+                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
     except Exception:
         pass
 
 
 def append_spillover(scratch_dir: Path, record: Dict[str, Any]) -> None:
-    """Appends un-dispatched transaction to local spillover ledger."""
+    """Appends un-dispatched transaction to local spillover ledger under exclusive lock."""
     try:
         scratch_dir.mkdir(parents=True, exist_ok=True)
         spillover_file = scratch_dir / "spillover_telemetry.jsonl"
         with open(spillover_file, "a", encoding="utf-8") as f:
-            f.write(json.dumps(record) + "\n")
+            fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+            try:
+                f.write(json.dumps(record) + "\n")
+                f.flush()
+            finally:
+                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
     except Exception:
         pass
 
@@ -290,9 +307,25 @@ def filter_and_classify_action(
     return None
 
 
-def dispatch_http_transaction(record: Dict[str, Any], timeout_seconds: float = 0.05) -> bool:
-    """Dispatches transaction via HTTP POST within a strict 50ms circuit breaker."""
-    url = "http://127.0.0.1:8446/api/v1/telemetry/ingest"
+def dispatch_transaction(workspace_root: Path, record: Dict[str, Any], timeout_seconds: float = 0.05) -> bool:
+    """Dispatches transaction to Telemetry service: probes local UDS socket first, then HTTP 192.168.40.40:8446."""
+    # 1. Probe local UDS socket under .scratch/s/tel.s
+    tel_sock = workspace_root / ".scratch" / "s" / "tel.s"
+    if tel_sock.exists():
+        try:
+            s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+            s.settimeout(timeout_seconds)
+            s.connect(str(tel_sock))
+            payload_bytes = json.dumps(record).encode("utf-8")
+            header = struct.pack("!I", len(payload_bytes))
+            s.sendall(header + payload_bytes)
+            s.close()
+            return True
+        except Exception:
+            pass
+
+    # 2. Probe HTTP 192.168.40.40:8446
+    url = "http://192.168.40.40:8446/api/v1/telemetry/ingest"
     payload_bytes = json.dumps(record).encode("utf-8")
     req = urllib.request.Request(
         url,
@@ -464,8 +497,8 @@ def main() -> None:
         # Update previous hash pointer
         state["prev_transaction_hash"] = tx_hash
 
-        # Dispatch via HTTP socket with 50ms circuit breaker
-        dispatched = dispatch_http_transaction(record, timeout_seconds=0.05)
+        # Dispatch via UDS socket or HTTP with 50ms circuit breaker
+        dispatched = dispatch_transaction(workspace_root, record, timeout_seconds=0.05)
         if dispatched:
             state["circuit_breaker_active"] = False
         else:

@@ -1,7 +1,7 @@
 {
   "service": "soc_g4b_telemetry",
   "phase": "Generation 4b Phase 4",
-  "timestamp_unix_ms": 1794159161180,
+  "timestamp_unix_ms": 1795043301113,
   "endpoint": "192.168.40.40:8446",
   "token_budget": 880300,
   "exploratory_capital": 528180,
@@ -30,9 +30,9 @@
     "throughput_rps": 100.0,
     "passes_sla": true
   },
-  "merkle_root": "ecfd14287997418e80e1f48b51915c4c668ea4e996009868abb316ee2caf5b8e",
+  "merkle_root": "502cb92343841f93c6f8b277ddde275adf55636ce2e7872261578c06e834c7ab",
   "attestation_id": "attest_g4b_telemetry_zenith_01",
-  "attestation_signature": "663a73c492a64a86afacd0ffbbf474969bf7a0ece5046a3e015b4c63596afd16",
+  "attestation_signature": "21ae0657ee577210911d74876f20dd19e40bd0e3e774f69a0d05add1ab7629b1",
   "byzantine_trapped_count": 4,
   "statechart_state": "state_operational_certified",
   "operational_certified": true

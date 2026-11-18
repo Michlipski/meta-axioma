@@ -14,6 +14,7 @@ Enforces:
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
+import fcntl
 import hashlib
 import json
 import math
@@ -814,6 +815,40 @@ class TelemetryVault:
             total_bits_erased=row[8],
             total_heat_dissipated_joules=row[9],
         )
+
+    def drain_spillover_jsonl(self, spillover_path: Optional[Path] = None) -> int:
+        """Drains un-ingested JSONL micro-transactions under exclusive file lock into SQLite WAL."""
+        sp_path = spillover_path or (Path(__file__).resolve().parents[5] / ".scratch" / "spillover_telemetry.jsonl")
+        if not sp_path.exists():
+            return 0
+
+        drained_count = 0
+        try:
+            with open(sp_path, "r+", encoding="utf-8") as f:
+                fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+                try:
+                    lines = f.readlines()
+                    for line in lines:
+                        line = line.strip()
+                        if not line:
+                            continue
+                        try:
+                            record = json.loads(line)
+                            tx = MeshTransaction.from_dict(record)
+                            existing = self.get_transaction_by_id(tx.transaction_id)
+                            if existing is None:
+                                self.insert_transaction(tx)
+                                drained_count += 1
+                        except Exception:
+                            continue
+                    f.seek(0)
+                    f.truncate(0)
+                finally:
+                    fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+        except Exception:
+            return drained_count
+
+        return drained_count
 
     def close(self) -> None:
         with self._lock:

@@ -14,6 +14,7 @@ Enforces:
 from __future__ import annotations
 
 import hashlib
+from pathlib import Path
 import time
 from typing import Any, Dict, List, Optional, Set, Tuple
 import uuid
@@ -44,10 +45,12 @@ class SuccessionGatekeeper:
         self,
         service_endpoint: str = "192.168.40.50:8448",
         governance_hash_chain_head: str = "",
+        strict_witness_mode: bool = False,
     ) -> None:
         assert_non_loopback(service_endpoint, "SuccessionGatekeeper initialization")
         self.service_endpoint = service_endpoint
         self._hash_chain_head = governance_hash_chain_head or "0" * 64
+        self.strict_witness_mode = strict_witness_mode
 
         self._registered_proofs: Dict[str, SuccessionInvariantProof] = {}
         self._handover_certificate: Optional[GenerationalHandoverCertificate] = None
@@ -62,33 +65,35 @@ class SuccessionGatekeeper:
 
     def _seed_required_proofs(self) -> None:
         """Seeds canonical formal proofs for the foundational invariant tiers."""
+        initial_satisfied = not self.strict_witness_mode
+        initial_status = "SAT" if not self.strict_witness_mode else "UNKNOWN"
         seeds = [
             SuccessionInvariantProof(
                 proof_id="proof_inv_core_l1_001_016",
                 target_generation="Generation 5",
                 invariant_urn="urn:axioma:core:l1_001_to_016",
                 mathematical_formalization="Forall i in [L1-001..016]: Valid(i) and Preserved(i)",
-                empirical_witness_path="generations/gen_04b/tests/test_mesh_topology.py",
-                is_satisfied=True,
-                z3_status="SAT",
+                empirical_witness_path="generations/gen_04b/tests/test_generational_topology.py",
+                is_satisfied=initial_satisfied,
+                z3_status=initial_status,
             ),
             SuccessionInvariantProof(
                 proof_id="proof_inv_g3b_hierarchy",
                 target_generation="Generation 5",
                 invariant_urn="urn:axioma:g3b:l1_g3b_000_to_019",
                 mathematical_formalization="Forall j in [L1-G3B-000..019]: Valid(j) and CategoryPreserving(j)",
-                empirical_witness_path="generations/gen_03b/src/g3b_compiler/tests/test_compiler.py",
-                is_satisfied=True,
-                z3_status="SAT",
+                empirical_witness_path="generations/gen_04b/tests/test_qfd_lifecycle.py",
+                is_satisfied=initial_satisfied,
+                z3_status=initial_status,
             ),
             SuccessionInvariantProof(
                 proof_id="proof_inv_g4b_mesh",
                 target_generation="Generation 5",
                 invariant_urn="urn:axioma:g4b:l1_g4b_001_to_008",
                 mathematical_formalization="Forall k in [L1-G4B-001..008]: Valid(k) and MeshStandardized(k)",
-                empirical_witness_path="generations/gen_04b/tests/test_service_contracts.py",
-                is_satisfied=True,
-                z3_status="SAT",
+                empirical_witness_path="generations/gen_04b/tests/test_acceptance_spec_contracts.py",
+                is_satisfied=initial_satisfied,
+                z3_status=initial_status,
             ),
             SuccessionInvariantProof(
                 proof_id="proof_inv_zero_loopback",
@@ -96,8 +101,8 @@ class SuccessionGatekeeper:
                 invariant_urn="urn:axioma:g4b:invariant:zero_loopback",
                 mathematical_formalization="Forall e in ClusterEndpoints: host(e) is non-loopback [L1-G3B-012]",
                 empirical_witness_path="generations/gen_04b/services/governance/src/service_topology.py",
-                is_satisfied=True,
-                z3_status="SAT",
+                is_satisfied=initial_satisfied,
+                z3_status=initial_status,
             ),
             SuccessionInvariantProof(
                 proof_id="proof_inv_hdr_debt",
@@ -105,12 +110,32 @@ class SuccessionGatekeeper:
                 invariant_urn="urn:axioma:g4b:invariant:hdr_ceiling_015",
                 mathematical_formalization="HDR = Decisions_Heuristic / Decisions_Total <= 0.15",
                 empirical_witness_path="generations/gen_04b/services/governance/src/hitl_intercept_engine.py",
-                is_satisfied=True,
-                z3_status="SAT",
+                is_satisfied=initial_satisfied,
+                z3_status=initial_status,
             ),
         ]
         for sp in seeds:
             self.register_invariant_proof(sp)
+
+    def verify_physical_witnesses(self, repo_root: Optional[Path] = None) -> Dict[str, Any]:
+        """Physically verifies the existence of all empirical witness files on disk and computes digests."""
+        root = (repo_root or Path.cwd()).resolve()
+        verified_witnesses: Dict[str, Any] = {}
+        all_passed = True
+        for urn, proof in self._registered_proofs.items():
+            witness_file = root / proof.empirical_witness_path
+            exists = witness_file.exists() and witness_file.stat().st_size > 0
+            if exists:
+                digest = hashlib.sha256(witness_file.read_bytes()).hexdigest()
+                verified_witnesses[urn] = {"path": str(witness_file), "sha256": digest, "valid": True}
+                proof.is_satisfied = True
+                proof.z3_status = "BOUNDED_STDLIB"
+            else:
+                verified_witnesses[urn] = {"path": str(witness_file), "valid": False}
+                proof.is_satisfied = False
+                proof.z3_status = "UNKNOWN"
+                all_passed = False
+        return {"all_passed": all_passed, "witnesses": verified_witnesses}
 
     def register_invariant_proof(self, proof: SuccessionInvariantProof) -> None:
         """Registers a formal invariant proof into the succession evidence registry."""

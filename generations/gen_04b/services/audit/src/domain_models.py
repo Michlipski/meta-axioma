@@ -89,6 +89,11 @@ class SemanticStateSpoofingViolation(AuditDomainInvariantViolation):
     pass
 
 
+class FormalProverUnavailableError(AuditDomainInvariantViolation):
+    """Raised when strict formal prover verification is required but Z3 SMT solver is unavailable."""
+    pass
+
+
 # =========================================================================
 # Presentation Plane Domain Invariant Violations ([L1-G4B-015])
 # =========================================================================
@@ -380,6 +385,7 @@ class SMTModelCheckResult:
     postcondition_consequence_valid: bool
     is_deadlock_free: bool
     solver_engine: str = "NativeSMTProver_v4b"
+    verification_mode: str = "BOUNDED_STDLIB"
     proof_steps_count: int = 0
     unsat_core: Optional[str] = None
     counter_example: Dict[str, Any] = field(default_factory=dict)
@@ -413,6 +419,7 @@ class SMTModelCheckResult:
             "postcondition_consequence_valid": self.postcondition_consequence_valid,
             "is_deadlock_free": self.is_deadlock_free,
             "solver_engine": self.solver_engine,
+            "verification_mode": self.verification_mode,
             "proof_steps_count": self.proof_steps_count,
             "unsat_core": self.unsat_core,
             "counter_example": self.counter_example,
@@ -429,6 +436,7 @@ class SMTModelCheckResult:
             postcondition_consequence_valid=bool(data["postcondition_consequence_valid"]),
             is_deadlock_free=bool(data["is_deadlock_free"]),
             solver_engine=data.get("solver_engine", "NativeSMTProver_v4b"),
+            verification_mode=data.get("verification_mode", "BOUNDED_STDLIB"),
             proof_steps_count=int(data.get("proof_steps_count", 0)),
             unsat_core=data.get("unsat_core"),
             counter_example=dict(data.get("counter_example", {})),

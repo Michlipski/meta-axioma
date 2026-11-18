@@ -17,6 +17,7 @@ Enforces:
 from __future__ import annotations
 
 import ast
+from enum import Enum
 import hashlib
 import re
 import time
@@ -26,9 +27,17 @@ import uuid
 from .domain_models import (
     AuditDomainInvariantViolation,
     CodeLeafCandidate,
+    FormalProverUnavailableError,
     MorphismCheckStatus,
     SMTModelCheckResult,
 )
+
+
+class VerificationMode(str, Enum):
+    """Explicit formal verification mode preventing stdlib masking as Z3 SMT proof."""
+    Z3_SMT_SOLVER = "Z3_SMT_SOLVER"
+    BOUNDED_STDLIB = "BOUNDED_STDLIB"
+    UNAVAILABLE = "UNAVAILABLE"
 
 
 class NativeSMTProver_v4b:
@@ -203,11 +212,29 @@ class NativeSMTProver_v4b:
 class SMTModelChecker:
     """Sovereign SMT Formal Model Checker (`OracleSMT` peer verifier)."""
 
-    def __init__(self, checker_node_id: str = "node_smt_oracle") -> None:
+    def __init__(
+        self,
+        checker_node_id: str = "node_smt_oracle",
+        strict_formal_prover: bool = False,
+    ) -> None:
         self.checker_node_id = checker_node_id
+        self.strict_formal_prover = strict_formal_prover
         self.native_prover = NativeSMTProver_v4b()
         self._z3_available = self.native_prover._z3_available
         self.solver_engine = self.native_prover.solver_engine
+        if self._z3_available:
+            self.verification_mode = VerificationMode.Z3_SMT_SOLVER
+        elif self.strict_formal_prover:
+            self.verification_mode = VerificationMode.UNAVAILABLE
+        else:
+            self.verification_mode = VerificationMode.BOUNDED_STDLIB
+
+    def _require_z3_if_strict(self) -> None:
+        """Fail closed when strict Z3 proving is requested but Z3 is absent."""
+        if self.strict_formal_prover and not self._z3_available:
+            raise FormalProverUnavailableError(
+                "Strict formal prover required: Z3 SMT solver is unavailable in this runtime environment."
+            )
 
     def verify_contract_morphism(
         self,
@@ -223,6 +250,7 @@ class SMTModelChecker:
         1. Precondition Contravariance: Pre_parent |= Pre_child
         2. Postcondition Covariance: Post_child |= Post_parent
         """
+        self._require_z3_if_strict()
         check_id = f"chk_smt_{uuid.uuid4().hex[:12]}"
         proof_steps = 0
         solver_engine = self.solver_engine
@@ -245,6 +273,7 @@ class SMTModelChecker:
                 postcondition_consequence_valid=False,
                 is_deadlock_free=True,
                 solver_engine=solver_engine,
+                verification_mode=self.verification_mode.value,
                 proof_steps_count=proof_steps,
                 unsat_core=None,
                 counter_example=pre_cex or {"violation": "Pre_parent does not entail Pre_child"},
@@ -263,6 +292,7 @@ class SMTModelChecker:
                 postcondition_consequence_valid=False,
                 is_deadlock_free=True,
                 solver_engine=solver_engine,
+                verification_mode=self.verification_mode.value,
                 proof_steps_count=proof_steps,
                 unsat_core=None,
                 counter_example=post_cex or {"violation": "Post_child does not entail Post_parent"},
@@ -277,6 +307,7 @@ class SMTModelChecker:
             postcondition_consequence_valid=True,
             is_deadlock_free=True,
             solver_engine=solver_engine,
+            verification_mode=self.verification_mode.value,
             proof_steps_count=proof_steps,
             unsat_core=combined_core,
             counter_example={},
@@ -293,6 +324,7 @@ class SMTModelChecker:
         global_invariants: Optional[List[str]] = None,
     ) -> Tuple[bool, Optional[Dict[str, Any]], Optional[str]]:
         """Formally verifies that a statechart transition preserves domain and target invariants under guard."""
+        self._require_z3_if_strict()
         ante_parts = []
         if global_invariants:
             ante_parts.extend(global_invariants)
@@ -319,6 +351,7 @@ class SMTModelChecker:
         initial_state: str,
     ) -> Tuple[bool, Optional[str]]:
         """Verifies that every non-terminal state in a statechart has forward paths to a terminal state."""
+        self._require_z3_if_strict()
         state_set = set(states)
         adj: Dict[str, List[str]] = {s: [] for s in state_set}
         for src, _, tgt in transitions:
@@ -357,6 +390,7 @@ class SMTModelChecker:
         statechart_graph: Optional[Dict[str, Any]] = None,
     ) -> SMTModelCheckResult:
         """Comprehensive SMT check on a CodeLeafCandidate including contract morphisms and statecharts."""
+        self._require_z3_if_strict()
         candidate.validate_invariants()
 
         # Contract morphism proof

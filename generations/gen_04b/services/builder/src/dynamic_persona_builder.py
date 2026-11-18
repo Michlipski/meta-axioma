@@ -19,6 +19,11 @@ from .domain_models import (
     DynamicPersonaManifest,
 )
 
+try:
+    from generations.gen_04b.protocols.cognitive_routing import resolve_role_routing
+except ImportError:
+    from protocols.cognitive_routing import resolve_role_routing
+
 
 class DynamicPersonaBuilder:
     """Synthesizes specialized subagent personas on the fly for fractal tree workers."""
@@ -49,10 +54,11 @@ class DynamicPersonaBuilder:
     @classmethod
     def create_ast_specialist_persona(cls) -> DynamicPersonaManifest:
         """Synthesizes the AST Interface & Skeletonization Specialist persona."""
+        cognitive_role = "AST_INTERFACE_SPECIALIST"
         return cls.create_persona(
             role_title="AST Interface & Skeleton Specialist",
-            cognitive_role="AST_INTERFACE_SPECIALIST",
-            model_tier="flash",
+            cognitive_role=cognitive_role,
+            model_tier=resolve_role_routing(cognitive_role).agy_model_param,
             system_prompt=(
                 "You are the AST Interface & Skeleton Specialist for Meta-Axioma G4b. "
                 "Your objective is to extract typed stubs, preserve algebraic signatures, "
@@ -69,10 +75,11 @@ class DynamicPersonaBuilder:
     @classmethod
     def create_surgical_patcher_persona(cls) -> DynamicPersonaManifest:
         """Synthesizes the Surgical Byte Diagnostic Patcher persona."""
+        cognitive_role = "SURGICAL_BYTE_PATCHER"
         return cls.create_persona(
             role_title="Surgical Byte Diagnostic Patcher",
-            cognitive_role="SURGICAL_BYTE_PATCHER",
-            model_tier="flash",
+            cognitive_role=cognitive_role,
+            model_tier=resolve_role_routing(cognitive_role).agy_model_param,
             system_prompt=(
                 "You are the Surgical Byte Diagnostic Patcher. "
                 "Your objective is to apply byte-exact surgical replacements for localized errors. "
@@ -88,10 +95,11 @@ class DynamicPersonaBuilder:
     @classmethod
     def create_hermetic_auditor_persona(cls) -> DynamicPersonaManifest:
         """Synthesizes the Hermetic Boundary & Network Auditor persona."""
+        cognitive_role = "HERMETIC_BOUNDARY_AUDITOR"
         return cls.create_persona(
             role_title="Hermetic Boundary & Zero-Loopback Auditor",
-            cognitive_role="HERMETIC_BOUNDARY_AUDITOR",
-            model_tier="flash",
+            cognitive_role=cognitive_role,
+            model_tier=resolve_role_routing(cognitive_role).agy_model_param,
             system_prompt=(
                 "You are the Hermetic Boundary Auditor for G4b Sovereign Services. "
                 "Your mandate is zero-tolerance for loopback IP bindings (127.0.0.1, localhost), "
@@ -109,10 +117,11 @@ class DynamicPersonaBuilder:
     @classmethod
     def create_quine_crucible_persona(cls) -> DynamicPersonaManifest:
         """Synthesizes the Quine Daughter Isolation Engineer persona."""
+        cognitive_role = "QUINE_CRUCIBLE_ENGINEER"
         return cls.create_persona(
             role_title="Quine Daughter Isolation Engineer",
-            cognitive_role="QUINE_CRUCIBLE_ENGINEER",
-            model_tier="flash",
+            cognitive_role=cognitive_role,
+            model_tier=resolve_role_routing(cognitive_role).agy_model_param,
             system_prompt=(
                 "You are the Quine Daughter Isolation Engineer. "
                 "Your responsibility is to emit, sandbox, boot, and verify daughter compilers "
@@ -129,10 +138,11 @@ class DynamicPersonaBuilder:
     @classmethod
     def create_causal_qa_persona(cls) -> DynamicPersonaManifest:
         """Synthesizes the Causal QA & Byzantine Chaos Engineer persona."""
+        cognitive_role = "CAUSAL_QA_ENGINEER"
         return cls.create_persona(
             role_title="Causal QA and Byzantine Chaos Engineer",
-            cognitive_role="CAUSAL_QA_ENGINEER",
-            model_tier="flash",
+            cognitive_role=cognitive_role,
+            model_tier=resolve_role_routing(cognitive_role).agy_model_param,
             system_prompt=(
                 "You are the Causal QA and Byzantine Chaos Engineer for Meta-Axioma G4b. "
                 "Your objective is to inject adversarial faults, verify property invariants, "
@@ -149,10 +159,11 @@ class DynamicPersonaBuilder:
     @classmethod
     def create_reactive_auditor_persona(cls) -> DynamicPersonaManifest:
         """Synthesizes the Reactive Statechart & Micro-Auditor persona."""
+        cognitive_role = "REACTIVE_MICRO_AUDITOR"
         return cls.create_persona(
             role_title="Reactive Statechart and Micro-Auditor",
-            cognitive_role="REACTIVE_MICRO_AUDITOR",
-            model_tier="flash",
+            cognitive_role=cognitive_role,
+            model_tier=resolve_role_routing(cognitive_role).agy_model_param,
             system_prompt=(
                 "You are the Reactive Statechart and Micro-Auditor for Meta-Axioma G4b. "
                 "Your mandate is to verify zero-bypass micro-auditing, functorial purity, "
@@ -169,10 +180,11 @@ class DynamicPersonaBuilder:
     @classmethod
     def create_quarantined_engine_synthesizer_persona(cls) -> DynamicPersonaManifest:
         """Synthesizes the Quarantined Core Engine Synthesizer persona ([SPEC-G4B-BUILDER-001])."""
+        cognitive_role = CognitiveRole.CORE_ENGINE_SYNTHESIZER.value
         return cls.create_persona(
             role_title="Quarantined Core Engine Synthesizer",
-            cognitive_role=CognitiveRole.CORE_ENGINE_SYNTHESIZER.value,
-            model_tier="flash",
+            cognitive_role=cognitive_role,
+            model_tier=resolve_role_routing(cognitive_role).agy_model_param,
             system_prompt=(
                 "You are the Quarantined Core Engine Synthesizer for Meta-Axioma G4b. "
                 "Your objective is to emit production code leaves strictly inside services/<service>/src/, "
@@ -192,10 +204,11 @@ class DynamicPersonaBuilder:
     @classmethod
     def create_adversarial_qa_persona(cls) -> DynamicPersonaManifest:
         """Synthesizes the Adversarial QA Engineer persona ([SPEC-G4B-BUILDER-001])."""
+        cognitive_role = CognitiveRole.ADVERSARIAL_QA_ENGINEER.value
         return cls.create_persona(
             role_title="Adversarial Test and Byzantine QA Engineer",
-            cognitive_role=CognitiveRole.ADVERSARIAL_QA_ENGINEER.value,
-            model_tier="flash",
+            cognitive_role=cognitive_role,
+            model_tier=resolve_role_routing(cognitive_role).agy_model_param,
             system_prompt=(
                 "You are the Adversarial Test & Byzantine QA Engineer for Meta-Axioma G4b. "
                 "Your objective is black-box verification and defect injection testing. "
@@ -212,6 +225,27 @@ class DynamicPersonaBuilder:
             ],
         )
 
+    @classmethod
+    def create_socratic_red_team_persona(cls) -> DynamicPersonaManifest:
+        """Synthesizes the Socratic Red Team & Dialectical Inversion Architect persona ([L1-G4B-009])."""
+        cognitive_role = CognitiveRole.SOCRATIC_RED_TEAM.value
+        return cls.create_persona(
+            role_title="Dialectical Red Team Architect",
+            cognitive_role=cognitive_role,
+            model_tier=resolve_role_routing(cognitive_role).agy_model_param,
+            system_prompt=(
+                "You are the Dialectical Red Team & Socratic Inversion Architect for Meta-Axioma G4b. "
+                "Your mandate is to invert implicit operational assumptions, probe Byzantine failure modes, "
+                "and verify negative constraints (NEG-PRIMITIVE-001..005) without mutating source code."
+            ),
+            governing_axioms=["[L1-G4B-009]", "[INV-G4B-REDTEAM-001]", "[L1-G4B-002]"],
+            banned_antipatterns=[
+                "Approving un-critiqued proposals or rubber-stamping assumptions",
+                "Writing or mutating application source code during Red Team review",
+                "Ignoring Landauer thermal overrun or verification sink underfunding",
+            ],
+        )
+
     @staticmethod
     def to_define_subagent_params(manifest: DynamicPersonaManifest) -> Dict[str, Any]:
         """Converts DynamicPersonaManifest into parameters for agy define_subagent tool."""
@@ -223,6 +257,7 @@ class DynamicPersonaBuilder:
                 f"Governing Axioms: {', '.join(manifest.governing_axioms)}\n"
                 f"Banned Anti-Patterns: {', '.join(manifest.banned_antipatterns)}"
             ),
+            "model_tier": manifest.model_tier,
             "enable_write_tools": True,
             "enable_mcp_tools": False,
             "enable_subagent_tools": False,

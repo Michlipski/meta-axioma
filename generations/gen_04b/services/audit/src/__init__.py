@@ -14,6 +14,7 @@ from .domain_models import (
     ByzantineFuzzReport,
     ByzantineFuzzVector,
     CodeLeafCandidate,
+    FormalProverUnavailableError,
     FunctorialUndoCheckpoint,
     FuzzVectorType,
     HermeticAuditReport,
@@ -74,7 +75,8 @@ from .journey_walker import (
 )
 from .zero_trust_micro_auditor import ZeroTrustMicroAuditor
 from .mutation_fuzzer import PhysicalMutationFalsifier, check_and_restore_stale_mutations
-from .smt_model_checker import SMTModelChecker, NativeSMTProver_v4b
+from .smt_mesh_verifier import SMTMeshVerifier, SMTMeshProofWitness
+from .smt_model_checker import SMTModelChecker, NativeSMTProver_v4b, VerificationMode
 from .byzantine_chaos_fuzzer import ByzantineChaosFuzzer
 from .sheaf_quorum_consensus import SheafQuorumConsensusEngine, PeerVote
 from .merkle_witness_engine import AuditMerkleWitnessEngine, MerkleNode
@@ -101,6 +103,11 @@ from .trilateral_completeness_auditor import (
     TrilateralAuditReport,
     TriPlanarMerkleAttestation,
     TrilateralAuditViolation,
+)
+from .acceptance_gate import (
+    AcceptanceContractBreachViolation,
+    AcceptanceGate,
+    AcceptanceGateResult,
 )
 from .audit_kernel import SovereignAuditKernel
 from .qfd_consistency_auditor import (
@@ -150,6 +157,7 @@ __all__ = [
     "HeadlessUIErgonomicsViolation",
     "TautologicalTestViolation",
     "SemanticStateSpoofingViolation",
+    "FormalProverUnavailableError",
     "MutationWitness",
     # Verification Engines & Subsystems
     "BijectiveVerifier",
@@ -179,6 +187,9 @@ __all__ = [
     "PhysicalMutationFalsifier",
     "check_and_restore_stale_mutations",
     "SMTModelChecker",
+    "SMTMeshVerifier",
+    "SMTMeshProofWitness",
+    "VerificationMode",
     "NativeSMTProver_v4b",
     "ByzantineChaosFuzzer",
     "SheafQuorumConsensusEngine",
@@ -195,6 +206,10 @@ __all__ = [
     "PartitionPolicy",
     # Master Sovereign Kernel
     "SovereignAuditKernel",
+    # Acceptance Gate
+    "AcceptanceContractBreachViolation",
+    "AcceptanceGate",
+    "AcceptanceGateResult",
     # TRACE Bijective Auditor
     "TraceBijectiveAuditor",
     "TraceAuditReport",

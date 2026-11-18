@@ -46,7 +46,7 @@ class SubagentWitness:
     role: str
     phase: str
     tier: str = "Muscle"
-    model: str = "Gemini 3.8 Flash"
+    model: str = "Gemini 4 Hydrogen"
     input_fresh: int = 0
     cache_read: int = 0
     output: int = 0

@@ -61,6 +61,8 @@ When executing in `/latest-researcher` mode, produce the following formal delive
 
 ---
 
-## 3. Delegation & Subagents
+## 3. Delegation & Live Subagents (Opt-Out Default)
 
-When deeper research is needed, spawn the **Domain Ontologist**, **Distributed Systems Architect**, or **Human Ergonomics Architect** using `invoke_subagent` (`Model="flash"`, or `Model="pro"` if `ENABLE_ARGON=True`). All subagents spawned in this mode must also strictly respect the Zero-Code Invariant (`[L1-G4B-002]`).
+- **Live Subagents Required by Default:** Every `/latest-researcher` invocation must delegate deep research via `invoke_subagent` (spawning **Domain Ontologist**, **Distributed Systems Architect**, or **Human Ergonomics Architect**, plus the **Dialectical Red Team Architect** before presenting proposals; always-on **Gemini 4 Neon** via `Model="pro"` with zero `ENABLE_ARGON` feature flag, per `generations/gen_04b/protocols/cognitive_routing.py`) **unless the user explicitly opts out** (e.g. requesting single-agent or `--no-live-subagents` execution).
+- All subagents spawned in this mode must strictly enforce the Zero-Code Invariant (`[L1-G4B-002]`).
+- When formal satisfiability / invariant proofs must fail closed without Z3, pass `strict_formal_prover=True` to `Z3ProverBridge` (requires `pip install -e ".[formal]"`).

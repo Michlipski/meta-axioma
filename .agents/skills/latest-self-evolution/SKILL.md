@@ -58,6 +58,9 @@ If the researcher/compiler determines that Generation $N+1$ (Generation 5) shoul
 - **[L1-G3B-012] Anti-Loopback Interface Invariant:**
   - All services must strictly bind to non-loopback addresses (`192.168.40.0/24`).
   - Loopback bindings (`127.0.0.1`, `localhost`) are formally proved UNSAT by `smt_mesh_verifier.py`.
+- **Live Subagents Opt-Out Default:** `/latest-self-evolution` requires live AGY subagent orchestration (`invoke_subagent` across Research/Red-Team Brain, Synthesizer Muscle, and isolated Blind QA / Telemetry verification; and `CompilationRequest.require_live_subagents = True` when compiling targets via `SystemG4bCompiler`) **by default**. Single-agent or `--no-live-subagents` execution is strictly **opt-out only** (when the user explicitly requests it).
+- **Zero-Flag Gemini 4 Cognitive Routing (`generations/gen_04b/protocols/cognitive_routing.py`):** Gen 4b cognitive routing dispatches **Gemini 4 Neon** (`Model="pro"`) for all Brain, Research, Audit, and Red Team roles, **Gemini 4 Hydrogen** (`Model="flash"`) for Muscle, Code Synthesis, Adversarial QA, and Telemetry Dashboard roles, and optional **Gemini 4 Hydrogen (Lite)** (`Model="flash_lite"`) for read-only discovery — with zero `ENABLE_ARGON` feature flags.
+- **Strict Z3 Prover Mode (`strict_prover=True` / `--strict-prover`):** When verifying formal self-evolution invariants or generational succession gates where `BOUNDED_STDLIB` fallback is insufficient, run with `strict_prover=True` / `--strict-prover` (`pip install -e ".[formal]"`), failing closed with `FormalProverUnavailableError` if `z3` is absent.
 - **Landauer Thermodynamic Budgeting:**
   - Allocate explicit token budgets for self-evolution phases, preserving the 60% Exploratory / 40% Protected capital ratio.
 

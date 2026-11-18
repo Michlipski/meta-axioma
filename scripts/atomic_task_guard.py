@@ -428,9 +428,51 @@ def main() -> None:
     tool_args = tool_call.get("args", {})
     workspace_paths = payload.get("workspacePaths", [])
 
-    # Case 1: Intercept run_command with shell redirections into protected files
+    # Case 1: Intercept run_command (sandbox bypass, process kill, cross-brain inspection, shell redirections)
     if tool_name == "run_command":
+        # 1. Zero-Bypass Invariant ([NEG-SANDBOX-001])
+        if tool_args.get("BypassSandbox") is True:
+            print(json.dumps({
+                "decision": "deny",
+                "reason": (
+                    "FATAL SANDBOX VIOLATION [NEG-SANDBOX-001]: Setting BypassSandbox: true is strictly prohibited. "
+                    "All commands must run in standard sandbox mode (BypassSandbox: false) to prevent human permission elevation prompts."
+                )
+            }))
+            return
+
         cmd = tool_args.get("CommandLine", "")
+
+        # 2. Process Termination Prohibition ([NEG-PROC-001])
+        if re.search(r"\b(?:kill\s+-(?:9|KILL|s\s+9)|killall|pkill)\b", cmd):
+            print(json.dumps({
+                "decision": "deny",
+                "reason": (
+                    "FATAL PROCESS VIOLATION [NEG-PROC-001]: Shell commands executing 'kill -9', 'pkill', or 'killall' "
+                    "are strictly prohibited inside the sandbox as macOS denies cross-process signals and triggers permission modals. "
+                    "All test servers must bind to ephemeral port 0 (getsockname()[1]) or communicate via socket.socketpair(). "
+                    "Process lifecycle must be managed in Python via subprocess proc.terminate() / proc.send_signal(SIGINT/SIGTERM)."
+                )
+            }))
+            return
+
+        # 3. Cross-Brain Shell Inspection Prohibition ([NEG-SHELL-002])
+        brain_match = re.search(r"(?:~|\$HOME|/Users/[^/]+)/\.gemini/antigravity/brain/([0-9a-f-]{36})", cmd)
+        if brain_match:
+            target_cid = brain_match.group(1)
+            current_cid = payload.get("conversationId") or payload.get("conversation_id") or ""
+            if current_cid and target_cid != current_cid:
+                print(json.dumps({
+                    "decision": "deny",
+                    "reason": (
+                        f"FATAL SANDBOX VIOLATION [NEG-SHELL-002]: Shell command attempts to inspect sibling conversation directory "
+                        f"'{target_cid}'. Sibling brain paths are blocked by macOS sandbox file isolation. "
+                        "Use the built-in host tool 'read_file' instead, which operates in host space and requires no permission elevation."
+                    )
+                }))
+                return
+
+        # 4. Shell Redirection Interception
         if SHELL_REDIRECT_PATTERN.search(cmd):
             print(json.dumps({
                 "decision": "deny",
@@ -441,6 +483,7 @@ def main() -> None:
                 )
             }))
             return
+
         print(json.dumps({"decision": "allow"}))
         return
 

@@ -83,6 +83,7 @@ class CognitiveRole(str, Enum):
     DOMAIN_ONTOLOGIST = "domain_ontologist"
     DISTRIBUTED_TOPOLOGY_ARCHITECT = "distributed_topology_architect"
     STATECHART_FSM_ENGINEER = "statechart_fsm_engineer"
+    SOCRATIC_RED_TEAM = "socratic_red_team"
 
     # The Muscle
     LEAF_CODE_EMISSION = "leaf_code_emission"

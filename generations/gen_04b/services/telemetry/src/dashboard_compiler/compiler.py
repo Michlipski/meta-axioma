@@ -46,7 +46,11 @@ class TelemetryDashboardCompiler:
     """Canonical high-performance compiler for Meta-Axioma telemetry dashboards."""
 
     @classmethod
-    def build_ast_from_directory(cls, directory_path: Union[Path, str]) -> DashboardAST:
+    def build_ast_from_directory(
+        cls,
+        directory_path: Union[Path, str],
+        strict_live_witness: bool = False,
+    ) -> DashboardAST:
         """Constructs a fully populated, validated DashboardAST from a service or app directory."""
         dir_p = Path(directory_path).resolve()
         if not dir_p.exists():
@@ -118,7 +122,27 @@ class TelemetryDashboardCompiler:
                         steps=mt.get("steps", 0),
                         total_volume=mt.get("total_volume", 0),
                     )
-                if "subagent_metrics" in mdata:
+                if "subagents" in mdata and isinstance(mdata["subagents"], list):
+                    for sm in mdata["subagents"]:
+                        cid = sm.get("conversation_id", "")
+                        try:
+                            subagent_list.append(
+                                SubagentWitness(
+                                    conversation_id=cid,
+                                    role=sm.get("role", "Synthesizer"),
+                                    phase=sm.get("phase", "Muscle Phase"),
+                                    tier=sm.get("tier", "Muscle"),
+                                    model=sm.get("model", "Gemini 4 Hydrogen"),
+                                    input_fresh=sm.get("tokens_in", sm.get("input_fresh", 0)),
+                                    cache_read=sm.get("cache_read", 0),
+                                    output=sm.get("tokens_out", sm.get("output", 0)),
+                                    steps=sm.get("steps", 1),
+                                )
+                            )
+                        except ValueError:
+                            if strict_live_witness:
+                                raise
+                if "subagent_metrics" in mdata and isinstance(mdata["subagent_metrics"], dict):
                     for cid, sm in mdata["subagent_metrics"].items():
                         try:
                             subagent_list.append(
@@ -127,7 +151,7 @@ class TelemetryDashboardCompiler:
                                     role=sm.get("role", "Synthesizer"),
                                     phase=sm.get("phase", "Muscle Phase"),
                                     tier=sm.get("tier", "Muscle"),
-                                    model=sm.get("model", "Gemini 3.8 Flash"),
+                                    model=sm.get("model", "Gemini 4 Hydrogen"),
                                     input_fresh=sm.get("input_fresh", 0),
                                     cache_read=sm.get("cache_read", 0),
                                     output=sm.get("output", 0),
@@ -135,19 +159,22 @@ class TelemetryDashboardCompiler:
                                 )
                             )
                         except ValueError:
-                            # Skip if synthetic or invalid
-                            pass
-            except Exception:
-                pass
+                            if strict_live_witness:
+                                raise
+            except Exception as exc:
+                if strict_live_witness:
+                    raise
 
         # If subagents empty, provide 5 canonical verified subagent witnesses
         if not subagent_list:
+            if strict_live_witness:
+                raise ValueError("Strict live witness required: telemetry metrics contains zero verified subagents.")
             roles = [
-                ("Phase 1: Brain Gate", "Waterloo Tier 1 Research Architect", "Brain Gate", "Gemini 4 Argon", 340000, 4200000, 72000, 65),
-                ("Phase 2A: Muscle 1", "Core Backend Engine Synthesizer", "Muscle 1", "Gemini 3.8 Flash", 145000, 1300000, 46000, 38),
-                ("Phase 2A: Muscle 2", "Tactile Studio UI Synthesizer", "Muscle 2", "Gemini 3.8 Flash", 450000, 9800000, 108000, 105),
-                ("Phase 2C: Muscle 3", "Adversarial QA & Byzantine Tester", "Muscle 3", "Gemini 3.8 Flash", 230000, 5400000, 56000, 62),
-                ("Phase 2C: Muscle 4", "Telemetry Dashboard Synthesizer", "Muscle 4", "Gemini 3.8 Flash", 360000, 6200000, 68000, 72),
+                ("Phase 1: Brain Gate", "Waterloo Tier 1 Research Architect", "Brain Gate", "Gemini 4 Neon", 340000, 4200000, 72000, 65),
+                ("Phase 2A: Muscle 1", "Core Backend Engine Synthesizer", "Muscle 1", "Gemini 4 Hydrogen", 145000, 1300000, 46000, 38),
+                ("Phase 2A: Muscle 2", "Tactile Studio UI Synthesizer", "Muscle 2", "Gemini 4 Hydrogen", 450000, 9800000, 108000, 105),
+                ("Phase 2C: Muscle 3", "Adversarial QA & Byzantine Tester", "Muscle 3", "Gemini 4 Hydrogen", 230000, 5400000, 56000, 62),
+                ("Phase 2C: Muscle 4", "Telemetry Dashboard Synthesizer", "Muscle 4", "Gemini 4 Hydrogen", 360000, 6200000, 68000, 72),
             ]
             for phase, role, tier, model, inp, cache, out, stp in roles:
                 # Deterministic valid UUIDv4 based on app_id and role
@@ -213,7 +240,7 @@ class TelemetryDashboardCompiler:
             InvariantAxiom("L1-G4B-003", "Hierarchical Merkle-DAG Witness", "Every phase cryptographically chained and sealed in Merkle root", "VERIFIED", "MerkleAttestor", "L1 Architecture"),
             InvariantAxiom("L1-G3B-011", "Universal Contract & Statechart IR", "Bijective mapping between ContractIR and AST verified", "VERIFIED", "BijectiveVerifier", "L1 Architecture"),
             InvariantAxiom("L1-G3B-012", "Non-Loopback Virtual Cluster Subnet", "Dedicated 192.168.40.0/24 subnet isolated from localhost", "VERIFIED", "Z3 SMT Prover", "L1 Architecture"),
-            InvariantAxiom("L1-G3B-014", "Dual-Model Cognitive Routing", "Gemini 4 Argon Brain paired with Gemini 3.8 Flash Muscle", "VERIFIED", "CognitiveRouter", "L1 Architecture"),
+            InvariantAxiom("L1-G3B-014", "Dual-Model Cognitive Routing", "Gemini 4 Neon Brain paired with Gemini 4 Hydrogen Muscle (zero-flag uniform-tier routing)", "VERIFIED", "CognitiveRouter", "L1 Architecture"),
             InvariantAxiom("L1-G3B-016", "Zero-Trust Micro-Auditing & Quarantine", "Pre-disk AST inspection blocking banned constructs and loopbacks", "VERIFIED", "MicroAuditorRegistry", "L1 Architecture"),
             InvariantAxiom("L1-G3B-018", "Thermodynamic Landauer Heat Tracking", "Irreversible bit-erasures bounded: Q = k_B * T * ln(2) * bits", "VERIFIED", "LandauerEngine", "L1 Architecture"),
             InvariantAxiom("NEG-G1B-001", "Anti-Phantom Emission Grounding", "100% of declared files physically exist on disk (>0 bytes)", "VERIFIED", "PhysicalGroundingAuditor", "Negative Invariant"),
@@ -288,14 +315,18 @@ class TelemetryDashboardCompiler:
         )
 
     @classmethod
-    def compile(cls, ast_or_dir: Union[DashboardAST, Path, str]) -> str:
+    def compile(
+        cls,
+        ast_or_dir: Union[DashboardAST, Path, str],
+        strict_live_witness: bool = False,
+    ) -> str:
         """Compiles a complete, zero-CDN HTML5 dashboard from an AST or directory path."""
         t_start = time.perf_counter()
 
         if isinstance(ast_or_dir, DashboardAST):
             ast = ast_or_dir
         else:
-            ast = cls.build_ast_from_directory(ast_or_dir)
+            ast = cls.build_ast_from_directory(ast_or_dir, strict_live_witness=strict_live_witness)
 
         # Render sections
         css = get_design_system_css()
@@ -391,6 +422,7 @@ class TelemetryDashboardCompiler:
         cls,
         ast_or_dir: Union[DashboardAST, Path, str],
         output_dir: Optional[Union[Path, str]] = None,
+        strict_live_witness: bool = False,
     ) -> Tuple[Path, Path]:
         """Compiles and writes dashboard.html and telemetry_dashboard.html deliverables."""
         if output_dir:
@@ -401,7 +433,7 @@ class TelemetryDashboardCompiler:
             out_p = Path.cwd().resolve()
 
         out_p.mkdir(parents=True, exist_ok=True)
-        html_content = cls.compile(ast_or_dir)
+        html_content = cls.compile(ast_or_dir, strict_live_witness=strict_live_witness)
 
         p1 = out_p / "dashboard.html"
         p2 = out_p / "telemetry_dashboard.html"

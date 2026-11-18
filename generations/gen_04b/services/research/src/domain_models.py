@@ -781,6 +781,7 @@ class FormalProofArtifact:
     solver_result: SolverResult
     proof_tree_repr: str
     counter_example: Optional[str] = None
+    verification_mode: str = "BOUNDED_STDLIB"
 
     def validate_invariants(self) -> None:
         if self.solver_result == SolverResult.UNSAT and len(self.proof_tree_repr.strip()) == 0:
@@ -800,6 +801,7 @@ class FormalProofArtifact:
             "solver_result": self.solver_result.value,
             "proof_tree_repr": self.proof_tree_repr,
             "counter_example": self.counter_example,
+            "verification_mode": self.verification_mode,
         }
 
     @classmethod
@@ -812,6 +814,7 @@ class FormalProofArtifact:
             solver_result=SolverResult(data["solver_result"]),
             proof_tree_repr=data.get("proof_tree_repr", ""),
             counter_example=data.get("counter_example"),
+            verification_mode=data.get("verification_mode", "BOUNDED_STDLIB"),
         )
         instance.validate_invariants()
         return instance

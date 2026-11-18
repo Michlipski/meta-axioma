@@ -46,6 +46,7 @@ from .domain_models import (
     assert_non_loopback,
 )
 from .zero_trust_micro_auditor import ZeroTrustMicroAuditor
+from .smt_mesh_verifier import SMTMeshVerifier
 from .smt_model_checker import SMTModelChecker
 from .byzantine_chaos_fuzzer import ByzantineChaosFuzzer
 from .sheaf_quorum_consensus import SheafQuorumConsensusEngine
@@ -67,18 +68,24 @@ class SovereignAuditKernel:
         node_ip: str = DEFAULT_NODE_IP,
         port: int = DEFAULT_PORT,
         token_budget: int = 923100,  # Option C Zenith Apex Budget
+        strict_formal_prover: bool = False,
     ) -> None:
         self.endpoint = f"{node_ip}:{port}"
         assert_non_loopback(self.endpoint, "SovereignAuditKernel initialization")
 
         self.node_ip = node_ip
         self.port = port
+        self.strict_formal_prover = strict_formal_prover
 
         # Initialize subsystems
         self.topology = AuditServiceTopology(node_ip=node_ip, port=port)
         self.thermo_ledger = LandauerThermodynamicLedger(token_lease_budget=token_budget)
         self.micro_auditor = ZeroTrustMicroAuditor(auditor_node_id="node_hermetic_sentry")
-        self.smt_checker = SMTModelChecker(checker_node_id="node_smt_oracle")
+        self.smt_checker = SMTModelChecker(
+            checker_node_id="node_smt_oracle",
+            strict_formal_prover=strict_formal_prover,
+        )
+        self.mesh_verifier = SMTMeshVerifier(strict_formal_prover=strict_formal_prover)
         self.chaos_fuzzer = ByzantineChaosFuzzer(fuzzer_node_id="node_chaos_adversary")
         self.quorum_engine = SheafQuorumConsensusEngine(anchor_node_id="node_merkle_sheaf")
         self.merkle_engine = AuditMerkleWitnessEngine(node_id="node_merkle_sheaf")

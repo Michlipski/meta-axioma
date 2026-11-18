@@ -13,6 +13,7 @@ Enforces:
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
+from enum import Enum
 import hashlib
 import ipaddress
 import json
@@ -20,12 +21,21 @@ import re
 import time
 from typing import Any, Dict, List, Optional, Set, Tuple
 
+from .domain_models import FormalProverUnavailableError
+
 # Try importing z3 if installed in python environment
 try:
     import z3
     HAS_Z3 = True
 except ImportError:
     HAS_Z3 = False
+
+
+class VerificationMode(str, Enum):
+    """Explicit formal verification mode preventing stdlib masking as Z3 SMT proof."""
+    Z3_SMT_SOLVER = "Z3_SMT_SOLVER"
+    BOUNDED_STDLIB = "BOUNDED_STDLIB"
+    UNAVAILABLE = "UNAVAILABLE"
 
 
 @dataclass
@@ -40,6 +50,7 @@ class SMTMeshProofWitness:
     unsat_core: Optional[str] = None
     counter_example: Optional[Dict[str, Any]] = None
     execution_duration_ms: float = 0.0
+    verification_mode: str = "BOUNDED_STDLIB"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -197,12 +208,31 @@ class NativeMeshSMTSolver:
 class SMTMeshVerifier:
     """High-level SMT verification harness orchestrating Z3 Prover and Native Prover."""
 
-    def __init__(self, use_z3_if_available: bool = True) -> None:
+    def __init__(
+        self,
+        use_z3_if_available: bool = True,
+        strict_formal_prover: bool = False,
+    ) -> None:
+        self.strict_formal_prover = strict_formal_prover
         self.use_z3 = use_z3_if_available and HAS_Z3
+        if self.use_z3:
+            self.verification_mode = VerificationMode.Z3_SMT_SOLVER
+        elif self.strict_formal_prover:
+            self.verification_mode = VerificationMode.UNAVAILABLE
+        else:
+            self.verification_mode = VerificationMode.BOUNDED_STDLIB
         self.native_solver = NativeMeshSMTSolver()
+
+    def _require_z3_if_strict(self) -> None:
+        """Fail closed when strict Z3 proving is requested but Z3 is absent."""
+        if self.strict_formal_prover and not self.use_z3:
+            raise FormalProverUnavailableError(
+                "Strict formal prover required: Z3 SMT solver is unavailable in this runtime environment."
+            )
 
     def verify_topology(self, topology_dict: Dict[str, Any]) -> SMTMeshProofWitness:
         """Formally verifies that TopologyIR satisfies [L1-G3B-012] non-loopback and sheaf consensus."""
+        self._require_z3_if_strict()
         t0 = time.perf_counter()
         nodes = topology_dict.get("nodes", {})
         channels = topology_dict.get("channels", [])
@@ -232,6 +262,7 @@ class SMTMeshVerifier:
                 unsat_core=None,
                 counter_example=cex,
                 execution_duration_ms=duration_ms,
+                verification_mode=self.verification_mode.value,
             )
 
         # Step 2: Sheaf Quorum Safety Proof
@@ -253,6 +284,7 @@ class SMTMeshVerifier:
                 unsat_core=None,
                 counter_example=q_cex,
                 execution_duration_ms=duration_ms,
+                verification_mode=self.verification_mode.value,
             )
 
         duration_ms = (time.perf_counter() - t0) * 1000.0
@@ -270,10 +302,12 @@ class SMTMeshVerifier:
             unsat_core=combined_core,
             counter_example=None,
             execution_duration_ms=duration_ms,
+            verification_mode=self.verification_mode.value,
         )
 
     def verify_lamport_monotonicity(self, transactions: List[Dict[str, Any]]) -> SMTMeshProofWitness:
         """Formally verifies Lamport clock and nanosecond monotonic properties across transactions."""
+        self._require_z3_if_strict()
         t0 = time.perf_counter()
         engine = "NativeMeshSMTSolver_v4b"
         is_valid, cex, unsat_core = self.native_solver.check_lamport_monotonicity(transactions)
@@ -291,6 +325,7 @@ class SMTMeshVerifier:
                 unsat_core=None,
                 counter_example=cex,
                 execution_duration_ms=duration_ms,
+                verification_mode=self.verification_mode.value,
             )
 
         digest_payload = f"LAMPORT_PROOF:{unsat_core}:{len(transactions)}:{steps}"
@@ -305,6 +340,7 @@ class SMTMeshVerifier:
             unsat_core=unsat_core,
             counter_example=None,
             execution_duration_ms=duration_ms,
+            verification_mode=self.verification_mode.value,
         )
 
     def _verify_with_z3(

@@ -107,6 +107,27 @@ The following items are immediate engineering requirements within Generation 4b 
 
 ---
 
+<!-- BEGIN G5_SYNC: g5-general-multi-host-mesh-and-polyglot-ast -->
+### Post-Wiring Gen 5 Succession: Multi-Host WireGuard Mesh, Native Z3/Tree-sitter, & Pub/Sub Event Fabric (Sync from Option 2: Sovereign Multi-Enclave SystemG4bCompiler Mesh & Sandbox IPC (Recommended))
+
+#### 2. Friction Points & Architectural Limitations
+- Gen 4b operates single-workstation local IPC (socketpair/UDS) and pure-stdlib Python AST/provers (BOUNDED_STDLIB mode when z3/tree_sitter are absent).
+- Gen 4b still maintains per-service domain_models.py copies unified via protocol adapters rather than a single TRACE-native Galois adjunction IR.
+
+#### 3. Generation 5 Desired Capabilities & Specification
+- Promote wired Gen 4b services to multi-host WireGuard/libp2p containers with mutual TLS across 192.168.50.0/24.
+- Upgrade point-to-point JSON-RPC/UDS telemetry and hook spillover to decentralized mesh.events.* Pub/Sub streams.
+- Embed native polyglot Tree-sitter AST and Lean 4/Z3 distributed sheaf decomposition (H^0/H^1) once Gen 4b Gate 1-4 certification passes.
+
+#### 4. Formal Invariants & Negative Constraints
+- [L1-G5-001] Galois Adjunction TRACE-to-AST Bijectivity eliminating per-service domain_models.py schema drift.
+- [L1-G5-002] Distributed Sheaf-Quorum consensus over WireGuard/libp2p without single-workstation IPC assumptions.
+- [NEG-G5-001] Prohibit silent BOUNDED_STDLIB proof fallback in Gen 5 certified production targets.
+
+#### 5. Open Questions & Research Spikes
+- Benchmark UDS/socketpair IPC latency overhead in Gen 4b SystemG4bCompiler to establish baseline thresholds for Gen 5 mesh.events.*.
+<!-- END G5_SYNC: g5-general-multi-host-mesh-and-polyglot-ast -->
+
 ## 4. Deep-Dive: Stream 2 — Generation 5 Succession Architecture
 
 The following items are paradigm shifts that constitute the core architectural charter of **Generation 5 ($G_5$)**:

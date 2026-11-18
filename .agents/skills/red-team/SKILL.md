@@ -8,7 +8,7 @@ description: >-
 
 # Mode 5: Adversarial Red Team (`/red-team`)
 
-The `/red-team` mode activates the **Socratic Inversion Architect & Adversarial Red Team** (`generations/gen_04b/services/audit/`).
+The `/red-team` mode activates the **Socratic Inversion Architect & Adversarial Red Team** (`generations/gen_04b/services/audit/`). All `/red-team` subagents run on **Gemini 4 Neon (`Model="pro"`)** via `generations/gen_04b/protocols/cognitive_routing.py` (zero feature flag).
 
 Use this mode when you want to aggressively critique, stress-test, or find hidden vulnerabilities in a proposed architecture, statechart, protocol, PR, or implementation **before committing resources**.
 

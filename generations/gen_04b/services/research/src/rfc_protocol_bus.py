@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import socket
 import time
 from typing import Any, Dict, List, Optional, Tuple
 import uuid
@@ -153,3 +154,31 @@ class RFCProtocolBus:
         if amendment_id not in self.emitted_amendments:
             raise KeyError(f"Unknown amendment_id: {amendment_id}")
         return self.emitted_amendments[amendment_id]
+
+    def handle_rfc_envelope(self, envelope: Any) -> Any:
+        """Handles incoming IPCEnvelope containing an RFC petition, adjudicates it, and returns RESPONSE envelope."""
+        from generations.gen_04b.protocols.rfc_adapter import RFCAdapter
+        from generations.gen_04b.protocols.ipc_transport import IPCEnvelope, IPCMessageType
+
+        req_dict = envelope.payload.get("request", envelope.payload)
+        research_req = RFCAdapter.to_research_request(req_dict)
+        self.submit_rfc(research_req)
+        amendment = self.adjudicate_rfc(research_req.request_id)
+        canonical_amendment = RFCAdapter.to_canonical_amendment(amendment)
+        return IPCEnvelope(
+            envelope_id=f"env_resp_{uuid.uuid4().hex[:8]}",
+            source_urn="urn:axioma:g4b:research",
+            target_urn=envelope.source_urn,
+            message_type=IPCMessageType.RESPONSE,
+            payload={"action": "ADJUDICATE_RFC_RESPONSE", "amendment": canonical_amendment.to_dict()},
+            correlation_id=envelope.correlation_id,
+        )
+
+    def listen_and_adjudicate_ipc(self, sock: socket.socket, transport: Optional[Any] = None) -> Any:
+        """Awaits framed RFC envelope on socket, adjudicates, and sends framed response."""
+        from generations.gen_04b.protocols.ipc_transport import MeshIPCTransport
+        trans = transport or MeshIPCTransport()
+        request_envelope = trans.recv_envelope(sock, timeout_s=5.0)
+        response_envelope = self.handle_rfc_envelope(request_envelope)
+        trans.send_envelope(sock, response_envelope)
+        return response_envelope

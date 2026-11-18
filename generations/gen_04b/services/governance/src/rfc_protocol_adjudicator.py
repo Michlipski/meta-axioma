@@ -11,6 +11,7 @@ Enforces:
 from __future__ import annotations
 
 import hashlib
+import socket
 import time
 from typing import Any, Dict, List, Optional, Tuple
 import uuid
@@ -159,3 +160,45 @@ class RFCProtocolAdjudicator:
     def get_counter_proof(self, counter_proof_id: str) -> Optional[CounterProof]:
         """Retrieves a counter-proof by ID."""
         return self._counter_proofs.get(counter_proof_id)
+
+    def handle_rfc_envelope(
+        self,
+        envelope: Any,
+        active_axioms: Optional[List[NegativeAxiom]] = None,
+    ) -> Any:
+        """Handles incoming IPCEnvelope containing an RFC petition, adjudicates it, and returns RESPONSE envelope."""
+        from generations.gen_04b.protocols.rfc_adapter import RFCAdapter
+        from generations.gen_04b.protocols.ipc_transport import IPCEnvelope, IPCMessageType
+
+        req_dict = envelope.payload.get("request", envelope.payload)
+        gov_req = RFCAdapter.to_governance_request(req_dict)
+        amendment, counter_proof = self.adjudicate_rfc(gov_req, active_axioms=active_axioms)
+
+        response_payload: Dict[str, Any] = {"action": "ADJUDICATE_RFC_RESPONSE"}
+        if amendment:
+            response_payload["amendment"] = RFCAdapter.to_canonical_amendment(amendment).to_dict()
+        if counter_proof:
+            response_payload["counter_proof"] = RFCAdapter.to_canonical_counter_proof(counter_proof).to_dict()
+
+        return IPCEnvelope(
+            envelope_id=f"env_resp_{uuid.uuid4().hex[:8]}",
+            source_urn="urn:axioma:g4b:governance",
+            target_urn=envelope.source_urn,
+            message_type=IPCMessageType.RESPONSE,
+            payload=response_payload,
+            correlation_id=envelope.correlation_id,
+        )
+
+    def listen_and_adjudicate_ipc(
+        self,
+        sock: socket.socket,
+        transport: Optional[Any] = None,
+        active_axioms: Optional[List[NegativeAxiom]] = None,
+    ) -> Any:
+        """Awaits framed RFC envelope on socket, adjudicates, and sends framed response."""
+        from generations.gen_04b.protocols.ipc_transport import MeshIPCTransport
+        trans = transport or MeshIPCTransport()
+        request_envelope = trans.recv_envelope(sock, timeout_s=5.0)
+        response_envelope = self.handle_rfc_envelope(request_envelope, active_axioms=active_axioms)
+        trans.send_envelope(sock, response_envelope)
+        return response_envelope

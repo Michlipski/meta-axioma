@@ -10,8 +10,10 @@ Enforces:
 from __future__ import annotations
 
 import hashlib
+import socket
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
+import uuid
 
 from generations.gen_04b.protocols.rfc_protocol import (
     BottleneckType,
@@ -108,3 +110,48 @@ class RFCProtocolClient:
 
     def list_all_records(self) -> List[RFCSubmissionRecord]:
         return list(self._records.values())
+
+    def submit_rfc_over_ipc(
+        self,
+        request: SpecAdjustmentRequest,
+        transport: Optional[Any] = None,
+        target_urn: str = "urn:axioma:g4b:governance",
+        sock: Optional[socket.socket] = None,
+    ) -> Tuple[bool, str, Optional[SpecAmendment]]:
+        """Submits SpecAdjustmentRequest over real MeshIPCTransport and ingests response amendment."""
+        from generations.gen_04b.protocols.ipc_transport import IPCEnvelope, IPCMessageType, MeshIPCTransport
+        from generations.gen_04b.protocols.rfc_adapter import RFCAdapter
+
+        trans = transport or MeshIPCTransport()
+        own_sock = False
+        if sock is None:
+            sock_client, sock_server = trans.create_enclave_pair()
+            client_socket = sock_client
+            own_sock = True
+        else:
+            client_socket = sock
+
+        try:
+            req_envelope = IPCEnvelope(
+                envelope_id=f"env_rfc_{uuid.uuid4().hex[:8]}",
+                source_urn="urn:axioma:g4b:builder",
+                target_urn=target_urn,
+                message_type=IPCMessageType.REQUEST,
+                payload={"action": "ADJUDICATE_RFC", "request": request.to_dict()},
+                correlation_id=f"corr_{request.request_id}",
+            )
+            trans.send_envelope(client_socket, req_envelope)
+            resp_envelope = trans.recv_envelope(client_socket, timeout_s=5.0)
+            amendment_dict = resp_envelope.payload.get("amendment")
+            if amendment_dict:
+                canon_amendment = RFCAdapter.to_canonical_amendment(amendment_dict)
+                approved, delta = self.ingest_spec_amendment(canon_amendment)
+                return approved, delta, canon_amendment
+            return False, "No amendment received in response payload", None
+        finally:
+            if own_sock:
+                try:
+                    client_socket.close()
+                    sock_server.close()
+                except Exception:
+                    pass

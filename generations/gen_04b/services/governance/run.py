@@ -193,7 +193,7 @@ def dangerous_operation():
     disp = HITLDisposition(
         disposition_id="disp_arch_001",
         intercept_id=icpt_id,
-        human_supervisor="Michael Lipski",
+        human_supervisor="The Human Architect",
         disposition_status=HITLDispositionStatus.APPROVED_CONTINUE,
         selected_option="Option A: Maintain 2-of-3 non-blocking Sheaf quorum",
         architectural_guidance="Preserve non-blocking Landauer dissipation bounds under all network conditions.",
@@ -282,7 +282,7 @@ def dangerous_operation():
     print(f"  Succession Readiness:   Ready={is_ready} | Deficits Count={len(deficits)}")
     assert is_ready, f"Succession must be ready, got deficits: {deficits}"
 
-    supervisor_sig = "SIG_MICHAEL_LIPSKI_SOVEREIGN_ARCHITECT_GEN5_GENESIS"
+    supervisor_sig = "SIG_THE_HUMAN_ARCHITECT_SOVEREIGN_ARCHITECT_GEN5_GENESIS"
     cert = kernel.certify_generational_handover(supervisor_sig)
 
     assert cert.graduation_status == SuccessionGraduationStatus.CERTIFIED_SUCCESSION_READY

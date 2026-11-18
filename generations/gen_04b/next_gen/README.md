@@ -39,7 +39,9 @@ generations/gen_04b/next_gen/
 │   ├── candidate_services.md           # Proposed novel services for Gen 5 (Deployer, Simulator, etc.)
 │   ├── hostile_asymmetric_mesh.md      # Gen 5 Hostile Asymmetric Multi-Agent Architecture (Choice 2)
 │   ├── qfd_autonomic_mesh.md           # Gen 5 Autonomic Closed-Loop QFD Mesh & Sheaf Cohomology Roof Resolution
-│   └── traffic_distribution_and_thermodynamic_insights.md # Empirical Traffic, Negative Invariants & Landauer Calibration
+│   ├── traffic_distribution_and_thermodynamic_insights.md # Empirical Traffic, Negative Invariants & Landauer Calibration
+│   ├── option2_hybrid_sdk_mesh_architecture.md # Gen 5 Option 2 High-Level Architecture (AGY SDK + Mesh Pub/Sub)
+│   └── option2_g4b_implementation_roadmap.md   # Gen 5 Option 2 High-Level Implementation Roadmap (M0-M6 via Gen 4b)
 ├── services/                           # Per-service evolutionary dossiers
 │   ├── research.md                     # G5 Sovereign Research Dossier
 │   ├── builder.md                      # G5 Sovereign Builder Enclave Dossier
@@ -61,6 +63,8 @@ generations/gen_04b/next_gen/
 4. **[Autonomic Closed-Loop QFD Mesh](general/qfd_autonomic_mesh.md)**: 4-Phase cascading deployment (Research -> Builder -> Deployer -> Simulator), dynamic continuous VOC friction streams, Sheaf Cohomology ($H^1$) roof contradiction elimination via TRIZ category morphisms, and multi-agent Socratic Nash equilibrium quorum.
 5. **[Succession Triggers & Invariant Gates](general/succession_triggers.md)**: The mathematical constraints, Heuristic Debt Ratio (HDR $\le 0.15$), and test gates required to trigger handover.
 6. **[Candidate Novel Services](general/candidate_services.md)**: Proposals for new enclaves not present in 4b (`services/deployer/`, `services/simulator/`, `services/knowledge_graph/`, `services/event_mesh/`).
+7. **[Generation 5 Option 2 Architecture: Hybrid AGY SDK & Pub/Sub Mesh](general/option2_hybrid_sdk_mesh_architecture.md)**: High-level architecture for Hard Deterministic Service Shells + Ephemeral `google.antigravity.Agent` Cores over `mesh.events.*` with Red-Team countermeasures (`EnclaveCoreDriver`, `ShadowTreeEnclave`, `KernelBypassMeshFabric`, `SocraticBountyBalancer`, `CausalMerkleToken`).
+8. **[Generation 5 Option 2 High-Level Implementation Roadmap (Gen 4b Bootstrapped)](general/option2_g4b_implementation_roadmap.md)**: Phased Milestones M0–M6 detailing how `SystemG4bCompiler`, `AcceptanceSpecIR`, `QuineCrucibleEngine`, and `SuccessionGatekeeper` synthesize, smoke-test, and graduate Gen 5 (`generations/gen_05/`).
 
 ### Per-Service Level (Specialized Evolution)
 - **[Research Service Evolution](services/research.md)**: Multi-agent dialectics, automated lemma synthesis, dynamic Waterloo SoC deconstruction.

@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import ast
 from dataclasses import dataclass, field
+from enum import Enum
 import hashlib
 import json
 import re
@@ -24,6 +25,18 @@ from .domain_models import (
     FormalProofArtifact,
     SolverResult,
 )
+
+
+class VerificationMode(str, Enum):
+    """Explicit formal verification mode preventing stdlib masking as Z3 SMT proof."""
+    Z3_SMT_SOLVER = "Z3_SMT_SOLVER"
+    BOUNDED_STDLIB = "BOUNDED_STDLIB"
+    UNAVAILABLE = "UNAVAILABLE"
+
+
+class FormalProverUnavailableError(Exception):
+    """Raised when strict formal prover verification is required but Z3 SMT solver is unavailable."""
+    pass
 
 
 def normalize_predicate_str(pred: str) -> str:
@@ -86,15 +99,26 @@ def parse_and_canonicalize(pred: str) -> Tuple[str, ast.AST, Set[str]]:
 class Z3ProverBridge:
     """SMT solver bridge providing formal invariant proofs and counter-example synthesis."""
 
-    def __init__(self, solver_engine: str = "NativeSMTProver_v4b"):
+    def __init__(
+        self,
+        solver_engine: str = "NativeSMTProver_v4b",
+        strict_formal_prover: bool = False,
+    ):
         self.solver_engine = solver_engine
+        self.strict_formal_prover = strict_formal_prover
         self._has_z3_installed = False
         try:
             import z3  # type: ignore
             self._has_z3_installed = True
             self.solver_engine = f"Z3Py_{z3.__version__}"
+            self.verification_mode = VerificationMode.Z3_SMT_SOLVER
         except ImportError:
             self._has_z3_installed = False
+            self.verification_mode = (
+                VerificationMode.UNAVAILABLE
+                if self.strict_formal_prover
+                else VerificationMode.BOUNDED_STDLIB
+            )
 
     def verify_contract_composition(
         self,
@@ -186,6 +210,7 @@ class Z3ProverBridge:
                     solver_result=SolverResult.SAT,
                     proof_tree_repr="\n".join(proof_steps) + "\nRefuted at post-condition validation.",
                     counter_example=counter_ex,
+                    verification_mode=self.verification_mode.value,
                 )
 
         proof_steps.append("  -> All parent post-conditions and domain invariants preserved.")
@@ -200,6 +225,7 @@ class Z3ProverBridge:
             solver_result=SolverResult.UNSAT,
             proof_tree_repr="\n".join(proof_steps),
             counter_example=None,
+            verification_mode=self.verification_mode.value,
         )
 
     def _prove_entailment(
@@ -469,7 +495,12 @@ class Z3ProverBridge:
         if "(assert (= x true))" in formula_smt2 and "(assert (= x false))" in formula_smt2:
             return SolverResult.UNSAT, None
 
-        return SolverResult.SAT, {"simulated_assignment": "x=true"}
+        if self.strict_formal_prover:
+            raise FormalProverUnavailableError(
+                "Strict formal prover required: Z3 SMT solver is unavailable in this runtime environment."
+            )
+
+        return SolverResult.UNKNOWN, None
 
     def _canonicalize_predicate(self, pred: str) -> str:
         """Normalizes predicate string into canonical propositional token."""

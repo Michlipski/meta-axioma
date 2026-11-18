@@ -6,7 +6,7 @@ Enforces:
 - Heuristic Debt Ratio constraint enforcement (HDR <= 0.15) ([L1-G2B-002]).
 - Proof of invariant preservation across foundational tiers:
   - L1-001..016, L1-G3B-000..019, L1-G4B-001..008.
-- Cryptographic emission of GenerationalHandoverCertificate with Michael Lipski signature.
+- Cryptographic emission of GenerationalHandoverCertificate with The Human Architect signature.
 """
 
 from __future__ import annotations
@@ -141,7 +141,7 @@ class TestSuccessionGatekeeper(unittest.TestCase):
     def test_issue_handover_certificate_success(self) -> None:
         """Issues authoritative GenerationalHandoverCertificate when all criteria pass."""
         cert = self.gatekeeper.issue_handover_certificate(
-            supervisor_signature="Michael Lipski - Certified Human Architecture Approval",
+            supervisor_signature="The Human Architect - Certified Human Architecture Approval",
             current_hdr_record=self.healthy_hdr,
             cluster_network_bindings=self.valid_cluster_bindings,
         )
@@ -176,7 +176,7 @@ class TestSuccessionGatekeeper(unittest.TestCase):
         )
         with self.assertRaises(GovernanceDomainInvariantViolation):
             self.gatekeeper.issue_handover_certificate(
-                supervisor_signature="Michael Lipski",
+                supervisor_signature="The Human Architect",
                 current_hdr_record=high_hdr,
                 cluster_network_bindings=self.valid_cluster_bindings,
             )

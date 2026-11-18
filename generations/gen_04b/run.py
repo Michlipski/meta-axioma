@@ -9,6 +9,7 @@ Verifies the integrity, protocol contracts, and service enclaves of Generation 4
 """
 
 from pathlib import Path
+import re
 import subprocess
 import sys
 import time
@@ -130,6 +131,26 @@ def verify_protocols_and_urns() -> bool:
     return True
 
 
+def get_service_test_count(service_name: str) -> int:
+    """Discovers real test count for a sovereign service enclave dynamically."""
+    test_dir = GEN_04B_DIR / "services" / service_name / "tests"
+    if not test_dir.exists():
+        return 0
+    try:
+        proc = subprocess.run(
+            [sys.executable, "-m", "unittest", "discover", "-s", str(test_dir)],
+            capture_output=True,
+            text=True,
+            timeout=10.0,
+        )
+        match = re.search(r"Ran (\d+) tests", proc.stderr + proc.stdout)
+        if match:
+            return int(match.group(1))
+    except Exception:
+        pass
+    return 0
+
+
 def verify_research_service() -> bool:
     print("\n[3/8] Probing Sovereign Research Service (`services/research/run.py`)...")
     research_run = GEN_04B_DIR / "services" / "research" / "run.py"
@@ -147,7 +168,8 @@ def verify_research_service() -> bool:
         print(res.stderr, file=sys.stderr)
         return False
 
-    print("  [OK] Research service execution verified (30 modules/tests passing, exit code 0)")
+    count = get_service_test_count("research")
+    print(f"  [OK] Research service execution verified ({count} modules/tests passing, exit code 0)")
     return True
 
 
@@ -168,7 +190,8 @@ def verify_builder_service() -> bool:
         print(res.stderr, file=sys.stderr)
         return False
 
-    print("  [OK] Builder service execution verified (80 tests / 13 operational steps passing, exit code 0)")
+    count = get_service_test_count("builder")
+    print(f"  [OK] Builder service execution verified ({count} tests / 13 operational steps passing, exit code 0)")
     return True
 
 
@@ -189,7 +212,8 @@ def verify_audit_service() -> bool:
         print(res.stderr, file=sys.stderr)
         return False
 
-    print("  [OK] Audit service execution verified (90 tests / 12 verification phases passing, exit code 0)")
+    count = get_service_test_count("audit")
+    print(f"  [OK] Audit service execution verified ({count} tests / 12 verification phases passing, exit code 0)")
     return True
 
 
@@ -210,7 +234,8 @@ def verify_telemetry_service() -> bool:
         print(res.stderr, file=sys.stderr)
         return False
 
-    print("  [OK] Telemetry service execution verified (112 tests / 12 verification phases passing, exit code 0)")
+    count = get_service_test_count("telemetry")
+    print(f"  [OK] Telemetry service execution verified ({count} tests / 12 verification phases passing, exit code 0)")
     return True
 
 
@@ -231,7 +256,8 @@ def verify_governance_service() -> bool:
         print(res.stderr, file=sys.stderr)
         return False
 
-    print("  [OK] Governance service execution verified (125 tests / 9 verification phases passing, exit code 0)")
+    count = get_service_test_count("governance")
+    print(f"  [OK] Governance service execution verified ({count} tests / 9 verification phases passing, exit code 0)")
     return True
 
 
