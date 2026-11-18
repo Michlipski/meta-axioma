@@ -1,0 +1,4447 @@
+{
+  "report_id": "rpt_causal_mesh_pilot_2x2_1794187028",
+  "timestamp": 1794187028,
+  "enable_provenance": true,
+  "total_runs": 26,
+  "summary_by_system": {
+    "antigravity_vanilla": {
+      "runs": 13,
+      "total_score": 843.7,
+      "avg_score": 64.9,
+      "scores": [
+        62.51,
+        67.64,
+        88.58,
+        50.39,
+        37.08,
+        51.7,
+        71.1,
+        84.64,
+        81.67,
+        51.7,
+        68.66,
+        56.39,
+        71.64
+      ],
+      "liveness_passes": 13,
+      "provenance_passes": 13,
+      "mean": 64.9,
+      "min": 37.08,
+      "max": 88.58,
+      "variance_delta": 51.5
+    },
+    "meta_axioma_causal_mesh": {
+      "runs": 13,
+      "total_score": 1027.54,
+      "avg_score": 79.04,
+      "scores": [
+        69.0,
+        67.48,
+        81.07,
+        50.72,
+        53.9,
+        80.75,
+        92.11,
+        85.16,
+        85.86,
+        90.44,
+        91.83,
+        90.35,
+        88.87
+      ],
+      "liveness_passes": 13,
+      "provenance_passes": 13,
+      "mean": 79.04,
+      "min": 50.72,
+      "max": 92.11,
+      "variance_delta": 41.39
+    }
+  },
+  "runs": [
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Antigravity Vanilla (Flat Prompt)",
+      "trial": 1,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial1",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "e381a591-c49d-466d-917e-4dc0b212f301",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/e381a591-c49d-466d-917e-4dc0b212f301/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_kv",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 401.4601707458496,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[SMOKE-TEST] Starting KeyValueStorageDaemon verification...\n[STATUS: OK] KeyValueStorageDaemon smoke test passed successfully.\n  - Direct Key-Value Storage: OK\n  - Multi-Key Atomic Transactions: OK\n  - TTL Eviction: OK\n  - WAL Durability & Crash Recovery: OK\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "status": "unconstrained_control_mode",
+              "mode": "flat_prompt_llm"
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 61.67,
+            "weighted_score": 15.42,
+            "details": {
+              "py_files_scanned": 7,
+              "verb_coverage_pct": 66.7,
+              "endpoint_coverage_pct": 87.5,
+              "model_coverage_pct": 0.0,
+              "found_verbs": [
+                "begin_transaction",
+                "commit_transaction",
+                "delete",
+                "get",
+                "rollback_transaction",
+                "set"
+              ],
+              "missing_verbs": [
+                "evict_expired",
+                "health_check",
+                "recover_wal"
+              ],
+              "found_endpoints": [
+                "GET /healthz",
+                "GET /keys/{key}",
+                "POST /keys/{key}",
+                "DELETE /keys/{key}",
+                "POST /tx/begin",
+                "POST /tx/commit",
+                "POST /tx/rollback"
+              ],
+              "missing_endpoints": [
+                "GET /stats"
+              ],
+              "found_models": [],
+              "missing_models": [
+                "HealthStatus",
+                "KVStoreState",
+                "KeyValueEntry",
+                "TransactionContext",
+                "WALRecord"
+              ]
+            },
+            "passed": false
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 50.0,
+            "weighted_score": 10.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "COMMITTED",
+                "IDLE",
+                "IN_TRANSACTION",
+                "ROLLED_BACK"
+              ],
+              "matched_states": [],
+              "guard_conditionals_found": 68
+            },
+            "passed": false
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 25,
+              "graceful_responses": 25,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'malformed_json' gracefully handled (HTTP 400)",
+                "Probe 'empty_key' gracefully handled (HTTP 200)",
+                "Probe 'invalid_tx_commit' gracefully handled (HTTP 404)",
+                "Probe 'negative_ttl' gracefully handled (HTTP 200)",
+                "Probe 'burst_write' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 7,
+              "ast_nodes_scanned": 7369,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 10.47,
+            "weighted_score": 2.09,
+            "details": {
+              "total_loc": 1113,
+              "target_loc": 350,
+              "total_raw_lines": 1412,
+              "total_bytes": 49304,
+              "estimated_bPE_spend": 13774,
+              "loc_factor": 0.41,
+              "capabilities_delivered": 14
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 62.51,
+        "composite_score": 62.51,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 543.4868335723877,
+        "timestamp": 1794187028.047812,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial1"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Antigravity Vanilla (Flat Prompt)",
+      "trial": 2,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial2",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Trial 2",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "fc921753-8f6d-4c20-abe0-c16d14b0aa19",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/fc921753-8f6d-4c20-abe0-c16d14b0aa19/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_kv",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 261.45195960998535,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[KV-DAEMON SMOKE TEST SUCCESSFUL] StorageEngine, WAL persistence, atomic transactions, TTL eviction, and REST HTTP interface are operational.\n",
+          "stderr_excerpt": "2026-11-08 18:17:08,126 [INFO] [kv_daemon.main] Executing comprehensive KV Daemon smoke test...\n2026-11-08 18:17:08,127 [INFO] [kv_daemon.main] Phase 1: Validating StorageEngine, WAL persistence, and Multi-Key Transactions\n2026-11-08 18:17:08,127 [INFO] [kv_daemon.engine] Recovery completed: 0 records processed, 0 keys restored, 0 expired keys evicted\n2026-11-08 18:17:08,287 [INFO] [kv_daemon.engine] Recovery completed: 6 records processed, 3 keys restored, 1 expired keys evicted\n2026-11-08 18:1"
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "status": "unconstrained_control_mode",
+              "mode": "flat_prompt_llm"
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 65.67,
+            "weighted_score": 16.42,
+            "details": {
+              "py_files_scanned": 10,
+              "verb_coverage_pct": 66.7,
+              "endpoint_coverage_pct": 87.5,
+              "model_coverage_pct": 20.0,
+              "found_verbs": [
+                "begin_transaction",
+                "commit_transaction",
+                "delete",
+                "get",
+                "rollback_transaction",
+                "set"
+              ],
+              "missing_verbs": [
+                "evict_expired",
+                "health_check",
+                "recover_wal"
+              ],
+              "found_endpoints": [
+                "GET /healthz",
+                "GET /keys/{key}",
+                "POST /keys/{key}",
+                "DELETE /keys/{key}",
+                "POST /tx/begin",
+                "POST /tx/commit",
+                "POST /tx/rollback"
+              ],
+              "missing_endpoints": [
+                "GET /stats"
+              ],
+              "found_models": [
+                "WALRecord"
+              ],
+              "missing_models": [
+                "HealthStatus",
+                "KVStoreState",
+                "KeyValueEntry",
+                "TransactionContext"
+              ]
+            },
+            "passed": false
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 75.0,
+            "weighted_score": 15.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "COMMITTED",
+                "IDLE",
+                "IN_TRANSACTION",
+                "ROLLED_BACK"
+              ],
+              "matched_states": [
+                "COMMITTED",
+                "ROLLED_BACK"
+              ],
+              "guard_conditionals_found": 91
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 25,
+              "graceful_responses": 25,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'malformed_json' gracefully handled (HTTP 400)",
+                "Probe 'empty_key' gracefully handled (HTTP 400)",
+                "Probe 'invalid_tx_commit' gracefully handled (HTTP 400)",
+                "Probe 'negative_ttl' gracefully handled (HTTP 200)",
+                "Probe 'burst_write' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 10,
+              "ast_nodes_scanned": 9989,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 6.11,
+            "weighted_score": 1.22,
+            "details": {
+              "total_loc": 1340,
+              "target_loc": 350,
+              "total_raw_lines": 1724,
+              "total_bytes": 62298,
+              "estimated_bPE_spend": 17194,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 14
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 67.64,
+        "composite_score": 67.64,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 322.0937252044678,
+        "timestamp": 1794187028.369961,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial2"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh",
+      "trial": 1,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_causal_mesh",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect",
+          "cognitive_role": "DOMAIN_ONTOLOGIST",
+          "conversation_id": "372bff27-765f-41de-8190-6967d838ceed",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/372bff27-765f-41de-8190-6967d838ceed/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer",
+          "cognitive_role": "CORE_ENGINE_SYNTHESIZER",
+          "conversation_id": "7002ff08-dc16-425e-9a4d-722dab30cc17",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/7002ff08-dc16-425e-9a4d-722dab30cc17/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer",
+          "cognitive_role": "ADVERSARIAL_QA_ENGINEER",
+          "conversation_id": "0b0c549d-5181-4674-a517-c56693e111c0",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/0b0c549d-5181-4674-a517-c56693e111c0/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Dialectical Red Team Socratic Inversion",
+          "cognitive_role": "RED_TEAM_ARCHITECT",
+          "conversation_id": "e77787aa-f9f3-4c68-a6b9-278224d0418a",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/e77787aa-f9f3-4c68-a6b9-278224d0418a/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_kv",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 76.71809196472168,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[AxiomaKV] Smoke test passed: Engine and WAL initialized successfully.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": true,
+              "subagents_evaluated": 4,
+              "violations": [],
+              "log": [
+                "Subagent count requirement met: 4 distinct roles",
+                "Context separation verified: 4 distinct conversation contexts",
+                "Anti-collusion verified: Builder (7002ff08) != QA (0b0c549d)",
+                "Transcript grounded: Domain Ontologist & Systems Architect (372bff27... - 68123 bytes)",
+                "Transcript grounded: Core Engine Synthesizer (7002ff08... - 44794 bytes)",
+                "Transcript grounded: Adversarial Byzantine QA Engineer (0b0c549d... - 95416 bytes)",
+                "Transcript grounded: Dialectical Red Team Socratic Inversion (e77787aa... - 59566 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "372bff27-765f-41de-8190-6967d838ceed",
+                  "role": "Domain Ontologist & Systems Architect",
+                  "found": true,
+                  "bytes": 68123
+                },
+                {
+                  "conversation_id": "7002ff08-dc16-425e-9a4d-722dab30cc17",
+                  "role": "Core Engine Synthesizer",
+                  "found": true,
+                  "bytes": 44794
+                },
+                {
+                  "conversation_id": "0b0c549d-5181-4674-a517-c56693e111c0",
+                  "role": "Adversarial Byzantine QA Engineer",
+                  "found": true,
+                  "bytes": 95416
+                },
+                {
+                  "conversation_id": "e77787aa-f9f3-4c68-a6b9-278224d0418a",
+                  "role": "Dialectical Red Team Socratic Inversion",
+                  "found": true,
+                  "bytes": 59566
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 95.56,
+            "weighted_score": 23.89,
+            "details": {
+              "py_files_scanned": 8,
+              "verb_coverage_pct": 88.9,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "begin_transaction",
+                "commit_transaction",
+                "delete",
+                "evict_expired",
+                "get",
+                "health_check",
+                "rollback_transaction",
+                "set"
+              ],
+              "missing_verbs": [
+                "recover_wal"
+              ],
+              "found_endpoints": [
+                "GET /healthz",
+                "GET /keys/{key}",
+                "POST /keys/{key}",
+                "DELETE /keys/{key}",
+                "POST /tx/begin",
+                "POST /tx/commit",
+                "POST /tx/rollback",
+                "GET /stats"
+              ],
+              "missing_endpoints": [],
+              "found_models": [
+                "HealthStatus",
+                "KVStoreState",
+                "KeyValueEntry",
+                "TransactionContext",
+                "WALRecord"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 50.0,
+            "weighted_score": 10.0,
+            "details": {
+              "total_transitions_tested": 8,
+              "valid_passed": 1,
+              "invalid_rejected": 3,
+              "defects_detected": 4,
+              "log": [
+                "Valid transition 'begin_transaction' executed without error",
+                "Valid transition 'commit_transaction' raised unexpected exception: No active transaction found for commit",
+                "Missing valid transition action 'reset' on engine",
+                "Valid transition 'rollback_transaction' raised unexpected exception: No active transaction found for rollback",
+                "Missing valid transition action 'reset' on engine",
+                "Invalid transition 'commit_transaction' correctly rejected with guard exception: ValueError",
+                "Invalid transition 'rollback_transaction' correctly rejected with guard exception: ValueError",
+                "Invalid transition 'rollback_transaction' correctly rejected with guard exception: ValueError"
+              ]
+            },
+            "passed": false
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 92.0,
+            "weighted_score": 13.8,
+            "details": {
+              "total_probes": 25,
+              "graceful_responses": 23,
+              "unhandled_crashes": 2,
+              "log": [
+                "Probe 'malformed_json' gracefully handled (HTTP 400)",
+                "Probe 'empty_key' gracefully handled (HTTP 400)",
+                "Probe 'invalid_tx_commit' gracefully handled (HTTP 200)",
+                "Probe 'negative_ttl' triggered unhandled failure: Unhandled exception: TypeError (_MockDefaultEngine.set() missing 2 required positional arguments: 'k' and 'v')",
+                "Probe 'burst_write' triggered unhandled failure: Unhandled exception: TypeError (_MockDefaultEngine.set() missing 2 required positional arguments: 'k' and 'v')",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 8,
+              "ast_nodes_scanned": 8551,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 6.55,
+            "weighted_score": 1.31,
+            "details": {
+              "total_loc": 1316,
+              "target_loc": 350,
+              "total_raw_lines": 1645,
+              "total_bytes": 57879,
+              "estimated_bPE_spend": 16031,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 14
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 69.0,
+        "composite_score": 69.0,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 112.10393905639648,
+        "timestamp": 1794187028.482155,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_causal_mesh"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh",
+      "trial": 2,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_causal_mesh_trial2",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect Trial 2",
+          "cognitive_role": "DOMAIN_ONTOLOGIST",
+          "conversation_id": "7e5d2a86-894a-4002-b6ee-38371d082405",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/7e5d2a86-894a-4002-b6ee-38371d082405/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer Trial 2",
+          "cognitive_role": "CORE_ENGINE_SYNTHESIZER",
+          "conversation_id": "6e38f5f7-4da0-434d-a5c6-06973e6fee15",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/6e38f5f7-4da0-434d-a5c6-06973e6fee15/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer Trial 2",
+          "cognitive_role": "ADVERSARIAL_QA_ENGINEER",
+          "conversation_id": "77fb8219-2fe2-4ca0-bbc6-6b53e3f4ab18",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/77fb8219-2fe2-4ca0-bbc6-6b53e3f4ab18/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Dialectical Red Team Socratic Inversion Trial 2",
+          "cognitive_role": "RED_TEAM_ARCHITECT",
+          "conversation_id": "37f59bda-d49a-4c61-a7c8-6bbc9af9bb5e",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/37f59bda-d49a-4c61-a7c8-6bbc9af9bb5e/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_kv",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 78.54008674621582,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[AxiomaKV] Smoke test passed: Engine and WAL initialized successfully.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": true,
+              "subagents_evaluated": 4,
+              "violations": [],
+              "log": [
+                "Subagent count requirement met: 4 distinct roles",
+                "Context separation verified: 4 distinct conversation contexts",
+                "Anti-collusion verified: Builder (6e38f5f7) != QA (77fb8219)",
+                "Transcript grounded: Domain Ontologist & Systems Architect Trial 2 (7e5d2a86... - 49322 bytes)",
+                "Transcript grounded: Core Engine Synthesizer Trial 2 (6e38f5f7... - 43080 bytes)",
+                "Transcript grounded: Adversarial Byzantine QA Engineer Trial 2 (77fb8219... - 108396 bytes)",
+                "Transcript grounded: Dialectical Red Team Socratic Inversion Trial 2 (37f59bda... - 97829 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "7e5d2a86-894a-4002-b6ee-38371d082405",
+                  "role": "Domain Ontologist & Systems Architect Trial 2",
+                  "found": true,
+                  "bytes": 49322
+                },
+                {
+                  "conversation_id": "6e38f5f7-4da0-434d-a5c6-06973e6fee15",
+                  "role": "Core Engine Synthesizer Trial 2",
+                  "found": true,
+                  "bytes": 43080
+                },
+                {
+                  "conversation_id": "77fb8219-2fe2-4ca0-bbc6-6b53e3f4ab18",
+                  "role": "Adversarial Byzantine QA Engineer Trial 2",
+                  "found": true,
+                  "bytes": 108396
+                },
+                {
+                  "conversation_id": "37f59bda-d49a-4c61-a7c8-6bbc9af9bb5e",
+                  "role": "Dialectical Red Team Socratic Inversion Trial 2",
+                  "found": true,
+                  "bytes": 97829
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 8,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "begin_transaction",
+                "commit_transaction",
+                "delete",
+                "evict_expired",
+                "get",
+                "health_check",
+                "recover_wal",
+                "rollback_transaction",
+                "set"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [
+                "GET /healthz",
+                "GET /keys/{key}",
+                "POST /keys/{key}",
+                "DELETE /keys/{key}",
+                "POST /tx/begin",
+                "POST /tx/commit",
+                "POST /tx/rollback",
+                "GET /stats"
+              ],
+              "missing_endpoints": [],
+              "found_models": [
+                "HealthStatus",
+                "KVStoreState",
+                "KeyValueEntry",
+                "TransactionContext",
+                "WALRecord"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 37.5,
+            "weighted_score": 7.5,
+            "details": {
+              "total_transitions_tested": 8,
+              "valid_passed": 0,
+              "invalid_rejected": 3,
+              "defects_detected": 5,
+              "log": [
+                "Valid transition 'begin_transaction' raised unexpected exception: could not convert string to float: 'test_arg'",
+                "Valid transition 'commit_transaction' raised unexpected exception: No active transaction found",
+                "Valid transition 'reset' failed to reach IDLE",
+                "Valid transition 'rollback_transaction' raised unexpected exception: No active transaction found",
+                "Valid transition 'reset' failed to reach IDLE",
+                "Invalid transition 'commit_transaction' correctly rejected with guard exception: ValueError",
+                "Invalid transition 'rollback_transaction' correctly rejected with guard exception: ValueError",
+                "Invalid transition 'rollback_transaction' correctly rejected with guard exception: ValueError"
+              ]
+            },
+            "passed": false
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 92.0,
+            "weighted_score": 13.8,
+            "details": {
+              "total_probes": 25,
+              "graceful_responses": 23,
+              "unhandled_crashes": 2,
+              "log": [
+                "Probe 'malformed_json' gracefully handled (HTTP 400)",
+                "Probe 'empty_key' gracefully handled (HTTP 400)",
+                "Probe 'invalid_tx_commit' gracefully handled (HTTP 200)",
+                "Probe 'negative_ttl' triggered unhandled failure: HTTP 500",
+                "Probe 'burst_write' triggered unhandled failure: HTTP 500",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 8,
+              "ast_nodes_scanned": 9976,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 5.89,
+            "weighted_score": 1.18,
+            "details": {
+              "total_loc": 1330,
+              "target_loc": 350,
+              "total_raw_lines": 1687,
+              "total_bytes": 64659,
+              "estimated_bPE_spend": 17815,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 14
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 67.48,
+        "composite_score": 67.48,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 118.20006370544434,
+        "timestamp": 1794187028.6004312,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_causal_mesh_trial2"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Antigravity Vanilla (Flat Prompt)",
+      "trial": 3,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial3",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Trial 3",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "208e5597-6e3b-4731-8af3-3912ce07f510",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/208e5597-6e3b-4731-8af3-3912ce07f510/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_kv",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 246.60611152648926,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[KV-DAEMON SMOKE TEST SUCCESSFUL] StorageEngine, WAL persistence, atomic transactions, TTL eviction, and REST HTTP interface are operational.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": false,
+              "subagents_evaluated": 1,
+              "violations": [],
+              "log": [
+                "Transcript grounded: Vanilla Developer Agent Trial 3 (208e5597... - 283059 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "208e5597-6e3b-4731-8af3-3912ce07f510",
+                  "role": "Vanilla Developer Agent Trial 3",
+                  "found": true,
+                  "bytes": 283059
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 7,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "begin_transaction",
+                "commit_transaction",
+                "delete",
+                "evict_expired",
+                "get",
+                "health_check",
+                "recover_wal",
+                "rollback_transaction",
+                "set"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [
+                "GET /healthz",
+                "GET /keys/{key}",
+                "POST /keys/{key}",
+                "DELETE /keys/{key}",
+                "POST /tx/begin",
+                "POST /tx/commit",
+                "POST /tx/rollback",
+                "GET /stats"
+              ],
+              "missing_endpoints": [],
+              "found_models": [
+                "HealthStatus",
+                "KVStoreState",
+                "KeyValueEntry",
+                "TransactionContext",
+                "WALRecord"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "COMMITTED",
+                "IDLE",
+                "IN_TRANSACTION",
+                "ROLLED_BACK"
+              ],
+              "matched_states": [
+                "COMMITTED",
+                "IDLE",
+                "IN_TRANSACTION",
+                "ROLLED_BACK"
+              ],
+              "guard_conditionals_found": 45
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 25,
+              "graceful_responses": 25,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'malformed_json' gracefully handled (HTTP 400)",
+                "Probe 'empty_key' gracefully handled (HTTP 404)",
+                "Probe 'invalid_tx_commit' gracefully handled (HTTP 400)",
+                "Probe 'negative_ttl' gracefully handled (HTTP 200)",
+                "Probe 'burst_write' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 7,
+              "ast_nodes_scanned": 5834,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 42.9,
+            "weighted_score": 8.58,
+            "details": {
+              "total_loc": 516,
+              "target_loc": 350,
+              "total_raw_lines": 625,
+              "total_bytes": 27966,
+              "estimated_bPE_spend": 8159,
+              "loc_factor": 1.0,
+              "capabilities_delivered": 14
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 88.58,
+        "composite_score": 88.58,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 370.7258701324463,
+        "timestamp": 1794201073.354837,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial3"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh",
+      "trial": 3,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_trial3",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect",
+          "cognitive_role": "DOMAIN_ONTOLOGIST",
+          "conversation_id": "788f9415-be97-476d-97ed-3f839241d440",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/788f9415-be97-476d-97ed-3f839241d440/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer",
+          "cognitive_role": "CORE_ENGINE_SYNTHESIZER",
+          "conversation_id": "9c0cb70f-ab79-4efc-b7f0-37f20a16bf6b",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/9c0cb70f-ab79-4efc-b7f0-37f20a16bf6b/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer",
+          "cognitive_role": "ADVERSARIAL_QA_ENGINEER",
+          "conversation_id": "6b7cdd60-5c10-4847-a40f-132d2503eee1",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/6b7cdd60-5c10-4847-a40f-132d2503eee1/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Meta-Axioma Sovereign Compiler Orchestrator Trial 3",
+          "cognitive_role": "COMPILER_ORCHESTRATOR",
+          "conversation_id": "6e0de526-2d64-4cef-929e-3bbdbc74f2c6",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/6e0de526-2d64-4cef-929e-3bbdbc74f2c6/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_kv",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 233.02388191223145,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[AxiomaKV] Operational status: HEALTHY - Smoke test passed\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": true,
+              "subagents_evaluated": 4,
+              "violations": [],
+              "log": [
+                "Subagent count requirement met: 4 distinct roles",
+                "Context separation verified: 4 distinct conversation contexts",
+                "Anti-collusion verified: Builder (9c0cb70f) != QA (6b7cdd60)",
+                "Transcript grounded: Domain Ontologist & Systems Architect (788f9415... - 61010 bytes)",
+                "Transcript grounded: Core Engine Synthesizer (9c0cb70f... - 369990 bytes)",
+                "Transcript grounded: Adversarial Byzantine QA Engineer (6b7cdd60... - 190682 bytes)",
+                "Transcript grounded: Meta-Axioma Sovereign Compiler Orchestrator Trial 3 (6e0de526... - 60392 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "788f9415-be97-476d-97ed-3f839241d440",
+                  "role": "Domain Ontologist & Systems Architect",
+                  "found": true,
+                  "bytes": 61010
+                },
+                {
+                  "conversation_id": "9c0cb70f-ab79-4efc-b7f0-37f20a16bf6b",
+                  "role": "Core Engine Synthesizer",
+                  "found": true,
+                  "bytes": 369990
+                },
+                {
+                  "conversation_id": "6b7cdd60-5c10-4847-a40f-132d2503eee1",
+                  "role": "Adversarial Byzantine QA Engineer",
+                  "found": true,
+                  "bytes": 190682
+                },
+                {
+                  "conversation_id": "6e0de526-2d64-4cef-929e-3bbdbc74f2c6",
+                  "role": "Meta-Axioma Sovereign Compiler Orchestrator Trial 3",
+                  "found": true,
+                  "bytes": 60392
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 13,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "begin_transaction",
+                "commit_transaction",
+                "delete",
+                "evict_expired",
+                "get",
+                "health_check",
+                "recover_wal",
+                "rollback_transaction",
+                "set"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [
+                "GET /healthz",
+                "GET /keys/{key}",
+                "POST /keys/{key}",
+                "DELETE /keys/{key}",
+                "POST /tx/begin",
+                "POST /tx/commit",
+                "POST /tx/rollback",
+                "GET /stats"
+              ],
+              "missing_endpoints": [],
+              "found_models": [
+                "HealthStatus",
+                "KVStoreState",
+                "KeyValueEntry",
+                "TransactionContext",
+                "WALRecord"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "total_transitions_tested": 8,
+              "valid_passed": 5,
+              "invalid_rejected": 3,
+              "defects_detected": 0,
+              "log": [
+                "Valid transition 'begin_transaction' succeeded: IDLE -> IN_TRANSACTION",
+                "Valid transition 'commit_transaction' succeeded: IN_TRANSACTION -> COMMITTED",
+                "Valid transition 'reset' succeeded: COMMITTED -> IDLE",
+                "Valid transition 'rollback_transaction' succeeded: IN_TRANSACTION -> ROLLED_BACK",
+                "Valid transition 'reset' succeeded: ROLLED_BACK -> IDLE",
+                "Invalid transition 'commit_transaction' correctly rejected with guard exception: ValueError",
+                "Invalid transition 'rollback_transaction' correctly rejected with guard exception: ValueError",
+                "Invalid transition 'rollback_transaction' correctly rejected with guard exception: ValueError"
+              ]
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 25,
+              "graceful_responses": 25,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'malformed_json' gracefully handled (HTTP 400)",
+                "Probe 'empty_key' gracefully handled (HTTP 400)",
+                "Probe 'invalid_tx_commit' gracefully handled (HTTP 200)",
+                "Probe 'negative_ttl' gracefully handled (HTTP 200)",
+                "Probe 'burst_write' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 13,
+              "ast_nodes_scanned": 12857,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 5.33,
+            "weighted_score": 1.07,
+            "details": {
+              "total_loc": 1342,
+              "target_loc": 350,
+              "total_raw_lines": 1704,
+              "total_bytes": 71761,
+              "estimated_bPE_spend": 19684,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 14
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 81.07,
+        "composite_score": 81.07,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 292.9039001464844,
+        "timestamp": 1794201073.647755,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_trial3"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Antigravity Vanilla (Flat Prompt)",
+      "archetype_id": "axioma_flow",
+      "trial": 1,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_flow",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Flow",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "6ba9e843-c844-4728-a451-ceb17df5ea2b",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/6ba9e843-c844-4728-a451-ceb17df5ea2b/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_flow",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 86.6849422454834,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[SMOKE-TEST-OK] Job Execution Engine daemon initialized successfully. Operational status: HEALTHY (target port=8089)\n",
+          "stderr_excerpt": "2026-11-08 23:54:58,567 [INFO] [VanillaFlowDaemon] Executing operational smoke test...\n"
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "status": "unconstrained_control_mode",
+              "mode": "flat_prompt_llm"
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 8.0,
+            "weighted_score": 2.0,
+            "details": {
+              "py_files_scanned": 8,
+              "verb_coverage_pct": 0.0,
+              "endpoint_coverage_pct": 0.0,
+              "model_coverage_pct": 40.0,
+              "found_verbs": [],
+              "missing_verbs": [
+                "cancel_workflow",
+                "detect_cycles",
+                "execute_task",
+                "get_status",
+                "health_check",
+                "retry_task",
+                "stream_events",
+                "submit_workflow"
+              ],
+              "found_endpoints": [],
+              "missing_endpoints": [
+                "GET /healthz",
+                "POST /workflows",
+                "GET /workflows/{id}",
+                "POST /workflows/{id}/cancel",
+                "GET /workflows/{id}/events",
+                "GET /stats"
+              ],
+              "found_models": [
+                "TaskState",
+                "WorkflowDAG"
+              ],
+              "missing_models": [
+                "WorkflowEngineState",
+                "WorkflowEvent",
+                "WorkflowTask"
+              ]
+            },
+            "passed": false
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "CANCELED",
+                "COMPLETED",
+                "FAILED",
+                "PENDING",
+                "RUNNING"
+              ],
+              "matched_states": [
+                "CANCELED",
+                "COMPLETED",
+                "FAILED",
+                "PENDING",
+                "RUNNING"
+              ],
+              "guard_conditionals_found": 106
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 50.0,
+            "weighted_score": 7.5,
+            "details": {
+              "error": "No BaseHTTPRequestHandler subclass located in application"
+            },
+            "passed": false
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 8,
+              "ast_nodes_scanned": 11526,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 4.44,
+            "weighted_score": 0.89,
+            "details": {
+              "total_loc": 1795,
+              "target_loc": 380,
+              "total_raw_lines": 2184,
+              "total_bytes": 80444,
+              "estimated_bPE_spend": 21969,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 13
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 50.39,
+        "composite_score": 50.39,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 212.71491050720215,
+        "timestamp": 1794207298.716235,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_flow"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh",
+      "archetype_id": "axioma_flow",
+      "trial": 1,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_flow",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "71052e36-f2a3-405b-a9fb-7b1592766931",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/71052e36-f2a3-405b-a9fb-7b1592766931/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "1c28b160-2857-4698-961a-1f9f19292e13",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/1c28b160-2857-4698-961a-1f9f19292e13/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer",
+          "cognitive_role": "QA",
+          "conversation_id": "ca4efbd2-9a10-4a61-860f-5079e767d386",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/ca4efbd2-9a10-4a61-860f-5079e767d386/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_flow",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 144.32692527770996,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[AxiomaFlow] Operational status: HEALTHY - Smoke test passed\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": true,
+              "subagents_evaluated": 3,
+              "violations": [],
+              "log": [
+                "Subagent count requirement met: 3 distinct roles",
+                "Context separation verified: 3 distinct conversation contexts",
+                "Anti-collusion verified: Builder (1c28b160) != QA (ca4efbd2)",
+                "Transcript grounded: Domain Ontologist & Systems Architect (71052e36... - 62330 bytes)",
+                "Transcript grounded: Core Engine Synthesizer (1c28b160... - 94051 bytes)",
+                "Transcript grounded: Adversarial Byzantine QA Engineer (ca4efbd2... - 142668 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "71052e36-f2a3-405b-a9fb-7b1592766931",
+                  "role": "Domain Ontologist & Systems Architect",
+                  "found": true,
+                  "bytes": 62330
+                },
+                {
+                  "conversation_id": "1c28b160-2857-4698-961a-1f9f19292e13",
+                  "role": "Core Engine Synthesizer",
+                  "found": true,
+                  "bytes": 94051
+                },
+                {
+                  "conversation_id": "ca4efbd2-9a10-4a61-860f-5079e767d386",
+                  "role": "Adversarial Byzantine QA Engineer",
+                  "found": true,
+                  "bytes": 142668
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 10.67,
+            "weighted_score": 2.67,
+            "details": {
+              "py_files_scanned": 9,
+              "verb_coverage_pct": 0.0,
+              "endpoint_coverage_pct": 16.7,
+              "model_coverage_pct": 20.0,
+              "found_verbs": [],
+              "missing_verbs": [
+                "cancel_workflow",
+                "detect_cycles",
+                "execute_task",
+                "get_status",
+                "health_check",
+                "retry_task",
+                "stream_events",
+                "submit_workflow"
+              ],
+              "found_endpoints": [
+                "GET /healthz"
+              ],
+              "missing_endpoints": [
+                "POST /workflows",
+                "GET /workflows/{id}",
+                "POST /workflows/{id}/cancel",
+                "GET /workflows/{id}/events",
+                "GET /stats"
+              ],
+              "found_models": [
+                "WorkflowDAG"
+              ],
+              "missing_models": [
+                "TaskState",
+                "WorkflowEngineState",
+                "WorkflowEvent",
+                "WorkflowTask"
+              ]
+            },
+            "passed": false
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "CANCELED",
+                "COMPLETED",
+                "FAILED",
+                "PENDING",
+                "RUNNING"
+              ],
+              "matched_states": [
+                "CANCELED",
+                "COMPLETED",
+                "FAILED",
+                "PENDING",
+                "RUNNING"
+              ],
+              "guard_conditionals_found": 140
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 50.0,
+            "weighted_score": 7.5,
+            "details": {
+              "error": "No BaseHTTPRequestHandler subclass located in application"
+            },
+            "passed": false
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 9,
+              "ast_nodes_scanned": 18248,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 2.75,
+            "weighted_score": 0.55,
+            "details": {
+              "total_loc": 2769,
+              "target_loc": 380,
+              "total_raw_lines": 3405,
+              "total_bytes": 131891,
+              "estimated_bPE_spend": 35508,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 13
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 50.72,
+        "composite_score": 50.72,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 228.82914543151855,
+        "timestamp": 1794207298.9450712,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_flow"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Antigravity Vanilla (Flat Prompt)",
+      "archetype_id": "axioma_gateway",
+      "trial": 1,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_gateway",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Gateway",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "9db4d6b5-d5db-48fb-9669-e43064268d2e",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/9db4d6b5-d5db-48fb-9669-e43064268d2e/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_gateway",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 341.95780754089355,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[SMOKE-TEST] Initializing configuration and components...\n[SHUTDOWN] Terminating gateway daemon...\n[SHUTDOWN] Gateway shutdown complete.\n[STATUS] Operational status: OK | Vanilla API Gateway v1.0.0 (port=8090, tenants=3, routes=2, telemetry=SQLite-WAL)\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "status": "unconstrained_control_mode",
+              "mode": "flat_prompt_llm"
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 24.38,
+            "weighted_score": 6.09,
+            "details": {
+              "py_files_scanned": 10,
+              "verb_coverage_pct": 14.3,
+              "endpoint_coverage_pct": 16.7,
+              "model_coverage_pct": 60.0,
+              "found_verbs": [
+                "forward_request"
+              ],
+              "missing_verbs": [
+                "authenticate_key",
+                "check_rate_limit",
+                "get_tenant_config",
+                "health_check",
+                "record_telemetry",
+                "reload_rules"
+              ],
+              "found_endpoints": [
+                "GET /admin/telemetry"
+              ],
+              "missing_endpoints": [
+                "GET /healthz",
+                "GET /stats",
+                "POST /v1/proxy",
+                "POST /admin/rules/reload",
+                "GET /admin/tenants/{tenant_id}"
+              ],
+              "found_models": [
+                "TelemetryRecord",
+                "TenantConfig",
+                "TokenBucket"
+              ],
+              "missing_models": [
+                "GatewayEngineState",
+                "ProxyRule"
+              ]
+            },
+            "passed": false
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 50.0,
+            "weighted_score": 10.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "READY",
+                "RELOADING",
+                "SERVING",
+                "WARMING"
+              ],
+              "matched_states": [],
+              "guard_conditionals_found": 67
+            },
+            "passed": false
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 0.0,
+            "weighted_score": 0.0,
+            "details": {
+              "total_probes": 24,
+              "graceful_responses": 0,
+              "unhandled_crashes": 24,
+              "log": [
+                "Probe 'missing_api_key' triggered unhandled failure: Unhandled exception: AttributeError ('GatewayRequestHandler' object has no attribute 'gateway')",
+                "Probe 'malformed_json' triggered unhandled failure: Unhandled exception: AttributeError ('GatewayRequestHandler' object has no attribute 'gateway')",
+                "Probe 'burst_rate_flood' triggered unhandled failure: Unhandled exception: AttributeError ('GatewayRequestHandler' object has no attribute 'gateway')",
+                "Probe 'bad_reload_rule' triggered unhandled failure: Unhandled exception: AttributeError ('GatewayRequestHandler' object has no attribute 'gateway')",
+                "Burst concurrency test suffered 20/20 crashes"
+              ]
+            },
+            "passed": false
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 10,
+              "ast_nodes_scanned": 9336,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 4.96,
+            "weighted_score": 0.99,
+            "details": {
+              "total_loc": 1476,
+              "target_loc": 370,
+              "total_raw_lines": 1822,
+              "total_bytes": 65903,
+              "estimated_bPE_spend": 18142,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 12
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 37.08,
+        "composite_score": 37.08,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 492.07186698913574,
+        "timestamp": 1794249281.046548,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_gateway"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh",
+      "archetype_id": "axioma_gateway",
+      "trial": 1,
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_gateway",
+      "subagents": [
+        {
+          "role": "Meta-Axioma Sovereign Compiler Orchestrator Gateway",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "6a2fafdc-a8f2-49a9-98b1-3ce76179008c"
+        },
+        {
+          "role": "Gateway Entrypoint Synthesizer",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "ad4f2d46-e8b2-4022-ae1f-e0f3a53e9843"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer Gateway",
+          "cognitive_role": "QA",
+          "conversation_id": "d00a7adb-db4d-42b8-83c1-5fb0fe52cfdb"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_gateway",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 96.01163864135742,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[AXIOMA-GATEWAY] Operational status: ONLINE. Smoke test PASSED.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": true,
+              "subagents_evaluated": 3,
+              "violations": [],
+              "log": [
+                "Subagent count requirement met: 3 distinct roles",
+                "Context separation verified: 3 distinct conversation contexts",
+                "Anti-collusion verified: Builder (ad4f2d46) != QA (d00a7adb)",
+                "Transcript grounded: Meta-Axioma Sovereign Compiler Orchestrator Gateway (6a2fafdc... - 29129 bytes)",
+                "Transcript grounded: Gateway Entrypoint Synthesizer (ad4f2d46... - 90232 bytes)",
+                "Transcript grounded: Adversarial Byzantine QA Engineer Gateway (d00a7adb... - 270984 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "6a2fafdc-a8f2-49a9-98b1-3ce76179008c",
+                  "role": "Meta-Axioma Sovereign Compiler Orchestrator Gateway",
+                  "found": true,
+                  "bytes": 29129
+                },
+                {
+                  "conversation_id": "ad4f2d46-e8b2-4022-ae1f-e0f3a53e9843",
+                  "role": "Gateway Entrypoint Synthesizer",
+                  "found": true,
+                  "bytes": 90232
+                },
+                {
+                  "conversation_id": "d00a7adb-db4d-42b8-83c1-5fb0fe52cfdb",
+                  "role": "Adversarial Byzantine QA Engineer Gateway",
+                  "found": true,
+                  "bytes": 270984
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 23.43,
+            "weighted_score": 5.86,
+            "details": {
+              "py_files_scanned": 11,
+              "verb_coverage_pct": 28.6,
+              "endpoint_coverage_pct": 0.0,
+              "model_coverage_pct": 60.0,
+              "found_verbs": [
+                "check_rate_limit",
+                "forward_request"
+              ],
+              "missing_verbs": [
+                "authenticate_key",
+                "get_tenant_config",
+                "health_check",
+                "record_telemetry",
+                "reload_rules"
+              ],
+              "found_endpoints": [],
+              "missing_endpoints": [
+                "GET /healthz",
+                "GET /stats",
+                "POST /v1/proxy",
+                "POST /admin/rules/reload",
+                "GET /admin/tenants/{tenant_id}",
+                "GET /admin/telemetry"
+              ],
+              "found_models": [
+                "TelemetryRecord",
+                "TenantConfig",
+                "TokenBucket"
+              ],
+              "missing_models": [
+                "GatewayEngineState",
+                "ProxyRule"
+              ]
+            },
+            "passed": false
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "READY",
+                "RELOADING",
+                "SERVING",
+                "WARMING"
+              ],
+              "matched_states": [
+                "READY",
+                "RELOADING",
+                "SERVING",
+                "WARMING"
+              ],
+              "guard_conditionals_found": 114
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 50.0,
+            "weighted_score": 7.5,
+            "details": {
+              "error": "No BaseHTTPRequestHandler subclass located in application"
+            },
+            "passed": false
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 11,
+              "ast_nodes_scanned": 15762,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 2.72,
+            "weighted_score": 0.54,
+            "details": {
+              "total_loc": 2477,
+              "target_loc": 370,
+              "total_raw_lines": 3068,
+              "total_bytes": 122641,
+              "estimated_bPE_spend": 33073,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 12
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 53.9,
+        "composite_score": 53.9,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 176.34081840515137,
+        "timestamp": 1794249281.222912,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_gateway"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Antigravity Vanilla (Flat Prompt)",
+      "trial": 6,
+      "archetype_id": "axioma_raft",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_raft",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Raft",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "dfcc42b7-771e-4882-87be-0ad29eec12e2",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/dfcc42b7-771e-4882-87be-0ad29eec12e2/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_raft",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 1542.443037033081,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[SMOKE-TEST] Starting Vanilla Raft Consensus Coordinator verification...\n  [1/6] 3-Node Term Election & Leader Lease: OK (Leader: node_1, Term: 1)\n  [2/6] Leader Lease Guard Invariant: OK (Follower protected from disruptive vote)\n  [3/6] Heartbeat-Driven Log Replication & State Consistency: OK\n  [4/6] Simulated Network Drop & Partition Recovery: OK\n  [5/6] Atomic Multi-Step Rollback Verification: OK (Purged 2 conflicting entries)\n  [6/6] Hermetic SocketPair IPC & REST API: OK\n[VANILLA-RAFT] Oper",
+          "stderr_excerpt": "2026-11-10 15:47:10,363 [INFO] [ConsensusCoordinator] [COORDINATOR] Starting cluster with nodes: ['node_1', 'node_2', 'node_3']\n2026-11-10 15:47:10,363 [INFO] [RaftNode] [node_1] Started in term 0 as FOLLOWER.\n2026-11-10 15:47:10,363 [INFO] [RaftNode] [node_2] Started in term 0 as FOLLOWER.\n2026-11-10 15:47:10,363 [INFO] [RaftNode] [node_3] Started in term 0 as FOLLOWER.\n2026-11-10 15:47:10,465 [INFO] [RaftNode] [node_1] Started election for term 1.\n2026-11-10 15:47:10,466 [INFO] [RaftNode] [nod"
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 22.86,
+            "weighted_score": 5.71,
+            "details": {
+              "py_files_scanned": 10,
+              "verb_coverage_pct": 0.0,
+              "endpoint_coverage_pct": 42.9,
+              "model_coverage_pct": 28.6,
+              "found_verbs": [],
+              "missing_verbs": [
+                "append_entries",
+                "commit_entry",
+                "health_check",
+                "heartbeat",
+                "replicate_log",
+                "request_vote",
+                "rollback_entry",
+                "step_down"
+              ],
+              "found_endpoints": [
+                "GET /health",
+                "GET /status",
+                "POST /propose"
+              ],
+              "missing_endpoints": [
+                "POST /vote",
+                "POST /append",
+                "GET /log",
+                "GET /stats"
+              ],
+              "found_models": [
+                "LogEntry",
+                "RaftNode"
+              ],
+              "missing_models": [
+                "AppendEntriesRequest",
+                "AppendEntriesResponse",
+                "RaftRole",
+                "VoteRequest",
+                "VoteResponse"
+              ]
+            },
+            "passed": false
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 87.5,
+            "weighted_score": 17.5,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "CANDIDATE",
+                "FOLLOWER",
+                "LEADER",
+                "STEPPED_DOWN"
+              ],
+              "matched_states": [
+                "CANDIDATE",
+                "FOLLOWER",
+                "LEADER"
+              ],
+              "guard_conditionals_found": 105
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 50.0,
+            "weighted_score": 7.5,
+            "details": {
+              "error": "No BaseHTTPRequestHandler subclass located in application"
+            },
+            "passed": false
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 10,
+              "ast_nodes_scanned": 11993,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 4.96,
+            "weighted_score": 0.99,
+            "details": {
+              "total_loc": 1766,
+              "target_loc": 450,
+              "total_raw_lines": 2186,
+              "total_bytes": 83177,
+              "estimated_bPE_spend": 22688,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 15
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 51.7,
+        "composite_score": 51.7,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 1686.643123626709,
+        "timestamp": 1794350831.974126,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_raft"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh",
+      "trial": 6,
+      "archetype_id": "axioma_raft",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_raft",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect (Brain)",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "ec3a8398-eee5-45c1-b3a8-9d53a65bd25b",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/ec3a8398-eee5-45c1-b3a8-9d53a65bd25b/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer (Muscle)",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "e825a094-13ff-40c2-90e4-25d0c64059a9",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/e825a094-13ff-40c2-90e4-25d0c64059a9/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer (Muscle)",
+          "cognitive_role": "QA_ENGINEER",
+          "conversation_id": "7bd54eba-7c1b-430c-8a9f-6f3c64a347f8",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/7bd54eba-7c1b-430c-8a9f-6f3c64a347f8/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_raft",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 74.8143196105957,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[AXIOMA-RAFT] Operational status: ONLINE. Smoke test PASSED.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 13,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "append_entries",
+                "commit_entry",
+                "health_check",
+                "heartbeat",
+                "replicate_log",
+                "request_vote",
+                "rollback_entry",
+                "step_down"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [
+                "GET /health",
+                "GET /status",
+                "POST /vote",
+                "POST /append",
+                "POST /propose",
+                "GET /log",
+                "GET /stats"
+              ],
+              "missing_endpoints": [],
+              "found_models": [
+                "AppendEntriesRequest",
+                "AppendEntriesResponse",
+                "LogEntry",
+                "RaftNode",
+                "RaftRole",
+                "VoteRequest",
+                "VoteResponse"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "CANDIDATE",
+                "FOLLOWER",
+                "LEADER",
+                "STEPPED_DOWN"
+              ],
+              "matched_states": [
+                "CANDIDATE",
+                "FOLLOWER",
+                "LEADER",
+                "STEPPED_DOWN"
+              ],
+              "guard_conditionals_found": 134
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 24,
+              "graceful_responses": 24,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'split_brain_simulated_drop' gracefully handled (HTTP 400)",
+                "Probe 'stale_term_heartbeat' gracefully handled (HTTP 400)",
+                "Probe 'corrupted_log_index' gracefully handled (HTTP 400)",
+                "Probe 'burst_concurrent_proposals' gracefully handled (HTTP 400)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 13,
+              "ast_nodes_scanned": 16490,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 3.76,
+            "weighted_score": 0.75,
+            "details": {
+              "total_loc": 2267,
+              "target_loc": 450,
+              "total_raw_lines": 2878,
+              "total_bytes": 110511,
+              "estimated_bPE_spend": 29881,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 15
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 80.75,
+        "composite_score": 80.75,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 148.23174476623535,
+        "timestamp": 1794350832.1223638,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_raft"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Antigravity Vanilla (Flat Prompt)",
+      "trial": 7,
+      "archetype_id": "axioma_micro",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_micro",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Micro",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "vanilla_micro_trial7",
+          "transcript_uri": ""
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_micro",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 32.794952392578125,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OPERATIONAL - Axioma-Micro NDJSON Log Filter healthy\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "status": "unconstrained_control_mode",
+              "mode": "flat_prompt_llm"
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 3,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "emit_summary",
+                "handle_sigint",
+                "parse_ndjson",
+                "process_line",
+                "update_percentiles"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "LogEntry",
+                "PercentileTracker",
+                "SummaryReport"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "COMPLETED",
+                "EMITTING",
+                "IDLE",
+                "STREAMING"
+              ],
+              "matched_states": [
+                "COMPLETED",
+                "EMITTING",
+                "IDLE",
+                "STREAMING"
+              ],
+              "guard_conditionals_found": 12
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 50.0,
+            "weighted_score": 7.5,
+            "details": {
+              "error": "No BaseHTTPRequestHandler subclass located in application"
+            },
+            "passed": false
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 50.0,
+            "weighted_score": 10.0,
+            "details": {
+              "files_scanned": 3,
+              "ast_nodes_scanned": 2160,
+              "violations_count": 2,
+              "violations": [
+                {
+                  "file": "run.py",
+                  "rule_id": "HERM-002",
+                  "line": 8,
+                  "desc": "Forbidden runtime sys.path mutation 'sys.path.insert()' detected.",
+                  "culprit": "sys.path.insert"
+                },
+                {
+                  "file": "tests/test_logfilter.py",
+                  "rule_id": "HERM-002",
+                  "line": 14,
+                  "desc": "Forbidden runtime sys.path mutation 'sys.path.insert()' detected.",
+                  "culprit": "sys.path.insert"
+                }
+              ]
+            },
+            "passed": false
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 43.01,
+            "weighted_score": 8.6,
+            "details": {
+              "total_loc": 303,
+              "target_loc": 120,
+              "total_raw_lines": 373,
+              "total_bytes": 12458,
+              "estimated_bPE_spend": 4078,
+              "loc_factor": 0.88,
+              "capabilities_delivered": 8
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 71.1,
+        "composite_score": 71.1,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 103.67894172668457,
+        "timestamp": 1794356765.211645,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_micro"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh",
+      "trial": 7,
+      "archetype_id": "axioma_micro",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_micro",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect (Brain)",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "8f8091c3-ca7d-4304-89eb-a620dbe224c8",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/8f8091c3-ca7d-4304-89eb-a620dbe224c8/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer (Muscle)",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "0366d2d1-db3f-4667-a3db-ca0e3246e9b4",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/0366d2d1-db3f-4667-a3db-ca0e3246e9b4/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer (Muscle)",
+          "cognitive_role": "QA_ENGINEER",
+          "conversation_id": "d3d402ae-e685-4379-88be-1208627c1066",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/d3d402ae-e685-4379-88be-1208627c1066/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_micro",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 59.47303771972656,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OK - axioma_micro streaming log filter operational\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 5,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "emit_summary",
+                "handle_sigint",
+                "parse_ndjson",
+                "process_line",
+                "update_percentiles"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "LogEntry",
+                "PercentileTracker",
+                "SummaryReport"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "total_transitions_tested": 3,
+              "valid_passed": 3,
+              "invalid_rejected": 0,
+              "defects_detected": 0,
+              "log": [
+                "Valid transition 'start_reading' succeeded: IDLE -> STREAMING",
+                "Valid transition 'eof_or_sigint' succeeded: STREAMING -> EMITTING",
+                "Valid transition 'finish' succeeded: EMITTING -> COMPLETED"
+              ]
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 23,
+              "graceful_responses": 23,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'malformed_ndjson_line' gracefully handled (HTTP 200)",
+                "Probe 'non_numeric_latency' gracefully handled (HTTP 200)",
+                "Probe 'empty_stream_eof' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 5,
+              "ast_nodes_scanned": 1601,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 60.55,
+            "weighted_score": 12.11,
+            "details": {
+              "total_loc": 219,
+              "target_loc": 120,
+              "total_raw_lines": 279,
+              "total_bytes": 9023,
+              "estimated_bPE_spend": 3174,
+              "loc_factor": 0.96,
+              "capabilities_delivered": 8
+            },
+            "passed": true
+          }
+        },
+        "graded_score": 92.11,
+        "composite_score": 92.11,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 140.95377922058105,
+        "timestamp": 1794356783.523402,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_micro"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Vanilla Antigravity Agent (Trial 8 - RESP)",
+      "trial": 8,
+      "archetype_id": "axioma_resp",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_resp",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent RESP",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "vanilla_resp_trial8",
+          "transcript_uri": ""
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_resp",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 93.64199638366699,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OK - Redis RESP2 wire server operational\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 11,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "cmd_del",
+                "cmd_get",
+                "cmd_incr",
+                "cmd_ping",
+                "cmd_set",
+                "handle_command",
+                "parse_resp",
+                "serialize_resp"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "RedisCommand",
+                "RespMessage",
+                "RespParserState",
+                "RespType"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "total_transitions_tested": 5,
+              "valid_passed": 5,
+              "invalid_rejected": 0,
+              "defects_detected": 0,
+              "log": [
+                "Valid transition 'bytes_received' succeeded: CONNECTED -> PARSING",
+                "Valid transition 'frame_complete' succeeded: PARSING -> EXECUTING",
+                "Valid transition 'command_done' succeeded: EXECUTING -> SERIALIZING",
+                "Valid transition 'send_bytes' succeeded: SERIALIZING -> DRAINING",
+                "Valid transition 'drain_complete' succeeded: DRAINING -> PARSING"
+              ]
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 23,
+              "graceful_responses": 23,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'partial_chunk_framing' gracefully handled (HTTP 200)",
+                "Probe 'unknown_command_error' gracefully handled (HTTP 200)",
+                "Probe 'corrupted_array_length' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 11,
+              "ast_nodes_scanned": 5695,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 23.2,
+            "weighted_score": 4.64,
+            "details": {
+              "total_loc": 719,
+              "target_loc": 300,
+              "total_raw_lines": 894,
+              "total_bytes": 32879,
+              "estimated_bPE_spend": 9452,
+              "loc_factor": 0.73,
+              "capabilities_delivered": 12
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 84.64,
+        "composite_score": 84.64,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 194.12612915039062,
+        "timestamp": 1794360310.430403,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_resp"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Mesh (Trial 8 - RESP)",
+      "trial": 8,
+      "archetype_id": "axioma_resp",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_resp",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect (Brain)",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "ceb05fe8-581c-4ea0-a15f-f748b9448679",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/ceb05fe8-581c-4ea0-a15f-f748b9448679/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer (Muscle)",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "e9f18b4e-62f3-4cf6-ae62-328b6def2226",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/e9f18b4e-62f3-4cf6-ae62-328b6def2226/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer (Muscle)",
+          "cognitive_role": "QA_ENGINEER",
+          "conversation_id": "462623c0-1e8e-4814-be4f-8fae7ec2b6d1",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/462623c0-1e8e-4814-be4f-8fae7ec2b6d1/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_resp",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 70.42622566223145,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OK - axioma_resp wire protocol server operational\n[AXIOMA-RESP] Operational status: ONLINE. Smoke test PASSED.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 6,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "cmd_del",
+                "cmd_get",
+                "cmd_incr",
+                "cmd_ping",
+                "cmd_set",
+                "handle_command",
+                "parse_resp",
+                "serialize_resp"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "RedisCommand",
+                "RespMessage",
+                "RespParserState",
+                "RespType"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "total_transitions_tested": 5,
+              "valid_passed": 5,
+              "invalid_rejected": 0,
+              "defects_detected": 0,
+              "log": [
+                "Valid transition 'bytes_received' succeeded: CONNECTED -> PARSING",
+                "Valid transition 'frame_complete' succeeded: PARSING -> EXECUTING",
+                "Valid transition 'command_done' succeeded: EXECUTING -> SERIALIZING",
+                "Valid transition 'send_bytes' succeeded: SERIALIZING -> DRAINING",
+                "Valid transition 'drain_complete' succeeded: DRAINING -> PARSING"
+              ]
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 23,
+              "graceful_responses": 23,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'partial_chunk_framing' gracefully handled (HTTP 200)",
+                "Probe 'unknown_command_error' gracefully handled (HTTP 200)",
+                "Probe 'corrupted_array_length' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 6,
+              "ast_nodes_scanned": 5675,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 25.8,
+            "weighted_score": 5.16,
+            "details": {
+              "total_loc": 665,
+              "target_loc": 300,
+              "total_raw_lines": 800,
+              "total_bytes": 31650,
+              "estimated_bPE_spend": 9128,
+              "loc_factor": 0.79,
+              "capabilities_delivered": 12
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 85.16,
+        "composite_score": 85.16,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 159.91783142089844,
+        "timestamp": 1794362249.388337,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_resp"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Vanilla Antigravity Agent (Trial 9 - Repair)",
+      "trial": 9,
+      "archetype_id": "axioma_repair",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_repair",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Repair",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "vanilla_repair_trial9",
+          "transcript_uri": ""
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_repair",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 191.46323204040527,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[SMOKE-TEST] Starting Axioma-Repair Connection Pool verification...\nSTATUS: OK - Axioma-Repair connection pool operational\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 5,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "acquire_connection",
+                "close_pool",
+                "diagnose_leak",
+                "health_check",
+                "purge_idle",
+                "release_connection"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "PoolConfig",
+                "PoolState",
+                "PoolStats",
+                "PooledConnection"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "BUSY",
+                "CLOSED",
+                "CLOSING",
+                "EXHAUSTED",
+                "READY"
+              ],
+              "matched_states": [
+                "BUSY",
+                "CLOSED",
+                "CLOSING",
+                "EXHAUSTED",
+                "READY"
+              ],
+              "guard_conditionals_found": 64
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 22,
+              "graceful_responses": 22,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'contention_burst' gracefully handled (HTTP 404)",
+                "Probe 'simulated_client_crash_leak' gracefully handled (HTTP 404)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 5,
+              "ast_nodes_scanned": 7252,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 8.35,
+            "weighted_score": 1.67,
+            "details": {
+              "total_loc": 1065,
+              "target_loc": 350,
+              "total_raw_lines": 1390,
+              "total_bytes": 49292,
+              "estimated_bPE_spend": 13771,
+              "loc_factor": 0.46,
+              "capabilities_delivered": 10
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 81.67,
+        "composite_score": 81.67,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 316.65992736816406,
+        "timestamp": 1794364236.967565,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_repair"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh (Trial 9 - Repair)",
+      "trial": 9,
+      "archetype_id": "axioma_repair",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_repair",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect (Brain)",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "657ffbab-3c3c-4b77-b619-873ef1e0a73f",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/657ffbab-3c3c-4b77-b619-873ef1e0a73f/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer (Muscle)",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "d3efaaf7-ab86-4dcf-bfe7-9fe309c61f9f",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/d3efaaf7-ab86-4dcf-bfe7-9fe309c61f9f/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer (Muscle)",
+          "cognitive_role": "QA_ENGINEER",
+          "conversation_id": "e533e774-6b4e-46fb-822e-4aeeb4101097",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/e533e774-6b4e-46fb-822e-4aeeb4101097/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_repair",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 76.63488388061523,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OK - Axioma-Repair connection pool operational\n[AXIOMA-REPAIR] Operational status: ONLINE. Smoke test PASSED.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 6,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "acquire_connection",
+                "close_pool",
+                "diagnose_leak",
+                "health_check",
+                "purge_idle",
+                "release_connection"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "PoolConfig",
+                "PoolState",
+                "PoolStats",
+                "PooledConnection"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "BUSY",
+                "CLOSED",
+                "CLOSING",
+                "EXHAUSTED",
+                "READY"
+              ],
+              "matched_states": [
+                "BUSY",
+                "CLOSED",
+                "CLOSING",
+                "EXHAUSTED",
+                "READY"
+              ],
+              "guard_conditionals_found": 39
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 22,
+              "graceful_responses": 22,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'contention_burst' gracefully handled (HTTP 200)",
+                "Probe 'simulated_client_crash_leak' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 6,
+              "ast_nodes_scanned": 4767,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 29.31,
+            "weighted_score": 5.86,
+            "details": {
+              "total_loc": 571,
+              "target_loc": 350,
+              "total_raw_lines": 679,
+              "total_bytes": 27886,
+              "estimated_bPE_spend": 8138,
+              "loc_factor": 0.95,
+              "capabilities_delivered": 10
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 85.86,
+        "composite_score": 85.86,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 105.59582710266113,
+        "timestamp": 1794364237.0734878,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_repair"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Vanilla Antigravity Agent (Trial 10 - Raft R2)",
+      "trial": 10,
+      "archetype_id": "axioma_raft",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_raft_r2",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Raft R2",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "vanilla_raft_r2_trial10",
+          "transcript_uri": ""
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_raft",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 1548.3479499816895,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[SMOKE-TEST] Starting Vanilla Raft Consensus Coordinator verification...\n  [1/6] 3-Node Term Election & Leader Lease: OK (Leader: node_1, Term: 1)\n  [2/6] Leader Lease Guard Invariant: OK (Follower protected from disruptive vote)\n  [3/6] Heartbeat-Driven Log Replication & State Consistency: OK\n  [4/6] Simulated Network Drop & Partition Recovery: OK\n  [5/6] Atomic Multi-Step Rollback Verification: OK (Purged 2 conflicting entries)\n  [6/6] Hermetic SocketPair IPC & REST API: OK\n[VANILLA-RAFT] Oper",
+          "stderr_excerpt": "2026-11-11 10:45:47,986 [INFO] [ConsensusCoordinator] [COORDINATOR] Starting cluster with nodes: ['node_1', 'node_2', 'node_3']\n2026-11-11 10:45:47,986 [INFO] [RaftNode] [node_1] Started in term 0 as FOLLOWER.\n2026-11-11 10:45:47,986 [INFO] [RaftNode] [node_2] Started in term 0 as FOLLOWER.\n2026-11-11 10:45:47,986 [INFO] [RaftNode] [node_3] Started in term 0 as FOLLOWER.\n2026-11-11 10:45:48,097 [INFO] [RaftNode] [node_1] Started election for term 1.\n2026-11-11 10:45:48,097 [INFO] [RaftNode] [nod"
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 22.86,
+            "weighted_score": 5.71,
+            "details": {
+              "py_files_scanned": 10,
+              "verb_coverage_pct": 0.0,
+              "endpoint_coverage_pct": 42.9,
+              "model_coverage_pct": 28.6,
+              "found_verbs": [],
+              "missing_verbs": [
+                "append_entries",
+                "commit_entry",
+                "health_check",
+                "heartbeat",
+                "replicate_log",
+                "request_vote",
+                "rollback_entry",
+                "step_down"
+              ],
+              "found_endpoints": [
+                "GET /health",
+                "GET /status",
+                "POST /propose"
+              ],
+              "missing_endpoints": [
+                "POST /vote",
+                "POST /append",
+                "GET /log",
+                "GET /stats"
+              ],
+              "found_models": [
+                "LogEntry",
+                "RaftNode"
+              ],
+              "missing_models": [
+                "AppendEntriesRequest",
+                "AppendEntriesResponse",
+                "RaftRole",
+                "VoteRequest",
+                "VoteResponse"
+              ]
+            },
+            "passed": false
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 87.5,
+            "weighted_score": 17.5,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "CANDIDATE",
+                "FOLLOWER",
+                "LEADER",
+                "STEPPED_DOWN"
+              ],
+              "matched_states": [
+                "CANDIDATE",
+                "FOLLOWER",
+                "LEADER"
+              ],
+              "guard_conditionals_found": 105
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 50.0,
+            "weighted_score": 7.5,
+            "details": {
+              "error": "No BaseHTTPRequestHandler subclass located in application"
+            },
+            "passed": false
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 10,
+              "ast_nodes_scanned": 12000,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 4.94,
+            "weighted_score": 0.99,
+            "details": {
+              "total_loc": 1767,
+              "target_loc": 450,
+              "total_raw_lines": 2191,
+              "total_bytes": 83496,
+              "estimated_bPE_spend": 22772,
+              "loc_factor": 0.3,
+              "capabilities_delivered": 15
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 51.7,
+        "composite_score": 51.7,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 1710.7279300689697,
+        "timestamp": 1794419149.612917,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_raft_r2"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh (Trial 10 - Raft R2)",
+      "trial": 10,
+      "archetype_id": "axioma_raft",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_raft_r2",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect (Brain)",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "99113a1c-7123-4e90-886a-8a3bbec671cb",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/99113a1c-7123-4e90-886a-8a3bbec671cb/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer (Muscle)",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "82413878-f8bd-4d69-ba89-5ce2e4199518",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/82413878-f8bd-4d69-ba89-5ce2e4199518/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer (Muscle)",
+          "cognitive_role": "QA_ENGINEER",
+          "conversation_id": "1d301fec-df29-45c2-bf8f-8e8f2a57fe21",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/1d301fec-df29-45c2-bf8f-8e8f2a57fe21/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_raft",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 76.64680480957031,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OK - axioma_raft_r2 consensus operational\n[AXIOMA-RAFT] Operational status: ONLINE. Smoke test PASSED.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": true,
+              "subagents_evaluated": 3,
+              "violations": [],
+              "log": [
+                "Subagent count requirement met: 3 distinct roles",
+                "Context separation verified: 3 distinct conversation contexts",
+                "Anti-collusion verified: Builder (82413878) != QA (1d301fec)",
+                "Transcript grounded: Domain Ontologist & Systems Architect (Brain) (99113a1c... - 48636 bytes)",
+                "Transcript grounded: Core Engine Synthesizer (Muscle) (82413878... - 173274 bytes)",
+                "Transcript grounded: Adversarial Byzantine QA Engineer (Muscle) (1d301fec... - 74927 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "99113a1c-7123-4e90-886a-8a3bbec671cb",
+                  "role": "Domain Ontologist & Systems Architect (Brain)",
+                  "found": true,
+                  "bytes": 48636
+                },
+                {
+                  "conversation_id": "82413878-f8bd-4d69-ba89-5ce2e4199518",
+                  "role": "Core Engine Synthesizer (Muscle)",
+                  "found": true,
+                  "bytes": 173274
+                },
+                {
+                  "conversation_id": "1d301fec-df29-45c2-bf8f-8e8f2a57fe21",
+                  "role": "Adversarial Byzantine QA Engineer (Muscle)",
+                  "found": true,
+                  "bytes": 74927
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 7,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "append_entries",
+                "commit_entry",
+                "health_check",
+                "heartbeat",
+                "replicate_log",
+                "request_vote",
+                "rollback_entry",
+                "step_down"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [
+                "GET /health",
+                "GET /status",
+                "POST /vote",
+                "POST /append",
+                "POST /propose",
+                "GET /log",
+                "GET /stats"
+              ],
+              "missing_endpoints": [],
+              "found_models": [
+                "AppendEntriesRequest",
+                "AppendEntriesResponse",
+                "LogEntry",
+                "RaftNode",
+                "RaftRole",
+                "VoteRequest",
+                "VoteResponse"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "total_transitions_tested": 6,
+              "valid_passed": 6,
+              "invalid_rejected": 0,
+              "defects_detected": 0,
+              "log": [
+                "Valid transition 'election_timeout' succeeded: FOLLOWER -> CANDIDATE",
+                "Valid transition 'receive_quorum_votes' succeeded: CANDIDATE -> LEADER",
+                "Valid transition 'discover_higher_term' succeeded: CANDIDATE -> FOLLOWER",
+                "Valid transition 'discover_higher_term' succeeded: LEADER -> FOLLOWER",
+                "Valid transition 'lease_expired' succeeded: LEADER -> STEPPED_DOWN",
+                "Valid transition 'reset' succeeded: STEPPED_DOWN -> FOLLOWER"
+              ]
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 24,
+              "graceful_responses": 24,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'split_brain_simulated_drop' gracefully handled (HTTP 400)",
+                "Probe 'stale_term_heartbeat' gracefully handled (HTTP 400)",
+                "Probe 'corrupted_log_index' gracefully handled (HTTP 400)",
+                "Probe 'burst_concurrent_proposals' gracefully handled (HTTP 404)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 7,
+              "ast_nodes_scanned": 4761,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 52.21,
+            "weighted_score": 10.44,
+            "details": {
+              "total_loc": 505,
+              "target_loc": 450,
+              "total_raw_lines": 606,
+              "total_bytes": 24258,
+              "estimated_bPE_spend": 7183,
+              "loc_factor": 1.0,
+              "capabilities_delivered": 15
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 90.44,
+        "composite_score": 90.44,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 173.33602905273438,
+        "timestamp": 1794419149.877998,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_raft_r2"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Vanilla Antigravity Agent (Trial 11 - Micro R2)",
+      "trial": 11,
+      "archetype_id": "axioma_micro",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_micro_r2",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Micro R2",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "vanilla_micro_r2_trial11",
+          "transcript_uri": ""
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_micro",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 48.665761947631836,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OPERATIONAL - Axioma-Micro NDJSON Log Filter healthy (port: 8088)\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 3,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "emit_summary",
+                "handle_sigint",
+                "parse_ndjson",
+                "process_line",
+                "update_percentiles"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "LogEntry",
+                "PercentileTracker",
+                "SummaryReport"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "COMPLETED",
+                "EMITTING",
+                "IDLE",
+                "STREAMING"
+              ],
+              "matched_states": [
+                "COMPLETED",
+                "EMITTING",
+                "IDLE",
+                "STREAMING"
+              ],
+              "guard_conditionals_found": 18
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 50.0,
+            "weighted_score": 7.5,
+            "details": {
+              "error": "No BaseHTTPRequestHandler subclass located in application"
+            },
+            "passed": false
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 50.0,
+            "weighted_score": 10.0,
+            "details": {
+              "files_scanned": 3,
+              "ast_nodes_scanned": 2632,
+              "violations_count": 2,
+              "violations": [
+                {
+                  "file": "run.py",
+                  "rule_id": "HERM-002",
+                  "line": 9,
+                  "desc": "Forbidden runtime sys.path mutation 'sys.path.insert()' detected.",
+                  "culprit": "sys.path.insert"
+                },
+                {
+                  "file": "tests/test_logfilter.py",
+                  "rule_id": "HERM-002",
+                  "line": 14,
+                  "desc": "Forbidden runtime sys.path mutation 'sys.path.insert()' detected.",
+                  "culprit": "sys.path.insert"
+                }
+              ]
+            },
+            "passed": false
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 30.82,
+            "weighted_score": 6.16,
+            "details": {
+              "total_loc": 414,
+              "target_loc": 120,
+              "total_raw_lines": 518,
+              "total_bytes": 15852,
+              "estimated_bPE_spend": 4971,
+              "loc_factor": 0.77,
+              "capabilities_delivered": 8
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 68.66,
+        "composite_score": 68.66,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 133.11004638671875,
+        "timestamp": 1794419150.103744,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_micro_r2"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh (Trial 11 - Micro R2)",
+      "trial": 11,
+      "archetype_id": "axioma_micro",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_micro_r2",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect (Brain)",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "9f02e5c9-3e65-4e25-b14d-e0757f689b73",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/9f02e5c9-3e65-4e25-b14d-e0757f689b73/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer (Muscle)",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "a0332fe0-0c42-48a3-bce4-f442ccc00d8c",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/a0332fe0-0c42-48a3-bce4-f442ccc00d8c/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer (Muscle)",
+          "cognitive_role": "QA_ENGINEER",
+          "conversation_id": "bffc3baf-42ec-4380-8c0a-5ecc6f52074a",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/bffc3baf-42ec-4380-8c0a-5ecc6f52074a/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_micro",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 59.6308708190918,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OK - axioma_micro_r2 streaming log filter operational\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": true,
+              "subagents_evaluated": 3,
+              "violations": [],
+              "log": [
+                "Subagent count requirement met: 3 distinct roles",
+                "Context separation verified: 3 distinct conversation contexts",
+                "Anti-collusion verified: Builder (a0332fe0) != QA (bffc3baf)",
+                "Transcript grounded: Domain Ontologist & Systems Architect (Brain) (9f02e5c9... - 24225 bytes)",
+                "Transcript grounded: Core Engine Synthesizer (Muscle) (a0332fe0... - 141866 bytes)",
+                "Transcript grounded: Adversarial Byzantine QA Engineer (Muscle) (bffc3baf... - 69662 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "9f02e5c9-3e65-4e25-b14d-e0757f689b73",
+                  "role": "Domain Ontologist & Systems Architect (Brain)",
+                  "found": true,
+                  "bytes": 24225
+                },
+                {
+                  "conversation_id": "a0332fe0-0c42-48a3-bce4-f442ccc00d8c",
+                  "role": "Core Engine Synthesizer (Muscle)",
+                  "found": true,
+                  "bytes": 141866
+                },
+                {
+                  "conversation_id": "bffc3baf-42ec-4380-8c0a-5ecc6f52074a",
+                  "role": "Adversarial Byzantine QA Engineer (Muscle)",
+                  "found": true,
+                  "bytes": 69662
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 5,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "emit_summary",
+                "handle_sigint",
+                "parse_ndjson",
+                "process_line",
+                "update_percentiles"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "LogEntry",
+                "PercentileTracker",
+                "SummaryReport"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "total_transitions_tested": 3,
+              "valid_passed": 3,
+              "invalid_rejected": 0,
+              "defects_detected": 0,
+              "log": [
+                "Valid transition 'start_reading' succeeded: IDLE -> STREAMING",
+                "Valid transition 'eof_or_sigint' succeeded: STREAMING -> EMITTING",
+                "Valid transition 'finish' succeeded: EMITTING -> COMPLETED"
+              ]
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 23,
+              "graceful_responses": 23,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'malformed_ndjson_line' gracefully handled (HTTP 200)",
+                "Probe 'non_numeric_latency' gracefully handled (HTTP 200)",
+                "Probe 'empty_stream_eof' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 5,
+              "ast_nodes_scanned": 2055,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 59.17,
+            "weighted_score": 11.83,
+            "details": {
+              "total_loc": 180,
+              "target_loc": 120,
+              "total_raw_lines": 210,
+              "total_bytes": 9804,
+              "estimated_bPE_spend": 3380,
+              "loc_factor": 1.0,
+              "capabilities_delivered": 8
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 91.83,
+        "composite_score": 91.83,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 139.33205604553223,
+        "timestamp": 1794419150.333606,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_micro_r2"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Vanilla Antigravity Agent (Trial 12 - RESP R2)",
+      "trial": 12,
+      "archetype_id": "axioma_resp",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_resp_r2",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent RESP R2",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "vanilla_resp_r2_trial12",
+          "transcript_uri": ""
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_resp",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 77.34179496765137,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[vanilla_resp_r2] Starting smoke verification...\n[vanilla_resp_r2] Operational status confirmation: Redis RESP2 daemon verified successfully.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 65.0,
+            "weighted_score": 16.25,
+            "details": {
+              "py_files_scanned": 10,
+              "verb_coverage_pct": 62.5,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 0.0,
+              "found_verbs": [
+                "cmd_del",
+                "cmd_get",
+                "cmd_incr",
+                "cmd_ping",
+                "cmd_set"
+              ],
+              "missing_verbs": [
+                "handle_command",
+                "parse_resp",
+                "serialize_resp"
+              ],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [],
+              "missing_models": [
+                "RedisCommand",
+                "RespMessage",
+                "RespParserState",
+                "RespType"
+              ]
+            },
+            "passed": false
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 50.0,
+            "weighted_score": 10.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "CONNECTED",
+                "DRAINING",
+                "EXECUTING",
+                "PARSING",
+                "SERIALIZING"
+              ],
+              "matched_states": [],
+              "guard_conditionals_found": 90
+            },
+            "passed": false
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 50.0,
+            "weighted_score": 7.5,
+            "details": {
+              "error": "No BaseHTTPRequestHandler subclass located in application"
+            },
+            "passed": false
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 10,
+              "ast_nodes_scanned": 6877,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 13.19,
+            "weighted_score": 2.64,
+            "details": {
+              "total_loc": 931,
+              "target_loc": 300,
+              "total_raw_lines": 1236,
+              "total_bytes": 41816,
+              "estimated_bPE_spend": 11804,
+              "loc_factor": 0.52,
+              "capabilities_delivered": 12
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 56.39,
+        "composite_score": 56.39,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 177.6440143585205,
+        "timestamp": 1794419150.6000981,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_resp_r2"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh (Trial 12 - RESP R2)",
+      "trial": 12,
+      "archetype_id": "axioma_resp",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_resp_r2",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect (Brain)",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "980cff64-6eea-4557-a8b0-6eaa133a3f6a",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/980cff64-6eea-4557-a8b0-6eaa133a3f6a/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer (Muscle)",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "d4441e3f-56ca-4b6b-9a7f-00c47b237c45",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/d4441e3f-56ca-4b6b-9a7f-00c47b237c45/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer (Muscle)",
+          "cognitive_role": "QA_ENGINEER",
+          "conversation_id": "4d065b1f-c8ea-4492-a1e3-531f225b74ad",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/4d065b1f-c8ea-4492-a1e3-531f225b74ad/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_resp",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 81.01606369018555,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OK - axioma_resp_r2 operational\nSTATUS: OK - axioma_resp wire protocol server operational\n[AXIOMA-RESP] Operational status: ONLINE. Smoke test PASSED.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": true,
+              "subagents_evaluated": 3,
+              "violations": [],
+              "log": [
+                "Subagent count requirement met: 3 distinct roles",
+                "Context separation verified: 3 distinct conversation contexts",
+                "Anti-collusion verified: Builder (d4441e3f) != QA (4d065b1f)",
+                "Transcript grounded: Domain Ontologist & Systems Architect (Brain) (980cff64... - 134866 bytes)",
+                "Transcript grounded: Core Engine Synthesizer (Muscle) (d4441e3f... - 134876 bytes)",
+                "Transcript grounded: Adversarial Byzantine QA Engineer (Muscle) (4d065b1f... - 84150 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "980cff64-6eea-4557-a8b0-6eaa133a3f6a",
+                  "role": "Domain Ontologist & Systems Architect (Brain)",
+                  "found": true,
+                  "bytes": 134866
+                },
+                {
+                  "conversation_id": "d4441e3f-56ca-4b6b-9a7f-00c47b237c45",
+                  "role": "Core Engine Synthesizer (Muscle)",
+                  "found": true,
+                  "bytes": 134876
+                },
+                {
+                  "conversation_id": "4d065b1f-c8ea-4492-a1e3-531f225b74ad",
+                  "role": "Adversarial Byzantine QA Engineer (Muscle)",
+                  "found": true,
+                  "bytes": 84150
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 6,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "cmd_del",
+                "cmd_get",
+                "cmd_incr",
+                "cmd_ping",
+                "cmd_set",
+                "handle_command",
+                "parse_resp",
+                "serialize_resp"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "RedisCommand",
+                "RespMessage",
+                "RespParserState",
+                "RespType"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "total_transitions_tested": 5,
+              "valid_passed": 5,
+              "invalid_rejected": 0,
+              "defects_detected": 0,
+              "log": [
+                "Valid transition 'bytes_received' succeeded: CONNECTED -> PARSING",
+                "Valid transition 'frame_complete' succeeded: PARSING -> EXECUTING",
+                "Valid transition 'command_done' succeeded: EXECUTING -> SERIALIZING",
+                "Valid transition 'send_bytes' succeeded: SERIALIZING -> DRAINING",
+                "Valid transition 'drain_complete' succeeded: DRAINING -> PARSING"
+              ]
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 23,
+              "graceful_responses": 23,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'partial_chunk_framing' gracefully handled (HTTP 200)",
+                "Probe 'unknown_command_error' gracefully handled (HTTP 200)",
+                "Probe 'corrupted_array_length' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 6,
+              "ast_nodes_scanned": 4075,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 51.74,
+            "weighted_score": 10.35,
+            "details": {
+              "total_loc": 291,
+              "target_loc": 300,
+              "total_raw_lines": 321,
+              "total_bytes": 18996,
+              "estimated_bPE_spend": 5798,
+              "loc_factor": 1.0,
+              "capabilities_delivered": 12
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 90.35,
+        "composite_score": 90.35,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 164.6709442138672,
+        "timestamp": 1794419150.853476,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_resp_r2"
+      }
+    },
+    {
+      "system_id": "antigravity_vanilla",
+      "system_name": "Vanilla Antigravity Agent (Trial 13 - Repair R2)",
+      "trial": 13,
+      "archetype_id": "axioma_repair",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_repair_r2",
+      "subagents": [
+        {
+          "role": "Vanilla Developer Agent Repair R2",
+          "cognitive_role": "DEVELOPER",
+          "conversation_id": "vanilla_repair_r2_trial13",
+          "transcript_uri": ""
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_repair",
+        "ablation_mode": "flat_prompt_llm",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 191.06721878051758,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "[SMOKE-TEST] Starting Axioma-Repair Connection Pool verification...\nSTATUS: OK - Axioma-Repair connection pool operational\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 5,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "acquire_connection",
+                "close_pool",
+                "diagnose_leak",
+                "health_check",
+                "purge_idle",
+                "release_connection"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "PoolConfig",
+                "PoolState",
+                "PoolStats",
+                "PooledConnection"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "evaluation_mode": "static_ast_fallback",
+              "expected_states": [
+                "BUSY",
+                "CLOSED",
+                "CLOSING",
+                "EXHAUSTED",
+                "READY"
+              ],
+              "matched_states": [
+                "BUSY",
+                "CLOSED",
+                "CLOSING",
+                "EXHAUSTED",
+                "READY"
+              ],
+              "guard_conditionals_found": 65
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 22,
+              "graceful_responses": 22,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'contention_burst' gracefully handled (HTTP 404)",
+                "Probe 'simulated_client_crash_leak' gracefully handled (HTTP 404)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 50.0,
+            "weighted_score": 10.0,
+            "details": {
+              "files_scanned": 5,
+              "ast_nodes_scanned": 7317,
+              "violations_count": 2,
+              "violations": [
+                {
+                  "file": "run.py",
+                  "rule_id": "HERM-002",
+                  "line": 27,
+                  "desc": "Forbidden runtime sys.path mutation 'sys.path.insert()' detected.",
+                  "culprit": "sys.path.insert"
+                },
+                {
+                  "file": "tests/test_repair.py",
+                  "rule_id": "HERM-002",
+                  "line": 32,
+                  "desc": "Forbidden runtime sys.path mutation 'sys.path.insert()' detected.",
+                  "culprit": "sys.path.insert"
+                }
+              ]
+            },
+            "passed": false
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 8.2,
+            "weighted_score": 1.64,
+            "details": {
+              "total_loc": 1071,
+              "target_loc": 350,
+              "total_raw_lines": 1400,
+              "total_bytes": 49569,
+              "estimated_bPE_spend": 13844,
+              "loc_factor": 0.45,
+              "capabilities_delivered": 10
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 71.64,
+        "composite_score": 71.64,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 299.846887588501,
+        "timestamp": 1794419151.241846,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_repair_r2"
+      }
+    },
+    {
+      "system_id": "meta_axioma_causal_mesh",
+      "system_name": "Meta-Axioma Causal Multi-Agent Mesh (Trial 13 - Repair R2)",
+      "trial": 13,
+      "archetype_id": "axioma_repair",
+      "target_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_repair_r2",
+      "subagents": [
+        {
+          "role": "Domain Ontologist & Systems Architect (Brain)",
+          "cognitive_role": "ONTOLOGIST",
+          "conversation_id": "dd63fe94-9aad-4691-a773-9637d5b1da34",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/dd63fe94-9aad-4691-a773-9637d5b1da34/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Core Engine Synthesizer (Muscle)",
+          "cognitive_role": "SYNTHESIZER",
+          "conversation_id": "056ce911-c651-4fc5-8f4c-c66a1f71d2bb",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/056ce911-c651-4fc5-8f4c-c66a1f71d2bb/.system_generated/logs/transcript.jsonl"
+        },
+        {
+          "role": "Adversarial Byzantine QA Engineer (Muscle)",
+          "cognitive_role": "QA_ENGINEER",
+          "conversation_id": "02c71d52-affc-4e71-9910-8dd661804b03",
+          "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/02c71d52-affc-4e71-9910-8dd661804b03/.system_generated/logs/transcript.jsonl"
+        }
+      ],
+      "scorecard": {
+        "archetype_id": "axioma_repair",
+        "ablation_mode": "full_g4b",
+        "tier0_liveness": {
+          "passed": true,
+          "startup_time_ms": 81.72893524169922,
+          "clean_shutdown": true,
+          "port_bound": null,
+          "error_message": null,
+          "exit_code": 0,
+          "stdout_excerpt": "STATUS: OK - axioma_repair_r2 pool operational\n[AXIOMA-REPAIR] Operational status: ONLINE. Smoke test PASSED.\n",
+          "stderr_excerpt": ""
+        },
+        "tier0_multiplier": 1.0,
+        "pass_results": {
+          "provenance": {
+            "pass_name": "provenance",
+            "weight": 0.0,
+            "raw_score": 100.0,
+            "weighted_score": 0.0,
+            "details": {
+              "is_multi_agent": true,
+              "subagents_evaluated": 3,
+              "violations": [],
+              "log": [
+                "Subagent count requirement met: 3 distinct roles",
+                "Context separation verified: 3 distinct conversation contexts",
+                "Anti-collusion verified: Builder (056ce911) != QA (02c71d52)",
+                "Transcript grounded: Domain Ontologist & Systems Architect (Brain) (dd63fe94... - 60065 bytes)",
+                "Transcript grounded: Core Engine Synthesizer (Muscle) (056ce911... - 123084 bytes)",
+                "Transcript grounded: Adversarial Byzantine QA Engineer (Muscle) (02c71d52... - 82032 bytes)"
+              ],
+              "transcript_checks": [
+                {
+                  "conversation_id": "dd63fe94-9aad-4691-a773-9637d5b1da34",
+                  "role": "Domain Ontologist & Systems Architect (Brain)",
+                  "found": true,
+                  "bytes": 60065
+                },
+                {
+                  "conversation_id": "056ce911-c651-4fc5-8f4c-c66a1f71d2bb",
+                  "role": "Core Engine Synthesizer (Muscle)",
+                  "found": true,
+                  "bytes": 123084
+                },
+                {
+                  "conversation_id": "02c71d52-affc-4e71-9910-8dd661804b03",
+                  "role": "Adversarial Byzantine QA Engineer (Muscle)",
+                  "found": true,
+                  "bytes": 82032
+                }
+              ]
+            },
+            "passed": true
+          },
+          "spec_fidelity": {
+            "pass_name": "spec_fidelity",
+            "weight": 0.25,
+            "raw_score": 100.0,
+            "weighted_score": 25.0,
+            "details": {
+              "py_files_scanned": 6,
+              "verb_coverage_pct": 100.0,
+              "endpoint_coverage_pct": 100.0,
+              "model_coverage_pct": 100.0,
+              "found_verbs": [
+                "acquire_connection",
+                "close_pool",
+                "diagnose_leak",
+                "health_check",
+                "purge_idle",
+                "release_connection"
+              ],
+              "missing_verbs": [],
+              "found_endpoints": [],
+              "missing_endpoints": [],
+              "found_models": [
+                "PoolConfig",
+                "PoolState",
+                "PoolStats",
+                "PooledConnection"
+              ],
+              "missing_models": []
+            },
+            "passed": true
+          },
+          "statechart": {
+            "pass_name": "statechart",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "total_transitions_tested": 5,
+              "valid_passed": 5,
+              "invalid_rejected": 0,
+              "defects_detected": 0,
+              "log": [
+                "Valid transition 'acquire' succeeded: READY -> BUSY",
+                "Valid transition 'pool_full' succeeded: BUSY -> EXHAUSTED",
+                "Valid transition 'release' succeeded: EXHAUSTED -> READY",
+                "Valid transition 'close' succeeded: READY -> CLOSING",
+                "Valid transition 'drain_complete' succeeded: CLOSING -> CLOSED"
+              ]
+            },
+            "passed": true
+          },
+          "chaos": {
+            "pass_name": "chaos",
+            "weight": 0.15,
+            "raw_score": 100.0,
+            "weighted_score": 15.0,
+            "details": {
+              "total_probes": 22,
+              "graceful_responses": 22,
+              "unhandled_crashes": 0,
+              "log": [
+                "Probe 'contention_burst' gracefully handled (HTTP 200)",
+                "Probe 'simulated_client_crash_leak' gracefully handled (HTTP 200)",
+                "Burst concurrency test survived 20/20 requests"
+              ]
+            },
+            "passed": true
+          },
+          "hermetic": {
+            "pass_name": "hermetic",
+            "weight": 0.2,
+            "raw_score": 100.0,
+            "weighted_score": 20.0,
+            "details": {
+              "files_scanned": 6,
+              "ast_nodes_scanned": 3723,
+              "violations_count": 0,
+              "violations": []
+            },
+            "passed": true
+          },
+          "efficiency": {
+            "pass_name": "efficiency",
+            "weight": 0.2,
+            "raw_score": 44.37,
+            "weighted_score": 8.87,
+            "details": {
+              "total_loc": 327,
+              "target_loc": 350,
+              "total_raw_lines": 369,
+              "total_bytes": 18372,
+              "estimated_bPE_spend": 5634,
+              "loc_factor": 1.0,
+              "capabilities_delivered": 10
+            },
+            "passed": false
+          }
+        },
+        "graded_score": 88.87,
+        "composite_score": 88.87,
+        "provenance_multiplier": 1.0,
+        "execution_time_ms": 172.2092628479004,
+        "timestamp": 1794419151.5016809,
+        "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_repair_r2"
+      }
+    }
+  ]
+}

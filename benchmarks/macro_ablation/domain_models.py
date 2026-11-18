@@ -109,6 +109,7 @@ class MacroScorecard:
     pass_results: Dict[str, EvaluationPassResult]
     graded_score: float
     composite_score: float
+    provenance_multiplier: float = 1.0  # 1.0 if passed or not required else 0.0
     execution_time_ms: float = 0.0
     timestamp: float = field(default_factory=time.time)
     app_path: Optional[str] = None

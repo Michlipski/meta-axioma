@@ -1,0 +1,618 @@
+{
+  "report_id": "rpt_stage1_pilot_2x2_final",
+  "timestamp": 1794181462,
+  "execution_type": "GENUINE_LIVE_SUBAGENT_EXECUTION_2X2",
+  "archetype": "axioma_kv",
+  "trials_per_system": 2,
+  "subagents": {
+    "vanilla_trial1": {
+      "conversation_id": "e381a591-c49d-466d-917e-4dc0b212f301",
+      "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/e381a591-c49d-466d-917e-4dc0b212f301/.system_generated/logs/transcript.jsonl",
+      "app_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial1",
+      "composite_score": 62.51
+    },
+    "axioma_trial1": {
+      "conversation_id": "3f97a604-f804-42c5-a008-af137a4d59a7",
+      "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/3f97a604-f804-42c5-a008-af137a4d59a7/.system_generated/logs/transcript.jsonl",
+      "app_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_trial1",
+      "composite_score": 74.5
+    },
+    "vanilla_trial2": {
+      "conversation_id": "fc921753-8f6d-4c20-abe0-c16d14b0aa19",
+      "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/fc921753-8f6d-4c20-abe0-c16d14b0aa19/.system_generated/logs/transcript.jsonl",
+      "app_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial2",
+      "composite_score": 67.64
+    },
+    "axioma_trial2": {
+      "conversation_id": "30239feb-0bac-4841-884d-2ac8a84b4d1c",
+      "transcript_uri": "file:///Users/michaellipski/.gemini/antigravity/brain/30239feb-0bac-4841-884d-2ac8a84b4d1c/.system_generated/logs/transcript.jsonl",
+      "app_dir": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_trial2",
+      "composite_score": 74.52
+    }
+  },
+  "summary": {
+    "antigravity_vanilla": {
+      "runs": 2,
+      "scores": [
+        62.51,
+        67.64
+      ],
+      "mean": 65.08,
+      "min": 62.51,
+      "max": 67.64,
+      "variance_delta": 5.13,
+      "liveness_pass_rate": "2/2 (100%)"
+    },
+    "meta_axioma_g4b": {
+      "runs": 2,
+      "scores": [
+        74.5,
+        74.52
+      ],
+      "mean": 74.51,
+      "min": 74.5,
+      "max": 74.52,
+      "variance_delta": 0.02,
+      "liveness_pass_rate": "2/2 (100%)"
+    },
+    "system_delta_mean": 9.43
+  },
+  "scorecards": [
+    {
+      "label": "Vanilla Trial 1",
+      "archetype_id": "axioma_kv",
+      "ablation_mode": "flat_prompt_llm",
+      "tier0_liveness": {
+        "passed": true,
+        "startup_time_ms": 381.9131851196289,
+        "clean_shutdown": true,
+        "port_bound": null,
+        "error_message": null,
+        "exit_code": 0,
+        "stdout_excerpt": "[SMOKE-TEST] Starting KeyValueStorageDaemon verification...\n[STATUS: OK] KeyValueStorageDaemon smoke test passed successfully.\n  - Direct Key-Value Storage: OK\n  - Multi-Key Atomic Transactions: OK\n  - TTL Eviction: OK\n  - WAL Durability & Crash Recovery: OK\n",
+        "stderr_excerpt": ""
+      },
+      "tier0_multiplier": 1.0,
+      "pass_results": {
+        "spec_fidelity": {
+          "pass_name": "spec_fidelity",
+          "weight": 0.25,
+          "raw_score": 61.67,
+          "weighted_score": 15.42,
+          "details": {
+            "py_files_scanned": 7,
+            "verb_coverage_pct": 66.7,
+            "endpoint_coverage_pct": 87.5,
+            "model_coverage_pct": 0.0,
+            "found_verbs": [
+              "begin_transaction",
+              "commit_transaction",
+              "delete",
+              "get",
+              "rollback_transaction",
+              "set"
+            ],
+            "missing_verbs": [
+              "evict_expired",
+              "health_check",
+              "recover_wal"
+            ],
+            "found_endpoints": [
+              "GET /healthz",
+              "GET /keys/{key}",
+              "POST /keys/{key}",
+              "DELETE /keys/{key}",
+              "POST /tx/begin",
+              "POST /tx/commit",
+              "POST /tx/rollback"
+            ],
+            "missing_endpoints": [
+              "GET /stats"
+            ],
+            "found_models": [],
+            "missing_models": [
+              "HealthStatus",
+              "KVStoreState",
+              "KeyValueEntry",
+              "TransactionContext",
+              "WALRecord"
+            ]
+          },
+          "passed": false
+        },
+        "statechart": {
+          "pass_name": "statechart",
+          "weight": 0.2,
+          "raw_score": 50.0,
+          "weighted_score": 10.0,
+          "details": {
+            "evaluation_mode": "static_ast_fallback",
+            "expected_states": [
+              "COMMITTED",
+              "IDLE",
+              "IN_TRANSACTION",
+              "ROLLED_BACK"
+            ],
+            "matched_states": [],
+            "guard_conditionals_found": 68
+          },
+          "passed": false
+        },
+        "chaos": {
+          "pass_name": "chaos",
+          "weight": 0.15,
+          "raw_score": 100.0,
+          "weighted_score": 15.0,
+          "details": {
+            "total_probes": 25,
+            "graceful_responses": 25,
+            "unhandled_crashes": 0,
+            "log": [
+              "Probe 'malformed_json' gracefully handled (HTTP 400)",
+              "Probe 'empty_key' gracefully handled (HTTP 200)",
+              "Probe 'invalid_tx_commit' gracefully handled (HTTP 404)",
+              "Probe 'negative_ttl' gracefully handled (HTTP 200)",
+              "Probe 'burst_write' gracefully handled (HTTP 200)",
+              "Burst concurrency test survived 20/20 requests"
+            ]
+          },
+          "passed": true
+        },
+        "hermetic": {
+          "pass_name": "hermetic",
+          "weight": 0.2,
+          "raw_score": 100.0,
+          "weighted_score": 20.0,
+          "details": {
+            "files_scanned": 7,
+            "ast_nodes_scanned": 7369,
+            "violations_count": 0,
+            "violations": []
+          },
+          "passed": true
+        },
+        "efficiency": {
+          "pass_name": "efficiency",
+          "weight": 0.2,
+          "raw_score": 10.47,
+          "weighted_score": 2.09,
+          "details": {
+            "total_loc": 1113,
+            "target_loc": 350,
+            "total_raw_lines": 1412,
+            "total_bytes": 49304,
+            "estimated_bPE_spend": 13774,
+            "loc_factor": 0.41,
+            "capabilities_delivered": 14
+          },
+          "passed": false
+        }
+      },
+      "graded_score": 62.51,
+      "composite_score": 62.51,
+      "execution_time_ms": 510.7109546661377,
+      "timestamp": 1794181461.6232588,
+      "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial1"
+    },
+    {
+      "label": "Axioma Trial 1",
+      "archetype_id": "axioma_kv",
+      "ablation_mode": "full_g4b",
+      "tier0_liveness": {
+        "passed": true,
+        "startup_time_ms": 78.3390998840332,
+        "clean_shutdown": true,
+        "port_bound": null,
+        "error_message": null,
+        "exit_code": 0,
+        "stdout_excerpt": "AXIOMA_HEALTH_OK\n",
+        "stderr_excerpt": ""
+      },
+      "tier0_multiplier": 1.0,
+      "pass_results": {
+        "spec_fidelity": {
+          "pass_name": "spec_fidelity",
+          "weight": 0.25,
+          "raw_score": 73.33,
+          "weighted_score": 18.33,
+          "details": {
+            "py_files_scanned": 7,
+            "verb_coverage_pct": 33.3,
+            "endpoint_coverage_pct": 100.0,
+            "model_coverage_pct": 100.0,
+            "found_verbs": [
+              "delete",
+              "get",
+              "set"
+            ],
+            "missing_verbs": [
+              "begin_transaction",
+              "commit_transaction",
+              "evict_expired",
+              "health_check",
+              "recover_wal",
+              "rollback_transaction"
+            ],
+            "found_endpoints": [
+              "GET /healthz",
+              "GET /keys/{key}",
+              "POST /keys/{key}",
+              "DELETE /keys/{key}",
+              "POST /tx/begin",
+              "POST /tx/commit",
+              "POST /tx/rollback",
+              "GET /stats"
+            ],
+            "missing_endpoints": [],
+            "found_models": [
+              "HealthStatus",
+              "KVStoreState",
+              "KeyValueEntry",
+              "TransactionContext",
+              "WALRecord"
+            ],
+            "missing_models": []
+          },
+          "passed": true
+        },
+        "statechart": {
+          "pass_name": "statechart",
+          "weight": 0.2,
+          "raw_score": 100.0,
+          "weighted_score": 20.0,
+          "details": {
+            "evaluation_mode": "static_ast_fallback",
+            "expected_states": [
+              "COMMITTED",
+              "IDLE",
+              "IN_TRANSACTION",
+              "ROLLED_BACK"
+            ],
+            "matched_states": [
+              "COMMITTED",
+              "IDLE",
+              "IN_TRANSACTION",
+              "ROLLED_BACK"
+            ],
+            "guard_conditionals_found": 87
+          },
+          "passed": true
+        },
+        "chaos": {
+          "pass_name": "chaos",
+          "weight": 0.15,
+          "raw_score": 100.0,
+          "weighted_score": 15.0,
+          "details": {
+            "total_probes": 25,
+            "graceful_responses": 25,
+            "unhandled_crashes": 0,
+            "log": [
+              "Probe 'malformed_json' gracefully handled (HTTP 400)",
+              "Probe 'empty_key' gracefully handled (HTTP 404)",
+              "Probe 'invalid_tx_commit' gracefully handled (HTTP 400)",
+              "Probe 'negative_ttl' gracefully handled (HTTP 200)",
+              "Probe 'burst_write' gracefully handled (HTTP 200)",
+              "Burst concurrency test survived 20/20 requests"
+            ]
+          },
+          "passed": true
+        },
+        "hermetic": {
+          "pass_name": "hermetic",
+          "weight": 0.2,
+          "raw_score": 100.0,
+          "weighted_score": 20.0,
+          "details": {
+            "files_scanned": 7,
+            "ast_nodes_scanned": 9130,
+            "violations_count": 0,
+            "violations": []
+          },
+          "passed": true
+        },
+        "efficiency": {
+          "pass_name": "efficiency",
+          "weight": 0.2,
+          "raw_score": 5.85,
+          "weighted_score": 1.17,
+          "details": {
+            "total_loc": 1462,
+            "target_loc": 350,
+            "total_raw_lines": 1840,
+            "total_bytes": 65171,
+            "estimated_bPE_spend": 17950,
+            "loc_factor": 0.3,
+            "capabilities_delivered": 14
+          },
+          "passed": false
+        }
+      },
+      "graded_score": 74.5,
+      "composite_score": 74.5,
+      "execution_time_ms": 129.54998016357422,
+      "timestamp": 1794181461.752814,
+      "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_trial1"
+    },
+    {
+      "label": "Vanilla Trial 2",
+      "archetype_id": "axioma_kv",
+      "ablation_mode": "flat_prompt_llm",
+      "tier0_liveness": {
+        "passed": true,
+        "startup_time_ms": 243.50285530090332,
+        "clean_shutdown": true,
+        "port_bound": null,
+        "error_message": null,
+        "exit_code": 0,
+        "stdout_excerpt": "[KV-DAEMON SMOKE TEST SUCCESSFUL] StorageEngine, WAL persistence, atomic transactions, TTL eviction, and REST HTTP interface are operational.\n",
+        "stderr_excerpt": "2026-11-08 16:44:21,818 [INFO] [kv_daemon.main] Executing comprehensive KV Daemon smoke test...\n2026-11-08 16:44:21,819 [INFO] [kv_daemon.main] Phase 1: Validating StorageEngine, WAL persistence, and Multi-Key Transactions\n2026-11-08 16:44:21,819 [INFO] [kv_daemon.engine] Recovery completed: 0 records processed, 0 keys restored, 0 expired keys evicted\n2026-11-08 16:44:21,976 [INFO] [kv_daemon.engine] Recovery completed: 6 records processed, 3 keys restored, 1 expired keys evicted\n2026-11-08 16:4"
+      },
+      "tier0_multiplier": 1.0,
+      "pass_results": {
+        "spec_fidelity": {
+          "pass_name": "spec_fidelity",
+          "weight": 0.25,
+          "raw_score": 65.67,
+          "weighted_score": 16.42,
+          "details": {
+            "py_files_scanned": 10,
+            "verb_coverage_pct": 66.7,
+            "endpoint_coverage_pct": 87.5,
+            "model_coverage_pct": 20.0,
+            "found_verbs": [
+              "begin_transaction",
+              "commit_transaction",
+              "delete",
+              "get",
+              "rollback_transaction",
+              "set"
+            ],
+            "missing_verbs": [
+              "evict_expired",
+              "health_check",
+              "recover_wal"
+            ],
+            "found_endpoints": [
+              "GET /healthz",
+              "GET /keys/{key}",
+              "POST /keys/{key}",
+              "DELETE /keys/{key}",
+              "POST /tx/begin",
+              "POST /tx/commit",
+              "POST /tx/rollback"
+            ],
+            "missing_endpoints": [
+              "GET /stats"
+            ],
+            "found_models": [
+              "WALRecord"
+            ],
+            "missing_models": [
+              "HealthStatus",
+              "KVStoreState",
+              "KeyValueEntry",
+              "TransactionContext"
+            ]
+          },
+          "passed": false
+        },
+        "statechart": {
+          "pass_name": "statechart",
+          "weight": 0.2,
+          "raw_score": 75.0,
+          "weighted_score": 15.0,
+          "details": {
+            "evaluation_mode": "static_ast_fallback",
+            "expected_states": [
+              "COMMITTED",
+              "IDLE",
+              "IN_TRANSACTION",
+              "ROLLED_BACK"
+            ],
+            "matched_states": [
+              "COMMITTED",
+              "ROLLED_BACK"
+            ],
+            "guard_conditionals_found": 91
+          },
+          "passed": true
+        },
+        "chaos": {
+          "pass_name": "chaos",
+          "weight": 0.15,
+          "raw_score": 100.0,
+          "weighted_score": 15.0,
+          "details": {
+            "total_probes": 25,
+            "graceful_responses": 25,
+            "unhandled_crashes": 0,
+            "log": [
+              "Probe 'malformed_json' gracefully handled (HTTP 400)",
+              "Probe 'empty_key' gracefully handled (HTTP 400)",
+              "Probe 'invalid_tx_commit' gracefully handled (HTTP 400)",
+              "Probe 'negative_ttl' gracefully handled (HTTP 200)",
+              "Probe 'burst_write' gracefully handled (HTTP 200)",
+              "Burst concurrency test survived 20/20 requests"
+            ]
+          },
+          "passed": true
+        },
+        "hermetic": {
+          "pass_name": "hermetic",
+          "weight": 0.2,
+          "raw_score": 100.0,
+          "weighted_score": 20.0,
+          "details": {
+            "files_scanned": 10,
+            "ast_nodes_scanned": 9989,
+            "violations_count": 0,
+            "violations": []
+          },
+          "passed": true
+        },
+        "efficiency": {
+          "pass_name": "efficiency",
+          "weight": 0.2,
+          "raw_score": 6.11,
+          "weighted_score": 1.22,
+          "details": {
+            "total_loc": 1340,
+            "target_loc": 350,
+            "total_raw_lines": 1724,
+            "total_bytes": 62298,
+            "estimated_bPE_spend": 17194,
+            "loc_factor": 0.3,
+            "capabilities_delivered": 14
+          },
+          "passed": false
+        }
+      },
+      "graded_score": 67.64,
+      "composite_score": 67.64,
+      "execution_time_ms": 301.3770580291748,
+      "timestamp": 1794181462.054197,
+      "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/vanilla_trial2"
+    },
+    {
+      "label": "Axioma Trial 2",
+      "archetype_id": "axioma_kv",
+      "ablation_mode": "full_g4b",
+      "tier0_liveness": {
+        "passed": true,
+        "startup_time_ms": 76.74002647399902,
+        "clean_shutdown": true,
+        "port_bound": null,
+        "error_message": null,
+        "exit_code": 0,
+        "stdout_excerpt": "AXIOMA_HEALTH_OK\n",
+        "stderr_excerpt": ""
+      },
+      "tier0_multiplier": 1.0,
+      "pass_results": {
+        "spec_fidelity": {
+          "pass_name": "spec_fidelity",
+          "weight": 0.25,
+          "raw_score": 73.33,
+          "weighted_score": 18.33,
+          "details": {
+            "py_files_scanned": 8,
+            "verb_coverage_pct": 33.3,
+            "endpoint_coverage_pct": 100.0,
+            "model_coverage_pct": 100.0,
+            "found_verbs": [
+              "delete",
+              "get",
+              "set"
+            ],
+            "missing_verbs": [
+              "begin_transaction",
+              "commit_transaction",
+              "evict_expired",
+              "health_check",
+              "recover_wal",
+              "rollback_transaction"
+            ],
+            "found_endpoints": [
+              "GET /healthz",
+              "GET /keys/{key}",
+              "POST /keys/{key}",
+              "DELETE /keys/{key}",
+              "POST /tx/begin",
+              "POST /tx/commit",
+              "POST /tx/rollback",
+              "GET /stats"
+            ],
+            "missing_endpoints": [],
+            "found_models": [
+              "HealthStatus",
+              "KVStoreState",
+              "KeyValueEntry",
+              "TransactionContext",
+              "WALRecord"
+            ],
+            "missing_models": []
+          },
+          "passed": true
+        },
+        "statechart": {
+          "pass_name": "statechart",
+          "weight": 0.2,
+          "raw_score": 100.0,
+          "weighted_score": 20.0,
+          "details": {
+            "evaluation_mode": "static_ast_fallback",
+            "expected_states": [
+              "COMMITTED",
+              "IDLE",
+              "IN_TRANSACTION",
+              "ROLLED_BACK"
+            ],
+            "matched_states": [
+              "COMMITTED",
+              "IDLE",
+              "IN_TRANSACTION",
+              "ROLLED_BACK"
+            ],
+            "guard_conditionals_found": 84
+          },
+          "passed": true
+        },
+        "chaos": {
+          "pass_name": "chaos",
+          "weight": 0.15,
+          "raw_score": 100.0,
+          "weighted_score": 15.0,
+          "details": {
+            "total_probes": 25,
+            "graceful_responses": 25,
+            "unhandled_crashes": 0,
+            "log": [
+              "Probe 'malformed_json' gracefully handled (HTTP 400)",
+              "Probe 'empty_key' gracefully handled (HTTP 404)",
+              "Probe 'invalid_tx_commit' gracefully handled (HTTP 400)",
+              "Probe 'negative_ttl' gracefully handled (HTTP 200)",
+              "Probe 'burst_write' gracefully handled (HTTP 200)",
+              "Burst concurrency test survived 20/20 requests"
+            ]
+          },
+          "passed": true
+        },
+        "hermetic": {
+          "pass_name": "hermetic",
+          "weight": 0.2,
+          "raw_score": 100.0,
+          "weighted_score": 20.0,
+          "details": {
+            "files_scanned": 8,
+            "ast_nodes_scanned": 8463,
+            "violations_count": 0,
+            "violations": []
+          },
+          "passed": true
+        },
+        "efficiency": {
+          "pass_name": "efficiency",
+          "weight": 0.2,
+          "raw_score": 5.96,
+          "weighted_score": 1.19,
+          "details": {
+            "total_loc": 1457,
+            "target_loc": 350,
+            "total_raw_lines": 1832,
+            "total_bytes": 63870,
+            "estimated_bPE_spend": 17607,
+            "loc_factor": 0.3,
+            "capabilities_delivered": 14
+          },
+          "passed": false
+        }
+      },
+      "graded_score": 74.52,
+      "composite_score": 74.52,
+      "execution_time_ms": 120.91922760009766,
+      "timestamp": 1794181462.1751292,
+      "app_path": "/Users/michaellipski/dev/meta-axioma/.scratch/benchmarks/live_pilot/axioma_trial2"
+    }
+  ]
+}

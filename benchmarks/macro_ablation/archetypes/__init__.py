@@ -2,13 +2,26 @@
 
 from typing import Dict, List
 from ..domain_models import BenchmarkArchetype
-from . import axioma_kv, axioma_flow, axioma_collab, axioma_gateway
+from . import (
+    axioma_kv,
+    axioma_flow,
+    axioma_collab,
+    axioma_gateway,
+    axioma_raft,
+    axioma_micro,
+    axioma_resp,
+    axioma_repair,
+)
 
 ALL_ARCHETYPE_MODULES = {
     "axioma_kv": axioma_kv,
     "axioma_flow": axioma_flow,
     "axioma_collab": axioma_collab,
     "axioma_gateway": axioma_gateway,
+    "axioma_raft": axioma_raft,
+    "axioma_micro": axioma_micro,
+    "axioma_resp": axioma_resp,
+    "axioma_repair": axioma_repair,
 }
 
 
@@ -32,4 +45,8 @@ __all__ = [
     "axioma_flow",
     "axioma_collab",
     "axioma_gateway",
+    "axioma_raft",
+    "axioma_micro",
+    "axioma_resp",
+    "axioma_repair",
 ]
