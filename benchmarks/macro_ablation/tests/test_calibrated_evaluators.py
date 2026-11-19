@@ -229,7 +229,17 @@ class CustomHandler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         length = int(self.headers.get("Content-Length", "0") or 0)
+        if length > 1024 * 1024:
+            self.send_response(413)
+            self.end_headers()
+            self.wfile.write(b'{{"error": "payload too large"}}')
+            return
         raw = self.rfile.read(length)
+        if length > 0 and len(raw) != length:
+            self.send_response(400)
+            self.end_headers()
+            self.wfile.write(b'{{"error": "truncated body"}}')
+            return
         eng = getattr(self, "{alias_attr}", None) or getattr(self.server, "{alias_attr}", None)
         if not isinstance(eng, {cls_name}):
             self.send_response(500)
@@ -247,6 +257,11 @@ class CustomHandler(BaseHTTPRequestHandler):
             self.send_response(400)
             self.end_headers()
             self.wfile.write(b'{{"error": "bad json"}}')
+            return
+        if isinstance(data, dict) and isinstance(data.get("ttl_seconds"), bool):
+            self.send_response(400)
+            self.end_headers()
+            self.wfile.write(b'{{"error": "bool not allowed for ttl_seconds"}}')
             return
         eng.set("probe", str(data))
         self.send_response(200)
@@ -348,7 +363,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--smoke-test", action="store_true")
     parser.add_argument("--port", type=int, default=9000)
-    args, _unknown = parser.parse_known_args()
+    args = parser.parse_args()
     if args.smoke_test:
         print("DAEMON SMOKE OK", flush=True)
         return 0

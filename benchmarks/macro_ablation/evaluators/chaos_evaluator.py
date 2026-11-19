@@ -22,9 +22,11 @@ import os
 from pathlib import Path
 import select
 import shutil
+import signal
 import socket
 import subprocess
 import sys
+import time
 from typing import Any, Callable, Dict, List, Optional, Tuple
 import uuid
 
@@ -209,6 +211,7 @@ class ChaosEvaluator:
         "Coordinator",
         "Executor",
         "Storage",
+        "Parser",
     )
     _ENGINE_METHODS = {
         "get",
@@ -220,6 +223,10 @@ class ChaosEvaluator:
         "transition",
         "execute",
         "parse",
+        "parse_resp",
+        "parse_ndjson",
+        "process_line",
+        "handle_command",
     }
     _SERVER_ALIASES = (
         "engine",
@@ -317,6 +324,112 @@ class ChaosEvaluator:
             else:
                 details_log.append(f"Burst concurrency test survived {burst_count}/{burst_count} requests")
 
+            # 3. Domain-Aware HTTP Protocol & Behavioral Chaos Probes (Zero Free Passes)
+            if archetype.id != "test_payload_arch":
+                post_path = self._pick_post_endpoint(archetype)
+
+                # 3a. Oversized Content-Length (>1 MiB -> must return 413 or 400, never 200/500/hang)
+                total_probes += 1
+                oversized_raw = (
+                    f"POST {post_path} HTTP/1.1\r\n"
+                    f"Host: axioma-probe\r\n"
+                    f"Content-Type: application/json\r\n"
+                    f"Content-Length: 2097152\r\n"
+                    f"Connection: close\r\n\r\n"
+                    f"{{}}"
+                ).encode("utf-8")
+                ov_status, ov_err = self._dispatch_raw_http_probe(
+                    handler_cls, oversized_raw, server=server_instance
+                )
+                if ov_err or ov_status not in (400, 413, 422):
+                    unhandled_crashes += 1
+                    details_log.append(
+                        f"Probe 'http_oversized_content_length' failed: status={ov_status}, err={ov_err or 'expected 413/400'}"
+                    )
+                else:
+                    graceful_responses += 1
+                    details_log.append(f"Probe 'http_oversized_content_length' rejected cleanly (HTTP {ov_status})")
+
+                # 3b. Truncated body / Content-Length mismatch (must return 400, never accept 200 or crash 500)
+                total_probes += 1
+                if "raft" in archetype.id.lower():
+                    short_json = json.dumps({
+                        "term": 1,
+                        "candidate_id": "c1",
+                        "last_log_index": 0,
+                        "last_log_term": 0,
+                    }).encode("utf-8")
+                    trunc_path = "/vote"
+                elif "kv" in archetype.id.lower():
+                    short_json = json.dumps({"value": "truncated_probe"}).encode("utf-8")
+                    trunc_path = "/keys/trunc_probe"
+                else:
+                    short_json = json.dumps({"probe": "truncated"}).encode("utf-8")
+                    trunc_path = post_path
+                truncated_raw = (
+                    f"POST {trunc_path} HTTP/1.1\r\n"
+                    f"Host: axioma-probe\r\n"
+                    f"Content-Type: application/json\r\n"
+                    f"Content-Length: {len(short_json) + 128}\r\n"
+                    f"Connection: close\r\n\r\n"
+                ).encode("utf-8") + short_json
+                tr_status, tr_err = self._dispatch_raw_http_probe(
+                    handler_cls, truncated_raw, server=server_instance
+                )
+                if tr_err or tr_status not in (400, 411, 422):
+                    unhandled_crashes += 1
+                    details_log.append(
+                        f"Probe 'http_truncated_body_mismatch' failed: status={tr_status}, err={tr_err or 'accepted truncated body'}"
+                    )
+                else:
+                    graceful_responses += 1
+                    details_log.append(f"Probe 'http_truncated_body_mismatch' rejected cleanly (HTTP {tr_status})")
+
+                # 3c. bool-as-int coercion + malformed JSON probe
+                total_probes += 1
+                if "kv" in archetype.id.lower():
+                    bool_path = "/keys/bool_ttl_probe"
+                    bool_body: Any = {"value": "v", "ttl_seconds": True}
+                    must_reject_bool = True
+                elif "raft" in archetype.id.lower():
+                    bool_path = "/vote"
+                    bool_body = {"term": True, "candidate_id": "c1", "last_log_index": 0, "last_log_term": 0}
+                    must_reject_bool = True
+                else:
+                    bool_path = post_path
+                    bool_body = {"value": "v", "ttl_seconds": True}
+                    must_reject_bool = False
+                b_status, b_err = self._dispatch_probe(
+                    handler_cls, "POST", bool_path, bool_body, server=server_instance
+                )
+                m_status, m_err = self._dispatch_probe(
+                    handler_cls, "POST", bool_path, '{"broken": [1, 2', server=server_instance
+                )
+                bool_ok = (not b_err) and (b_status in (400, 422) if must_reject_bool else b_status != 500)
+                malformed_ok = (not m_err) and (m_status in (400, 422))
+                if bool_ok and malformed_ok:
+                    graceful_responses += 1
+                    details_log.append(
+                        f"Probe 'http_bool_as_int_and_malformed' rejected cleanly (HTTP {b_status}/{m_status})"
+                    )
+                else:
+                    unhandled_crashes += 1
+                    details_log.append(
+                        f"Probe 'http_bool_as_int_and_malformed' failed (bool={b_status}/{b_err}, malformed={m_status}/{m_err})"
+                    )
+
+                # 3d. Domain-specific KV WAL torn-line re-append & tx_id=None isolation probe
+                if "kv" in archetype.id.lower():
+                    kv_ok, kv_msg = self._run_kv_wal_and_tx_isolation_probe(app_dir)
+                    if kv_ok is not None:
+                        total_probes += 1
+                        if kv_ok:
+                            graceful_responses += 1
+                            details_log.append(kv_msg)
+                        else:
+                            unhandled_crashes += 1
+                            details_log.append(kv_msg)
+
             raw_score = (
                 max(0.0, (1.0 - (unhandled_crashes / total_probes))) * 100.0
                 if total_probes > 0
@@ -335,7 +448,7 @@ class ChaosEvaluator:
                     "total_probes": total_probes,
                     "graceful_responses": graceful_responses,
                     "unhandled_crashes": unhandled_crashes,
-                    "log": details_log[:10],
+                    "log": details_log[:20],
                 },
                 passed=(raw_score >= 70.0),
             )
@@ -630,6 +743,27 @@ class ChaosEvaluator:
         headers_raw = "\r\n".join(req_lines).encode("utf-8")
         request_raw = headers_raw + payload_bytes
 
+        return self._dispatch_raw_http_probe(handler_cls, request_raw, server=server)
+
+    @staticmethod
+    def _pick_post_endpoint(archetype: BenchmarkArchetype) -> str:
+        """Selects a concrete POST endpoint path from archetype.expected_endpoints."""
+        for ep in archetype.expected_endpoints or []:
+            parts = ep.strip().split()
+            if len(parts) >= 2 and parts[0].upper() == "POST":
+                path = parts[1]
+                if "{" in path:
+                    path = path.split("{")[0] + "probe_key"
+                return path
+        return "/keys/probe_key"
+
+    def _dispatch_raw_http_probe(
+        self,
+        handler_cls: type,
+        request_raw: bytes,
+        server: Any = None,
+    ) -> Tuple[int, str]:
+        """Dispatches raw HTTP/1.1 bytes through the handler without mutating headers."""
         sock = _MockRequestSocket(request_raw)
         try:
             handler_cls(sock, ("127.0.0.1", 8088), server)
@@ -645,6 +779,71 @@ class ChaosEvaluator:
             return 200, ""
         except Exception as ex:
             return 500, f"Unhandled exception: {type(ex).__name__} ({str(ex)})"
+
+    def _run_kv_wal_and_tx_isolation_probe(self, app_dir: Path) -> Tuple[Optional[bool], str]:
+        """Domain chaos probe for KV engines: torn trailing WAL re-append durability & tx_id=None isolation."""
+        candidates = self._discover_engine_candidates(app_dir)
+        kv_cls = None
+        for cls in candidates:
+            if all(callable(getattr(cls, m, None)) for m in ("set", "get", "begin_transaction", "rollback_transaction")):
+                # Only probe engines that accept data_dir/storage_dir/wal_dir persistence
+                try:
+                    sig = inspect.signature(cls.__init__)
+                    if any(p in sig.parameters for p in ("data_dir", "storage_dir", "wal_dir", "wal_path")):
+                        kv_cls = cls
+                        break
+                except Exception:
+                    continue
+        if kv_cls is None:
+            return None, ""
+
+        temp_dir = _make_scratch_temp_dir(prefix="chaos_kv_")
+        issues: List[str] = []
+        try:
+            # Check A: Torn trailing WAL line must be repaired/truncated before subsequent append
+            eng1 = self._safe_instantiate_engine(kv_cls, temp_dir)
+            if eng1 is None:
+                return None, ""
+            eng1.set("seed_k", "seed_v")
+            wal_files = [p for p in temp_dir.rglob("*") if p.is_file() and ("wal" in p.name.lower() or p.suffix in (".jsonl", ".log", ".wal"))]
+            if wal_files:
+                wal_file = wal_files[0]
+                with wal_file.open("a", encoding="utf-8") as fh:
+                    fh.write('{"seq":999,"tx_id":"torn","op":"SET","key":"broken"')
+                try:
+                    eng2 = self._safe_instantiate_engine(kv_cls, temp_dir)
+                    if eng2 is None:
+                        issues.append("reopen after torn WAL failed")
+                    else:
+                        eng2.set("after_torn", "ok_v")
+                        eng3 = self._safe_instantiate_engine(kv_cls, temp_dir)
+                        if eng3 is None or eng3.get("after_torn") != "ok_v":
+                            issues.append("post-torn WAL append corrupted persistence")
+                except Exception as exc:
+                    issues.append(f"post-torn WAL append raised {type(exc).__name__}: {exc}")
+
+            # Check B: Concurrent non-tx write (tx_id=None) during active tx must not be absorbed & rolled back
+            tx_dir = temp_dir / "tx_iso"
+            tx_dir.mkdir(parents=True, exist_ok=True)
+            eng_tx = self._safe_instantiate_engine(kv_cls, tx_dir)
+            if eng_tx is not None:
+                try:
+                    set_sig = inspect.signature(eng_tx.set)
+                    if "tx_id" in set_sig.parameters:
+                        eng_tx.begin_transaction()
+                        eng_tx.set("non_tx_isolated_key", "must_persist")
+                        eng_tx.rollback_transaction()
+                        if eng_tx.get("non_tx_isolated_key") != "must_persist":
+                            issues.append("non-tx write (tx_id=None) was absorbed and rolled back by active transaction")
+                except Exception:
+                    pass
+
+            if issues:
+                return False, f"Probe 'kv_wal_torn_and_tx_isolation' failed: {'; '.join(issues)}"
+            return True, "Probe 'kv_wal_torn_and_tx_isolation' passed WAL torn-line repair & tx isolation"
+        finally:
+            if temp_dir.exists():
+                shutil.rmtree(temp_dir, ignore_errors=True)
 
     def _evaluate_subprocess_chaos(
         self,
@@ -766,9 +965,20 @@ class ChaosEvaluator:
                 received.extend(chunk)
             wire_bytes = bytes(received)
 
-            # Exercise any discovered engine/parser framing method if present
+            # Exercise any discovered engine/parser framing method (ZERO free loopback-echo pass)
             parser_crashed = False
-            parser_methods = ("parse", "feed", "handle_line", "process_line", "handle_request", "route")
+            framing_exercised = False
+            parser_methods = (
+                "parse_resp",
+                "parse_ndjson",
+                "process_line",
+                "handle_command",
+                "parse",
+                "feed",
+                "handle_line",
+                "handle_request",
+                "route",
+            )
             for cls in self._discover_engine_candidates(app_dir):
                 inst = self._safe_instantiate_engine(cls, temp_eval_dir)
                 if inst is None:
@@ -776,6 +986,7 @@ class ChaosEvaluator:
                 for m_name in parser_methods:
                     fn = getattr(inst, m_name, None)
                     if callable(fn):
+                        framing_exercised = True
                         try:
                             sig = inspect.signature(fn)
                             params = [
@@ -790,17 +1001,28 @@ class ChaosEvaluator:
                                 fn()
                         except Exception as parser_exc:
                             exc_name = type(parser_exc).__name__
-                            if exc_name in ("AttributeError", "NameError", "UnboundLocalError", "RecursionError", "MemoryError"):
+                            if exc_name in (
+                                "AttributeError",
+                                "NameError",
+                                "UnboundLocalError",
+                                "RecursionError",
+                                "MemoryError",
+                                "OverflowError",
+                            ):
                                 parser_crashed = True
                                 details_log.append(f"Probe 'socketpair_framing_chaos' parser bug: {exc_name}")
                         break
 
-            if wire_bytes == wire_payload and not parser_crashed:
+            if wire_bytes == wire_payload and framing_exercised and not parser_crashed:
                 graceful_responses += 1
-                details_log.append("Probe 'socketpair_framing_chaos' passed clean EOF & framing resilience")
+                details_log.append("Probe 'socketpair_framing_chaos' passed framing resilience against real parser")
             else:
                 unhandled_crashes += 1
-                if not parser_crashed:
+                if not framing_exercised:
+                    details_log.append(
+                        "Probe 'socketpair_framing_chaos' failed: no framing/parser method exercised (echo free pass removed)"
+                    )
+                elif not parser_crashed:
                     details_log.append("Probe 'socketpair_framing_chaos' failed payload integrity")
         except Exception as exc:
             unhandled_crashes += 1
@@ -911,6 +1133,118 @@ class ChaosEvaluator:
                 unhandled_crashes += 1
                 details_log.append(f"Probe 'mixed_ndjson_burst' errored: {type(exc).__name__}")
 
+        # Domain-Aware Adversarial Probes (CLI/NDJSON and RESP2)
+        arch_id_lower = (getattr(archetype, "id", "") or "").lower()
+        arch_spec = getattr(archetype, "specification", None) or {}
+        is_cli_ndjson = (
+            "micro" in arch_id_lower
+            or str(arch_spec.get("execution_mode", "")).upper() == "STREAMING_STDIN_CLI"
+        )
+        is_resp2 = (
+            "resp" in arch_id_lower
+            or str(arch_spec.get("protocol_version", "")).upper() == "RESP2"
+        )
+
+        if is_cli_ndjson:
+            # Probe 6: NDJSON numeric overflow (10**400 float overflow + 10**5000 int-str-digits DoS)
+            total_probes += 1
+            huge_400 = "1" + ("0" * 400)
+            huge_5000 = "9" * 5000
+            overflow_payload = (
+                f'{{"latency_ms": {huge_400}}}\n'
+                f'{{"latency_ms": {huge_5000}}}\n'
+                f'{{"latency_ms": 12.5}}\n'
+            ).encode("utf-8")
+            try:
+                p_ov = subprocess.run(
+                    [sys.executable, "-u", str(entrypoint)],
+                    input=overflow_payload,
+                    capture_output=True,
+                    timeout=3.0,
+                    cwd=str(app_dir),
+                    env=env,
+                )
+                stderr_ov = (p_ov.stderr or b"").decode("utf-8", errors="replace")
+                if p_ov.returncode == 0 and not _has_traceback(stderr_ov) and "OverflowError" not in stderr_ov:
+                    graceful_responses += 1
+                    details_log.append("Probe 'ndjson_numeric_overflow' survived 10**400 & 10**5000 cleanly (exit=0)")
+                else:
+                    unhandled_crashes += 1
+                    details_log.append(
+                        f"Probe 'ndjson_numeric_overflow' crashed (exit={p_ov.returncode}): {stderr_ov.strip()[-140:]}"
+                    )
+            except Exception as exc:
+                unhandled_crashes += 1
+                details_log.append(f"Probe 'ndjson_numeric_overflow' errored: {type(exc).__name__}")
+
+            # Probe 7: Open-stdin SIGINT (PEP 475) — must exit cleanly & emit summary without hanging
+            total_probes += 1
+            sig_proc: Optional[subprocess.Popen[bytes]] = None
+            try:
+                sig_proc = subprocess.Popen(
+                    [sys.executable, "-u", str(entrypoint)],
+                    stdin=subprocess.PIPE,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    cwd=str(app_dir),
+                    env=env,
+                )
+                assert sig_proc.stdin is not None
+                sig_proc.stdin.write(b'{"latency_ms": 15.0}\n')
+                sig_proc.stdin.flush()
+                time.sleep(0.25)
+                # Send SIGINT while stdin remains OPEN (exposes PEP 475 read() retry hang)
+                sig_proc.send_signal(signal.SIGINT)
+                try:
+                    sig_proc.wait(timeout=2.0)
+                    out_b = sig_proc.stdout.read() if sig_proc.stdout else b""
+                    err_b = sig_proc.stderr.read() if sig_proc.stderr else b""
+                    out_s = out_b.decode("utf-8", errors="replace")
+                    err_s = err_b.decode("utf-8", errors="replace")
+                    if (
+                        sig_proc.returncode in (0, -2, 130)
+                        and not _has_traceback(err_s)
+                        and "{" in out_s
+                        and "}" in out_s
+                    ):
+                        graceful_responses += 1
+                        details_log.append("Probe 'open_stdin_sigint_pep475' exited cleanly and emitted summary")
+                    else:
+                        unhandled_crashes += 1
+                        details_log.append(
+                            f"Probe 'open_stdin_sigint_pep475' failed (exit={sig_proc.returncode}, has_json={'{' in out_s})"
+                        )
+                except subprocess.TimeoutExpired:
+                    sig_proc.terminate()
+                    try:
+                        sig_proc.wait(timeout=1.0)
+                    except subprocess.TimeoutExpired:
+                        sig_proc.kill()
+                        sig_proc.wait(timeout=1.0)
+                    unhandled_crashes += 1
+                    details_log.append("Probe 'open_stdin_sigint_pep475' hung >2.0s on open stdin (PEP 475 SIGINT bug)")
+            except Exception as exc:
+                unhandled_crashes += 1
+                details_log.append(f"Probe 'open_stdin_sigint_pep475' errored: {type(exc).__name__}")
+            finally:
+                if sig_proc is not None:
+                    for stream in (sig_proc.stdin, sig_proc.stdout, sig_proc.stderr):
+                        if stream is not None:
+                            try:
+                                stream.close()
+                            except Exception:
+                                pass
+
+        if is_resp2:
+            resp_results = self._run_resp2_adversarial_probes(app_dir)
+            for ok, msg in resp_results:
+                total_probes += 1
+                if ok:
+                    graceful_responses += 1
+                else:
+                    unhandled_crashes += 1
+                details_log.append(msg)
+
         raw_score = round((graceful_responses / total_probes) * 100.0, 2) if total_probes > 0 else 100.0
         weighted_score = round(raw_score * self.weight, 2)
         return EvaluationPassResult(
@@ -923,7 +1257,94 @@ class ChaosEvaluator:
                 "total_probes": total_probes,
                 "graceful_responses": graceful_responses,
                 "unhandled_crashes": unhandled_crashes,
-                "log": details_log[:15],
+                "log": details_log[:20],
             },
             passed=(raw_score >= 70.0),
         )
+
+    def _run_resp2_adversarial_probes(self, app_dir: Path) -> List[Tuple[bool, str]]:
+        """Executes RESP2 wire-protocol adversarial probes: nested arrays, CRLF injection, oversized INCR."""
+        temp_dir = _make_scratch_temp_dir(prefix="chaos_resp_")
+        results: List[Tuple[bool, str]] = []
+        try:
+            resp_engine = None
+            for cls in self._discover_engine_candidates(app_dir):
+                if all(callable(getattr(cls, m, None)) for m in ("parse_resp", "handle_command", "serialize_resp")):
+                    inst = self._safe_instantiate_engine(cls, temp_dir)
+                    if inst is not None:
+                        resp_engine = inst
+                        break
+
+            if resp_engine is None:
+                return [
+                    (False, "Probe 'resp2_nested_array' failed: no RESP2 engine with parse_resp/handle_command/serialize_resp"),
+                    (False, "Probe 'resp2_crlf_error_injection' failed: no RESP2 engine discovered"),
+                    (False, "Probe 'resp2_incr_bounds_and_4300_digits' failed: no RESP2 engine discovered"),
+                ]
+
+            def _exec_frame(raw_frame: bytes) -> Tuple[Optional[bytes], Optional[str]]:
+                try:
+                    parsed = resp_engine.parse_resp(raw_frame)
+                    msg = parsed[0] if isinstance(parsed, tuple) else parsed
+                    if msg is None:
+                        return None, "Incomplete frame returned None"
+                    reply = resp_engine.handle_command(msg)
+                    wire = resp_engine.serialize_resp(reply)
+                    return (wire if isinstance(wire, bytes) else bytes(wire)), None
+                except Exception as exc:
+                    return None, f"{type(exc).__name__}: {exc}"
+
+            # Probe A: Nested array (*1\r\n*0\r\n) must return -ERR, never uncaught exception
+            nested_wire, nested_err = _exec_frame(b"*1\r\n*0\r\n")
+            if nested_err is None and nested_wire is not None and nested_wire.startswith(b"-"):
+                results.append((True, "Probe 'resp2_nested_array' returned graceful -ERR"))
+            else:
+                results.append((
+                    False,
+                    f"Probe 'resp2_nested_array' failed: err={nested_err or 'non-error reply'} wire={nested_wire!r}",
+                ))
+
+            # Probe B: CRLF command-name wire injection (*1\r\n$10\r\nBAD\r\n+PONG\r\n)
+            crlf_wire, crlf_err = _exec_frame(b"*1\r\n$10\r\nBAD\r\n+PONG\r\n")
+            if (
+                crlf_err is None
+                and crlf_wire is not None
+                and crlf_wire.startswith(b"-")
+                and b"\r\n+PONG" not in crlf_wire
+                and crlf_wire.count(b"\r\n") == 1
+            ):
+                results.append((True, "Probe 'resp2_crlf_error_injection' sanitized CRLF cleanly"))
+            else:
+                results.append((
+                    False,
+                    f"Probe 'resp2_crlf_error_injection' vulnerable to CRLF wire injection: wire={crlf_wire!r} err={crlf_err}",
+                ))
+
+            # Probe C: 64-bit signed INCR overflow (2**63 - 1) & 4,500-digit INCR DoS
+            def _make_cmd(*parts: bytes) -> bytes:
+                chunks = [f"*{len(parts)}\r\n".encode("ascii")]
+                for p in parts:
+                    chunks.append(f"${len(p)}\r\n".encode("ascii") + p + b"\r\n")
+                return b"".join(chunks)
+
+            incr_issues: List[str] = []
+            max_i64 = str((1 << 63) - 1).encode("ascii")
+            _exec_frame(_make_cmd(b"SET", b"k_max64", max_i64))
+            ov_wire, ov_err = _exec_frame(_make_cmd(b"INCR", b"k_max64"))
+            if ov_err is not None or ov_wire is None or not ov_wire.startswith(b"-"):
+                incr_issues.append(f"64-bit overflow accepted/crashed (wire={ov_wire!r}, err={ov_err})")
+
+            huge_digits = b"9" * 4500
+            _exec_frame(_make_cmd(b"SET", b"k_4500", huge_digits))
+            big_wire, big_err = _exec_frame(_make_cmd(b"INCR", b"k_4500"))
+            if big_err is not None or big_wire is None or not big_wire.startswith(b"-"):
+                incr_issues.append(f"4500-digit INCR accepted/crashed (wire={big_wire!r}, err={big_err})")
+
+            if not incr_issues:
+                results.append((True, "Probe 'resp2_incr_bounds_and_4300_digits' enforced 64-bit bounds cleanly"))
+            else:
+                results.append((False, f"Probe 'resp2_incr_bounds_and_4300_digits' failed: {'; '.join(incr_issues)}"))
+            return results
+        finally:
+            if temp_dir.exists():
+                shutil.rmtree(temp_dir, ignore_errors=True)

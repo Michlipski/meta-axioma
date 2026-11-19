@@ -41,6 +41,7 @@ class BenchmarkTrialConfig:
     trial: int
     target_dir: Path
     mode: AblationMode = AblationMode.FULL_G4B
+    contract_parity: Optional[bool] = None
 
 
 @dataclass
@@ -59,6 +60,7 @@ class CausalPipelineRunner:
         workspace_root: Optional[Path] = None,
         enable_provenance: bool = True,
         reports_dir: Optional[Path] = None,
+        vanilla_contract_parity: bool = True,
     ) -> None:
         if workspace_root:
             self.workspace_root = Path(workspace_root).resolve()
@@ -73,17 +75,25 @@ class CausalPipelineRunner:
         self.reports_dir.mkdir(parents=True, exist_ok=True)
 
         self.enable_provenance = enable_provenance
+        self.vanilla_contract_parity = bool(vanilla_contract_parity)
         self.gauntlet = MacroEvaluationGauntlet(enable_provenance=enable_provenance)
 
-    def select_engine(self, system_id: str) -> BaseSynthesisEngine:
+    def select_engine(
+        self,
+        system_id: str,
+        contract_parity: Optional[bool] = None,
+    ) -> BaseSynthesisEngine:
         """Returns the appropriate synthesis engine based on system_id."""
         sys_id = system_id.lower()
+        effective_parity = (
+            self.vanilla_contract_parity if contract_parity is None else bool(contract_parity)
+        )
         if "axioma" in sys_id:
             return AxiomaCausalMeshEngine(system_id=system_id)
         elif "vanilla" in sys_id:
-            return VanillaSynthesisEngine(system_id=system_id)
+            return VanillaSynthesisEngine(system_id=system_id, contract_parity=effective_parity)
         else:
-            return VanillaSynthesisEngine(system_id=system_id)
+            return VanillaSynthesisEngine(system_id=system_id, contract_parity=effective_parity)
 
     def run_trial(
         self,
@@ -92,7 +102,7 @@ class CausalPipelineRunner:
     ) -> BenchmarkRunResult:
         """Executes synthesis, physical disk grounding, and multi-pass evaluation for a single trial."""
         archetype = get_archetype_by_id(config.archetype_id)
-        engine = self.select_engine(config.system_id)
+        engine = self.select_engine(config.system_id, contract_parity=config.contract_parity)
 
         # 1. Synthesis Phase
         synth_result = engine.synthesize(
@@ -159,6 +169,7 @@ class CausalPipelineRunner:
             "report_id": f"rpt_{report_prefix}_{int(time.time())}",
             "timestamp": int(time.time()),
             "enable_provenance": self.enable_provenance,
+            "vanilla_contract_parity": self.vanilla_contract_parity,
             "total_runs": len(results),
             "summary_by_system": summary_by_system,
             "runs": [
@@ -167,6 +178,7 @@ class CausalPipelineRunner:
                     "system_name": r.config.system_name,
                     "trial": r.config.trial,
                     "target_dir": str(r.config.target_dir),
+                    "contract_parity": r.synthesis_result.manifest.get("contract_parity"),
                     "subagents": r.synthesis_result.subagent_witnesses,
                     "scorecard": r.scorecard.to_dict(),
                 }
@@ -211,6 +223,11 @@ class CausalPipelineRunner:
                 if pname == "provenance":
                     weight_label = "GATE (0.0x / 1.0x)"
                     weighted_val = "1.0x MULT" if pres.get("passed", False) else "0.0x (DISQUALIFIED)"
+                elif pname == "adversarial_integrity":
+                    weight_label = "PENALTY / CAP"
+                    pen = pres.get("details", {}).get("penalty_points", 0.0)
+                    cap = pres.get("details", {}).get("score_cap", 100.0)
+                    weighted_val = f"-{pen:.1f} pts (cap {cap:.0f})"
                 else:
                     weight_label = f"{pres.get('weight', 0.0) * 100:.0f}%"
                     weighted_val = f"{pres.get('weighted_score', 0.0):.2f}"

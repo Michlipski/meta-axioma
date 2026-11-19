@@ -92,6 +92,7 @@ class BaseSynthesisEngine(ABC):
         subagents: List[Dict[str, Any]],
         archetype_id: str,
         grounded_files: Dict[str, Dict[str, Any]],
+        extra_fields: Optional[Dict[str, Any]] = None,
     ) -> Path:
         """Writes synthesis_manifest.json into target_dir for ProvenanceEvaluator inspection."""
         target_dir = Path(target_dir).resolve()
@@ -104,6 +105,8 @@ class BaseSynthesisEngine(ABC):
             "grounded_files_count": len(grounded_files),
             "files": grounded_files,
         }
+        if extra_fields:
+            manifest_data.update(extra_fields)
         manifest_path = target_dir / "synthesis_manifest.json"
         with open(manifest_path, "w", encoding="utf-8") as f:
             json.dump(manifest_data, f, indent=2)
@@ -113,8 +116,104 @@ class BaseSynthesisEngine(ABC):
 class VanillaSynthesisEngine(BaseSynthesisEngine):
     """Single-Agent Unconstrained Synthesis Engine (Antigravity Vanilla Baseline)."""
 
-    def __init__(self, system_id: str = "antigravity_vanilla") -> None:
+    def __init__(
+        self,
+        system_id: str = "antigravity_vanilla",
+        contract_parity: bool = True,
+    ) -> None:
         self.system_id = system_id
+        self.contract_parity = bool(contract_parity)
+
+    def build_prompt(self, archetype: BenchmarkArchetype, target_dir: Path) -> str:
+        """Builds the Vanilla prompt in either contract-parity (default) or legacy prose-only mode."""
+        target_dir = Path(target_dir).resolve()
+        if not self.contract_parity:
+            return (
+                f"You are an autonomous software developer working directly on a coding task.\n"
+                f"Your task is to build a standalone, production-ready daemon in Python 3.14 based on this requirement:\n\n"
+                f'"{archetype.prompt}"\n\n'
+                f"Target Output Directory:\n"
+                f"You must write all your implementation files into:\n"
+                f"{target_dir}/\n\n"
+                f"Requirements:\n"
+                f"1. Provide an entrypoint executable script at:\n"
+                f"   {target_dir}/run.py\n"
+                f"   It must accept CLI arguments: `--port <port>` (default 8088), `--smoke-test` (prints an operational status confirmation and exits cleanly with 0).\n"
+                f"2. Put any supporting modules into:\n"
+                f"   {target_dir}/src/\n"
+                f"3. Use standard Python 3.14 libraries only.\n"
+                f"4. Physically write every module directly to disk.\n"
+            )
+
+        spec = getattr(archetype, "specification", None) or {}
+        is_cli_stdin = (
+            "micro" in archetype.id.lower()
+            or str(spec.get("execution_mode", "")).upper() == "STREAMING_STDIN_CLI"
+        )
+        models_block = "\n".join(f"  - `{m}`" for m in (archetype.expected_models or [])) or "  - None specified"
+        verbs_block = "\n".join(f"  - `{v}`" for v in (archetype.expected_verbs or [])) or "  - None specified"
+
+        endpoints = archetype.expected_endpoints or []
+        if endpoints:
+            endpoints_section = (
+                "Required HTTP Endpoints:\n"
+                + "\n".join(f"  - `{ep}`" for ep in endpoints)
+                + "\n\n"
+            )
+        else:
+            endpoints_section = ""
+
+        valid_transitions = [t for t in (archetype.state_transitions or []) if t.get("valid", True)]
+        illegal_transitions = [t for t in (archetype.state_transitions or []) if not t.get("valid", True)]
+        transitions_lines: List[str] = []
+        if valid_transitions:
+            transitions_lines.append("  Valid Transitions (must succeed and update state):")
+            for t in valid_transitions:
+                transitions_lines.append(
+                    f"    - `{t.get('from')}` --(`{t.get('action')}`)--> `{t.get('to')}`"
+                )
+        if illegal_transitions:
+            transitions_lines.append("  Illegal Transitions (must raise/reject and preserve state):")
+            for t in illegal_transitions:
+                transitions_lines.append(
+                    f"    - `{t.get('from')}` --(`{t.get('action')}`)--> `{t.get('to')}` [FORBIDDEN]"
+                )
+        transitions_block = "\n".join(transitions_lines) or "  - None specified"
+
+        if is_cli_stdin:
+            cli_contract = (
+                f"1. Provide an executable CLI entrypoint at `{target_dir}/run.py` using strict `argparse` "
+                f"(must reject unknown CLI flags with non-zero exit code 2).\n"
+                f"   - Support `--smoke-test` (runs self-contained verification, prints status, exits 0).\n"
+                f"   - Default mode streams NDJSON from stdin and emits summary statistics cleanly on EOF or SIGINT.\n"
+            )
+        else:
+            cli_contract = (
+                f"1. Provide an executable entrypoint at `{target_dir}/run.py` using strict `argparse` "
+                f"(must reject unknown CLI flags with non-zero exit code 2).\n"
+                f"   - Support `--port <port>` (default 8088) and `--smoke-test` (prints operational status confirmation and exits cleanly with 0).\n"
+            )
+
+        return (
+            f"You are an autonomous software developer working directly on a coding task.\n"
+            f"Build a standalone, production-ready application in Python 3.14 based on this requirement:\n\n"
+            f'"{archetype.prompt}"\n\n'
+            f"Target Output Directory:\n"
+            f"Write all implementation files into `{target_dir}/`.\n\n"
+            f"Explicit Interface Contract (Contract-Parity Specification):\n"
+            f"Required Domain Models (exact class names):\n"
+            f"{models_block}\n\n"
+            f"Required Verbs / Methods (exact function/method names):\n"
+            f"{verbs_block}\n\n"
+            f"{endpoints_section}"
+            f"Required Statechart Transitions:\n"
+            f"{transitions_block}\n\n"
+            f"Runtime & Hygiene Requirements:\n"
+            f"{cli_contract}"
+            f"2. Use pure Python 3.14 standard library only (zero third-party dependencies).\n"
+            f"3. Do NOT hardcode `/tmp` or `/private/tmp`; keep any scratch/data files relative to the working or configured data directory.\n"
+            f"4. Physically write every module directly to disk.\n"
+        )
 
     def synthesize(
         self,
@@ -126,22 +225,7 @@ class VanillaSynthesisEngine(BaseSynthesisEngine):
         target_dir = Path(target_dir).resolve()
         target_dir.mkdir(parents=True, exist_ok=True)
 
-        prompt = (
-            f"You are an autonomous software developer working directly on a coding task.\n"
-            f"Your task is to build a standalone, production-ready daemon in Python 3.14 based on this requirement:\n\n"
-            f'"{archetype.prompt}"\n\n'
-            f"Target Output Directory:\n"
-            f"You must write all your implementation files into:\n"
-            f"{target_dir}/\n\n"
-            f"Requirements:\n"
-            f"1. Provide an entrypoint executable script at:\n"
-            f"   {target_dir}/run.py\n"
-            f"   It must accept CLI arguments: `--port <port>` (default 8088), `--smoke-test` (prints an operational status confirmation and exits cleanly with 0).\n"
-            f"2. Put any supporting modules into:\n"
-            f"   {target_dir}/src/\n"
-            f"3. Use standard Python 3.14 libraries only.\n"
-            f"4. Physically write every module directly to disk.\n"
-        )
+        prompt = self.build_prompt(archetype, target_dir)
 
         subagents_witnesses = []
         if subagent_invoker:
@@ -168,6 +252,7 @@ class VanillaSynthesisEngine(BaseSynthesisEngine):
             subagents=subagents_witnesses,
             archetype_id=archetype.id,
             grounded_files=grounded_files,
+            extra_fields={"contract_parity": self.contract_parity},
         )
 
         duration = time.time() - start_time
@@ -187,9 +272,11 @@ class AxiomaCausalMeshEngine(BaseSynthesisEngine):
         self,
         system_id: str = "meta_axioma_g4b",
         lenient_acceptance_gate: bool = False,
+        max_remediation_cycles: int = 2,
     ) -> None:
         self.system_id = system_id
         self.lenient_acceptance_gate = lenient_acceptance_gate
+        self.max_remediation_cycles = max(0, int(max_remediation_cycles))
 
     def _resolve_domain_archetype(self, archetype: BenchmarkArchetype) -> str:
         """Maps a BenchmarkArchetype to its corresponding Gen 4b DomainArchetype value."""
@@ -227,6 +314,7 @@ class AxiomaCausalMeshEngine(BaseSynthesisEngine):
             expected_endpoints=getattr(archetype, "expected_endpoints", None),
             subagent_invoker=subagent_invoker,
             require_live_subagents=True,
+            max_remediation_cycles=self.max_remediation_cycles,
             transport_mode=TransportMode.LOCAL_IPC.value,
             metadata={"lenient_acceptance_gate": self.lenient_acceptance_gate},
         )
@@ -257,12 +345,20 @@ class AxiomaCausalMeshEngine(BaseSynthesisEngine):
             "governance_certified": report.governance_certified,
             "acceptance_gate_passed": report.audit_passed,
             "acceptance_gate_violations": list(report.acceptance_gate_violations),
+            "red_team_passed": report.red_team_passed,
+            "critical_vulnerabilities_found": report.critical_vulnerabilities_found,
+            "red_team_verdict": report.red_team_verdict,
+            "remediation_cycles_executed": report.remediation_cycles_executed,
         }
         manifest_data["merkle_root"] = report.merkle_root
         manifest_data["acceptance_spec_hash"] = report.acceptance_spec_hash
         manifest_data["research_bundle_id"] = report.research_bundle_id
         manifest_data["statechart_coverage_pct"] = report.statechart_coverage_pct
         manifest_data["subagent_witnesses"] = report.subagent_witnesses
+        manifest_data["red_team_passed"] = report.red_team_passed
+        manifest_data["critical_vulnerabilities_found"] = report.critical_vulnerabilities_found
+        manifest_data["red_team_verdict"] = report.red_team_verdict
+        manifest_data["remediation_cycles_executed"] = report.remediation_cycles_executed
         manifest_path.write_text(json.dumps(manifest_data, indent=2), encoding="utf-8")
 
         duration = time.time() - start_time

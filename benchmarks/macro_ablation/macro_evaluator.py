@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import time
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 from .domain_models import (
     AblationMode,
@@ -26,6 +26,7 @@ from .domain_models import (
     Tier0LivenessResult,
 )
 from .evaluators import (
+    AdversarialIntegrityEvaluator,
     ChaosEvaluator,
     EfficiencyEvaluator,
     HermeticEvaluator,
@@ -44,11 +45,14 @@ class MacroEvaluationGauntlet:
         liveness_timeout: float = 5.0,
         chaos_timeout: float = 6.0,
         enable_provenance: bool = False,
+        enable_adversarial_integrity: bool = True,
     ) -> None:
         self.enable_provenance = enable_provenance
+        self.enable_adversarial_integrity = enable_adversarial_integrity
         self.liveness_gatekeeper = LivenessGatekeeper(boot_timeout_sec=liveness_timeout)
         self.provenance_evaluator = ProvenanceEvaluator(weight=0.0)
-        
+        self.adversarial_evaluator = AdversarialIntegrityEvaluator(weight=0.0)
+
         # Standardized 5 functional passes (always sum to 1.00)
         self.spec_evaluator = SpecFidelityEvaluator(weight=0.25)
         self.state_evaluator = StatechartEvaluator(weight=0.20)
@@ -116,11 +120,31 @@ class MacroEvaluationGauntlet:
         pass_eff = self.efficiency_evaluator.evaluate(app_dir, archetype)
         pass_results["efficiency"] = pass_eff
 
-        # Graded score is sum of weighted functional passes (Passes 1-5, total weight = 1.00)
-        graded_score = round(
-            sum(p.weighted_score for p in pass_results.values() if p.pass_name != "provenance"),
+        # Pass 6: Adversarial & Behavioral Integrity (Red Team + Physical Mutation Accountability)
+        adversarial_penalty = 0.0
+        adversarial_cap = 100.0
+        if self.enable_adversarial_integrity:
+            pass_adv = self.adversarial_evaluator.evaluate(
+                app_dir=app_dir,
+                archetype=archetype,
+                provenance_manifest=provenance_manifest,
+            )
+            pass_results["adversarial_integrity"] = pass_adv
+            adversarial_penalty = float(pass_adv.details.get("penalty_points", 0.0))
+            adversarial_cap = float(pass_adv.details.get("score_cap", 100.0))
+
+        # Functional score is sum of weighted functional passes (Passes 1-5, total weight = 1.00)
+        functional_score = round(
+            sum(
+                p.weighted_score
+                for k, p in pass_results.items()
+                if k not in ("provenance", "adversarial_integrity")
+            ),
             2,
         )
+
+        # Graded score incorporates adversarial accountability penalties and hard ceiling cap
+        graded_score = round(min(adversarial_cap, max(0.0, functional_score - adversarial_penalty)), 2)
 
         # Composite score strictly enforces Tier 0 Multiplier AND Provenance Gatekeeper Multiplier
         composite_score = round(tier0_multiplier * provenance_multiplier * graded_score, 2)

@@ -8,6 +8,7 @@ from .provenance_evaluator import (
     AgentCollusionViolation,
     FabricatedWitnessViolation,
 )
+from .adversarial_integrity_evaluator import AdversarialIntegrityEvaluator
 from .spec_fidelity_evaluator import SpecFidelityEvaluator
 from .statechart_evaluator import StatechartEvaluator
 from .chaos_evaluator import ChaosEvaluator
@@ -22,6 +23,7 @@ __all__ = [
     "MonolithicSimulationViolation",
     "AgentCollusionViolation",
     "FabricatedWitnessViolation",
+    "AdversarialIntegrityEvaluator",
     "SpecFidelityEvaluator",
     "StatechartEvaluator",
     "ChaosEvaluator",

@@ -390,8 +390,8 @@ def generate_candidate_app(mode: AblationMode, output_dir: Path) -> Path:
                 return entry.value
 
             def set(self, key: str, value: Any, ttl_seconds: Optional[int] = None) -> KeyValueEntry:
-                if ttl_seconds is not None and ttl_seconds <= 0:
-                    raise ValueError("TTL must be strictly positive")
+                if ttl_seconds is not None and (isinstance(ttl_seconds, bool) or not isinstance(ttl_seconds, (int, float)) or ttl_seconds <= 0):
+                    raise ValueError("TTL must be a strictly positive number")
                 expires_at = (time.time() + ttl_seconds) if ttl_seconds else None
                 entry = KeyValueEntry(key=key, value=value, expires_at=expires_at)
                 self.store[key] = entry
@@ -489,12 +489,28 @@ def generate_candidate_app(mode: AblationMode, output_dir: Path) -> Path:
                 self._send_json(404, {"error": "Endpoint not found"})
 
             def do_POST(self):
-                content_len = int(self.headers.get('Content-Length', 0))
-                raw_body = self.rfile.read(content_len).decode('utf-8') if content_len > 0 else "{}"
                 try:
-                    payload = json.loads(raw_body)
+                    content_len = int(self.headers.get('Content-Length', 0))
+                except (TypeError, ValueError):
+                    self._send_json(400, {"error": "Invalid Content-Length"})
+                    return
+                if content_len < 0:
+                    self._send_json(400, {"error": "Negative Content-Length"})
+                    return
+                if content_len > 1024 * 1024:
+                    self._send_json(413, {"error": "Payload exceeds 1 MiB limit"})
+                    return
+                raw_bytes = self.rfile.read(content_len) if content_len > 0 else b"{}"
+                if content_len > 0 and len(raw_bytes) != content_len:
+                    self._send_json(400, {"error": "Truncated request body"})
+                    return
+                try:
+                    payload = json.loads(raw_bytes.decode('utf-8'))
                 except Exception:
                     self._send_json(400, {"error": "Malformed JSON body"})
+                    return
+                if not isinstance(payload, dict):
+                    self._send_json(400, {"error": "JSON payload must be an object"})
                     return
 
                 if self.path.startswith('/keys/'):

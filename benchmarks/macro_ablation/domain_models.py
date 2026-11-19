@@ -182,7 +182,12 @@ class MacroBenchmarkReport:
             ])
             for pass_name, pres in sc.pass_results.items():
                 status_icon = "PASS" if pres.passed else "WARN/FAIL"
-                lines.append(f"| `{pass_name}` | {pres.weight * 100:.0f}% | {pres.raw_score:.1f} | {pres.weighted_score:.2f} | {status_icon} |")
+                if pass_name == "adversarial_integrity":
+                    pen = pres.details.get("penalty_points", 0.0)
+                    cap = pres.details.get("score_cap", 100.0)
+                    lines.append(f"| `{pass_name}` | CAP/PEN | {pres.raw_score:.1f} | -{pen:.2f} (cap {cap:.0f}) | {status_icon} |")
+                else:
+                    lines.append(f"| `{pass_name}` | {pres.weight * 100:.0f}% | {pres.raw_score:.1f} | {pres.weighted_score:.2f} | {status_icon} |")
             lines.append("")
 
         return "\n".join(lines)
