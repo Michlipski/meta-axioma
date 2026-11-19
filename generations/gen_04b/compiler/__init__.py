@@ -12,6 +12,10 @@ Exports:
 
 from __future__ import annotations
 
+from generations.gen_04b.protocols.acceptance_spec import (
+    RedTeamVerdict,
+    parse_red_team_verdict,
+)
 from .cli import main
 from .orchestrator import (
     CompilationReport,
@@ -34,6 +38,8 @@ __all__ = [
     "CompilationReport",
     "CompilationRequest",
     "PhaseExecutionSequenceViolation",
+    "RedTeamVerdict",
+    "parse_red_team_verdict",
     "SystemG4bCompiler",
     "main",
 ]

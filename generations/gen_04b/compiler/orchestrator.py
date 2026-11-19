@@ -32,6 +32,8 @@ from generations.gen_04b.protocols.acceptance_spec import (
     DomainArchetype,
     FalsificationVector,
     MutationType,
+    RedTeamVerdict,
+    parse_red_team_verdict,
 )
 from generations.gen_04b.protocols.cognitive_routing import resolve_role_routing
 from generations.gen_04b.protocols.deliverable_bundle import (
@@ -136,6 +138,8 @@ class CompilationRequest:
     transport_mode: str = TransportMode.LOCAL_IPC.value
     subagent_invoker: Optional[Callable[..., Any]] = None
     require_live_subagents: bool = True
+    max_remediation_cycles: int = 2
+    strict_red_team_verdict: bool = False
     metadata: Dict[str, Any] = field(default_factory=dict)
 
 
@@ -162,6 +166,10 @@ class CompilationReport:
     phases_executed: List[str]
     error_message: Optional[str] = None
     acceptance_gate_violations: List[str] = field(default_factory=list)
+    red_team_passed: bool = True
+    critical_vulnerabilities_found: int = 0
+    red_team_verdict: Optional[Dict[str, Any]] = None
+    remediation_cycles_executed: int = 0
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -305,12 +313,18 @@ class SystemG4bCompiler:
         bpe_tokens: int,
         step_index: int,
         correlation_id: str,
+        prev_transaction_hash: str = "0" * 64,
     ) -> MeshTransaction:
         """Records a cryptographic micro-transaction in the SQLite WAL Telemetry Vault."""
         tx_id = f"tx_{uuid.uuid4().hex[:12]}"
+        exploratory_phases = {
+            CompilationPhase.PHASE_1_RESEARCH,
+            CompilationPhase.PHASE_2A_BUILD,
+            CompilationPhase.PHASE_3_REMEDIATION,
+        }
         tx = MeshTransaction.create(
             transaction_id=tx_id,
-            prev_transaction_hash="0" * 64,
+            prev_transaction_hash=prev_transaction_hash,
             logical_clock=step_index,
             causal_task_id=correlation_id,
             step_index=step_index,
@@ -326,11 +340,158 @@ class SystemG4bCompiler:
             bpe_tokens_in=bpe_tokens,
             bpe_tokens_out=bpe_tokens,
             bits_erased=bpe_tokens * 16,
-            capital_partition="EXPLORATORY" if step_index <= 2 else "PROTECTED",
+            capital_partition="EXPLORATORY" if phase in exploratory_phases else "PROTECTED",
             status="SUCCESS",
         )
         vault.insert_transaction(tx)
         return tx
+
+    @staticmethod
+    def _snapshot_tests_dir(tests_dir: Path) -> Dict[str, Tuple[int, str]]:
+        """Captures size and SHA-256 of existing test_*.py files to guard against Builder tampering."""
+        snapshot: Dict[str, Tuple[int, str]] = {}
+        if not tests_dir.exists():
+            return snapshot
+        for p in sorted(tests_dir.glob("test_*.py")):
+            if p.is_file():
+                data = p.read_bytes()
+                snapshot[p.name] = (len(data), hashlib.sha256(data).hexdigest())
+        return snapshot
+
+    @staticmethod
+    def _verify_tests_not_tampered(tests_dir: Path, before_snapshot: Dict[str, Tuple[int, str]]) -> None:
+        """Ensures Builder remediation did not delete or empty pre-existing QA test files."""
+        for fname, (orig_size, _) in before_snapshot.items():
+            p = tests_dir / fname
+            if not p.exists():
+                raise PhaseExecutionSequenceViolation(
+                    f"[NEG-G4B-TAMPER] Builder remediation deleted QA test file '{fname}'."
+                )
+            cur_size = p.stat().st_size
+            if orig_size > 0 and cur_size == 0:
+                raise PhaseExecutionSequenceViolation(
+                    f"[NEG-G4B-TAMPER] Builder remediation truncated QA test file '{fname}' to zero bytes."
+                )
+
+    def _run_phase2b_grounding(
+        self,
+        target_dir: Path,
+        runtime_profile: str,
+        emitted_artifacts: List[str],
+    ) -> List[Path]:
+        """Executes Phase 2B physical disk grounding and Governance AST enforcement."""
+        discovered_py_files = [p for p in target_dir.rglob("*.py") if "__pycache__" not in p.parts]
+        for py_path in discovered_py_files:
+            if not py_path.exists():
+                raise PhaseExecutionSequenceViolation(f"[NEG-G1B-001] Declared artifact missing: {py_path}")
+            if py_path.stat().st_size == 0 and py_path.name != "__init__.py":
+                raise PhaseExecutionSequenceViolation(f"[NEG-G1B-001] Zero-byte artifact forbidden: {py_path}")
+            py_code = py_path.read_text(encoding="utf-8")
+            ast.parse(py_code, filename=str(py_path))
+            gov_violations = self.governance_kernel.scan_and_enforce_code(
+                py_code,
+                str(py_path),
+                runtime_profile=runtime_profile,
+            )
+            if gov_violations:
+                raise PhaseExecutionSequenceViolation(
+                    f"[NEG-GOV] Prohibited construct in {py_path}: {gov_violations}"
+                )
+            if str(py_path) not in emitted_artifacts:
+                emitted_artifacts.append(str(py_path))
+        return discovered_py_files
+
+    def _run_phase2c_smoke_and_tests(
+        self,
+        target_dir: Path,
+        run_path: Path,
+        tests_dir: Path,
+    ) -> Tuple[subprocess.CompletedProcess[str], subprocess.CompletedProcess[str]]:
+        """Executes [NEG-G1B-002] subprocess smoke test and unittest discovery."""
+        proc = subprocess.run(
+            [sys.executable, "-u", str(run_path), "--smoke-test"],
+            capture_output=True,
+            text=True,
+            timeout=10.0,
+            cwd=str(target_dir),
+            env={**os.environ, "PYTHONUNBUFFERED": "1"},
+        )
+        if proc.returncode != 0:
+            raise PhaseExecutionSequenceViolation(
+                f"[NEG-G1B-002] Subprocess smoke test failed with exit code {proc.returncode}.\n"
+                f"Stdout: {proc.stdout}\nStderr: {proc.stderr}"
+            )
+
+        test_proc = subprocess.run(
+            [sys.executable, "-m", "unittest", "discover", "-s", str(tests_dir)],
+            capture_output=True,
+            text=True,
+            timeout=15.0,
+            cwd=str(target_dir),
+            env={**os.environ, "PYTHONUNBUFFERED": "1"},
+        )
+        if test_proc.returncode != 0:
+            raise PhaseExecutionSequenceViolation(
+                f"Unit test suite discovery failed with exit code {test_proc.returncode}.\n"
+                f"Stdout: {test_proc.stdout}\nStderr: {test_proc.stderr}"
+            )
+        return proc, test_proc
+
+    def _invoke_red_team_audit(
+        self,
+        effective_invoker: Optional[Callable[..., Any]],
+        target_dir: Path,
+        request: CompilationRequest,
+        cycle: int,
+    ) -> Tuple[Optional[str], RedTeamVerdict, Any]:
+        """Invokes Phase 3 Dialectical Red Team Architect and parses structured RedTeamVerdict."""
+        redteam_route = resolve_role_routing("SOCRATIC_RED_TEAM", tier_label="Red Team Gate (Brain)")
+        verdict_path = target_dir / "red_team_verdict.json"
+        if effective_invoker is None:
+            return (
+                None,
+                RedTeamVerdict(
+                    red_team_pass=True,
+                    critical_vulnerabilities_found=0,
+                    findings=[],
+                    cycle=cycle,
+                    verdict_source="OFFLINE_NO_SUBAGENT",
+                ),
+                redteam_route,
+            )
+
+        # Clear any stale verdict artifact from an earlier remediation cycle
+        if verdict_path.exists():
+            try:
+                verdict_path.unlink()
+            except Exception:
+                pass
+
+        redteam_prompt = (
+            f"You are the Dialectical Red Team Architect ([L1-G4B-009], [INV-G4B-REDTEAM-001]).\n"
+            f"Audit cycle: {cycle} for `{request.app_name}` (`{request.app_id}`) at `{target_dir}`.\n"
+            f"Stress-test assumptions, verify negative constraints, and analyze Byzantine failure modes WITHOUT modifying source code.\n"
+            f"Write your structured JSON verdict to `{verdict_path}` with schema:\n"
+            f'{{"red_team_pass": true|false, "critical_vulnerabilities_found": <int>, "findings": ["..."], "cycle": {cycle}}}'
+        )
+        raw_rt = effective_invoker(
+            "Dialectical Red Team Architect",
+            redteam_prompt,
+            redteam_route.agy_model_param,
+        )
+        cid_rt, verdict = parse_red_team_verdict(
+            raw_return=raw_rt,
+            target_dir=target_dir,
+            cycle=cycle,
+            strict_required=request.strict_red_team_verdict,
+        )
+        # Persist structured verdict on disk if returned programmatically without writing file
+        if verdict.verdict_source not in ("IMPLICIT_PASS_LEGACY_STUB", "OFFLINE_NO_SUBAGENT") and not verdict_path.exists():
+            try:
+                verdict_path.write_text(json.dumps(verdict.to_dict(), indent=2), encoding="utf-8")
+            except Exception:
+                pass
+        return cid_rt, verdict, redteam_route
 
     def compile(
         self,
@@ -354,6 +515,12 @@ class SystemG4bCompiler:
         step_idx = 0
         emitted_artifacts: List[str] = []
         rfc_resolutions: List[Dict[str, Any]] = []
+        subagent_witnesses: List[Dict[str, Any]] = []
+        tx_chain: List[MeshTransaction] = []
+        prev_tx_hash = "0" * 64
+        builder_cids: set[str] = set()
+        remediation_cycles_executed = 0
+        red_team_verdict: Optional[RedTeamVerdict] = None
 
         effective_invoker = subagent_invoker if subagent_invoker is not None else request.subagent_invoker
         effective_require_live = (
@@ -471,6 +638,19 @@ class SystemG4bCompiler:
                     phase1_prompt,
                     brain_route.agy_model_param,
                 )
+                subagent_witnesses.append({
+                    "conversation_id": cid_brain or f"cid_brain_{uuid.uuid4().hex[:8]}",
+                    "role": "Domain Ontologist & Systems Architect",
+                    "cognitive_role": "DOMAIN_ONTOLOGIST",
+                    "phase": "Phase 1: Research Gate",
+                    "tier": brain_route.display_tier,
+                    "model": brain_route.witness_model_label,
+                    "tokens_in": 35000,
+                    "tokens_out": 28000,
+                    "steps": 4,
+                    "cycle": 0,
+                    "timestamp": int(time.time()),
+                })
 
             # 6. Physical Framed IPC Transmission: Research -> Builder
             research_payload = {
@@ -502,7 +682,10 @@ class SystemG4bCompiler:
                 bpe_tokens=phase_1_tokens,
                 step_index=step_idx,
                 correlation_id=correlation_id,
+                prev_transaction_hash=prev_tx_hash,
             )
+            tx_chain.append(tx1)
+            prev_tx_hash = tx1.transaction_hash
             total_heat_joules += tx1.heat_dissipated_joules
 
             # =========================================================================
@@ -535,6 +718,21 @@ class SystemG4bCompiler:
                     phase2a_prompt,
                     builder_route.agy_model_param,
                 )
+                if cid_builder:
+                    builder_cids.add(str(cid_builder))
+                subagent_witnesses.append({
+                    "conversation_id": cid_builder or f"cid_builder_{uuid.uuid4().hex[:8]}",
+                    "role": "Core Engine Synthesizer",
+                    "cognitive_role": "CORE_ENGINE_SYNTHESIZER",
+                    "phase": "Phase 2A: Builder Muscle",
+                    "tier": builder_route.display_tier,
+                    "model": builder_route.witness_model_label,
+                    "tokens_in": 55000,
+                    "tokens_out": 45000,
+                    "steps": 6,
+                    "cycle": 0,
+                    "timestamp": int(time.time()),
+                })
 
             # 3. Application Code Leaves Emission (if subagent did not pre-create run.py)
             src_dir = target_dir / "src"
@@ -694,7 +892,10 @@ class SystemG4bCompiler:
                 bpe_tokens=phase_2a_tokens,
                 step_index=step_idx,
                 correlation_id=correlation_id,
+                prev_transaction_hash=prev_tx_hash,
             )
+            tx_chain.append(tx2)
+            prev_tx_hash = tx2.transaction_hash
             total_heat_joules += tx2.heat_dissipated_joules
 
             # =========================================================================
@@ -703,21 +904,11 @@ class SystemG4bCompiler:
             statechart.transition(CompilationPhase.PHASE_2B_GROUNDING, event="EV_GROUNDING_VERIFY")
             step_idx += 1
 
-            discovered_py_files = [p for p in target_dir.rglob("*.py") if "__pycache__" not in p.parts]
-            for py_path in discovered_py_files:
-                if not py_path.exists():
-                    raise PhaseExecutionSequenceViolation(f"[NEG-G1B-001] Declared artifact missing: {py_path}")
-                if py_path.stat().st_size == 0 and py_path.name != "__init__.py":
-                    raise PhaseExecutionSequenceViolation(f"[NEG-G1B-001] Zero-byte artifact forbidden: {py_path}")
-                py_code = py_path.read_text(encoding="utf-8")
-                ast.parse(py_code, filename=str(py_path))
-                gov_violations = self.governance_kernel.scan_and_enforce_code(py_code, str(py_path))
-                if gov_violations:
-                    raise PhaseExecutionSequenceViolation(
-                        f"[NEG-GOV] Prohibited construct in {py_path}: {gov_violations}"
-                    )
-                if str(py_path) not in emitted_artifacts:
-                    emitted_artifacts.append(str(py_path))
+            discovered_py_files = self._run_phase2b_grounding(
+                target_dir=target_dir,
+                runtime_profile=request.transport_mode,
+                emitted_artifacts=emitted_artifacts,
+            )
 
             phase_2b_tokens = 12000
             protected_tokens_spent += phase_2b_tokens
@@ -734,7 +925,10 @@ class SystemG4bCompiler:
                 bpe_tokens=phase_2b_tokens,
                 step_index=step_idx,
                 correlation_id=correlation_id,
+                prev_transaction_hash=prev_tx_hash,
             )
+            tx_chain.append(tx3)
+            prev_tx_hash = tx3.transaction_hash
             total_heat_joules += tx3.heat_dissipated_joules
 
             # =========================================================================
@@ -759,40 +953,30 @@ class SystemG4bCompiler:
                     sanitized_qa_prompt,
                     qa_route.agy_model_param,
                 )
-                if cid_qa == cid_builder:
+                if cid_qa is not None and (cid_qa == cid_builder or str(cid_qa) in builder_cids):
                     raise PhaseExecutionSequenceViolation(
                         f"Anti-collusion violation: Builder ({cid_builder}) and QA ({cid_qa}) share conversation context."
                     )
+                subagent_witnesses.append({
+                    "conversation_id": cid_qa or f"cid_qa_{uuid.uuid4().hex[:8]}",
+                    "role": "Adversarial Byzantine QA Engineer",
+                    "cognitive_role": "ADVERSARIAL_QA_ENGINEER",
+                    "phase": "Phase 2C: Blind QA Gate",
+                    "tier": qa_route.display_tier,
+                    "model": qa_route.witness_model_label,
+                    "tokens_in": 30000,
+                    "tokens_out": 22000,
+                    "steps": 3,
+                    "cycle": 0,
+                    "timestamp": int(time.time()),
+                })
 
-            # 1. Subprocess Smoke Gate [NEG-G1B-002]
-            proc = subprocess.run(
-                [sys.executable, "-u", str(run_path), "--smoke-test"],
-                capture_output=True,
-                text=True,
-                timeout=10.0,
-                cwd=str(target_dir),
-                env={**os.environ, "PYTHONUNBUFFERED": "1"},
+            # 1. Subprocess Smoke Gate [NEG-G1B-002] & 2. Test Discovery
+            proc, test_proc = self._run_phase2c_smoke_and_tests(
+                target_dir=target_dir,
+                run_path=run_path,
+                tests_dir=tests_dir,
             )
-            if proc.returncode != 0:
-                raise PhaseExecutionSequenceViolation(
-                    f"[NEG-G1B-002] Subprocess smoke test failed with exit code {proc.returncode}.\n"
-                    f"Stdout: {proc.stdout}\nStderr: {proc.stderr}"
-                )
-
-            # 2. Test Discovery & Execution
-            test_proc = subprocess.run(
-                [sys.executable, "-m", "unittest", "discover", "-s", str(tests_dir)],
-                capture_output=True,
-                text=True,
-                timeout=15.0,
-                cwd=str(target_dir),
-                env={**os.environ, "PYTHONUNBUFFERED": "1"},
-            )
-            if test_proc.returncode != 0:
-                raise PhaseExecutionSequenceViolation(
-                    f"Unit test suite discovery failed with exit code {test_proc.returncode}.\n"
-                    f"Stdout: {test_proc.stdout}\nStderr: {test_proc.stderr}"
-                )
 
             phase_2c_tokens = 22000
             protected_tokens_spent += phase_2c_tokens
@@ -809,7 +993,10 @@ class SystemG4bCompiler:
                 bpe_tokens=phase_2c_tokens,
                 step_index=step_idx,
                 correlation_id=correlation_id,
+                prev_transaction_hash=prev_tx_hash,
             )
+            tx_chain.append(tx4)
+            prev_tx_hash = tx4.transaction_hash
             total_heat_joules += tx4.heat_dissipated_joules
 
             # =========================================================================
@@ -839,7 +1026,11 @@ class SystemG4bCompiler:
                         source_endpoint=self.BUILDER_ENDPOINT,
                     )
                     phase_audit_kernel.audit_code_leaf(candidate)
-                    self.micro_auditor.audit_source(py_code, leaf_id=f"leaf_{py_path.stem}")
+                    self.micro_auditor.audit_source(
+                        py_code,
+                        leaf_id=f"leaf_{py_path.stem}",
+                        runtime_profile=request.transport_mode,
+                    )
 
             # Verify formal contract morphism & sovereign enclave mesh topology
             phase_smt_checker.verify_contract_morphism(
@@ -862,28 +1053,37 @@ class SystemG4bCompiler:
                 "consensus": {"quorum_fraction": 0.67},
             })
 
-            # Run Acceptance Gate
+            # Run Acceptance Gate (cycle 0)
+            lenient_gate = bool(request.metadata.get("lenient_acceptance_gate", False))
             test_cmd = [sys.executable, "-m", "unittest", "discover", "-s", str(tests_dir)]
             gate_result = self.acceptance_gate.verify_spec(
                 target_dir=target_dir,
                 spec=acceptance_spec,
                 test_command=test_cmd,
-                raise_on_failure=not request.metadata.get("lenient_acceptance_gate", False),
+                raise_on_failure=not lenient_gate,
             )
 
-            # Optionally invoke Dialectical Red Team Architect
-            cid_redteam = None
-            redteam_route = resolve_role_routing("SOCRATIC_RED_TEAM", tier_label="Red Team Gate (Brain)")
-            if effective_invoker is not None:
-                redteam_prompt = (
-                    f"You are the Dialectical Red Team Architect ([L1-G4B-009], [INV-G4B-REDTEAM-001]).\n"
-                    f"Stress-test assumptions, verify negative constraints, and analyze Byzantine failure modes for `{target_dir}`."
-                )
-                cid_redteam = effective_invoker(
-                    "Dialectical Red Team Architect",
-                    redteam_prompt,
-                    redteam_route.agy_model_param,
-                )
+            # Blocking Dialectical Red Team Architect & Bounded Self-Healing Loop [INV-G4B-REDTEAM-001]
+            cid_redteam, red_team_verdict, redteam_route = self._invoke_red_team_audit(
+                effective_invoker=effective_invoker,
+                target_dir=target_dir,
+                request=request,
+                cycle=0,
+            )
+            if effective_invoker is not None and cid_redteam:
+                subagent_witnesses.append({
+                    "conversation_id": cid_redteam,
+                    "role": "Dialectical Red Team Architect",
+                    "cognitive_role": "SOCRATIC_RED_TEAM",
+                    "phase": "Phase 3: Red Team Gate",
+                    "tier": redteam_route.display_tier,
+                    "model": redteam_route.witness_model_label,
+                    "tokens_in": 25000,
+                    "tokens_out": 18000,
+                    "steps": 2,
+                    "cycle": 0,
+                    "timestamp": int(time.time()),
+                })
 
             phase_3_tokens = 30000
             protected_tokens_spent += phase_3_tokens
@@ -896,12 +1096,237 @@ class SystemG4bCompiler:
                 target_service="services/telemetry",
                 target_endpoint=self.TELEMETRY_ENDPOINT,
                 verb="OP_AUDIT_ACCEPTANCE",
-                payload={"passed": gate_result.passed, "spec_hash": spec_hash},
+                payload={
+                    "passed": gate_result.passed and not red_team_verdict.is_blocking,
+                    "spec_hash": spec_hash,
+                    "red_team_pass": red_team_verdict.red_team_pass,
+                    "critical_vulnerabilities_found": red_team_verdict.critical_vulnerabilities_found,
+                    "cycle": 0,
+                },
                 bpe_tokens=phase_3_tokens,
                 step_index=step_idx,
                 correlation_id=correlation_id,
+                prev_transaction_hash=prev_tx_hash,
             )
+            tx_chain.append(tx5)
+            prev_tx_hash = tx5.transaction_hash
             total_heat_joules += tx5.heat_dissipated_joules
+
+            # Bounded Red Team -> Builder Remediation -> Grounding -> Blind QA -> Audit Loop
+            max_cycles = max(0, int(request.max_remediation_cycles))
+            while (
+                effective_invoker is not None
+                and red_team_verdict.is_blocking
+                and remediation_cycles_executed < max_cycles
+            ):
+                remediation_cycles_executed += 1
+                findings_block = "\n".join(
+                    f"  {idx + 1}. {finding}"
+                    for idx, finding in enumerate(red_team_verdict.findings)
+                ) or "  1. Unspecified critical Red Team failure; inspect and harden all boundary/protocol invariants."
+
+                statechart.transition(
+                    CompilationPhase.PHASE_3_REMEDIATION,
+                    event="EV_REDTEAM_VETO_REMEDIATE",
+                    payload={
+                        "cycle": remediation_cycles_executed,
+                        "critical_vulnerabilities_found": red_team_verdict.critical_vulnerabilities_found,
+                    },
+                )
+                statechart.transition(
+                    CompilationPhase.PHASE_2A_BUILD,
+                    event="EV_REMEDIATION_BUILD_START",
+                )
+                step_idx += 1
+
+                # Snapshot existing QA tests before Builder touches code
+                pre_remediation_tests = self._snapshot_tests_dir(tests_dir)
+                remediation_prompt = (
+                    f"You are the Core Engine Synthesizer executing Red Team Remediation Cycle {remediation_cycles_executed}/{max_cycles} "
+                    f"([L1-G4B-009], [INV-G4B-REDTEAM-001]).\n"
+                    f"App: {request.app_name} ({request.app_id}) in `{target_dir}`.\n"
+                    f"The Phase 3 Dialectical Red Team blocked certification with "
+                    f"{red_team_verdict.critical_vulnerabilities_found} critical finding(s):\n"
+                    f"{findings_block}\n\n"
+                    f"Fix EVERY listed critical vulnerability in `{target_dir}/src/` and `{target_dir}/run.py`.\n"
+                    f"STRICT CONSTRAINT: Do NOT delete or truncate existing test files in `{tests_dir}`."
+                )
+                cid_builder_rem = effective_invoker(
+                    "Core Engine Synthesizer",
+                    remediation_prompt,
+                    builder_route.agy_model_param,
+                )
+                if cid_builder_rem:
+                    builder_cids.add(str(cid_builder_rem))
+                subagent_witnesses.append({
+                    "conversation_id": cid_builder_rem or f"cid_builder_rem{remediation_cycles_executed}_{uuid.uuid4().hex[:6]}",
+                    "role": "Core Engine Synthesizer",
+                    "cognitive_role": "CORE_ENGINE_SYNTHESIZER",
+                    "phase": f"Phase 2A: Builder Remediation (Cycle {remediation_cycles_executed})",
+                    "tier": builder_route.display_tier,
+                    "model": builder_route.witness_model_label,
+                    "tokens_in": 18000,
+                    "tokens_out": 14000,
+                    "steps": 3,
+                    "cycle": remediation_cycles_executed,
+                    "timestamp": int(time.time()),
+                })
+
+                # Enforce anti-tampering on QA tests
+                self._verify_tests_not_tampered(tests_dir, pre_remediation_tests)
+
+                rem_build_tokens = 12000
+                exploratory_tokens_spent += rem_build_tokens
+                total_tokens_spent += rem_build_tokens
+                tx_rem_b = self._log_mesh_transaction(
+                    vault=vault,
+                    phase=CompilationPhase.PHASE_3_REMEDIATION,
+                    source_service="services/builder",
+                    source_endpoint=self.BUILDER_ENDPOINT,
+                    target_service="services/audit",
+                    target_endpoint=self.AUDIT_ENDPOINT,
+                    verb="OP_REMEDIATION_BUILD",
+                    payload={"cycle": remediation_cycles_executed, "findings_count": len(red_team_verdict.findings)},
+                    bpe_tokens=rem_build_tokens,
+                    step_index=step_idx,
+                    correlation_id=correlation_id,
+                    prev_transaction_hash=prev_tx_hash,
+                )
+                tx_chain.append(tx_rem_b)
+                prev_tx_hash = tx_rem_b.transaction_hash
+                total_heat_joules += tx_rem_b.heat_dissipated_joules
+
+                # Phase 2B Re-Grounding
+                statechart.transition(CompilationPhase.PHASE_2B_GROUNDING, event="EV_GROUNDING_VERIFY")
+                step_idx += 1
+                discovered_py_files = self._run_phase2b_grounding(
+                    target_dir=target_dir,
+                    runtime_profile=request.transport_mode,
+                    emitted_artifacts=emitted_artifacts,
+                )
+
+                # Phase 2C Fresh Blind QA Re-Verification (disjoint cid_qa)
+                statechart.transition(CompilationPhase.PHASE_2C_QA, event="EV_QA_SMOKE_RUN")
+                step_idx += 1
+                qa_rem_prompt = (
+                    f"You are the Adversarial Byzantine QA Engineer verifying Remediation Cycle {remediation_cycles_executed}/{max_cycles} "
+                    f"([L1-G3B-014], [INV-G4B-CAUSAL-003]).\n"
+                    f"App `{request.app_name}` in `{target_dir}`. Verify regression tests and add adversarial assertions "
+                    f"in `{tests_dir}` confirming the previously reported critical issues are eliminated."
+                )
+                cid_qa_rem = effective_invoker(
+                    "Adversarial Byzantine QA Engineer",
+                    qa_rem_prompt,
+                    qa_route.agy_model_param,
+                )
+                if cid_qa_rem is not None and str(cid_qa_rem) in builder_cids:
+                    raise PhaseExecutionSequenceViolation(
+                        f"Anti-collusion violation on remediation cycle {remediation_cycles_executed}: "
+                        f"QA ({cid_qa_rem}) shares conversation context with a Builder ({sorted(builder_cids)})."
+                    )
+                subagent_witnesses.append({
+                    "conversation_id": cid_qa_rem or f"cid_qa_rem{remediation_cycles_executed}_{uuid.uuid4().hex[:6]}",
+                    "role": "Adversarial Byzantine QA Engineer",
+                    "cognitive_role": "ADVERSARIAL_QA_ENGINEER",
+                    "phase": f"Phase 2C: Blind QA Re-Verify (Cycle {remediation_cycles_executed})",
+                    "tier": qa_route.display_tier,
+                    "model": qa_route.witness_model_label,
+                    "tokens_in": 12000,
+                    "tokens_out": 8000,
+                    "steps": 2,
+                    "cycle": remediation_cycles_executed,
+                    "timestamp": int(time.time()),
+                })
+                proc_rem, test_proc_rem = self._run_phase2c_smoke_and_tests(
+                    target_dir=target_dir,
+                    run_path=run_path,
+                    tests_dir=tests_dir,
+                )
+
+                # Phase 3 Re-Audit (AcceptanceGate + Red Team Re-Audit)
+                statechart.transition(CompilationPhase.PHASE_3_AUDIT, event="EV_AUDIT_VERIFY_REMEDIATION")
+                step_idx += 1
+                for py_path in discovered_py_files:
+                    if "tests" not in py_path.parts and py_path.name != "__init__.py":
+                        py_code = py_path.read_text(encoding="utf-8")
+                        candidate = CodeLeafCandidate(
+                            leaf_id=f"leaf_{py_path.stem}_c{remediation_cycles_executed}_{uuid.uuid4().hex[:6]}",
+                            symbol_urn=f"urn:meta_axioma:g4b:{request.app_id}:{py_path.stem}",
+                            source_code=py_code,
+                            ast_node_type="MODULE",
+                            source_endpoint=self.BUILDER_ENDPOINT,
+                        )
+                        phase_audit_kernel.audit_code_leaf(candidate)
+                        self.micro_auditor.audit_source(
+                            py_code,
+                            leaf_id=f"leaf_{py_path.stem}_c{remediation_cycles_executed}",
+                            runtime_profile=request.transport_mode,
+                        )
+                gate_result = self.acceptance_gate.verify_spec(
+                    target_dir=target_dir,
+                    spec=acceptance_spec,
+                    test_command=test_cmd,
+                    raise_on_failure=not lenient_gate,
+                )
+                cid_rt_rem, red_team_verdict, redteam_route = self._invoke_red_team_audit(
+                    effective_invoker=effective_invoker,
+                    target_dir=target_dir,
+                    request=request,
+                    cycle=remediation_cycles_executed,
+                )
+                if cid_rt_rem:
+                    subagent_witnesses.append({
+                        "conversation_id": cid_rt_rem,
+                        "role": "Dialectical Red Team Architect",
+                        "cognitive_role": "SOCRATIC_RED_TEAM",
+                        "phase": f"Phase 3: Red Team Re-Audit (Cycle {remediation_cycles_executed})",
+                        "tier": redteam_route.display_tier,
+                        "model": redteam_route.witness_model_label,
+                        "tokens_in": 10000,
+                        "tokens_out": 8000,
+                        "steps": 2,
+                        "cycle": remediation_cycles_executed,
+                        "timestamp": int(time.time()),
+                    })
+
+                rem_audit_tokens = 10000
+                protected_tokens_spent += rem_audit_tokens
+                total_tokens_spent += rem_audit_tokens
+                tx_rem_a = self._log_mesh_transaction(
+                    vault=vault,
+                    phase=CompilationPhase.PHASE_3_AUDIT,
+                    source_service="services/audit",
+                    source_endpoint=self.AUDIT_ENDPOINT,
+                    target_service="services/telemetry",
+                    target_endpoint=self.TELEMETRY_ENDPOINT,
+                    verb="OP_REMEDIATION_AUDIT",
+                    payload={
+                        "cycle": remediation_cycles_executed,
+                        "smoke_exit_code": proc_rem.returncode,
+                        "test_exit_code": test_proc_rem.returncode,
+                        "gate_passed": gate_result.passed,
+                        "red_team_pass": red_team_verdict.red_team_pass,
+                        "critical_vulnerabilities_found": red_team_verdict.critical_vulnerabilities_found,
+                    },
+                    bpe_tokens=rem_audit_tokens,
+                    step_index=step_idx,
+                    correlation_id=correlation_id,
+                    prev_transaction_hash=prev_tx_hash,
+                )
+                tx_chain.append(tx_rem_a)
+                prev_tx_hash = tx_rem_a.transaction_hash
+                total_heat_joules += tx_rem_a.heat_dissipated_joules
+
+            # Final Fail-Closed Red Team Certification Check
+            rt_ok, rt_violations = self.acceptance_gate.verify_red_team_verdict(
+                red_team_verdict,
+                raise_on_failure=False,
+            )
+            gate_result.red_team_verdict = red_team_verdict.to_dict()
+            all_gate_violations = list(gate_result.violations) + list(rt_violations)
+            red_team_passed = bool(rt_ok)
+            final_audit_passed = bool(gate_result.passed and red_team_passed)
+            final_governance_certified = bool(gate_result.passed and red_team_passed)
 
             # =========================================================================
             # PHASE 4: Telemetry Vault, Merkle Seal, & Dashboard Deliverable
@@ -921,64 +1346,8 @@ class SystemG4bCompiler:
             self.telemetry_kernel.ingest_telemetry_batch(ingest_batch)
 
             # 2. Compute Merkle Root over Transactions
-            merkle_chain_payload = f"{tx1.transaction_hash}:{tx2.transaction_hash}:{tx3.transaction_hash}:{tx4.transaction_hash}:{tx5.transaction_hash}"
+            merkle_chain_payload = ":".join(tx.transaction_hash for tx in tx_chain)
             final_merkle_root = hashlib.sha256(merkle_chain_payload.encode("utf-8")).hexdigest()
-
-            # 3. Reconcile Subagent Witnesses
-            if effective_invoker is not None:
-                subagent_witnesses = [
-                    {
-                        "conversation_id": cid_brain or f"cid_brain_{uuid.uuid4().hex[:8]}",
-                        "role": "Domain Ontologist & Systems Architect",
-                        "cognitive_role": "DOMAIN_ONTOLOGIST",
-                        "phase": "Phase 1: Research Gate",
-                        "tier": brain_route.display_tier,
-                        "model": brain_route.witness_model_label,
-                        "tokens_in": 35000,
-                        "tokens_out": 28000,
-                        "steps": 4,
-                        "timestamp": int(time.time()),
-                    },
-                    {
-                        "conversation_id": cid_builder or f"cid_builder_{uuid.uuid4().hex[:8]}",
-                        "role": "Core Engine Synthesizer",
-                        "cognitive_role": "CORE_ENGINE_SYNTHESIZER",
-                        "phase": "Phase 2A: Builder Muscle",
-                        "tier": builder_route.display_tier,
-                        "model": builder_route.witness_model_label,
-                        "tokens_in": 55000,
-                        "tokens_out": 45000,
-                        "steps": 6,
-                        "timestamp": int(time.time()),
-                    },
-                    {
-                        "conversation_id": cid_qa or f"cid_qa_{uuid.uuid4().hex[:8]}",
-                        "role": "Adversarial Byzantine QA Engineer",
-                        "cognitive_role": "ADVERSARIAL_QA_ENGINEER",
-                        "phase": "Phase 2C: Blind QA Gate",
-                        "tier": qa_route.display_tier,
-                        "model": qa_route.witness_model_label,
-                        "tokens_in": 30000,
-                        "tokens_out": 22000,
-                        "steps": 3,
-                        "timestamp": int(time.time()),
-                    },
-                ]
-                if cid_redteam:
-                    subagent_witnesses.append({
-                        "conversation_id": cid_redteam,
-                        "role": "Dialectical Red Team Architect",
-                        "cognitive_role": "SOCRATIC_RED_TEAM",
-                        "phase": "Phase 3: Red Team Gate",
-                        "tier": redteam_route.display_tier,
-                        "model": redteam_route.witness_model_label,
-                        "tokens_in": 25000,
-                        "tokens_out": 18000,
-                        "steps": 2,
-                        "timestamp": int(time.time()),
-                    })
-            else:
-                subagent_witnesses = []
 
             # 4. Emit Telemetry Ledger & Metrics
             metrics_data = {
@@ -1006,6 +1375,9 @@ class SystemG4bCompiler:
                     for w in subagent_witnesses
                 },
                 "statechart_coverage_pct": statechart.coverage_pct,
+                "red_team_passed": red_team_passed,
+                "critical_vulnerabilities_found": red_team_verdict.critical_vulnerabilities_found,
+                "remediation_cycles_executed": remediation_cycles_executed,
                 "duration_ms": 1250.0,
             }
             metrics_path = target_dir / "telemetry_metrics.json"
@@ -1014,7 +1386,7 @@ class SystemG4bCompiler:
 
             ledger_data = {
                 "merkle_root": final_merkle_root,
-                "transactions": [tx1.to_dict(), tx2.to_dict(), tx3.to_dict(), tx4.to_dict(), tx5.to_dict()],
+                "transactions": [tx.to_dict() for tx in tx_chain],
             }
             ledger_path = target_dir / "telemetry_ledger.json"
             ledger_path.write_text(json.dumps(ledger_data, indent=2), encoding="utf-8")
@@ -1030,8 +1402,14 @@ class SystemG4bCompiler:
                 "acceptance_spec_hash": spec_hash,
                 "research_bundle_id": certified_bundle.bundle_id,
                 "statechart_coverage_pct": statechart.coverage_pct,
+                "audit_passed": final_audit_passed,
+                "governance_certified": final_governance_certified,
                 "acceptance_gate_passed": gate_result.passed,
-                "acceptance_gate_violations": list(gate_result.violations),
+                "acceptance_gate_violations": all_gate_violations,
+                "red_team_passed": red_team_passed,
+                "critical_vulnerabilities_found": red_team_verdict.critical_vulnerabilities_found,
+                "red_team_verdict": red_team_verdict.to_dict(),
+                "remediation_cycles_executed": remediation_cycles_executed,
             }
             manifest_path = target_dir / "synthesis_manifest.json"
             manifest_path.write_text(json.dumps(manifest_data, indent=2), encoding="utf-8")
@@ -1044,8 +1422,18 @@ class SystemG4bCompiler:
             statechart.transition(CompilationPhase.COMPLETED, event="EV_COMPILATION_COMPLETE")
             verification_mode = phase_smt_checker.verification_mode.value
 
+            # Fail closed if unresolved Red Team criticals persist after bounded remediation
+            report_success = final_governance_certified or (lenient_gate and red_team_passed)
+            fail_msg: Optional[str] = None
+            if not red_team_passed:
+                fail_msg = (
+                    f"[INV-G4B-REDTEAM-001] Fail-closed certification blocked: "
+                    f"{red_team_verdict.critical_vulnerabilities_found} unresolved critical Red Team "
+                    f"vulnerability(ies) after {remediation_cycles_executed} remediation cycle(s)."
+                )
+
             return CompilationReport(
-                success=True,
+                success=report_success,
                 app_id=request.app_id,
                 app_dir=str(target_dir),
                 acceptance_spec_hash=spec_hash,
@@ -1057,13 +1445,18 @@ class SystemG4bCompiler:
                 subagent_witnesses=subagent_witnesses,
                 emitted_artifacts=emitted_artifacts,
                 research_bundle_id=certified_bundle.bundle_id,
-                audit_passed=gate_result.passed,
-                governance_certified=gate_result.passed,
+                audit_passed=final_audit_passed,
+                governance_certified=final_governance_certified,
                 rfc_resolutions=rfc_resolutions,
                 verification_mode=verification_mode,
                 statechart_coverage_pct=statechart.coverage_pct,
                 phases_executed=[r.to_phase for r in statechart.history],
-                acceptance_gate_violations=list(gate_result.violations),
+                error_message=fail_msg,
+                acceptance_gate_violations=all_gate_violations,
+                red_team_passed=red_team_passed,
+                critical_vulnerabilities_found=red_team_verdict.critical_vulnerabilities_found,
+                red_team_verdict=red_team_verdict.to_dict(),
+                remediation_cycles_executed=remediation_cycles_executed,
             )
 
         except Exception as exc:
@@ -1083,7 +1476,7 @@ class SystemG4bCompiler:
                 exploratory_tokens_spent=exploratory_tokens_spent,
                 protected_tokens_spent=protected_tokens_spent,
                 heat_dissipated_joules=total_heat_joules,
-                subagent_witnesses=[],
+                subagent_witnesses=subagent_witnesses,
                 emitted_artifacts=emitted_artifacts,
                 research_bundle_id="ERROR",
                 audit_passed=False,
@@ -1093,6 +1486,10 @@ class SystemG4bCompiler:
                 statechart_coverage_pct=statechart.coverage_pct,
                 phases_executed=[r.to_phase for r in statechart.history],
                 error_message=str(exc),
+                red_team_passed=red_team_verdict.red_team_pass if red_team_verdict is not None else False,
+                critical_vulnerabilities_found=red_team_verdict.critical_vulnerabilities_found if red_team_verdict is not None else 0,
+                red_team_verdict=red_team_verdict.to_dict() if red_team_verdict is not None else None,
+                remediation_cycles_executed=remediation_cycles_executed,
             )
         finally:
             try:

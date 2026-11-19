@@ -33,9 +33,15 @@ from .domain_models import (
 class NegativeAxiomASTVisitor(ast.NodeVisitor):
     """Zero-bypass AST visitor intercepting forbidden tokens and API calls."""
 
-    def __init__(self, file_path: str = "", source_service: str = "soc_g4b_governance") -> None:
+    def __init__(
+        self,
+        file_path: str = "",
+        source_service: str = "soc_g4b_governance",
+        runtime_profile: str = "SOVEREIGN_MESH",
+    ) -> None:
         self.file_path = file_path or "inline_candidate.py"
         self.source_service = source_service
+        self.runtime_profile = (runtime_profile or "SOVEREIGN_MESH").upper()
         self.intercepts: List[ASTInterceptRecord] = []
 
         # Known dangerous functions/builtins
@@ -53,13 +59,19 @@ class NegativeAxiomASTVisitor(ast.NodeVisitor):
             "time.sleep": ("NEG-003", VetoActionType.REVERT_MUTATION),
         }
 
-        # Prohibited loopback host substrings
+        # Prohibited loopback host substrings ([L1-G3B-012]).
+        # Under SOVEREIGN_MESH, sovereign enclaves bind dedicated 192.168.40.0/24 interfaces,
+        # so wildcard "0.0.0.0" is prohibited alongside loopback addresses.
+        # Under LOCAL_IPC (standalone external apps), loopback ("127.0.0.1", "localhost", "::1")
+        # remains banned to align with AcceptanceGate, while wildcard bind "0.0.0.0" is permitted
+        # so Builders do not obfuscate bind hosts.
         self._loopback_patterns = [
             "".join(["12", "7.", "0.0.", "1"]),
             "".join(["local", "host"]),
             "".join([":", ":", "1"]),
-            "".join(["0.0.", "0.0"]),
         ]
+        if self.runtime_profile != "LOCAL_IPC":
+            self._loopback_patterns.append("".join(["0.0.", "0.0"]))
 
         # Prohibited bypass flags
         self._bypass_flags = {"bypass_sandbox", "dry_run=False", "ignore_audit", "skip_verification"}
@@ -294,14 +306,28 @@ class NegativeAxiomEnforcer:
         """Returns all currently active negative axioms."""
         return [ax for ax in self._axioms.values() if ax.is_active]
 
-    def scan_ast(self, tree: ast.AST, file_path: str = "") -> List[ASTInterceptRecord]:
+    def scan_ast(
+        self,
+        tree: ast.AST,
+        file_path: str = "",
+        runtime_profile: str = "SOVEREIGN_MESH",
+    ) -> List[ASTInterceptRecord]:
         """Walks an abstract syntax tree and intercepts forbidden constructs."""
-        visitor = NegativeAxiomASTVisitor(file_path=file_path, source_service="soc_g4b_governance")
+        visitor = NegativeAxiomASTVisitor(
+            file_path=file_path,
+            source_service="soc_g4b_governance",
+            runtime_profile=runtime_profile,
+        )
         visitor.visit(tree)
         self._intercept_history.extend(visitor.intercepts)
         return visitor.intercepts
 
-    def scan_source_code(self, code: str, file_path: str = "") -> List[AxiomViolation]:
+    def scan_source_code(
+        self,
+        code: str,
+        file_path: str = "",
+        runtime_profile: str = "SOVEREIGN_MESH",
+    ) -> List[AxiomViolation]:
         """Comprehensive AST and semantic scan of source code for negative axiom violations."""
         violations: List[AxiomViolation] = []
         fp = file_path or "inline_candidate.py"
@@ -309,7 +335,7 @@ class NegativeAxiomEnforcer:
         # 1. AST Analysis
         try:
             parsed_tree = ast.parse(code, filename=fp)
-            ast_intercepts = self.scan_ast(parsed_tree, file_path=fp)
+            ast_intercepts = self.scan_ast(parsed_tree, file_path=fp, runtime_profile=runtime_profile)
             for icpt in ast_intercepts:
                 matched_ax = self._axioms.get(icpt.matched_axiom_id)
                 severity = matched_ax.severity if matched_ax else AxiomSeverity.FATAL_VETO

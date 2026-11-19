@@ -319,6 +319,9 @@ class AcceptanceSpecEmitter:
 #### Strictly Prohibited AST Patterns (Zero-Bypass Interception):
 {banned_bullets}
 
+#### Local-IPC / Non-Loopback Bind-Host Invariant (`[L1-G3B-012]`):
+- Under `LOCAL_IPC` compilation for standalone applications, loopback hosts (`127.0.0.1`, `localhost`, `::1`) remain strictly banned, while wildcard bind host `"0.0.0.0"` is explicitly sanctioned as the clean default server bind address (do not obfuscate `"0.0.0.0"`). Under `SOVEREIGN_MESH`, bind exclusively to dedicated `192.168.40.0/24` interfaces.
+
 #### Physical Falsification Sinks (Anti-Tautology Verification):
 {falsification_bullets}
 """

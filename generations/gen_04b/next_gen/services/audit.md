@@ -48,6 +48,26 @@ In Generation 4b, the **Audit & Formal Verification Service** (`services/audit/`
 
 ---
 
+<!-- BEGIN G5_SYNC: g5-audit-hostile-redteam-bounty-opt2 -->
+### Hostile Asymmetric Red Team Bounty Arbitration & AST DeltaVector Surgical Remediation (Sync from Option 2: Comprehensive Gen 4b Self-Evolution (Recommended))
+
+#### 2. Friction Points & Architectural Limitations
+- Gen 4b bounded remediation (max_remediation_cycles=2) runs sequentially through the orchestrator loop on a single workstation with file-levelBuilder re-runs rather than surgical AST DeltaVector patches.
+- Single-host .scratch/ directory cloning for PhysicalMutationFalsifier scales linearly with app size and lacks kernel-level syscall/socket isolation.
+
+#### 3. Generation 5 Desired Capabilities & Specification
+- Decentralized mesh.events.* Pub/Sub Red Team bounty market awarding thermodynamic token bounties for formally reproduced critical counterexamples.
+- Container air-gapped copy-on-write mutation enclaves with eBPF socket/signal telemetry probes and AST DeltaVector surgical remediation.
+
+#### 4. Formal Invariants & Negative Constraints
+- [L1-G5-REDTEAM-001] Every Red Team critical finding must attach a machine-reproducible failing test witness before triggering Builder remediation bounty debit.
+- [NEG-G5-009] No single-host orchestrator process may execute untrusted candidate mutations inside the compiler's own filesystem namespace.
+
+#### 5. Open Questions & Research Spikes
+- Prototype AST DeltaVector minimal-diff remediation protocol to cut multi-cycle Landauer token spend by >60%.
+- Evaluate macOS Virtualization.framework / Linux unshare ephemeral sandboxes for zero-copy mutation falsification.
+<!-- END G5_SYNC: g5-audit-hostile-redteam-bounty-opt2 -->
+
 ## 4. Proposed Invariants for Gen 5 Audit
 
 - **`[L1-G5-AUD-001]` Strict Anti-Mock Subprocess Invariant:** Absolute prohibition of mock-only verification. Every service and application must pass real OS subprocess entrypoint execution with exit code 0.

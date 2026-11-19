@@ -9,11 +9,13 @@ Enforces:
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from enum import Enum
 import hashlib
 import json
-from typing import Any, Dict, List, Optional
+from pathlib import Path
+import re
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 
 class AcceptanceProtocolViolation(Exception):
@@ -190,3 +192,204 @@ class AcceptanceSpecIR:
         )
         instance.validate_invariants()
         return instance
+
+
+@dataclass
+class RedTeamVerdict:
+    """Structured Phase 3 Socratic Red Team verdict governing certification and self-healing."""
+    red_team_pass: bool
+    critical_vulnerabilities_found: int
+    findings: List[str] = field(default_factory=list)
+    cycle: int = 0
+    verdict_source: str = "EXPLICIT_VERDICT"
+    conversation_id: Optional[str] = None
+
+    def __post_init__(self) -> None:
+        self.critical_vulnerabilities_found = max(0, int(self.critical_vulnerabilities_found))
+        self.findings = [str(f).strip() for f in (self.findings or []) if str(f).strip()]
+        # Fail closed: any positive critical count forces red_team_pass = False
+        if self.critical_vulnerabilities_found > 0:
+            self.red_team_pass = False
+        elif not self.red_team_pass and self.critical_vulnerabilities_found == 0:
+            # Ensure unresolved failing verdict always carries non-zero critical count
+            self.critical_vulnerabilities_found = max(1, len(self.findings))
+
+    @property
+    def is_blocking(self) -> bool:
+        """Returns True when unresolved critical findings require remediation or fail-closed halt."""
+        return (not self.red_team_pass) or (self.critical_vulnerabilities_found > 0)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any], default_cycle: int = 0) -> RedTeamVerdict:
+        raw_pass = data.get("red_team_pass")
+        if raw_pass is None:
+            raw_pass = data.get("red_team_passed")
+        raw_crit = data.get("critical_vulnerabilities_found")
+        if raw_crit is None:
+            raw_crit = data.get("critical_count")
+        findings = data.get("findings") or data.get("blocking_findings") or data.get("key_findings") or []
+        if isinstance(findings, str):
+            findings = [findings]
+
+        if raw_pass is None:
+            if raw_crit is not None:
+                parsed_pass = int(raw_crit) == 0
+            else:
+                parsed_pass = False
+        elif isinstance(raw_pass, str):
+            parsed_pass = raw_pass.strip().lower() in ("true", "pass", "passed", "yes", "1")
+        else:
+            parsed_pass = bool(raw_pass)
+
+        parsed_crit = int(raw_crit) if raw_crit is not None else (0 if parsed_pass else max(1, len(findings)))
+        return cls(
+            red_team_pass=parsed_pass,
+            critical_vulnerabilities_found=parsed_crit,
+            findings=list(findings),
+            cycle=int(data.get("cycle", default_cycle)),
+            verdict_source=str(data.get("verdict_source", "EXPLICIT_VERDICT")),
+            conversation_id=data.get("conversation_id"),
+        )
+
+
+def parse_red_team_verdict(
+    raw_return: Any,
+    target_dir: Union[Path, str],
+    cycle: int = 0,
+    strict_required: bool = False,
+) -> Tuple[Optional[str], RedTeamVerdict]:
+    """Extracts (conversation_id, RedTeamVerdict) from Phase 3 Red Team output or physical verdict file.
+
+    Resolution order:
+    1. Structured return value (`RedTeamVerdict`, `dict`, tuple `(cid, verdict)`, or JSON string).
+    2. Physical `{target_dir}/red_team_verdict.json` written by the Red Team witness.
+    3. Structured text markers inside string return (`red_team_pass`, `critical_vulnerabilities_found`).
+    4. Plain conversation ID string (legacy test stub compatibility when `strict_required=False`;
+       fails closed when `strict_required=True`).
+    """
+    target_path = Path(target_dir).resolve()
+    verdict_file = target_path / "red_team_verdict.json"
+
+    cid: Optional[str] = None
+    verdict: Optional[RedTeamVerdict] = None
+
+    # 1. Structured return from subagent_invoker
+    if isinstance(raw_return, RedTeamVerdict):
+        verdict = RedTeamVerdict(
+            red_team_pass=raw_return.red_team_pass,
+            critical_vulnerabilities_found=raw_return.critical_vulnerabilities_found,
+            findings=list(raw_return.findings),
+            cycle=cycle,
+            verdict_source=raw_return.verdict_source or "STRUCTURED_RETURN",
+            conversation_id=raw_return.conversation_id,
+        )
+        cid = raw_return.conversation_id
+    elif isinstance(raw_return, tuple) and len(raw_return) == 2:
+        first, second = raw_return
+        cid = str(first) if first else None
+        if isinstance(second, RedTeamVerdict):
+            verdict = RedTeamVerdict(
+                red_team_pass=second.red_team_pass,
+                critical_vulnerabilities_found=second.critical_vulnerabilities_found,
+                findings=list(second.findings),
+                cycle=cycle,
+                verdict_source=second.verdict_source or "STRUCTURED_TUPLE",
+                conversation_id=cid or second.conversation_id,
+            )
+        elif isinstance(second, dict):
+            payload = dict(second)
+            payload.setdefault("verdict_source", "STRUCTURED_TUPLE")
+            payload.setdefault("conversation_id", cid)
+            verdict = RedTeamVerdict.from_dict(payload, default_cycle=cycle)
+    elif isinstance(raw_return, dict):
+        cid = raw_return.get("conversation_id") or raw_return.get("cid")
+        if any(k in raw_return for k in ("red_team_pass", "red_team_passed", "critical_vulnerabilities_found", "findings")):
+            payload = dict(raw_return)
+            payload.setdefault("verdict_source", "STRUCTURED_DICT")
+            payload.setdefault("conversation_id", cid)
+            verdict = RedTeamVerdict.from_dict(payload, default_cycle=cycle)
+    elif isinstance(raw_return, str):
+        stripped = raw_return.strip()
+        if stripped.startswith("{") and stripped.endswith("}"):
+            try:
+                parsed = json.loads(stripped)
+                if isinstance(parsed, dict):
+                    cid = parsed.get("conversation_id") or parsed.get("cid")
+                    if any(k in parsed for k in ("red_team_pass", "red_team_passed", "critical_vulnerabilities_found", "findings")):
+                        parsed.setdefault("verdict_source", "STRUCTURED_JSON_STRING")
+                        parsed.setdefault("conversation_id", cid)
+                        verdict = RedTeamVerdict.from_dict(parsed, default_cycle=cycle)
+            except Exception:
+                pass
+        if verdict is None:
+            # Check for inline structured witness markers in text
+            pass_m = re.search(r"red_team_pass[`'\":\s=]+(true|false)", stripped, re.IGNORECASE)
+            crit_m = re.search(r"critical_vulnerabilities_found[`'\":\s=]+(\d+)", stripped, re.IGNORECASE)
+            if pass_m or crit_m:
+                parsed_pass = (pass_m.group(1).lower() == "true") if pass_m else (int(crit_m.group(1)) == 0)
+                parsed_crit = int(crit_m.group(1)) if crit_m else (0 if parsed_pass else 1)
+                findings = [
+                    line.strip().lstrip("-* ").strip()
+                    for line in stripped.splitlines()
+                    if re.search(r"\[CRIT-\d+\]|critical|vulnerability|finding", line, re.IGNORECASE)
+                ]
+                verdict = RedTeamVerdict(
+                    red_team_pass=parsed_pass,
+                    critical_vulnerabilities_found=parsed_crit,
+                    findings=findings[:20],
+                    cycle=cycle,
+                    verdict_source="STRUCTURED_TEXT_MARKERS",
+                    conversation_id=cid,
+                )
+            else:
+                cid = stripped or None
+
+    # 2. Physical red_team_verdict.json artifact takes precedence if no structured return verdict
+    if verdict is None and verdict_file.exists():
+        try:
+            file_data = json.loads(verdict_file.read_text(encoding="utf-8"))
+            if not isinstance(file_data, dict):
+                raise ValueError("red_team_verdict.json must contain a JSON object")
+            if "red_team_pass" not in file_data and "red_team_passed" not in file_data and "critical_vulnerabilities_found" not in file_data:
+                raise ValueError("red_team_verdict.json missing required verdict fields")
+            file_data.setdefault("verdict_source", "PHYSICAL_VERDICT_FILE")
+            file_data.setdefault("conversation_id", cid)
+            verdict = RedTeamVerdict.from_dict(file_data, default_cycle=cycle)
+            if not cid and verdict.conversation_id:
+                cid = verdict.conversation_id
+        except Exception as exc:
+            # Fail closed on malformed physical verdict artifact
+            verdict = RedTeamVerdict(
+                red_team_pass=False,
+                critical_vulnerabilities_found=1,
+                findings=[f"Malformed red_team_verdict.json (fail-closed): {exc}"],
+                cycle=cycle,
+                verdict_source="MALFORMED_VERDICT_FILE",
+                conversation_id=cid,
+            )
+
+    # 3. Fallback when neither structured return nor verdict file exists
+    if verdict is None:
+        if strict_required:
+            verdict = RedTeamVerdict(
+                red_team_pass=False,
+                critical_vulnerabilities_found=1,
+                findings=["Missing explicit RedTeamVerdict under strict_red_team_verdict=True (fail-closed)."],
+                cycle=cycle,
+                verdict_source="MISSING_VERDICT_FAIL_CLOSED",
+                conversation_id=cid,
+            )
+        else:
+            verdict = RedTeamVerdict(
+                red_team_pass=True,
+                critical_vulnerabilities_found=0,
+                findings=[],
+                cycle=cycle,
+                verdict_source="IMPLICIT_PASS_LEGACY_STUB",
+                conversation_id=cid,
+            )
+
+    return cid, verdict

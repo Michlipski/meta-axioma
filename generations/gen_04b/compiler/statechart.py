@@ -27,6 +27,7 @@ class CompilationPhase(str, Enum):
     PHASE_2B_GROUNDING = "PHASE_2B_GROUNDING"
     PHASE_2C_QA = "PHASE_2C_QA"
     PHASE_3_AUDIT = "PHASE_3_AUDIT"
+    PHASE_3_REMEDIATION = "PHASE_3_REMEDIATION"
     PHASE_4_TELEMETRY_SEAL = "PHASE_4_TELEMETRY_SEAL"
     RFC_ESCALATION = "RFC_ESCALATION"
     COMPLETED = "COMPLETED"
@@ -74,7 +75,12 @@ class CompilationStatechart:
         },
         CompilationPhase.PHASE_3_AUDIT: {
             CompilationPhase.PHASE_4_TELEMETRY_SEAL,
+            CompilationPhase.PHASE_3_REMEDIATION,
             CompilationPhase.RFC_ESCALATION,
+            CompilationPhase.FAILED,
+        },
+        CompilationPhase.PHASE_3_REMEDIATION: {
+            CompilationPhase.PHASE_2A_BUILD,
             CompilationPhase.FAILED,
         },
         CompilationPhase.PHASE_4_TELEMETRY_SEAL: {

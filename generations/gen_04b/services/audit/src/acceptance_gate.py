@@ -26,6 +26,7 @@ from generations.gen_04b.protocols.acceptance_spec import (
     AcceptanceSpecIR,
     FalsificationVector,
     MutationType,
+    RedTeamVerdict,
 )
 from generations.gen_04b.services.audit.src.mutation_fuzzer import (
     PhysicalMutationFalsifier,
@@ -51,6 +52,7 @@ class AcceptanceGateResult:
     falsification_witnesses: List[Dict[str, Any]]
     duration_ms: float
     violations: List[str]
+    red_team_verdict: Optional[Dict[str, Any]] = None
     timestamp_unix_ns: int = field(default_factory=time.time_ns)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -253,12 +255,37 @@ class AcceptanceGate:
 
         raise AcceptanceProtocolViolation(f"Unsupported mutation type: {m_type}")
 
+    def verify_red_team_verdict(
+        self,
+        verdict: RedTeamVerdict,
+        raise_on_failure: bool = False,
+    ) -> Tuple[bool, List[str]]:
+        """Validates a structured Phase 3 RedTeamVerdict with fail-closed semantics."""
+        violations: List[str] = []
+        if verdict.is_blocking:
+            summary = (
+                f"[INV-G4B-REDTEAM-001] Red Team veto on cycle {verdict.cycle}: "
+                f"red_team_pass={verdict.red_team_pass}, "
+                f"critical_vulnerabilities_found={verdict.critical_vulnerabilities_found}"
+            )
+            violations.append(summary)
+            for finding in verdict.findings:
+                violations.append(f"Red Team Critical Finding: {finding}")
+            if raise_on_failure:
+                raise AcceptanceContractBreachViolation(
+                    f"Red Team verification failed with {verdict.critical_vulnerabilities_found} critical finding(s):\n"
+                    + "\n".join(f"- {v}" for v in violations)
+                )
+            return False, violations
+        return True, violations
+
     def verify_spec(
         self,
         target_dir: Union[Path, str],
         spec: AcceptanceSpecIR,
         test_command: Optional[List[str]] = None,
         raise_on_failure: bool = True,
+        red_team_verdict: Optional[RedTeamVerdict] = None,
     ) -> AcceptanceGateResult:
         """Executes full multi-barrier acceptance verification against physical artifacts."""
         t_start = time.perf_counter()
@@ -318,6 +345,11 @@ class AcceptanceGate:
                         f"Mutation falsification error on vector {vector.vector_id}: {exc}"
                     )
 
+        # 6. Structured Red Team Verdict Verification [INV-G4B-REDTEAM-001]
+        if red_team_verdict is not None:
+            _, rt_violations = self.verify_red_team_verdict(red_team_verdict, raise_on_failure=False)
+            all_violations.extend(rt_violations)
+
         duration_ms = (time.perf_counter() - t_start) * 1000.0
         passed = len(all_violations) == 0
 
@@ -332,6 +364,7 @@ class AcceptanceGate:
             falsification_witnesses=falsification_witnesses,
             duration_ms=duration_ms,
             violations=all_violations,
+            red_team_verdict=red_team_verdict.to_dict() if red_team_verdict is not None else None,
         )
 
         if not passed and raise_on_failure:

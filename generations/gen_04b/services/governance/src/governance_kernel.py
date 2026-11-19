@@ -166,10 +166,19 @@ class GovernanceKernel:
         self.undo_engine.push_state(self._state)
         return self._ledger_head
 
-    def scan_and_enforce_code(self, code: str, file_path: str = "") -> List[AxiomViolation]:
+    def scan_and_enforce_code(
+        self,
+        code: str,
+        file_path: str = "",
+        runtime_profile: str = "SOVEREIGN_MESH",
+    ) -> List[AxiomViolation]:
         """Scans candidate source code, updates statechart and traps any negative axiom violations."""
         self.statechart.send("EV_SURV_SCAN_AST")
-        violations = self.enforcer.scan_source_code(code, file_path=file_path)
+        violations = self.enforcer.scan_source_code(
+            code,
+            file_path=file_path,
+            runtime_profile=runtime_profile,
+        )
 
         if violations:
             self.statechart.send("EV_SURV_TRIGGER_VETO")
