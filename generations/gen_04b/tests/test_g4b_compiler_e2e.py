@@ -734,8 +734,12 @@ class TestG4bCompilerE2E(unittest.TestCase):
             env=env,
         )
         self.assertEqual(p4.returncode, 0, f"generations/gen_04b/run.py failed:\n{p4.stdout}\n{p4.stderr}")
-        for expected_count in ("30 modules/tests", "124 tests", "190 tests", "159 tests", "128 tests"):
+        for expected_count in ("30 modules/tests", "124 tests", "159 tests", "128 tests"):
             self.assertIn(expected_count, p4.stdout)
+        import re as _re
+        audit_match = _re.search(r"Audit service execution verified \((\d+) tests", p4.stdout)
+        self.assertIsNotNone(audit_match, f"Audit test count missing from run.py output:\n{p4.stdout}")
+        self.assertGreaterEqual(int(audit_match.group(1)), 190)
 
     # 12. Opt-Out Live Subagents Default & CLI --no-live-subagents
     def test_12_live_subagents_opt_out_default_and_cli(self) -> None:

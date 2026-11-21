@@ -740,14 +740,22 @@ class LandauerThermodynamicLedger:
     total_bits_erased: int = 0
     heat_dissipated_joules: float = 0.0
     token_lease_budget: int = 923100  # Option C unified BPE token budget
-    exploratory_capital: int = 553860  # 60%
-    protected_capital: int = 369240    # 40%
+    exploratory_capital: Optional[int] = None  # 60% auto-derived from token_lease_budget when omitted
+    protected_capital: Optional[int] = None    # 40% auto-derived from token_lease_budget when omitted
     spent_exploratory_tokens: int = 0
     spent_protected_tokens: int = 0
 
     # Boltzmann constant: 1.380649e-23 J/K
     BOLTZMANN_K: float = 1.380649e-23
     LN_2: float = 0.69314718056
+
+    def __post_init__(self) -> None:
+        default_exploratory = int(self.token_lease_budget * 0.60)
+        default_protected = self.token_lease_budget - default_exploratory
+        if self.exploratory_capital is None:
+            self.exploratory_capital = default_exploratory
+        if self.protected_capital is None:
+            self.protected_capital = default_protected
 
     def record_bit_erasure(self, bits: int, temp_kelvin: float = 300.0) -> float:
         """Records irreversible bit erasure and computes dissipated heat Q = k_B * T * ln(2) * bits."""
@@ -813,13 +821,15 @@ class LandauerThermodynamicLedger:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> LandauerThermodynamicLedger:
+        raw_exp = data.get("exploratory_capital")
+        raw_prot = data.get("protected_capital")
         instance = cls(
             ledger_id=data.get("ledger_id", "ledger_g4b_audit_thermodynamics"),
             total_bits_erased=int(data.get("total_bits_erased", 0)),
             heat_dissipated_joules=float(data.get("heat_dissipated_joules", 0.0)),
             token_lease_budget=int(data.get("token_lease_budget", 923100)),
-            exploratory_capital=int(data.get("exploratory_capital", 553860)),
-            protected_capital=int(data.get("protected_capital", 369240)),
+            exploratory_capital=int(raw_exp) if raw_exp is not None else None,
+            protected_capital=int(raw_prot) if raw_prot is not None else None,
             spent_exploratory_tokens=int(data.get("spent_exploratory_tokens", 0)),
             spent_protected_tokens=int(data.get("spent_protected_tokens", 0)),
         )

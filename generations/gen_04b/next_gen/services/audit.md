@@ -68,6 +68,25 @@ In Generation 4b, the **Audit & Formal Verification Service** (`services/audit/`
 - Evaluate macOS Virtualization.framework / Linux unshare ephemeral sandboxes for zero-copy mutation falsification.
 <!-- END G5_SYNC: g5-audit-hostile-redteam-bounty-opt2 -->
 
+<!-- BEGIN G5_SYNC: g5-audit-unified-thermo-ledger-and-profile-tokens -->
+### Unified Cross-Compilation Thermodynamic Ledger & Capability-Typed Runtime Profiles (Sync from Option 2: Cohesive Gen 4b Hardening + Red Team Mitigations [CRIT-01..06] (Recommended))
+
+#### 2. Friction Points & Architectural Limitations
+- Gen 4b uses independent per-service static token defaults (205k Builder / 923.1k Audit / 880.3k Telemetry) requiring orchestrator-side multi-cycle headroom multipliers (3x leaf cap) to prevent Audit ledger exhaustion during Red Team remediation.
+- String-typed runtime_profile flags require defensive Enum normalization across Governance, Audit, and Macro Ablation evaluators to prevent LOCAL_IPC vs SOVEREIGN_MESH policy drift.
+
+#### 3. Generation 5 Desired Capabilities & Specification
+- Federated cross-service LandauerThermodynamicLedger published over mesh.events.* with IR-derived per-leaf cost budgets and deterministic multi-cycle reservation.
+- Shared strongly-typed RuntimeProfile protocol enum enforced natively across Governance, Audit, Builder, and Benchmark evaluators with zero inline comment exemptions.
+
+#### 4. Formal Invariants & Negative Constraints
+- [L1-G5-018] Cross-Service 60/40 Landauer Thermodynamic Conservation backed by IR leaf-cost proofs.
+- [NEG-G5-004] Absolute prohibition of source-comment security bypass tokens under SOVEREIGN_MESH and production profiles.
+
+#### 5. Open Questions & Research Spikes
+- Measure actual vs. IR-predicted leaf audit token consumption across 2- and 3-cycle Red Team remediation loops in v2 benchmarks.
+<!-- END G5_SYNC: g5-audit-unified-thermo-ledger-and-profile-tokens -->
+
 ## 4. Proposed Invariants for Gen 5 Audit
 
 - **`[L1-G5-AUD-001]` Strict Anti-Mock Subprocess Invariant:** Absolute prohibition of mock-only verification. Every service and application must pass real OS subprocess entrypoint execution with exit code 0.

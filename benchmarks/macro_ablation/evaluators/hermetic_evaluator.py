@@ -32,7 +32,7 @@ class HermeticEvaluator:
             from generations.gen_04b.services.audit.src.zero_trust_micro_auditor import (
                 ZeroTrustMicroAuditor,
             )
-            auditor = ZeroTrustMicroAuditor(runtime_profile="LOCAL_IPC")
+            auditor = ZeroTrustMicroAuditor(allow_local_ipc=True, runtime_profile="LOCAL_IPC")
         except Exception:
             auditor = None
 
@@ -48,6 +48,7 @@ class HermeticEvaluator:
                     report = auditor.audit_source(
                         code_text,
                         leaf_id=rel_path,
+                        allow_local_ipc=True,
                         runtime_profile="LOCAL_IPC",
                     )
                     total_nodes_scanned += report.ast_nodes_scanned

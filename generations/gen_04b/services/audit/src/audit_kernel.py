@@ -45,7 +45,7 @@ from .domain_models import (
     SMTModelCheckResult,
     assert_non_loopback,
 )
-from .zero_trust_micro_auditor import ZeroTrustMicroAuditor
+from .zero_trust_micro_auditor import ZeroTrustMicroAuditor, _normalize_runtime_profile
 from .smt_mesh_verifier import SMTMeshVerifier
 from .smt_model_checker import SMTModelChecker
 from .byzantine_chaos_fuzzer import ByzantineChaosFuzzer
@@ -69,6 +69,7 @@ class SovereignAuditKernel:
         port: int = DEFAULT_PORT,
         token_budget: int = 923100,  # Option C Zenith Apex Budget
         strict_formal_prover: bool = False,
+        runtime_profile: str = "SOVEREIGN_MESH",
     ) -> None:
         self.endpoint = f"{node_ip}:{port}"
         assert_non_loopback(self.endpoint, "SovereignAuditKernel initialization")
@@ -76,11 +77,15 @@ class SovereignAuditKernel:
         self.node_ip = node_ip
         self.port = port
         self.strict_formal_prover = strict_formal_prover
+        self.runtime_profile = _normalize_runtime_profile(runtime_profile)
 
         # Initialize subsystems
         self.topology = AuditServiceTopology(node_ip=node_ip, port=port)
         self.thermo_ledger = LandauerThermodynamicLedger(token_lease_budget=token_budget)
-        self.micro_auditor = ZeroTrustMicroAuditor(auditor_node_id="node_hermetic_sentry")
+        self.micro_auditor = ZeroTrustMicroAuditor(
+            auditor_node_id="node_hermetic_sentry",
+            runtime_profile=self.runtime_profile,
+        )
         self.smt_checker = SMTModelChecker(
             checker_node_id="node_smt_oracle",
             strict_formal_prover=strict_formal_prover,
@@ -99,9 +104,22 @@ class SovereignAuditKernel:
         self,
         candidate: CodeLeafCandidate,
         epoch: int = 1,
+        runtime_profile: Optional[str] = None,
     ) -> AuditAttestation:
         """Executes full sovereign adversarial audit pipeline on a code leaf candidate."""
         candidate.validate_invariants()
+
+        # Reset recovery/rejected states so one failed leaf never wedges subsequent leaf audits [CRIT-02]
+        if self.statechart.current_state == "quorum_rejected":
+            self.statechart.send("EV_RESET_INGRESS")
+        elif self.statechart.current_state in (
+            "enclave_syntax_breach",
+            "enclave_smt_unsat_core",
+            "enclave_byzantine_leak",
+        ):
+            self.statechart.send("EV_ABORT_TO_IDLE")
+        elif self.statechart.current_state == "enclave_network_loopback":
+            self.statechart.send("EV_ISOLATE_LOOPBACK")
 
         # Step 1: Ingress Staging
         self.statechart.send("EV_RECEIVE_CANDIDATE", {"leaf_id": candidate.leaf_id})
@@ -120,7 +138,15 @@ class SovereignAuditKernel:
 
         # Step 2: Hermetic Boundary Micro-Audit (SentrySyntax)
         self.statechart.send("EV_START_AUDIT")
-        hermetic_report = self.micro_auditor.audit_candidate(candidate)
+        effective_profile = (
+            self.runtime_profile
+            if runtime_profile is None
+            else _normalize_runtime_profile(runtime_profile)
+        )
+        hermetic_report = self.micro_auditor.audit_candidate(
+            candidate,
+            runtime_profile=effective_profile,
+        )
         self.merkle_engine.record_event("HERMETIC_MICRO_AUDIT", hermetic_report.to_dict())
         self.thermo_ledger.spend_tokens(10000, is_protected=False)
         self.thermo_ledger.record_bit_erasure(256)

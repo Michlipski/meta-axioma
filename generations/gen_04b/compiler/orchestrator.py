@@ -94,7 +94,10 @@ from generations.gen_04b.services.audit.src.smt_model_checker import (
     SMTModelChecker,
     VerificationMode,
 )
-from generations.gen_04b.services.audit.src.zero_trust_micro_auditor import ZeroTrustMicroAuditor
+from generations.gen_04b.services.audit.src.zero_trust_micro_auditor import (
+    ZeroTrustMicroAuditor,
+    _normalize_runtime_profile,
+)
 
 from generations.gen_04b.services.telemetry.src.dashboard_compiler.compiler import (
     DashboardAST,
@@ -211,14 +214,17 @@ class SystemG4bCompiler:
             total_budget_tokens=205000,
         )
 
+        default_runtime_profile = _normalize_runtime_profile(transport_mode)
         self.audit_kernel = SovereignAuditKernel(
             node_ip="192.168.40.30",
             port=8444,
             strict_formal_prover=strict_prover,
+            runtime_profile=default_runtime_profile,
         )
+        self._last_audit_kernel: Optional[SovereignAuditKernel] = None
         self.acceptance_gate = AcceptanceGate(node_id="gate_g4b_audit")
         self.qfd_auditor = QFDConsistencyAuditor()
-        self.micro_auditor = ZeroTrustMicroAuditor()
+        self.micro_auditor = ZeroTrustMicroAuditor(runtime_profile=default_runtime_profile)
 
         self.telemetry_kernel = SovereignTelemetryKernel(
             node_ip="192.168.40.40",
@@ -401,6 +407,76 @@ class SystemG4bCompiler:
                 emitted_artifacts.append(str(py_path))
         return discovered_py_files
 
+    def _audit_code_leaves(
+        self,
+        phase_audit_kernel: SovereignAuditKernel,
+        discovered_py_files: List[Path],
+        request: CompilationRequest,
+        runtime_profile: str,
+        lenient_gate: bool,
+        cycle: int = 0,
+    ) -> List[str]:
+        """Audits all non-test Python leaves via per-compile SovereignAuditKernel & ZeroTrustMicroAuditor."""
+        auditable_files = [
+            p for p in discovered_py_files
+            if "tests" not in p.parts and p.name != "__init__.py"
+        ]
+        required_exp = len(auditable_files) * 50000
+        remaining_exp = (
+            phase_audit_kernel.thermo_ledger.exploratory_capital
+            - phase_audit_kernel.thermo_ledger.spent_exploratory_tokens
+        )
+        if required_exp > remaining_exp:
+            raise PhaseExecutionSequenceViolation(
+                f"[L1-G3B-018] Audit thermodynamic budget exhausted on cycle {cycle}: "
+                f"need {required_exp} exploratory tokens for {len(auditable_files)} leaves, "
+                f"only {remaining_exp} remaining in per-compile ledger."
+            )
+
+        violations: List[str] = []
+        for py_path in auditable_files:
+            py_code = py_path.read_text(encoding="utf-8")
+            leaf_suffix = f"_c{cycle}" if cycle > 0 else ""
+            candidate = CodeLeafCandidate(
+                leaf_id=f"leaf_{py_path.stem}{leaf_suffix}_{uuid.uuid4().hex[:6]}",
+                symbol_urn=f"urn:meta_axioma:g4b:{request.app_id}:{py_path.stem}",
+                source_code=py_code,
+                ast_node_type="MODULE",
+                source_endpoint=self.BUILDER_ENDPOINT,
+            )
+            attestation = phase_audit_kernel.audit_code_leaf(
+                candidate,
+                runtime_profile=runtime_profile,
+            )
+            herm_report = self.micro_auditor.audit_source(
+                py_code,
+                leaf_id=f"leaf_{py_path.stem}{leaf_suffix}",
+                runtime_profile=runtime_profile,
+            )
+            # Permit standard app-root sys.path bootstrap only in top-level run.py (HermeticEvaluator symmetry)
+            only_run_bootstrap_herm002 = (
+                py_path.name == "run.py"
+                and len(herm_report.violations) > 0
+                and all(v.rule_id == "HERM-002" for v in herm_report.violations)
+            )
+            non_bootstrap_violations = [
+                v for v in herm_report.violations
+                if not (py_path.name == "run.py" and v.rule_id == "HERM-002")
+            ]
+            if non_bootstrap_violations or (not attestation.is_certified and not only_run_bootstrap_herm002):
+                detail = (
+                    "; ".join(f"{v.rule_id}: {v.description}" for v in non_bootstrap_violations)
+                    if non_bootstrap_violations
+                    else f"Quorum verdict {attestation.quorum_witness.verdict.value}"
+                )
+                violations.append(
+                    f"[HERM-AUDIT] Leaf '{py_path.name}' failed Phase 3 Audit (cycle {cycle}): {detail}"
+                )
+
+        if violations and not lenient_gate:
+            raise PhaseExecutionSequenceViolation("\n".join(violations))
+        return violations
+
     def _run_phase2c_smoke_and_tests(
         self,
         target_dir: Path,
@@ -527,17 +603,12 @@ class SystemG4bCompiler:
             require_live_subagents if require_live_subagents is not None else request.require_live_subagents
         )
         effective_strict_prover = bool(request.strict_prover or self.strict_prover)
-        phase_audit_kernel = (
-            self.audit_kernel
-            if effective_strict_prover == self.audit_kernel.strict_formal_prover
-            else SovereignAuditKernel(
-                node_ip="192.168.40.30",
-                port=8444,
-                strict_formal_prover=effective_strict_prover,
-            )
-        )
+        effective_runtime_profile = _normalize_runtime_profile(request.transport_mode)
         phase_z3_bridge = Z3ProverBridge(strict_formal_prover=effective_strict_prover)
-        phase_smt_checker = phase_audit_kernel.smt_checker
+        phase_smt_checker = SMTModelChecker(
+            checker_node_id="node_smt_oracle",
+            strict_formal_prover=effective_strict_prover,
+        )
         phase_mesh_verifier = SMTMeshVerifier(strict_formal_prover=effective_strict_prover)
 
         try:
@@ -734,95 +805,118 @@ class SystemG4bCompiler:
                     "timestamp": int(time.time()),
                 })
 
-            # 3. Application Code Leaves Emission (if subagent did not pre-create run.py)
+            # 3. Application Code Leaves Emission (only when offline or stub invoker did not emit run.py)
             src_dir = target_dir / "src"
             tests_dir = target_dir / "tests"
-            src_dir.mkdir(parents=True, exist_ok=True)
             tests_dir.mkdir(parents=True, exist_ok=True)
             run_path = target_dir / "run.py"
 
-            # Module 1: src/__init__.py
-            src_init_path = src_dir / "__init__.py"
-            if not src_init_path.exists():
-                src_init_code = f'"""Application package for {request.app_name}."""\n'
-                src_init_path.write_text(src_init_code, encoding="utf-8")
-                self.builder_kernel.compile_module(str(src_init_path), src_init_code, f"urn:axioma:g4b:{request.app_id}:init")
-                emitted_artifacts.append(str(src_init_path))
+            existing_src_modules = (
+                [
+                    p for p in src_dir.rglob("*.py")
+                    if "__pycache__" not in p.parts and p.name != "__init__.py" and p.stat().st_size > 0
+                ]
+                if src_dir.exists()
+                else []
+            )
+            builder_emitted_custom_entrypoint = (
+                effective_invoker is not None
+                and run_path.exists()
+                and run_path.stat().st_size > 0
+            )
 
-            # Module 2: src/domain_models.py
-            domain_models_path = src_dir / "domain_models.py"
-            if not domain_models_path.exists():
-                domain_models_code = (
-                    f'"""Domain models for {request.app_name}."""\n\n'
-                    f'from dataclasses import dataclass\n'
-                    f'import time\n\n'
-                    f'@dataclass\n'
-                    f'class AppState:\n'
-                    f'    app_id: str\n'
-                    f'    status: str = "READY"\n'
-                    f'    updated_at: float = 0.0\n\n'
-                    f'    def update_status(self, new_status: str) -> None:\n'
-                    f'        self.status = new_status\n'
-                    f'        self.updated_at = time.time()\n'
-                )
-                domain_models_path.write_text(domain_models_code, encoding="utf-8")
-                self.builder_kernel.compile_module(str(domain_models_path), domain_models_code, f"urn:axioma:g4b:{request.app_id}:models")
-                emitted_artifacts.append(str(domain_models_path))
+            if builder_emitted_custom_entrypoint:
+                # Live Builder already emitted a working application entrypoint; avoid polluting src/
+                # with unused fallback stubs (src/domain_models.py, src/engine.py).
+                if existing_src_modules:
+                    src_init_path = src_dir / "__init__.py"
+                    if not src_init_path.exists():
+                        src_init_code = f'"""Application package for {request.app_name}."""\n'
+                        src_init_path.write_text(src_init_code, encoding="utf-8")
+                        self.builder_kernel.compile_module(str(src_init_path), src_init_code, f"urn:axioma:g4b:{request.app_id}:init")
+                        emitted_artifacts.append(str(src_init_path))
+            else:
+                src_dir.mkdir(parents=True, exist_ok=True)
 
-            # Module 3: src/engine.py
-            engine_path = src_dir / "engine.py"
-            if not engine_path.exists():
-                verbs_methods = ""
-                if request.expected_verbs:
-                    for v in request.expected_verbs:
-                        clean_v = v.strip().lower().replace(" ", "_")
-                        if clean_v not in ("execute_operation", "__init__"):
-                            verbs_methods += (
-                                f"\n    def {clean_v}(self, *args, **kwargs) -> str:\n"
-                                f'        self.state.update_status(f"EXECUTED_{clean_v.upper()}")\n'
-                                f"        return self.state.status\n"
-                            )
-                engine_code = (
-                    f'"""Core engine logic for {request.app_name}."""\n\n'
-                    f'from .domain_models import AppState\n\n'
-                    f'class AppEngine:\n'
-                    f'    def __init__(self, app_id: str = "{request.app_id}") -> None:\n'
-                    f'        self.state = AppState(app_id=app_id)\n\n'
-                    f'    def execute_operation(self, verb: str) -> str:\n'
-                    f'        self.state.update_status(f"EXECUTED_{{verb.upper()}}")\n'
-                    f'        return self.state.status\n'
-                    f'{verbs_methods}'
-                )
-                engine_path.write_text(engine_code, encoding="utf-8")
-                self.builder_kernel.compile_module(str(engine_path), engine_code, f"urn:axioma:g4b:{request.app_id}:engine")
-                emitted_artifacts.append(str(engine_path))
+                # Module 1: src/__init__.py
+                src_init_path = src_dir / "__init__.py"
+                if not src_init_path.exists():
+                    src_init_code = f'"""Application package for {request.app_name}."""\n'
+                    src_init_path.write_text(src_init_code, encoding="utf-8")
+                    self.builder_kernel.compile_module(str(src_init_path), src_init_code, f"urn:axioma:g4b:{request.app_id}:init")
+                    emitted_artifacts.append(str(src_init_path))
 
-            # Module 4: run.py (Entrypoint supporting --smoke-test [NEG-G1B-002])
-            if not run_path.exists():
-                run_code = (
-                    f'#!/usr/bin/env python3\n'
-                    f'"""Entrypoint binary for {request.app_name} [NEG-G1B-002]."""\n\n'
-                    f'import sys\n'
-                    f'from pathlib import Path\n\n'
-                    f'# Ensure src is on sys.path for standalone invocation\n'
-                    f'sys.path.insert(0, str(Path(__file__).resolve().parent))\n\n'
-                    f'from src.engine import AppEngine\n\n'
-                    f'def main(argv=None) -> int:\n'
-                    f'    argv = argv or sys.argv[1:]\n'
-                    f'    engine = AppEngine()\n'
-                    f'    if "--smoke-test" in argv:\n'
-                    f'        status = engine.execute_operation("SMOKE_PROBE")\n'
-                    f'        print(f"[{request.app_name.upper()} SMOKE TEST PASSED] Status: {{status}}", flush=True)\n'
-                    f'        return 0\n'
-                    f'    print(f"[{request.app_name.upper()} RUNNING]", flush=True)\n'
-                    f'    return 0\n\n'
-                    f'if __name__ == "__main__":\n'
-                    f'    sys.exit(main())\n'
-                )
-                run_path.write_text(run_code, encoding="utf-8")
-                run_path.chmod(0o755)
-                self.builder_kernel.compile_module(str(run_path), run_code, f"urn:axioma:g4b:{request.app_id}:entrypoint")
-                emitted_artifacts.append(str(run_path))
+                # Module 2: src/domain_models.py
+                domain_models_path = src_dir / "domain_models.py"
+                if not domain_models_path.exists():
+                    domain_models_code = (
+                        f'"""Domain models for {request.app_name}."""\n\n'
+                        f'from dataclasses import dataclass\n'
+                        f'import time\n\n'
+                        f'@dataclass\n'
+                        f'class AppState:\n'
+                        f'    app_id: str\n'
+                        f'    status: str = "READY"\n'
+                        f'    updated_at: float = 0.0\n\n'
+                        f'    def update_status(self, new_status: str) -> None:\n'
+                        f'        self.status = new_status\n'
+                        f'        self.updated_at = time.time()\n'
+                    )
+                    domain_models_path.write_text(domain_models_code, encoding="utf-8")
+                    self.builder_kernel.compile_module(str(domain_models_path), domain_models_code, f"urn:axioma:g4b:{request.app_id}:models")
+                    emitted_artifacts.append(str(domain_models_path))
+
+                # Module 3: src/engine.py
+                engine_path = src_dir / "engine.py"
+                if not engine_path.exists():
+                    verbs_methods = ""
+                    if request.expected_verbs:
+                        for v in request.expected_verbs:
+                            clean_v = v.strip().lower().replace(" ", "_")
+                            if clean_v not in ("execute_operation", "__init__"):
+                                verbs_methods += (
+                                    f"\n    def {clean_v}(self, *args, **kwargs) -> str:\n"
+                                    f'        self.state.update_status(f"EXECUTED_{clean_v.upper()}")\n'
+                                    f"        return self.state.status\n"
+                                )
+                    engine_code = (
+                        f'"""Core engine logic for {request.app_name}."""\n\n'
+                        f'from .domain_models import AppState\n\n'
+                        f'class AppEngine:\n'
+                        f'    def __init__(self, app_id: str = "{request.app_id}") -> None:\n'
+                        f'        self.state = AppState(app_id=app_id)\n\n'
+                        f'    def execute_operation(self, verb: str) -> str:\n'
+                        f'        self.state.update_status(f"EXECUTED_{{verb.upper()}}")\n'
+                        f'        return self.state.status\n'
+                        f'{verbs_methods}'
+                    )
+                    engine_path.write_text(engine_code, encoding="utf-8")
+                    self.builder_kernel.compile_module(str(engine_path), engine_code, f"urn:axioma:g4b:{request.app_id}:engine")
+                    emitted_artifacts.append(str(engine_path))
+
+                # Module 4: run.py (Entrypoint supporting --smoke-test [NEG-G1B-002])
+                if not run_path.exists():
+                    run_code = (
+                        f'#!/usr/bin/env python3\n'
+                        f'"""Entrypoint binary for {request.app_name} [NEG-G1B-002]."""\n\n'
+                        f'import sys\n\n'
+                        f'from src.engine import AppEngine\n\n'
+                        f'def main(argv=None) -> int:\n'
+                        f'    argv = argv or sys.argv[1:]\n'
+                        f'    engine = AppEngine()\n'
+                        f'    if "--smoke-test" in argv:\n'
+                        f'        status = engine.execute_operation("SMOKE_PROBE")\n'
+                        f'        print(f"[{request.app_name.upper()} SMOKE TEST PASSED] Status: {{status}}", flush=True)\n'
+                        f'        return 0\n'
+                        f'    print(f"[{request.app_name.upper()} RUNNING]", flush=True)\n'
+                        f'    return 0\n\n'
+                        f'if __name__ == "__main__":\n'
+                        f'    sys.exit(main())\n'
+                    )
+                    run_path.write_text(run_code, encoding="utf-8")
+                    run_path.chmod(0o755)
+                    self.builder_kernel.compile_module(str(run_path), run_code, f"urn:axioma:g4b:{request.app_id}:entrypoint")
+                    emitted_artifacts.append(str(run_path))
 
             # Ensure test scaffold exists
             tests_py = list(tests_dir.glob("test_*.py"))
@@ -906,7 +1000,7 @@ class SystemG4bCompiler:
 
             discovered_py_files = self._run_phase2b_grounding(
                 target_dir=target_dir,
-                runtime_profile=request.transport_mode,
+                runtime_profile=effective_runtime_profile,
                 emitted_artifacts=emitted_artifacts,
             )
 
@@ -1014,23 +1108,41 @@ class SystemG4bCompiler:
                 correlation_id=correlation_id,
             )
 
+            # Instantiate a fresh per-compilation SovereignAuditKernel dynamically scaled
+            # for (1 + max_remediation_cycles) and discovered module leaves (never reusing self.audit_kernel).
+            lenient_gate = bool(request.metadata.get("lenient_acceptance_gate", False))
+            cycle0_auditable = [
+                p for p in discovered_py_files
+                if "tests" not in p.parts and p.name != "__init__.py"
+            ]
+            total_cycles = 1 + max(0, int(request.max_remediation_cycles))
+            headroom_leaves = max(len(cycle0_auditable) * 3, len(cycle0_auditable) + 16)
+            required_exploratory = headroom_leaves * total_cycles * 50000
+            # Exact integer ceiling guaranteeing int(budget * 0.60) >= required_exploratory
+            dynamic_audit_budget = max(
+                923100,
+                int(request.bpe_token_budget),
+                (required_exploratory * 5 + 2) // 3 + 5,
+            )
+            phase_audit_kernel = SovereignAuditKernel(
+                node_ip="192.168.40.30",
+                port=8444,
+                token_budget=dynamic_audit_budget,
+                strict_formal_prover=effective_strict_prover,
+                runtime_profile=effective_runtime_profile,
+            )
+            self._last_audit_kernel = phase_audit_kernel
+            phase_smt_checker = phase_audit_kernel.smt_checker
+
             # Audit code leaves with phase_audit_kernel and micro_auditor
-            for py_path in discovered_py_files:
-                if "tests" not in py_path.parts and py_path.name != "__init__.py":
-                    py_code = py_path.read_text(encoding="utf-8")
-                    candidate = CodeLeafCandidate(
-                        leaf_id=f"leaf_{py_path.stem}_{uuid.uuid4().hex[:6]}",
-                        symbol_urn=f"urn:meta_axioma:g4b:{request.app_id}:{py_path.stem}",
-                        source_code=py_code,
-                        ast_node_type="MODULE",
-                        source_endpoint=self.BUILDER_ENDPOINT,
-                    )
-                    phase_audit_kernel.audit_code_leaf(candidate)
-                    self.micro_auditor.audit_source(
-                        py_code,
-                        leaf_id=f"leaf_{py_path.stem}",
-                        runtime_profile=request.transport_mode,
-                    )
+            self._audit_code_leaves(
+                phase_audit_kernel=phase_audit_kernel,
+                discovered_py_files=discovered_py_files,
+                request=request,
+                runtime_profile=effective_runtime_profile,
+                lenient_gate=lenient_gate,
+                cycle=0,
+            )
 
             # Verify formal contract morphism & sovereign enclave mesh topology
             phase_smt_checker.verify_contract_morphism(
@@ -1054,7 +1166,6 @@ class SystemG4bCompiler:
             })
 
             # Run Acceptance Gate (cycle 0)
-            lenient_gate = bool(request.metadata.get("lenient_acceptance_gate", False))
             test_cmd = [sys.executable, "-m", "unittest", "discover", "-s", str(tests_dir)]
             gate_result = self.acceptance_gate.verify_spec(
                 target_dir=target_dir,
@@ -1201,7 +1312,7 @@ class SystemG4bCompiler:
                 step_idx += 1
                 discovered_py_files = self._run_phase2b_grounding(
                     target_dir=target_dir,
-                    runtime_profile=request.transport_mode,
+                    runtime_profile=effective_runtime_profile,
                     emitted_artifacts=emitted_artifacts,
                 )
 
@@ -1246,22 +1357,14 @@ class SystemG4bCompiler:
                 # Phase 3 Re-Audit (AcceptanceGate + Red Team Re-Audit)
                 statechart.transition(CompilationPhase.PHASE_3_AUDIT, event="EV_AUDIT_VERIFY_REMEDIATION")
                 step_idx += 1
-                for py_path in discovered_py_files:
-                    if "tests" not in py_path.parts and py_path.name != "__init__.py":
-                        py_code = py_path.read_text(encoding="utf-8")
-                        candidate = CodeLeafCandidate(
-                            leaf_id=f"leaf_{py_path.stem}_c{remediation_cycles_executed}_{uuid.uuid4().hex[:6]}",
-                            symbol_urn=f"urn:meta_axioma:g4b:{request.app_id}:{py_path.stem}",
-                            source_code=py_code,
-                            ast_node_type="MODULE",
-                            source_endpoint=self.BUILDER_ENDPOINT,
-                        )
-                        phase_audit_kernel.audit_code_leaf(candidate)
-                        self.micro_auditor.audit_source(
-                            py_code,
-                            leaf_id=f"leaf_{py_path.stem}_c{remediation_cycles_executed}",
-                            runtime_profile=request.transport_mode,
-                        )
+                self._audit_code_leaves(
+                    phase_audit_kernel=phase_audit_kernel,
+                    discovered_py_files=discovered_py_files,
+                    request=request,
+                    runtime_profile=effective_runtime_profile,
+                    lenient_gate=lenient_gate,
+                    cycle=remediation_cycles_executed,
+                )
                 gate_result = self.acceptance_gate.verify_spec(
                     target_dir=target_dir,
                     spec=acceptance_spec,
@@ -1334,8 +1437,12 @@ class SystemG4bCompiler:
             statechart.transition(CompilationPhase.PHASE_4_TELEMETRY_SEAL, event="EV_TELEMETRY_SEAL")
             step_idx += 1
 
-            # 1. Initialize and Ingest into Telemetry Kernel
-            self.telemetry_kernel.initialize_kernel()
+            # 1. Initialize and Ingest into a fresh per-compilation Telemetry Kernel
+            phase_telemetry_kernel = SovereignTelemetryKernel(
+                node_ip="192.168.40.40",
+                port=8446,
+            )
+            phase_telemetry_kernel.initialize_kernel()
             ingest_batch = TelemetryIngestBatch(
                 batch_id=f"batch_{correlation_id}",
                 source_service="services/builder",
@@ -1343,7 +1450,7 @@ class SystemG4bCompiler:
                 spans=[],
                 metrics=[],
             )
-            self.telemetry_kernel.ingest_telemetry_batch(ingest_batch)
+            phase_telemetry_kernel.ingest_telemetry_batch(ingest_batch)
 
             # 2. Compute Merkle Root over Transactions
             merkle_chain_payload = ":".join(tx.transaction_hash for tx in tx_chain)

@@ -42,9 +42,19 @@ from generations.gen_04b.protocols.deliverable_bundle import (
 )
 
 
+def _normalize_runtime_profile(profile: Optional[Any], default: str = "SOVEREIGN_MESH") -> str:
+    """Normalizes TransportMode enums or profile strings safely under Python 3.14."""
+    if profile is None:
+        return default
+    raw = profile.value if hasattr(profile, "value") else str(profile)
+    cleaned = str(raw).strip().upper()
+    return cleaned or default
+
+
 class _HermeticASTVisitor(ast.NodeVisitor):
     """Internal AST visitor scanning for hermetic and axiomatic boundary violations."""
 
+    STRICT_LOOPBACK_PATTERNS = {"127.0.0.1", "localhost", "::1"}
     LOOPBACK_PATTERNS = {"127.0.0.1", "localhost", "::1", "0.0.0.0"}
     BANNED_BUILTIN_CALLS = {"eval", "exec", "__import__", "compile"}
     BANNED_MOCK_DOM_TOKENS = {
@@ -61,8 +71,8 @@ class _HermeticASTVisitor(ast.NodeVisitor):
         runtime_profile: str = "SOVEREIGN_MESH",
     ) -> None:
         self.leaf_id = leaf_id
-        self.allow_local_ipc = allow_local_ipc or (runtime_profile == "LOCAL_IPC")
-        self.runtime_profile = runtime_profile
+        self.allow_local_ipc = bool(allow_local_ipc)
+        self.runtime_profile = _normalize_runtime_profile(runtime_profile)
         self.violations: List[HermeticLinterViolation] = []
         self.ast_nodes_scanned: int = 0
         self.banned_constructs_detected: int = 0
@@ -75,9 +85,17 @@ class _HermeticASTVisitor(ast.NodeVisitor):
         if isinstance(node.value, str):
             val_lower = node.value.lower()
 
-            # HERM-001: Prohibit loopback strings unless explicitly authorized under LOCAL_IPC or test sockets
+            # HERM-001: Prohibit loopback strings unless explicitly authorized via allow_local_ipc=True.
+            # Under runtime_profile == "LOCAL_IPC", wildcard bind "0.0.0.0" is permitted while
+            # loopback ("127.0.0.1", "localhost", "::1", "127.x.x.x") remains strictly banned.
+            # Under SOVEREIGN_MESH, all four patterns including "0.0.0.0" are strictly banned.
             if not self.allow_local_ipc:
-                for pattern in self.LOOPBACK_PATTERNS:
+                patterns_to_check = (
+                    self.STRICT_LOOPBACK_PATTERNS
+                    if self.runtime_profile == "LOCAL_IPC"
+                    else self.LOOPBACK_PATTERNS
+                )
+                for pattern in patterns_to_check:
                     if pattern in val_lower:
                         self.violations.append(
                             HermeticLinterViolation(
@@ -93,7 +111,7 @@ class _HermeticASTVisitor(ast.NodeVisitor):
                         self.banned_constructs_detected += 1
 
                 # Check 127. subnet
-                if "127." in node.value and not any(p in val_lower for p in self.LOOPBACK_PATTERNS):
+                if "127." in node.value and not any(p in val_lower for p in patterns_to_check):
                     self.violations.append(
                         HermeticLinterViolation(
                             violation_id=f"viol_herm001_{uuid.uuid4().hex[:8]}",
@@ -344,8 +362,8 @@ class ZeroTrustMicroAuditor:
         runtime_profile: str = "SOVEREIGN_MESH",
     ) -> None:
         self.auditor_node_id = auditor_node_id
-        self.allow_local_ipc = allow_local_ipc or (runtime_profile == "LOCAL_IPC")
-        self.runtime_profile = runtime_profile
+        self.allow_local_ipc = bool(allow_local_ipc)
+        self.runtime_profile = _normalize_runtime_profile(runtime_profile)
         self.presentation_auditor = PresentationMicroAuditor()
         self.headless_walker = HeadlessUIWalker(auditor_node_id=auditor_node_id)
 
@@ -382,19 +400,25 @@ class ZeroTrustMicroAuditor:
                 auditor_node_id=self.auditor_node_id,
             )
 
-        # Determine effective local IPC authorization
-        effective_ipc = self.allow_local_ipc if allow_local_ipc is None else allow_local_ipc
-        effective_profile = self.runtime_profile if runtime_profile is None else runtime_profile
-        if effective_profile == "LOCAL_IPC":
-            effective_ipc = True
-        sc_lower = source_code.lower()
-        if (
-            "# allow-local-ipc" in sc_lower
-            or "profile.local_ipc" in sc_lower
-            or 'profile == "local_ipc"' in sc_lower
-            or "authorized_local_ipc" in sc_lower
-        ):
-            effective_ipc = True
+        # Determine effective runtime profile and explicit local IPC authorization.
+        # Keep runtime_profile="LOCAL_IPC" (allows "0.0.0.0" only) strictly separate from
+        # allow_local_ipc=True (explicit test/server loopback opt-in), and prevent inline
+        # comment smuggling from bypassing SOVEREIGN_MESH.
+        effective_profile = (
+            self.runtime_profile
+            if runtime_profile is None
+            else _normalize_runtime_profile(runtime_profile)
+        )
+        effective_ipc = self.allow_local_ipc if allow_local_ipc is None else bool(allow_local_ipc)
+        if effective_profile == "LOCAL_IPC" and allow_local_ipc is not False:
+            sc_lower = source_code.lower()
+            if (
+                "# allow-local-ipc" in sc_lower
+                or "profile.local_ipc" in sc_lower
+                or 'profile == "local_ipc"' in sc_lower
+                or "authorized_local_ipc" in sc_lower
+            ):
+                effective_ipc = True
 
         # AST Inspection
         visitor = _HermeticASTVisitor(
@@ -415,10 +439,18 @@ class ZeroTrustMicroAuditor:
             auditor_node_id=self.auditor_node_id,
         )
 
-    def audit_candidate(self, candidate: CodeLeafCandidate) -> HermeticAuditReport:
+    def audit_candidate(
+        self,
+        candidate: CodeLeafCandidate,
+        runtime_profile: Optional[str] = None,
+    ) -> HermeticAuditReport:
         """Audits a typed CodeLeafCandidate and verifies both source and metadata."""
         candidate.validate_invariants()
-        return self.audit_source(candidate.source_code, leaf_id=candidate.leaf_id)
+        return self.audit_source(
+            candidate.source_code,
+            leaf_id=candidate.leaf_id,
+            runtime_profile=runtime_profile,
+        )
 
     @classmethod
     def check_unrendered_latex(cls, html_content: str, base_dir: Optional[str] = None) -> List[str]:
@@ -699,9 +731,14 @@ class ZeroTrustMicroAuditor:
         contract: Optional[Any] = None,
         leaf_id: str = "module.py",
         presentation_bundle: Optional[Dict[str, str]] = None,
+        runtime_profile: Optional[str] = None,
     ) -> Dict[str, Any]:
         """Unified pre-disk audit intercept combining Hermetic, Bijective, Operational, and Presentation passes."""
-        hermetic_report = self.audit_source(source_code, leaf_id=leaf_id)
+        hermetic_report = self.audit_source(
+            source_code,
+            leaf_id=leaf_id,
+            runtime_profile=runtime_profile,
+        )
         if not hermetic_report.is_hermetic:
             return {
                 "is_passed": False,
